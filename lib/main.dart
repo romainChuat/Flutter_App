@@ -1,4 +1,9 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_map/plugin_api.dart';
+import 'package:latlong2/latlong.dart';
 
 void main() {
   runApp(const MyApp());
@@ -6,110 +11,167 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.grey,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Home'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
   final String title;
-
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
+enum testTT {test1 ,test2}
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
+  
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
+    testTT? _testTT = testTT.test1;
+    const TextStyle style = TextStyle(fontFamily: 'Courier New', fontSize: 30);
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
+      /*appBar: AppBar(
         title: Text(widget.title),
-      ),
+      ),*/
       body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
         child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+            Container(
+               child: const Text('Title', style: style, textAlign: TextAlign.left,)
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+            //Padding(
+            ClipRRect(
+              borderRadius: BorderRadius.circular(15.0),
+              child: Container(
+                width: 340,
+                height: 419,
+                color: Color.fromARGB(255, 170, 241, 168),
+                child: Column(children: [
+                  const Text('Quel age avez vous ?', style: TextStyle(fontSize: 19, fontFamily: 'Courier New', fontWeight: FontWeight.w600),),
+                  ListTile(
+                    title: const Text("test1", style: TextStyle(fontSize: 16, fontFamily: 'Courier New', fontWeight: FontWeight.w600)),
+                    leading: Radio<testTT>(
+                      groupValue: _testTT,
+                      value: testTT.test1,
+                      onChanged: (testTT? value){
+                        setState(() {
+                          _testTT = value;
+                        });
+                      },
+                      )
+                  ),
+                  ListTile(
+                    title: const Text("test2", style: TextStyle(fontSize: 16, fontFamily: 'Courier New', fontWeight: FontWeight.w600)),
+                    leading: Radio<testTT>(
+                      groupValue: _testTT,
+                      value: testTT.test2,
+                      onChanged: (testTT? value){
+                        setState(() {
+                          _testTT = value;
+                        });
+                      },
+                      )
+                  )
+                ],
+              )
+            )
+
+          ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              foregroundColor: Colors.black,
+              backgroundColor: Color.fromARGB(255, 33, 167, 80),
             ),
-          ],
+            onPressed: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => _MapPage(),
+                ),
+              );
+            },
+            child: const Text('Submit', style: TextStyle( fontSize: 25),),
+          ),
+        ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      
+      backgroundColor: Color.fromARGB(255, 86, 178, 117), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
+
+class _MapPage extends StatelessWidget{
+    const _MapPage({super.key});
+    @override
+    Widget build(BuildContext context) {
+      const TextStyle style = TextStyle(fontFamily: 'Courier New', fontSize: 30, fontWeight: FontWeight.w600 );
+      return Scaffold(
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Container(
+                child: const Text('Title', style: style,)
+              ),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(15.0),
+                child: Container(
+                  width: 340,
+                  height: 419,
+                  //color: Colors.green,
+                  color: Color.fromARGB(255, 170, 241, 168),
+                  child: FlutterMap(
+                    options: MapOptions(
+                      center: LatLng(47.235198, 6.021029), 
+                      zoom: 14
+                    ),
+                    children: [
+                      TileLayer(
+                        urlTemplate: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                        //userAgentPackageName: 'com.unknown.app',  /// ????
+                      )
+                    ],
+                  ) ,
+                )
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.black,
+                  backgroundColor: Color.fromARGB(255, 33, 167, 80),
+                ),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text('Go back!', style: TextStyle( fontSize: 20, fontWeight: FontWeight.bold),),
+              ),
+            ],
+          ),
+        ),
+        backgroundColor: Color.fromARGB(255, 86, 178, 117),
+      );
+      
+      /*return FlutterMap(
+        options: MapOptions(
+          center: LatLng(47.235198, 6.021029), 
+          zoom: 14
+        ),
+        children: [
+          TileLayer(
+            urlTemplate: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+            //userAgentPackageName: 'com.unknown.app',  /// ????
+          )
+        ],
+      );*/
+    }
+  }
