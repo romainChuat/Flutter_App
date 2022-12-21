@@ -36,6 +36,17 @@ const TextStyle titleStyle2 = TextStyle(
 
 const TextStyle buttonTextStyle = TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white, fontFamily: 'Nunito', letterSpacing: 1 );
 
+const TextStyle blueText = TextStyle(
+  fontSize: 20, 
+  fontWeight: FontWeight.bold, 
+  color: Color.fromARGB(255, 41, 59, 229), 
+  fontFamily: 'Nunito', 
+  letterSpacing: 1,
+  shadows:<Shadow> [ Shadow(offset:Offset(-1.0, 1.0) , blurRadius: 5.0 ,color: Color.fromARGB(195, 105, 105, 105))], 
+  
+  );
+
+
 
 // ignore: slash_for_doc_comments
 /**
@@ -54,8 +65,7 @@ class baseAppBar extends StatelessWidget implements PreferredSizeWidget{
           padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
           icon: const Icon(Icons.arrow_back_ios, size: 40,),
           tooltip: '....',
-          onPressed: () { 
-            Navigator.pop(context);
+          onPressed: () { Navigator.pop(context);
           },
         ),
         actions: const [ 
