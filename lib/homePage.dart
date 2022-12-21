@@ -1,8 +1,7 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/startPage.dart';
+import 'startPage.dart';
 import 'mapPage.dart';
-import 'baseAppBar.dart';
+import 'mylib.dart' as mylib;
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -16,36 +15,15 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     //les 3 variable sont a factoriser pour chaque pages
-    const Decoration background1 =  BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment(0.8, 1),
-                colors: <Color>[
-                Color.fromARGB(255,255,255,0),
-                Color.fromARGB(138,35, 175, 74),
-                Color.fromARGB(160,54, 192, 201),
-                Color.fromARGB(255,41, 59, 229),
-                ],
-                tileMode: TileMode.mirror,
-              ),
-    );
-    const TextStyle TitleStyle = TextStyle(
-      fontFamily: 'Spline Sans Mono', 
-      fontSize: 21, 
-      fontWeight: FontWeight.bold, 
-      color: Colors.white, 
-      shadows:<Shadow> [ Shadow(offset:Offset(-2.0, 2.0) , blurRadius: 3.0 ,color: Color.fromARGB(195, 105, 105, 105))], 
-      letterSpacing: -1,
-    );
+    
 
-    const TextStyle buttonTextStyle = TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white, fontFamily: 'Nunito', letterSpacing: 1 );
     
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: baseAppBar(appBar: AppBar(),),
+      appBar: mylib.baseAppBar(appBar: AppBar(),),
 
       body: Container(
-            decoration:  background1,
+            decoration:  mylib.background1,
             child: Center(
              child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -55,7 +33,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   padding: const EdgeInsets.fromLTRB(50, 0, 90, 0),
                   child: const Align(
                     alignment: Alignment.center,
-                    child:Text('Veuillez choisir votre questionnaire :', style: TitleStyle,),
+                    child:Text('Veuillez choisir votre questionnaire :', style: mylib.titleStyle,),
                   ),
                 ),
                 
@@ -76,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     onPressed: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (BuildContext context) => const startPage(background_blue: background1),
+                          builder: (BuildContext context) => const startPage(),
                         ),
                       );
                     },
@@ -89,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             height: 49,
                             child: const Align(
                               alignment: Alignment.centerLeft,
-                              child:Text('Title 1', style: buttonTextStyle),
+                              child:Text('Title 1', style: mylib.buttonTextStyle),
                             ),
                           ),
                           const Align(
@@ -133,7 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             height: 49,
                             child: const Align(
                               alignment: Alignment.centerLeft,
-                              child:Text('Title 2', style: buttonTextStyle),
+                              child:Text('Title 2', style: mylib.buttonTextStyle),
                             ),
                           ),
                           const Align(
@@ -172,7 +150,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             height: 49,
                             child:const Align(
                               alignment: Alignment.centerLeft,
-                              child:Text('Title 3', style: buttonTextStyle),
+                              child:Text('Title 3', style: mylib.buttonTextStyle),
                             ),
                           ),
                           const Align(
@@ -212,7 +190,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             height: 49,
                             child:const Align(
                               alignment: Alignment.centerLeft,
-                              child:Text('Title 4', style: buttonTextStyle),
+                              child:Text('Title 4', style: mylib.buttonTextStyle),
                             ),
                           ),
                           const Align(

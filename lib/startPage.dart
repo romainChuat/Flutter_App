@@ -1,36 +1,20 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/baseAppBar.dart';
 import 'mapPage.dart';
+import 'mylib.dart' as mylib;
 
 
 
 class startPage extends StatelessWidget{
-  final background_blue;
+
+  const startPage({super.key});
   
-  const startPage({this.background_blue});
   @override
   Widget build(BuildContext context) {
-
-    /** */
-    const TextStyle TitleStyle = TextStyle(
-      fontFamily: 'Spline Sans Mono', 
-      fontSize: 25, 
-      fontWeight: FontWeight.bold, 
-      color: Colors.white, 
-      shadows:<Shadow> [ Shadow(offset:Offset(-2.0, 2.0) , blurRadius: 3.0 ,color: Color.fromARGB(195, 105, 105, 105))], 
-      letterSpacing: 0,
-    );
-
-    const TextStyle buttonTextStyle = TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white, fontFamily: 'Nunito', letterSpacing: 1 );
-
-    /*** */
-
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: baseAppBar(appBar: AppBar()),
+      appBar: mylib.baseAppBar(appBar: AppBar()),
       body: Container(
-        decoration: background_blue,
+        decoration: mylib.background1,
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -42,10 +26,10 @@ class startPage extends StatelessWidget{
                   children: <Widget> [
                     const Align(
                       alignment: Alignment.center,
-                      child:Text('Vous allez repondre à un questionnaire.',style: TitleStyle, ),
+                      child: Text('Vous allez repondre à un questionnaire.',style: mylib.titleStyle2, ),
                     ),
                     const Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 10)),
-                    Text('Duration 10min', style: TitleStyle.apply(fontSizeDelta: -10,fontWeightDelta: -2),),
+                    Text('Duration 10 min', style: mylib.titleStyle.apply(fontSizeDelta: -5,fontWeightDelta: -2),),
                   ],
                 ),
               ),
@@ -69,7 +53,7 @@ class startPage extends StatelessWidget{
                         ),
                       );
                     }, 
-                    child: const Text('Start Now', style: buttonTextStyle,),
+                    child: const Text('Start Now', style: mylib.buttonTextStyle,),
                   ),
                 ),
             ],
