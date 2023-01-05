@@ -16,16 +16,16 @@ const Decoration background1 =  BoxDecoration(
 );
 
 const TextStyle titleStyle = TextStyle(
-      fontFamily: 'Spline Sans Mono', 
       fontSize: 21, 
+      fontFamily: 'Spline Sans Mono', 
       fontWeight: FontWeight.bold, 
       color: Colors.white, 
       shadows:<Shadow> [ Shadow(offset:Offset(-2.0, 2.0) , blurRadius: 3.0 ,color: Color.fromARGB(195, 105, 105, 105))], 
       letterSpacing: -1,
 );
 const TextStyle titleStyle2 = TextStyle(
-      fontFamily: 'Spline Sans Mono', 
       fontSize: 25, 
+      fontFamily: 'Spline Sans Mono', 
       fontWeight: FontWeight.bold, 
       color: Colors.white, 
       shadows:<Shadow> [ Shadow(offset:Offset(-2.0, 2.0) , blurRadius: 3.0 ,color: Color.fromARGB(195, 105, 105, 105))], 

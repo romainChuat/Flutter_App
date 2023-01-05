@@ -22,7 +22,7 @@ class mapPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 
               children: <Widget>[
-                const Text('Title',style: mylib.titleStyle, textAlign: TextAlign.left,),
+                Text('Title',style: mylib.titleStyle.apply(fontSizeDelta: 9, fontWeightDelta: -2,letterSpacingDelta: 3), textAlign: TextAlign.left,),
                 ClipRRect(
                   
                   borderRadius: BorderRadius.circular(15.0),
