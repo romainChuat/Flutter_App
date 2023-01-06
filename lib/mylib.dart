@@ -46,7 +46,14 @@ const TextStyle blueText = TextStyle(
   
   );
 
-
+const TextStyle simpleText = TextStyle(
+  fontSize: 15, 
+   
+  color: Color.fromARGB(255, 117, 106, 106), 
+  fontFamily: 'Spline Sans Mono', 
+  letterSpacing: 1,
+  
+  );
 
 // ignore: slash_for_doc_comments
 /**

@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
-import 'package:flutter_map/plugin_api.dart';
-import 'package:latlong2/latlong.dart';
+import 'FichierPage.dart';
 import 'mylib.dart' as mylib;
 
-import 'ANommer.dart';
-
-class mapPage extends StatelessWidget {
-  const mapPage({
+class ANommer extends StatelessWidget {
+  const ANommer({
     super.key,
   });
   @override
@@ -37,7 +33,7 @@ class mapPage extends StatelessWidget {
                       children: [
                         Container(
                           padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
-                          child: const Text("Pour commencer, veuillez indiquer la localisation de votre photographie de paysage", 
+                          child: const Text("Veuillez céder les droits d'auteur ou d'autrice pour poursuivre", 
                                     style: mylib.blueText,
                                     textAlign: TextAlign.center,
                                     
@@ -55,24 +51,32 @@ class mapPage extends StatelessWidget {
                           height: 378,
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(15.0),
-                            child: FlutterMap(
-                              options: MapOptions(
-                                center: LatLng(47.235198, 6.021029), zoom: 14
+                            child: Container(
+                              color: const Color.fromARGB(10, 10, 10, 10),
+                              child: Column(
+                                children: [
+                                  Expanded(
+                                    child: MediaQuery.removePadding(
+                                      context: context, 
+                                      removeTop: true,
+                                      //child: Scrollbar( //optionnel
+                                        //isAlwaysShown: true,
+                                        child: const SingleChildScrollView(
+                                          padding: EdgeInsets.fromLTRB(10,10,10,10),
+                                          child: 
+                                            Text( "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+                                        ),
+                                      //),
+                                    )
+                                  ),
+                                ],
                               ),
-                              children: [
-                                TileLayer(
-                                  urlTemplate: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-                                  //userAgentPackageName: 'com.unknown.app',  /// ????
-                                ),
-                              ],
                             ),
                           ),
                         ),
                       ],
                     ),
-                  
-                  )
-                  
+                  ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -107,20 +111,19 @@ class mapPage extends StatelessWidget {
                           //padding: EdgeInsets.fromLTRB(10,0,110,0),
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                         ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => const ANommer(),
-                          ),
-                        );
-                      },
-                      child: const Text( 'Submit', style: mylib.buttonTextStyle,),
+                        onPressed: () {
+                          Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const FichierPage(),
+                        ),
+                      );
+                        },
+                        child: const Text( 'Submit', style: mylib.buttonTextStyle,),
                       ),
                     ),
                   ],
                 )
-                
               ],
             ),
           ),

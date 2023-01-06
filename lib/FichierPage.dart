@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
-import 'package:flutter_map/plugin_api.dart';
-import 'package:latlong2/latlong.dart';
 import 'mylib.dart' as mylib;
+import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
 
-import 'ANommer.dart';
-
-class mapPage extends StatelessWidget {
-  const mapPage({
+class FichierPage extends StatelessWidget {
+  const FichierPage({
     super.key,
   });
+  
+
   @override
   Widget build(BuildContext context) {
+    ImagePicker picker = ImagePicker();
+    XFile? image;
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: mylib.baseAppBar(appBar: AppBar()),
@@ -37,7 +38,7 @@ class mapPage extends StatelessWidget {
                       children: [
                         Container(
                           padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
-                          child: const Text("Pour commencer, veuillez indiquer la localisation de votre photographie de paysage", 
+                          child: const Text("Déposez à présent le fichier de l'image numérique", 
                                     style: mylib.blueText,
                                     textAlign: TextAlign.center,
                                     
@@ -53,26 +54,54 @@ class mapPage extends StatelessWidget {
                         SizedBox(
                           width: 265,
                           height: 378,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(15.0),
-                            child: FlutterMap(
-                              options: MapOptions(
-                                center: LatLng(47.235198, 6.021029), zoom: 14
-                              ),
-                              children: [
-                                TileLayer(
-                                  urlTemplate: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-                                  //userAgentPackageName: 'com.unknown.app',  /// ????
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                width:289,
+                                height: 40,
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.white,
+                                  foregroundColor: Colors.black,
+                                  elevation: 5,
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                                  side: const BorderSide(color: Colors.white, width: 1),
+                                  //padding: EdgeInsets.fromLTRB(10,0,110,0),
+                                  ),
+                                  onPressed: () async {
+                                    image = await picker.pickImage(source: ImageSource.gallery); 
+                                    //setState(() {
+                                      //update UI
+                                    //});
+                                  },
+                                  
+                                  child: Container(
+                                    child: Row(
+                                      children: [
+                                        const Align(
+                                          alignment: Alignment.centerLeft,
+                                          child:Icon( Icons.expand_more, color: Color.fromARGB(255, 41, 59, 229) , size: 30,),
+                                        ),
+                                        Container(
+                                          //padding:EdgeInsets.fromLTRB(20,0,0,0),
+                                          
+                                          child: const Align(
+                                            alignment: Alignment.centerLeft,
+                                            child:Text('Envoyer des fichiers', style: mylib.simpleText,  ),
+                                          ),
+                                        ),
+                                        
+                                      ],
+                                    ),
+                                  ),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ]
                           ),
                         ),
                       ],
                     ),
-                  
-                  )
-                  
+                  ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -107,23 +136,30 @@ class mapPage extends StatelessWidget {
                           //padding: EdgeInsets.fromLTRB(10,0,110,0),
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                         ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => const ANommer(),
-                          ),
-                        );
-                      },
-                      child: const Text( 'Submit', style: mylib.buttonTextStyle,),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Text( 'Submit', style: mylib.buttonTextStyle,),
                       ),
                     ),
                   ],
                 )
-                
               ],
             ),
           ),
         ));
+  }
+    /// Get from gallery
+  _getFromGallery() async {
+    PickedFile? pickedFile = await ImagePicker().getImage(
+      source: ImageSource.gallery,
+      maxWidth: 1800,
+      maxHeight: 1800,
+    );
+    if (pickedFile != null) {
+      /*setState(() {
+        imageFile = File(pickedFile.path);
+      });*/
+    }
   }
 }
