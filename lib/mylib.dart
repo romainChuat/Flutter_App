@@ -38,11 +38,20 @@ const TextStyle buttonTextStyle = TextStyle(fontSize: 20, fontWeight: FontWeight
 
 const TextStyle blueText = TextStyle(
   fontSize: 20, 
-  fontWeight: FontWeight.bold, 
+  fontWeight: FontWeight.w800, 
   color: Color.fromARGB(255, 41, 59, 229), 
   fontFamily: 'Nunito', 
   letterSpacing: 1,
-  shadows:<Shadow> [ Shadow(offset:Offset(-1.0, 1.0) , blurRadius: 5.0 ,color: Color.fromARGB(195, 105, 105, 105))], 
+  //shadows:<Shadow> [ Shadow(offset:Offset(-1.0, 1.0) , blurRadius: 5.0 ,color: Color.fromARGB(195, 105, 105, 105))], 
+  
+);
+const TextStyle radioText = TextStyle(
+  fontSize: 15, 
+  fontWeight: FontWeight.w600, 
+  color: Color.fromARGB(255, 41, 59, 229), 
+  fontFamily: 'Nunito', 
+  letterSpacing: 1,
+  //shadows:<Shadow> [ Shadow(offset:Offset(-1.0, 1.0) , blurRadius: 5.0 ,color: Color.fromARGB(195, 105, 105, 105))], 
   
   );
 
@@ -52,6 +61,13 @@ const TextStyle simpleText = TextStyle(
   color: Color.fromARGB(255, 117, 106, 106), 
   fontFamily: 'Spline Sans Mono', 
   letterSpacing: 1,
+  
+  );
+const TextStyle warningText = TextStyle(
+  fontSize: 11,    
+  color: Color.fromARGB(255, 208, 40, 40), 
+  fontFamily: 'Spline Sans Mono', 
+  letterSpacing: 0,
   
   );
 
@@ -85,4 +101,35 @@ class baseAppBar extends StatelessWidget implements PreferredSizeWidget{
   }
   @override
   Size get preferredSize => new Size.fromHeight(appBar.preferredSize.height);
+}
+
+createInput(double hgth){
+  return SizedBox(
+    height: hgth,
+    child:Material(
+      elevation: 5,
+      borderRadius: BorderRadius.all(Radius.circular(10)),
+      child :TextField(
+        style: simpleText.apply(fontSizeDelta: 5),
+        cursorColor: Color.fromARGB(255, 117, 106, 106),
+        decoration: InputDecoration(
+          /*prefixIcon: Padding(
+            padding: const EdgeInsets.fromLTRB(2,2,0,0),
+            //child: Text('${index+1}.', style: mylib.simpleText.apply(fontSizeDelta: 5) ,),
+          ),*/
+          contentPadding: const EdgeInsets.fromLTRB(0,0,0,1),
+          filled: true,
+          fillColor: Colors.white,
+          enabledBorder: const OutlineInputBorder(
+            borderSide: BorderSide(width:1, color: Color.fromARGB(255, 255, 255, 255),),
+            borderRadius: BorderRadius.all(Radius.circular(15))
+          ),
+          focusedBorder: const OutlineInputBorder(
+            borderSide: BorderSide(width:1, color: Color.fromARGB(255, 255, 255, 255),),
+            borderRadius: BorderRadius.all(Radius.circular(15))
+          )
+        ),
+      )
+    )
+  );
 }

@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/datePage.dart';
-import 'dart:io';
+import 'package:flutter_application_1/agePage.dart';
 import 'mylib.dart' as mylib;
-import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 
-class FichierPage extends StatelessWidget {
-  const FichierPage({
-    super.key,  
-  });
-  //String strPath = "";
+class motPage extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _motPage();
+  }
+}
+class _motPage extends State<motPage> {
   @override
   Widget build(BuildContext context) {
 
@@ -26,17 +27,18 @@ class FichierPage extends StatelessWidget {
               children: <Widget>[
                 Text('Title',style: mylib.titleStyle.apply(fontSizeDelta: 9, fontWeightDelta: -2,letterSpacingDelta: 3), textAlign: TextAlign.left,),
                 ClipRRect(
+                  
                   borderRadius: BorderRadius.circular(15.0),
                   child:Container(
                     width: 336,
-                    height: 295,
+                    height: 370,
                     color: Color.fromARGB(255, 235, 233, 233),
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Container(
                           padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
-                          child: const Text("Déposez à présent le fichier de l'image numérique", 
+                          child: const Text("Quels sont les mots et expressions qui vous viennent à l'esprit ?", 
                             style: mylib.blueText,
                             textAlign: TextAlign.center,        
                           ),
@@ -47,54 +49,50 @@ class FichierPage extends StatelessWidget {
                           indent: 20,
                           endIndent: 20,
                         ),
-                        Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 0)),
-                        SizedBox(
-                          width: 265,
-                          height: 180,
-                          child: Column(
-                            children: [
-                              SizedBox(
-                                width:289,
-                                height: 40,
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.white,
-                                  foregroundColor: Colors.black,
-                                  elevation: 5,
-                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                                  side: const BorderSide(color: Colors.white, width: 1),
-                                  //padding: EdgeInsets.fromLTRB(10,0,110,0),
-                                  ),
-                                  onPressed: () {
-                                    var newPath = _getFromGallery();
-                                    //image = await picker.pickImage(source: ImageSource.gallery); 
-                                    //setState((){ strPath = newPath; });
-                                  },
-                                  child: Container(
-                                    child: Row(
-                                      children: [
-                                        const Align(
-                                          alignment: Alignment.centerLeft,
-                                          child:Icon( Icons.expand_more, color: Color.fromARGB(255, 41, 59, 229) , size: 30,),
-                                        ),
-                                        Container(
-                                          //padding:EdgeInsets.fromLTRB(20,0,0,0),
-                                          
-                                          child: const Align(
-                                            alignment: Alignment.centerLeft,
-                                            
-                                            child:Text("Envoyer un fichier", style: mylib.simpleText,  ),
-                                          ),
-                                        ),
+                        const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                        Container(
+                          width: 263,
+                          height: 240,
+                          child: MediaQuery.removePadding(
+                                      context: context, 
+                                      removeTop: true,
+                            child: ListView.separated(
+                              itemCount: 8,
+                              itemBuilder: (BuildContext context, int index) {
+                                return SizedBox(
+                                  height: 38,
+                                  child:Material(
+                                    elevation: 5,
+                                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                                    child :TextField(
+                                      style: mylib.simpleText.apply(fontSizeDelta: 5),
+                                      cursorColor: Color.fromARGB(255, 117, 106, 106),
+                                      decoration: InputDecoration(
+                                        prefixIcon: Padding(
+                                        padding: const EdgeInsets.fromLTRB(12,6,0,0),
+                                        child: Text('${index+1}.', style: mylib.simpleText.apply(fontSizeDelta: 5) ,),
                                         
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
-                              Text("! Veuillez envoyez au plus 1 fichier", style: mylib.warningText,)
-                            ]
+                                        ),
+                                        contentPadding: const EdgeInsets.fromLTRB(0,0,0,1),
+                                        filled: true,
+                                        fillColor: Colors.white,
+                                        enabledBorder: const OutlineInputBorder(
+                                          borderSide: BorderSide(width:1, color: Color.fromARGB(255, 255, 255, 255),),
+                                          borderRadius: BorderRadius.all(Radius.circular(15))
+                                        ),
+                                        focusedBorder: const OutlineInputBorder(
+                                          borderSide: BorderSide(width:1, color: Color.fromARGB(255, 255, 255, 255),),
+                                          borderRadius: BorderRadius.all(Radius.circular(15))
+                                        )
+                                      ),
+                                  )
+
+                                  )
+                                                                  );
+                              }, 
+                              separatorBuilder: (BuildContext context, int index) => const Padding(padding: EdgeInsets.all(8)),
+
+                            ),
                           ),
                         ),
                       ],
@@ -138,7 +136,7 @@ class FichierPage extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (_) => datePage(),
+                              builder: (_) => agePage(),
                             ),
                           );
                         },
@@ -152,19 +150,6 @@ class FichierPage extends StatelessWidget {
           ),
         ));
   }
-    /// Get from gallery
-  _getFromGallery() async {
-    var path = "";
-    PickedFile? pickedFile = await ImagePicker().getImage(
-      source: ImageSource.gallery,
-      maxWidth: 1800,
-      maxHeight: 1800,
-    );
-    if (pickedFile != null) {
-        File imageFile = File(pickedFile.path);
-        path = imageFile.path;
-        print(imageFile);
-    }
-    return path;
-  }
+  
+
 }
