@@ -11,8 +11,14 @@ class activitePage extends StatefulWidget {
   }
 }
 class _activitePage extends State<activitePage> {
+
   String activite = "";
-  bool _value = false;
+  bool _formationValue = false;
+  bool _empValue = false;
+  bool _proValue = false;
+  bool _retraiteValue = false;
+  bool _ssProValue = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,16 +69,16 @@ class _activitePage extends State<activitePage> {
                                             child: Text("En formation:"),
                                           ),
                                           CheckboxListTile(
-                                            value: _value,
-                                            selected: _value,
-                                            onChanged: (value) { 
+                                            title: mylib.createInput(28),
+                                            autofocus: false,
+                                            selected: _formationValue,
+                                            value: _formationValue,
+                                            onChanged: (value) {
                                               setState(() {
-                                                //_value = value;
+                                                _formationValue = value!;
+                                                //enregistrer chaine de caracère
                                               });
                                             },
-                                            title: mylib.createInput(28),
-                                            
-                                            autofocus: false,
                                           ),
                                         ],
                                       )  
@@ -87,11 +93,16 @@ class _activitePage extends State<activitePage> {
                                             child: Text("A la recherche d'un emploi:"),
                                           ),
                                           CheckboxListTile(
-                                            onChanged: (value) { 
-                                              setState(() {});
-                                            },
                                             title: mylib.createInput(28),
-                                            value: true,
+                                            autofocus: false,
+                                            selected: _empValue,
+                                            value: _empValue,
+                                            onChanged: (value) {
+                                              setState(() {
+                                                _empValue = value!;
+                                                //enregistrer chaine de caracère
+                                              });
+                                            },
                                           ),
                                         ],
                                       )  
@@ -106,11 +117,16 @@ class _activitePage extends State<activitePage> {
                                             child: Text("Activité professionnelle:"),
                                           ),
                                           CheckboxListTile(
-                                            onChanged: (value) { 
-                                              setState(() {});
-                                            },
                                             title: mylib.createInput(28),
-                                            value: true,
+                                            autofocus: false,
+                                            selected: _proValue,
+                                            value: _proValue,
+                                            onChanged: (value) {
+                                              setState(() {
+                                                _proValue = value!;
+                                                //enregistrer chaine de caracère
+                                              });
+                                            },
                                           ),
                                         ],
                                       )  
@@ -125,11 +141,16 @@ class _activitePage extends State<activitePage> {
                                             child: Text("Retraité :"),
                                           ),
                                           CheckboxListTile(
-                                            onChanged: (value) { 
-                                              setState(() {});
-                                            },
                                             title: mylib.createInput(28),
-                                            value: true,
+                                            autofocus: false,
+                                            selected: _retraiteValue,
+                                            value: _retraiteValue,
+                                            onChanged: (value) {
+                                              setState(() {
+                                                _retraiteValue = value!;
+                                                //enregistrer chaine de caracère
+                                              });
+                                            },
                                           ),
                                         ],
                                       )  
@@ -143,12 +164,17 @@ class _activitePage extends State<activitePage> {
                                             alignment: Alignment.topLeft,
                                             child: Text("Sans activité professionnelle:"),
                                           ),
-                                          CheckboxListTile(
-                                            onChanged: (value) { 
-                                              setState(() {});
-                                            },
+                                         CheckboxListTile(
                                             title: mylib.createInput(28),
-                                            value: true,
+                                            autofocus: false,
+                                            selected: _ssProValue,
+                                            value: _ssProValue,
+                                            onChanged: (value) {
+                                              setState(() {
+                                                _ssProValue = value!;
+                                                //enregistrer chaine de caracère
+                                              });
+                                            },
                                           ),
                                         ],
                                       )  

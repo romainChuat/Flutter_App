@@ -1,4 +1,5 @@
 library mylib;
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 const Decoration background1 =  BoxDecoration(
@@ -112,19 +113,19 @@ createInput(double hgth){
       child :TextField(
         style: simpleText.apply(fontSizeDelta: 5),
         cursorColor: Color.fromARGB(255, 117, 106, 106),
-        decoration: InputDecoration(
+        decoration: const InputDecoration(
           /*prefixIcon: Padding(
             padding: const EdgeInsets.fromLTRB(2,2,0,0),
             //child: Text('${index+1}.', style: mylib.simpleText.apply(fontSizeDelta: 5) ,),
           ),*/
-          contentPadding: const EdgeInsets.fromLTRB(0,0,0,1),
+          contentPadding: EdgeInsets.fromLTRB(0,0,0,1),
           filled: true,
           fillColor: Colors.white,
-          enabledBorder: const OutlineInputBorder(
+          enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(width:1, color: Color.fromARGB(255, 255, 255, 255),),
             borderRadius: BorderRadius.all(Radius.circular(15))
           ),
-          focusedBorder: const OutlineInputBorder(
+          focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(width:1, color: Color.fromARGB(255, 255, 255, 255),),
             borderRadius: BorderRadius.all(Radius.circular(15))
           )
@@ -133,3 +134,45 @@ createInput(double hgth){
     )
   );
 }
+
+
+createBackButton(String text, Function () pressed, double width, double height){
+  return SizedBox(
+    width: width,
+    height: height,
+    child:ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        foregroundColor: Colors.white,
+        backgroundColor: Color.fromARGB(255, 41, 59, 229),
+        side: const BorderSide(color: Colors.white, width: 1),
+        elevation: 15,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      ),
+      onPressed: pressed,
+      child: Text(text , style: buttonTextStyle),
+    ),
+      );
+}
+createButton(String text, BuildContext context, double width, double height, MaterialPageRoute page){
+  return SizedBox(
+    width: width,
+    height: height,
+    child:ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        foregroundColor: Colors.white,
+        backgroundColor: Color.fromARGB(255, 41, 59, 229),
+        side: const BorderSide(color: Colors.white, width: 1),
+        elevation: 15,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      ),
+      onPressed: () {
+        Navigator.push(
+          context,
+          page,
+        );
+      },
+      child: Text(text, style: buttonTextStyle,),
+    ),
+  );
+}
+
