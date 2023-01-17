@@ -1,6 +1,7 @@
 library mylib;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/homePage.dart';
 
 const Decoration background1 =  BoxDecoration(
               gradient: LinearGradient(
@@ -136,7 +137,7 @@ createInput(double hgth){
 }
 
 
-createBackButton(String text, Function () pressed, double width, double height){
+createQuitButton(BuildContext context, double width, double height){
   return SizedBox(
     width: width,
     height: height,
@@ -148,8 +149,15 @@ createBackButton(String text, Function () pressed, double width, double height){
         elevation: 15,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       ),
-      onPressed: pressed,
-      child: Text(text , style: buttonTextStyle),
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => MyHomePage(title: '',),
+          ),
+        );
+      },
+      child: Text("Quit" , style: buttonTextStyle),
     ),
       );
 }

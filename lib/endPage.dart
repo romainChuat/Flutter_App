@@ -33,17 +33,17 @@ class _endPage extends State<endPage> {
                     height: 480,
                     child: Stack(
                       alignment: Alignment.center,
-                      children: [
-                        IconShadow(
+                      children:  [
+                       const IconShadow(
                           Icon(
-                            Icons.check, color: Color.fromARGB(255,95, 202, 131), size: 180
+                            Icons.check, color: Color.fromARGB(255,95, 202, 131), size: 180,
                           ),
                           shadowColor: Color.fromARGB(255, 63, 63, 63),
                           shadowOffset: Offset(2,2),
                         ),
                         CustomPaint(
-                            painter: MakeCircle(strokeWidth: 15,strokeCap: StrokeCap.round, ),
-                            foregroundPainter: MakeCircle(strokeWidth: 15, strokeCap: StrokeCap.round, rad: 135, color: Colors.white ),
+                          painter: MakeCircle(strokeWidth: 15,strokeCap: StrokeCap.round, ),
+                          foregroundPainter: MakeCircle(strokeWidth: 15, strokeCap: StrokeCap.round, rad: 135, color: Colors.white ),
                         ),
                       ],                      
                   ),

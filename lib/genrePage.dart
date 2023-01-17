@@ -107,47 +107,8 @@ class _genrePage extends State<genrePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    SizedBox(
-                      width: 141,
-                      height: 41,
-                      child:ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          foregroundColor: Colors.white,
-                          backgroundColor: Color.fromARGB(255, 41, 59, 229),
-                          side: const BorderSide(color: Colors.white, width: 1),
-                          elevation: 15,
-                          //padding: EdgeInsets.fromLTRB(10,0,110,0),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                        ),
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: const Text( 'Quit', style: mylib.buttonTextStyle,),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 141,
-                      height: 41,
-                      child:ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          foregroundColor: Colors.white,
-                          backgroundColor: Color.fromARGB(255, 41, 59, 229),
-                          side: const BorderSide(color: Colors.white, width: 1),
-                          elevation: 15,
-                          //padding: EdgeInsets.fromLTRB(10,0,110,0),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                        ),
-                        onPressed: () {
-                          Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => etudePage(),
-                          ),
-                        );
-                        },
-                        child: const Text( 'Submit', style: mylib.buttonTextStyle,),
-                      ),
-                    ),
+                    mylib.createQuitButton(context, 141, 41),
+                 mylib.createButton("Next", context, 141, 41, MaterialPageRoute(builder: (_) => etudePage(),), )
                   ],
                 )
               ],
