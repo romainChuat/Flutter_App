@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/homePage.dart';
 import 'package:flutter_icon_shadow/flutter_icon_shadow.dart';
 
 import 'mylib.dart' as mylib;
 
-import 'dart:math' as math;
 
 class endPage extends StatefulWidget {
   @override
@@ -27,8 +27,7 @@ class _endPage extends State<endPage> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 Text('Merci, Login',style: mylib.titleStyle.apply(fontSizeDelta: 9, fontWeightDelta: -2,letterSpacingDelta: 3), textAlign: TextAlign.left,),
-                
-                  SizedBox(
+                SizedBox(
                     width: 342,
                     height: 480,
                     child: Stack(
@@ -41,8 +40,6 @@ class _endPage extends State<endPage> {
                           shadowColor: Color.fromARGB(255, 63, 63, 63),
                           shadowOffset: Offset(2,2),
                         ),*/
-                        
-                       
                         const IconShadow(
                           Icon(Icons.check_circle_outline, size: 320, color: Color.fromARGB(255,95, 202, 131)),
                           shadowColor: Color.fromARGB(255, 63, 63, 63),
@@ -55,6 +52,7 @@ class _endPage extends State<endPage> {
                       ],                      
                   ),
                 ),
+                mylib.createNextButton("Home", context, 141, 41, MaterialPageRoute(builder: (_) => const MyHomePage(title:""),),)
                 
               ],
             ),
