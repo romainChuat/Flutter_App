@@ -163,7 +163,7 @@ class _etudePage extends State<etudePage> {
                                 height: 32,
                                 child: RadioListTile(
                                     activeColor:  Color.fromARGB(255, 41, 59, 229),
-                                    title: const Text("Autre", style: mylib.radioText), 
+                                    title: mylib.createInput(0,30),
                                     groupValue: niveau, 
                                     onChanged: (value) { 
                                       setState(() {
@@ -172,6 +172,7 @@ class _etudePage extends State<etudePage> {
                                       });
                                     }, 
                                     value: Niveau.autre,
+                                    
                                 ),
                               ),
                             ],

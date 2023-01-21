@@ -70,7 +70,7 @@ class _activitePage extends State<activitePage> {
                                             child: Text("En formation:"),
                                           ),
                                           CheckboxListTile(
-                                            title: mylib.createInput(28),
+                                            title: mylib.createInput(311,28),
                                             autofocus: false,
                                             selected: _formationValue,
                                             value: _formationValue,
@@ -94,7 +94,7 @@ class _activitePage extends State<activitePage> {
                                             child: Text("A la recherche d'un emploi:"),
                                           ),
                                           CheckboxListTile(
-                                            title: mylib.createInput(28),
+                                            title: mylib.createInput(311,28),
                                             autofocus: false,
                                             selected: _empValue,
                                             value: _empValue,
@@ -118,7 +118,7 @@ class _activitePage extends State<activitePage> {
                                             child: Text("Activité professionnelle:"),
                                           ),
                                           CheckboxListTile(
-                                            title: mylib.createInput(28),
+                                            title: mylib.createInput(311,28),
                                             autofocus: false,
                                             selected: _proValue,
                                             value: _proValue,
@@ -142,7 +142,7 @@ class _activitePage extends State<activitePage> {
                                             child: Text("Retraité :"),
                                           ),
                                           CheckboxListTile(
-                                            title: mylib.createInput(28),
+                                            title: mylib.createInput(311,28),
                                             autofocus: false,
                                             selected: _retraiteValue,
                                             value: _retraiteValue,
@@ -166,7 +166,7 @@ class _activitePage extends State<activitePage> {
                                             child: Text("Sans activité professionnelle:"),
                                           ),
                                          CheckboxListTile(
-                                            title: mylib.createInput(28),
+                                            title: mylib.createInput(311,28),
                                             autofocus: false,
                                             selected: _ssProValue,
                                             value: _ssProValue,
@@ -191,7 +191,7 @@ class _activitePage extends State<activitePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     mylib.createQuitButton(context, 141, 41),
-                    mylib.createNextButton("Next", context, 141, 41, MaterialPageRoute(builder: (_) => commentPage(),), )
+                    mylib.createNextButton("Next", context, 141, 41, MaterialPageRoute(builder: (_) => endPage(),), )
                   ],
                 )
               ],

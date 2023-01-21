@@ -59,12 +59,17 @@ const TextStyle radioText = TextStyle(
 
 const TextStyle simpleText = TextStyle(
   fontSize: 15, 
-   
   color: Color.fromARGB(255, 117, 106, 106), 
   fontFamily: 'Spline Sans Mono', 
   letterSpacing: 1,
-  
-  );
+);
+const TextStyle simpleText1 = TextStyle(
+  fontSize: 15, 
+  color: Color.fromARGB(255, 117, 106, 106), 
+  fontWeight: FontWeight.w600,
+  fontFamily: 'Nunito', 
+  letterSpacing: 1,
+);
 const TextStyle warningText = TextStyle(
   fontSize: 11,    
   color: Color.fromARGB(255, 208, 40, 40), 
@@ -105,21 +110,18 @@ class baseAppBar extends StatelessWidget implements PreferredSizeWidget{
   Size get preferredSize => new Size.fromHeight(appBar.preferredSize.height);
 }
 
-createInput(double hgth){
+createInput(double wdth, double hgth){
   return SizedBox(
     height: hgth,
-    child:Material(
+    width: wdth,
+    child: const Material(
       elevation: 5,
       borderRadius: BorderRadius.all(Radius.circular(10)),
       child :TextField(
-        style: simpleText.apply(fontSizeDelta: 5),
+        style: simpleText1,
         cursorColor: Color.fromARGB(255, 117, 106, 106),
-        decoration: const InputDecoration(
-          /*prefixIcon: Padding(
-            padding: const EdgeInsets.fromLTRB(2,2,0,0),
-            //child: Text('${index+1}.', style: mylib.simpleText.apply(fontSizeDelta: 5) ,),
-          ),*/
-          contentPadding: EdgeInsets.fromLTRB(0,0,0,1),
+        decoration: InputDecoration(
+          contentPadding: EdgeInsets.fromLTRB(10,0,0,1),
           filled: true,
           fillColor: Colors.white,
           enabledBorder: OutlineInputBorder(
@@ -130,6 +132,39 @@ createInput(double hgth){
             borderSide: BorderSide(width:1, color: Color.fromARGB(255, 255, 255, 255),),
             borderRadius: BorderRadius.all(Radius.circular(15))
           )
+        ),
+      )
+    )
+  );
+}
+createInputTextArea(double wdth,double hgth){
+  return SizedBox(
+    height: hgth,
+    width: wdth,
+    child:const Material(
+      elevation: 5,
+      color: Colors.white,
+      borderRadius: BorderRadius.all(Radius.circular(10)),
+      child :TextField(
+        maxLength: 200,
+        maxLines: null,
+        keyboardType: TextInputType.multiline,
+        style: simpleText1,
+        cursorColor: Color.fromARGB(255, 117, 106, 106),
+        decoration: InputDecoration(
+          counterText: "",
+          hintText: 'Tapez votre texte...',
+          contentPadding: EdgeInsets.fromLTRB(10,0,0,1),
+          filled: true,
+          fillColor: Colors.white,
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(width:1, color: Color.fromARGB(255, 255, 255, 255),),
+            borderRadius: BorderRadius.all(Radius.circular(15))
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(width:1, color: Color.fromARGB(255, 255, 255, 255),),
+            borderRadius: BorderRadius.all(Radius.circular(15))
+          ),
         ),
       )
     )

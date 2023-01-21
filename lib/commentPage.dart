@@ -29,7 +29,7 @@ class _commentPage extends State<commentPage> {
                   borderRadius: BorderRadius.circular(15.0),
                   child: Container(
                       width: 359,
-                      height: 405,
+                      height: 530,
                       decoration: const BoxDecoration(
                         gradient: LinearGradient(
                           begin: Alignment.topCenter,
@@ -49,12 +49,14 @@ class _commentPage extends State<commentPage> {
                             ClipRRect(
                               borderRadius: BorderRadius.circular(15.0),
                               child: Container(
-                                width: 326,
+                                width: 325,
                                 height: 405,
                                 color: Color.fromARGB(255, 235, 233, 233),
                                 child: Column(
-                                  //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                   children: [
+                                    /**
+                                     * Tranche d'age 
+                                     */
                                     Container(
                                       padding:
                                           const EdgeInsets.fromLTRB(1, 0, 1, 0),
@@ -231,11 +233,16 @@ class _commentPage extends State<commentPage> {
                                 ),
                               ),
                             ),
+
                             Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                            
+                            /**
+                             * 
+                             */
                             ClipRRect(
                               borderRadius: BorderRadius.circular(15.0),
                               child: Container(
-                                width: 336,
+                                width: 325,
                                 height: 150,
                                 color: Color.fromARGB(255, 235, 233, 233),
                                 child: Column(
@@ -275,10 +282,13 @@ class _commentPage extends State<commentPage> {
                               ),
                             ),
                             Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 15)),
+                            /**
+                             * Ajouter une note
+                             */
                             ClipRRect(
                               borderRadius: BorderRadius.circular(15.0),
                               child: Container(
-                                width: 336,
+                                width: 325,
                                 height: 150,
                                 color: Color.fromARGB(255, 235, 233, 233),
                                 child: Column(
@@ -299,32 +309,67 @@ class _commentPage extends State<commentPage> {
                                       indent: 20,
                                       endIndent: 20,
                                     ),
-                                    Padding(
-                                        padding:
-                                            EdgeInsets.fromLTRB(0, 10, 0, 10)),
+                                    Padding( padding:EdgeInsets.fromLTRB(0, 10, 0, 10)),
                                     SizedBox(
-                                        child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      children: [
-                                        RatingBar.builder(
-                                          initialRating: 3,
-                                          minRating: 1,
-                                          direction: Axis.horizontal,
-                                          allowHalfRating: true,
-                                          itemCount: 5,
-                                          itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                                          itemBuilder: (context, _) => Icon( Icons.star, color: Colors.amber,),
-                                          onRatingUpdate: (rating) {
-                                            print(rating);
-                                          },
-                                        ),
-                                      ],
-                                    )),
+                                      child:RatingBar.builder(
+                                        initialRating: 3,
+                                        minRating: 1,
+                                        direction: Axis.horizontal,
+                                        allowHalfRating: true,
+                                        itemCount: 5,
+                                        itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                                        itemBuilder: (context, _) => Icon( Icons.star, color: Colors.amber,),
+                                        onRatingUpdate: (rating) {
+                                          print(rating);
+                                        },
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),
                             ),
+                            /**
+                             * Ajouter un commentaire
+                             */
+                            Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 15)),
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(15.0),
+                              child: Container(
+                                width: 325,
+                                height: 305,
+                                color: Color.fromARGB(255, 235, 233, 233),
+                                child: Column(
+                                  //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Container(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          1, 10, 1, 0),
+                                      child: const Text(
+                                        "Ajouter un commentaire",
+                                        style: mylib.blueText,
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                    const Divider(
+                                      color: Color.fromARGB(255, 41, 59, 229),
+                                      thickness: 1,
+                                      indent: 20,
+                                      endIndent: 20,
+                                    ),
+                                    Padding(padding:EdgeInsets.fromLTRB(0, 10, 0, 10)),
+                                    mylib.createInputTextArea(300,204),
+                                    Align(
+                                      alignment: Alignment.bottomRight,
+                                      child: Container(
+                                        padding: EdgeInsets.fromLTRB(0,5,10,2),
+                                        child: Text("*200 caractères max.", style: mylib.warningText,),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Padding(padding:EdgeInsets.fromLTRB(0, 10, 0, 10)),
                           ],
                         ),
                       )),
@@ -333,15 +378,7 @@ class _commentPage extends State<commentPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     mylib.createQuitButton(context, 141, 41),
-                    mylib.createNextButton(
-                      "Next",
-                      context,
-                      141,
-                      41,
-                      MaterialPageRoute(
-                        builder: (_) => genrePage(),
-                      ),
-                    )
+                    mylib.createNextButton("Next",context,141,41,MaterialPageRoute(builder: (_) => genrePage(),),)
                   ],
                 )
               ],
