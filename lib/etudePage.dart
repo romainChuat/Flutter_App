@@ -25,10 +25,12 @@ class _etudePage extends State<etudePage> {
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
           decoration: mylib.background1,
           child: Center(
+            child: SingleChildScrollView (
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 Text('Title',style: mylib.titleStyle.apply(fontSizeDelta: 9, fontWeightDelta: -2,letterSpacingDelta: 3), textAlign: TextAlign.left,),
+                Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
                 ClipRRect(
                   borderRadius: BorderRadius.circular(15.0),
                   child:Container(
@@ -182,6 +184,7 @@ class _etudePage extends State<etudePage> {
                     ),
                   ),
                 ),
+                Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -190,6 +193,7 @@ class _etudePage extends State<etudePage> {
                   ],
                 )
               ],
+            ),
             ),
           ),
         ));

@@ -47,10 +47,8 @@ class _mapPage extends State<mapPage> {
                           padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
                           child: const Text("Pour commencer, veuillez indiquer la localisation de votre photographie de paysage", 
                                     style: mylib.blueText,
-                                    textAlign: TextAlign.center,
-                                    
+                                    textAlign: TextAlign.center,        
                           ),
-
                         ),
                         const Divider(
                           color: Color.fromARGB(255, 41, 59, 229),
