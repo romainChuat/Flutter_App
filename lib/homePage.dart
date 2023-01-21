@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/commentPage.dart';
 import 'startPage.dart';
 import 'mapPage.dart';
 import 'mylib.dart' as mylib;
@@ -98,7 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => const mapPage(),
+                          builder: (_) => commentPage(),
                         ),
                       );
                     },

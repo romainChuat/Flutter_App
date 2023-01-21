@@ -49,7 +49,7 @@ class startPage extends StatelessWidget{
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => const mapPage(),
+                          builder: (_) => mapPage(),
                         ),
                       );
                     }, 

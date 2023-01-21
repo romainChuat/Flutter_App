@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map/plugin_api.dart';
+import 'package:flutter_map_marker_cluster/flutter_map_marker_cluster.dart';
 import 'package:latlong2/latlong.dart';
 import 'mylib.dart' as mylib;
 
 import 'ANommer.dart';
 
-class mapPage extends StatelessWidget {
-  const mapPage({
-    super.key,
-  });
+class mapPage extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _mapPage();
+  }
+}
+class _mapPage extends State<mapPage> {
+  final mapController = MapController();
+
+  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,15 +64,18 @@ class mapPage extends StatelessWidget {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(15.0),
                             child: FlutterMap(
+                              mapController: mapController,
                               options: MapOptions(
-                                center: LatLng(47.235198, 6.021029), zoom: 14
+                                center: LatLng(47.235198, 6.021029), 
+                                zoom: 14,
                               ),
-                              children: [
-                                TileLayer(
+                              layers: [
+                                TileLayerOptions(
                                   urlTemplate: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
                                   //userAgentPackageName: 'com.unknown.app',  /// ????
                                 ),
                               ],
+                              children: [],
                             ),
                           ),
                         ),
@@ -78,7 +89,7 @@ class mapPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     mylib.createQuitButton(context, 141, 41),
-                    mylib.createButton("Next", context, 141, 41, MaterialPageRoute(builder: (_) => const ANommer(),), )
+                    mylib.createNextButton("Next", context, 141, 41, MaterialPageRoute(builder: (_) => const ANommer(),), )
                   ],
                 )
                 

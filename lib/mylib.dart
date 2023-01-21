@@ -161,7 +161,7 @@ createQuitButton(BuildContext context, double width, double height){
     ),
       );
 }
-createButton(String text, BuildContext context, double width, double height, MaterialPageRoute page){
+createNextButton(String text, BuildContext context, double width, double height, MaterialPageRoute page){
   return SizedBox(
     width: width,
     height: height,
@@ -179,6 +179,23 @@ createButton(String text, BuildContext context, double width, double height, Mat
           page,
         );
       },
+      child: Text(text, style: buttonTextStyle,),
+    ),
+  );
+}
+createtButton(String text, BuildContext context, double width, double height){
+  return SizedBox(
+    width: width,
+    height: height,
+    child:ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        //foregroundColor: Colors.white,
+        backgroundColor: Color.fromARGB(255, 41, 59, 229),
+        //side: const BorderSide(color: Colors.white, width: 1),
+        elevation: 15,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      ),
+      onPressed: () {},
       child: Text(text, style: buttonTextStyle,),
     ),
   );

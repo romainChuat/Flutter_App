@@ -117,7 +117,7 @@ class _datePage extends State<datePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     mylib.createQuitButton(context, 141, 41),
-                    mylib.createButton("Next", context, 141, 41, MaterialPageRoute(builder: (_) => motPage(),), )
+                    mylib.createNextButton("Next", context, 141, 41, MaterialPageRoute(builder: (_) => motPage(),), )
                   ],
                 )
               ],

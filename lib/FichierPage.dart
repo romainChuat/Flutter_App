@@ -105,7 +105,7 @@ class FichierPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     mylib.createQuitButton(context, 141, 41),
-                    mylib.createButton("Next", context, 141, 41, MaterialPageRoute(builder: (_) => datePage(),), )
+                    mylib.createNextButton("Next", context, 141, 41, MaterialPageRoute(builder: (_) => datePage(),), )
                   ],
                 )
               ],

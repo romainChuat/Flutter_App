@@ -38,7 +38,7 @@ class _agePage extends State<agePage> {
                       children: [
                         Container(
                           padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
-                          child: const Text("Quels sont les mots et expressions qui vous viennent à l'esprit ?", 
+                          child: const Text("Choisissez la tranche d'âge à laquelle vous situez-vous ?", 
                             style: mylib.blueText,
                             textAlign: TextAlign.center,        
                           ),
@@ -200,7 +200,7 @@ class _agePage extends State<agePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     mylib.createQuitButton(context, 141, 41),
-                    mylib.createButton("Next", context, 141, 41, MaterialPageRoute(builder: (_) => genrePage(),), )
+                    mylib.createNextButton("Next", context, 141, 41, MaterialPageRoute(builder: (_) => genrePage(),), )
                   ],
                 )
               ],

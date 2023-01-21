@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/commentPage.dart';
 import 'package:flutter_application_1/genrePage.dart';
 import 'endPage.dart';
 import 'mylib.dart' as mylib;
@@ -190,7 +191,7 @@ class _activitePage extends State<activitePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     mylib.createQuitButton(context, 141, 41),
-                    mylib.createButton("Next", context, 141, 41, MaterialPageRoute(builder: (_) => endPage(),), )
+                    mylib.createNextButton("Next", context, 141, 41, MaterialPageRoute(builder: (_) => commentPage(),), )
                   ],
                 )
               ],
