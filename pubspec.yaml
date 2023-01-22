@@ -45,7 +45,7 @@ dependencies:
   flutter_icon_shadow: ^2.0.6
   postgres: ^2.5.2
   sqflite: ^2.2.3
-  path:
+  path: ^1.8.0
   #url_launcher: ^6.1.5
 
   
