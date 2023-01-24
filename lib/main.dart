@@ -1,7 +1,9 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/user_choix_connexion.dart';
 
-import 'homePage.dart';
+
+import 'connexion.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
 
       ),
-      home: const MyHomePage(title: 'Home'),
+      home:  userchoixconnexion(),
     );
   }
 }

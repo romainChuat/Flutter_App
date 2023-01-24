@@ -33,7 +33,27 @@ const TextStyle titleStyle2 = TextStyle(
       shadows:<Shadow> [ Shadow(offset:Offset(-2.0, 2.0) , blurRadius: 3.0 ,color: Color.fromARGB(195, 105, 105, 105))], 
       letterSpacing: -1,
 );
-
+const TextStyle titleStyle3 = TextStyle(
+      fontSize: 22, 
+      fontFamily: 'Nunito', 
+      fontWeight: FontWeight.bold, 
+      color: Colors.black, 
+      letterSpacing: 1,
+);
+const TextStyle titleStyle4 = TextStyle(
+      fontSize: 20, 
+      fontFamily: 'Nunito', 
+      fontWeight: FontWeight.bold, 
+      color: Color(0xff746a6a), 
+      letterSpacing: 1,
+);
+const TextStyle titleStyle5 = TextStyle(
+      fontSize: 20, 
+      fontFamily: 'Nunito', 
+      fontWeight: FontWeight.bold, 
+      color: Colors.white, 
+      letterSpacing: 1,
+);
 
 
 const TextStyle buttonTextStyle = TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white, fontFamily: 'Nunito', letterSpacing: 1 );
@@ -188,7 +208,7 @@ createQuitButton(BuildContext context, double width, double height){
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (_) => MyHomePage(title: '',),
+            builder: (_) => MyHomePage(),
           ),
         );
       },

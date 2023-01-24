@@ -88,7 +88,7 @@ class _mapPage extends State<mapPage> {
                                     ),
                                   );
                                   setState(() {});
-                                }
+                                },
                               ),
                               layers: [
                                 TileLayerOptions(

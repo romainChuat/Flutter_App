@@ -52,7 +52,7 @@ class _endPage extends State<endPage> {
                       ],                      
                   ),
                 ),
-                mylib.createNextButton("Home", context, 141, 41, MaterialPageRoute(builder: (_) => const MyHomePage(title:""),),)
+                mylib.createNextButton("Home", context, 141, 41, MaterialPageRoute(builder: (_) => const MyHomePage(),),)
                 
               ],
             ),
