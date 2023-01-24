@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map/plugin_api.dart';
-import 'package:flutter_map_marker_cluster/flutter_map_marker_cluster.dart';
 import 'package:latlong2/latlong.dart';
 import 'mylib.dart' as mylib;
 
@@ -14,12 +13,18 @@ class mapPage extends StatefulWidget {
   }
 }
 class _mapPage extends State<mapPage> {
-  final mapController = MapController();
+  //late Marker newMarker;
 
-  
+  final mapController = MapController();
+  var marker = <Marker>[];
+
 
   @override
   Widget build(BuildContext context) {
+      //newMarker = Marker(point: LatLng(47.23, 6.021029), builder: (ctx) => Icon(Icons.location_pin, color: Color.fromARGB(255, 244, 108, 54), size: 40,), );
+
+
+
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: mylib.baseAppBar(appBar: AppBar()),
@@ -66,14 +71,34 @@ class _mapPage extends State<mapPage> {
                               options: MapOptions(
                                 center: LatLng(47.235198, 6.021029), 
                                 zoom: 14,
+                                onTap: (LatLng value) {
+                                  print("tape");
+                                  marker.add(Marker(
+                                    width: 25.0,
+                                    height: 25.0,
+                                    point: value,
+                                    builder: (ctx) => Container(
+                                        child: IconButton(
+                                          icon: Icon(Icons.location_on, color: Colors.redAccent, size: 30,), 
+                                          onPressed: () { 
+                                            print("afficher avis");
+                                          },
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                  setState(() {});
+                                }
                               ),
                               layers: [
                                 TileLayerOptions(
                                   urlTemplate: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-                                  //userAgentPackageName: 'com.unknown.app',  /// ????
                                 ),
+                                MarkerLayerOptions(
+                                  markers: marker,
+                                ),                
                               ],
-                              children: [],
+                              
                             ),
                           ),
                         ),
@@ -94,6 +119,17 @@ class _mapPage extends State<mapPage> {
               ],
             ),
           ),
-        ));
+        )
+      );
+      
   }
+  /*createMarker(){
+    marker.add(
+      Marker(
+        point: LatLng(47.23, 6.01), 
+        builder: (ctx) => Icon(Icons.location_pin, color: Color.fromARGB(255, 244, 108, 54), size: 40,), 
+      ),
+    );
+  }*/
+
 }
