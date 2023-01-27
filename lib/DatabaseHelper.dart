@@ -1,42 +1,88 @@
-import 'dart:async';
-import 'dart:io' as io;
+import 'package:flutter_application_1/Reponse.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:path_provider/path_provider.dart';
 
 import 'Lieu.dart';
 
 class DatabaseHelper {
-  static Database? myDb;
+  static const _databaseName = "db_flutter.db";
+  static const _databaseVersion = 1;
 
-  Future<Database?> get db async {
-    if (myDb != null) return myDb;
-    myDb = await initDb();
-    return myDb;
+  late Database _db;
+
+  // this opens the database (and creates it if it doesn't exist)
+  Future<void> init() async {
+    final documentsDirectory = await getApplicationDocumentsDirectory();
+    final path = join(documentsDirectory.path, _databaseName);
+    _db = await openDatabase(
+      path,
+      version: _databaseVersion,
+      onCreate: _onCreate,
+    );
   }
 
-  Future<Database> initDb() async {
-    var databasesPath = await getDatabasesPath();
-    String path = join(databasesPath, "bd_flutter.db");
-    var theDb = await openDatabase(path, version: 1, onCreate: onCreate);
-    return theDb;
+  // SQL code to create the database table
+  Future _onCreate(Database db, int version) async {
+    await db.execute('''
+          CREATE TABLE lieux (
+            id INTEGER PRIMARY KEY,
+            nom TEXT NOT NULL,
+            latitude REAL NOT NULL
+            longitude REAL NOT NULL
+
+          )
+          ''');
+    await db.execute('''
+          CREATE TABLE reponses (
+            id INTEGER PRIMARY KEY,
+            idUser INTEGER NOT NULL,
+            reponses TEXT NOT NULL,
+          )
+          ''');
   }
 
-  void onCreate(Database? db, int version) async {
-    await db?.execute(
-        "CREATE TABLE Lieux (id INTEGER PRIMARY KEY, nom TEXT, latitude REAL, longitude REAL)");
-    print("Created tables");
+  /*Fonctions pour les lieux*/
+  Future<int> insertLieu(Lieu l) async {
+    return await _db.insert("lieux", l.toMap());
   }
 
-  void saveLieu(Lieu l) async {
-    var dbClient = await db;
-    await dbClient?.transaction((txn) async {
-      return await txn.insert("lieux", l.toMap(),
-          conflictAlgorithm: ConflictAlgorithm.replace);
-    });
+  Future<List<Map<String, dynamic>>> queryAllRowsLieu() async {
+    return await _db.query("lieux");
   }
 
-  Future closeDb() async {
-    var dbClient = await db;
-    return dbClient?.close();
+  Future<int> queryRowCountLieu() async {
+    final results = await _db.rawQuery('SELECT COUNT(*) FROM lieux');
+    return Sqflite.firstIntValue(results) ?? 0;
+  }
+
+  Future<int> deleteLieu(int id) async {
+    return await _db.delete(
+      "lieux",
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+  }
+
+  /*Fonctions pour les réponses*/
+  Future<int> insertReponse(Reponse r) async {
+    return await _db.insert("reponses", r.toMap());
+  }
+
+  Future<List<Map<String, dynamic>>> queryAllRowsReponse() async {
+    return await _db.query("reponses");
+  }
+
+  Future<int> queryRowCountReponse() async {
+    final results = await _db.rawQuery('SELECT COUNT(*) FROM reponses');
+    return Sqflite.firstIntValue(results) ?? 0;
+  }
+
+  Future<int> deleteReponse(int id) async {
+    return await _db.delete(
+      "reponses",
+      where: 'id = ?',
+      whereArgs: [id],
+    );
   }
 }

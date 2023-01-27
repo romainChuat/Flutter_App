@@ -1,25 +1,34 @@
-import 'package:flutter/widgets.dart';
-import 'package:sqflite/sqflite.dart';
-import 'DatabaseHelper.dart';
+import 'dart:convert';
 
 class Reponse {
-  final int idReponse;
+  final int idUser;
+  final int idLieu;
   final Map<String, String> reponsesUser;
 
   const Reponse({
-    required this.idReponse,
+    required this.idUser,
+    required this.idLieu,
     required this.reponsesUser,
   });
 
   Map<String, dynamic> toMap() {
     return {
-      'id': idReponse,
-      'reponses': reponsesUser,
+      'idUser': idUser,
+      'idLieu': idLieu,
+      'reponsesUser': reponsesUser,
     };
+  }
+
+  String toJson(Map<String, String> map) {
+    return jsonEncode(map);
+  }
+
+  Map<String, String> fromJson(String j) {
+    return jsonDecode(j);
   }
 
   @override
   String toString() {
-    return 'Reponse{id: $idReponse, reponses: $reponsesUser}';
+    return 'Reponse{idUser: $idUser, idLieu: $idLieu, reponses: $reponsesUser}';
   }
 }
