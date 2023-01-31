@@ -13,33 +13,42 @@ class mapPage extends StatefulWidget {
   }
 }
 class _mapPage extends State<mapPage> {
-  //late Marker newMarker;
 
-  final mapController = MapController();
   var marker = <Marker>[];
+  
+
+
+  double currentZoom = 13.0;
+  MapController mapController = MapController();
+  LatLng currentCenter = LatLng(47.235198, 6.021029);
+
+  void _zoomOut() {
+    currentZoom = currentZoom - 1;
+    mapController.move(mapController.center, currentZoom);
+  }
+  void _zoomIn() {
+    currentZoom = currentZoom + 1;
+    mapController.move(mapController.center, currentZoom);
+  }
+
 
 
   @override
   Widget build(BuildContext context) {
-      //newMarker = Marker(point: LatLng(47.23, 6.021029), builder: (ctx) => Icon(Icons.location_pin, color: Color.fromARGB(255, 244, 108, 54), size: 40,), );
-
-
-
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: mylib.baseAppBar(appBar: AppBar()),
-        
+              endDrawer: mylib.createMenu(context),
+
         body: Container(
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
           decoration: mylib.background1,
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
               children: <Widget>[
                 Text('Title',style: mylib.titleStyle.apply(fontSizeDelta: 9, fontWeightDelta: -2,letterSpacingDelta: 3), textAlign: TextAlign.left,),
                 ClipRRect(
-                  
                   borderRadius: BorderRadius.circular(15.0),
                   child:Container(
                     width: 336,
@@ -66,47 +75,97 @@ class _mapPage extends State<mapPage> {
                           height: 378,
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(15.0),
-                            child: FlutterMap(
-                              mapController: mapController,
-                              options: MapOptions(
-                                center: LatLng(47.235198, 6.021029), 
-                                zoom: 14,
-                                onTap: (LatLng value) {
-                                  print("tape");
-                                  marker.add(Marker(
-                                    width: 25.0,
-                                    height: 25.0,
-                                    point: value,
-                                    builder: (ctx) => Container(
-                                        child: IconButton(
-                                          icon: Icon(Icons.location_on, color: Colors.redAccent, size: 30,), 
-                                          onPressed: () { 
-                                            print("afficher avis");
-                                          },
+                            child: Stack(
+                              children: [ 
+                                FlutterMap(
+                                  mapController: mapController,
+                                  options: MapOptions(
+                                    center: currentCenter, 
+                                    zoom: 14,
+                                    onTap: (LatLng value) {
+                                      print("tape");
+                                        marker.clear();
+                                        marker.add(Marker(
+                                          width: 25.0,
+                                          height: 25.0,
+                                          point: value,
+                                          builder: (ctx) => Container(
+                                            child: IconButton(
+                                              icon: Icon(Icons.location_on, color: Colors.redAccent, size: 30,), 
+                                              onPressed: () { 
+                                                print("afficher avis");
+                                              },
+                                            ),
+                                          )
+                                        ));
+                                      setState(() {});
+                                    },
+                                  ),
+                                  layers: [
+                                    TileLayerOptions(
+                                      urlTemplate: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                                    ),
+                                    MarkerLayerOptions(markers: marker),  
+                                  ],
+                                ),
+                                Positioned(
+                                  bottom: 10,
+                                  left: 10,
+                                  child:Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children:[
+                                      SizedBox(
+                                        width: 40,
+                                        height: 40,                                        
+                                        child: ElevatedButton(
+                                          onPressed: (){
+                                            _zoomIn();
+                                          }, 
+                                          child:Icon(
+                                            Icons.zoom_in,
+                                            size: 25,
+                                          ),
+                                          style: ButtonStyle(
+                                            shape:MaterialStateProperty.all<RoundedRectangleBorder>(
+                                              RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10)),
+                                              ),
+                                            ),
+                                            padding: MaterialStateProperty.all(EdgeInsets.zero),
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  );
-                                  setState(() {});
-                                },
-                              ),
-                              layers: [
-                                TileLayerOptions(
-                                  urlTemplate: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-                                ),
-                                MarkerLayerOptions(
-                                  markers: marker,
-                                ),                
-                              ],
-                              
+                                      SizedBox(
+                                        width: 40,
+                                        height: 40,
+                                        child: ElevatedButton(
+                                          onPressed: (){
+                                            _zoomOut();
+                                          },
+                                          child : Icon(
+                                            Icons.zoom_out,
+                                            size: 25,
+                                          ),
+                                          style: ButtonStyle(
+                                            shape:MaterialStateProperty.all<RoundedRectangleBorder>(
+                                              RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
+                                              ),
+                                            ),
+                                            padding: MaterialStateProperty.all(EdgeInsets.zero),
+                                          ),
+                                        ),
+                                      )
+                                    ]
+                                  )
+                                )
+                              ]
                             ),
                           ),
                         ),
                       ],
                     ),
-                  
                   )
-                  
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -114,8 +173,7 @@ class _mapPage extends State<mapPage> {
                     mylib.createQuitButton(context, 141, 41),
                     mylib.createNextButton("Next", context, 141, 41, MaterialPageRoute(builder: (_) => const ANommer(),), )
                   ],
-                )
-                
+                ),
               ],
             ),
           ),

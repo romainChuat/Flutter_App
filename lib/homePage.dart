@@ -15,12 +15,11 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     //les 3 variable sont a factoriser pour chaque pages
-    
-
-    
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: mylib.baseAppBar(appBar: AppBar(),),
+      endDrawer: mylib.createMenu(context),
+      //backgroundColor: Colors.red,
 
       body: Container(
             decoration:  mylib.background1,
