@@ -579,6 +579,8 @@ class _gerer_les_markers_refuse extends State<gerer_les_markers_refuse> {
       appBar: mylib.baseAppBar(
         appBar: AppBar(),
       ),
+            endDrawer: mylib.createMenu(context),
+
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,
         child: GestureDetector(
