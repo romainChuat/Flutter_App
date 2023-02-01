@@ -11,7 +11,8 @@ class ANommer extends StatelessWidget {
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: mylib.baseAppBar(appBar: AppBar()),
-        
+             endDrawer: mylib.createMenu(context),
+ 
         body: Container(
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
           decoration: mylib.background1,

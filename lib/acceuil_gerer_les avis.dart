@@ -116,6 +116,8 @@ Widget GererLesAvisRefuse(){
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: mylib.baseAppBar(appBar: AppBar(),),
+            endDrawer: mylib.createMenu(context),
+
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,
         child: GestureDetector(
