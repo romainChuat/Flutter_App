@@ -6,8 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/homePage.dart';
 import 'package:flutter_application_1/provider.dart';
 
-import 'provider.dart';
-
 const Decoration background1 = BoxDecoration(
   gradient: LinearGradient(
     begin: Alignment.topLeft,
