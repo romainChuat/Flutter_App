@@ -47,27 +47,22 @@ class DatabaseHelper {
             id INTEGER PRIMARY KEY,
             nom TEXT NOT NULL,
             mail TEXT NOT NULL,
-            password TEXT NOT NULL,
+            password BINARY NOT NULL,
           )
           ''');
   }
 
   /*Fonctions pour les lieux*/
-  Future<int> insertLieu(Lieu l) async {
-    return await _db.insert("lieux", l.toMap());
+  Future<int?> insertLieu(Lieu l) async {
+    return await _db?.insert("lieux", l.toMap());
   }
 
-  Future<List<Map<String, dynamic>>> queryAllRowsLieu() async {
-    return await _db.query("lieux");
+  Future<List<Map<String, dynamic>>?> queryAllRowsLieu() async {
+    return await _db?.query("lieux");
   }
 
-  Future<int> queryRowCountLieu() async {
-    final results = await _db.rawQuery('SELECT COUNT(*) FROM lieux');
-    return Sqflite.firstIntValue(results) ?? 0;
-  }
-
-  Future<int> deleteLieu(int id) async {
-    return await _db.delete(
+  Future<int?> deleteLieu(int id) async {
+    return await _db?.delete(
       "lieux",
       where: 'id = ?',
       whereArgs: [id],
@@ -75,21 +70,16 @@ class DatabaseHelper {
   }
 
   /*Fonctions pour les réponses*/
-  Future<int> insertReponse(Reponse r) async {
-    return await _db.insert("reponses", r.toMap());
+  Future<int?> insertReponse(Reponse r) async {
+    return await _db?.insert("reponses", r.toMap());
   }
 
-  Future<List<Map<String, dynamic>>> queryAllRowsReponse() async {
-    return await _db.query("reponses");
+  Future<List<Map<String, dynamic>>?> queryAllRowsReponse() async {
+    return await _db?.query("reponses");
   }
 
-  Future<int> queryRowCountReponse() async {
-    final results = await _db.rawQuery('SELECT COUNT(*) FROM reponses');
-    return Sqflite.firstIntValue(results) ?? 0;
-  }
-
-  Future<int> deleteReponse(int id) async {
-    return await _db.delete(
+  Future<int?> deleteReponse(int id) async {
+    return await _db?.delete(
       "reponses",
       where: 'id = ?',
       whereArgs: [id],
@@ -97,21 +87,27 @@ class DatabaseHelper {
   }
 
   /*Fonctions pour les utilisateurs*/
-  Future<int> insertUser(Utilisateur u) async {
-    return await _db.insert("user", u.toMap());
+  Future<int?> insertUser(Utilisateur u) async {
+    return await _db?.insert("user", u.toMap());
   }
 
   Future<List<Map<String, dynamic>>> queryAllRowsUser() async {
     return await _db.query("user");
   }
 
-  Future<int> queryRowCountUser() async {
-    final results = await _db.rawQuery('SELECT COUNT(*) FROM user');
-    return Sqflite.firstIntValue(results) ?? 0;
-  }
+  /*Future<Map<String, dynamic>> queryOneUser(String mail) async {
+    List<Map<String, Object?>>? results = await _db
+        ?.rawQuery("SELECT mail,password FROM user WHERE mail = ?", [mail]);
+    Map<String, dynamic> result = {};
+    for (var r in results) {
+      result.addAll(r);
+    }
 
-  Future<int> deleteUser(int id) async {
-    return await _db.delete(
+    return result;
+  }*/
+
+  Future<int?> deleteUser(int id) async {
+    return await _db?.delete(
       "user",
       where: 'id = ?',
       whereArgs: [id],
