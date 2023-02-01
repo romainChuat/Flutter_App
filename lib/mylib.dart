@@ -4,6 +4,7 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/homePage.dart';
+import 'package:flutter_application_1/provider.dart';
 
 const Decoration background1 = BoxDecoration(
   gradient: LinearGradient(
@@ -81,8 +82,7 @@ const TextStyle blueText = TextStyle(
   fontFamily: 'Nunito',
   letterSpacing: 1,
   //shadows:<Shadow> [ Shadow(offset:Offset(-1.0, 1.0) , blurRadius: 5.0 ,color: Color.fromARGB(195, 105, 105, 105))],
-);
-const TextStyle radioText = TextStyle(
+);const TextStyle radioText = TextStyle(
   fontSize: 15,
   fontWeight: FontWeight.w600,
   color: Color.fromARGB(255, 41, 59, 229),
@@ -370,26 +370,23 @@ createMenu(BuildContext context) {
               child: Container(
                 width: 200,
                 height: 58,
-                child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      foregroundColor: Color.fromARGB(255, 41, 59, 229),
-                      backgroundColor: Color.fromARGB(255, 235, 233, 233),
-                    ),
-                    onPressed: () {
-                      AdaptiveTheme.of(context).setDark();
-                    },
-                    child: Row(
+                color: Colors.white,
+
+              
+                  child: Row(
+                 
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Padding(padding: EdgeInsets.all(6)),
+                        ChangeThemeButtonWidget(),
                         Text(
-                          "Mode Sombre",
+                          "Mode sombre",
                           style: blueText,
                         ),
                       ],
+                    
                     )
-                  ),
-              ),
+                ),
+              
             ),
             Padding(padding: EdgeInsets.all(10)),
             ClipRRect(

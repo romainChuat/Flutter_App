@@ -22,7 +22,6 @@ class _MyHomePageState extends State<MyHomePage> {
       //backgroundColor: Colors.red,
 
       body: Container(
-            decoration:  mylib.background1,
             child: Center(
              child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
