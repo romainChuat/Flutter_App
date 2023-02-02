@@ -73,7 +73,7 @@ class _activitePage extends State<activitePage> {
                                         children: [
                                           Align(
                                             alignment: Alignment.topLeft,
-                                            child: Text("En formation:"),
+                                            child: Text("En formation:", style: mylib.radioText,),
                                           ),
                                           CheckboxListTile(
                                             title: mylib.createInput(311,28),
@@ -97,7 +97,7 @@ class _activitePage extends State<activitePage> {
                                         children: [
                                           Align(
                                             alignment: Alignment.topLeft,
-                                            child: Text("A la recherche d'un emploi:"),
+                                            child: Text("A la recherche d'un emploi:", style: mylib.radioText,),
                                           ),
                                           CheckboxListTile(
                                             title: mylib.createInput(311,28),
@@ -121,7 +121,7 @@ class _activitePage extends State<activitePage> {
                                         children: [
                                           Align(
                                             alignment: Alignment.topLeft,
-                                            child: Text("Activité professionnelle:"),
+                                            child: Text("Activité professionnelle:",  style: mylib.radioText,),
                                           ),
                                           CheckboxListTile(
                                             title: mylib.createInput(311,28),
@@ -145,7 +145,7 @@ class _activitePage extends State<activitePage> {
                                         children: [
                                           Align(
                                             alignment: Alignment.topLeft,
-                                            child: Text("Retraité :"),
+                                            child: Text("Retraité :",  style: mylib.radioText,),
                                           ),
                                           CheckboxListTile(
                                             title: mylib.createInput(311,28),
@@ -169,7 +169,7 @@ class _activitePage extends State<activitePage> {
                                         children: [
                                           Align(
                                             alignment: Alignment.topLeft,
-                                            child: Text("Sans activité professionnelle:"),
+                                            child: Text("Sans activité professionnelle:",  style: mylib.radioText,),
                                           ),
                                          CheckboxListTile(
                                             title: mylib.createInput(311,28),
