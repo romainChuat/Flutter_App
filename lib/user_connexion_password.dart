@@ -373,10 +373,10 @@ class _userconnexionpassword extends State<userconnexionpassword> {
     String mail = mailController.text;
     String password = passwordController.text;
 
-    final allRows = await dbHelper.queryAllRowsUser();
+    /*final allRows = await dbHelper.queryAllRowsUser();
     debugPrint('query all rows:');
     for (final row in allRows) {
       debugPrint(row.toString());
-    }
+    }*/
   }
 }

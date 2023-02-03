@@ -12,22 +12,31 @@ class DatabaseHelper {
   static const _databaseName = "db_flutter.db";
   static const _databaseVersion = 1;
 
-  late Database _db;
+  //late Database _db;
 
   // this opens the database (and creates it if it doesn't exist)
-  Future<void> init() async {
+  Future<Database> initDB() async {
     final documentsDirectory = await getApplicationDocumentsDirectory();
-    final path = join(documentsDirectory.path, _databaseName);
-    _db = await openDatabase(
-      path,
+    String path = await getDatabasesPath();
+    print("PATH :" + path);
+    return await openDatabase(
+       join(path, _databaseName),
       version: _databaseVersion,
-      onCreate: _onCreate,
+      onCreate: (database, _databaseVersion) async {
+        await database.execute("""
+          CREATE TABLE user (
+            nom TEXT NOT NULL,
+            mail TEXT NOT NULL,
+            password BINARY NOT NULL
+          )
+          """);
+      }
     );
   }
 
   // SQL code to create the database table
   Future _onCreate(Database db, int version) async {
-    await db.execute('''
+    /*await db.execute('''
           CREATE TABLE lieux (
             id INTEGER PRIMARY KEY,
             nom TEXT NOT NULL,
@@ -42,60 +51,65 @@ class DatabaseHelper {
             idUser INTEGER NOT NULL,
             reponses TEXT NOT NULL,
           )
-          ''');
+          ''');*/
 
-    await db.execute('''
+    await db.execute("""
           CREATE TABLE user (
             id INTEGER PRIMARY KEY,
             nom TEXT NOT NULL,
             mail TEXT NOT NULL,
             password BINARY NOT NULL,
           )
-          ''');
+          """);
   }
 
   /*Fonctions pour les lieux*/
   Future<int?> insertLieu(Lieu l) async {
-    return await _db?.insert("lieux", l.toMap());
+    final Database db = await initDB();
+    db.insert("lieux", l.toMap());
   }
 
   Future<List<Map<String, dynamic>>?> queryAllRowsLieu() async {
-    return await _db?.query("lieux");
+    final Database db = await initDB();
+    return await db.query("lieux");
   }
 
-  Future<int?> deleteLieu(int id) async {
+  /*Future<int?> deleteLieu(int id) async {
     return await _db?.delete(
       "lieux",
       where: 'id = ?',
       whereArgs: [id],
     );
-  }
+  }*/
 
   /*Fonctions pour les réponses*/
-  Future<int?> insertReponse(Reponse r) async {
+  /*Future<int?> insertReponse(Reponse r) async {
     return await _db?.insert("reponses", r.toMap());
-  }
+  }*/
 
-  Future<List<Map<String, dynamic>>?> queryAllRowsReponse() async {
+  /*Future<List<Map<String, dynamic>>?> queryAllRowsReponse() async {
     return await _db?.query("reponses");
-  }
+  }*/
 
-  Future<int?> deleteReponse(int id) async {
+  /*Future<int?> deleteReponse(int id) async {
     return await _db?.delete(
       "reponses",
       where: 'id = ?',
       whereArgs: [id],
     );
-  }
+  }*/
 
   /*Fonctions pour les utilisateurs*/
   Future<int?> insertUser(Utilisateur u) async {
-    return await _db?.insert("user", u.toMap());
+    print("insert");
+    print("user :"+u.toString());
+    final Database db = await initDB();
+    return await db.insert("user", u.toMap());
   }
 
-  Future<List<Map<String, dynamic>>> queryAllRowsUser() async {
+  /*Future<List<Map<String, dynamic>>> queryAllRowsUser() async {
     return await _db.query("user");
-  }
+  }*/
 
   /*Future<Map<String, dynamic>> queryOneUser(String mail) async {
     List<Map<String, Object?>>? results = await _db
@@ -108,11 +122,11 @@ class DatabaseHelper {
     return result;
   }*/
 
-  Future<int?> deleteUser(int id) async {
+  /*Future<int?> deleteUser(int id) async {
     return await _db?.delete(
       "user",
       where: 'id = ?',
       whereArgs: [id],
     );
-  }
+  }*/
 }
