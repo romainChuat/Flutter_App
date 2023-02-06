@@ -1,116 +1,48 @@
-import 'package:flutter_application_1/Reponse.dart';
 import 'package:flutter_application_1/Utilisateur.dart';
-import 'package:path/path.dart';
-import 'package:sqflite/sqflite.dart';
-import 'package:path_provider/path_provider.dart';
-
-import 'Lieu.dart';
+import 'package:postgres/postgres.dart';
 
 class DatabaseHelper {
-  static const _databaseName = "db_flutter.db";
-  static const _databaseVersion = 1;
+  PostgreSQLConnection? _connection;
 
-  late Database _db;
+  static DatabaseHelper _instance = DatabaseHelper._internal();
 
-  // this opens the database (and creates it if it doesn't exist)
-  Future<void> init() async {
-    final documentsDirectory = await getApplicationDocumentsDirectory();
-    final path = join(documentsDirectory.path, _databaseName);
-    _db = await openDatabase(
-      path,
-      version: _databaseVersion,
-      onCreate: _onCreate,
-    );
-  }
+  DatabaseHelper._internal();
 
-  // SQL code to create the database table
-  Future _onCreate(Database db, int version) async {
-    await db.execute('''
-          CREATE TABLE lieux (
-            id INTEGER PRIMARY KEY,
-            nom TEXT NOT NULL,
-            latitude REAL NOT NULL
-            longitude REAL NOT NULL
+  factory DatabaseHelper() => _instance;
 
-          )
-          ''');
-    await db.execute('''
-          CREATE TABLE reponses (
-            id INTEGER PRIMARY KEY,
-            idUser INTEGER NOT NULL,
-            reponses TEXT NOT NULL,
-          )
-          ''');
-
-    await db.execute('''
-          CREATE TABLE user (
-            id INTEGER PRIMARY KEY,
-            nom TEXT NOT NULL,
-            mail TEXT NOT NULL,
-            password BINARY NOT NULL,
-          )
-          ''');
-  }
-
-  /*Fonctions pour les lieux*/
-  Future<int?> insertLieu(Lieu l) async {
-    return await _db?.insert("lieux", l.toMap());
-  }
-
-  Future<List<Map<String, dynamic>>?> queryAllRowsLieu() async {
-    return await _db?.query("lieux");
-  }
-
-  Future<int?> deleteLieu(int id) async {
-    return await _db?.delete(
-      "lieux",
-      where: 'id = ?',
-      whereArgs: [id],
-    );
-  }
-
-  /*Fonctions pour les réponses*/
-  Future<int?> insertReponse(Reponse r) async {
-    return await _db?.insert("reponses", r.toMap());
-  }
-
-  Future<List<Map<String, dynamic>>?> queryAllRowsReponse() async {
-    return await _db?.query("reponses");
-  }
-
-  Future<int?> deleteReponse(int id) async {
-    return await _db?.delete(
-      "reponses",
-      where: 'id = ?',
-      whereArgs: [id],
-    );
-  }
-
-  /*Fonctions pour les utilisateurs*/
-  Future<int?> insertUser(Utilisateur u) async {
-    return await _db?.insert("user", u.toMap());
-  }
-
-  Future<List<Map<String, dynamic>>> queryAllRowsUser() async {
-    return await _db.query("user");
-  }
-
-  /*Future<Map<String, dynamic>> queryOneUser(String mail) async {
-    List<Map<String, Object?>>? results = await _db
-        ?.rawQuery("SELECT mail,password FROM user WHERE mail = ?", [mail]);
-    Map<String, dynamic> result = {};
-    for (var r in results) {
-      result.addAll(r);
+  Future<PostgreSQLConnection?> get db async {
+    /*if (_db != null) {
+      return _db;
     }
+    _db = await connect();*/
+    return db;
+  }
 
-    return result;
-  }*/
+  static Future<PostgreSQLConnection?> connect() async {
+    int _port = 5432;
+    String _host = 'localhost';
+    String _user = 'App_Flutter';
+    String _pass = 'DB_PASS';
+    String _name = 'postgres';
 
-  Future<int?> deleteUser(int id) async {
-    return await _db?.delete(
-      "user",
-      where: 'id = ?',
-      whereArgs: [id],
-    );
+    DatabaseHelper db = DatabaseHelper();
+    db._connection = PostgreSQLConnection(_host, _port, _name,
+        username: _user, password: _pass);
+    await db._connection?.open();
+    return db._connection;
+  }
+
+  Future<void> insertUser(
+      PostgreSQLConnection bd, Map<String, dynamic> data) async {
+    await bd.execute(
+        'INSERT INTO users (${data.keys.join(', ')}) VALUES (${data.keys.map((k) => '@$k').join(', ')})',
+        substitutionValues: data);
+  }
+
+  Future<List<dynamic>?> queryUser(PostgreSQLConnection db, String mail) async {
+    var results = await db.query('SELECT * FROM users WHERE mail = @aValue',
+        substitutionValues: {"aValue": mail});
+
+    return results;
   }
 }

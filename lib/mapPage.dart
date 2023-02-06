@@ -6,17 +6,23 @@ import 'mylib.dart' as mylib;
 
 import 'ANommer.dart';
 
+class mapPageArguments {
+  Map<String, dynamic> reponses;
+  mapPageArguments({
+    required this.reponses,
+  });
+}
+
 class mapPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     return _mapPage();
   }
 }
+
 class _mapPage extends State<mapPage> {
-
   var marker = <Marker>[];
-  
-
+  late mapPageArguments args;
 
   double currentZoom = 13.0;
   MapController mapController = MapController();
@@ -26,20 +32,19 @@ class _mapPage extends State<mapPage> {
     currentZoom = currentZoom - 1;
     mapController.move(mapController.center, currentZoom);
   }
+
   void _zoomIn() {
     currentZoom = currentZoom + 1;
     mapController.move(mapController.center, currentZoom);
   }
 
-
-
   @override
   Widget build(BuildContext context) {
+    print(args.reponses);
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: mylib.baseAppBar(appBar: AppBar()),
-              endDrawer: mylib.createMenu(context),
-
+        endDrawer: mylib.createMenu(context),
         body: Container(
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
           decoration: mylib.background1,
@@ -47,139 +52,173 @@ class _mapPage extends State<mapPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                Text('Title',style: mylib.titleStyle.apply(fontSizeDelta: 9, fontWeightDelta: -2,letterSpacingDelta: 3), textAlign: TextAlign.left,),
+                Text(
+                  'Title',
+                  style: mylib.titleStyle.apply(
+                      fontSizeDelta: 9,
+                      fontWeightDelta: -2,
+                      letterSpacingDelta: 3),
+                  textAlign: TextAlign.left,
+                ),
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(15.0),
-                  child:Container(
-                    width: 336,
-                    height: 570,
-                    color: Color.fromARGB(255, 235, 233, 233),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
-                          child: const Text("Pour commencer, veuillez indiquer la localisation de votre photographie de paysage", 
-                                    style: mylib.blueText,
-                                    textAlign: TextAlign.center,        
+                    borderRadius: BorderRadius.circular(15.0),
+                    child: Container(
+                      width: 336,
+                      height: 570,
+                      color: Color.fromARGB(255, 235, 233, 233),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
+                            child: const Text(
+                              "Pour commencer, veuillez indiquer la localisation de votre photographie de paysage",
+                              style: mylib.blueText,
+                              textAlign: TextAlign.center,
+                            ),
                           ),
-                        ),
-                        const Divider(
-                          color: Color.fromARGB(255, 41, 59, 229),
-                          thickness: 1,
-                          indent: 20,
-                          endIndent: 20,
-                        ),
-                        SizedBox(
-                          width: 265,
-                          height: 378,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(15.0),
-                            child: Stack(
-                              children: [ 
+                          const Divider(
+                            color: Color.fromARGB(255, 41, 59, 229),
+                            thickness: 1,
+                            indent: 20,
+                            endIndent: 20,
+                          ),
+                          SizedBox(
+                            width: 265,
+                            height: 378,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(15.0),
+                              child: Stack(children: [
                                 FlutterMap(
                                   mapController: mapController,
                                   options: MapOptions(
-                                    center: currentCenter, 
+                                    center: currentCenter,
                                     zoom: 14,
                                     onTap: (LatLng value) {
                                       print("tape");
-                                        marker.clear();
-                                        marker.add(Marker(
+                                      marker.clear();
+                                      marker.add(Marker(
                                           width: 25.0,
                                           height: 25.0,
                                           point: value,
                                           builder: (ctx) => Container(
-                                            child: IconButton(
-                                              icon: Icon(Icons.location_on, color: Colors.redAccent, size: 30,), 
-                                              onPressed: () { 
-                                                print("afficher avis");
-                                              },
-                                            ),
-                                          )
-                                        ));
+                                                child: IconButton(
+                                                  icon: Icon(
+                                                    Icons.location_on,
+                                                    color: Colors.redAccent,
+                                                    size: 30,
+                                                  ),
+                                                  onPressed: () {
+                                                    print("afficher avis");
+                                                  },
+                                                ),
+                                              )));
                                       setState(() {});
                                     },
                                   ),
                                   layers: [
                                     TileLayerOptions(
-                                      urlTemplate: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                                      urlTemplate:
+                                          "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
                                     ),
-                                    MarkerLayerOptions(markers: marker),  
+                                    MarkerLayerOptions(markers: marker),
                                   ],
                                 ),
                                 Positioned(
-                                  bottom: 10,
-                                  left: 10,
-                                  child:Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children:[
-                                      SizedBox(
-                                        width: 40,
-                                        height: 40,                                        
-                                        child: ElevatedButton(
-                                          onPressed: (){
-                                            _zoomIn();
-                                          }, 
-                                          child:Icon(
-                                            Icons.zoom_in,
-                                            size: 25,
-                                          ),
-                                          style: ButtonStyle(
-                                            shape:MaterialStateProperty.all<RoundedRectangleBorder>(
-                                              RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10)),
+                                    bottom: 10,
+                                    left: 10,
+                                    child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          SizedBox(
+                                            width: 40,
+                                            height: 40,
+                                            child: ElevatedButton(
+                                              onPressed: () {
+                                                _zoomIn();
+                                              },
+                                              child: Icon(
+                                                Icons.zoom_in,
+                                                size: 25,
+                                              ),
+                                              style: ButtonStyle(
+                                                shape:
+                                                    MaterialStateProperty.all<
+                                                        RoundedRectangleBorder>(
+                                                  RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.only(
+                                                            topLeft: Radius
+                                                                .circular(10),
+                                                            topRight:
+                                                                Radius.circular(
+                                                                    10)),
+                                                  ),
+                                                ),
+                                                padding:
+                                                    MaterialStateProperty.all(
+                                                        EdgeInsets.zero),
                                               ),
                                             ),
-                                            padding: MaterialStateProperty.all(EdgeInsets.zero),
                                           ),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: 40,
-                                        height: 40,
-                                        child: ElevatedButton(
-                                          onPressed: (){
-                                            _zoomOut();
-                                          },
-                                          child : Icon(
-                                            Icons.zoom_out,
-                                            size: 25,
-                                          ),
-                                          style: ButtonStyle(
-                                            shape:MaterialStateProperty.all<RoundedRectangleBorder>(
-                                              RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
+                                          SizedBox(
+                                            width: 40,
+                                            height: 40,
+                                            child: ElevatedButton(
+                                              onPressed: () {
+                                                _zoomOut();
+                                              },
+                                              child: Icon(
+                                                Icons.zoom_out,
+                                                size: 25,
+                                              ),
+                                              style: ButtonStyle(
+                                                shape:
+                                                    MaterialStateProperty.all<
+                                                        RoundedRectangleBorder>(
+                                                  RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.only(
+                                                            bottomLeft: Radius
+                                                                .circular(10),
+                                                            bottomRight:
+                                                                Radius.circular(
+                                                                    10)),
+                                                  ),
+                                                ),
+                                                padding:
+                                                    MaterialStateProperty.all(
+                                                        EdgeInsets.zero),
                                               ),
                                             ),
-                                            padding: MaterialStateProperty.all(EdgeInsets.zero),
-                                          ),
-                                        ),
-                                      )
-                                    ]
-                                  )
-                                )
-                              ]
+                                          )
+                                        ]))
+                              ]),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  )
-                ),
+                        ],
+                      ),
+                    )),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     mylib.createQuitButton(context, 141, 41),
-                    mylib.createNextButton("Next", context, 141, 41, MaterialPageRoute(builder: (_) => const ANommer(),), )
+                    mylib.createNextButton(
+                      "Next",
+                      context,
+                      141,
+                      41,
+                      MaterialPageRoute(
+                        builder: (_) => const ANommer(),
+                      ),
+                    )
                   ],
                 ),
               ],
             ),
           ),
-        )
-      );
-      
+        ));
   }
   /*createMarker(){
     marker.add(
@@ -189,5 +228,4 @@ class _mapPage extends State<mapPage> {
       ),
     );
   }*/
-
 }

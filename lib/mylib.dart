@@ -387,8 +387,7 @@ createMenu(BuildContext context) {
                           style: blueText,
                         ),
                       ],
-                    )
-                  ),
+                    )),
               ),
             ),
             Padding(padding: EdgeInsets.all(10)),

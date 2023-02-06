@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/user_choix_connexion.dart';
-import 'DatabaseHelper.dart';
+import 'DatabaseHelperLocal.dart';
 import 'connexion_admin.dart';
 import 'creation_compte.dart';
 import 'forgot_password_page.dart';
@@ -22,7 +22,6 @@ class userconnexionpassword extends StatefulWidget {
 }
 
 class _userconnexionpassword extends State<userconnexionpassword> {
-  final dbHelper = DatabaseHelper();
   final mailController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -190,6 +189,7 @@ class _userconnexionpassword extends State<userconnexionpassword> {
       //width: double.infinity,
       child: ElevatedButton(
         onPressed: () {
+          print("login");
           /*if (await loginCorrect()) {
             Navigator.of(context).push(
               MaterialPageRoute(
@@ -199,7 +199,7 @@ class _userconnexionpassword extends State<userconnexionpassword> {
           } else {
             print("Connexion impossible");
           }*/
-          loginCorrect();
+          //loginCorrect();
         },
         style: ElevatedButton.styleFrom(
           shadowColor: Colors.grey.shade700,
@@ -369,14 +369,17 @@ class _userconnexionpassword extends State<userconnexionpassword> {
     );
   }
 
-  void loginCorrect() async {
-    String mail = mailController.text;
-    String password = passwordController.text;
-
+  /*void loginCorrect() async {
+    //String mail = mailController.text;
+    //String password = passwordController.text;
+    WidgetsFlutterBinding.ensureInitialized();
+    await dbHelper.init();
     final allRows = await dbHelper.queryAllRowsUser();
     debugPrint('query all rows:');
     for (final row in allRows) {
       debugPrint(row.toString());
     }
-  }
+
+    dbHelper.close();
+  }*/
 }
