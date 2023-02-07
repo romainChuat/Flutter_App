@@ -6,13 +6,6 @@ import 'mylib.dart' as mylib;
 
 import 'ANommer.dart';
 
-class mapPageArguments {
-  Map<String, dynamic> reponses;
-  mapPageArguments({
-    required this.reponses,
-  });
-}
-
 class mapPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -21,9 +14,8 @@ class mapPage extends StatefulWidget {
 }
 
 class _mapPage extends State<mapPage> {
+  Map<String, dynamic>? reponses = new Map();
   var marker = <Marker>[];
-  late mapPageArguments args;
-
   double currentZoom = 13.0;
   MapController mapController = MapController();
   LatLng currentCenter = LatLng(47.235198, 6.021029);
@@ -40,7 +32,6 @@ class _mapPage extends State<mapPage> {
 
   @override
   Widget build(BuildContext context) {
-    print(args.reponses);
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: mylib.baseAppBar(appBar: AppBar()),
@@ -95,6 +86,8 @@ class _mapPage extends State<mapPage> {
                                     center: currentCenter,
                                     zoom: 14,
                                     onTap: (LatLng value) {
+                                      reponses!['longitude'] = value.longitude;
+                                      reponses!['latitude'] = value.latitude;
                                       print("tape");
                                       marker.clear();
                                       marker.add(Marker(
@@ -210,7 +203,8 @@ class _mapPage extends State<mapPage> {
                       141,
                       41,
                       MaterialPageRoute(
-                        builder: (_) => const ANommer(),
+                        builder: (_) => ANommer(),
+                        settings: RouteSettings(arguments: reponses),
                       ),
                     )
                   ],
