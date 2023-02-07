@@ -12,7 +12,7 @@ class startPage extends StatelessWidget {
       appBar: mylib.baseAppBar(appBar: AppBar()),
       endDrawer: mylib.createMenu(context),
       body: Container(
-        decoration: mylib.background1,
+        //decoration: mylib.background1,
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,

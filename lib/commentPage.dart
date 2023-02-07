@@ -15,6 +15,9 @@ class _commentPage extends State<commentPage> {
   int age = 0;
   @override
   Widget build(BuildContext context) {
+    final text = MediaQuery.of(context).platformBrightness == Brightness.dark
+    ? 'DarkTheme'
+    : 'LightTheme';
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: mylib.baseAppBar(appBar: AppBar()),
@@ -22,7 +25,6 @@ class _commentPage extends State<commentPage> {
 
         body: Container(
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
-          decoration: mylib.background1,
           child: Center(
             child: SingleChildScrollView(
             child: Column(

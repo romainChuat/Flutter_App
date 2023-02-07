@@ -8,13 +8,15 @@ class ANommer extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
+    final text = MediaQuery.of(context).platformBrightness == Brightness.dark
+    ? 'DarkTheme'
+    : 'LightTheme';
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: mylib.baseAppBar(appBar: AppBar()),
         endDrawer: mylib.createMenu(context),
         body: Container(
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
-          decoration: mylib.background1,
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,

@@ -1,9 +1,14 @@
 library mylib;
 
 import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/homePage.dart';
+import 'package:flutter_application_1/provider.dart';
+import 'package:provider/provider.dart';
+
+import 'controller/language_contoller.dart';
 
 const Decoration background1 = BoxDecoration(
   gradient: LinearGradient(
@@ -79,6 +84,20 @@ const TextStyle blueText = TextStyle(
   fontWeight: FontWeight.w800,
   color: Color.fromARGB(255, 41, 59, 229),
   fontFamily: 'Nunito',
+  letterSpacing: 1,
+);
+const TextStyle blueText1 = TextStyle(
+  fontSize: 12,
+  color: Color.fromARGB(255, 41, 59, 229),
+  fontFamily: 'Spline Sans Mono ',
+  letterSpacing: 1,
+  //shadows:<Shadow> [ Shadow(offset:Offset(-1.0, 1.0) , blurRadius: 5.0 ,color: Color.fromARGB(195, 105, 105, 105))],
+);
+const TextStyle blueText2 = TextStyle(
+  fontSize: 15,
+  fontWeight: FontWeight.w600,
+  color: Color.fromARGB(255, 41, 59, 229),
+  fontFamily: 'Spline Sans Mono ',
   letterSpacing: 1,
   //shadows:<Shadow> [ Shadow(offset:Offset(-1.0, 1.0) , blurRadius: 5.0 ,color: Color.fromARGB(195, 105, 105, 105))],
 );
@@ -302,9 +321,18 @@ createtButton(String text, BuildContext context, double width, double height) {
   );
 }
 
-//final themeChange = Provider.of<DarkThemeProvider>;
-
 createMenu(BuildContext context) {
+  LanguageController controller = context.read<LanguageController>();
+
+  String? selectedValue = null;
+  final _dropdownFormKey = GlobalKey<FormState>();
+  List<DropdownMenuItem<String>> dropdownItems = [
+    DropdownMenuItem(child: Text("USA"), value: "USA"),
+    DropdownMenuItem(child: Text("Canada"), value: "Canada"),
+    DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
+    DropdownMenuItem(child: Text("England"), value: "England"),
+  ];
+
   return ClipRRect(
     borderRadius: BorderRadius.circular(30),
     child: Container(
@@ -325,11 +353,13 @@ createMenu(BuildContext context) {
                       foregroundColor: Color.fromARGB(255, 41, 59, 229),
                       backgroundColor: Color.fromARGB(255, 235, 233, 233),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      context.setLocale(Locale('en', 'US'));
+                      controller.onLanguageChanged();
+                    },
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.lens, size: 18),
                         Padding(padding: EdgeInsets.all(6)),
                         Text(
                           "Menu",
@@ -401,7 +431,10 @@ createMenu(BuildContext context) {
                       foregroundColor: Color.fromARGB(255, 41, 59, 229),
                       backgroundColor: Color.fromARGB(255, 235, 233, 233),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      context.setLocale(Locale('fr', 'FR'));
+                      controller.onLanguageChanged();
+                    },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -421,3 +454,5 @@ createMenu(BuildContext context) {
     ),
   );
 }
+
+void setState(Null Function() param0) {}
