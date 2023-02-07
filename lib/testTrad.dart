@@ -15,11 +15,9 @@ class testTrad extends StatefulWidget {
     return _testTrad();
   }
 }
+
 class _testTrad extends State<testTrad> {
-
   var marker = <Marker>[];
-  
-
 
   double currentZoom = 13.0;
   MapController mapController = MapController();
@@ -29,12 +27,11 @@ class _testTrad extends State<testTrad> {
     currentZoom = currentZoom - 1;
     mapController.move(mapController.center, currentZoom);
   }
+
   void _zoomIn() {
     currentZoom = currentZoom + 1;
     mapController.move(mapController.center, currentZoom);
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -43,8 +40,7 @@ class _testTrad extends State<testTrad> {
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: mylib.baseAppBar(appBar: AppBar()),
-              endDrawer: mylib.createMenu(context),
-
+        endDrawer: mylib.createMenu(context),
         body: Container(
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
           //decoration: mylib.background1,
@@ -52,59 +48,67 @@ class _testTrad extends State<testTrad> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                Text('Title',style: mylib.titleStyle.apply(fontSizeDelta: 9, fontWeightDelta: -2,letterSpacingDelta: 3), textAlign: TextAlign.left,),
+                Text(
+                  'Title',
+                  style: mylib.titleStyle.apply(
+                      fontSizeDelta: 9,
+                      fontWeightDelta: -2,
+                      letterSpacingDelta: 3),
+                  textAlign: TextAlign.left,
+                ),
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(15.0),
-                  child:Container(
-                    width: 336,
-                    height: 570,
-                    color: Color.fromARGB(255, 235, 233, 233),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
-                          child: Text(
-                                    'map_question', 
-                                    style: mylib.blueText,
-                                    textAlign: TextAlign.center,        
-                          ).tr(),
-                        ),
-                        const Divider(
-                          color: Color.fromARGB(255, 41, 59, 229),
-                          thickness: 1,
-                          indent: 20,
-                          endIndent: 20,
-                        ),
-                        SizedBox(
-                          width: 265,
-                          height: 378,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(15.0),
-                            child: Stack(
-                              children: [ 
-                                
-                              ]
+                    borderRadius: BorderRadius.circular(15.0),
+                    child: Container(
+                      width: 336,
+                      height: 570,
+                      color: Color.fromARGB(255, 235, 233, 233),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
+                            child: Text(
+                              'map_question',
+                              style: mylib.blueText,
+                              textAlign: TextAlign.center,
+                            ).tr(),
+                          ),
+                          const Divider(
+                            color: Color.fromARGB(255, 41, 59, 229),
+                            thickness: 1,
+                            indent: 20,
+                            endIndent: 20,
+                          ),
+                          SizedBox(
+                            width: 265,
+                            height: 378,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(15.0),
+                              child: Stack(children: []),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  )
-                ),
+                        ],
+                      ),
+                    )),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     mylib.createQuitButton(context, 141, 41),
-                    mylib.createNextButton('next_btn_text'.tr(), context, 141, 41, MaterialPageRoute(builder: (_) => const ANommer(),), )
+                    mylib.createNextButton(
+                      'next_btn_text'.tr(),
+                      context,
+                      141,
+                      41,
+                      MaterialPageRoute(
+                        builder: (_) => ANommer(),
+                      ),
+                    )
                   ],
                 ),
               ],
             ),
           ),
-        )
-      );
-      
+        ));
   }
   /*createMarker(){
     marker.add(
@@ -114,5 +118,4 @@ class _testTrad extends State<testTrad> {
       ),
     );
   }*/
-
 }

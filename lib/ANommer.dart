@@ -3,14 +3,18 @@ import 'FichierPage.dart';
 import 'mylib.dart' as mylib;
 
 class ANommer extends StatelessWidget {
-  const ANommer({
+  ANommer({
     super.key,
   });
   @override
   Widget build(BuildContext context) {
     final text = MediaQuery.of(context).platformBrightness == Brightness.dark
-    ? 'DarkTheme'
-    : 'LightTheme';
+        ? 'DarkTheme'
+        : 'LightTheme';
+    Map<String, dynamic>? reponses =
+        ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
+
+    print(reponses);
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: mylib.baseAppBar(appBar: AppBar()),
@@ -95,6 +99,7 @@ class ANommer extends StatelessWidget {
                       41,
                       MaterialPageRoute(
                         builder: (_) => const FichierPage(),
+                        settings: RouteSettings(arguments: reponses),
                       ),
                     )
                   ],

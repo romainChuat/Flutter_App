@@ -1,6 +1,3 @@
-
-
-
 import 'package:flutter_application_1/Reponse.dart';
 import 'package:flutter_application_1/Utilisateur.dart';
 import 'package:postgres/postgres.dart';
@@ -26,7 +23,8 @@ class DatabaseHelper {
     int _port = 5432;
     String _host = 'localhost';
     String _user = 'App_Flutter';
-    String _pass = 'DB_PASS';
+
+    String _pass = 'fluttertest';
     String _name = 'postgres';
 
     DatabaseHelper db = DatabaseHelper();
@@ -42,6 +40,7 @@ class DatabaseHelper {
         'INSERT INTO users (${data.keys.join(', ')}) VALUES (${data.keys.map((k) => '@$k').join(', ')})',
         substitutionValues: data);
   }
+
   Future<List<dynamic>?> queryUser(PostgreSQLConnection db, String mail) async {
     var results = await db.query('SELECT * FROM users WHERE mail = @aValue',
         substitutionValues: {"aValue": mail});
