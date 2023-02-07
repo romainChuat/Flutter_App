@@ -113,21 +113,15 @@ Widget GererLesMarkersRefuse(){
 
   @override
   Widget build(BuildContext context) {
+    final text = MediaQuery.of(context).platformBrightness == Brightness.dark
+    ? 'DarkTheme'
+    : 'LightTheme';
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: mylib.baseAppBar(appBar: AppBar(),),
             endDrawer: mylib.createMenu(context),
 
-      body: AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle.light,
-        child: GestureDetector(
-          child: Stack(
-            children: <Widget>[
-              Container(               
-                height: double.infinity,
-                width: double.infinity,
-                decoration:  mylib.background1,
-                  child:Center(
+      body: Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
 
@@ -155,12 +149,6 @@ Widget GererLesMarkersRefuse(){
             ],
                   ),
                 ),
-                 // )
-              )
-            ],
-          )
-        ),
-      ),
     
     );
     

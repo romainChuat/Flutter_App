@@ -16,6 +16,9 @@ class _endPage extends State<endPage> {
   bool _value = false;
   @override
   Widget build(BuildContext context) {
+    final text = MediaQuery.of(context).platformBrightness == Brightness.dark
+    ? 'DarkTheme'
+    : 'LightTheme';
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: mylib.baseAppBar(appBar: AppBar()), 
@@ -23,7 +26,6 @@ class _endPage extends State<endPage> {
       
         body: Container(
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
-          decoration: mylib.background1,
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,

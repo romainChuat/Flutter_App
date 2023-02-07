@@ -17,6 +17,9 @@ class _etudePage extends State<etudePage> {
   var niveau; 
   @override
   Widget build(BuildContext context) {
+    final text = MediaQuery.of(context).platformBrightness == Brightness.dark
+    ? 'DarkTheme'
+    : 'LightTheme';
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: mylib.baseAppBar(appBar: AppBar()),
@@ -24,7 +27,6 @@ class _etudePage extends State<etudePage> {
 
         body: Container(
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
-          decoration: mylib.background1,
           child: Center(
             child: SingleChildScrollView (
             child: Column(

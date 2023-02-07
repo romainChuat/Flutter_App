@@ -14,6 +14,9 @@ class _agePage extends State<agePage> {
   int age = 0;
   @override
   Widget build(BuildContext context) {
+    final text = MediaQuery.of(context).platformBrightness == Brightness.dark
+    ? 'DarkTheme'
+    : 'LightTheme';
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: mylib.baseAppBar(appBar: AppBar()),
@@ -21,7 +24,6 @@ class _agePage extends State<agePage> {
 
         body: Container(
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
-          decoration: mylib.background1,
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -35,7 +37,6 @@ class _agePage extends State<agePage> {
                     height: 405,
                     color: Color.fromARGB(255, 235, 233, 233),
                     child: Column(
-                      //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Container(
                           padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
@@ -57,7 +58,7 @@ class _agePage extends State<agePage> {
                                 height: 32,                                
                                 child:RadioListTile(
                                   activeColor:  Color.fromARGB(255, 41, 59, 229),
-                                    title: const Text("3 - 10 ans", style: mylib.radioText), 
+                                    title: const Text("3 - 10 ans", style: mylib.blueText2,), 
                                     groupValue: age, 
                                     onChanged: (value) { 
                                       setState(() {
@@ -73,7 +74,7 @@ class _agePage extends State<agePage> {
                                 child:RadioListTile(
                                   activeColor:  Color.fromARGB(255, 41, 59, 229),
 
-                                  title: const Text("11 - 17 ans", style: mylib.radioText), 
+                                  title: const Text("11 - 17 ans", style: mylib.blueText2), 
                                   groupValue: age, 
                                   onChanged: (value) { 
                                       setState(() {
@@ -89,7 +90,7 @@ class _agePage extends State<agePage> {
                                 child:RadioListTile(
                                   activeColor:  Color.fromARGB(255, 41, 59, 229),
 
-                                  title: const Text("18 - 25 ans", style: mylib.radioText), 
+                                  title: const Text("18 - 25 ans", style: mylib.blueText2), 
                                   groupValue: age, 
                                   onChanged: (value) { 
                                     setState(() {
@@ -104,7 +105,7 @@ class _agePage extends State<agePage> {
                                 height: 32,
                                 child:RadioListTile(
                                   activeColor:  Color.fromARGB(255, 41, 59, 229),
-                                  title: const Text("26 - 35 ans", style: mylib.radioText), 
+                                  title: const Text("26 - 35 ans", style: mylib.blueText2), 
                                   groupValue: age, 
                                   onChanged: (value) { 
                                      setState(() {
@@ -119,7 +120,7 @@ class _agePage extends State<agePage> {
                                 height: 32,
                                 child:RadioListTile(
                                   activeColor:  Color.fromARGB(255, 41, 59, 229),
-                                  title: const Text("36 - 45 ans", style: mylib.radioText), 
+                                  title: const Text("36 - 45 ans", style: mylib.blueText2), 
                                   groupValue: age, 
                                   onChanged: (value) { 
                                       setState(() {
@@ -134,7 +135,7 @@ class _agePage extends State<agePage> {
                                 height: 32,
                                 child:RadioListTile(
                                   activeColor:  Color.fromARGB(255, 41, 59, 229),
-                                  title: const Text("46 - 55 ans", style: mylib.radioText), 
+                                  title: const Text("46 - 55 ans", style: mylib.blueText2), 
                                   groupValue: age, 
                                   onChanged: (value) { 
                                     setState(() {
@@ -149,7 +150,7 @@ class _agePage extends State<agePage> {
                                 height: 32,
                                 child:RadioListTile(
                                   activeColor:  Color.fromARGB(255, 41, 59, 229),
-                                  title: const Text("56 - 65 ans", style: mylib.radioText), 
+                                  title: const Text("56 - 65 ans", style: mylib.blueText2), 
                                   groupValue: age, 
                                   onChanged: (value) { 
                                      setState(() {
@@ -164,7 +165,7 @@ class _agePage extends State<agePage> {
                                 height: 32,
                                 child:RadioListTile(
                                   activeColor:  Color.fromARGB(255, 41, 59, 229),
-                                  title: const Text("66 - 75 ans", style: mylib.radioText), 
+                                  title: const Text("66 - 75 ans", style: mylib.blueText2), 
                                   groupValue: age, 
                                   onChanged: (value) { 
                                      setState(() {
@@ -179,7 +180,7 @@ class _agePage extends State<agePage> {
                                 height: 32,
                                 child:RadioListTile(
                                   activeColor:  Color.fromARGB(255, 41, 59, 229),
-                                  title: const Text("76 ans et plus", style: mylib.radioText), 
+                                  title: const Text("76 ans et plus", style: mylib.blueText2), 
                                   groupValue: age, 
                                   onChanged: (value) { 
                                      setState(() {

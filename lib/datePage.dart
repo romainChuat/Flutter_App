@@ -20,6 +20,9 @@ class _datePage extends State<datePage> {
 
   @override
   Widget build(BuildContext context) {
+    final text = MediaQuery.of(context).platformBrightness == Brightness.dark
+        ? 'DarkTheme'
+        : 'LightTheme';
     Map<String, dynamic>? reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
     print(reponses);
@@ -29,7 +32,6 @@ class _datePage extends State<datePage> {
         endDrawer: mylib.createMenu(context),
         body: Container(
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
-          decoration: mylib.background1,
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
