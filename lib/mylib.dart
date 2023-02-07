@@ -390,19 +390,27 @@ createMenu(BuildContext context) {
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Container(
-                  width: 200,
-                  height: 58,
-                  color: Colors.white,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      ChangeThemeButtonWidget(),
-                      Text(
-                        "Mode sombre",
-                        style: blueText,
-                      ),
-                    ],
-                  )),
+                width: 200,
+                height: 58,
+                child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Color.fromARGB(255, 41, 59, 229),
+                      backgroundColor: Color.fromARGB(255, 235, 233, 233),
+                    ),
+                    onPressed: () {
+                      AdaptiveTheme.of(context).setDark();
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Padding(padding: EdgeInsets.all(6)),
+                        Text(
+                          "Mode Sombre",
+                          style: blueText,
+                        ),
+                      ],
+                    )),
+              ),
             ),
             Padding(padding: EdgeInsets.all(10)),
             ClipRRect(

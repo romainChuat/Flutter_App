@@ -27,7 +27,6 @@ class _creationcompte extends State<creationcompte> {
   final mailController = TextEditingController();
   final passwordController_1 = TextEditingController();
   final passwordController_2 = TextEditingController();
-  final dbHelper = DatabaseHelper();
 
   Widget buildTitle() {
     return Container(
@@ -442,12 +441,32 @@ class _creationcompte extends State<creationcompte> {
     return true;
   }
 
+  bool mailDB(DatabaseHelper db) {
+    /*var res = db.queryUser(db, mailController.text);
+    if (res == null) {
+      return false;
+    }*/
+    return true;
+  }
+
   void insertUser() async {
-    var u = Utilisateur(
-      nom: nomController.text,
-      mail: mailController.text,
-      password: passwordController_1.text,
-    );
-    final id = await dbHelper.insertUser(u);
+    /*WidgetsFlutterBinding.ensureInitialized();
+    DatabaseHelper db = DatabaseHelper();
+
+    if (mailDB(db) == true) {
+      var u = Utilisateur(
+        nom: nomController.text,
+        mail: mailController.text,
+        password: passwordController_1.text,
+      );
+      try {
+        await db.insertUser(u.toMap());
+        print("new user");
+      } catch (e) {
+        print("enregistrement impossible");
+      }
+    } else {
+      print("mail existant");
+    }*/
   }
 }
