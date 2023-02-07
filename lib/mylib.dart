@@ -403,9 +403,9 @@ createMenu(BuildContext context) {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Padding(padding: EdgeInsets.all(6)),
+                        ChangeThemeButtonWidget(),
                         Text(
-                          "Mode Sombre",
+                          "Mode sombre",
                           style: blueText,
                         ),
                       ],
