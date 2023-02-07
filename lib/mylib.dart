@@ -5,6 +5,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/homePage.dart';
+import 'package:flutter_application_1/languagePage.dart';
 import 'package:flutter_application_1/provider.dart';
 import 'package:provider/provider.dart';
 
@@ -324,14 +325,7 @@ createtButton(String text, BuildContext context, double width, double height) {
 createMenu(BuildContext context) {
   LanguageController controller = context.read<LanguageController>();
 
-  String? selectedValue = null;
-  final _dropdownFormKey = GlobalKey<FormState>();
-  List<DropdownMenuItem<String>> dropdownItems = [
-    DropdownMenuItem(child: Text("USA"), value: "USA"),
-    DropdownMenuItem(child: Text("Canada"), value: "Canada"),
-    DropdownMenuItem(child: Text("Brazil"), value: "Brazil"),
-    DropdownMenuItem(child: Text("England"), value: "England"),
-  ];
+  
 
   return ClipRRect(
     borderRadius: BorderRadius.circular(30),
@@ -354,8 +348,6 @@ createMenu(BuildContext context) {
                       backgroundColor: Color.fromARGB(255, 235, 233, 233),
                     ),
                     onPressed: () {
-                      context.setLocale(Locale('en', 'US'));
-                      controller.onLanguageChanged();
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -411,9 +403,9 @@ createMenu(BuildContext context) {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Padding(padding: EdgeInsets.all(6)),
+                        ChangeThemeButtonWidget(),
                         Text(
-                          "Mode Sombre",
+                          "Mode sombre",
                           style: blueText,
                         ),
                       ],
@@ -432,8 +424,12 @@ createMenu(BuildContext context) {
                       backgroundColor: Color.fromARGB(255, 235, 233, 233),
                     ),
                     onPressed: () {
-                      context.setLocale(Locale('fr', 'FR'));
-                      controller.onLanguageChanged();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => languagePage(),
+                        ),
+                      );
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,

@@ -368,7 +368,6 @@ class _userconnexionpassword extends State<userconnexionpassword> {
       ),
     );
   }
-
   /*void loginCorrect() async {
     //String mail = mailController.text;
     //String password = passwordController.text;
