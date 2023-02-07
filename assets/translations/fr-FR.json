@@ -1,5 +1,7 @@
 {
     "title1_text": "Titre 1",
     "map_question": "Pour commencer, veuillez indiquer la localisation de votre photographie de paysage", 
-    "next_btn_text": "Suivant"
+    "next_btn_text": "Suivant",
+    "english_text": "anglais",
+    "french_text": "français"
 }
