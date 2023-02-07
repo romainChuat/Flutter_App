@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/user_choix_connexion.dart';
 import 'package:provider/provider.dart';
 
+import 'DatabaseHelperLocal.dart';
 import 'connexion.dart';
 import 'controller/language_contoller.dart';
 import 'darkmode.dart';
@@ -32,6 +33,7 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
   // This widget is the root of your application.
   @override
 Widget build(BuildContext context) => ChangeNotifierProvider(

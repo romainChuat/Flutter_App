@@ -1,10 +1,9 @@
 class Utilisateur {
-  final String nom;
-  final String mail;
-  final String password;
+  String? nom;
+  String? mail;
+  String? password;
 
-  const Utilisateur(
-      {required this.nom, required this.mail, required this.password});
+  Utilisateur({required this.nom, required this.mail, required this.password});
 
   Map<String, dynamic> toMap() {
     return {
@@ -12,6 +11,12 @@ class Utilisateur {
       'mail': mail,
       'password': password,
     };
+  }
+
+  Utilisateur.fromMap(Map<String, dynamic> map) {
+    nom = map['nom'];
+    mail = map['mail'];
+    password = map['password'];
   }
 
   @override
