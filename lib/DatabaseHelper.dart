@@ -42,11 +42,9 @@ class DatabaseHelper {
         'INSERT INTO users (${data.keys.join(', ')}) VALUES (${data.keys.map((k) => '@$k').join(', ')})',
         substitutionValues: data);
   }
-
   Future<List<dynamic>?> queryUser(PostgreSQLConnection db, String mail) async {
     var results = await db.query('SELECT * FROM users WHERE mail = @aValue',
         substitutionValues: {"aValue": mail});
-
     return results;
   }
 }
