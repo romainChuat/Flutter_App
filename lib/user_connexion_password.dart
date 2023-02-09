@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/user_choix_connexion.dart';
-import 'DatabaseHelperLocal.dart';
+import 'DatabaseHelper.dart';
 import 'connexion_admin.dart';
 import 'creation_compte.dart';
 import 'forgot_password_page.dart';
@@ -24,6 +24,7 @@ class userconnexionpassword extends StatefulWidget {
 class _userconnexionpassword extends State<userconnexionpassword> {
   final mailController = TextEditingController();
   final passwordController = TextEditingController();
+  bool connected = false;
 
   bool isRememberMe = false;
   Widget buildTitle() {
@@ -188,18 +189,17 @@ class _userconnexionpassword extends State<userconnexionpassword> {
       // padding: EdgeInsets.symmetric(vertical: 25),
       //width: double.infinity,
       child: ElevatedButton(
-        onPressed: () {
-          print("login");
-          /*if (await loginCorrect()) {
+        onPressed: () async {
+          await loginCorrect();
+          if (connected == true) {
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (BuildContext context) => const hellologinpassword(),
               ),
             );
           } else {
-            print("Connexion impossible");
-          }*/
-          //loginCorrect();
+            print("Adresse mail ou mot de passe incorrect");
+          }
         },
         style: ElevatedButton.styleFrom(
           shadowColor: Colors.grey.shade700,
@@ -368,17 +368,24 @@ class _userconnexionpassword extends State<userconnexionpassword> {
       ),
     );
   }
-  /*void loginCorrect() async {
-    //String mail = mailController.text;
-    //String password = passwordController.text;
+
+  Future<void> loginCorrect() async {
+    String mail = mailController.text;
+    String password = passwordController.text;
+
     WidgetsFlutterBinding.ensureInitialized();
-    await dbHelper.init();
-    final allRows = await dbHelper.queryAllRowsUser();
-    debugPrint('query all rows:');
-    for (final row in allRows) {
-      debugPrint(row.toString());
+    DatabaseHelper db = DatabaseHelper.getInstance();
+
+    var res = await db.queryUser(mail);
+
+    if (res == null) {
+      return;
     }
 
-    dbHelper.close();
-  }*/
+    var pass = res.last.last;
+
+    if (pass == password) {
+      connected = true;
+    }
+  }
 }
