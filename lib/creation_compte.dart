@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_application_1/DatabaseHelper.dart';
 import 'package:flutter_application_1/Utilisateur.dart';
 import 'package:flutter_application_1/user_choix_connexion.dart';
+import 'package:postgres/postgres.dart';
 import 'connexion_admin.dart';
 import 'forgot_password_page.dart';
 import 'hello_admin_page.dart';
@@ -27,6 +28,7 @@ class _creationcompte extends State<creationcompte> {
   final mailController = TextEditingController();
   final passwordController_1 = TextEditingController();
   final passwordController_2 = TextEditingController();
+  bool connected = false;
 
   Widget buildTitle() {
     return Container(
@@ -167,17 +169,22 @@ class _creationcompte extends State<creationcompte> {
       // padding: EdgeInsets.symmetric(vertical: 25),
       //width: double.infinity,
       child: ElevatedButton(
-        onPressed: () {
-          if ((verifMail() == false) || (verifPassword() == false)) {
-            print("Création impossible");
+        onPressed: () async {
+          if (verifMail() == false) {
+            print("Adresse mail incorrect");
           } else {
-            insertUser();
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (BuildContext context) => const hello_admin_page(),
-
-              ),
-            );
+            if (verifPassword() == false) {
+              print("Mot de passe incorrect");
+            } else {
+              await insertUser();
+              if (connected == true) {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (BuildContext context) => const hello_admin_page(),
+                  ),
+                );
+              }
+            }
           }
         },
         style: ElevatedButton.styleFrom(
@@ -441,32 +448,28 @@ class _creationcompte extends State<creationcompte> {
     return true;
   }
 
-  bool mailDB(DatabaseHelper db) {
-    /*var res = db.queryUser(db, mailController.text);
+  Future<void> insertUser() async {
+    final DatabaseHelper dbHelper = DatabaseHelper.getInstance();
+    WidgetsFlutterBinding.ensureInitialized();
+
+    var res = await dbHelper.queryUser(mailController.text);
     if (res == null) {
-      return false;
-    }*/
-    return true;
-  }
-
-  void insertUser() async {
-    /*WidgetsFlutterBinding.ensureInitialized();
-    DatabaseHelper db = DatabaseHelper();
-
-    if (mailDB(db) == true) {
       var u = Utilisateur(
         nom: nomController.text,
         mail: mailController.text,
         password: passwordController_1.text,
       );
       try {
-        await db.insertUser(u.toMap());
+        await dbHelper.insertUser(u.toMap());
         print("new user");
       } catch (e) {
         print("enregistrement impossible");
+        return;
       }
     } else {
       print("mail existant");
-    }*/
+      return;
+    }
+    connected = true;
   }
 }
