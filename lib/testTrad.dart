@@ -7,7 +7,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 import 'mylib.dart' as mylib;
 
-import 'ANommer.dart';
+import 'condition_utilisation.dart';
 
 class testTrad extends StatefulWidget {
   @override
@@ -100,7 +100,7 @@ class _testTrad extends State<testTrad> {
                       141,
                       41,
                       MaterialPageRoute(
-                        builder: (_) => ANommer(),
+                        builder: (_) => condition_utilisation(),
                       ),
                     )
                   ],
@@ -110,12 +110,4 @@ class _testTrad extends State<testTrad> {
           ),
         ));
   }
-  /*createMarker(){
-    marker.add(
-      Marker(
-        point: LatLng(47.23, 6.01), 
-        builder: (ctx) => Icon(Icons.location_pin, color: Color.fromARGB(255, 244, 108, 54), size: 40,), 
-      ),
-    );
-  }*/
 }

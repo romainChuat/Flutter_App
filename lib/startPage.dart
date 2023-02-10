@@ -7,6 +7,9 @@ class startPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+   Map<String,Object> reponses =
+      ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: mylib.baseAppBar(appBar: AppBar()),
@@ -56,6 +59,7 @@ class startPage extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (_) => mapPage(),
+                        settings: RouteSettings(arguments: reponses),
                       ),
                     );
                   },

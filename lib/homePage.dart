@@ -18,13 +18,11 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-
-
+    Map<String,Object> reponses =
+      ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
     context.watch<LanguageController>();
-
-    
-    
     return Scaffold(
+
       extendBodyBehindAppBar: true,
       appBar: mylib.baseAppBar(appBar: AppBar(),),
       endDrawer: mylib.createMenu(context),
@@ -62,6 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (BuildContext context) => const startPage(),
+                          settings: RouteSettings(arguments: reponses),
                         ),
                       );
                     },

@@ -12,11 +12,16 @@ class agePage extends StatefulWidget {
 }
 class _agePage extends State<agePage> {
   int age = 0;
+  
   @override
   Widget build(BuildContext context) {
     final text = MediaQuery.of(context).platformBrightness == Brightness.dark
     ? 'DarkTheme'
     : 'LightTheme';
+
+    Map<String, Object> reponses =
+        ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
+
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: mylib.baseAppBar(appBar: AppBar()),
@@ -64,6 +69,9 @@ class _agePage extends State<agePage> {
                                       setState(() {
                                         age = 10;
                                         print(age);
+                                        reponses['age'] = age;
+                                        print(reponses);
+
                                       });
                                     }, 
                                   value: 10,
@@ -80,6 +88,9 @@ class _agePage extends State<agePage> {
                                       setState(() {
                                         age = 17;
                                         print(age);
+                                        reponses['age'] = age;
+                                        print(reponses);
+
                                       });
                                   }, 
                                   value: 17,
@@ -96,6 +107,9 @@ class _agePage extends State<agePage> {
                                     setState(() {
                                         age = 25;
                                         print(age);
+                                        reponses['age'] = age;
+                                        print(reponses);
+
                                     });
                                   }, 
                                   value: 25,
@@ -111,6 +125,9 @@ class _agePage extends State<agePage> {
                                      setState(() {
                                         age = 35;
                                         print(age);
+                                        reponses['age'] = age;
+                                        print(reponses);
+
                                     });
                                   }, 
                                   value: 35,
@@ -126,6 +143,9 @@ class _agePage extends State<agePage> {
                                       setState(() {
                                         age = 45;
                                         print(age);
+                                        reponses['age'] = age;
+                                        print(reponses);
+
                                     });
                                   }, 
                                   value: 45,
@@ -141,6 +161,9 @@ class _agePage extends State<agePage> {
                                     setState(() {
                                         age = 55;
                                         print(age);
+                                        reponses['age'] = age;
+                                        print(reponses);
+
                                     });
                                   }, 
                                   value: 55,
@@ -156,6 +179,10 @@ class _agePage extends State<agePage> {
                                      setState(() {
                                         age = 65;
                                         print(age);
+                                        reponses['age'] = age;
+                                        print(reponses);
+
+                                        
                                     });
                                   }, 
                                   value: 65,
@@ -171,6 +198,9 @@ class _agePage extends State<agePage> {
                                      setState(() {
                                         age = 75;
                                         print(age);
+                                        reponses['age'] = age;
+                                        print(reponses);
+
                                     });
                                   }, 
                                   value: 75,
@@ -186,6 +216,8 @@ class _agePage extends State<agePage> {
                                      setState(() {
                                         age = 76;
                                         print(age);
+                                        reponses['age'] = age;
+                                        print(reponses);
                                     });
                                   }, 
                                   value: 76,
@@ -202,7 +234,7 @@ class _agePage extends State<agePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     mylib.createQuitButton(context, 141, 41),
-                    mylib.createNextButton("Next", context, 141, 41, MaterialPageRoute(builder: (_) => genrePage(),), )
+                    mylib.createNextButton("Next", context, 141, 41, MaterialPageRoute(builder: (_) => genrePage(),settings: RouteSettings(arguments: reponses)), )
                   ],
                 )
               ],

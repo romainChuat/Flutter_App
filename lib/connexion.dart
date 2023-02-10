@@ -16,8 +16,12 @@ class connexion extends StatefulWidget {
 }
 class _connexion extends State<connexion>{
 
+  
+  Map<String,Object> reponses = new Map(); 
+
+
   bool isRememberMe = false;
-Widget buildTitle(){                    
+  Widget buildTitle(){                    
                     return Container(
                       width: 309,
                     height: 156,
@@ -60,6 +64,10 @@ Widget builUserName(){
           ]
         ),
         child: TextField(
+          onChanged: (value){
+            print(value);
+            reponses["username"] = value;
+          },
           keyboardType: TextInputType.name,
           style: TextStyle(
             color: Colors.black87
@@ -93,6 +101,7 @@ Widget buildLoginBtn(){
                         Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (BuildContext context) => const hello_login_page(),
+                          settings: RouteSettings(arguments:  reponses),
                         ),
                       );
                       },    
@@ -185,6 +194,8 @@ Widget buildAdminBtn(){
 
   @override
   Widget build(BuildContext context) {
+
+
     return Scaffold(
       
       body: AnnotatedRegion<SystemUiOverlayStyle>(

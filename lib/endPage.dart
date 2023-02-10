@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/DatabaseHelperLocal.dart';
 import 'package:flutter_application_1/homePage.dart';
 import 'package:flutter_icon_shadow/flutter_icon_shadow.dart';
+import 'package:flutter_application_1/Reponse.dart';
+
 
 import 'mylib.dart' as mylib;
 
@@ -12,10 +15,15 @@ class endPage extends StatefulWidget {
   }
 }
 class _endPage extends State<endPage> {
-  String activite = "";
-  bool _value = false;
+    
   @override
   Widget build(BuildContext context) {
+    Map<String, Object> reponses =
+      ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
+
+    print(reponses);
+    
+
     final text = MediaQuery.of(context).platformBrightness == Brightness.dark
     ? 'DarkTheme'
     : 'LightTheme';
@@ -56,7 +64,7 @@ class _endPage extends State<endPage> {
                       ],                      
                   ),
                 ),
-                mylib.createNextButton("Home", context, 141, 41, MaterialPageRoute(builder: (_) => const MyHomePage(),),)
+                createSubmitButton(141, 41, reponses),
                 
               ],
             ),
@@ -64,6 +72,58 @@ class _endPage extends State<endPage> {
         ));
   }
   
+  createSubmitButton(double width, double height, Map<String,Object> reponses) {
+    return SizedBox(
+      width: width,
+      height: height,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          foregroundColor: Colors.white,
+          backgroundColor: Color.fromARGB(255, 41, 59, 229),
+          side: const BorderSide(color: Colors.white, width: 1),
+          elevation: 15,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        ),
+        onPressed: () {
+          //envoie des données à la bd
+          insertReponse(reponses);
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const MyHomePage(),
+            settings: RouteSettings(arguments: reponses),)
+          );
+        },
+        child: Text(
+          "Submit",
+          style: mylib.buttonTextStyle,
+        ),
+      ),
+    );
+  }
+
+  void insertReponse(Map<String, Object> reponses) async {
+    Map<String, Object> insert = new Map();
+    insert['username'] = reponses['username'].toString();
+    print(insert);
+    reponses.remove('username');
+    print(reponses);
+    insert["reponses"] = reponses.toString();
+    print(insert);
+
+    WidgetsFlutterBinding.ensureInitialized();
+    DatabaseHelperLocal db = DatabaseHelperLocal();
+    
+    try {
+      await db.insertReponse(insert);
+      print("new user");
+    } catch (e) {
+      print("enregistrement impossible");
+    }
+
+    
+  }
+
+
 
 }
 

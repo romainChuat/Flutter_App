@@ -1,3 +1,5 @@
+
+
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -70,7 +72,7 @@ class _hello_login_page extends State<hello_login_page> {
     );
   }
 
-  Widget buildAccessQuestionnaire() {
+  Widget buildAccessQuestionnaire(Map<String, Object> reponses ) {
     return Container(
       width: 296,
       height: 49,
@@ -79,6 +81,7 @@ class _hello_login_page extends State<hello_login_page> {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (BuildContext context) => const MyHomePage(),
+              settings: RouteSettings(arguments: reponses)
             ),
           );
         },
@@ -102,6 +105,9 @@ class _hello_login_page extends State<hello_login_page> {
 
   @override
   Widget build(BuildContext context) {
+     Map<String,Object> reponses =
+      ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
+
     final text = MediaQuery.of(context).platformBrightness == Brightness.dark
     ? 'DarkTheme'
     : 'LightTheme';
@@ -117,7 +123,7 @@ class _hello_login_page extends State<hello_login_page> {
                   children: <Widget>[
                     Container(
                       width: 250,
-                      child: Text('Hello, Login', style: mylib.titleStyle2),
+                      child: Text("Hello, ${reponses["username"]}", style: mylib.titleStyle2),
                     ),
                     SizedBox(height: 61),
                     Container(
@@ -129,7 +135,7 @@ class _hello_login_page extends State<hello_login_page> {
                     SizedBox(height: 61),
                     buildAccessMap(),
                     SizedBox(height: 61),
-                    buildAccessQuestionnaire(),
+                    buildAccessQuestionnaire(reponses),
                     SizedBox(height: 61),
                   ],
                 ),
