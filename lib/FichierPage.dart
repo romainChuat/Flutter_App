@@ -5,17 +5,20 @@ import 'mylib.dart' as mylib;
 import 'package:image_picker/image_picker.dart';
 
 class FichierPage extends StatelessWidget {
-  const FichierPage({
-    super.key,
-  });
-  //String strPath = "";
+  
+  const FichierPage({super.key,});
+
   @override
   Widget build(BuildContext context) {
     final text = MediaQuery.of(context).platformBrightness == Brightness.dark
         ? 'DarkTheme'
         : 'LightTheme';
-    Map<String, dynamic>? reponses =
-        ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
+    Map<String,Object> reponses =
+      ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
+    
+    print(reponses);
+
+
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: mylib.baseAppBar(appBar: AppBar()),
@@ -80,7 +83,11 @@ class FichierPage extends StatelessWidget {
                                   var newPath = _getFromGallery();
                                   final bytes =
                                       Io.File(newPath).readAsBytesSync();
-                                  reponses!["Image"] = bytes;
+                                  Map<String, Object>? res = new Map();
+                                  
+                                  reponses["Image"] = bytes;
+                                  
+                                  
                                   //image = await picker.pickImage(source: ImageSource.gallery);
                                   //setState((){ strPath = newPath; });
                                 },

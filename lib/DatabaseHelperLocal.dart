@@ -31,6 +31,7 @@ class DatabaseHelperLocal {
   Future<Database?> init() async {
     final dbPath = await getDatabasesPath();
     final path = join(dbPath, _databaseName);
+    print(path);
     _db = await openDatabase(
       path,
       version: _databaseVersion,
@@ -47,34 +48,30 @@ class DatabaseHelperLocal {
   // SQL code to create the database table
   Future _onCreate(Database db, int version) async {
     await db.execute('''
-          CREATE TABLE lieux (
+          CREATE TABLE lieux(
             id INTEGER PRIMARY KEY,
             nom TEXT NOT NULL,
-            latitude REAL NOT NULL
+            latitude REAL NOT NULL,
             longitude REAL NOT NULL
-
-          )
-          ''');
-    await db.execute('''
-          CREATE TABLE reponses (
-            id INTEGER PRIMARY KEY,
-            user TEXT NOT NULL,
-            reponses TEXT NOT NULL,
-          )
-          ''');
+          )''');
+    await db.execute("""CREATE TABLE reponses(
+          username INTEGER AUTO_INCREMENT PRIMARY KEY,
+          reponses TEXT NOT NULL
+          )""");
 
     await db.execute('''
-          CREATE TABLE user (
+          CREATE TABLE user(
             id INTEGER PRIMARY KEY,
             nom TEXT NOT NULL,
             mail TEXT NOT NULL,
-            password BINARY NOT NULL,
+            password BINARY NOT NULL
           )
           ''');
   }
 
   /*Fonctions pour les lieux*/
   Future<int?> insertLieu(Lieu l) async {
+
     return await _db?.insert("lieux", l.toMap());
   }
 
@@ -91,8 +88,9 @@ class DatabaseHelperLocal {
   }
 
   /*Fonctions pour les réponses*/
-  Future<int?> insertReponse(Reponse r) async {
-    return await _db?.insert("reponses", r.toMap());
+  Future<int?> insertReponse(Map<String, Object> r) async {
+    final Database? db = await init();
+    return await _db?.insert("reponses", r);
   }
 
   Future<List<Map<String, dynamic>>?> queryAllRowsReponse() async {
@@ -129,3 +127,14 @@ class DatabaseHelperLocal {
     );
   }
 }
+/*await db.execute("""CREATE TABLE reponses(
+          id INTEGER AUTO_INCREMENT PRIMARY KEY
+          longitude REAL NOT NULL,
+          latitude REAL NOT NULL,
+          expressions TEXT NOT NULL,
+          Date DATE FORMAT 'dd.mm.yyyy',
+          age INTEGER,
+          genre TEXT NOT NULL,
+          niveau_etude TEXT NOT NULL,
+          ac
+          )""");*/

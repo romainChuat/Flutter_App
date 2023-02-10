@@ -2,19 +2,23 @@ import 'package:flutter/material.dart';
 import 'FichierPage.dart';
 import 'mylib.dart' as mylib;
 
-class ANommer extends StatelessWidget {
-  ANommer({
+class condition_utilisation extends StatelessWidget {
+  condition_utilisation({
     super.key,
+
   });
   @override
   Widget build(BuildContext context) {
     final text = MediaQuery.of(context).platformBrightness == Brightness.dark
         ? 'DarkTheme'
         : 'LightTheme';
-    Map<String, dynamic>? reponses =
-        ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
-
+    Map<String,Object> reponses =
+      ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
+    
     print(reponses);
+    //print(username);
+
+
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: mylib.baseAppBar(appBar: AppBar()),

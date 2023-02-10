@@ -13,7 +13,6 @@ class activitePage extends StatefulWidget {
 }
 class _activitePage extends State<activitePage> {
 
-  String activite = "";
   bool _formationValue = false;
   bool _empValue = false;
   bool _proValue = false;
@@ -25,6 +24,13 @@ class _activitePage extends State<activitePage> {
     final text = MediaQuery.of(context).platformBrightness == Brightness.dark
     ? 'DarkTheme'
     : 'LightTheme';
+    Map<String, Object> reponses =
+      ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
+    Map<String,String>? activite = Map<String,String>();  
+
+
+    
+    
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: mylib.baseAppBar(appBar: AppBar()), 
@@ -76,12 +82,12 @@ class _activitePage extends State<activitePage> {
                                             child: Text("En formation:", style: mylib.radioText,),
                                           ),
                                           CheckboxListTile(
-                                            title: mylib.createInput(311,28),
+                                            title: mylib.createInput(311,28,),
                                             autofocus: false,
                                             selected: _formationValue,
                                             value: _formationValue,
                                             onChanged: (value) {
-                                              setState(() {
+                                                setState(() {
                                                 _formationValue = value!;
                                                 //enregistrer chaine de caracère
                                               });
@@ -198,7 +204,7 @@ class _activitePage extends State<activitePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     mylib.createQuitButton(context, 141, 41),
-                    mylib.createNextButton("Next", context, 141, 41, MaterialPageRoute(builder: (_) => endPage(),), )
+                    mylib.createNextButton("Next", context, 141, 41, MaterialPageRoute(builder: (_) => endPage(), settings: RouteSettings(arguments: reponses)), )
                   ],
                 )
               ],
@@ -206,7 +212,10 @@ class _activitePage extends State<activitePage> {
             ),
           ),
         ));
+
   }
-  
+  void onChanged(dynamic text){
+
+  }
 
 }

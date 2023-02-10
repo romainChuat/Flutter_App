@@ -11,13 +11,13 @@ class motPage extends StatefulWidget {
 }
 
 class _motPage extends State<motPage> {
-  List<String?>? mots = [];
-
-  final motController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    Map<String, dynamic>? reponses =
-        ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
+    Map<int, String>? mots = Map<int, String>();
+    print(mots);
+    List<TextEditingController> motController = [];
+    Map<String,Object> reponses =
+      ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
     print(reponses);
     return Scaffold(
         extendBodyBehindAppBar: true,
@@ -79,7 +79,7 @@ class _motPage extends State<motPage> {
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(10)),
                                         child: TextField(
-                                          controller: motController,
+                                          //controller: motController[index],
                                           style: mylib.simpleText
                                               .apply(fontSizeDelta: 5),
                                           cursorColor: Color.fromARGB(
@@ -122,9 +122,15 @@ class _motPage extends State<motPage> {
                                                           BorderRadius.all(
                                                               Radius.circular(
                                                                   15)))),
+                                          onChanged: (text) {
+                                            print(text);
+                                            mots[index] = text;
+                                            print(mots);
+                                            
+                                            reponses['expressions'] = mots.toString();
+                                            print(reponses);
+                                          },
                                         )));
-                                //mots!.add(motController.text);
-                                print(motController.text);
                               },
                               separatorBuilder:
                                   (BuildContext context, int index) =>
@@ -148,6 +154,7 @@ class _motPage extends State<motPage> {
                       41,
                       MaterialPageRoute(
                         builder: (_) => agePage(),
+                        settings: RouteSettings(arguments: reponses),
                       ),
                     )
                   ],

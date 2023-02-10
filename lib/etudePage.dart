@@ -13,18 +13,20 @@ class etudePage extends StatefulWidget {
 enum Niveau{ primaire, premierCycle, secondCycle, sup, bac3, bac5, doctorat, autre  }
 
 class _etudePage extends State<etudePage> {
-  //int age = 0;
-  var niveau; 
+  var niveau;
+
   @override
   Widget build(BuildContext context) {
     final text = MediaQuery.of(context).platformBrightness == Brightness.dark
     ? 'DarkTheme'
     : 'LightTheme';
+    Map<String, Object> reponses =
+      ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
+
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: mylib.baseAppBar(appBar: AppBar()),
-              endDrawer: mylib.createMenu(context),
-
+        endDrawer: mylib.createMenu(context),
         body: Container(
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
           child: Center(
@@ -69,6 +71,7 @@ class _etudePage extends State<etudePage> {
                                       setState(() {
                                         niveau = Niveau.primaire;
                                         print(niveau);
+                                        reponses['niveau_etude'] = niveau.toString().split('.').last;
                                       });
                                     }, 
                                   value: Niveau.primaire,                                
@@ -84,6 +87,7 @@ class _etudePage extends State<etudePage> {
                                       setState(() {
                                         niveau = Niveau.premierCycle;
                                         print(niveau);
+                                        reponses['niveau_etude'] = niveau.toString().split('.').last;
                                       });
                                   }, 
                                   value: Niveau.premierCycle,
@@ -99,6 +103,7 @@ class _etudePage extends State<etudePage> {
                                     setState(() {
                                         niveau = Niveau.secondCycle;
                                         print(niveau);
+                                        reponses['niveau_etude'] = niveau.toString().split('.').last;
                                     });
                                   }, 
                                   value: Niveau.secondCycle,
@@ -114,6 +119,7 @@ class _etudePage extends State<etudePage> {
                                      setState(() {
                                         niveau = Niveau.sup;
                                         print(niveau);
+                                        reponses['niveau_etude'] = niveau.toString().split('.').last;
                                     });
                                   }, 
                                   value: Niveau.sup,
@@ -129,6 +135,7 @@ class _etudePage extends State<etudePage> {
                                       setState(() {
                                         niveau = Niveau.bac3;
                                         print(niveau);
+                                        reponses['niveau_etude'] = niveau.toString().split('.').last;
                                     });
                                   }, 
                                   value: Niveau.bac3,
@@ -144,6 +151,7 @@ class _etudePage extends State<etudePage> {
                                     setState(() {
                                         niveau = Niveau.bac5;
                                         print(niveau);
+                                        reponses['niveau_etude'] = niveau.toString().split('.').last;
                                     });
                                   }, 
                                   value: Niveau.bac5,
@@ -159,6 +167,7 @@ class _etudePage extends State<etudePage> {
                                     setState(() {
                                         niveau = Niveau.doctorat;
                                         print(niveau);
+                                        reponses['niveau_etude'] = niveau.toString().split('.').last;
                                     });
                                   }, 
                                   value: Niveau.doctorat,
@@ -174,6 +183,7 @@ class _etudePage extends State<etudePage> {
                                       setState(() {
                                         niveau = Niveau.autre;
                                         print(niveau);
+                                        reponses['niveau_etude'] = niveau.toString().split('.').last;
                                       });
                                     }, 
                                     value: Niveau.autre,
@@ -192,7 +202,7 @@ class _etudePage extends State<etudePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     mylib.createQuitButton(context, 141, 41),
-                    mylib.createNextButton("Next", context, 141, 41, MaterialPageRoute(builder: (_) => activitePage(),), )
+                    mylib.createNextButton("Next", context, 141, 41, MaterialPageRoute(builder: (_) => activitePage(), settings: RouteSettings(arguments: reponses)), )
                   ],
                 )
               ],
@@ -201,6 +211,35 @@ class _etudePage extends State<etudePage> {
           ),
         ));
   }
+  createInput(double wdth, double hgth,Map<String, Object> reponses ) {
+  return SizedBox(
+      height: hgth,
+      width: wdth,
+      child: const Material(
+          elevation: 5,
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+          child: TextField(
+            
+            style: mylib.simpleText1,
+            cursorColor: Color.fromARGB(255, 117, 106, 106),
+            decoration: InputDecoration(
+              contentPadding: EdgeInsets.fromLTRB(10, 0, 0, 1),
+              filled: true,
+              fillColor: Colors.white,
+                enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      width: 1,
+                      color: Color.fromARGB(255, 255, 255, 255),
+                    ),
+                    borderRadius: BorderRadius.all(Radius.circular(15))),
+                focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      width: 1,
+                      color: Color.fromARGB(255, 255, 255, 255),
+                    ),
+                    borderRadius: BorderRadius.all(Radius.circular(15)))),
+          )));
+}
   
 
 }

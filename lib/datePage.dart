@@ -23,9 +23,8 @@ class _datePage extends State<datePage> {
     final text = MediaQuery.of(context).platformBrightness == Brightness.dark
         ? 'DarkTheme'
         : 'LightTheme';
-    Map<String, dynamic>? reponses =
-        ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
-    print(reponses);
+    Map<String,Object> reponses =
+      ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: mylib.baseAppBar(appBar: AppBar()),
@@ -125,19 +124,14 @@ class _datePage extends State<datePage> {
                                             //DateTime.now() - not to allow to choose before today.
                                             lastDate: DateTime(2100));
                                         if (pickedDate != null) {
-                                          print(
-                                              pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
-                                          String formattedDate =
-                                              DateFormat('dd/MM/yyyy')
-                                                  .format(pickedDate);
-                                          print(
-                                              formattedDate); //formatted date output using intl package =>  2021-03-16
+                                          print(pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
+                                          String formattedDate =DateFormat('dd/MM/yyyy').format(pickedDate);
+                                          print(formattedDate); //formatted date output using intl package =>  2021-03-16
                                           setState(() {
-                                            dateInput.text =
-                                                formattedDate; //set output date to TextField value.
-                                            reponses!["Date"] = dateInput.text;
+                                            dateInput.text = formattedDate; //set output date to TextField value.
+                                            reponses["date"] = dateInput.text;
                                           });
-                                        } //else {}
+                                        }
                                       },
                                     ),
                                   )

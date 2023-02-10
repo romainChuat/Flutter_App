@@ -4,7 +4,7 @@ import 'package:flutter_map/plugin_api.dart';
 import 'package:latlong2/latlong.dart';
 import 'mylib.dart' as mylib;
 
-import 'ANommer.dart';
+import 'condition_utilisation.dart';
 
 class mapPage extends StatefulWidget {
   @override
@@ -14,7 +14,7 @@ class mapPage extends StatefulWidget {
 }
 
 class _mapPage extends State<mapPage> {
-  Map<String, dynamic>? reponses = new Map();
+
   var marker = <Marker>[];
   double currentZoom = 13.0;
   MapController mapController = MapController();
@@ -32,6 +32,9 @@ class _mapPage extends State<mapPage> {
 
   @override
   Widget build(BuildContext context) {
+  Map<String,Object> reponses =
+      ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
+      
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: mylib.baseAppBar(appBar: AppBar()),
@@ -86,9 +89,12 @@ class _mapPage extends State<mapPage> {
                                     center: currentCenter,
                                     zoom: 14,
                                     onTap: (LatLng value) {
-                                      reponses!['longitude'] = value.longitude;
-                                      reponses!['latitude'] = value.latitude;
+                                      Map<String, Object> longLat = new Map();
+                                      reponses['longitude'] = value.longitude;
+                                      reponses['latitude'] = value.latitude;
+                                      print(reponses);
                                       print("tape");
+
                                       marker.clear();
                                       marker.add(Marker(
                                           width: 25.0,
@@ -203,7 +209,7 @@ class _mapPage extends State<mapPage> {
                       141,
                       41,
                       MaterialPageRoute(
-                        builder: (_) => ANommer(),
+                        builder: (_) => condition_utilisation(),
                         settings: RouteSettings(arguments: reponses),
                       ),
                     )
@@ -214,12 +220,4 @@ class _mapPage extends State<mapPage> {
           ),
         ));
   }
-  /*createMarker(){
-    marker.add(
-      Marker(
-        point: LatLng(47.23, 6.01), 
-        builder: (ctx) => Icon(Icons.location_pin, color: Color.fromARGB(255, 244, 108, 54), size: 40,), 
-      ),
-    );
-  }*/
 }
