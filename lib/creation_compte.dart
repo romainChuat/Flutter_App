@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:crypt/crypt.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/DatabaseHelper.dart';
@@ -452,12 +453,16 @@ class _creationcompte extends State<creationcompte> {
     final DatabaseHelper dbHelper = DatabaseHelper.getInstance();
     WidgetsFlutterBinding.ensureInitialized();
 
+    final c1 = Crypt.sha256('p@ssw0rd');
+
     var res = await dbHelper.queryUser(mailController.text);
     if (res == null) {
       var u = Utilisateur(
         nom: nomController.text,
         mail: mailController.text,
-        password: passwordController_1.text,
+        password:
+            Crypt.sha256(passwordController_1.text, salt: 'abcdefghijklmnop')
+                .toString(),
       );
       try {
         await dbHelper.insertUser(u.toMap());
