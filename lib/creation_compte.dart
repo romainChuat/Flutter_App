@@ -10,6 +10,7 @@ import 'package:postgres/postgres.dart';
 import 'connexion_admin.dart';
 import 'forgot_password_page.dart';
 import 'hello_admin_page.dart';
+import 'hello_login_password.dart';
 import 'startPage.dart';
 import 'mapPage.dart';
 import 'homePage.dart';
@@ -181,7 +182,8 @@ class _creationcompte extends State<creationcompte> {
               if (connected == true) {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (BuildContext context) => const hello_admin_page(),
+                    builder: (BuildContext context) =>
+                        const hellologinpassword(),
                   ),
                 );
               }
