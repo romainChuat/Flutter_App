@@ -1,3 +1,4 @@
+import 'package:crypt/crypt.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/user_choix_connexion.dart';
@@ -384,7 +385,12 @@ class _userconnexionpassword extends State<userconnexionpassword> {
 
     var pass = res.last.last;
 
-    if (pass == password) {
+    final passSaisie = Crypt.sha256(password, salt: 'abcdefghijklmnop');
+
+    print(passSaisie.toString());
+    print(pass);
+
+    if (passSaisie.toString() == pass) {
       connected = true;
     }
   }
