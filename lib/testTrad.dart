@@ -7,7 +7,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 import 'mylib.dart' as mylib;
 
-import 'condition_utilisation.dart';
+import 'droits_auteur.dart';
 
 class testTrad extends StatefulWidget {
   @override
@@ -93,14 +93,14 @@ class _testTrad extends State<testTrad> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    mylib.createQuitButton(context, 141, 41),
+                    //mylib.createQuitButton(context, 141, 41),
                     mylib.createNextButton(
                       'next_btn_text'.tr(),
                       context,
                       141,
                       41,
                       MaterialPageRoute(
-                        builder: (_) => condition_utilisation(),
+                        builder: (_) => droits_auteur(),
                       ),
                     )
                   ],

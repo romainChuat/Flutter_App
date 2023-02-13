@@ -35,14 +35,14 @@ class _connexion_adminn extends State<connexion_adminn> {
     return Container(
       width: 309,
       height: 156,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage("images/connexionpage.jpg"),
           fit: BoxFit.cover,
         ),
       ),
-      child: Align(
-        child: const Text(
+      child: const Align(
+        child: Text(
           "Sign In",
           style: mylib.titleStyle3,
           textAlign: TextAlign.center,
@@ -55,7 +55,7 @@ class _connexion_adminn extends State<connexion_adminn> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         Container(
           width: 222,
           height: 38,
@@ -64,14 +64,14 @@ class _connexion_adminn extends State<connexion_adminn> {
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
               boxShadow: [
-                BoxShadow(
+                const BoxShadow(
                     color: Colors.black26, blurRadius: 6, offset: Offset(0, 2))
               ]),
           child: TextField(
             controller: mailController,
             keyboardType: TextInputType.emailAddress,
-            style: TextStyle(color: Colors.black87),
-            decoration: InputDecoration(
+            style: const TextStyle(color: Colors.black87),
+            decoration: const InputDecoration(
                 border: InputBorder.none,
                 prefixIcon: Icon(Icons.email, color: Color(0xff5ac18e)),
                 hintText: 'Email',
@@ -86,7 +86,7 @@ class _connexion_adminn extends State<connexion_adminn> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         Container(
           width: 222,
           height: 38,
@@ -95,15 +95,15 @@ class _connexion_adminn extends State<connexion_adminn> {
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
               boxShadow: [
-                BoxShadow(
+                const BoxShadow(
                     color: Colors.black26, blurRadius: 6, offset: Offset(0, 2))
               ]),
           //height: 60,
           child: TextField(
             controller: passwordController,
             obscureText: true,
-            style: TextStyle(color: Colors.black87),
-            decoration: InputDecoration(
+            style: const TextStyle(color: Colors.black87),
+            decoration: const InputDecoration(
                 border: InputBorder.none,
                 prefixIcon: Icon(Icons.lock, color: Color(0xff5ac18e)),
                 hintText: 'Password',
@@ -122,11 +122,11 @@ class _connexion_adminn extends State<connexion_adminn> {
           print("Forgot password pressed"),
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) => forgot_password_page(),
+              builder: (BuildContext context) => const forgot_password_page(),
             ),
           ),
         }, // padding: EdgeInsets.only(right: 0),
-        child: Text(
+        child: const Text(
           'Forgot Password ?',
           style: TextStyle(
             color: Colors.black38,
@@ -150,7 +150,7 @@ class _connexion_adminn extends State<connexion_adminn> {
                   activeColor: Colors.white,
                   onChanged: _handleRememberme),
             ),
-            Text(
+            const Text(
               'Remember me',
               style: TextStyle(
                 color: Colors.black38,
@@ -183,7 +183,7 @@ class _connexion_adminn extends State<connexion_adminn> {
           elevation: 20,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
-            side: BorderSide(color: Colors.white, width: 3),
+            side: const BorderSide(color: Colors.white, width: 3),
           ),
         ),
         child: const Text(
@@ -198,7 +198,7 @@ class _connexion_adminn extends State<connexion_adminn> {
   Widget buildUserBtn() {
     return Container(
       child: Align(
-        alignment: Alignment(-0.66, 0.0),
+        alignment: const Alignment(-0.66, 0.0),
         child: Container(
           width: 150,
           height: 50,
@@ -211,10 +211,10 @@ class _connexion_adminn extends State<connexion_adminn> {
               );
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: Color.fromARGB(255, 235, 233, 233),
+              backgroundColor: const Color.fromARGB(255, 235, 233, 233),
               shadowColor: Colors.grey.shade700,
               elevation: 20,
-              shape: RoundedRectangleBorder(
+              shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(10),
                     topRight: Radius.circular(10)),
@@ -234,7 +234,7 @@ class _connexion_adminn extends State<connexion_adminn> {
   Widget buildAdminBtn() {
     return Container(
       child: Align(
-        alignment: Alignment(0.66, 0.0),
+        alignment: const Alignment(0.66, 0.0),
         child: Container(
           width: 150,
           height: 50,
@@ -244,7 +244,7 @@ class _connexion_adminn extends State<connexion_adminn> {
               backgroundColor: const Color.fromARGB(255, 41, 59, 229),
               shadowColor: Colors.grey.shade700,
               elevation: 20,
-              shape: RoundedRectangleBorder(
+              shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(10),
                     topRight: Radius.circular(10)),
@@ -281,36 +281,36 @@ class _connexion_adminn extends State<connexion_adminn> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         buildUserBtn(),
-                        SizedBox(width: 10),
+                        const SizedBox(width: 10),
                         buildAdminBtn(),
                       ],
                     ),
                     ClipRRect(
-                        borderRadius: BorderRadius.only(
+                        borderRadius: const BorderRadius.only(
                             bottomLeft: Radius.circular(15),
                             bottomRight: Radius.circular(15)),
                         child: Container(
-                          color: Color.fromARGB(255, 235, 233, 233),
+                          color: const Color.fromARGB(255, 235, 233, 233),
                           width: 309,
                           height: 464,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               buildTitle(),
-                              SizedBox(height: 45),
+                              const SizedBox(height: 45),
                               buildEmail(),
-                              SizedBox(height: 15),
+                              const SizedBox(height: 15),
                               buildPassword(),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
                                   buildRemeberCb(),
-                                  SizedBox(height: 48),
+                                  const SizedBox(height: 48),
                                   buildForgotPassBtn(),
                                 ],
                               ),
                               buildLoginBtn(),
-                              SizedBox(height: 61),
+                              const SizedBox(height: 61),
                             ],
                           ),
                         )),

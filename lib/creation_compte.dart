@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/DatabaseHelper.dart';
 import 'package:flutter_application_1/Utilisateur.dart';
+import 'package:flutter_application_1/conditions_Utilisations.dart';
 import 'package:flutter_application_1/user_choix_connexion.dart';
 import 'package:postgres/postgres.dart';
 import 'connexion_admin.dart';
@@ -25,7 +26,7 @@ class creationcompte extends StatefulWidget {
 }
 
 class _creationcompte extends State<creationcompte> {
-  bool isRememberMe = false;
+  bool acceptTerms = false;
   final nomController = TextEditingController();
   final mailController = TextEditingController();
   final passwordController_1 = TextEditingController();
@@ -35,7 +36,7 @@ class _creationcompte extends State<creationcompte> {
   Widget buildTitle() {
     return Container(
       width: 309,
-      height: 156,
+      height: 160,
       decoration: BoxDecoration(
         image: DecorationImage(
           image: AssetImage("images/connexionpage.jpg"),
@@ -57,7 +58,7 @@ class _creationcompte extends State<creationcompte> {
       alignment: Alignment.centerRight,
       child: TextButton(
         onPressed: () => {
-          print("Forgot password pressed"),
+          print("Choix de connexion"),
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (BuildContext context) => userchoixconnexion(),
@@ -137,31 +138,52 @@ class _creationcompte extends State<creationcompte> {
     );
   }
 
-  Widget buildRemeberCb() {
+  Widget buildTermsCase() {
     return Container(
-        height: 20,
+        //height: 20,
         child: Row(
-          children: <Widget>[
-            Theme(
-              data: ThemeData(unselectedWidgetColor: Colors.white),
-              child: Checkbox(
-                  value: isRememberMe,
-                  checkColor: Colors.blue,
-                  activeColor: Colors.white,
-                  onChanged: (value) {
-                    setState(() {
-                      isRememberMe = value!;
-                    });
-                  }),
+      children: <Widget>[
+        Theme(
+          data: ThemeData(unselectedWidgetColor: Colors.white),
+          child: Checkbox(
+              value: acceptTerms,
+              checkColor: Colors.blue,
+              activeColor: Colors.white,
+              onChanged: (value) {
+                setState(() {
+                  acceptTerms = true;
+                });
+              }),
+        ),
+        const Text(
+          'Accept',
+          style: TextStyle(
+            color: Colors.black38,
+            //fontWeight: FontWeight.bold
+          ),
+        ),
+      ],
+    ));
+  }
+
+  Widget buildTermsBtn() {
+    return Container(
+      alignment: Alignment.centerRight,
+      child: TextButton(
+        onPressed: () => {
+          print("Use conditions pressed"),
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (BuildContext context) => const conditionsUtilisations(),
             ),
-            Text(
-              'Accept Terms & Conditions',
-              style: TextStyle(
-                color: Colors.black38,
-              ),
-            ),
-          ],
-        ));
+          ),
+        },
+        child: const Text(
+          'Terms & Conditions',
+          style: TextStyle(color: Colors.black38, fontWeight: FontWeight.bold),
+        ),
+      ),
+    );
   }
 
   Widget buildLoginBtn() {
@@ -178,14 +200,18 @@ class _creationcompte extends State<creationcompte> {
             if (verifPassword() == false) {
               print("Mot de passe incorrect");
             } else {
-              await insertUser();
-              if (connected == true) {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (BuildContext context) =>
-                        const hellologinpassword(),
-                  ),
-                );
+              if (acceptTerms == false) {
+                print("Veuillez accepter les conditions d'utilisations");
+              } else {
+                await insertUser();
+                if (connected == true) {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (BuildContext context) =>
+                          const hellologinpassword(),
+                    ),
+                  );
+                }
               }
             }
           }
@@ -375,7 +401,7 @@ class _creationcompte extends State<creationcompte> {
                         child: Container(
                           color: Color.fromARGB(255, 235, 233, 233),
                           width: 309,
-                          height: 488,
+                          height: 520,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
@@ -391,7 +417,8 @@ class _creationcompte extends State<creationcompte> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                  buildRemeberCb(),
+                                  buildTermsCase(),
+                                  buildTermsBtn(),
                                   // SizedBox(height: 40),
                                 ],
                               ),
