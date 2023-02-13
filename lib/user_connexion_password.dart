@@ -2,6 +2,7 @@ import 'package:crypt/crypt.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/user_choix_connexion.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'DatabaseHelper.dart';
 import 'connexion_admin.dart';
 import 'creation_compte.dart';
@@ -26,8 +27,14 @@ class _userconnexionpassword extends State<userconnexionpassword> {
   final mailController = TextEditingController();
   final passwordController = TextEditingController();
   bool connected = false;
-
   bool isRememberMe = false;
+
+  @override
+  void initState() {
+    _loadUserEmailPassword();
+    super.initState();
+  }
+
   Widget buildTitle() {
     return Container(
       width: 309,
@@ -167,11 +174,7 @@ class _userconnexionpassword extends State<userconnexionpassword> {
                   value: isRememberMe,
                   checkColor: Colors.blue,
                   activeColor: Colors.white,
-                  onChanged: (value) {
-                    setState(() {
-                      isRememberMe = value!;
-                    });
-                  }),
+                  onChanged: _handleRememberme),
             ),
             Text(
               'Remember me',
@@ -387,11 +390,40 @@ class _userconnexionpassword extends State<userconnexionpassword> {
 
     final passSaisie = Crypt.sha256(password, salt: 'abcdefghijklmnop');
 
-    print(passSaisie.toString());
-    print(pass);
-
     if (passSaisie.toString() == pass) {
       connected = true;
+    }
+  }
+
+  void _handleRememberme(bool? value) {
+    isRememberMe = value!;
+    SharedPreferences.getInstance().then(
+      (prefs) {
+        prefs.setBool("remember_me", value);
+        prefs.setString('email', mailController.text);
+        prefs.setString('password', passwordController.text);
+      },
+    );
+    setState(() {
+      isRememberMe = value;
+    });
+  }
+
+  void _loadUserEmailPassword() async {
+    try {
+      SharedPreferences _prefs = await SharedPreferences.getInstance();
+      var _email = _prefs.getString("email");
+      var _password = _prefs.getString("password");
+      var _remeberMe = _prefs.getBool("remember_me") ?? false;
+      if (_remeberMe) {
+        setState(() {
+          isRememberMe = true;
+        });
+        mailController.text = _email ?? "";
+        passwordController.text = _password ?? "";
+      }
+    } catch (e) {
+      print(e);
     }
   }
 }
