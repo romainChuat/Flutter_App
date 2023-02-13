@@ -16,8 +16,8 @@ class _motPage extends State<motPage> {
     Map<int, String>? mots = Map<int, String>();
     print(mots);
     List<TextEditingController> motController = [];
-    Map<String,Object> reponses =
-      ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
+    Map<String, Object> reponses =
+        ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
     print(reponses);
     return Scaffold(
         extendBodyBehindAppBar: true,
@@ -126,8 +126,9 @@ class _motPage extends State<motPage> {
                                             print(text);
                                             mots[index] = text;
                                             print(mots);
-                                            
-                                            reponses['expressions'] = mots.toString();
+
+                                            reponses['expressions'] =
+                                                mots.toString();
                                             print(reponses);
                                           },
                                         )));
@@ -146,7 +147,7 @@ class _motPage extends State<motPage> {
                   //reponses!["mots"] = mots;
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    mylib.createQuitButton(context, 141, 41),
+                    //mylib.createQuitButton(context, 141, 41),
                     mylib.createNextButton(
                       "Next",
                       context,

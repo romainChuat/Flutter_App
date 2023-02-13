@@ -184,7 +184,10 @@ class baseAppBar extends StatelessWidget implements PreferredSizeWidget {
   Size get preferredSize => new Size.fromHeight(appBar.preferredSize.height);
 }
 
-createInput(double wdth, double hgth, ) {
+createInput(
+  double wdth,
+  double hgth,
+) {
   return SizedBox(
       height: hgth,
       width: wdth,
@@ -249,7 +252,7 @@ createInputTextArea(double wdth, double hgth) {
           )));
 }
 
-createQuitButton(BuildContext context, double width, double height) {
+createQuitButton(BuildContext context, double width, double height, var path) {
   return SizedBox(
     width: width,
     height: height,
@@ -265,7 +268,7 @@ createQuitButton(BuildContext context, double width, double height) {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (_) => MyHomePage(),
+            builder: (context) => path,
           ),
         );
       },
@@ -325,8 +328,6 @@ createtButton(String text, BuildContext context, double width, double height) {
 createMenu(BuildContext context) {
   LanguageController controller = context.read<LanguageController>();
 
-  
-
   return ClipRRect(
     borderRadius: BorderRadius.circular(30),
     child: Container(
@@ -347,8 +348,7 @@ createMenu(BuildContext context) {
                       foregroundColor: Color.fromARGB(255, 41, 59, 229),
                       backgroundColor: Color.fromARGB(255, 235, 233, 233),
                     ),
-                    onPressed: () {
-                    },
+                    onPressed: () {},
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

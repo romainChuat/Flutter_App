@@ -4,7 +4,7 @@ import 'package:flutter_map/plugin_api.dart';
 import 'package:latlong2/latlong.dart';
 import 'mylib.dart' as mylib;
 
-import 'condition_utilisation.dart';
+import 'droits_auteur.dart';
 
 class mapPage extends StatefulWidget {
   @override
@@ -14,7 +14,6 @@ class mapPage extends StatefulWidget {
 }
 
 class _mapPage extends State<mapPage> {
-
   var marker = <Marker>[];
   double currentZoom = 13.0;
   MapController mapController = MapController();
@@ -32,9 +31,9 @@ class _mapPage extends State<mapPage> {
 
   @override
   Widget build(BuildContext context) {
-  Map<String,Object> reponses =
-      ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
-      
+    Map<String, Object> reponses =
+        ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
+
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: mylib.baseAppBar(appBar: AppBar()),
@@ -202,14 +201,14 @@ class _mapPage extends State<mapPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    mylib.createQuitButton(context, 141, 41),
+                    //mylib.createQuitButton(context, 141, 41),
                     mylib.createNextButton(
                       "Next",
                       context,
                       141,
                       41,
                       MaterialPageRoute(
-                        builder: (_) => condition_utilisation(),
+                        builder: (_) => droits_auteur(),
                         settings: RouteSettings(arguments: reponses),
                       ),
                     )

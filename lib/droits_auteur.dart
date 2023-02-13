@@ -2,22 +2,20 @@ import 'package:flutter/material.dart';
 import 'FichierPage.dart';
 import 'mylib.dart' as mylib;
 
-class condition_utilisation extends StatelessWidget {
-  condition_utilisation({
+class droits_auteur extends StatelessWidget {
+  droits_auteur({
     super.key,
-
   });
   @override
   Widget build(BuildContext context) {
     final text = MediaQuery.of(context).platformBrightness == Brightness.dark
         ? 'DarkTheme'
         : 'LightTheme';
-    Map<String,Object> reponses =
-      ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
-    
+    Map<String, Object> reponses =
+        ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
+
     print(reponses);
     //print(username);
-
 
     return Scaffold(
         extendBodyBehindAppBar: true,
@@ -95,7 +93,7 @@ class condition_utilisation extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    mylib.createQuitButton(context, 141, 41),
+                    //mylib.createQuitButton(context, 141, 41),
                     mylib.createNextButton(
                       "Next",
                       context,
