@@ -2,6 +2,7 @@ import 'package:crypt/crypt.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/user_choix_connexion.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'DatabaseHelper.dart';
 import 'forgot_password_page.dart';
 import 'hello_admin_page.dart';
@@ -22,8 +23,14 @@ class _connexion_adminn extends State<connexion_adminn> {
   final mailController = TextEditingController();
   final passwordController = TextEditingController();
   bool connected = false;
-
   bool isRememberMe = false;
+
+  @override
+  void initState() {
+    _loadUserEmailPassword();
+    super.initState();
+  }
+
   Widget buildTitle() {
     return Container(
       width: 309,
@@ -141,11 +148,7 @@ class _connexion_adminn extends State<connexion_adminn> {
                   value: isRememberMe,
                   checkColor: Colors.blue,
                   activeColor: Colors.white,
-                  onChanged: (value) {
-                    setState(() {
-                      isRememberMe = value!;
-                    });
-                  }),
+                  onChanged: _handleRememberme),
             ),
             Text(
               'Remember me',
@@ -349,6 +352,38 @@ class _connexion_adminn extends State<connexion_adminn> {
 
     if (passSaisie.toString() == pass) {
       connected = true;
+    }
+  }
+
+  void _handleRememberme(bool? value) {
+    isRememberMe = value!;
+    SharedPreferences.getInstance().then(
+      (prefsAdmin) {
+        prefsAdmin.setBool("remember", value);
+        prefsAdmin.setString('mail', mailController.text);
+        prefsAdmin.setString('pass', passwordController.text);
+      },
+    );
+    setState(() {
+      isRememberMe = value;
+    });
+  }
+
+  void _loadUserEmailPassword() async {
+    try {
+      SharedPreferences _prefsAdmin = await SharedPreferences.getInstance();
+      var _email = _prefsAdmin.getString("mail");
+      var _password = _prefsAdmin.getString("pass");
+      var _remeberMe = _prefsAdmin.getBool("remember") ?? false;
+      if (_remeberMe) {
+        setState(() {
+          isRememberMe = true;
+        });
+        mailController.text = _email ?? "";
+        passwordController.text = _password ?? "";
+      }
+    } catch (e) {
+      print(e);
     }
   }
 }
