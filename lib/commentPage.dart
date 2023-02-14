@@ -382,7 +382,7 @@ class _commentPage extends State<commentPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    mylib.createQuitButton(context, 141, 41),
+                    mylib.createQuitButton(context, 141, 41, null),
                     mylib.createNextButton("Next",context,141,41,MaterialPageRoute(builder: (_) => genrePage(),),)
                   ],
                 )

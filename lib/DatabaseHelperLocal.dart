@@ -55,8 +55,15 @@ class DatabaseHelperLocal {
             longitude REAL NOT NULL
           )''');
     await db.execute("""CREATE TABLE reponses(
-          username INTEGER AUTO_INCREMENT PRIMARY KEY,
-          reponses TEXT NOT NULL
+          id INTEGER AUTO_INCREMENT PRIMARY KEY,
+          username TEXT NOT NULL,
+          longitude REAL NOT NULL,
+          latitude REAL NOT NULL,
+          expressions TEXT NOT NULL,
+          date DATE FORMAT 'dd.mm.yyyy',
+          age INTEGER,
+          genre TEXT NOT NULL,
+          niveau_etude TEXT NOT NULL
           )""");
 
     await db.execute('''
@@ -137,4 +144,9 @@ class DatabaseHelperLocal {
           genre TEXT NOT NULL,
           niveau_etude TEXT NOT NULL,
           ac
+          )""");*/
+
+/*await db.execute("""CREATE TABLE reponses(
+          username INTEGER AUTO_INCREMENT PRIMARY KEY,
+          reponses TEXT NOT NULL
           )""");*/

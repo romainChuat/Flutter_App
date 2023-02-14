@@ -95,7 +95,7 @@ class condition_utilisation extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    mylib.createQuitButton(context, 141, 41),
+                    mylib.createQuitButton(context, 141, 41, reponses),
                     mylib.createNextButton(
                       "Next",
                       context,

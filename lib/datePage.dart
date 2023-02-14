@@ -148,7 +148,7 @@ class _datePage extends State<datePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    mylib.createQuitButton(context, 141, 41),
+                    mylib.createQuitButton(context, 141, 41, reponses),
                     mylib.createNextButton(
                       "Next",
                       context,

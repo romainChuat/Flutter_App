@@ -201,7 +201,7 @@ class _etudePage extends State<etudePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    mylib.createQuitButton(context, 141, 41),
+                    mylib.createQuitButton(context, 141, 41, reponses),
                     mylib.createNextButton("Next", context, 141, 41, MaterialPageRoute(builder: (_) => activitePage(), settings: RouteSettings(arguments: reponses)), )
                   ],
                 )

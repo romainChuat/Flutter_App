@@ -122,7 +122,7 @@ class _genrePage extends State<genrePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    mylib.createQuitButton(context, 141, 41),
+                    mylib.createQuitButton(context, 141, 41, null),
                  mylib.createNextButton("Next", context, 141, 41, MaterialPageRoute(builder: (_) => etudePage(), settings: RouteSettings(arguments: reponses)), )
                   ],
                 )

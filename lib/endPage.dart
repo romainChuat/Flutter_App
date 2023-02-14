@@ -102,19 +102,19 @@ class _endPage extends State<endPage> {
   }
 
   void insertReponse(Map<String, Object> reponses) async {
-    Map<String, Object> insert = new Map();
-    insert['username'] = reponses['username'].toString();
-    print(insert);
-    reponses.remove('username');
+    //Map<String, Object> insert = new Map();
+    //insert['username'] = reponses['username'].toString();
+    //print(insert);
+    //reponses.remove('username');
     print(reponses);
-    insert["reponses"] = reponses.toString();
-    print(insert);
-
+    //insert["reponses"] = reponses.toString();
+    //print(insert);
+    reponses['username'] = "guest_"+reponses['username'].toString();
     WidgetsFlutterBinding.ensureInitialized();
     DatabaseHelperLocal db = DatabaseHelperLocal();
     
     try {
-      await db.insertReponse(insert);
+      await db.insertReponse(reponses);
       print("new user");
     } catch (e) {
       print("enregistrement impossible");

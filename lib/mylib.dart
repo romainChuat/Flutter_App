@@ -249,7 +249,7 @@ createInputTextArea(double wdth, double hgth) {
           )));
 }
 
-createQuitButton(BuildContext context, double width, double height) {
+createQuitButton(BuildContext context, double width, double height, Map<String, Object>? args) {
   return SizedBox(
     width: width,
     height: height,
@@ -266,6 +266,7 @@ createQuitButton(BuildContext context, double width, double height) {
           context,
           MaterialPageRoute(
             builder: (_) => MyHomePage(),
+            settings: RouteSettings(arguments: args)
           ),
         );
       },

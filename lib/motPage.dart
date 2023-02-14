@@ -146,7 +146,7 @@ class _motPage extends State<motPage> {
                   //reponses!["mots"] = mots;
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    mylib.createQuitButton(context, 141, 41),
+                    mylib.createQuitButton(context, 141, 41, reponses),
                     mylib.createNextButton(
                       "Next",
                       context,

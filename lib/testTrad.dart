@@ -93,7 +93,7 @@ class _testTrad extends State<testTrad> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    mylib.createQuitButton(context, 141, 41),
+                    mylib.createQuitButton(context, 141, 41, null),
                     mylib.createNextButton(
                       'next_btn_text'.tr(),
                       context,

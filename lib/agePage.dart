@@ -233,7 +233,7 @@ class _agePage extends State<agePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    mylib.createQuitButton(context, 141, 41),
+                    mylib.createQuitButton(context, 141, 41, reponses),
                     mylib.createNextButton("Next", context, 141, 41, MaterialPageRoute(builder: (_) => genrePage(),settings: RouteSettings(arguments: reponses)), )
                   ],
                 )
