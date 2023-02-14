@@ -170,6 +170,7 @@ class _connexion_adminn extends State<connexion_adminn> {
         onPressed: () async {
           await loginCorrect();
           if (connected == true) {
+            mylib.adminConnect = true;
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (BuildContext context) => const hello_admin_page(),

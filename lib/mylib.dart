@@ -4,12 +4,17 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/hello_admin_page.dart';
+import 'package:flutter_application_1/hello_login_password.dart';
 import 'package:flutter_application_1/homePage.dart';
 import 'package:flutter_application_1/languagePage.dart';
 import 'package:flutter_application_1/provider.dart';
+import 'package:flutter_application_1/user_choix_connexion.dart';
 import 'package:provider/provider.dart';
 
 import 'controller/language_contoller.dart';
+
+bool adminConnect = false;
 
 const Decoration background1 = BoxDecoration(
   gradient: LinearGradient(
@@ -348,7 +353,23 @@ createMenu(BuildContext context) {
                       foregroundColor: Color.fromARGB(255, 41, 59, 229),
                       backgroundColor: Color.fromARGB(255, 235, 233, 233),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      if (adminConnect == true) {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                const hello_admin_page(),
+                          ),
+                        );
+                      } else {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                const hellologinpassword(),
+                          ),
+                        );
+                      }
+                    },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -372,7 +393,15 @@ createMenu(BuildContext context) {
                       foregroundColor: Color.fromARGB(255, 41, 59, 229),
                       backgroundColor: Color.fromARGB(255, 235, 233, 233),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      adminConnect = false;
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => userchoixconnexion(),
+                        ),
+                      );
+                    },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [

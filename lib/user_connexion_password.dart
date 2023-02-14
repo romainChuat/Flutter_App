@@ -60,7 +60,7 @@ class _userconnexionpassword extends State<userconnexionpassword> {
       alignment: Alignment.centerRight,
       child: TextButton(
         onPressed: () => {
-          print("Forgot password pressed"),
+          print("Sign up pressed"),
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (BuildContext context) => creationcompte(),
