@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'FichierPage.dart';
 import 'mylib.dart' as mylib;
@@ -103,5 +104,5 @@ class droits_auteur extends StatelessWidget {
             ),
           ),
         ));
-  }
+  } 
 }

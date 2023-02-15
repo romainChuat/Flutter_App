@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'mylib.dart' as mylib;
 import 'package:intl/intl.dart';
@@ -121,7 +122,7 @@ class _datePage extends State<datePage> {
                                               DateFormat('dd/MM/yyyy')
                                                   .format(pickedDate);
                                           print(
-                                              formattedDate); //formatted date output using intl package =>  2021-03-16
+                                              formattedDate); //formatted date output using intl package =>  2021-03-16
                                           setState(() {
                                             dateInput.text =
                                                 formattedDate; //set output date to TextField value.

@@ -383,7 +383,6 @@ class _commentPage extends State<commentPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     
                     children: [
-                      
                       //mylib.createQuitButton(context, 141, 41),
                       mylib.createNextButton(
                         "Next",
