@@ -17,35 +17,38 @@ class ThemeProvider extends ChangeNotifier{
 class MyThemes{
 
   static final darkTheme = ThemeData(
+        
     scaffoldBackgroundColor: Color.fromARGB(255, 58, 57, 57),
     colorScheme: ColorScheme.dark(
-      brightness: Brightness.dark,
-            primary: Colors.red,
+      brightness: Brightness.light,
+            primary: Colors.black,
             onPrimary: Colors.white,
-            secondary: Colors.green,
-            onSecondary: Colors.white,
-            primaryContainer: Colors.pink,
-            error: Colors.black,
-            onError: Colors.white,
-            background: Colors.blue,
-            onBackground: Colors.white,
-            surface: Colors.pink,
-            onSurface: Colors.white,
+            
+           
     ),
     primaryColor: Colors.white,
-    secondaryHeaderColor: Colors.red,
-    backgroundColor: Colors.red,
-    dialogBackgroundColor: Colors.green,
-    cardColor: Colors.red,
-    hintColor: Colors.red,
+      primarySwatch: Colors.blue,
 
     
 
   );
   static final lightTheme = ThemeData(
-    scaffoldBackgroundColor: Color.fromARGB(255, 150, 253, 172),
+    scaffoldBackgroundColor: Color.fromARGB(255, 64, 224, 168),
+
     //primaryColor: Color.fromARGB(255, 58, 243, 33),
-    colorScheme: ColorScheme.light(),
+    primarySwatch: Colors.blue,
+    colorScheme: ColorScheme.light(
+      brightness: Brightness.light,
+            primary:  Color.fromARGB(255, 13, 12, 32),
+            onPrimary: Colors.white,
+          
+    ),
+
+
+            canvasColor: Colors.red,
+            
+            
+    
 
     
   );
