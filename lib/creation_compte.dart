@@ -1,31 +1,22 @@
-import 'dart:io';
-
 import 'package:crypt/crypt.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_application_1/DatabaseHelper.dart';
-import 'package:flutter_application_1/Utilisateur.dart';
+import 'package:flutter_application_1/database_helper.dart';
+import 'package:flutter_application_1/utilisateur.dart';
 import 'package:flutter_application_1/conditions_Utilisations.dart';
 import 'package:flutter_application_1/user_choix_connexion.dart';
-import 'package:postgres/postgres.dart';
 import 'connexion_admin.dart';
-import 'forgot_password_page.dart';
-import 'hello_admin_page.dart';
 import 'hello_login_password.dart';
-import 'startPage.dart';
-import 'mapPage.dart';
-import 'homePage.dart';
-import 'connexion.dart';
 import 'mylib.dart' as mylib;
 
-class creationcompte extends StatefulWidget {
-  const creationcompte({super.key});
+class CreationCompte extends StatefulWidget {
+  const CreationCompte({super.key});
 
   @override
-  State<creationcompte> createState() => _creationcompte();
+  State<CreationCompte> createState() => Creationcompte();
 }
 
-class _creationcompte extends State<creationcompte> {
+class Creationcompte extends State<CreationCompte> {
   bool acceptTerms = false;
   final nomController = TextEditingController();
   final mailController = TextEditingController();
@@ -37,14 +28,14 @@ class _creationcompte extends State<creationcompte> {
     return Container(
       width: 309,
       height: 160,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage("images/connexionpage.jpg"),
           fit: BoxFit.cover,
         ),
       ),
-      child: Align(
-        child: const Text(
+      child: const Align(
+        child: Text(
           "Sign In",
           style: mylib.titleStyle3,
           textAlign: TextAlign.center,
@@ -65,7 +56,7 @@ class _creationcompte extends State<creationcompte> {
             ),
           ),
         },
-        child: Text(
+        child: const Text(
           'Sign In',
           style: TextStyle(
             color: Colors.black38,
@@ -79,7 +70,7 @@ class _creationcompte extends State<creationcompte> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         Container(
           width: 222,
           height: 38,
@@ -87,17 +78,17 @@ class _creationcompte extends State<creationcompte> {
           decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
                     color: Colors.black26, blurRadius: 6, offset: Offset(0, 2))
               ]),
           child: TextField(
             controller: mailController,
             keyboardType: TextInputType.emailAddress,
-            style: TextStyle(color: Colors.black87),
-            decoration: InputDecoration(
+            style: const TextStyle(color: Colors.black87),
+            decoration: const InputDecoration(
                 border: InputBorder.none,
-                prefixIcon: Icon(Icons.email, color: Color.fromARGB(255, 13, 12, 32)),
+                prefixIcon: Icon(Icons.email, color: Color(0xff5ac18e)),
                 hintText: 'Email',
                 hintStyle: TextStyle(color: Colors.black38)),
           ),
@@ -110,7 +101,7 @@ class _creationcompte extends State<creationcompte> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         Container(
           width: 222,
           height: 38,
@@ -118,7 +109,7 @@ class _creationcompte extends State<creationcompte> {
           decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
                     color: Colors.black26, blurRadius: 6, offset: Offset(0, 2))
               ]),
@@ -126,10 +117,10 @@ class _creationcompte extends State<creationcompte> {
           child: TextField(
             controller: passwordController_1,
             obscureText: true,
-            style: TextStyle(color: Colors.black87),
-            decoration: InputDecoration(
+            style: const TextStyle(color: Colors.black87),
+            decoration: const InputDecoration(
                 border: InputBorder.none,
-                prefixIcon: Icon(Icons.lock, color: Color.fromARGB(255, 13, 12, 32),),
+                prefixIcon: Icon(Icons.lock, color: Color(0xff5ac18e)),
                 hintText: 'Password',
                 hintStyle: TextStyle(color: Colors.black38)),
           ),
@@ -139,9 +130,7 @@ class _creationcompte extends State<creationcompte> {
   }
 
   Widget buildTermsCase() {
-    return Container(
-        //height: 20,
-        child: Row(
+    return Row(
       children: <Widget>[
         Theme(
           data: ThemeData(unselectedWidgetColor: Colors.white),
@@ -163,7 +152,7 @@ class _creationcompte extends State<creationcompte> {
           ),
         ),
       ],
-    ));
+    );
   }
 
   Widget buildTermsBtn() {
@@ -187,7 +176,7 @@ class _creationcompte extends State<creationcompte> {
   }
 
   Widget buildLoginBtn() {
-    return Container(
+    return SizedBox(
       width: 120,
       height: 43,
       // padding: EdgeInsets.symmetric(vertical: 25),
@@ -218,16 +207,16 @@ class _creationcompte extends State<creationcompte> {
         },
         style: ElevatedButton.styleFrom(
           shadowColor: Colors.grey.shade700,
-         // backgroundColor: const Color.fromARGB(255, 41, 59, 229),
+          backgroundColor: const Color.fromARGB(255, 41, 59, 229),
           elevation: 20,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
-            side: BorderSide(color: Colors.white, width: 3),
+            side: const BorderSide(color: Colors.white, width: 3),
           ),
         ),
         child: const Text(
           "Login",
-          style: mylib.titleStyle,
+          style: mylib.titleStyle2,
           textAlign: TextAlign.center,
         ),
       ),
@@ -235,35 +224,32 @@ class _creationcompte extends State<creationcompte> {
   }
 
   Widget buildUserBtn() {
-    return Container(
-      child: Align(
-        alignment: Alignment(-0.66, 0.0),
-        child: Container(
-          width: 150,
-          height: 50,
-          child: ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (BuildContext context) => userchoixconnexion(),
-                ),
-              );
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Color.fromARGB(255, 13, 12, 32),
-              shadowColor: Colors.grey.shade700,
-              elevation: 20,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    topRight: Radius.circular(10)),
+    return Align(
+      alignment: const Alignment(-0.66, 0.0),
+      child: SizedBox(
+        width: 150,
+        height: 50,
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (BuildContext context) => userchoixconnexion(),
               ),
+            );
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color.fromARGB(255, 41, 59, 229),
+            shadowColor: Colors.grey.shade700,
+            elevation: 20,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(10), topRight: Radius.circular(10)),
             ),
-            child: const Text(
-              "User",
-              style: mylib.titleStyle5,
-              textAlign: TextAlign.center,
-            ),
+          ),
+          child: const Text(
+            "User",
+            style: mylib.titleStyle5,
+            textAlign: TextAlign.center,
           ),
         ),
       ),
@@ -271,35 +257,32 @@ class _creationcompte extends State<creationcompte> {
   }
 
   Widget buildAdminBtn() {
-    return Container(
-      child: Align(
-        alignment: Alignment(0.66, 0.0),
-        child: Container(
-          width: 150,
-          height: 50,
-          child: ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (BuildContext context) => connexion_adminn(),
-                ),
-              );
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Color.fromARGB(255, 235, 233, 233),
-              shadowColor: Colors.grey.shade700,
-              elevation: 20,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    topRight: Radius.circular(10)),
+    return Align(
+      alignment: const Alignment(0.66, 0.0),
+      child: SizedBox(
+        width: 150,
+        height: 50,
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (BuildContext context) => const connexion_adminn(),
               ),
+            );
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color.fromARGB(255, 235, 233, 233),
+            shadowColor: Colors.grey.shade700,
+            elevation: 20,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(10), topRight: Radius.circular(10)),
             ),
-            child: const Text(
-              "Admin",
-              style: mylib.titleStyle4,
-              textAlign: TextAlign.center,
-            ),
+          ),
+          child: const Text(
+            "Admin",
+            style: mylib.titleStyle4,
+            textAlign: TextAlign.center,
           ),
         ),
       ),
@@ -310,7 +293,7 @@ class _creationcompte extends State<creationcompte> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         Container(
           width: 222,
           height: 38,
@@ -318,7 +301,7 @@ class _creationcompte extends State<creationcompte> {
           decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
                     color: Colors.black26, blurRadius: 6, offset: Offset(0, 2))
               ]),
@@ -326,10 +309,10 @@ class _creationcompte extends State<creationcompte> {
           child: TextField(
             controller: passwordController_2,
             obscureText: true,
-            style: TextStyle(color: Colors.black87),
-            decoration: InputDecoration(
+            style: const TextStyle(color: Colors.black87),
+            decoration: const InputDecoration(
                 border: InputBorder.none,
-                prefixIcon: Icon(Icons.lock, color: Color.fromARGB(255, 13, 12, 32),),
+                prefixIcon: Icon(Icons.lock, color: Color(0xff5ac18e)),
                 hintText: 'Confirm Password',
                 hintStyle: TextStyle(color: Colors.black38)),
           ),
@@ -342,7 +325,7 @@ class _creationcompte extends State<creationcompte> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         Container(
           width: 222,
           height: 38,
@@ -350,18 +333,18 @@ class _creationcompte extends State<creationcompte> {
           decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
                     color: Colors.black26, blurRadius: 6, offset: Offset(0, 2))
               ]),
           child: TextField(
             controller: nomController,
             keyboardType: TextInputType.name,
-            style: TextStyle(color: Colors.black87),
-            decoration: InputDecoration(
+            style: const TextStyle(color: Colors.black87),
+            decoration: const InputDecoration(
                 border: InputBorder.none,
                 prefixIcon:
-                    Icon(Icons.account_circle_sharp, color: Color.fromARGB(255, 13, 12, 32),),
+                    Icon(Icons.account_circle_sharp, color: Color(0xff5ac18e)),
                 hintText: 'User name',
                 hintStyle: TextStyle(color: Colors.black38)),
           ),
@@ -381,7 +364,7 @@ class _creationcompte extends State<creationcompte> {
             Container(
               height: double.infinity,
               width: double.infinity,
-             // decoration: mylib.background1,
+              decoration: mylib.background1,
               child: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -390,29 +373,29 @@ class _creationcompte extends State<creationcompte> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         buildUserBtn(),
-                        SizedBox(width: 10),
+                        const SizedBox(width: 10),
                         buildAdminBtn(),
                       ],
                     ),
                     ClipRRect(
-                        borderRadius: BorderRadius.only(
+                        borderRadius: const BorderRadius.only(
                             bottomLeft: Radius.circular(15),
                             bottomRight: Radius.circular(15)),
                         child: Container(
-                          color: Color.fromARGB(255, 235, 233, 233),
+                          color: const Color.fromARGB(255, 235, 233, 233),
                           width: 309,
                           height: 520,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               buildTitle(),
-                              SizedBox(height: 10),
+                              const SizedBox(height: 10),
                               builUserName(),
                               buildEmail(),
                               // SizedBox(height: 15),
                               buildPassword(),
                               confirmPassword(),
-                              SizedBox(height: 8),
+                              const SizedBox(height: 8),
 
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -427,7 +410,7 @@ class _creationcompte extends State<creationcompte> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                  Text(
+                                  const Text(
                                     'Do you have account ?',
                                     style: TextStyle(
                                       color: Colors.black38,
@@ -437,7 +420,7 @@ class _creationcompte extends State<creationcompte> {
                                 ],
                               ),
                               //   SizedBox(height: 28),
-                              SizedBox(height: 11),
+                              const SizedBox(height: 11),
                             ],
                           ),
                         )),

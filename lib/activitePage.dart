@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/commentPage.dart';
 import 'package:flutter_application_1/genrePage.dart';
+import 'package:flutter_application_1/homePage.dart';
+import 'package:flutter_application_1/startPage.dart';
 import 'endPage.dart';
 import 'mylib.dart' as mylib;
 import 'package:intl/intl.dart';
@@ -39,19 +41,26 @@ class _activitePage extends State<activitePage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  
+                  Text(
+                    'Title',
+                    style: mylib.titleStyle.apply(
+                        fontSizeDelta: 9,
+                        fontWeightDelta: -2,
+                        letterSpacingDelta: 3),
+                    textAlign: TextAlign.left,
+                  ),
                   Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
                   ClipRRect(
                     borderRadius: BorderRadius.circular(15.0),
                     child: Container(
                       width: 342,
-                      height: 500,
+                      height: 480,
                       color: Color.fromARGB(255, 235, 233, 233),
                       child: Column(
                         //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Container(
-                            padding: const EdgeInsets.fromLTRB(1, 20, 1, 0),
+                            padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
                             child: const Text(
                               "Quelle activité exercer vous actuellement ?",
                               style: mylib.blueText,
@@ -59,7 +68,7 @@ class _activitePage extends State<activitePage> {
                             ),
                           ),
                           const Divider(
-                            color: Colors.black,
+                            color: Color.fromARGB(255, 41, 59, 229),
                             thickness: 1,
                             indent: 20,
                             endIndent: 20,
@@ -213,7 +222,7 @@ class _activitePage extends State<activitePage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      //mylib.createQuitButton(context, 141, 41),
+                      mylib.createQuitButton(context, 141, 41, MyHomePage(), reponses),
                       mylib.createNextButton(
                         "Next",
                         context,

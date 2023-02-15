@@ -23,7 +23,7 @@ class _commentPage extends State<commentPage> {
         appBar: mylib.baseAppBar(appBar: AppBar()),
         endDrawer: mylib.createMenu(context),
         body: Container(
-          padding: const EdgeInsets.fromLTRB(0, 70, 0, 20),
+          padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
           child: Center(
             child: SingleChildScrollView(
               child: Column(
@@ -33,16 +33,24 @@ class _commentPage extends State<commentPage> {
                     borderRadius: BorderRadius.circular(15.0),
                     child: Container(
                         width: 359,
-                        height: 560,
-                                  padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-
-                        color: Color.fromARGB(97, 13, 12, 32),
+                        height: 530,
+                        decoration: const BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment(0.0, 1),
+                            colors: <Color>[
+                              Color.fromARGB(255, 41, 59, 229),
+                              Color.fromARGB(255, 54, 191, 201),
+                            ],
+                            tileMode: TileMode.mirror,
+                          ),
+                        ),
                         child: SingleChildScrollView(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 20, 0, 0)),
+                                  padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(15.0),
                                 child: Container(
@@ -56,7 +64,7 @@ class _commentPage extends State<commentPage> {
                                      */
                                       Container(
                                         padding: const EdgeInsets.fromLTRB(
-                                            1, 20, 1, 0),
+                                            1, 0, 1, 0),
                                         child: const Text(
                                           "Choisissez la tranche d'âge à laquelle vous situez-vous ??",
                                           style: mylib.blueText,
@@ -64,7 +72,7 @@ class _commentPage extends State<commentPage> {
                                         ),
                                       ),
                                       const Divider(
-                                        color: Color.fromARGB(255, 13, 12, 32),
+                                        color: Color.fromARGB(255, 41, 59, 229),
                                         thickness: 1,
                                         indent: 20,
                                         endIndent: 20,
@@ -75,7 +83,8 @@ class _commentPage extends State<commentPage> {
                                           SizedBox(
                                               height: 32,
                                               child: RadioListTile(
-                                                activeColor: Color.fromARGB(255, 13, 12, 32),
+                                                activeColor: Color.fromARGB(
+                                                    255, 41, 59, 229),
                                                 title: const Text("3 - 10 ans",
                                                     style: mylib.radioText),
                                                 groupValue: age,
@@ -90,7 +99,8 @@ class _commentPage extends State<commentPage> {
                                           SizedBox(
                                             height: 32,
                                             child: RadioListTile(
-                                              activeColor: Color.fromARGB(255, 13, 12, 32),
+                                              activeColor: Color.fromARGB(
+                                                  255, 41, 59, 229),
                                               title: const Text("11 - 17 ans",
                                                   style: mylib.radioText),
                                               groupValue: age,
@@ -106,7 +116,8 @@ class _commentPage extends State<commentPage> {
                                           SizedBox(
                                             height: 32,
                                             child: RadioListTile(
-                                              activeColor: Color.fromARGB(255, 13, 12, 32),
+                                              activeColor: Color.fromARGB(
+                                                  255, 41, 59, 229),
                                               title: const Text("18 - 25 ans",
                                                   style: mylib.radioText),
                                               groupValue: age,
@@ -122,7 +133,8 @@ class _commentPage extends State<commentPage> {
                                           SizedBox(
                                             height: 32,
                                             child: RadioListTile(
-                                              activeColor: Color.fromARGB(255, 13, 12, 32),
+                                              activeColor: Color.fromARGB(
+                                                  255, 41, 59, 229),
                                               title: const Text("26 - 35 ans",
                                                   style: mylib.radioText),
                                               groupValue: age,
@@ -138,7 +150,8 @@ class _commentPage extends State<commentPage> {
                                           SizedBox(
                                             height: 32,
                                             child: RadioListTile(
-                                              activeColor:Color.fromARGB(255, 13, 12, 32),
+                                              activeColor: Color.fromARGB(
+                                                  255, 41, 59, 229),
                                               title: const Text("36 - 45 ans",
                                                   style: mylib.radioText),
                                               groupValue: age,
@@ -154,7 +167,8 @@ class _commentPage extends State<commentPage> {
                                           SizedBox(
                                             height: 32,
                                             child: RadioListTile(
-                                              activeColor: Color.fromARGB(255, 13, 12, 32),
+                                              activeColor: Color.fromARGB(
+                                                  255, 41, 59, 229),
                                               title: const Text("46 - 55 ans",
                                                   style: mylib.radioText),
                                               groupValue: age,
@@ -170,7 +184,8 @@ class _commentPage extends State<commentPage> {
                                           SizedBox(
                                             height: 32,
                                             child: RadioListTile(
-                                              activeColor: Color.fromARGB(255, 13, 12, 32),
+                                              activeColor: Color.fromARGB(
+                                                  255, 41, 59, 229),
                                               title: const Text("56 - 65 ans",
                                                   style: mylib.radioText),
                                               groupValue: age,
@@ -186,7 +201,8 @@ class _commentPage extends State<commentPage> {
                                           SizedBox(
                                             height: 32,
                                             child: RadioListTile(
-                                              activeColor: Color.fromARGB(255, 13, 12, 32),
+                                              activeColor: Color.fromARGB(
+                                                  255, 41, 59, 229),
                                               title: const Text("66 - 75 ans",
                                                   style: mylib.radioText),
                                               groupValue: age,
@@ -202,7 +218,8 @@ class _commentPage extends State<commentPage> {
                                           SizedBox(
                                             height: 32,
                                             child: RadioListTile(
-                                              activeColor: Color.fromARGB(255, 13, 12, 32),
+                                              activeColor: Color.fromARGB(
+                                                  255, 41, 59, 229),
                                               title: const Text(
                                                   "76 ans et plus",
                                                   style: mylib.radioText),
@@ -247,7 +264,7 @@ class _commentPage extends State<commentPage> {
                                         ),
                                       ),
                                       const Divider(
-                                        color: Color.fromARGB(255, 13, 12, 32),
+                                        color: Color.fromARGB(255, 41, 59, 229),
                                         thickness: 1,
                                         indent: 20,
                                         endIndent: 20,
@@ -271,7 +288,7 @@ class _commentPage extends State<commentPage> {
                                 ),
                               ),
                               Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 15)),
                               /**
                              * Ajouter une note
                              */
@@ -294,7 +311,7 @@ class _commentPage extends State<commentPage> {
                                         ),
                                       ),
                                       const Divider(
-                                        color: Color.fromARGB(255, 13, 12, 32),
+                                        color: Color.fromARGB(255, 41, 59, 229),
                                         thickness: 1,
                                         indent: 20,
                                         endIndent: 20,
@@ -328,7 +345,7 @@ class _commentPage extends State<commentPage> {
                              * Ajouter un commentaire
                              */
                               Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 15)),
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(15.0),
                                 child: Container(
@@ -348,7 +365,7 @@ class _commentPage extends State<commentPage> {
                                         ),
                                       ),
                                       const Divider(
-                                        color: Color.fromARGB(255, 13, 12, 32),
+                                        color: Color.fromARGB(255, 41, 59, 229),
                                         thickness: 1,
                                         indent: 20,
                                         endIndent: 20,
@@ -373,15 +390,13 @@ class _commentPage extends State<commentPage> {
                                 ),
                               ),
                               Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
                             ],
                           ),
                         )),
                   ),
-                  Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 0)),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    
                     children: [
                       //mylib.createQuitButton(context, 141, 41),
                       mylib.createNextButton(

@@ -299,7 +299,7 @@ Widget btnAnnulerValidation(){
             Container(
               height: double.infinity,
               width: double.infinity,
-             // decoration: mylib.background1,
+              decoration: mylib.background1,
               child: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,

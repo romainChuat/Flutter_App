@@ -76,7 +76,7 @@ Widget builUserName(){
             border: InputBorder.none,
             prefixIcon: Icon(
               Icons.account_circle_sharp ,
-              color: Color.fromARGB(255, 13, 12, 32),
+              color: Color(0xff5ac18e)
             ),
             
             hintText: 'User name',
@@ -109,14 +109,14 @@ Widget buildLoginBtn(){
                         style: ElevatedButton.styleFrom(
                          shadowColor: Colors.grey.shade700,
                          elevation: 20,
-                       //  backgroundColor: const Color.fromARGB(255, 41, 59, 229),
+                         backgroundColor: const Color.fromARGB(255, 41, 59, 229),
                           shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15.0),
                     side: BorderSide(color: Colors.white, width: 3),
                   ),
                         ),
                         child: const Text("Login", 
-                            style: mylib.titleStyle,
+                            style: mylib.titleStyle2,
                             textAlign: TextAlign.center,        
                           ),
                       ),
@@ -140,7 +140,7 @@ Widget buildUserBtn(){
                       },                     
                         style: ElevatedButton.styleFrom(
                           
-                        backgroundColor: Color.fromARGB(255, 13, 12, 32),
+                        backgroundColor: const Color.fromARGB(255, 41, 59, 229),
                          shadowColor: Colors.grey.shade700,
                          elevation: 20,
                           shape: RoundedRectangleBorder(
@@ -206,7 +206,7 @@ Widget buildAdminBtn(){
               Container(               
                 height: double.infinity,
                 width: double.infinity,
-               // decoration:  mylib.background1,
+                decoration:  mylib.background1,
                   child:Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,

@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/agePage.dart';
+import 'package:flutter_application_1/homePage.dart';
+import 'package:flutter_application_1/startPage.dart';
 import 'mylib.dart' as mylib;
 import 'package:intl/intl.dart';
 
@@ -31,7 +33,14 @@ class _motPage extends State<motPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-               
+                Text(
+                  'Title',
+                  style: mylib.titleStyle.apply(
+                      fontSizeDelta: 9,
+                      fontWeightDelta: -2,
+                      letterSpacingDelta: 3),
+                  textAlign: TextAlign.left,
+                ),
                 ClipRRect(
                   borderRadius: BorderRadius.circular(15.0),
                   child: Container(
@@ -42,7 +51,7 @@ class _motPage extends State<motPage> {
                       //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Container(
-                          padding: const EdgeInsets.fromLTRB(1, 20, 1, 0),
+                          padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
                           child: const Text(
                             "Quels sont les mots et expressions qui vous viennent à l'esprit ?",
                             style: mylib.blueText,
@@ -50,7 +59,7 @@ class _motPage extends State<motPage> {
                           ),
                         ),
                         const Divider(
-                          color: Colors.black,
+                          color: Color.fromARGB(255, 41, 59, 229),
                           thickness: 1,
                           indent: 20,
                           endIndent: 20,
@@ -85,7 +94,7 @@ class _motPage extends State<motPage> {
                                                         12, 6, 0, 0),
                                                 child: Text(
                                                   '${index + 1}.',
-                                                  style: mylib.simpleTextdark
+                                                  style: mylib.simpleText
                                                       .apply(fontSizeDelta: 5),
                                                 ),
                                               ),
@@ -141,7 +150,7 @@ class _motPage extends State<motPage> {
                   //reponses!["mots"] = mots;
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    //mylib.createQuitButton(context, 141, 41),
+                    mylib.createQuitButton(context, 141, 41, MyHomePage(), reponses),
                     mylib.createNextButton(
                       "Next",
                       context,
