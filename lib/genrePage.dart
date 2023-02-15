@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/homePage.dart';
+import 'package:flutter_application_1/startPage.dart';
 import 'etudePage.dart';
 import 'mylib.dart' as mylib;
 import 'package:intl/intl.dart';
@@ -133,7 +135,7 @@ class _genrePage extends State<genrePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    //mylib.createQuitButton(context, 141, 41),
+                    mylib.createQuitButton(context, 141, 41, MyHomePage(), reponses),
                     mylib.createNextButton(
                       "Next",
                       context,

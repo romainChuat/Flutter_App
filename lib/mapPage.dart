@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/homePage.dart';
+import 'package:flutter_application_1/startPage.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map/plugin_api.dart';
 import 'package:latlong2/latlong.dart';
@@ -201,7 +203,7 @@ class _mapPage extends State<mapPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    //mylib.createQuitButton(context, 141, 41),
+                    mylib.createQuitButton(context, 141, 41, MyHomePage(), reponses),
                     mylib.createNextButton(
                       "Next",
                       context,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/startPage.dart';
 import 'FichierPage.dart';
 import 'mylib.dart' as mylib;
 
@@ -93,7 +94,7 @@ class droits_auteur extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    //mylib.createQuitButton(context, 141, 41),
+                    mylib.createQuitButton(context, 141, 41, startPage(), reponses),
                     mylib.createNextButton(
                       "Next",
                       context,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/datePage.dart';
+import 'package:flutter_application_1/homePage.dart';
+import 'package:flutter_application_1/startPage.dart';
 import 'dart:io' as Io;
 import 'mylib.dart' as mylib;
 import 'package:image_picker/image_picker.dart';
@@ -132,7 +134,7 @@ class FichierPage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    //mylib.createQuitButton(context, 141, 41),
+                    mylib.createQuitButton(context, 141, 41, MyHomePage(), reponses),
                     mylib.createNextButton(
                       "Next",
                       context,
