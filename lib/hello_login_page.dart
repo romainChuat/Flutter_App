@@ -1,5 +1,3 @@
-
-
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -44,7 +42,7 @@ class _hello_login_page extends State<hello_login_page> {
 
   Widget buildAccessMap() {
     return Container(
-      width: 286,
+      width: 296,
       height: 49,
       child: ElevatedButton(
         onPressed: () {
@@ -56,7 +54,7 @@ class _hello_login_page extends State<hello_login_page> {
         },
         style: ElevatedButton.styleFrom(
           shadowColor: Colors.grey.shade700,
-          //backgroundColor: const Color.fromARGB(255, 41, 59, 229),
+          backgroundColor: const Color.fromARGB(255, 41, 59, 229),
           elevation: 20,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
@@ -65,29 +63,28 @@ class _hello_login_page extends State<hello_login_page> {
         ),
         child: const Text(
           "Accéder à la carte",
-          style: mylib.titleStyle,
+          style: mylib.titleStyle5,
           textAlign: TextAlign.center,
         ),
       ),
     );
   }
 
-  Widget buildAccessQuestionnaire(Map<String, Object> reponses ) {
+  Widget buildAccessQuestionnaire() {
     return Container(
-      width: 286,
+      width: 296,
       height: 49,
       child: ElevatedButton(
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (BuildContext context) => const MyHomePage(),
-              settings: RouteSettings(arguments: reponses)
             ),
           );
         },
         style: ElevatedButton.styleFrom(
           shadowColor: Colors.grey.shade700,
-          //backgroundColor: const Color.fromARGB(255, 41, 59, 229),
+          backgroundColor: const Color.fromARGB(255, 41, 59, 229),
           elevation: 20,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
@@ -96,7 +93,7 @@ class _hello_login_page extends State<hello_login_page> {
         ),
         child: const Text(
           "Accéder au questionnaire",
-          style: mylib.titleStyle,
+          style: mylib.titleStyle5,
           textAlign: TextAlign.center,
         ),
       ),
@@ -105,35 +102,28 @@ class _hello_login_page extends State<hello_login_page> {
 
   @override
   Widget build(BuildContext context) {
-     Map<String,Object> reponses =
-      ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
-
-    final text = MediaQuery.of(context).platformBrightness == Brightness.dark
-    ? 'DarkTheme'
-    : 'LightTheme';
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: mylib.baseAppBar(
         appBar: AppBar(),
       ),
       endDrawer: mylib.createMenu(context),
-
-      body: Center(
-        child : ClipRRect(
-                    borderRadius : BorderRadius.all(Radius.circular(10)),
-                    
-                    child:Container(                   
-                       color: Color.fromARGB(255, 235, 233, 233),
-                       width: 309,
-                      height: 464,
-                      
-
+      body: AnnotatedRegion<SystemUiOverlayStyle>(
+        value: SystemUiOverlayStyle.light,
+        child: GestureDetector(
+            child: Stack(
+          children: <Widget>[
+            Container(
+              height: double.infinity,
+              width: double.infinity,
+              decoration: mylib.background1,
+              child: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Container(
                       width: 250,
-                      child: Text("Hello, ${reponses["username"]}", style: mylib.titleStyle2),
+                      child: Text('Hello, Login', style: mylib.titleStyle2),
                     ),
                     SizedBox(height: 61),
                     Container(
@@ -145,13 +135,16 @@ class _hello_login_page extends State<hello_login_page> {
                     SizedBox(height: 61),
                     buildAccessMap(),
                     SizedBox(height: 61),
-                    buildAccessQuestionnaire(reponses),
+                    buildAccessQuestionnaire(),
                     SizedBox(height: 61),
                   ],
                 ),
               ),
+              // )
+            )
+          ],
+        )),
       ),
-    ),
     );
   }
 }

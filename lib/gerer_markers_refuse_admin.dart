@@ -574,9 +574,6 @@ class _gerer_les_markers_refuse extends State<gerer_les_markers_refuse> {
 
   @override
   Widget build(BuildContext context) {
-    final text = MediaQuery.of(context).platformBrightness == Brightness.dark
-    ? 'DarkTheme'
-    : 'LightTheme';
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: mylib.baseAppBar(
@@ -584,7 +581,16 @@ class _gerer_les_markers_refuse extends State<gerer_les_markers_refuse> {
       ),
             endDrawer: mylib.createMenu(context),
 
-      body: Center(
+      body: AnnotatedRegion<SystemUiOverlayStyle>(
+        value: SystemUiOverlayStyle.light,
+        child: GestureDetector(
+            child: Stack(
+          children: <Widget>[
+            Container(
+              height: double.infinity,
+              width: double.infinity,
+              decoration: mylib.background1,
+              child: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -646,6 +652,11 @@ class _gerer_les_markers_refuse extends State<gerer_les_markers_refuse> {
                   ],
                 ),
               ),
+              // )
+            )
+          ],
+        )),
+      ),
     );
   }
 }
