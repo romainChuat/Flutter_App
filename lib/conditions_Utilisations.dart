@@ -40,7 +40,7 @@ class _conditionsUtilisations extends State<conditionsUtilisations> {
                           ),
                         ),
                         const Divider(
-                          color: Color.fromARGB(255, 41, 59, 229),
+                          color: Colors.black,
                           thickness: 1,
                           indent: 20,
                           endIndent: 20,
@@ -75,8 +75,9 @@ class _conditionsUtilisations extends State<conditionsUtilisations> {
                                           "\n\nArticle 8 : Publication par l’Utilisateur\n\nLe site flutterapp permet aux membres de publier des commentaires.\nDans ses publications, le membre est tenu de respecter les règles de la Netiquette ainsi que les règles de droit en vigueur.\nLe site dispose du droit d’exercer une modération à priori sur les publications et peut refuser leur mise en ligne sans avoir à fournir de justification.\nLe membre garde l’intégralité de ses droits de propriété intellectuelle. Toutefois, toute publication sur le site implique la délégation du droit non exclusif et gratuit à la société éditrice de représenter, reproduire, modifier, adapter, distribuer et diffuser la publication n’importe où et sur n’importe quel support pour la durée de la propriété intellectuelle. Cela peut se faire directement ou par l’intermédiaire d’un tiers autorisé. Cela concerne notamment le droit d’utilisation de la publication sur le web et sur les réseaux de téléphonie mobile.\nÀ chaque utilisation, l’éditeur s’engage à mentionner le nom du membre à proximité de la publication.nL’Utilisateur est tenu responsable de tout contenu qu’il met en ligne. L’Utilisateur s’engage à ne pas publier de contenus susceptibles de porter atteinte aux intérêts de tierces personnes. Toutes procédures engagées en justice par un tiers lésé à l’encontre du site devront être prises en charge par l’Utilisateur.\nLa suppression ou la modification par le site du contenu de l’Utilisateur peut s’effectuer à tout moment, pour n’importe quelle raison et sans préavis."
                                           "\n\nArticle 9 : Durée du contrat\n\nLe présent contrat est valable pour une durée indéterminée. Le début de l’utilisation des services du site marque l’application du contrat à l’égard de l’Utilisateur."
                                           "\n\nArticle 10: Droit applicable et juridiction compétente\n\nLe présent contrat est soumis à la législation française. L’absence de résolution à l’amiable des cas de litige entre les parties implique le recours aux tribunaux français compétents pour régler le contentieux.",
-                                          style:
-                                              TextStyle(color: Colors.black)),
+                                          textAlign: TextAlign.center,
+                                      ),
+
                                     ),
                                     //),
                                   )),
@@ -93,7 +94,7 @@ class _conditionsUtilisations extends State<conditionsUtilisations> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     mylib.createQuitButton(
-                        context, 141, 41, const CreationCompte(),null),
+                        context, 141, 41, const creationcompte()),
                   ],
                 )
               ],

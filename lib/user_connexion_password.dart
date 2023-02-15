@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/user_choix_connexion.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'database_helper.dart';
+import 'DatabaseHelper.dart';
 import 'connexion_admin.dart';
 import 'creation_compte.dart';
 import 'forgot_password_page.dart';
@@ -28,7 +28,6 @@ class _userconnexionpassword extends State<userconnexionpassword> {
   final passwordController = TextEditingController();
   bool connected = false;
   bool isRememberMe = false;
-  Map<String, Object> reponses = new Map();
 
   @override
   void initState() {
@@ -64,7 +63,7 @@ class _userconnexionpassword extends State<userconnexionpassword> {
           print("Sign up pressed"),
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) => CreationCompte(),
+              builder: (BuildContext context) => creationcompte(),
             ),
           ),
         },
@@ -100,7 +99,7 @@ class _userconnexionpassword extends State<userconnexionpassword> {
             style: TextStyle(color: Colors.black87),
             decoration: InputDecoration(
                 border: InputBorder.none,
-                prefixIcon: Icon(Icons.email, color: Color(0xff5ac18e)),
+                prefixIcon: Icon(Icons.email, color: Color.fromARGB(255, 13, 12, 32),),
                 hintText: 'Email',
                 hintStyle: TextStyle(color: Colors.black38)),
           ),
@@ -132,7 +131,7 @@ class _userconnexionpassword extends State<userconnexionpassword> {
             style: TextStyle(color: Colors.black87),
             decoration: InputDecoration(
                 border: InputBorder.none,
-                prefixIcon: Icon(Icons.lock, color: Color(0xff5ac18e)),
+                prefixIcon: Icon(Icons.lock, color: Color.fromARGB(255, 13, 12, 32),),
                 hintText: 'Password',
                 hintStyle: TextStyle(color: Colors.black38)),
           ),
@@ -197,17 +196,23 @@ class _userconnexionpassword extends State<userconnexionpassword> {
         onPressed: () async {
           await loginCorrect();
           if (connected == true) {
-            Navigator.of(context).push(MaterialPageRoute(
-              builder: (BuildContext context) => const hellologinpassword(),
-              settings: RouteSettings(arguments: reponses),
-            ));
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (BuildContext context) => const hellologinpassword(),
+              ),
+            );
           } else {
+            child: const Text(
+                            "Choisissez la tranche d'âge à laquelle vous situez-vous ?",
+                            style: mylib.blueText,
+                            textAlign: TextAlign.center,
+                          );
             print("Adresse mail ou mot de passe incorrect");
           }
         },
         style: ElevatedButton.styleFrom(
           shadowColor: Colors.grey.shade700,
-          backgroundColor: const Color.fromARGB(255, 41, 59, 229),
+          //backgroundColor: const Color.fromARGB(255, 41, 59, 229),
           elevation: 20,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
@@ -216,7 +221,7 @@ class _userconnexionpassword extends State<userconnexionpassword> {
         ),
         child: const Text(
           "Login",
-          style: mylib.titleStyle2,
+          style: mylib.titleStyle,
           textAlign: TextAlign.center,
         ),
       ),
@@ -239,7 +244,7 @@ class _userconnexionpassword extends State<userconnexionpassword> {
               );
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: const Color.fromARGB(255, 41, 59, 229),
+              backgroundColor: Color.fromARGB(255, 13, 12, 32),
               shadowColor: Colors.grey.shade700,
               elevation: 20,
               shape: RoundedRectangleBorder(
@@ -306,7 +311,7 @@ class _userconnexionpassword extends State<userconnexionpassword> {
             Container(
               height: double.infinity,
               width: double.infinity,
-              decoration: mylib.background1,
+              //decoration: mylib.background1,
               child: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -386,12 +391,7 @@ class _userconnexionpassword extends State<userconnexionpassword> {
       return;
     }
 
-    var map = res.last.asMap();
-
-    var pass = map[3];
-    var pseudo = map[2];
-
-    reponses["username"] = pseudo;
+    var pass = res.last.last;
 
     final passSaisie = Crypt.sha256(password, salt: 'abcdefghijklmnop');
 
