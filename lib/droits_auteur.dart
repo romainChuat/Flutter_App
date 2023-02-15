@@ -2,10 +2,16 @@ import 'package:flutter/material.dart';
 import 'FichierPage.dart';
 import 'mylib.dart' as mylib;
 
-class droits_auteur extends StatelessWidget {
-  droits_auteur({
-    super.key,
-  });
+class droits_auteur extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _droits_auteur();
+  }
+}
+class _droits_auteur extends State<droits_auteur> {
+
+  bool accept = false;
+
   @override
   Widget build(BuildContext context) {
     final text = MediaQuery.of(context).platformBrightness == Brightness.dark
@@ -79,6 +85,21 @@ class droits_auteur extends StatelessWidget {
                             ),
                           ),
                         ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text("Accepter"),
+                            Checkbox(
+                              value: accept, 
+                              onChanged: (value) {
+                                setState(() {
+                                  accept = value!;
+                                }); 
+                              },
+                            )
+                          ],
+                        )
+                        
                       ],
                     ),
                   ),
@@ -92,6 +113,7 @@ class droits_auteur extends StatelessWidget {
                       context,
                       141,
                       41,
+
                       MaterialPageRoute(
                         builder: (_) => const FichierPage(),
                         settings: RouteSettings(arguments: reponses),
@@ -104,4 +126,5 @@ class droits_auteur extends StatelessWidget {
           ),
         ));
   }
+  
 }
