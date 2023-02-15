@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/database_helper_local.dart';
 import 'package:flutter_application_1/homePage.dart';
 import 'package:flutter_icon_shadow/flutter_icon_shadow.dart';
-import 'package:flutter_application_1/reponse.dart';
 
+
+import 'database_helper_local.dart';
 import 'mylib.dart' as mylib;
+
 
 class endPage extends StatefulWidget {
   @override
@@ -12,76 +13,65 @@ class endPage extends StatefulWidget {
     return _endPage();
   }
 }
-
 class _endPage extends State<endPage> {
+    
   @override
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
-        ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
+      ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
 
     print(reponses);
+    
 
     final text = MediaQuery.of(context).platformBrightness == Brightness.dark
-        ? 'DarkTheme'
-        : 'LightTheme';
+    ? 'DarkTheme'
+    : 'LightTheme';
     return Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: mylib.baseAppBar(appBar: AppBar()),
-        endDrawer: mylib.createMenu(context),
+        appBar: mylib.baseAppBar(appBar: AppBar()), 
+              endDrawer: mylib.createMenu(context),
+      
         body: Container(
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                Text(
-                  'Merci, Login',
-                  style: mylib.titleStyle.apply(
-                      fontSizeDelta: 9,
-                      fontWeightDelta: -2,
-                      letterSpacingDelta: 3),
-                  textAlign: TextAlign.left,
-                ),
+                Text('Merci, Login',style: mylib.titleStyle.apply(fontSizeDelta: 9, fontWeightDelta: -2,letterSpacingDelta: 3), textAlign: TextAlign.left,),
                 SizedBox(
-                  width: 342,
-                  height: 480,
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      /*const IconShadow(
+                    width: 342,
+                    height: 480,
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children:  [
+                        /*const IconShadow(
                           Icon(
                             Icons.check, color: Color.fromARGB(255,95, 202, 131), size: 180,
                           ),
                           shadowColor: Color.fromARGB(255, 63, 63, 63),
                           shadowOffset: Offset(2,2),
                         ),*/
-                      const IconShadow(
-                        Icon(Icons.check_circle_outline,
-                            size: 320,
-                            color: Color.fromARGB(255, 95, 202, 131)),
-                        shadowColor: Color.fromARGB(255, 63, 63, 63),
-                        shadowOffset: Offset(2, 2),
-                      ),
-                      CustomPaint(
-                        painter: MakeCircle(
-                            strokeWidth: 15,
-                            strokeCap: StrokeCap.round,
-                            color: Colors.white,
-                            rad: 130),
-                        //foregroundPainter: MakeCircle(strokeWidth: 15, strokeCap: StrokeCap.round, rad: 135, color: Colors.white ),
-                      ),
-                    ],
+                        const IconShadow(
+                          Icon(Icons.check_circle_outline, size: 320, color: Color.fromARGB(255,95, 202, 131)),
+                          shadowColor: Color.fromARGB(255, 63, 63, 63),
+                          shadowOffset: Offset(2,2),
+                        ),
+                         CustomPaint(
+                          painter: MakeCircle(strokeWidth: 15,strokeCap: StrokeCap.round, color: Colors.white, rad:130  ),
+                          //foregroundPainter: MakeCircle(strokeWidth: 15, strokeCap: StrokeCap.round, rad: 135, color: Colors.white ),
+                        ),
+                      ],                      
                   ),
                 ),
                 createSubmitButton(141, 41, reponses),
+                
               ],
             ),
           ),
         ));
   }
-
-  createSubmitButton(
-      double width, double height, Map<String, Object> reponses) {
+  
+  createSubmitButton(double width, double height, Map<String,Object> reponses) {
     return SizedBox(
       width: width,
       height: height,
@@ -91,18 +81,16 @@ class _endPage extends State<endPage> {
           backgroundColor: Color.fromARGB(255, 41, 59, 229),
           side: const BorderSide(color: Colors.white, width: 1),
           elevation: 15,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         ),
         onPressed: () {
           //envoie des données à la bd
           insertReponse(reponses);
           Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (_) => const MyHomePage(),
-                settings: RouteSettings(arguments: reponses),
-              ));
+            context,
+            MaterialPageRoute(builder: (_) => const MyHomePage(),
+            settings: RouteSettings(arguments: reponses),)
+          );
         },
         child: Text(
           "Submit",
@@ -113,24 +101,29 @@ class _endPage extends State<endPage> {
   }
 
   void insertReponse(Map<String, Object> reponses) async {
-    Map<String, Object> insert = new Map();
-    insert['username'] = reponses['username'].toString();
-    print(insert);
-    reponses.remove('username');
+    //Map<String, Object> insert = new Map();
+    //insert['username'] = reponses['username'].toString();
+    //print(insert);
+    //reponses.remove('username');
     print(reponses);
-    insert["reponses"] = reponses.toString();
-    print(insert);
-
+    //insert["reponses"] = reponses.toString();
+    //print(insert);
+    reponses['username'] = "guest_"+reponses['username'].toString();
     WidgetsFlutterBinding.ensureInitialized();
     DatabaseHelperLocal db = DatabaseHelperLocal();
-
+    
     try {
-      await db.insertReponse(insert);
+      await db.insertReponse(reponses);
       print("new user");
     } catch (e) {
       print("enregistrement impossible");
     }
+
+    
   }
+
+
+
 }
 
 class MakeCircle extends CustomPainter {
@@ -138,11 +131,7 @@ class MakeCircle extends CustomPainter {
   final StrokeCap strokeCap;
   final double rad;
   final Color color;
-  MakeCircle(
-      {this.strokeCap = StrokeCap.square,
-      this.strokeWidth = 10.0,
-      this.rad = 120,
-      this.color = const Color.fromARGB(255, 95, 202, 131)});
+  MakeCircle({this.strokeCap = StrokeCap.square, this.strokeWidth = 10.0, this.rad = 120, this.color = const Color.fromARGB(255,95, 202, 131)});
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -152,9 +141,13 @@ class MakeCircle extends CustomPainter {
       ..strokeWidth = strokeWidth
       ..style = PaintingStyle.stroke; //important set stroke style
 
-    canvas.drawCircle(Offset(0, 0), rad, paint);
+      canvas.drawCircle(Offset(0, 0 ), rad, paint);
+
   }
 
   @override
   bool shouldRepaint(CustomPainter oldDelegate) => false;
 }
+
+
+

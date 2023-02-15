@@ -1,6 +1,8 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_application_1/utilisateur.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:path_provider/path_provider.dart';
 
 import 'Lieu.dart';
 
@@ -8,7 +10,7 @@ class DatabaseHelperLocal {
   static const _databaseName = "db_flutter.db";
   static const _databaseVersion = 1;
 
-  static final DatabaseHelperLocal _instance = DatabaseHelperLocal._internal();
+  static DatabaseHelperLocal _instance = DatabaseHelperLocal._internal();
 
   DatabaseHelperLocal._internal();
 
@@ -52,8 +54,15 @@ class DatabaseHelperLocal {
             longitude REAL NOT NULL
           )''');
     await db.execute("""CREATE TABLE reponses(
-          username INTEGER AUTO_INCREMENT PRIMARY KEY,
-          reponses TEXT NOT NULL
+          id INTEGER AUTO_INCREMENT PRIMARY KEY,
+          username TEXT NOT NULL,
+          longitude REAL NOT NULL,
+          latitude REAL NOT NULL,
+          expressions TEXT NOT NULL,
+          date DATE FORMAT 'dd.mm.yyyy',
+          age INTEGER,
+          genre TEXT NOT NULL,
+          niveau_etude TEXT NOT NULL
           )""");
 
     await db.execute('''
@@ -68,6 +77,7 @@ class DatabaseHelperLocal {
 
   /*Fonctions pour les lieux*/
   Future<int?> insertLieu(Lieu l) async {
+
     return await _db?.insert("lieux", l.toMap());
   }
 
@@ -133,4 +143,9 @@ class DatabaseHelperLocal {
           genre TEXT NOT NULL,
           niveau_etude TEXT NOT NULL,
           ac
+          )""");*/
+
+/*await db.execute("""CREATE TABLE reponses(
+          username INTEGER AUTO_INCREMENT PRIMARY KEY,
+          reponses TEXT NOT NULL
           )""");*/
