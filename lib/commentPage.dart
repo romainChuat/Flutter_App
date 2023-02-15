@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/homePage.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'genrePage.dart';
 import 'mylib.dart' as mylib;
@@ -399,7 +398,7 @@ class _commentPage extends State<commentPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      mylib.createQuitButton(context, 141, 41, MyHomePage(), null),
+                      //mylib.createQuitButton(context, 141, 41),
                       mylib.createNextButton(
                         "Next",
                         context,
