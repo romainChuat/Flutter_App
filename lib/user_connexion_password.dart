@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/user_choix_connexion.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'DatabaseHelper.dart';
+import 'database_helper.dart';
 import 'connexion_admin.dart';
 import 'creation_compte.dart';
 import 'forgot_password_page.dart';
@@ -28,6 +28,7 @@ class _userconnexionpassword extends State<userconnexionpassword> {
   final passwordController = TextEditingController();
   bool connected = false;
   bool isRememberMe = false;
+  Map<String, Object> reponses = new Map();
 
   @override
   void initState() {
@@ -63,7 +64,7 @@ class _userconnexionpassword extends State<userconnexionpassword> {
           print("Sign up pressed"),
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) => creationcompte(),
+              builder: (BuildContext context) => CreationCompte(),
             ),
           ),
         },
@@ -196,11 +197,10 @@ class _userconnexionpassword extends State<userconnexionpassword> {
         onPressed: () async {
           await loginCorrect();
           if (connected == true) {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (BuildContext context) => const hellologinpassword(),
-              ),
-            );
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (BuildContext context) => const hellologinpassword(),
+              settings: RouteSettings(arguments: reponses),
+            ));
           } else {
             print("Adresse mail ou mot de passe incorrect");
           }
@@ -386,7 +386,12 @@ class _userconnexionpassword extends State<userconnexionpassword> {
       return;
     }
 
-    var pass = res.last.last;
+    var map = res.last.asMap();
+
+    var pass = map[3];
+    var pseudo = map[2];
+
+    reponses["username"] = pseudo;
 
     final passSaisie = Crypt.sha256(password, salt: 'abcdefghijklmnop');
 

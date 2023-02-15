@@ -1,9 +1,6 @@
-import 'package:flutter/foundation.dart';
-import 'package:flutter_application_1/Reponse.dart';
-import 'package:flutter_application_1/Utilisateur.dart';
+import 'package:flutter_application_1/utilisateur.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:path_provider/path_provider.dart';
 
 import 'Lieu.dart';
 
@@ -11,7 +8,7 @@ class DatabaseHelperLocal {
   static const _databaseName = "db_flutter.db";
   static const _databaseVersion = 1;
 
-  static DatabaseHelperLocal _instance = DatabaseHelperLocal._internal();
+  static final DatabaseHelperLocal _instance = DatabaseHelperLocal._internal();
 
   DatabaseHelperLocal._internal();
 
@@ -71,7 +68,6 @@ class DatabaseHelperLocal {
 
   /*Fonctions pour les lieux*/
   Future<int?> insertLieu(Lieu l) async {
-
     return await _db?.insert("lieux", l.toMap());
   }
 
