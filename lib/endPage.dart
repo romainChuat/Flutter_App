@@ -1,10 +1,11 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/DatabaseHelperLocal.dart';
 import 'package:flutter_application_1/homePage.dart';
 import 'package:flutter_icon_shadow/flutter_icon_shadow.dart';
+import 'package:flutter_application_1/Reponse.dart';
 
 
-import 'database_helper_local.dart';
 import 'mylib.dart' as mylib;
 
 
@@ -32,16 +33,29 @@ class _endPage extends State<endPage> {
         appBar: mylib.baseAppBar(appBar: AppBar()), 
               endDrawer: mylib.createMenu(context),
       
-        body: Container(
-          padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
-          child: Center(
+        body: 
+        Container(
+          padding: const EdgeInsets.fromLTRB(0, 100, 0, 0),
+        child : Center(
+          
+
+        child : ClipRRect(
+          
+                    borderRadius : BorderRadius.all(Radius.circular(10)),
+                    
+                    child:Container(                   
+                       color: Color.fromARGB(255, 235, 233, 233),
+                       width: 309,
+                      height: 530,
+                      
+          padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                Text('Merci, Login',style: mylib.titleStyle.apply(fontSizeDelta: 9, fontWeightDelta: -2,letterSpacingDelta: 3), textAlign: TextAlign.left,),
+                Text('Merci, Login',style: mylib.titleStyle),
                 SizedBox(
-                    width: 342,
-                    height: 480,
+                    width: 320,
+                    height: 350,
                     child: Stack(
                       alignment: Alignment.center,
                       children:  [
@@ -53,7 +67,7 @@ class _endPage extends State<endPage> {
                           shadowOffset: Offset(2,2),
                         ),*/
                         const IconShadow(
-                          Icon(Icons.check_circle_outline, size: 320, color: Color.fromARGB(255,95, 202, 131)),
+                          Icon(Icons.check_circle_outline, size: 320, color: Color.fromARGB(255, 13, 12, 32),),
                           shadowColor: Color.fromARGB(255, 63, 63, 63),
                           shadowOffset: Offset(2,2),
                         ),
@@ -68,7 +82,11 @@ class _endPage extends State<endPage> {
                 
               ],
             ),
-          ),
+          
+        
+                    ),
+                    ),
+        ),
         ));
   }
   
@@ -79,7 +97,6 @@ class _endPage extends State<endPage> {
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           foregroundColor: Colors.white,
-          backgroundColor: Color.fromARGB(255, 41, 59, 229),
           side: const BorderSide(color: Colors.white, width: 1),
           elevation: 15,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -95,26 +112,26 @@ class _endPage extends State<endPage> {
         },
         child: Text(
           "Submit",
-          style: mylib.buttonTextStyle,
+          style: mylib.titleStyle,
         ),
       ),
     );
   }
 
   void insertReponse(Map<String, Object> reponses) async {
-    //Map<String, Object> insert = new Map();
-    //insert['username'] = reponses['username'].toString();
-    //print(insert);
-    //reponses.remove('username');
+    Map<String, Object> insert = new Map();
+    insert['username'] = reponses['username'].toString();
+    print(insert);
+    reponses.remove('username');
     print(reponses);
-    //insert["reponses"] = reponses.toString();
-    //print(insert);
-    reponses['username'] = "guest_"+reponses['username'].toString();
+    insert["reponses"] = reponses.toString();
+    print(insert);
+
     WidgetsFlutterBinding.ensureInitialized();
     DatabaseHelperLocal db = DatabaseHelperLocal();
     
     try {
-      await db.insertReponse(reponses);
+      await db.insertReponse(insert);
       print("new user");
     } catch (e) {
       print("enregistrement impossible");

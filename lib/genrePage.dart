@@ -1,7 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/homePage.dart';
-import 'package:flutter_application_1/startPage.dart';
 import 'etudePage.dart';
 import 'mylib.dart' as mylib;
 import 'package:intl/intl.dart';
@@ -37,25 +35,18 @@ class _genrePage extends State<genrePage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                Text(
-                  'Title',
-                  style: mylib.titleStyle.apply(
-                      fontSizeDelta: 9,
-                      fontWeightDelta: -2,
-                      letterSpacingDelta: 3),
-                  textAlign: TextAlign.left,
-                ),
+                
                 ClipRRect(
                   borderRadius: BorderRadius.circular(15.0),
                   child: Container(
                     width: 336,
-                    height: 405,
+                    height: 265,
                     color: Color.fromARGB(255, 235, 233, 233),
                     child: Column(
                       //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Container(
-                          padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
+                          padding: const EdgeInsets.fromLTRB(1, 20, 1, 0),
                           child: const Text(
                             "A quels genre vous identifiez vous ?",
                             style: mylib.blueText,
@@ -63,7 +54,7 @@ class _genrePage extends State<genrePage> {
                           ),
                         ),
                         const Divider(
-                          color: Color.fromARGB(255, 41, 59, 229),
+                          color: Colors. black,
                           thickness: 1,
                           indent: 20,
                           endIndent: 20,
@@ -136,7 +127,7 @@ class _genrePage extends State<genrePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    mylib.createQuitButton(context, 141, 41, MyHomePage(), reponses),
+                    //mylib.createQuitButton(context, 141, 41),
                     mylib.createNextButton(
                       "Next",
                       context,

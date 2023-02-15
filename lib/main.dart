@@ -5,26 +5,30 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/user_choix_connexion.dart';
 import 'package:provider/provider.dart';
 
-import 'database_helper_local.dart';
+import 'DatabaseHelperLocal.dart';
 import 'connexion.dart';
 import 'controller/language_contoller.dart';
 import 'darkmode.dart';
 
-import 'database_helper.dart';
+
+import 'DatabaseHelper.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
-  runApp(MultiProvider(
-    providers: [
-      ChangeNotifierProvider(create: (_) => LanguageController()),
-    ],
-    child: EasyLocalization(
-        supportedLocales: [Locale('en', 'US'), Locale('fr', 'FR')],
-        path: 'assets/translations',
-        fallbackLocale: Locale('en', 'US'),
-        child: MyApp()),
-  ));
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => LanguageController()),
+      ],
+      child: EasyLocalization(
+      supportedLocales: [Locale('en', 'US'), Locale('fr', 'FR')],
+      path: 'assets/translations',
+      fallbackLocale: Locale('en', 'US'),
+      child: MyApp()
+    ),
+    )
+  );
 }
 
 class MyApp extends StatelessWidget {

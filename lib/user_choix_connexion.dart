@@ -45,7 +45,7 @@ class _userchoixconnexion extends State<userchoixconnexion> {
           print("Création du compte"),
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) => CreationCompte(),
+              builder: (BuildContext context) => creationcompte(),
             ),
           ),
         },
@@ -74,7 +74,7 @@ class _userchoixconnexion extends State<userchoixconnexion> {
         style: ElevatedButton.styleFrom(
           shadowColor: Colors.grey.shade700,
           elevation: 20,
-          backgroundColor: const Color.fromARGB(255, 41, 59, 229),
+          //backgroundColor: const Color.fromARGB(255, 41, 59, 229),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
             side: BorderSide(color: Colors.white, width: 3),
@@ -82,7 +82,7 @@ class _userchoixconnexion extends State<userchoixconnexion> {
         ),
         child: const Text(
           "Continuer sans compte",
-          style: mylib.titleStyle5,
+          style: mylib.titleStyle,
           textAlign: TextAlign.center,
         ),
       ),
@@ -104,7 +104,7 @@ class _userchoixconnexion extends State<userchoixconnexion> {
         style: ElevatedButton.styleFrom(
           shadowColor: Colors.grey.shade700,
           elevation: 20,
-          backgroundColor: const Color.fromARGB(255, 41, 59, 229),
+         // backgroundColor: const Color.fromARGB(255, 41, 59, 229),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
             side: BorderSide(color: Colors.white, width: 3),
@@ -112,7 +112,7 @@ class _userchoixconnexion extends State<userchoixconnexion> {
         ),
         child: const Text(
           "Se connecter",
-          style: mylib.titleStyle5,
+          style: mylib.titleStyle,
           textAlign: TextAlign.center,
         ),
       ),
@@ -135,7 +135,7 @@ class _userchoixconnexion extends State<userchoixconnexion> {
               );
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: const Color.fromARGB(255, 41, 59, 229),
+              backgroundColor: Color.fromARGB(255, 13, 12, 32),
               shadowColor: Colors.grey.shade700,
               elevation: 20,
               shape: RoundedRectangleBorder(
@@ -202,7 +202,7 @@ class _userchoixconnexion extends State<userchoixconnexion> {
               Container(
                 height: double.infinity,
                 width: double.infinity,
-                decoration: mylib.background1,
+               // decoration: mylib.background1,
                 child: Center(
                     child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
