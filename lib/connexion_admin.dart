@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/user_choix_connexion.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'DatabaseHelper.dart';
+import 'database_helper.dart';
 import 'forgot_password_page.dart';
 import 'hello_admin_page.dart';
 import 'startPage.dart';

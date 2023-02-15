@@ -1,5 +1,3 @@
-import 'package:crypt/crypt.dart';
-
 class Utilisateur {
   String? nom;
   String? mail;
