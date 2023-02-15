@@ -1,48 +1,60 @@
 library mylib;
 
 import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/hello_admin_page.dart';
+import 'package:flutter_application_1/hello_login_password.dart';
 import 'package:flutter_application_1/homePage.dart';
+import 'package:flutter_application_1/languagePage.dart';
+import 'package:flutter_application_1/provider.dart';
+import 'package:flutter_application_1/user_choix_connexion.dart';
+import 'package:provider/provider.dart';
 
-const Decoration background1 = BoxDecoration(
-  gradient: LinearGradient(
-    begin: Alignment.topLeft,
-    end: Alignment(0.8, 1),
-    colors: <Color>[
-      Color.fromARGB(255, 255, 255, 0),
-      Color.fromARGB(138, 35, 175, 74),
-      Color.fromARGB(160, 54, 192, 201),
-      Color.fromARGB(255, 41, 59, 229),
-    ],
-    tileMode: TileMode.mirror,
-  ),
-);
+import 'controller/language_contoller.dart';
+
+bool adminConnect = false;
+
+
 
 const TextStyle titleStyle = TextStyle(
   fontSize: 21,
-  fontFamily: 'Spline Sans Mono',
-  fontWeight: FontWeight.bold,
-  color: Colors.white,
-  shadows: <Shadow>[
+  fontFamily: 'Nunito',
+  //fontWeight: FontWeight.bold,
+ // color: Colors.white,
+  /*shadows: <Shadow>[
     Shadow(
         offset: Offset(-2.0, 2.0),
         blurRadius: 3.0,
         color: Color.fromARGB(195, 105, 105, 105))
-  ],
+  ],*/
+  letterSpacing: -1,
+);
+const TextStyle titleStyleDuration = TextStyle(
+  fontSize: 15,
+  fontFamily: 'Nunito',
+  //fontWeight: FontWeight.bold,
+ // color: Colors.white,
+  /*shadows: <Shadow>[
+    Shadow(
+        offset: Offset(-2.0, 2.0),
+        blurRadius: 3.0,
+        color: Color.fromARGB(195, 105, 105, 105))
+  ],*/
   letterSpacing: -1,
 );
 const TextStyle titleStyle2 = TextStyle(
   fontSize: 25,
-  fontFamily: 'Spline Sans Mono',
+  fontFamily: 'Nunito',
   fontWeight: FontWeight.bold,
-  color: Colors.white,
-  shadows: <Shadow>[
+  //color: Colors.white,
+  /*shadows: <Shadow>[
     Shadow(
         offset: Offset(-2.0, 2.0),
         blurRadius: 3.0,
         color: Color.fromARGB(195, 105, 105, 105))
-  ],
+  ],*/
   letterSpacing: -1,
 );
 const TextStyle titleStyle3 = TextStyle(
@@ -63,29 +75,43 @@ const TextStyle titleStyle5 = TextStyle(
   fontSize: 20,
   fontFamily: 'Nunito',
   fontWeight: FontWeight.bold,
-  color: Colors.white,
+ // color: Colors.white,
   letterSpacing: 1,
 );
 
 const TextStyle buttonTextStyle = TextStyle(
     fontSize: 20,
     fontWeight: FontWeight.bold,
-    color: Colors.white,
+    //color: Colors.white,
     fontFamily: 'Nunito',
     letterSpacing: 1);
 
 const TextStyle blueText = TextStyle(
   fontSize: 20,
   fontWeight: FontWeight.w800,
-  color: Color.fromARGB(255, 41, 59, 229),
+  color: Color.fromARGB(255, 24, 24, 24),
   fontFamily: 'Nunito',
+  letterSpacing: 1,
+);
+const TextStyle blueText1 = TextStyle(
+  fontSize: 12,
+  //color: Color.fromARGB(255, 41, 59, 229),
+  fontFamily: 'Spline Sans Mono ',
+  letterSpacing: 1,
+  //shadows:<Shadow> [ Shadow(offset:Offset(-1.0, 1.0) , blurRadius: 5.0 ,color: Color.fromARGB(195, 105, 105, 105))],
+);
+const TextStyle blueText2 = TextStyle(
+  fontSize: 15,
+  fontWeight: FontWeight.w600,
+  color: Colors.black,
+  fontFamily: 'Spline Sans Mono ',
   letterSpacing: 1,
   //shadows:<Shadow> [ Shadow(offset:Offset(-1.0, 1.0) , blurRadius: 5.0 ,color: Color.fromARGB(195, 105, 105, 105))],
 );
 const TextStyle radioText = TextStyle(
   fontSize: 15,
   fontWeight: FontWeight.w600,
-  color: Color.fromARGB(255, 41, 59, 229),
+ // color: Color.fromARGB(255, 41, 59, 229),
   fontFamily: 'Nunito',
   letterSpacing: 1,
   //shadows:<Shadow> [ Shadow(offset:Offset(-1.0, 1.0) , blurRadius: 5.0 ,color: Color.fromARGB(195, 105, 105, 105))],
@@ -93,7 +119,14 @@ const TextStyle radioText = TextStyle(
 
 const TextStyle simpleText = TextStyle(
   fontSize: 15,
-  color: Color.fromARGB(255, 117, 106, 106),
+  color: Colors.white,
+  fontFamily: 'Spline Sans Mono',
+  letterSpacing: 1,
+);
+
+const TextStyle simpleTextdark = TextStyle(
+  fontSize: 15,
+  color: Colors.black,
   fontFamily: 'Spline Sans Mono',
   letterSpacing: 1,
 );
@@ -164,7 +197,10 @@ class baseAppBar extends StatelessWidget implements PreferredSizeWidget {
   Size get preferredSize => new Size.fromHeight(appBar.preferredSize.height);
 }
 
-createInput(double wdth, double hgth) {
+createInput(
+  double wdth,
+  double hgth,
+) {
   return SizedBox(
       height: hgth,
       width: wdth,
@@ -229,14 +265,14 @@ createInputTextArea(double wdth, double hgth) {
           )));
 }
 
-createQuitButton(BuildContext context, double width, double height) {
+createQuitButton(BuildContext context, double width, double height, var path) {
   return SizedBox(
     width: width,
     height: height,
     child: ElevatedButton(
       style: ElevatedButton.styleFrom(
         foregroundColor: Colors.white,
-        backgroundColor: Color.fromARGB(255, 41, 59, 229),
+        backgroundColor: Color.fromARGB(255, 13, 12, 32),
         side: const BorderSide(color: Colors.white, width: 1),
         elevation: 15,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -245,11 +281,11 @@ createQuitButton(BuildContext context, double width, double height) {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (_) => MyHomePage(),
+            builder: (context) => path,
           ),
         );
       },
-      child: Text("Quit", style: buttonTextStyle),
+      child: Text("Quit", style: titleStyle),
     ),
   );
 }
@@ -262,7 +298,7 @@ createNextButton(String text, BuildContext context, double width, double height,
     child: ElevatedButton(
       style: ElevatedButton.styleFrom(
         foregroundColor: Colors.white,
-        backgroundColor: Color.fromARGB(255, 41, 59, 229),
+        //backgroundColor: Color.fromARGB(255, 41, 59, 229),
         side: const BorderSide(color: Colors.white, width: 1),
         elevation: 15,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -288,7 +324,7 @@ createtButton(String text, BuildContext context, double width, double height) {
     child: ElevatedButton(
       style: ElevatedButton.styleFrom(
         //foregroundColor: Colors.white,
-        backgroundColor: Color.fromARGB(255, 41, 59, 229),
+        backgroundColor: Color.fromARGB(255, 13, 12, 32),
         //side: const BorderSide(color: Colors.white, width: 1),
         elevation: 15,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -296,20 +332,20 @@ createtButton(String text, BuildContext context, double width, double height) {
       onPressed: () {},
       child: Text(
         text,
-        style: buttonTextStyle,
+        style: titleStyle,
       ),
     ),
   );
 }
 
-//final themeChange = Provider.of<DarkThemeProvider>;
-
 createMenu(BuildContext context) {
+  LanguageController controller = context.read<LanguageController>();
+
   return ClipRRect(
     borderRadius: BorderRadius.circular(30),
     child: Container(
       padding: EdgeInsets.all(10),
-      width: 240,
+      width: 260,
       child: Drawer(
         backgroundColor: Color.fromARGB(255, 30, 77, 233),
         child: Column(
@@ -318,18 +354,33 @@ createMenu(BuildContext context) {
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Container(
-                width: 200,
+                width: 230,
                 height: 58,
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Color.fromARGB(255, 41, 59, 229),
                       backgroundColor: Color.fromARGB(255, 235, 233, 233),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      if (adminConnect == true) {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                const hello_admin_page(),
+                          ),
+                        );
+                      } else {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                const hellologinpassword(),
+                          ),
+                        );
+                      }
+                    },
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.lens, size: 18),
                         Padding(padding: EdgeInsets.all(6)),
                         Text(
                           "Menu",
@@ -343,14 +394,22 @@ createMenu(BuildContext context) {
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Container(
-                width: 200,
+                width: 230,
                 height: 58,
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Color.fromARGB(255, 41, 59, 229),
                       backgroundColor: Color.fromARGB(255, 235, 233, 233),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      adminConnect = false;
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => userchoixconnexion(),
+                        ),
+                      );
+                    },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -368,7 +427,7 @@ createMenu(BuildContext context) {
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Container(
-                width: 200,
+                width: 230,
                 height: 58,
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -381,28 +440,34 @@ createMenu(BuildContext context) {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Padding(padding: EdgeInsets.all(6)),
+                        ChangeThemeButtonWidget(),
                         Text(
-                          "Mode Sombre",
+                          "Mode sombre",
                           style: blueText,
                         ),
                       ],
-                    )
-                  ),
+                    )),
               ),
             ),
             Padding(padding: EdgeInsets.all(10)),
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Container(
-                width: 200,
+                width: 230,
                 height: 58,
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Color.fromARGB(255, 41, 59, 229),
                       backgroundColor: Color.fromARGB(255, 235, 233, 233),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => languagePage(),
+                        ),
+                      );
+                    },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -422,3 +487,5 @@ createMenu(BuildContext context) {
     ),
   );
 }
+
+void setState(Null Function() param0) {}

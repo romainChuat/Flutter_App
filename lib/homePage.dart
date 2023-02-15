@@ -1,8 +1,12 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/commentPage.dart';
+import 'package:flutter_application_1/controller/language_contoller.dart';
 import 'startPage.dart';
 import 'mapPage.dart';
 import 'mylib.dart' as mylib;
+import 'testTrad.dart';
+import 'package:provider/provider.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -14,16 +18,24 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    //les 3 variable sont a factoriser pour chaque pages
+    Map<String,Object> reponses =
+      ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
+    context.watch<LanguageController>();
     return Scaffold(
+
       extendBodyBehindAppBar: true,
       appBar: mylib.baseAppBar(appBar: AppBar(),),
       endDrawer: mylib.createMenu(context),
       //backgroundColor: Colors.red,
 
-      body: Container(
-            decoration:  mylib.background1,
-            child: Center(
+      body: Center(
+         child : ClipRRect(
+                    borderRadius : BorderRadius.all(Radius.circular(10)),
+                    
+                    child:Container(                   
+                       color: Color.fromARGB(255, 235, 233, 233),
+                       width: 309,
+                      height: 464,
              child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -39,12 +51,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 const Padding(padding: EdgeInsets.fromLTRB(0,30, 0, 20)),
 
                 SizedBox(
-                  width:296,
+                  width:280,
                   height: 49,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Colors.white,
-                      backgroundColor: const Color.fromARGB(255, 41, 59, 229),
+                      //backgroundColor: const Color.fromARGB(255, 41, 59, 229),
                       side: const BorderSide(color: Colors.white, width: 3),
                       elevation: 15,
                       //padding: EdgeInsets.fromLTRB(10,0,110,0),
@@ -54,6 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (BuildContext context) => const startPage(),
+                          settings: RouteSettings(arguments: reponses),
                         ),
                       );
                     },
@@ -62,11 +75,14 @@ class _MyHomePageState extends State<MyHomePage> {
                         children: [
                           Container(
                             padding:EdgeInsets.fromLTRB(20,0,0,0),
-                            width: 230,
+                            width: 210,
                             height: 49,
-                            child: const Align(
+                            child:  Align(
                               alignment: Alignment.centerLeft,
-                              child:Text('Title 1', style: mylib.buttonTextStyle),
+                              child: Text(
+                                "title1_text".tr(), 
+                                style: mylib.buttonTextStyle
+                              ),
                             ),
                           ),
                           const Align(
@@ -82,12 +98,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 const Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 20)),
 
                 SizedBox(
-                  width:296,
+                  width:280,
                   height: 49,
                   child:ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Colors.white,
-                      backgroundColor: Color.fromARGB(255, 41, 59, 229),
+                      //backgroundColor: Color.fromARGB(255, 41, 59, 229),
                       side: const BorderSide(color: Colors.white, width: 3),
                       elevation: 15,
                       //padding: EdgeInsets.fromLTRB(10,0,110,0),
@@ -106,7 +122,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         children: [
                           Container(
                             padding:const EdgeInsets.fromLTRB(20,0,0,0),
-                            width: 230,
+                            width: 210,
                             height: 49,
                             child: const Align(
                               alignment: Alignment.centerLeft,
@@ -126,12 +142,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 const Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 20)),
 
                 SizedBox(
-                  width:296,
+                  width:280,
                   height: 49,
                   child:ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Colors.white,
-                      backgroundColor: Color.fromARGB(255, 41, 59, 229),
+                      //backgroundColor: Color.fromARGB(255, 41, 59, 229),
                       side: const BorderSide(color: Colors.white, width: 3),
                       elevation: 15,
                       //padding: EdgeInsets.fromLTRB(10,0,110,0),
@@ -145,7 +161,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         children: [
                           Container(
                             padding: const EdgeInsets.fromLTRB(20,0,0,0),
-                            width: 230,
+                            width: 210,
                             height: 49,
                             child:const Align(
                               alignment: Alignment.centerLeft,
@@ -166,26 +182,31 @@ class _MyHomePageState extends State<MyHomePage> {
                 const Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 20)),
 
                 SizedBox(
-                  width:296,
+                  width:280,
                   height: 49,
                   child:ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Colors.white,
-                      backgroundColor: Color.fromARGB(255, 41, 59, 229),
+                      //backgroundColor: Color.fromARGB(255, 41, 59, 229),
                       side: const BorderSide(color: Colors.white, width: 3),
                       elevation: 15,
                       //padding: EdgeInsets.fromLTRB(10,0,110,0),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                     ),
                     onPressed: () {
-                      Navigator.pop(context);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => testTrad(),
+                        ),
+                      );
                     },
                     child: Container(
                       child: Row(
                         children: [
                           Container(
                             padding:const EdgeInsets.fromLTRB(20,0,0,0),
-                            width: 230,
+                            width: 210,
                             height: 49,
                             child:const Align(
                               alignment: Alignment.centerLeft,
@@ -203,8 +224,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
               ],)
-            ),                  
-        ),
+            ), 
+         ),
+    ),                 
+        
       );    
     
   }
