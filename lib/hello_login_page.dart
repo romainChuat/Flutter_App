@@ -42,7 +42,7 @@ class _hello_login_page extends State<hello_login_page> {
 
   Widget buildAccessMap() {
     return Container(
-      width: 296,
+      width: 286,
       height: 49,
       child: ElevatedButton(
         onPressed: () {
@@ -54,7 +54,7 @@ class _hello_login_page extends State<hello_login_page> {
         },
         style: ElevatedButton.styleFrom(
           shadowColor: Colors.grey.shade700,
-          backgroundColor: const Color.fromARGB(255, 41, 59, 229),
+          //backgroundColor: const Color.fromARGB(255, 41, 59, 229),
           elevation: 20,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
@@ -63,7 +63,7 @@ class _hello_login_page extends State<hello_login_page> {
         ),
         child: const Text(
           "Accéder à la carte",
-          style: mylib.titleStyle5,
+          style: mylib.titleStyle,
           textAlign: TextAlign.center,
         ),
       ),
@@ -72,7 +72,7 @@ class _hello_login_page extends State<hello_login_page> {
 
   Widget buildAccessQuestionnaire(Map<String, Object> reponses) {
     return Container(
-      width: 296,
+      width: 286,
       height: 49,
       child: ElevatedButton(
         onPressed: () {
@@ -93,7 +93,7 @@ class _hello_login_page extends State<hello_login_page> {
         ),
         child: const Text(
           "Accéder au questionnaire",
-          style: mylib.titleStyle5,
+          style: mylib.titleStyle,
           textAlign: TextAlign.center,
         ),
       ),
@@ -114,14 +114,23 @@ class _hello_login_page extends State<hello_login_page> {
         appBar: AppBar(),
       ),
       endDrawer: mylib.createMenu(context),
+
       body: Center(
+        child : ClipRRect(
+                    borderRadius : BorderRadius.all(Radius.circular(10)),
+                    
+                    child:Container(                   
+                       color: Color.fromARGB(255, 235, 233, 233),
+                       width: 309,
+                      height: 464,
+                      
+
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Container(
               width: 250,
-              child: Text("Hello, ${reponses["username"]}",
-                  style: mylib.titleStyle2),
+                      child: Text("Hello, ${reponses["username"]}", style: mylib.titleStyle2),
             ),
             const SizedBox(height: 61),
             Container(
@@ -138,6 +147,8 @@ class _hello_login_page extends State<hello_login_page> {
           ],
         ),
       ),
+      ),
+    ),
     );
   }
 }
