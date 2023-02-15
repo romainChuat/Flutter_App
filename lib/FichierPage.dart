@@ -1,102 +1,126 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/datePage.dart';
-import 'dart:io';
+import 'dart:io' as Io;
 import 'mylib.dart' as mylib;
 import 'package:image_picker/image_picker.dart';
 
 class FichierPage extends StatelessWidget {
   const FichierPage({
-    super.key,  
+    super.key,
   });
-  //String strPath = "";
+
   @override
   Widget build(BuildContext context) {
+    final text = MediaQuery.of(context).platformBrightness == Brightness.dark
+        ? 'DarkTheme'
+        : 'LightTheme';
+    Map<String, Object> reponses =
+        ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
+
+    print(reponses);
 
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: mylib.baseAppBar(appBar: AppBar()),
-              endDrawer: mylib.createMenu(context),
-
+        endDrawer: mylib.createMenu(context),
         body: Container(
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
-          decoration: mylib.background1,
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
               children: <Widget>[
-                Text('Title',style: mylib.titleStyle.apply(fontSizeDelta: 9, fontWeightDelta: -2,letterSpacingDelta: 3), textAlign: TextAlign.left,),
+               
                 ClipRRect(
                   borderRadius: BorderRadius.circular(15.0),
-                  child:Container(
+                  child: Container(
                     width: 336,
-                    height: 295,
+                    height: 285,
                     color: Color.fromARGB(255, 235, 233, 233),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
+                       
                         Container(
-                          padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
-                          child: const Text("Déposez à présent le fichier de l'image numérique", 
+                          padding: const EdgeInsets.fromLTRB(1, 20, 1, 0),
+                          child: const Text(
+                            "Déposez à présent le fichier de l'image numérique",
                             style: mylib.blueText,
-                            textAlign: TextAlign.center,        
+                            textAlign: TextAlign.center,
                           ),
                         ),
                         const Divider(
-                          color: Color.fromARGB(255, 41, 59, 229),
+                          color: Colors.black,
                           thickness: 1,
                           indent: 20,
                           endIndent: 20,
                         ),
-                        Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 0)),
+                        Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
                         SizedBox(
+    
+  
                           width: 265,
                           height: 180,
-                          child: Column(
-                            children: [
-                              SizedBox(
-                                width:289,
-                                height: 40,
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
+                          child: Column(children: [
+                            SizedBox(
+                              width: 289,
+                              height: 40,
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.white,
-                                  foregroundColor: Colors.black,
+                                  //foregroundColor: Colors.black,
                                   elevation: 5,
-                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                                  side: const BorderSide(color: Colors.white, width: 1),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10)),
+                                  side: const BorderSide(
+                                      color: Colors.white, width: 2),
+                                      
                                   //padding: EdgeInsets.fromLTRB(10,0,110,0),
-                                  ),
-                                  onPressed: () {
-                                    var newPath = _getFromGallery();
-                                    //image = await picker.pickImage(source: ImageSource.gallery); 
-                                    //setState((){ strPath = newPath; });
-                                  },
-                                  child: Container(
-                                    child: Row(
-                                      children: [
-                                        const Align(
-                                          alignment: Alignment.centerLeft,
-                                          child:Icon( Icons.expand_more, color: Color.fromARGB(255, 41, 59, 229) , size: 30,),
+                                ),
+                                onPressed: () {
+                                  var newPath = _getFromGallery();
+                                  final bytes =
+                                      Io.File(newPath).readAsBytesSync();
+                                  Map<String, Object>? res = new Map();
+
+                                  reponses["Image"] = bytes;
+
+                                  //image = await picker.pickImage(source: ImageSource.gallery);
+                                  //setState((){ strPath = newPath; });
+                                },
+                                child: Container(
+                                  child: Row(
+                                    children: [
+                                      const Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Icon(
+                                          Icons.expand_more,
+                                          color:
+                                              Colors.black,
+                                          size: 30,
                                         ),
-                                        Container(
-                                          //padding:EdgeInsets.fromLTRB(20,0,0,0),
-                                          
-                                          child: const Align(
-                                            alignment: Alignment.centerLeft,
-                                            
-                                            child:Text("Envoyer un fichier", style: mylib.simpleText,  ),
+                                      ),
+                                      Container(
+                                        //padding:EdgeInsets.fromLTRB(20,0,0,0),
+
+                                        child: const Align(
+                                          alignment: Alignment.centerLeft,
+                                          child: Text(
+                                            "Envoyer un fichier",
+                                            style: mylib.simpleTextdark,
                                           ),
                                         ),
-                                        
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),
-                              Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
-                              Text("! Veuillez envoyez au plus 1 fichier", style: mylib.warningText,)
-                            ]
-                          ),
+                            ),
+                            Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
+                            Text(
+                              "! Veuillez envoyez au plus 1 fichier",
+                              style: mylib.warningText,
+                            )
+                          ]),
                         ),
                       ],
                     ),
@@ -105,8 +129,17 @@ class FichierPage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    mylib.createQuitButton(context, 141, 41),
-                    mylib.createNextButton("Next", context, 141, 41, MaterialPageRoute(builder: (_) => datePage(),), )
+                    //mylib.createQuitButton(context, 141, 41),
+                    mylib.createNextButton(
+                      "Next",
+                      context,
+                      141,
+                      41,
+                      MaterialPageRoute(
+                        builder: (_) => datePage(),
+                        settings: RouteSettings(arguments: reponses),
+                      ),
+                    )
                   ],
                 )
               ],
@@ -114,7 +147,8 @@ class FichierPage extends StatelessWidget {
           ),
         ));
   }
-    /// Get from gallery
+
+  /// Get from gallery
   _getFromGallery() async {
     var path = "";
     PickedFile? pickedFile = await ImagePicker().getImage(
@@ -123,9 +157,9 @@ class FichierPage extends StatelessWidget {
       maxHeight: 1800,
     );
     if (pickedFile != null) {
-        File imageFile = File(pickedFile.path);
-        path = imageFile.path;
-        print(imageFile);
+      Io.File imageFile = Io.File(pickedFile.path);
+      path = imageFile.path;
+      print(imageFile);
     }
     return path;
   }

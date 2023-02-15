@@ -16,8 +16,12 @@ class connexion extends StatefulWidget {
 }
 class _connexion extends State<connexion>{
 
+  
+  Map<String,Object> reponses = new Map(); 
+
+
   bool isRememberMe = false;
-Widget buildTitle(){                    
+  Widget buildTitle(){                    
                     return Container(
                       width: 309,
                     height: 156,
@@ -60,6 +64,10 @@ Widget builUserName(){
           ]
         ),
         child: TextField(
+          onChanged: (value){
+            print(value);
+            reponses["username"] = value;
+          },
           keyboardType: TextInputType.name,
           style: TextStyle(
             color: Colors.black87
@@ -68,7 +76,7 @@ Widget builUserName(){
             border: InputBorder.none,
             prefixIcon: Icon(
               Icons.account_circle_sharp ,
-              color: Color(0xff5ac18e)
+              color: Color.fromARGB(255, 13, 12, 32),
             ),
             
             hintText: 'User name',
@@ -93,6 +101,7 @@ Widget buildLoginBtn(){
                         Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (BuildContext context) => const hello_login_page(),
+                          settings: RouteSettings(arguments:  reponses),
                         ),
                       );
                       },    
@@ -100,14 +109,14 @@ Widget buildLoginBtn(){
                         style: ElevatedButton.styleFrom(
                          shadowColor: Colors.grey.shade700,
                          elevation: 20,
-                         backgroundColor: const Color.fromARGB(255, 41, 59, 229),
+                       //  backgroundColor: const Color.fromARGB(255, 41, 59, 229),
                           shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15.0),
                     side: BorderSide(color: Colors.white, width: 3),
                   ),
                         ),
                         child: const Text("Login", 
-                            style: mylib.titleStyle2,
+                            style: mylib.titleStyle,
                             textAlign: TextAlign.center,        
                           ),
                       ),
@@ -131,7 +140,7 @@ Widget buildUserBtn(){
                       },                     
                         style: ElevatedButton.styleFrom(
                           
-                        backgroundColor: const Color.fromARGB(255, 41, 59, 229),
+                        backgroundColor: Color.fromARGB(255, 13, 12, 32),
                          shadowColor: Colors.grey.shade700,
                          elevation: 20,
                           shape: RoundedRectangleBorder(
@@ -185,6 +194,8 @@ Widget buildAdminBtn(){
 
   @override
   Widget build(BuildContext context) {
+
+
     return Scaffold(
       
       body: AnnotatedRegion<SystemUiOverlayStyle>(
@@ -195,7 +206,7 @@ Widget buildAdminBtn(){
               Container(               
                 height: double.infinity,
                 width: double.infinity,
-                decoration:  mylib.background1,
+               // decoration:  mylib.background1,
                   child:Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
