@@ -124,7 +124,7 @@ class _droits_auteur extends State<droits_auteur> {
                       41,
 
                       MaterialPageRoute(
-                        builder: (_) => const FichierPage(),
+                        builder: (_) => fichierPage(),
                         settings: RouteSettings(arguments: reponses),
                       ),
                     )

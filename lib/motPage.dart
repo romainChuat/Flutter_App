@@ -18,7 +18,6 @@ class _motPage extends State<motPage> {
   Widget build(BuildContext context) {
     Map<int, String>? mots = Map<int, String>();
     print(mots);
-    List<TextEditingController> motController = [];
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
     print(reponses);
