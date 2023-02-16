@@ -272,7 +272,7 @@ createQuitButton(BuildContext context, double width, double height, var path, Ma
     child: ElevatedButton(
       style: ElevatedButton.styleFrom(
         foregroundColor: Colors.white,
-        backgroundColor: Color.fromARGB(255, 13, 12, 32),
+      //  backgroundColor: Color.fromARGB(255, 13, 12, 32),
         side: const BorderSide(color: Colors.white, width: 1),
         elevation: 15,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -312,7 +312,7 @@ createNextButton(String text, BuildContext context, double width, double height,
       },
       child: Text(
         text,
-        style: buttonTextStyle,
+        style: titleStyle,
       ),
     ),
   );

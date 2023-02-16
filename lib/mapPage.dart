@@ -1,4 +1,5 @@
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/homePage.dart';
 import 'package:flutter_application_1/startPage.dart';
@@ -60,11 +61,10 @@ class _mapPage extends State<mapPage> {
                         children: [
                           Container(
                             padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
-                            child: const Text(
-                              "Pour commencer, veuillez indiquer la localisation de votre photographie de paysage",
-                              style: mylib.blueText,
-                              textAlign: TextAlign.center,
-                            ),
+                            child: Text(
+                                "mapPage_title".tr(), 
+                                style: mylib.titleStyle
+                              ),
                           ),
                           const Divider(
                             color: Colors.black,
@@ -199,7 +199,7 @@ class _mapPage extends State<mapPage> {
                   children: [
                     mylib.createQuitButton(context, 141, 41, MyHomePage(), reponses),
                     mylib.createNextButton(
-                      "Next",
+                      "btn_next".tr(),
                       context,
                       141,
                       41,

@@ -1,7 +1,22 @@
 {
+    "home_page_title": "Veuillez choisir votre questionnaire :",
     "title1_text": "Titre 1",
+    "title2_text": "Titre 2",
+    "title3_text": "Titre 3",
+    "title4_text": "Titre 4",
+
+    "startPage_title": "Vous allez répondre à un questionnaire.",
+    "startPage_duration": "Durée : 10min",
+    "startPage_btn_start": "Commencer",
+
+    "mapPage_title":"Pour commencer, veuillez indiquer la localisation de votre photographie de paysage.",
+    
+    "droits_auteur_title": "Veuillez céder les droits d'auteur ou d'autrice pour poursuivre.",
+
     "map_question": "Pour commencer, veuillez indiquer la localisation de votre photographie de paysage", 
     "next_btn_text": "Suivant",
     "english_text": "anglais",
-    "french_text": "français"
+    "french_text": "français",
+
+    "btn_next": "Suivant"
 }
