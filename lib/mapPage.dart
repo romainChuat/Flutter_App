@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/homePage.dart';
 import 'package:flutter_application_1/startPage.dart';
@@ -47,14 +48,7 @@ class _mapPage extends State<mapPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                Text(
-                  'Title',
-                  style: mylib.titleStyle.apply(
-                      fontSizeDelta: 9,
-                      fontWeightDelta: -2,
-                      letterSpacingDelta: 3),
-                  textAlign: TextAlign.left,
-                ),
+                
                 ClipRRect(
                     borderRadius: BorderRadius.circular(15.0),
                     child: Container(
@@ -73,7 +67,7 @@ class _mapPage extends State<mapPage> {
                             ),
                           ),
                           const Divider(
-                            color: Color.fromARGB(255, 41, 59, 229),
+                            color: Colors.black,
                             thickness: 1,
                             indent: 20,
                             endIndent: 20,

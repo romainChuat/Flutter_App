@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/homePage.dart';
-import 'package:flutter_application_1/startPage.dart';
 import 'genrePage.dart';
 import 'mylib.dart' as mylib;
 import 'package:intl/intl.dart';
@@ -34,24 +32,17 @@ class _agePage extends State<agePage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                Text(
-                  'Title',
-                  style: mylib.titleStyle.apply(
-                      fontSizeDelta: 9,
-                      fontWeightDelta: -2,
-                      letterSpacingDelta: 3),
-                  textAlign: TextAlign.left,
-                ),
+                
                 ClipRRect(
                   borderRadius: BorderRadius.circular(15.0),
                   child: Container(
                     width: 336,
-                    height: 405,
+                    height: 415,
                     color: Color.fromARGB(255, 235, 233, 233),
                     child: Column(
                       children: [
                         Container(
-                          padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
+                          padding: const EdgeInsets.fromLTRB(1, 20, 1, 0),
                           child: const Text(
                             "Choisissez la tranche d'âge à laquelle vous situez-vous ?",
                             style: mylib.blueText,
@@ -59,22 +50,25 @@ class _agePage extends State<agePage> {
                           ),
                         ),
                         const Divider(
-                          color: Color.fromARGB(255, 41, 59, 229),
+                          color: Colors.black,
                           thickness: 1,
                           indent: 20,
                           endIndent: 20,
                         ),
                         SizedBox(
                             child: Column(
+                              
                           children: [
                             SizedBox(
                                 height: 32,
                                 child: RadioListTile(
-                                  activeColor: Color.fromARGB(255, 41, 59, 229),
+                                  
+                                activeColor: Colors.black,
                                   title: const Text(
                                     "3 - 10 ans",
                                     style: mylib.blueText2,
                                   ),
+                                  
                                   groupValue: age,
                                   onChanged: (value) {
                                     setState(() {
@@ -89,7 +83,7 @@ class _agePage extends State<agePage> {
                             SizedBox(
                               height: 32,
                               child: RadioListTile(
-                                activeColor: Color.fromARGB(255, 41, 59, 229),
+                                activeColor: Colors.black,
                                 title: const Text("11 - 17 ans",
                                     style: mylib.blueText2),
                                 groupValue: age,
@@ -107,7 +101,7 @@ class _agePage extends State<agePage> {
                             SizedBox(
                               height: 32,
                               child: RadioListTile(
-                                activeColor: Color.fromARGB(255, 41, 59, 229),
+                                activeColor: Colors.black,
                                 title: const Text("18 - 25 ans",
                                     style: mylib.blueText2),
                                 groupValue: age,
@@ -125,7 +119,7 @@ class _agePage extends State<agePage> {
                             SizedBox(
                               height: 32,
                               child: RadioListTile(
-                                activeColor: Color.fromARGB(255, 41, 59, 229),
+                                activeColor: Colors.black,
                                 title: const Text("26 - 35 ans",
                                     style: mylib.blueText2),
                                 groupValue: age,
@@ -143,7 +137,7 @@ class _agePage extends State<agePage> {
                             SizedBox(
                               height: 32,
                               child: RadioListTile(
-                                activeColor: Color.fromARGB(255, 41, 59, 229),
+                                activeColor: Colors.black,
                                 title: const Text("36 - 45 ans",
                                     style: mylib.blueText2),
                                 groupValue: age,
@@ -161,7 +155,7 @@ class _agePage extends State<agePage> {
                             SizedBox(
                               height: 32,
                               child: RadioListTile(
-                                activeColor: Color.fromARGB(255, 41, 59, 229),
+                                activeColor: Colors.black,
                                 title: const Text("46 - 55 ans",
                                     style: mylib.blueText2),
                                 groupValue: age,
@@ -179,7 +173,7 @@ class _agePage extends State<agePage> {
                             SizedBox(
                               height: 32,
                               child: RadioListTile(
-                                activeColor: Color.fromARGB(255, 41, 59, 229),
+                                activeColor: Colors.black,
                                 title: const Text("56 - 65 ans",
                                     style: mylib.blueText2),
                                 groupValue: age,
@@ -197,7 +191,7 @@ class _agePage extends State<agePage> {
                             SizedBox(
                               height: 32,
                               child: RadioListTile(
-                                activeColor: Color.fromARGB(255, 41, 59, 229),
+                                activeColor: Colors.black,
                                 title: const Text("66 - 75 ans",
                                     style: mylib.blueText2),
                                 groupValue: age,
@@ -215,7 +209,7 @@ class _agePage extends State<agePage> {
                             SizedBox(
                               height: 32,
                               child: RadioListTile(
-                                activeColor: Color.fromARGB(255, 41, 59, 229),
+                                activeColor: Colors.black,
                                 title: const Text("76 ans et plus",
                                     style: mylib.blueText2),
                                 groupValue: age,
@@ -239,7 +233,7 @@ class _agePage extends State<agePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    mylib.createQuitButton(context, 141, 41, MyHomePage(), reponses),
+                    //mylib.createQuitButton(context, 141, 41),
                     mylib.createNextButton(
                       "Next",
                       context,

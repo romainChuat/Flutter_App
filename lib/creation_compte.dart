@@ -88,7 +88,7 @@ class Creationcompte extends State<CreationCompte> {
             style: const TextStyle(color: Colors.black87),
             decoration: const InputDecoration(
                 border: InputBorder.none,
-                prefixIcon: Icon(Icons.email, color: Color(0xff5ac18e)),
+                prefixIcon: Icon(Icons.email, color: Color.fromARGB(255, 13, 12, 32)),
                 hintText: 'Email',
                 hintStyle: TextStyle(color: Colors.black38)),
           ),
@@ -120,7 +120,7 @@ class Creationcompte extends State<CreationCompte> {
             style: const TextStyle(color: Colors.black87),
             decoration: const InputDecoration(
                 border: InputBorder.none,
-                prefixIcon: Icon(Icons.lock, color: Color(0xff5ac18e)),
+                prefixIcon: Icon(Icons.lock, color: Color.fromARGB(255, 13, 12, 32),),
                 hintText: 'Password',
                 hintStyle: TextStyle(color: Colors.black38)),
           ),
@@ -207,7 +207,7 @@ class Creationcompte extends State<CreationCompte> {
         },
         style: ElevatedButton.styleFrom(
           shadowColor: Colors.grey.shade700,
-          backgroundColor: const Color.fromARGB(255, 41, 59, 229),
+         // backgroundColor: const Color.fromARGB(255, 41, 59, 229),
           elevation: 20,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
@@ -216,7 +216,7 @@ class Creationcompte extends State<CreationCompte> {
         ),
         child: const Text(
           "Login",
-          style: mylib.titleStyle2,
+          style: mylib.titleStyle,
           textAlign: TextAlign.center,
         ),
       ),
@@ -238,7 +238,7 @@ class Creationcompte extends State<CreationCompte> {
             );
           },
           style: ElevatedButton.styleFrom(
-            backgroundColor: const Color.fromARGB(255, 41, 59, 229),
+              backgroundColor: Color.fromARGB(255, 13, 12, 32),
             shadowColor: Colors.grey.shade700,
             elevation: 20,
             shape: const RoundedRectangleBorder(
@@ -312,7 +312,7 @@ class Creationcompte extends State<CreationCompte> {
             style: const TextStyle(color: Colors.black87),
             decoration: const InputDecoration(
                 border: InputBorder.none,
-                prefixIcon: Icon(Icons.lock, color: Color(0xff5ac18e)),
+                prefixIcon: Icon(Icons.lock, color: Color.fromARGB(255, 13, 12, 32),),
                 hintText: 'Confirm Password',
                 hintStyle: TextStyle(color: Colors.black38)),
           ),
@@ -344,7 +344,7 @@ class Creationcompte extends State<CreationCompte> {
             decoration: const InputDecoration(
                 border: InputBorder.none,
                 prefixIcon:
-                    Icon(Icons.account_circle_sharp, color: Color(0xff5ac18e)),
+                    Icon(Icons.account_circle_sharp, color: Color.fromARGB(255, 13, 12, 32),),
                 hintText: 'User name',
                 hintStyle: TextStyle(color: Colors.black38)),
           ),
@@ -364,7 +364,7 @@ class Creationcompte extends State<CreationCompte> {
             Container(
               height: double.infinity,
               width: double.infinity,
-              decoration: mylib.background1,
+             // decoration: mylib.background1,
               child: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,

@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/user_choix_connexion.dart';
@@ -69,7 +70,7 @@ Widget buildTitle(){
             border: InputBorder.none,
             prefixIcon: Icon(
               Icons.email,
-              color: Color(0xff5ac18e)
+              color: Color.fromARGB(255, 13, 12, 32),
             ),
             
             hintText: 'Email',
@@ -122,7 +123,7 @@ Widget buildLoginBtn(){
                                        
                         style: ElevatedButton.styleFrom(
                          shadowColor: Colors.grey.shade700,
-                         backgroundColor: const Color.fromARGB(255, 41, 59, 229),
+                         //backgroundColor: const Color.fromARGB(255, 41, 59, 229),
                          elevation: 20,
                           shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15.0),
@@ -130,7 +131,7 @@ Widget buildLoginBtn(){
                   ),
                         ),
                         child: const Text("Send reset link", 
-                            style: mylib.titleStyle5,
+                            style: mylib.titleStyle,
                             textAlign: TextAlign.center,        
                           ),
                       ),
@@ -184,7 +185,7 @@ Widget buildAdminBtn(){
                         
                       },                     
                         style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromARGB(255, 41, 59, 229),
+                        backgroundColor: Color.fromARGB(255, 13, 12, 32),
                          shadowColor: Colors.grey.shade700,
                          elevation: 20,
                           shape: RoundedRectangleBorder(
@@ -215,7 +216,7 @@ Widget buildAdminBtn(){
               Container(               
                 height: double.infinity,
                 width: double.infinity,
-                decoration:  mylib.background1,
+               // decoration:  mylib.background1,
                   child:Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -283,4 +284,3 @@ Widget buildAdminBtn(){
     
   }
 }
-

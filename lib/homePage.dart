@@ -28,8 +28,14 @@ class _MyHomePageState extends State<MyHomePage> {
       endDrawer: mylib.createMenu(context),
       //backgroundColor: Colors.red,
 
-      body: Container(
-            child: Center(
+      body: Center(
+         child : ClipRRect(
+                    borderRadius : BorderRadius.all(Radius.circular(10)),
+                    
+                    child:Container(                   
+                       color: Color.fromARGB(255, 235, 233, 233),
+                       width: 309,
+                      height: 464,
              child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -45,12 +51,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 const Padding(padding: EdgeInsets.fromLTRB(0,30, 0, 20)),
 
                 SizedBox(
-                  width:296,
+                  width:280,
                   height: 49,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Colors.white,
-                      backgroundColor: const Color.fromARGB(255, 41, 59, 229),
+                      //backgroundColor: const Color.fromARGB(255, 41, 59, 229),
                       side: const BorderSide(color: Colors.white, width: 3),
                       elevation: 15,
                       //padding: EdgeInsets.fromLTRB(10,0,110,0),
@@ -69,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         children: [
                           Container(
                             padding:EdgeInsets.fromLTRB(20,0,0,0),
-                            width: 230,
+                            width: 210,
                             height: 49,
                             child:  Align(
                               alignment: Alignment.centerLeft,
@@ -92,12 +98,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 const Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 20)),
 
                 SizedBox(
-                  width:296,
+                  width:280,
                   height: 49,
                   child:ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Colors.white,
-                      backgroundColor: Color.fromARGB(255, 41, 59, 229),
+                      //backgroundColor: Color.fromARGB(255, 41, 59, 229),
                       side: const BorderSide(color: Colors.white, width: 3),
                       elevation: 15,
                       //padding: EdgeInsets.fromLTRB(10,0,110,0),
@@ -116,7 +122,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         children: [
                           Container(
                             padding:const EdgeInsets.fromLTRB(20,0,0,0),
-                            width: 230,
+                            width: 210,
                             height: 49,
                             child: const Align(
                               alignment: Alignment.centerLeft,
@@ -136,12 +142,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 const Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 20)),
 
                 SizedBox(
-                  width:296,
+                  width:280,
                   height: 49,
                   child:ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Colors.white,
-                      backgroundColor: Color.fromARGB(255, 41, 59, 229),
+                      //backgroundColor: Color.fromARGB(255, 41, 59, 229),
                       side: const BorderSide(color: Colors.white, width: 3),
                       elevation: 15,
                       //padding: EdgeInsets.fromLTRB(10,0,110,0),
@@ -155,7 +161,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         children: [
                           Container(
                             padding: const EdgeInsets.fromLTRB(20,0,0,0),
-                            width: 230,
+                            width: 210,
                             height: 49,
                             child:const Align(
                               alignment: Alignment.centerLeft,
@@ -176,12 +182,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 const Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 20)),
 
                 SizedBox(
-                  width:296,
+                  width:280,
                   height: 49,
                   child:ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Colors.white,
-                      backgroundColor: Color.fromARGB(255, 41, 59, 229),
+                      //backgroundColor: Color.fromARGB(255, 41, 59, 229),
                       side: const BorderSide(color: Colors.white, width: 3),
                       elevation: 15,
                       //padding: EdgeInsets.fromLTRB(10,0,110,0),
@@ -200,7 +206,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         children: [
                           Container(
                             padding:const EdgeInsets.fromLTRB(20,0,0,0),
-                            width: 230,
+                            width: 210,
                             height: 49,
                             child:const Align(
                               alignment: Alignment.centerLeft,
@@ -220,6 +226,8 @@ class _MyHomePageState extends State<MyHomePage> {
               ],)
             ),                  
         ),
+    ),                 
+        
       );    
     
   }

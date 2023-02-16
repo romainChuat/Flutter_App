@@ -1,12 +1,19 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/startPage.dart';
 import 'FichierPage.dart';
 import 'mylib.dart' as mylib;
 
-class droits_auteur extends StatelessWidget {
-  droits_auteur({
-    super.key,
-  });
+class droits_auteur extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _droits_auteur();
+  }
+}
+class _droits_auteur extends State<droits_auteur> {
+
+  bool accept = false;
+
   @override
   Widget build(BuildContext context) {
     final text = MediaQuery.of(context).platformBrightness == Brightness.dark
@@ -28,14 +35,7 @@ class droits_auteur extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                Text(
-                  'Title',
-                  style: mylib.titleStyle.apply(
-                      fontSizeDelta: 9,
-                      fontWeightDelta: -2,
-                      letterSpacingDelta: 3),
-                  textAlign: TextAlign.left,
-                ),
+                
                 ClipRRect(
                   borderRadius: BorderRadius.circular(15.0),
                   child: Container(
@@ -54,7 +54,7 @@ class droits_auteur extends StatelessWidget {
                           ),
                         ),
                         const Divider(
-                          color: Color.fromARGB(255, 41, 59, 229),
+                          color: Colors.black,
                           thickness: 1,
                           indent: 20,
                           endIndent: 20,
@@ -87,6 +87,21 @@ class droits_auteur extends StatelessWidget {
                             ),
                           ),
                         ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text("Accepter"),
+                            Checkbox(
+                              value: accept, 
+                              onChanged: (value) {
+                                setState(() {
+                                  accept = value!;
+                                }); 
+                              },
+                            )
+                          ],
+                        )
+                        
                       ],
                     ),
                   ),
@@ -100,6 +115,7 @@ class droits_auteur extends StatelessWidget {
                       context,
                       141,
                       41,
+
                       MaterialPageRoute(
                         builder: (_) => const FichierPage(),
                         settings: RouteSettings(arguments: reponses),
@@ -112,4 +128,5 @@ class droits_auteur extends StatelessWidget {
           ),
         ));
   }
+  
 }

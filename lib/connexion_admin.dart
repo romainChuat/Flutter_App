@@ -1,3 +1,4 @@
+
 import 'package:crypt/crypt.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -73,7 +74,7 @@ class _connexion_adminn extends State<connexion_adminn> {
             style: const TextStyle(color: Colors.black87),
             decoration: const InputDecoration(
                 border: InputBorder.none,
-                prefixIcon: Icon(Icons.email, color: Color(0xff5ac18e)),
+                prefixIcon: Icon(Icons.email, color: Color.fromARGB(255, 13, 12, 32),),
                 hintText: 'Email',
                 hintStyle: TextStyle(color: Colors.black38)),
           ),
@@ -105,7 +106,7 @@ class _connexion_adminn extends State<connexion_adminn> {
             style: const TextStyle(color: Colors.black87),
             decoration: const InputDecoration(
                 border: InputBorder.none,
-                prefixIcon: Icon(Icons.lock, color: Color(0xff5ac18e)),
+                prefixIcon: Icon(Icons.lock, color: Color.fromARGB(255, 13, 12, 32),),
                 hintText: 'Password',
                 hintStyle: TextStyle(color: Colors.black38)),
           ),
@@ -180,7 +181,7 @@ class _connexion_adminn extends State<connexion_adminn> {
         },
         style: ElevatedButton.styleFrom(
           shadowColor: Colors.grey.shade700,
-          backgroundColor: const Color.fromARGB(255, 41, 59, 229),
+         // backgroundColor: const Color.fromARGB(255, 41, 59, 229),
           elevation: 20,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
@@ -189,7 +190,7 @@ class _connexion_adminn extends State<connexion_adminn> {
         ),
         child: const Text(
           "Login",
-          style: mylib.titleStyle2,
+          style: mylib.titleStyle,
           textAlign: TextAlign.center,
         ),
       ),
@@ -242,7 +243,7 @@ class _connexion_adminn extends State<connexion_adminn> {
           child: ElevatedButton(
             onPressed: () {},
             style: ElevatedButton.styleFrom(
-              backgroundColor: const Color.fromARGB(255, 41, 59, 229),
+              backgroundColor: Color.fromARGB(255, 13, 12, 32),
               shadowColor: Colors.grey.shade700,
               elevation: 20,
               shape: const RoundedRectangleBorder(
@@ -273,7 +274,7 @@ class _connexion_adminn extends State<connexion_adminn> {
             Container(
               height: double.infinity,
               width: double.infinity,
-              decoration: mylib.background1,
+            //  decoration: mylib.background1,
               child: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
