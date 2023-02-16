@@ -42,10 +42,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 
                 Container(
                   padding: const EdgeInsets.fromLTRB(50, 0, 90, 0),
-                  child: const Align(
-                    alignment: Alignment.center,
-                    child:Text('Veuillez choisir votre questionnaire :', style: mylib.titleStyle,),
-                  ),
+                  child:  Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                "home_page_title".tr(), 
+                                style: mylib.titleStyle
+                              ),
+                            ),
                 ),
                 
                 const Padding(padding: EdgeInsets.fromLTRB(0,30, 0, 20)),
@@ -121,17 +124,20 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Row(
                         children: [
                           Container(
-                            padding:const EdgeInsets.fromLTRB(20,0,0,0),
+                            padding:EdgeInsets.fromLTRB(20,0,0,0),
                             width: 210,
                             height: 49,
-                            child: const Align(
+                            child:  Align(
                               alignment: Alignment.centerLeft,
-                              child:Text('Title 2', style: mylib.buttonTextStyle),
+                              child: Text(
+                                "title2_text".tr(), 
+                                style: mylib.buttonTextStyle
+                              ),
                             ),
                           ),
                           const Align(
                             alignment: Alignment.centerLeft,
-                            child:Icon( Icons.arrow_forward_ios, color: Colors.white ,size: 20,),
+                            child:Icon( Icons.arrow_forward_ios, color: Colors.white, size: 20,),
                           )
                         ],
                       ),
@@ -160,17 +166,20 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Row(
                         children: [
                           Container(
-                            padding: const EdgeInsets.fromLTRB(20,0,0,0),
+                            padding:EdgeInsets.fromLTRB(20,0,0,0),
                             width: 210,
                             height: 49,
-                            child:const Align(
+                            child:  Align(
                               alignment: Alignment.centerLeft,
-                              child:Text('Title 3', style: mylib.buttonTextStyle),
+                              child: Text(
+                                "title3_text".tr(), 
+                                style: mylib.buttonTextStyle
+                              ),
                             ),
                           ),
                           const Align(
                             alignment: Alignment.centerLeft,
-                            child:Icon( Icons.arrow_forward_ios, color: Colors.white ,size: 20,),
+                            child:Icon( Icons.arrow_forward_ios, color: Colors.white, size: 20,),
                           )
                         ],
                       ),
@@ -205,22 +214,25 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Row(
                         children: [
                           Container(
-                            padding:const EdgeInsets.fromLTRB(20,0,0,0),
+                            padding:EdgeInsets.fromLTRB(20,0,0,0),
                             width: 210,
                             height: 49,
-                            child:const Align(
+                            child:  Align(
                               alignment: Alignment.centerLeft,
-                              child:Text('Title 4', style: mylib.buttonTextStyle),
+                              child: Text(
+                                "title4_text".tr(), 
+                                style: mylib.buttonTextStyle
+                              ),
                             ),
                           ),
                           const Align(
                             alignment: Alignment.centerLeft,
-                            child:Icon( Icons.arrow_forward_ios, color: Colors.white ,size: 20,),
+                            child:Icon( Icons.arrow_forward_ios, color: Colors.white, size: 20,),
                           )
                         ],
                       ),
                     ),
-
+                    
                   ),
                 ),
               ],)

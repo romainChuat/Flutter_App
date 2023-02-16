@@ -1,6 +1,8 @@
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'mapPage.dart';
+import 'testTrad.dart';
 import 'mylib.dart' as mylib;
 
 class startPage extends StatelessWidget {
@@ -31,19 +33,18 @@ class startPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: <Widget>[
-                    const Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        'Vous allez repondre à un questionnaire.',
-                        style: mylib.titleStyle,
-                      ),
-                    ),
+                    Align(
+                              alignment: Alignment.center,
+                              child: Text(
+                                "startPage_title".tr(), 
+                                style: mylib.titleStyle
+                              ),
+                            ),
                     const Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 10)),
                     Text(
-                      'Duration 10 min',
-                      style: mylib.titleStyleDuration
-                         
-                    ),
+                                "startPage_duration".tr(), 
+                                style: mylib.titleStyle
+                              ),
                   ],
                 ),
               ),
@@ -69,10 +70,10 @@ class startPage extends StatelessWidget {
                       ),
                     );
                   },
-                  child: const Text(
-                    'Start Now',
-                    style: mylib.titleStyle,
-                  ),
+                  child: Text(
+                                "startPage_btn_start".tr(), 
+                                style: mylib.titleStyle
+                              ),
                 ),
               ),
             ],

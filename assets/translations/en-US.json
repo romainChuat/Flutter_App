@@ -1,7 +1,25 @@
 {
+    "home_page_title": "Please select your quiz :",
     "title1_text": "Title 1",
+    "title2_text": "Title 2",
+    "title3_text": "Title 3",
+    "title4_text": "Title 4",
+
+    "startPage_title": "You will answer a quiz.",
+    "startPage_duration": "Duration : 10min",
+    "startPage_btn_start": "Start now",
+
+    "mapPage_title":"To begin, please indicate the location of your landscape photograph.",
+
+    "droits_auteur_title": "Please assign the copyright to continue.",
+
+
+
     "map_question": "To begin, please indicate the location of your landscape photograph", 
     "next_btn_text": "Next",
     "english_text": "english",
-    "french_text": "french"
+    "french_text": "french",
+
+    "btn_next": "Next"
+
 }
