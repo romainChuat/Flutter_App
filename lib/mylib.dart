@@ -18,7 +18,7 @@ bool adminConnect = false;
 const TextStyle titleStyle = TextStyle(
   fontSize: 21,
   fontFamily: 'Nunito',
-  //fontWeight: FontWeight.bold,
+  fontWeight: FontWeight.w400,
  // color: Colors.white,
   /*shadows: <Shadow>[
     Shadow(

@@ -105,6 +105,8 @@ class _activitePage extends State<activitePage> {
                                           ),
                                         ),
                                         CheckboxListTile(
+                                          activeColor: Colors.blue,
+                                          checkColor: Colors.white,
                                           title: mylib.createInput(311, 28),
                                           autofocus: false,
                                           selected: _empValue,
@@ -207,7 +209,7 @@ class _activitePage extends State<activitePage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      //mylib.createQuitButton(context, 141, 41),
+                      mylib.createQuitButton(context, 141, 41, null, reponses),
                       mylib.createNextButton(
                         "Next",
                         context,
