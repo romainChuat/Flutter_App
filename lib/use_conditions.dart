@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_application_1/creation_compte.dart';
 import 'mylib.dart' as mylib;
 
-class conditionsUtilisations extends StatefulWidget {
-  const conditionsUtilisations({super.key});
+//This class allows to display the terms of use of the application before creating an account
+
+class UseConditions extends StatefulWidget {
+  const UseConditions({super.key});
 
   @override
-  State<conditionsUtilisations> createState() => _conditionsUtilisations();
+  State<UseConditions> createState() => Useconditions();
 }
 
-class _conditionsUtilisations extends State<conditionsUtilisations> {
+class Useconditions extends State<UseConditions> {
   @override
   Widget build(BuildContext context) {
+    //Text display management
     return Scaffold(
         extendBodyBehindAppBar: true,
         endDrawer: mylib.createMenu(context),
@@ -27,7 +29,7 @@ class _conditionsUtilisations extends State<conditionsUtilisations> {
                   child: Container(
                     width: 336,
                     height: 570,
-                    color: Color.fromARGB(255, 235, 233, 233),
+                    color: const Color.fromARGB(255, 235, 233, 233),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
@@ -58,8 +60,6 @@ class _conditionsUtilisations extends State<conditionsUtilisations> {
                                       child: MediaQuery.removePadding(
                                     context: context,
                                     removeTop: true,
-                                    //child: Scrollbar( //optionnel
-                                    //isAlwaysShown: true,
                                     child: const SingleChildScrollView(
                                       padding:
                                           EdgeInsets.fromLTRB(10, 10, 10, 10),
@@ -89,11 +89,12 @@ class _conditionsUtilisations extends State<conditionsUtilisations> {
                     ),
                   ),
                 ),
+                //Management of the quit button
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     mylib.createQuitButton(
-                        context, 141, 41, const CreationCompte(),null),
+                        context, 141, 41, const CreationCompte(), null),
                   ],
                 )
               ],
