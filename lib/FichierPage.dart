@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_application_1/datePage.dart';
 import 'dart:io' as Io;
 import 'mylib.dart' as mylib;
 import 'package:image_picker/image_picker.dart';
 
-class FichierPage extends StatelessWidget {
-  const FichierPage({
-    super.key,
-  });
+class fichierPage extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _fichierPage();
+  }
+}
+
+class _fichierPage extends State<fichierPage> {
+  late Io.File image;
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +24,7 @@ class FichierPage extends StatelessWidget {
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
 
     print(reponses);
+
 
     return Scaffold(
         extendBodyBehindAppBar: true,
@@ -113,12 +120,30 @@ class FichierPage extends StatelessWidget {
                                     ],
                                   ),
                                 ),
+
                               ),
                             ),
                             const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
                             const Text(
                               "! Veuillez envoyez au plus 1 fichier",
                               style: mylib.warningText,
+                            ),
+                            Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 20)),
+
+                            SizedBox(
+                              width: 80,
+                              height: 40,
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.white,
+                                  elevation: 15,
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                                ),
+                                onPressed: () {
+                                  pickImage();
+                                },
+                                child: Icon(Icons.photo_camera, color: Colors.black, size: 27,),
+                              ),
                             )
                           ]),
                         ),
@@ -163,4 +188,24 @@ class FichierPage extends StatelessWidget {
     }
     return path;
   }
+
+  /// Get from gallery
+  Future pickImage() async {
+    try {
+      final image = await ImagePicker().pickImage(
+        source: ImageSource.camera);
+        if(image == null) return;
+        final imageTemp = Io.File(image.path);
+        setState(() { 
+          this.image = imageTemp;
+          print(this.image);
+        }
+        );
+    } on PlatformException catch(e) {
+      print('Failed to pick image: $e');
+    }
+  }
+
+
+
 }
