@@ -26,6 +26,8 @@ enum Niveau {
 
 class _etudePage extends State<etudePage> {
   var niveau;
+  TextEditingController textControler =  new TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -210,14 +212,44 @@ class _etudePage extends State<etudePage> {
                                 height: 32,
                                 child: RadioListTile(
                                   activeColor: Color.fromARGB(255, 41, 59, 229),
-                                  title: mylib.createInput(0, 30),
+                                  title: TextField(
+                                    style: mylib.simpleText.apply(fontSizeDelta: 5),
+                                    cursorColor: Color.fromARGB(255, 117, 106, 106),
+                                    decoration: InputDecoration(
+                                      contentPadding: const EdgeInsets.fromLTRB(0, 0, 0, 1),
+                                      filled: true,
+                                      fillColor: Colors.white,
+                                      enabledBorder: const OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          width: 1,
+                                          color: Color.fromARGB(255, 255, 255, 255),
+                                        ),
+                                        borderRadius:BorderRadius.all(Radius.circular(15))
+                                      ),
+                                      focusedBorder:const OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          width: 1,
+                                          color: Color.fromARGB(255, 255, 255, 255),
+                                        ),
+                                        borderRadius:BorderRadius.all(Radius.circular(15))
+                                      )
+                                    ),
+                                    onChanged: (text) {
+                                      if(niveau == Niveau.autre){
+                                        reponses['niveau_etude'] = text.toString();
+                                        print(reponses);
+                                      }
+                                    },
+                                  ),
                                   groupValue: niveau,
                                   onChanged: (value) {
                                     setState(() {
                                       niveau = Niveau.autre;
                                       print(niveau);
-                                      reponses['niveau_etude'] =
-                                          niveau.toString().split('.').last;
+                                        reponses['niveau_etude'] = text.toString();
+
+                                      //reponses['niveau_etude'] =niveau.toString().split('.').last;
+                                      print(reponses);
                                     });
                                   },
                                   value: Niveau.autre,
@@ -252,7 +284,7 @@ class _etudePage extends State<etudePage> {
         ));
   }
 
-  createInput(double wdth, double hgth, Map<String, Object> reponses) {
+  Widget createInput(double wdth, double hgth, TextEditingController textControler) {
     return SizedBox(
         height: hgth,
         width: wdth,
@@ -267,17 +299,22 @@ class _etudePage extends State<etudePage> {
                   filled: true,
                   fillColor: Colors.white,
                   enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        width: 1,
-                        color: Color.fromARGB(255, 255, 255, 255),
-                      ),
-                      borderRadius: BorderRadius.all(Radius.circular(15))),
+                    borderSide: BorderSide(
+                      width: 1,
+                      color: Color.fromARGB(255, 255, 255, 255),
+                    ),
+                    borderRadius: BorderRadius.all(Radius.circular(15))
+                  ),
                   focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        width: 1,
-                        color: Color.fromARGB(255, 255, 255, 255),
-                      ),
-                      borderRadius: BorderRadius.all(Radius.circular(15)))),
-            )));
+                    borderSide: BorderSide(
+                    width: 1,
+                    color: Color.fromARGB(255, 255, 255, 255),
+                    ),
+                      borderRadius: BorderRadius.all(Radius.circular(15)))
+                    ),
+                  
+            )
+        )
+      );
   }
 }
