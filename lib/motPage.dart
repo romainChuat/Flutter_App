@@ -142,7 +142,7 @@ class _motPage extends State<motPage> {
                     mylib.createQuitButton(
                         context, 141, 41, MyHomePage(), reponses),
                     mylib.createNextButton(
-                      "Next",
+                      "btn_next".tr(),
                       context,
                       141,
                       41,

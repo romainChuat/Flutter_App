@@ -159,7 +159,7 @@ class _userconnexionpassword extends State<userconnexionpassword> {
   }
 
   Widget buildRemeberCb() {
-    return Container(
+    return SizedBox(
         height: 20,
         child: Row(
           children: <Widget>[
@@ -182,11 +182,9 @@ class _userconnexionpassword extends State<userconnexionpassword> {
   }
 
   Widget buildLoginBtn() {
-    return Container(
+    return SizedBox(
       width: 120,
       height: 43,
-      // padding: EdgeInsets.symmetric(vertical: 25),
-      //width: double.infinity,
       child: ElevatedButton(
         onPressed: () async {
           await loginCorrect();
@@ -221,7 +219,7 @@ class _userconnexionpassword extends State<userconnexionpassword> {
     return Container(
       child: Align(
         alignment: const Alignment(-0.66, 0.0),
-        child: Container(
+        child: SizedBox(
           width: 150,
           height: 50,
           child: ElevatedButton(
@@ -257,7 +255,7 @@ class _userconnexionpassword extends State<userconnexionpassword> {
     return Container(
       child: Align(
         alignment: const Alignment(0.66, 0.0),
-        child: Container(
+        child: SizedBox(
           width: 150,
           height: 50,
           child: ElevatedButton(
@@ -297,7 +295,7 @@ class _userconnexionpassword extends State<userconnexionpassword> {
         child: GestureDetector(
             child: Stack(
           children: <Widget>[
-            Container(
+            SizedBox(
               height: double.infinity,
               width: double.infinity,
               //decoration: mylib.background1,
@@ -327,6 +325,7 @@ class _userconnexionpassword extends State<userconnexionpassword> {
                               buildTitle(),
                               const SizedBox(height: 30),
                               buildEmail(),
+                              
                               const SizedBox(height: 15),
                               buildPassword(),
                               Row(

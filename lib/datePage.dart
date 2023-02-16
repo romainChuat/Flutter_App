@@ -86,7 +86,7 @@ class _datePage extends State<datePage> {
                                           //labelText: "Enter Date",
                                           filled: true,
                                           fillColor: Colors.white,
-                                          hintText: 'datePage_enter_date',
+                                          hintText: 'Entrer une date',
                                           contentPadding:
                                               const EdgeInsets.fromLTRB(
                                                   10, 1, 0, 0),
