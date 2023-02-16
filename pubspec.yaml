@@ -84,6 +84,11 @@ flutter:
       fonts:
        - asset: fonts/Nunito-VariableFont_wght.ttf
        - asset: fonts/Nunito-Bold.ttf
+       - asset: fonts/Nunito-Light.ttf
+       - asset: fonts/Nunito-Medium.ttf
+       - asset: fonts/Nunito-Regular.ttf
+
+
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

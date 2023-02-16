@@ -195,8 +195,7 @@ class Creationcompte extends State<CreationCompte> {
                 if (connected == true) {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (BuildContext context) =>
-                          const hellologinpassword(),
+                      builder: (BuildContext context) => hellologinpassword(),
                     ),
                   );
                 }
@@ -358,12 +357,15 @@ class Creationcompte extends State<CreationCompte> {
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,
         child: GestureDetector(
-            child: Stack(
+          
+          child: Stack(
           children: <Widget>[
             Container(
               height: double.infinity,
               width: double.infinity,
-             // decoration: mylib.background1,
+              //decoration: mylib.background1,
+              child: Center(
+             child: SingleChildScrollView(
               child: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -426,7 +428,8 @@ class Creationcompte extends State<CreationCompte> {
                   ],
                 ),
               ),
-              // )
+             )
+              )
             )
           ],
         )),

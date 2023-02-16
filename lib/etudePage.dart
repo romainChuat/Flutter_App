@@ -25,6 +25,8 @@ enum Niveau {
 class _etudePage extends State<etudePage> {
   var niveau;
   TextEditingController textControler =  new TextEditingController();
+  
+  get text => null;
 
 
   @override
@@ -43,7 +45,6 @@ class _etudePage extends State<etudePage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                 
                   const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
                   ClipRRect(
                     borderRadius: BorderRadius.circular(15.0),
@@ -205,23 +206,22 @@ class _etudePage extends State<etudePage> {
                               SizedBox(
                                 height: 32,
                                 child: RadioListTile(
-
                                   activeColor: Color.fromARGB(255, 41, 59, 229),
                                   title: TextField(
                                     style: mylib.simpleText.apply(fontSizeDelta: 5),
                                     cursorColor: Color.fromARGB(255, 117, 106, 106),
-                                    decoration: InputDecoration(
-                                      contentPadding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                                    decoration: const InputDecoration(
+                                      contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 10),
                                       filled: true,
                                       fillColor: Colors.white,
-                                      enabledBorder: const OutlineInputBorder(
+                                      enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                           width: 1,
                                           color: Color.fromARGB(255, 255, 255, 255),
                                         ),
                                         borderRadius:BorderRadius.all(Radius.circular(15))
                                       ),
-                                      focusedBorder:const OutlineInputBorder(
+                                      focusedBorder:OutlineInputBorder(
                                         borderSide: BorderSide(
                                           width: 1,
                                           color: Color.fromARGB(255, 255, 255, 255),

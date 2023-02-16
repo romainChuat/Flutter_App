@@ -1,6 +1,6 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/commentPage.dart';
+import 'donner_avis_marker.dart';
 import 'homePage.dart';
 import 'mylib.dart' as mylib;
 
@@ -44,7 +44,7 @@ class _hello_login_page extends State<hello_login_page> {
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) => commentPage(),
+              builder: (BuildContext context) => donner_avis_marker(),
             ),
           );
         },
