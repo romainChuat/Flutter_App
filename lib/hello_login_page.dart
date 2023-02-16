@@ -1,12 +1,7 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_application_1/commentPage.dart';
-import 'forgot_password_page.dart';
-import 'startPage.dart';
-import 'mapPage.dart';
 import 'homePage.dart';
-import 'connexion.dart';
 import 'mylib.dart' as mylib;
 
 class hello_login_page extends StatefulWidget {
@@ -20,6 +15,7 @@ class _hello_login_page extends State<hello_login_page> {
   bool darkmode = false;
   dynamic savedThemeMode;
 
+  @override
   void initState() {
     super.initState();
     getCurrentTheme();
@@ -41,7 +37,7 @@ class _hello_login_page extends State<hello_login_page> {
   }
 
   Widget buildAccessMap() {
-    return Container(
+    return SizedBox(
       width: 286,
       height: 49,
       child: ElevatedButton(
@@ -54,7 +50,6 @@ class _hello_login_page extends State<hello_login_page> {
         },
         style: ElevatedButton.styleFrom(
           shadowColor: Colors.grey.shade700,
-          //backgroundColor: const Color.fromARGB(255, 41, 59, 229),
           elevation: 20,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
@@ -71,7 +66,7 @@ class _hello_login_page extends State<hello_login_page> {
   }
 
   Widget buildAccessQuestionnaire(Map<String, Object> reponses) {
-    return Container(
+    return SizedBox(
       width: 286,
       height: 49,
       child: ElevatedButton(
@@ -84,7 +79,6 @@ class _hello_login_page extends State<hello_login_page> {
         },
         style: ElevatedButton.styleFrom(
           shadowColor: Colors.grey.shade700,
-         // backgroundColor: Color.fromARGB(255, 13, 12, 32),
           elevation: 20,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
@@ -104,51 +98,44 @@ class _hello_login_page extends State<hello_login_page> {
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
-
-    final text = MediaQuery.of(context).platformBrightness == Brightness.dark
-        ? 'DarkTheme'
-        : 'LightTheme';
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: mylib.baseAppBar(
         appBar: AppBar(),
       ),
       endDrawer: mylib.createMenu(context),
-
       body: Center(
-        child : ClipRRect(
-                    borderRadius : BorderRadius.all(Radius.circular(10)),
-                    
-                    child:Container(                   
-                       color: Color.fromARGB(255, 235, 233, 233),
-                       width: 309,
-                      height: 464,
-                      
-
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Container(
-              width: 250,
-                      child: Text("Hello, ${reponses["username"]}", style: mylib.titleStyle2),
+        child: ClipRRect(
+          borderRadius: const BorderRadius.all(Radius.circular(10)),
+          child: Container(
+            color: const Color.fromARGB(255, 235, 233, 233),
+            width: 309,
+            height: 464,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                SizedBox(
+                  width: 250,
+                  child: Text("Hello, ${reponses["username"]}",
+                      style: mylib.titleStyle2),
+                ),
+                const SizedBox(height: 61),
+                const SizedBox(
+                  width: 250,
+                  child: Text(
+                      'Veuillez choisir ce que vous souhaitez réaliser.',
+                      style: mylib.titleStyle),
+                ),
+                const SizedBox(height: 61),
+                buildAccessMap(),
+                const SizedBox(height: 61),
+                buildAccessQuestionnaire(reponses),
+                const SizedBox(height: 61),
+              ],
             ),
-            const SizedBox(height: 61),
-            Container(
-              width: 250,
-              child: const Text(
-                  'Veuillez choisir ce que vous souhaitez réaliser.',
-                  style: mylib.titleStyle),
-            ),
-            const SizedBox(height: 61),
-            buildAccessMap(),
-            const SizedBox(height: 61),
-            buildAccessQuestionnaire(reponses),
-            const SizedBox(height: 61),
-          ],
+          ),
         ),
       ),
-      ),
-    ),
     );
   }
 }

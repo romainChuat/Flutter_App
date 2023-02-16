@@ -42,7 +42,7 @@ class _fichierPage extends State<fichierPage> {
                   child: Container(
                     width: 336,
                     height: 285,
-                    color: Color.fromARGB(255, 235, 233, 233),
+                    color: const Color.fromARGB(255, 235, 233, 233),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
@@ -61,7 +61,7 @@ class _fichierPage extends State<fichierPage> {
                           indent: 20,
                           endIndent: 20,
                         ),
-                        Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                        const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
                         SizedBox(
     
   
@@ -123,8 +123,8 @@ class _fichierPage extends State<fichierPage> {
 
                               ),
                             ),
-                            Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
-                            Text(
+                            const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
+                            const Text(
                               "! Veuillez envoyez au plus 1 fichier",
                               style: mylib.warningText,
                             ),
