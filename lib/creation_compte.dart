@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/database_helper.dart';
 import 'package:flutter_application_1/utilisateur.dart';
-import 'package:flutter_application_1/conditions_Utilisations.dart';
+import 'package:flutter_application_1/use_conditions.dart';
 import 'package:flutter_application_1/user_choix_connexion.dart';
 import 'connexion_admin.dart';
 import 'hello_login_password.dart';
@@ -163,7 +163,7 @@ class Creationcompte extends State<CreationCompte> {
           print("Use conditions pressed"),
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) => const conditionsUtilisations(),
+              builder: (BuildContext context) => const UseConditions(),
             ),
           ),
         },
