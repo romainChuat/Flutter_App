@@ -25,8 +25,8 @@ class DatabaseHelper {
     return PostgreSQLConnection("10.0.2.2", 5432, 'city',
         queryTimeoutInSeconds: 3600,
         timeoutInSeconds: 3600,
-        username: 'postgres',
-        password: 'fluttertest');
+        username: 'katty',
+        password: 'admin');
   }
 
   //Open a connection to the database in a variable, then return it

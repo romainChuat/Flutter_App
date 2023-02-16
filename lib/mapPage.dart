@@ -1,8 +1,6 @@
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/homePage.dart';
-import 'package:flutter_application_1/startPage.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map/plugin_api.dart';
 import 'package:latlong2/latlong.dart';
@@ -44,31 +42,25 @@ class _mapPage extends State<mapPage> {
         endDrawer: mylib.createMenu(context),
         body: Container(
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
-          //decoration: mylib.background1,
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                
                 ClipRRect(
                     borderRadius: BorderRadius.circular(15.0),
                     child: Container(
                       width: 336,
                       height: 570,
-                      color: Color.fromARGB(255, 235, 233, 233),
+                      color: const Color.fromARGB(255, 235, 233, 233),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Container(
                             padding: const EdgeInsets.fromLTRB(7, 0, 3, 0),
-                            
-                              child: Align(
+                            child: Align(
                               alignment: Alignment.center,
-                                 child: Text(
-
-                                "mapPage_title".tr(), 
-                                style: mylib.blueText
-                              ),
+                              child: Text("mapPage_title".tr(),
+                                  style: mylib.blueText),
                             ),
                           ),
                           const Divider(
@@ -100,18 +92,16 @@ class _mapPage extends State<mapPage> {
                                           width: 25.0,
                                           height: 25.0,
                                           point: value,
-                                          builder: (ctx) => Container(
-                                                child: IconButton(
-                                                  icon: Icon(
-                                                    Icons.location_on,
-                                                    color: Colors.redAccent,
-                                                    size: 30,
-                                                  ),
-                                                  onPressed: () {
-                                                    print("afficher avis");
-                                                  },
-                                                ),
-                                              )));
+                                          builder: (ctx) => IconButton(
+                                            icon: const Icon(
+                                              Icons.location_on,
+                                              color: Colors.redAccent,
+                                              size: 30,
+                                            ),
+                                            onPressed: () {
+                                              print("afficher avis");
+                                            },
+                                          )));
                                       setState(() {});
                                     },
                                   ),
@@ -137,7 +127,7 @@ class _mapPage extends State<mapPage> {
                                               onPressed: () {
                                                 _zoomIn();
                                               },
-                                              child: Icon(
+                                              child: const Icon(
                                                 Icons.zoom_in,
                                                 size: 25,
                                               ),
@@ -145,7 +135,7 @@ class _mapPage extends State<mapPage> {
                                                 shape:
                                                     MaterialStateProperty.all<
                                                         RoundedRectangleBorder>(
-                                                  RoundedRectangleBorder(
+                                                  const RoundedRectangleBorder(
                                                     borderRadius:
                                                         BorderRadius.only(
                                                             topLeft: Radius
@@ -168,7 +158,7 @@ class _mapPage extends State<mapPage> {
                                               onPressed: () {
                                                 _zoomOut();
                                               },
-                                              child: Icon(
+                                              child: const Icon(
                                                 Icons.zoom_out,
                                                 size: 25,
                                               ),
@@ -176,7 +166,7 @@ class _mapPage extends State<mapPage> {
                                                 shape:
                                                     MaterialStateProperty.all<
                                                         RoundedRectangleBorder>(
-                                                  RoundedRectangleBorder(
+                                                  const RoundedRectangleBorder(
                                                     borderRadius:
                                                         BorderRadius.only(
                                                             bottomLeft: Radius
@@ -202,7 +192,8 @@ class _mapPage extends State<mapPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    mylib.createQuitButton(context, 141, 41, MyHomePage(), reponses),
+                    mylib.createQuitButton(
+                        context, 141, 41, const MyHomePage(), reponses),
                     mylib.createNextButton(
                       "btn_next".tr(),
                       context,

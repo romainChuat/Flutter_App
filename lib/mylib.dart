@@ -1,12 +1,9 @@
 library mylib;
 
 import 'package:adaptive_theme/adaptive_theme.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/hello_admin_page.dart';
 import 'package:flutter_application_1/hello_login_password.dart';
-import 'package:flutter_application_1/homePage.dart';
 import 'package:flutter_application_1/languagePage.dart';
 import 'package:flutter_application_1/provider.dart';
 import 'package:flutter_application_1/user_choix_connexion.dart';
@@ -345,22 +342,22 @@ createMenu(BuildContext context) {
   return ClipRRect(
     borderRadius: BorderRadius.circular(30),
     child: Container(
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       width: 260,
       child: Drawer(
-        backgroundColor: Color.fromARGB(255, 30, 77, 233),
+        backgroundColor: const Color.fromARGB(255, 30, 77, 233),
         child: Column(
           children: [
-            Padding(padding: EdgeInsets.all(30)),
+            const Padding(padding: EdgeInsets.all(30)),
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
-              child: Container(
+              child: SizedBox(
                 width: 230,
                 height: 58,
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      foregroundColor: Color.fromARGB(255, 41, 59, 229),
-                      backgroundColor: Color.fromARGB(255, 235, 233, 233),
+                      foregroundColor: const Color.fromARGB(255, 41, 59, 229),
+                      backgroundColor: const Color.fromARGB(255, 235, 233, 233),
                     ),
                     onPressed: () {
                       if (adminConnect == true) {
@@ -382,8 +379,8 @@ createMenu(BuildContext context) {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Padding(padding: EdgeInsets.all(6)),
-                        Text(
+                        const Padding(padding: EdgeInsets.all(6)),
+                        const Text(
                           "Menu",
                           style: blueText,
                         ),
@@ -391,16 +388,16 @@ createMenu(BuildContext context) {
                     )),
               ),
             ),
-            Padding(padding: EdgeInsets.all(10)),
+            const Padding(padding: EdgeInsets.all(10)),
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
-              child: Container(
+              child: SizedBox(
                 width: 230,
                 height: 58,
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      foregroundColor: Color.fromARGB(255, 41, 59, 229),
-                      backgroundColor: Color.fromARGB(255, 235, 233, 233),
+                      foregroundColor: const Color.fromARGB(255, 41, 59, 229),
+                      backgroundColor: const Color.fromARGB(255, 235, 233, 233),
                     ),
                     onPressed: () {
                       adminConnect = false;
@@ -414,9 +411,9 @@ createMenu(BuildContext context) {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Icon(Icons.lens, size: 18),
-                        Padding(padding: EdgeInsets.all(6)),
-                        Text(
+                        const Icon(Icons.lens, size: 18),
+                        const Padding(padding: EdgeInsets.all(6)),
+                        const Text(
                           "Deconnexion",
                           style: blueText,
                         ),
@@ -424,16 +421,16 @@ createMenu(BuildContext context) {
                     )),
               ),
             ),
-            Padding(padding: EdgeInsets.all(10)),
+            const Padding(padding: EdgeInsets.all(10)),
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
-              child: Container(
+              child: SizedBox(
                 width: 230,
                 height: 58,
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      foregroundColor: Color.fromARGB(255, 41, 59, 229),
-                      backgroundColor: Color.fromARGB(255, 235, 233, 233),
+                      foregroundColor: const Color.fromARGB(255, 41, 59, 229),
+                      backgroundColor: const Color.fromARGB(255, 235, 233, 233),
                     ),
                     onPressed: () {
                       AdaptiveTheme.of(context).setDark();
@@ -442,7 +439,7 @@ createMenu(BuildContext context) {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         ChangeThemeButtonWidget(),
-                        Text(
+                        const Text(
                           "Mode sombre",
                           style: blueText,
                         ),
@@ -450,7 +447,7 @@ createMenu(BuildContext context) {
                     )),
               ),
             ),
-            Padding(padding: EdgeInsets.all(10)),
+            const Padding(padding: EdgeInsets.all(10)),
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Container(
@@ -458,8 +455,8 @@ createMenu(BuildContext context) {
                 height: 58,
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      foregroundColor: Color.fromARGB(255, 41, 59, 229),
-                      backgroundColor: Color.fromARGB(255, 235, 233, 233),
+                      foregroundColor: const Color.fromARGB(255, 41, 59, 229),
+                      backgroundColor: const Color.fromARGB(255, 235, 233, 233),
                     ),
                     onPressed: () {
                       Navigator.push(

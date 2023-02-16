@@ -1,10 +1,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/homePage.dart';
-import 'package:flutter_application_1/startPage.dart';
 import 'etudePage.dart';
 import 'mylib.dart' as mylib;
-import 'package:intl/intl.dart';
 
 class genrePage extends StatefulWidget {
   @override
@@ -20,9 +18,6 @@ class _genrePage extends State<genrePage> {
 
   @override
   Widget build(BuildContext context) {
-    final text = MediaQuery.of(context).platformBrightness == Brightness.dark
-        ? 'DarkTheme'
-        : 'LightTheme';
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
     print(reponses);
@@ -43,9 +38,8 @@ class _genrePage extends State<genrePage> {
                   child: Container(
                     width: 336,
                     height: 265,
-                    color: Color.fromARGB(255, 235, 233, 233),
+                    color: const Color.fromARGB(255, 235, 233, 233),
                     child: Column(
-                      //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Container(
                           padding: const EdgeInsets.fromLTRB(1, 20, 1, 0),
@@ -67,7 +61,7 @@ class _genrePage extends State<genrePage> {
                             SizedBox(
                                 height: 32,
                                 child: RadioListTile(
-                                  activeColor: Color.fromARGB(255, 41, 59, 229),
+                                  activeColor: const Color.fromARGB(255, 41, 59, 229),
                                   title: const Text("Féminin",
                                       style: mylib.radioText),
                                   groupValue: genre,
@@ -85,7 +79,7 @@ class _genrePage extends State<genrePage> {
                             SizedBox(
                               height: 32,
                               child: RadioListTile(
-                                activeColor: Color.fromARGB(255, 41, 59, 229),
+                                activeColor: const Color.fromARGB(255, 41, 59, 229),
                                 title: const Text("Masculin",
                                     style: mylib.radioText),
                                 groupValue: genre,
@@ -104,7 +98,7 @@ class _genrePage extends State<genrePage> {
                             SizedBox(
                               height: 32,
                               child: RadioListTile(
-                                activeColor: Color.fromARGB(255, 41, 59, 229),
+                                activeColor: const Color.fromARGB(255, 41, 59, 229),
                                 title: const Text("Autre genre",
                                     style: mylib.radioText),
                                 groupValue: genre,
@@ -129,7 +123,7 @@ class _genrePage extends State<genrePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    mylib.createQuitButton(context, 141, 41, MyHomePage(), reponses),
+                    mylib.createQuitButton(context, 141, 41, const MyHomePage(), reponses),
                     mylib.createNextButton(
                       "Next",
                       context,

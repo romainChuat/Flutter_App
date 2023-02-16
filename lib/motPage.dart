@@ -2,9 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/agePage.dart';
 import 'package:flutter_application_1/homePage.dart';
-import 'package:flutter_application_1/startPage.dart';
 import 'mylib.dart' as mylib;
-import 'package:intl/intl.dart';
 
 class motPage extends StatefulWidget {
   @override

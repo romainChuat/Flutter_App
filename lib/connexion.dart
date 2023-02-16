@@ -3,10 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_application_1/user_choix_connexion.dart';
 import 'connexion_admin.dart';
 import 'hello_login_page.dart';
-import 'startPage.dart';
-import 'mapPage.dart';
-import 'homePage.dart';
-import 'connexion.dart';
 import 'mylib.dart' as mylib;
 
 class connexion extends StatefulWidget {

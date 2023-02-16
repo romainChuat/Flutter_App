@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:flutter_map/plugin_api.dart';
 import 'endPage.dart';
-import 'forgot_password_page.dart';
-import 'startPage.dart';
-import 'mapPage.dart';
 import 'homePage.dart';
-import 'connexion.dart';
 import 'mylib.dart' as mylib;
 
 class gerer_markers_recu_admin extends StatefulWidget {

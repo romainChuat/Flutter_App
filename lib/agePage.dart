@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'genrePage.dart';
 import 'mylib.dart' as mylib;
-import 'package:intl/intl.dart';
 
 class agePage extends StatefulWidget {
   @override
@@ -15,9 +14,6 @@ class _agePage extends State<agePage> {
 
   @override
   Widget build(BuildContext context) {
-    final text = MediaQuery.of(context).platformBrightness == Brightness.dark
-        ? 'DarkTheme'
-        : 'LightTheme';
 
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
@@ -38,7 +34,7 @@ class _agePage extends State<agePage> {
                   child: Container(
                     width: 336,
                     height: 415,
-                    color: Color.fromARGB(255, 235, 233, 233),
+                    color: const Color.fromARGB(255, 235, 233, 233),
                     child: Column(
                       children: [
                         Container(

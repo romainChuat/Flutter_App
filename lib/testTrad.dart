@@ -43,7 +43,6 @@ class _testTrad extends State<testTrad> {
         endDrawer: mylib.createMenu(context),
         body: Container(
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
-          //decoration: mylib.background1,
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -61,13 +60,13 @@ class _testTrad extends State<testTrad> {
                     child: Container(
                       width: 336,
                       height: 570,
-                      color: Color.fromARGB(255, 235, 233, 233),
+                      color: const Color.fromARGB(255, 235, 233, 233),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Container(
                             padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
-                            child: Text(
+                            child: const Text(
                               'map_question',
                               style: mylib.blueText,
                               textAlign: TextAlign.center,
@@ -93,7 +92,6 @@ class _testTrad extends State<testTrad> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    //mylib.createQuitButton(context, 141, 41),
                     mylib.createNextButton(
                       'next_btn_text'.tr(),
                       context,

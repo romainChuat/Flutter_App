@@ -23,9 +23,6 @@ class _datePage extends State<datePage> {
 
   @override
   Widget build(BuildContext context) {
-    final text = MediaQuery.of(context).platformBrightness == Brightness.dark
-        ? 'DarkTheme'
-        : 'LightTheme';
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
     return Scaffold(
@@ -43,7 +40,7 @@ class _datePage extends State<datePage> {
                   child: Container(
                     width: 336,
                     height: 290,
-                    color: Color.fromARGB(255, 235, 233, 233),
+                    color: const Color.fromARGB(255, 235, 233, 233),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
@@ -61,7 +58,7 @@ class _datePage extends State<datePage> {
                           indent: 20,
                           endIndent: 20,
                         ),
-                        Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 0)),
+                        const Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 0)),
                         SizedBox(
                           width: 265,
                           height: 180,
@@ -73,7 +70,7 @@ class _datePage extends State<datePage> {
                                   child: Material(
                                     elevation: 5,
                                     borderRadius:
-                                        BorderRadius.all(Radius.circular(10)),
+                                        const BorderRadius.all(Radius.circular(10)),
                                     child: TextField(
                                       style: mylib.simpleText
                                           .apply(fontSizeDelta: 5),
@@ -147,7 +144,7 @@ class _datePage extends State<datePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    mylib.createQuitButton(context, 141, 41,startPage(), reponses),
+                    mylib.createQuitButton(context, 141, 41,const startPage(), reponses),
                     mylib.createNextButton(
                       "btn_next".tr(),
                       context,
