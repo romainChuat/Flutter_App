@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/homePage.dart';
 import 'package:flutter_icon_shadow/flutter_icon_shadow.dart';
 import 'database_helper_local.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'mylib.dart' as mylib;
 
 class endPage extends StatefulWidget {
@@ -36,7 +37,14 @@ class _endPage extends State<endPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-                    const Text('Merci, Login', style: mylib.titleStyle),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("endPage_thanks".tr(), style: mylib.titleStyle),
+                        Text("${reponses["username"]}",
+                            style: mylib.titleStyle),
+                      ],
+                    ),
                     SizedBox(
                       width: 320,
                       height: 350,
@@ -94,8 +102,8 @@ class _endPage extends State<endPage> {
                 settings: RouteSettings(arguments: reponses),
               ));
         },
-        child: const Text(
-          "Submit",
+        child: Text(
+          "btn_submit".tr(),
           style: mylib.titleStyle,
         ),
       ),
