@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'Traiter_avis_recu_admin.dart';
-import 'forgot_password_page.dart';
 import 'gerer_les_avis_refuse_admin.dart';
 import 'gerer_les_avis_validé_admin.dart';
-import 'hello_admin_page.dart';
-import 'startPage.dart';
-import 'mapPage.dart';
-import 'homePage.dart';
-import 'connexion.dart';
+
 import 'mylib.dart' as mylib;
 
 class acceuilgererlesavis extends StatefulWidget {
@@ -22,7 +16,7 @@ class _acceuilgererlesavis extends State<acceuilgererlesavis>{
 
   
 Widget GererLesAvisValide(){
-  return Container(
+  return SizedBox(
      width: 296,
     height: 49,
     child: ElevatedButton(                    
@@ -40,7 +34,7 @@ Widget GererLesAvisValide(){
                          elevation: 20,
                           shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15.0),
-                    side: BorderSide(color: Colors.white, width: 3),
+                    side: const BorderSide(color: Colors.white, width: 3),
                   ),
                         ),
                         child: const Text("Gérer les avis validé", 

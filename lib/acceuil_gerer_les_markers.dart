@@ -1,15 +1,8 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'Traiter_markers_recu_admin.dart';
-import 'forgot_password_page.dart';
 import 'gerer_les_markers_recu_admin_choisis.dart';
 import 'gerer_markers_refuse_admin.dart';
-import 'hello_admin_page.dart';
-import 'startPage.dart';
-import 'mapPage.dart';
-import 'homePage.dart';
-import 'connexion.dart';
 import 'mylib.dart' as mylib;
 
 class acceuilgererlesmarkers extends StatefulWidget {

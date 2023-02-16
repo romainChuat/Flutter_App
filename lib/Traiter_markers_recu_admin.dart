@@ -4,11 +4,7 @@ import 'package:flutter_application_1/endPage.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:flutter_map/plugin_api.dart';
-import 'forgot_password_page.dart';
-import 'startPage.dart';
-import 'mapPage.dart';
 import 'homePage.dart';
-import 'connexion.dart';
 import 'mylib.dart' as mylib;
 
 class traiter_markers_recu_admin extends StatefulWidget {
@@ -19,14 +15,12 @@ class traiter_markers_recu_admin extends StatefulWidget {
       _traiter_markers_recu_admin();
 }
 
-class _traiter_markers_recu_admin
-    extends State<traiter_markers_recu_admin> {
+class _traiter_markers_recu_admin extends State<traiter_markers_recu_admin> {
   final mapController = MapController();
-    var marker = <Marker>[];
-
+  var marker = <Marker>[];
 
   Widget buildAccessMap() {
-    return Container(
+    return SizedBox(
       width: 296,
       height: 49,
       child: ElevatedButton(
@@ -43,7 +37,7 @@ class _traiter_markers_recu_admin
           elevation: 20,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
-            side: BorderSide(color: Colors.white, width: 3),
+            side: const BorderSide(color: Colors.white, width: 3),
           ),
         ),
         child: const Text(
@@ -61,9 +55,7 @@ class _traiter_markers_recu_admin
       child: Container(
         width: 325,
         height: 60,
-        color: Color.fromARGB(255, 235, 233, 233),
-        //child: Column(
-        //children: [
+        color: const Color.fromARGB(255, 235, 233, 233),
         child: Container(
           padding: const EdgeInsets.fromLTRB(1, 15, 1, 0),
           child: const Text(
@@ -87,7 +79,7 @@ class _traiter_markers_recu_admin
           child: Container(
             width: 325,
             height: 454,
-            color: Color.fromARGB(255, 235, 233, 233),
+            color: const Color.fromARGB(255, 235, 233, 233),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -106,46 +98,51 @@ class _traiter_markers_recu_admin
                   endIndent: 20,
                 ),
                 SizedBox(
-                          width: 265,
-                          height: 378,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(15.0),
-                            child: FlutterMap(
-                              mapController: mapController,
-                              options: MapOptions(
-                                center: LatLng(47.235198, 6.021029), 
-                                zoom: 14,
-                                onTap: (LatLng value) {
-                                  print("tape");
-                                  marker.add(Marker(
-                                    width: 25.0,
-                                    height: 25.0,
-                                    point: value,
-                                    builder: (ctx) => Container(
-                                        child: IconButton(
-                                          icon: Icon(Icons.location_on, color: Colors.redAccent, size: 30,), 
-                                          onPressed: () { 
-                                            print("afficher avis");
-                                          },
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                                  setState(() {});
-                                },
-                              ),
-                              layers: [
-                                TileLayerOptions(
-                                  urlTemplate: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                  width: 265,
+                  height: 378,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(15.0),
+                    child: FlutterMap(
+                      mapController: mapController,
+                      options: MapOptions(
+                        center: LatLng(47.235198, 6.021029),
+                        zoom: 14,
+                        onTap: (LatLng value) {
+                          print("tape");
+                          marker.add(
+                            Marker(
+                              width: 25.0,
+                              height: 25.0,
+                              point: value,
+                              builder: (ctx) => Container(
+                                child: IconButton(
+                                  icon: const Icon(
+                                    Icons.location_on,
+                                    color: Colors.redAccent,
+                                    size: 30,
+                                  ),
+                                  onPressed: () {
+                                    print("afficher avis");
+                                  },
                                 ),
-                                MarkerLayerOptions(
-                                  markers: marker,
-                                ),                
-                              ],
-                              
+                              ),
                             ),
-                          ),
+                          );
+                          setState(() {});
+                        },
+                      ),
+                      layers: [
+                        TileLayerOptions(
+                          urlTemplate:
+                              "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
                         ),
+                        MarkerLayerOptions(
+                          markers: marker,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
@@ -163,7 +160,7 @@ class _traiter_markers_recu_admin
           child: Container(
             width: 325,
             height: 254,
-            color: Color.fromARGB(255, 235, 233, 233),
+            color: const Color.fromARGB(255, 235, 233, 233),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -184,7 +181,7 @@ class _traiter_markers_recu_admin
                 Container(
                   width: 280,
                   height: 156,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage("images/photo_besancon.jpg"),
                       fit: BoxFit.cover,
@@ -208,7 +205,7 @@ class _traiter_markers_recu_admin
           child: Container(
             width: 325,
             height: 140,
-            color: Color.fromARGB(255, 235, 233, 233),
+            color: const Color.fromARGB(255, 235, 233, 233),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -227,19 +224,19 @@ class _traiter_markers_recu_admin
                   endIndent: 20,
                 ),
                 ClipRRect(
-          borderRadius: BorderRadius.circular(15.0),
-          child: Container(
-            width: 300,
-            height: 46,
-            color: Color.fromARGB(255, 255, 255, 255),
-            child: Align(
-                      child: const Text("jj/mm/aaaa", 
-                            style: mylib.titleStyle3,
-                                    textAlign: TextAlign.center,
-                                    
-                          ),
+                  borderRadius: BorderRadius.circular(15.0),
+                  child: Container(
+                    width: 300,
+                    height: 46,
+                    color: const Color.fromARGB(255, 255, 255, 255),
+                    child: const Align(
+                      child: Text(
+                        "jj/mm/aaaa",
+                        style: mylib.titleStyle3,
+                        textAlign: TextAlign.center,
                       ),
-          ),
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -250,7 +247,6 @@ class _traiter_markers_recu_admin
   }
 
   Widget Expression() {
-
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -259,7 +255,7 @@ class _traiter_markers_recu_admin
           child: Container(
             width: 325,
             height: 310,
-            color: Color.fromARGB(255, 235, 233, 233),
+            color: const Color.fromARGB(255, 235, 233, 233),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -278,65 +274,62 @@ class _traiter_markers_recu_admin
                   endIndent: 20,
                 ),
                 ClipRRect(
-          borderRadius: BorderRadius.circular(15.0),
-        child: Column(
-          children: [
-           Container(
-            
-            width: 300,
-            height: 46,
-            color: Color.fromARGB(255, 255, 255, 255),
-            child: Align(
-                      child: const Text("1. Texte texte texte texte", 
+                  borderRadius: BorderRadius.circular(15.0),
+                  child: Column(
+                    children: [
+                      Container(
+                        width: 300,
+                        height: 46,
+                        color: const Color.fromARGB(255, 255, 255, 255),
+                        child: const Align(
+                          child: Text(
+                            "1. Texte texte texte texte",
                             style: mylib.titleStyle3,
-                                    textAlign: TextAlign.center,
-                                    
+                            textAlign: TextAlign.center,
                           ),
+                        ),
                       ),
-          ),
-                   SizedBox(height: 10),                   
-          Container(
-            width: 300,
-            height: 46,
-            color: Color.fromARGB(255, 255, 255, 255),
-            child: Align(
-                      child: const Text("2. Texte texte texte texte", 
+                      const SizedBox(height: 10),
+                      Container(
+                        width: 300,
+                        height: 46,
+                        color: const Color.fromARGB(255, 255, 255, 255),
+                        child: const Align(
+                          child: Text(
+                            "2. Texte texte texte texte",
                             style: mylib.titleStyle3,
-                                    textAlign: TextAlign.center,
-                                    
+                            textAlign: TextAlign.center,
                           ),
+                        ),
                       ),
-          ),
-                             SizedBox(height: 10),                   
-
-          Container(
-            width: 300,
-            height: 46,
-            color: Color.fromARGB(255, 255, 255, 255),
-            child: Align(
-                      child: const Text("3. Texte texte texte texte", 
+                      const SizedBox(height: 10),
+                      Container(
+                        width: 300,
+                        height: 46,
+                        color: const Color.fromARGB(255, 255, 255, 255),
+                        child: const Align(
+                          child: Text(
+                            "3. Texte texte texte texte",
                             style: mylib.titleStyle3,
-                                    textAlign: TextAlign.center,
-                                    
+                            textAlign: TextAlign.center,
                           ),
+                        ),
                       ),
-          ),
-                             SizedBox(height: 10),                   
-
-          Container(
-            width: 300,
-            height: 46,
-            color: Color.fromARGB(255, 255, 255, 255),
-            child: Align(
-                      child: const Text("4. Texte texte texte texte", 
+                      const SizedBox(height: 10),
+                      Container(
+                        width: 300,
+                        height: 46,
+                        color: const Color.fromARGB(255, 255, 255, 255),
+                        child: const Align(
+                          child: Text(
+                            "4. Texte texte texte texte",
                             style: mylib.titleStyle3,
-                                    textAlign: TextAlign.center,
-                                    
+                            textAlign: TextAlign.center,
                           ),
+                        ),
                       ),
-          ),
-          ],
-        ),
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -345,8 +338,8 @@ class _traiter_markers_recu_admin
       ],
     );
   }
- 
- Widget Age() {
+
+  Widget Age() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -355,7 +348,7 @@ class _traiter_markers_recu_admin
           child: Container(
             width: 325,
             height: 140,
-            color: Color.fromARGB(255, 235, 233, 233),
+            color: const Color.fromARGB(255, 235, 233, 233),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -374,19 +367,19 @@ class _traiter_markers_recu_admin
                   endIndent: 20,
                 ),
                 ClipRRect(
-          borderRadius: BorderRadius.circular(15.0),
-          child: Container(
-            width: 300,
-            height: 46,
-            color: Color.fromARGB(255, 255, 255, 255),
-            child: Align(
-                      child: const Text("... - ... ans", 
-                            style: mylib.titleStyle3,
-                                    textAlign: TextAlign.center,
-                                    
-                          ),
+                  borderRadius: BorderRadius.circular(15.0),
+                  child: Container(
+                    width: 300,
+                    height: 46,
+                    color: const Color.fromARGB(255, 255, 255, 255),
+                    child: const Align(
+                      child: Text(
+                        "... - ... ans",
+                        style: mylib.titleStyle3,
+                        textAlign: TextAlign.center,
                       ),
-          ),
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -396,7 +389,7 @@ class _traiter_markers_recu_admin
     );
   }
 
- Widget Genre() {
+  Widget Genre() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -405,7 +398,7 @@ class _traiter_markers_recu_admin
           child: Container(
             width: 325,
             height: 140,
-            color: Color.fromARGB(255, 235, 233, 233),
+            color: const Color.fromARGB(255, 235, 233, 233),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -424,19 +417,19 @@ class _traiter_markers_recu_admin
                   endIndent: 20,
                 ),
                 ClipRRect(
-          borderRadius: BorderRadius.circular(15.0),
-          child: Container(
-            width: 300,
-            height: 46,
-            color: Color.fromARGB(255, 255, 255, 255),
-            child: Align(
-                      child: const Text("TexteGenre", 
-                            style: mylib.titleStyle3,
-                                    textAlign: TextAlign.center,
-                                    
-                          ),
+                  borderRadius: BorderRadius.circular(15.0),
+                  child: Container(
+                    width: 300,
+                    height: 46,
+                    color: const Color.fromARGB(255, 255, 255, 255),
+                    child: const Align(
+                      child: Text(
+                        "TexteGenre",
+                        style: mylib.titleStyle3,
+                        textAlign: TextAlign.center,
                       ),
-          ),
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -445,8 +438,8 @@ class _traiter_markers_recu_admin
       ],
     );
   }
- 
- Widget NiveauxEtude() {
+
+  Widget NiveauxEtude() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -455,7 +448,7 @@ class _traiter_markers_recu_admin
           child: Container(
             width: 325,
             height: 140,
-            color: Color.fromARGB(255, 235, 233, 233),
+            color: const Color.fromARGB(255, 235, 233, 233),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -474,19 +467,19 @@ class _traiter_markers_recu_admin
                   endIndent: 20,
                 ),
                 ClipRRect(
-          borderRadius: BorderRadius.circular(15.0),
-          child: Container(
-            width: 300,
-            height: 46,
-            color: Color.fromARGB(255, 255, 255, 255),
-            child: Align(
-                      child: const Text("Niveaux d'étude", 
-                            style: mylib.titleStyle3,
-                                    textAlign: TextAlign.center,
-                                    
-                          ),
+                  borderRadius: BorderRadius.circular(15.0),
+                  child: Container(
+                    width: 300,
+                    height: 46,
+                    color: const Color.fromARGB(255, 255, 255, 255),
+                    child: const Align(
+                      child: Text(
+                        "Niveaux d'étude",
+                        style: mylib.titleStyle3,
+                        textAlign: TextAlign.center,
                       ),
-          ),
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -496,7 +489,7 @@ class _traiter_markers_recu_admin
     );
   }
 
-   Widget ActiviteExerce() {
+  Widget ActiviteExerce() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -505,7 +498,7 @@ class _traiter_markers_recu_admin
           child: Container(
             width: 325,
             height: 140,
-            color: Color.fromARGB(255, 235, 233, 233),
+            color: const Color.fromARGB(255, 235, 233, 233),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -524,19 +517,19 @@ class _traiter_markers_recu_admin
                   endIndent: 20,
                 ),
                 ClipRRect(
-          borderRadius: BorderRadius.circular(15.0),
-          child: Container(
-            width: 300,
-            height: 46,
-            color: Color.fromARGB(255, 255, 255, 255),
-            child: Align(
-                      child: const Text("Activité", 
-                            style: mylib.titleStyle3,
-                                    textAlign: TextAlign.center,
-                                    
-                          ),
+                  borderRadius: BorderRadius.circular(15.0),
+                  child: Container(
+                    width: 300,
+                    height: 46,
+                    color: const Color.fromARGB(255, 255, 255, 255),
+                    child: const Align(
+                      child: Text(
+                        "Activité",
+                        style: mylib.titleStyle3,
+                        textAlign: TextAlign.center,
                       ),
-          ),
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -546,38 +539,37 @@ class _traiter_markers_recu_admin
     );
   }
 
-Widget btnAnnulerValidation(){
-  return Container(
-     width: 350,
-    height: 43,
-   // padding: EdgeInsets.symmetric(vertical: 25),
-    //width: double.infinity,
-    child: ElevatedButton(                    
-                      onPressed: () {
-                       Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (BuildContext context) =>  endPage(),
-                        ),
-                      );
-                      },    
-                                       
-                        style: ElevatedButton.styleFrom(
-                         shadowColor: Colors.grey.shade700,
-                         backgroundColor: const Color.fromARGB(255, 41, 59, 229),
-                         elevation: 20,
-                          shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.0),
-                    side: BorderSide(color: Colors.white, width: 3),
-                  ),
-                        ),
-                        child: const Text("Annuler la validation", 
-                            style: mylib.titleStyle2,
-                            textAlign: TextAlign.center,        
-                          ),
-                      ),
-  );
-}
-
+  Widget btnAnnulerValidation() {
+    return Container(
+      width: 350,
+      height: 43,
+      // padding: EdgeInsets.symmetric(vertical: 25),
+      //width: double.infinity,
+      child: ElevatedButton(
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (BuildContext context) => endPage(),
+            ),
+          );
+        },
+        style: ElevatedButton.styleFrom(
+          shadowColor: Colors.grey.shade700,
+          backgroundColor: const Color.fromARGB(255, 41, 59, 229),
+          elevation: 20,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15.0),
+            side: const BorderSide(color: Colors.white, width: 3),
+          ),
+        ),
+        child: const Text(
+          "Annuler la validation",
+          style: mylib.titleStyle2,
+          textAlign: TextAlign.center,
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -586,8 +578,7 @@ Widget btnAnnulerValidation(){
       appBar: mylib.baseAppBar(
         appBar: AppBar(),
       ),
-            endDrawer: mylib.createMenu(context),
-
+      endDrawer: mylib.createMenu(context),
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,
         child: GestureDetector(
@@ -596,18 +587,15 @@ Widget btnAnnulerValidation(){
             Container(
               height: double.infinity,
               width: double.infinity,
-             // decoration: mylib.background1,
+              // decoration: mylib.background1,
               child: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 55, 0, 0)),
+                    const Padding(padding: EdgeInsets.fromLTRB(0, 55, 0, 0)),
                     ClipRRect(
                       borderRadius: BorderRadius.circular(15.0),
-                      
                       child: Container(
-                        
                         width: 359,
                         height: 600,
                         decoration: const BoxDecoration(
@@ -625,31 +613,31 @@ Widget btnAnnulerValidation(){
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Padding(
+                              const Padding(
                                   padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
                               TitleDate(),
-                              Padding(
+                              const Padding(
                                   padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
                               Map(),
-                              Padding(
+                              const Padding(
                                   padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
                               Photo(),
-                              Padding(
+                              const Padding(
                                   padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
                               Date(),
-                              Padding(
+                              const Padding(
                                   padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
                               Expression(),
-                              Padding(
+                              const Padding(
                                   padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
                               Age(),
-                              Padding(
+                              const Padding(
                                   padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
                               Genre(),
-                              Padding(
+                              const Padding(
                                   padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
                               NiveauxEtude(),
-                              Padding(
+                              const Padding(
                                   padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
                               ActiviteExerce(),
                             ],
@@ -657,11 +645,8 @@ Widget btnAnnulerValidation(){
                         ),
                       ),
                     ),
-                   
-                     Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                    const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
                     btnAnnulerValidation(),
-                     
                   ],
                 ),
               ),

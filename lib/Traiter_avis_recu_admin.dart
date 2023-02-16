@@ -2,29 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:latlong2/latlong.dart';
 import 'package:flutter_map/plugin_api.dart';
 import 'endPage.dart';
-import 'forgot_password_page.dart';
-import 'startPage.dart';
-import 'mapPage.dart';
-import 'homePage.dart';
-import 'connexion.dart';
 import 'mylib.dart' as mylib;
 
 class traiter_avis_recu extends StatefulWidget {
   const traiter_avis_recu({super.key});
 
   @override
-  State<traiter_avis_recu> createState() =>
-      _traiter_avis_recu();
+  State<traiter_avis_recu> createState() => _traiter_avis_recu();
 }
 
-class _traiter_avis_recu
-    extends State<traiter_avis_recu> {
+class _traiter_avis_recu extends State<traiter_avis_recu> {
   final mapController = MapController();
-
-
 
   Widget TitleDate() {
     return ClipRRect(
@@ -32,7 +22,7 @@ class _traiter_avis_recu
       child: Container(
         width: 325,
         height: 60,
-        color: Color.fromARGB(255, 235, 233, 233),
+        color: const Color.fromARGB(255, 235, 233, 233),
         //child: Column(
         //children: [
         child: Container(
@@ -50,49 +40,51 @@ class _traiter_avis_recu
   }
 
   Widget Avis() {
-    return  ClipRRect(
-                              borderRadius: BorderRadius.circular(15.0),
-                              child: Container(
-                                width: 325,
-                                height: 120,
-                                color: Color.fromARGB(255, 235, 233, 233),
-                                child: Column(
-                                  //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Container(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          1, 10, 1, 0),
-                                      child: const Text(
-                                        "Donnez votre avis",
-                                        style: mylib.blueText,
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    ),
-                                    const Divider(
-                                      color: Color.fromARGB(255, 41, 59, 229),
-                                      thickness: 1,
-                                      indent: 20,
-                                      endIndent: 20,
-                                    ),
-                                    Padding( padding:EdgeInsets.fromLTRB(0, 10, 0, 10)),
-                                    SizedBox(
-                                      child:RatingBar.builder(
-                                        initialRating: 3,
-                                        minRating: 1,
-                                        direction: Axis.horizontal,
-                                        allowHalfRating: true,
-                                        itemCount: 5,
-                                        itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                                        itemBuilder: (context, _) => Icon( Icons.star, color: Colors.amber,),
-                                        onRatingUpdate: (rating) {
-                                          print(rating);
-                                        },
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            );
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(15.0),
+      child: Container(
+        width: 325,
+        height: 120,
+        color: const Color.fromARGB(255, 235, 233, 233),
+        child: Column(
+          //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Container(
+              padding: const EdgeInsets.fromLTRB(1, 10, 1, 0),
+              child: const Text(
+                "Donnez votre avis",
+                style: mylib.blueText,
+                textAlign: TextAlign.center,
+              ),
+            ),
+            const Divider(
+              color: Color.fromARGB(255, 41, 59, 229),
+              thickness: 1,
+              indent: 20,
+              endIndent: 20,
+            ),
+            const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
+            SizedBox(
+              child: RatingBar.builder(
+                initialRating: 3,
+                minRating: 1,
+                direction: Axis.horizontal,
+                allowHalfRating: true,
+                itemCount: 5,
+                itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+                itemBuilder: (context, _) => const Icon(
+                  Icons.star,
+                  color: Colors.amber,
+                ),
+                onRatingUpdate: (rating) {
+                  print(rating);
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   Widget DejaVisite() {
@@ -104,7 +96,7 @@ class _traiter_avis_recu
           child: Container(
             width: 325,
             height: 140,
-            color: Color.fromARGB(255, 235, 233, 233),
+            color: const Color.fromARGB(255, 235, 233, 233),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -127,9 +119,9 @@ class _traiter_avis_recu
                   child: Container(
                     width: 300,
                     height: 46,
-                    color: Color.fromARGB(255, 255, 255, 255),
-                    child: Align(
-                      child: const Text(
+                    color: const Color.fromARGB(255, 255, 255, 255),
+                    child: const Align(
+                      child: Text(
                         "Oui/Non",
                         style: mylib.titleStyle3,
                         textAlign: TextAlign.center,
@@ -154,7 +146,7 @@ class _traiter_avis_recu
           child: Container(
             width: 325,
             height: 320,
-            color: Color.fromARGB(255, 235, 233, 233),
+            color: const Color.fromARGB(255, 235, 233, 233),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -179,9 +171,9 @@ class _traiter_avis_recu
                       Container(
                         width: 300,
                         height: 206,
-                        color: Color.fromARGB(255, 255, 255, 255),
-                        child: Align(
-                          child: const Text(
+                        color: const Color.fromARGB(255, 255, 255, 255),
+                        child: const Align(
+                          child: Text(
                             "Texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte",
                             style: mylib.titleStyle3,
                             textAlign: TextAlign.center,
@@ -208,7 +200,7 @@ class _traiter_avis_recu
           child: Container(
             width: 325,
             height: 140,
-            color: Color.fromARGB(255, 235, 233, 233),
+            color: const Color.fromARGB(255, 235, 233, 233),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -231,9 +223,9 @@ class _traiter_avis_recu
                   child: Container(
                     width: 300,
                     height: 46,
-                    color: Color.fromARGB(255, 255, 255, 255),
-                    child: Align(
-                      child: const Text(
+                    color: const Color.fromARGB(255, 255, 255, 255),
+                    child: const Align(
+                      child: Text(
                         "... - ... ans",
                         style: mylib.titleStyle3,
                         textAlign: TextAlign.center,
@@ -249,38 +241,35 @@ class _traiter_avis_recu
     );
   }
 
-
-Widget btnAnnulerValidation(){
-  return Container(
-     width: 350,
-    height: 43,
-   // padding: EdgeInsets.symmetric(vertical: 25),
-    //width: double.infinity,
-    child: ElevatedButton(                    
-                      onPressed: () {
-                       Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (BuildContext context) =>  endPage(),
-                        ),
-                      );
-                      },              
-                        style: ElevatedButton.styleFrom(
-                         shadowColor: Colors.grey.shade700,
-                         backgroundColor: const Color.fromARGB(255, 41, 59, 229),
-                         elevation: 20,
-                          shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.0),
-                    side: BorderSide(color: Colors.white, width: 3),
-                  ),
-                        ),
-                        child: const Text("Annuler la validation", 
-                            style: mylib.titleStyle2,
-                            textAlign: TextAlign.center,        
-                          ),
-                      ),
-  );
-}
-
+  Widget btnAnnulerValidation() {
+    return SizedBox(
+      width: 350,
+      height: 43,
+      child: ElevatedButton(
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (BuildContext context) => endPage(),
+            ),
+          );
+        },
+        style: ElevatedButton.styleFrom(
+          shadowColor: Colors.grey.shade700,
+          backgroundColor: const Color.fromARGB(255, 41, 59, 229),
+          elevation: 20,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15.0),
+            side: const BorderSide(color: Colors.white, width: 3),
+          ),
+        ),
+        child: const Text(
+          "Annuler la validation",
+          style: mylib.titleStyle2,
+          textAlign: TextAlign.center,
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -289,22 +278,20 @@ Widget btnAnnulerValidation(){
       appBar: mylib.baseAppBar(
         appBar: AppBar(),
       ),
-            endDrawer: mylib.createMenu(context),
-
+      endDrawer: mylib.createMenu(context),
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,
         child: GestureDetector(
             child: Stack(
           children: <Widget>[
-            Container(
+            SizedBox(
               height: double.infinity,
               width: double.infinity,
-             // decoration: mylib.background1,
               child: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Padding(padding: EdgeInsets.fromLTRB(0, 55, 0, 0)),
+                    const Padding(padding: EdgeInsets.fromLTRB(0, 55, 0, 0)),
                     ClipRRect(
                       borderRadius: BorderRadius.circular(15.0),
                       child: Container(
@@ -325,32 +312,28 @@ Widget btnAnnulerValidation(){
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Padding(
+                              const Padding(
                                   padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
                               TitleDate(),
-                              Padding(
+                              const Padding(
                                   padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
                               Avis(),
-                              Padding(
+                              const Padding(
                                   padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
                               Commentaire(),
-                              Padding(
+                              const Padding(
                                   padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                             
                               Age(),
-                              Padding(
+                              const Padding(
                                   padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
                               DejaVisite(),
-                             
                             ],
                           ),
                         ),
                       ),
                     ),
-                      Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                    const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
                     btnAnnulerValidation(),
-                     
                   ],
                 ),
               ),

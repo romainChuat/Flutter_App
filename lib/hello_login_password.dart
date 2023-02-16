@@ -3,11 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_application_1/commentPage.dart';
 import 'consulter_les_avis_login_choisis.dart';
 import 'consulter_questionnaire_login_choisis.dart';
-import 'forgot_password_page.dart';
-import 'startPage.dart';
-import 'mapPage.dart';
 import 'homePage.dart';
-import 'connexion.dart';
 import 'mylib.dart' as mylib;
 
 class hellologinpassword extends StatefulWidget {
@@ -19,7 +15,7 @@ class hellologinpassword extends StatefulWidget {
 
 class _hellologinpassword extends State<hellologinpassword> {
   Widget buildAccessMap() {
-    return Container(
+    return SizedBox(
       width: 340,
       height: 49,
       child: ElevatedButton(
@@ -36,7 +32,7 @@ class _hellologinpassword extends State<hellologinpassword> {
           elevation: 20,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
-            side: BorderSide(color: Colors.white, width: 3),
+            side: const BorderSide(color: Colors.white, width: 3),
           ),
         ),
         child: const Text(
@@ -49,7 +45,7 @@ class _hellologinpassword extends State<hellologinpassword> {
   }
 
   Widget buildAccessQuestionnaire(Map<String, Object> reponses) {
-    return Container(
+    return SizedBox(
       width: 340,
       height: 49,
       child: ElevatedButton(
@@ -66,7 +62,7 @@ class _hellologinpassword extends State<hellologinpassword> {
           elevation: 20,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
-            side: BorderSide(color: Colors.white, width: 3),
+            side: const BorderSide(color: Colors.white, width: 3),
           ),
         ),
         child: const Text(
@@ -79,7 +75,7 @@ class _hellologinpassword extends State<hellologinpassword> {
   }
 
   Widget consultQuestionnaire() {
-    return Container(
+    return SizedBox(
       width: 340,
       height: 49,
       child: ElevatedButton(
@@ -97,7 +93,7 @@ class _hellologinpassword extends State<hellologinpassword> {
           elevation: 20,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
-            side: BorderSide(color: Colors.white, width: 3),
+            side: const BorderSide(color: Colors.white, width: 3),
           ),
         ),
         child: const Text(
@@ -110,7 +106,7 @@ class _hellologinpassword extends State<hellologinpassword> {
   }
 
   Widget consultAvis() {
-    return Container(
+    return SizedBox(
       width: 340,
       height: 49,
       child: ElevatedButton(
@@ -128,7 +124,7 @@ class _hellologinpassword extends State<hellologinpassword> {
           elevation: 20,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
-            side: BorderSide(color: Colors.white, width: 3),
+            side: const BorderSide(color: Colors.white, width: 3),
           ),
         ),
         child: const Text(
@@ -155,7 +151,7 @@ class _hellologinpassword extends State<hellologinpassword> {
         child: GestureDetector(
             child: Stack(
           children: <Widget>[
-            Container(
+            SizedBox(
               height: double.infinity,
               width: double.infinity,
              // decoration: mylib.background1,
@@ -163,15 +159,15 @@ class _hellologinpassword extends State<hellologinpassword> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Container(
+                    SizedBox(
                       width: 250,
                       child: Text("Hello,  ${reponses["username"]}",
                           style: mylib.titleStyle2),
                     ),
                     const SizedBox(height: 61),
-                    Container(
+                    const SizedBox(
                       width: 250,
-                      child: const Text(
+                      child: Text(
                           'Veuillez choisir ce que vous souhaitez réaliser.',
                           style: mylib.titleStyle),
                     ),

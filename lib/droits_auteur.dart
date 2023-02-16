@@ -1,4 +1,3 @@
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/startPage.dart';
@@ -11,8 +10,8 @@ class droits_auteur extends StatefulWidget {
     return _droits_auteur();
   }
 }
-class _droits_auteur extends State<droits_auteur> {
 
+class _droits_auteur extends State<droits_auteur> {
   bool accept = false;
 
   @override
@@ -36,24 +35,22 @@ class _droits_auteur extends State<droits_auteur> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                
                 ClipRRect(
                   borderRadius: BorderRadius.circular(15.0),
                   child: Container(
                     width: 336,
                     height: 570,
-                    color: Color.fromARGB(255, 235, 233, 233),
+                    color: const Color.fromARGB(255, 235, 233, 233),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Container(
                           padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
                           child: Text(
-                                "droits_auteur_title".tr(), 
-                                style: mylib.blueText,
-                                textAlign: TextAlign.center,
-                              ),
-                         
+                            "droits_auteur_title".tr(),
+                            style: mylib.blueText,
+                            textAlign: TextAlign.center,
+                          ),
                         ),
                         const Divider(
                           color: Colors.black,
@@ -76,14 +73,12 @@ class _droits_auteur extends State<droits_auteur> {
                                     removeTop: true,
                                     //child: Scrollbar( //optionnel
                                     //isAlwaysShown: true,
-                                    child:  SingleChildScrollView(
-                                      padding:
-                                          EdgeInsets.fromLTRB(10, 10, 10, 10),
-                                         child: Text(
-
-                                "droits_auteur_text".tr(), 
-                              ),
-                              
+                                    child: SingleChildScrollView(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          10, 10, 10, 10),
+                                      child: Text(
+                                        "droits_auteur_text".tr(),
+                                      ),
                                     ),
                                   )),
                                 ],
@@ -94,18 +89,17 @@ class _droits_auteur extends State<droits_auteur> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text("Accepter"),
+                            const Text("Accepter"),
                             Checkbox(
-                              value: accept, 
+                              value: accept,
                               onChanged: (value) {
                                 setState(() {
                                   accept = value!;
-                                }); 
+                                });
                               },
                             )
                           ],
                         )
-                        
                       ],
                     ),
                   ),
@@ -113,13 +107,13 @@ class _droits_auteur extends State<droits_auteur> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    mylib.createQuitButton(context, 141, 41, startPage(), reponses),
+                    mylib.createQuitButton(
+                        context, 141, 41, const startPage(), reponses),
                     mylib.createNextButton(
                       "Next",
                       context,
                       141,
                       41,
-
                       MaterialPageRoute(
                         builder: (_) => const FichierPage(),
                         settings: RouteSettings(arguments: reponses),
@@ -132,5 +126,4 @@ class _droits_auteur extends State<droits_auteur> {
           ),
         ));
   }
-  
 }

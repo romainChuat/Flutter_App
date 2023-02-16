@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/commentPage.dart';
 import 'package:flutter_application_1/controller/language_contoller.dart';
 import 'startPage.dart';
-import 'mapPage.dart';
 import 'mylib.dart' as mylib;
 import 'testTrad.dart';
 import 'package:provider/provider.dart';

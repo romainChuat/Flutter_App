@@ -4,10 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_application_1/user_choix_connexion.dart';
 import 'package:flutter_application_1/user_connexion_password.dart';
 import 'connexion_admin.dart';
-import 'startPage.dart';
-import 'mapPage.dart';
-import 'homePage.dart';
-import 'connexion.dart';
 import 'mylib.dart' as mylib;
 
 class forgot_password_user extends StatefulWidget {

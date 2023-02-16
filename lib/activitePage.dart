@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/commentPage.dart';
-import 'package:flutter_application_1/genrePage.dart';
 import 'endPage.dart';
 import 'mylib.dart' as mylib;
-import 'package:intl/intl.dart';
 
 class activitePage extends StatefulWidget {
   @override
@@ -21,12 +18,9 @@ class _activitePage extends State<activitePage> {
 
   @override
   Widget build(BuildContext context) {
-    final text = MediaQuery.of(context).platformBrightness == Brightness.dark
-        ? 'DarkTheme'
-        : 'LightTheme';
+
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
-    Map<String, String>? activite = Map<String, String>();
 
     return Scaffold(
         extendBodyBehindAppBar: true,
@@ -40,13 +34,13 @@ class _activitePage extends State<activitePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   
-                  Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
+                  const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
                   ClipRRect(
                     borderRadius: BorderRadius.circular(15.0),
                     child: Container(
                       width: 342,
                       height: 500,
-                      color: Color.fromARGB(255, 235, 233, 233),
+                      color: const Color.fromARGB(255, 235, 233, 233),
                       child: Column(
                         //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -74,7 +68,7 @@ class _activitePage extends State<activitePage> {
                                     width: 310,
                                     child: Column(
                                       children: [
-                                        Align(
+                                        const Align(
                                           alignment: Alignment.topLeft,
                                           child: Text(
                                             "En formation:",
@@ -103,7 +97,7 @@ class _activitePage extends State<activitePage> {
                                     width: 310,
                                     child: Column(
                                       children: [
-                                        Align(
+                                        const Align(
                                           alignment: Alignment.topLeft,
                                           child: Text(
                                             "A la recherche d'un emploi:",
@@ -129,7 +123,7 @@ class _activitePage extends State<activitePage> {
                                     width: 310,
                                     child: Column(
                                       children: [
-                                        Align(
+                                        const Align(
                                           alignment: Alignment.topLeft,
                                           child: Text(
                                             "Activité professionnelle:",
