@@ -33,7 +33,6 @@ class _traiter_markers_recu_admin extends State<traiter_markers_recu_admin> {
         },
         style: ElevatedButton.styleFrom(
           shadowColor: Colors.grey.shade700,
-          backgroundColor: const Color.fromARGB(255, 41, 59, 229),
           elevation: 20,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
@@ -92,7 +91,7 @@ class _traiter_markers_recu_admin extends State<traiter_markers_recu_admin> {
                   ),
                 ),
                 const Divider(
-                  color: Color.fromARGB(255, 41, 59, 229),
+                  color: Colors.black,
                   thickness: 1,
                   indent: 20,
                   endIndent: 20,
@@ -173,7 +172,7 @@ class _traiter_markers_recu_admin extends State<traiter_markers_recu_admin> {
                   ),
                 ),
                 const Divider(
-                  color: Color.fromARGB(255, 41, 59, 229),
+                  color: Colors.black,
                   thickness: 1,
                   indent: 20,
                   endIndent: 20,
@@ -361,7 +360,7 @@ class _traiter_markers_recu_admin extends State<traiter_markers_recu_admin> {
                   ),
                 ),
                 const Divider(
-                  color: Color.fromARGB(255, 41, 59, 229),
+                  color: Colors.black,
                   thickness: 1,
                   indent: 20,
                   endIndent: 20,
@@ -411,7 +410,7 @@ class _traiter_markers_recu_admin extends State<traiter_markers_recu_admin> {
                   ),
                 ),
                 const Divider(
-                  color: Color.fromARGB(255, 41, 59, 229),
+                  color: Colors.black,
                   thickness: 1,
                   indent: 20,
                   endIndent: 20,
@@ -461,7 +460,7 @@ class _traiter_markers_recu_admin extends State<traiter_markers_recu_admin> {
                   ),
                 ),
                 const Divider(
-                  color: Color.fromARGB(255, 41, 59, 229),
+                  color: Colors.black,
                   thickness: 1,
                   indent: 20,
                   endIndent: 20,
@@ -511,7 +510,7 @@ class _traiter_markers_recu_admin extends State<traiter_markers_recu_admin> {
                   ),
                 ),
                 const Divider(
-                  color: Color.fromARGB(255, 41, 59, 229),
+                  color: Colors.black,
                   thickness: 1,
                   indent: 20,
                   endIndent: 20,
@@ -540,11 +539,9 @@ class _traiter_markers_recu_admin extends State<traiter_markers_recu_admin> {
   }
 
   Widget btnAnnulerValidation() {
-    return Container(
+    return SizedBox(
       width: 350,
       height: 43,
-      // padding: EdgeInsets.symmetric(vertical: 25),
-      //width: double.infinity,
       child: ElevatedButton(
         onPressed: () {
           Navigator.of(context).push(
@@ -555,7 +552,6 @@ class _traiter_markers_recu_admin extends State<traiter_markers_recu_admin> {
         },
         style: ElevatedButton.styleFrom(
           shadowColor: Colors.grey.shade700,
-          backgroundColor: const Color.fromARGB(255, 41, 59, 229),
           elevation: 20,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
@@ -584,10 +580,9 @@ class _traiter_markers_recu_admin extends State<traiter_markers_recu_admin> {
         child: GestureDetector(
             child: Stack(
           children: <Widget>[
-            Container(
+            SizedBox(
               height: double.infinity,
               width: double.infinity,
-              // decoration: mylib.background1,
               child: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -598,47 +593,42 @@ class _traiter_markers_recu_admin extends State<traiter_markers_recu_admin> {
                       child: Container(
                         width: 359,
                         height: 600,
+                                                padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+
                         decoration: const BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment(0.0, 1),
-                            colors: <Color>[
-                              Color.fromARGB(255, 41, 59, 229),
-                              Color.fromARGB(255, 54, 191, 201),
-                            ],
-                            tileMode: TileMode.mirror,
-                          ),
+                                                    color: Color.fromARGB(118, 13, 12, 32),
+
                         ),
                         child: SingleChildScrollView(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               const Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                                  padding: EdgeInsets.fromLTRB(0, 20, 0, 0)),
                               TitleDate(),
                               const Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
                               Map(),
                               const Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
                               Photo(),
                               const Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
                               Date(),
                               const Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
                               Expression(),
                               const Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
                               Age(),
                               const Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
                               Genre(),
                               const Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
                               NiveauxEtude(),
                               const Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
                               ActiviteExerce(),
                             ],
                           ),

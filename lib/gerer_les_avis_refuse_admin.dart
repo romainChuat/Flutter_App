@@ -22,8 +22,6 @@ class _gerer_avis_refuse extends State<gerer_avis_refuse> {
         width: 325,
         height: 60,
         color: const Color.fromARGB(255, 235, 233, 233),
-        //child: Column(
-        //children: [
         child: Container(
           padding: const EdgeInsets.fromLTRB(1, 15, 1, 0),
           child: const Text(
@@ -32,8 +30,6 @@ class _gerer_avis_refuse extends State<gerer_avis_refuse> {
             textAlign: TextAlign.center,
           ),
         ),
-        // ],
-        // ),
       ),
     );
   }
@@ -46,7 +42,6 @@ class _gerer_avis_refuse extends State<gerer_avis_refuse> {
         height: 120,
         color: const Color.fromARGB(255, 235, 233, 233),
         child: Column(
-          //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Container(
               padding: const EdgeInsets.fromLTRB(1, 10, 1, 0),
@@ -57,7 +52,7 @@ class _gerer_avis_refuse extends State<gerer_avis_refuse> {
               ),
             ),
             const Divider(
-              color: Color.fromARGB(255, 41, 59, 229),
+              color: Colors.black,
               thickness: 1,
               indent: 20,
               endIndent: 20,
@@ -108,7 +103,7 @@ class _gerer_avis_refuse extends State<gerer_avis_refuse> {
                   ),
                 ),
                 const Divider(
-                  color: Color.fromARGB(255, 41, 59, 229),
+                  color: Colors.black,
                   thickness: 1,
                   indent: 20,
                   endIndent: 20,
@@ -158,7 +153,7 @@ class _gerer_avis_refuse extends State<gerer_avis_refuse> {
                   ),
                 ),
                 const Divider(
-                  color: Color.fromARGB(255, 41, 59, 229),
+                  color: Colors.black,
                   thickness: 1,
                   indent: 20,
                   endIndent: 20,
@@ -241,11 +236,9 @@ class _gerer_avis_refuse extends State<gerer_avis_refuse> {
   }
 
   Widget btnAnnulerRefus() {
-    return Container(
+    return SizedBox(
       width: 310,
       height: 43,
-      // padding: EdgeInsets.symmetric(vertical: 25),
-      //width: double.infinity,
       child: ElevatedButton(
         onPressed: () {
           Navigator.of(context).push(
@@ -256,7 +249,6 @@ class _gerer_avis_refuse extends State<gerer_avis_refuse> {
         },
         style: ElevatedButton.styleFrom(
           shadowColor: Colors.grey.shade700,
-          backgroundColor: const Color.fromARGB(255, 41, 59, 229),
           elevation: 20,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
@@ -290,30 +282,24 @@ class _gerer_avis_refuse extends State<gerer_avis_refuse> {
               child: Container(
                 width: 359,
                 height: 600,
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment(0.0, 1),
-                    colors: <Color>[
-                      Color.fromARGB(255, 41, 59, 229),
-                      Color.fromARGB(255, 54, 191, 201),
-                    ],
-                    tileMode: TileMode.mirror,
-                  ),
-                ),
+                padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+
+                        decoration: const BoxDecoration(
+                 color: Color.fromARGB(118, 13, 12, 32),
+                        ),
                 child: SingleChildScrollView(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                      const Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 0)),
                       TitleDate(),
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                      const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
                       Avis(),
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                      const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
                       Commentaire(),
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                      const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
                       Age(),
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                      const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
                       DejaVisite(),
                     ],
                   ),

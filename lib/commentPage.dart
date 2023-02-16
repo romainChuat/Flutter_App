@@ -35,7 +35,7 @@ class _commentPage extends State<commentPage> {
                         height: 560,
                                   padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
 
-                        color: Color.fromARGB(97, 13, 12, 32),
+                          color: Color.fromARGB(118, 13, 12, 32),
                         child: SingleChildScrollView(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,

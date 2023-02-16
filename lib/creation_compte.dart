@@ -469,6 +469,7 @@ class Creationcompte extends State<CreationCompte> {
     var res = await dbHelper.queryUser(mailController.text);
     if (res == null) {
       var u = Utilisateur(
+        admin: true,
         nom: nomController.text,
         mail: mailController.text,
         password:
