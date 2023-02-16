@@ -60,11 +60,16 @@ class _mapPage extends State<mapPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Container(
-                            padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
-                            child: Text(
+                            padding: const EdgeInsets.fromLTRB(7, 0, 3, 0),
+                            
+                              child: Align(
+                              alignment: Alignment.center,
+                                 child: Text(
+
                                 "mapPage_title".tr(), 
-                                style: mylib.titleStyle
+                                style: mylib.blueText
                               ),
+                            ),
                           ),
                           const Divider(
                             color: Colors.black,
