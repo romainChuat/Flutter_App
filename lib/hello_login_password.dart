@@ -28,7 +28,7 @@ class _hellologinpassword extends State<hellologinpassword> {
         },
         style: ElevatedButton.styleFrom(
           shadowColor: Colors.grey.shade700,
-          backgroundColor: const Color.fromARGB(255, 41, 59, 229),
+         // backgroundColor: const Color.fromARGB(255, 41, 59, 229),
           elevation: 20,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
@@ -58,7 +58,7 @@ class _hellologinpassword extends State<hellologinpassword> {
         },
         style: ElevatedButton.styleFrom(
           shadowColor: Colors.grey.shade700,
-          backgroundColor: const Color.fromARGB(255, 41, 59, 229),
+         // backgroundColor: const Color.fromARGB(255, 41, 59, 229),
           elevation: 20,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
@@ -89,7 +89,7 @@ class _hellologinpassword extends State<hellologinpassword> {
         },
         style: ElevatedButton.styleFrom(
           shadowColor: Colors.grey.shade700,
-          backgroundColor: const Color.fromARGB(255, 41, 59, 229),
+          //backgroundColor: const Color.fromARGB(255, 41, 59, 229),
           elevation: 20,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
@@ -146,23 +146,20 @@ class _hellologinpassword extends State<hellologinpassword> {
         appBar: AppBar(),
       ),
       endDrawer: mylib.createMenu(context),
-      body: AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle.light,
-        child: GestureDetector(
-            child: Stack(
-          children: <Widget>[
-            SizedBox(
-              height: double.infinity,
-              width: double.infinity,
-             // decoration: mylib.background1,
-              child: Center(
-                child: Column(
+      body: Center(
+        child: ClipRRect(
+          borderRadius: const BorderRadius.all(Radius.circular(10)),
+          child: Container(
+            color: const Color.fromARGB(255, 235, 233, 233),
+            width: 309,
+            height: 464,
+            child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     SizedBox(
                       width: 250,
                       child: Text("Hello,  ${reponses["username"]}",
-                          style: mylib.titleStyle2),
+                          style: mylib.titleStyle),
                     ),
                     const SizedBox(height: 61),
                     const SizedBox(
@@ -181,9 +178,9 @@ class _hellologinpassword extends State<hellologinpassword> {
               ),
               // )
             )
-          ],
-        )),
-      ),
+          
+        )
+      
     );
   }
 }

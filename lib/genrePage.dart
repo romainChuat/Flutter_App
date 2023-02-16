@@ -1,4 +1,5 @@
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/homePage.dart';
 import 'etudePage.dart';
@@ -43,8 +44,8 @@ class _genrePage extends State<genrePage> {
                       children: [
                         Container(
                           padding: const EdgeInsets.fromLTRB(1, 20, 1, 0),
-                          child: const Text(
-                            "A quels genre vous identifiez vous ?",
+                          child: Text(
+                            "genrePage_title".tr(),
                             style: mylib.blueText,
                             textAlign: TextAlign.center,
                           ),
@@ -62,7 +63,7 @@ class _genrePage extends State<genrePage> {
                                 height: 32,
                                 child: RadioListTile(
                                   activeColor: const Color.fromARGB(255, 41, 59, 229),
-                                  title: const Text("Féminin",
+                                  title: Text("genrePage_female".tr(),
                                       style: mylib.radioText),
                                   groupValue: genre,
                                   onChanged: (value) {
@@ -80,7 +81,7 @@ class _genrePage extends State<genrePage> {
                               height: 32,
                               child: RadioListTile(
                                 activeColor: const Color.fromARGB(255, 41, 59, 229),
-                                title: const Text("Masculin",
+                                title: Text("genrePage_male".tr(),
                                     style: mylib.radioText),
                                 groupValue: genre,
                                 onChanged: (value) {
@@ -99,7 +100,7 @@ class _genrePage extends State<genrePage> {
                               height: 32,
                               child: RadioListTile(
                                 activeColor: const Color.fromARGB(255, 41, 59, 229),
-                                title: const Text("Autre genre",
+                                title: Text("genrePage_other".tr(),
                                     style: mylib.radioText),
                                 groupValue: genre,
                                 onChanged: (value) {
@@ -125,7 +126,7 @@ class _genrePage extends State<genrePage> {
                   children: [
                     mylib.createQuitButton(context, 141, 41, const MyHomePage(), reponses),
                     mylib.createNextButton(
-                      "Next",
+                      "btn_next".tr(),
                       context,
                       141,
                       41,

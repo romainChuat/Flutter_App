@@ -13,8 +13,6 @@ import 'controller/language_contoller.dart';
 
 bool adminConnect = false;
 
-
-
 const TextStyle titleStyle = TextStyle(
   fontSize: 21,
   fontFamily: 'Nunito',
@@ -32,7 +30,7 @@ const TextStyle titleStyleDuration = TextStyle(
   fontSize: 15,
   fontFamily: 'Nunito',
   //fontWeight: FontWeight.bold,
- // color: Colors.white,
+  // color: Colors.white,
   /*shadows: <Shadow>[
     Shadow(
         offset: Offset(-2.0, 2.0),
@@ -72,7 +70,7 @@ const TextStyle titleStyle5 = TextStyle(
   fontSize: 20,
   fontFamily: 'Nunito',
   fontWeight: FontWeight.bold,
- // color: Colors.white,
+  // color: Colors.white,
   letterSpacing: 1,
 );
 
@@ -108,16 +106,17 @@ const TextStyle blueText2 = TextStyle(
 const TextStyle radioText = TextStyle(
   fontSize: 15,
   fontWeight: FontWeight.w600,
- // color: Color.fromARGB(255, 41, 59, 229),
+  // color: Color.fromARGB(255, 41, 59, 229),
   fontFamily: 'Nunito',
   letterSpacing: 1,
   //shadows:<Shadow> [ Shadow(offset:Offset(-1.0, 1.0) , blurRadius: 5.0 ,color: Color.fromARGB(195, 105, 105, 105))],
 );
 
 const TextStyle simpleText = TextStyle(
-  fontSize: 15,
+  fontSize: 20,
+  fontWeight: FontWeight.w800,
   color: Colors.white,
-  fontFamily: 'Spline Sans Mono',
+  fontFamily: 'Nunito',
   letterSpacing: 1,
 );
 
@@ -155,7 +154,7 @@ class baseAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       leading: IconButton(
-        padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
+        padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
         icon: const Icon(
           Icons.arrow_back_ios,
           size: 40,
@@ -172,7 +171,7 @@ class baseAppBar extends StatelessWidget implements PreferredSizeWidget {
         Builder(
           builder: (BuildContext context) {
             return IconButton(
-              icon: Icon(
+              icon: const Icon(
                 Icons.menu,
                 size: 50,
               ),
@@ -183,7 +182,7 @@ class baseAppBar extends StatelessWidget implements PreferredSizeWidget {
             );
           },
         ),
-        Padding(padding: EdgeInsets.fromLTRB(0, 0, 20, 0)),
+        const Padding(padding: EdgeInsets.fromLTRB(0, 0, 20, 0)),
       ],
       backgroundColor: Colors.transparent,
       elevation: 0.0,
@@ -262,14 +261,15 @@ createInputTextArea(double wdth, double hgth) {
           )));
 }
 
-createQuitButton(BuildContext context, double width, double height, var path, Map<String,Object>? args) {
+createQuitButton(BuildContext context, double width, double height, var path,
+    Map<String, Object>? args) {
   return SizedBox(
     width: width,
     height: height,
     child: ElevatedButton(
       style: ElevatedButton.styleFrom(
         foregroundColor: Colors.white,
-      //  backgroundColor: Color.fromARGB(255, 13, 12, 32),
+        //  backgroundColor: Color.fromARGB(255, 13, 12, 32),
         side: const BorderSide(color: Colors.white, width: 1),
         elevation: 15,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -283,7 +283,7 @@ createQuitButton(BuildContext context, double width, double height, var path, Ma
           ),
         );
       },
-      child: Text("Quit", style: titleStyle),
+      child: const Text("Quit", style: titleStyle),
     ),
   );
 }
@@ -322,7 +322,7 @@ createtButton(String text, BuildContext context, double width, double height) {
     child: ElevatedButton(
       style: ElevatedButton.styleFrom(
         //foregroundColor: Colors.white,
-        backgroundColor: Color.fromARGB(255, 13, 12, 32),
+        backgroundColor: const Color.fromARGB(255, 13, 12, 32),
         //side: const BorderSide(color: Colors.white, width: 1),
         elevation: 15,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -345,50 +345,30 @@ createMenu(BuildContext context) {
       padding: const EdgeInsets.all(10),
       width: 260,
       child: Drawer(
-        backgroundColor: const Color.fromARGB(255, 30, 77, 233),
         child: Column(
           children: [
-            const Padding(padding: EdgeInsets.all(30)),
             ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: SizedBox(
-                width: 230,
-                height: 58,
-                child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      foregroundColor: const Color.fromARGB(255, 41, 59, 229),
-                      backgroundColor: const Color.fromARGB(255, 235, 233, 233),
-                    ),
-                    onPressed: () {
-                      if (adminConnect == true) {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                const hello_admin_page(),
-                          ),
-                        );
-                      } else {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                const hellologinpassword(),
-                          ),
-                        );
-                      }
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Padding(padding: EdgeInsets.all(6)),
-                        const Text(
-                          "Menu",
-                          style: blueText,
-                        ),
-                      ],
-                    )),
-              ),
+              // borderRadius: BorderRadius.circular(10),
+              child: Container(
+                  height: 78,
+                  color: const Color.fromARGB(255, 13, 12, 32),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: const [
+                      Text(
+                        "Menu",
+                        style: simpleText,
+                      ),
+          
+                      Icon(
+                        Icons.menu,
+                        color: Colors.white,
+                        size: 50,
+                      ),
+                    ],
+                  )),
             ),
-            const Padding(padding: EdgeInsets.all(10)),
+            const Padding(padding: EdgeInsets.all(20)),
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: SizedBox(
@@ -396,7 +376,7 @@ createMenu(BuildContext context) {
                 height: 58,
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      foregroundColor: const Color.fromARGB(255, 41, 59, 229),
+                      foregroundColor: const Color.fromARGB(255, 13, 12, 32),
                       backgroundColor: const Color.fromARGB(255, 235, 233, 233),
                     ),
                     onPressed: () {
@@ -410,10 +390,10 @@ createMenu(BuildContext context) {
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        const Icon(Icons.lens, size: 18),
-                        const Padding(padding: EdgeInsets.all(6)),
-                        const Text(
+                      children: const [
+                        Icon(Icons.lens, size: 18),
+                        Padding(padding: EdgeInsets.all(6)),
+                        Text(
                           "Deconnexion",
                           style: blueText,
                         ),
@@ -429,7 +409,7 @@ createMenu(BuildContext context) {
                 height: 58,
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      foregroundColor: const Color.fromARGB(255, 41, 59, 229),
+                      foregroundColor: const Color.fromARGB(255, 13, 12, 32),
                       backgroundColor: const Color.fromARGB(255, 235, 233, 233),
                     ),
                     onPressed: () {
@@ -455,20 +435,20 @@ createMenu(BuildContext context) {
                 height: 58,
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      foregroundColor: const Color.fromARGB(255, 41, 59, 229),
+                      foregroundColor: const Color.fromARGB(255, 13, 12, 32),
                       backgroundColor: const Color.fromARGB(255, 235, 233, 233),
                     ),
                     onPressed: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => languagePage(),
+                          builder: (_) => const languagePage(),
                         ),
                       );
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
+                      children: const [
                         Icon(Icons.lens, size: 18),
                         Padding(padding: EdgeInsets.all(6)),
                         Text(

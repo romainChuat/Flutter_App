@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'endPage.dart';
 import 'mylib.dart' as mylib;
@@ -42,12 +43,11 @@ class _activitePage extends State<activitePage> {
                       height: 500,
                       color: const Color.fromARGB(255, 235, 233, 233),
                       child: Column(
-                        //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Container(
                             padding: const EdgeInsets.fromLTRB(1, 20, 1, 0),
-                            child: const Text(
-                              "Quelle activité exercer vous actuellement ?",
+                            child: Text(
+                              "activitePage_title".tr(),
                               style: mylib.blueText,
                               textAlign: TextAlign.center,
                             ),
@@ -68,10 +68,10 @@ class _activitePage extends State<activitePage> {
                                     width: 310,
                                     child: Column(
                                       children: [
-                                        const Align(
+                                         Align(
                                           alignment: Alignment.topLeft,
                                           child: Text(
-                                            "En formation:",
+                                            "activitePage_formation".tr(),
                                             style: mylib.radioText,
                                           ),
                                         ),
@@ -97,10 +97,10 @@ class _activitePage extends State<activitePage> {
                                     width: 310,
                                     child: Column(
                                       children: [
-                                        const Align(
+                                        Align(
                                           alignment: Alignment.topLeft,
                                           child: Text(
-                                            "A la recherche d'un emploi:",
+                                            "activitePage_research_employs".tr(),
                                             style: mylib.radioText,
                                           ),
                                         ),
@@ -125,10 +125,10 @@ class _activitePage extends State<activitePage> {
                                     width: 310,
                                     child: Column(
                                       children: [
-                                        const Align(
+                                        Align(
                                           alignment: Alignment.topLeft,
                                           child: Text(
-                                            "Activité professionnelle:",
+                                            "activitePage_activity".tr(),
                                             style: mylib.radioText,
                                           ),
                                         ),
@@ -154,7 +154,7 @@ class _activitePage extends State<activitePage> {
                                         Align(
                                           alignment: Alignment.topLeft,
                                           child: Text(
-                                            "Retraité :",
+                                            "activitePage_retired".tr(),
                                             style: mylib.radioText,
                                           ),
                                         ),
@@ -180,7 +180,7 @@ class _activitePage extends State<activitePage> {
                                         Align(
                                           alignment: Alignment.topLeft,
                                           child: Text(
-                                            "Sans activité professionnelle:",
+                                            "activitePage_jobless".tr(),
                                             style: mylib.radioText,
                                           ),
                                         ),
@@ -211,7 +211,7 @@ class _activitePage extends State<activitePage> {
                     children: [
                       mylib.createQuitButton(context, 141, 41, null, reponses),
                       mylib.createNextButton(
-                        "Next",
+                        "btn_next".tr(),
                         context,
                         141,
                         41,

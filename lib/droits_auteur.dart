@@ -110,7 +110,7 @@ class _droits_auteur extends State<droits_auteur> {
                     mylib.createQuitButton(
                         context, 141, 41, const startPage(), reponses),
                     mylib.createNextButton(
-                      "Next",
+                      "btn_next".tr(),
                       context,
                       141,
                       41,

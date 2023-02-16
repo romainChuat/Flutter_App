@@ -25,7 +25,6 @@ class _hello_admin_page extends State<hello_admin_page> {
         },
         style: ElevatedButton.styleFrom(
           shadowColor: Colors.grey.shade700,
-          backgroundColor: const Color.fromARGB(255, 41, 59, 229),
           elevation: 20,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
@@ -55,7 +54,6 @@ class _hello_admin_page extends State<hello_admin_page> {
         },
         style: ElevatedButton.styleFrom(
           shadowColor: Colors.grey.shade700,
-          backgroundColor: const Color.fromARGB(255, 41, 59, 229),
           elevation: 20,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
@@ -80,6 +78,12 @@ class _hello_admin_page extends State<hello_admin_page> {
       ),
       endDrawer: mylib.createMenu(context),
       body: Center(
+        child: ClipRRect(
+          borderRadius: const BorderRadius.all(Radius.circular(10)),
+          child: Container(
+            color: const Color.fromARGB(255, 235, 233, 233),
+            width: 309,
+            height: 464,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -100,6 +104,8 @@ class _hello_admin_page extends State<hello_admin_page> {
             GererLesAvis(),
             const SizedBox(height: 61),
           ],
+        ),
+      ),
         ),
       ),
     );

@@ -24,11 +24,45 @@
 
     "motPage_title": "What words and expressions come to mind ?",
 
+    "agePage_title": "Choose the age range in which you fall ?",
+    "agePage_3-10": "3 - 10 years",
+    "agePage_11-17": "11 - 17 years",
+    "agePage_18-25": "18 - 25 years",
+    "agePage_26-35": "26 - 35 years",
+    "agePage_36-45": "36 - 45 years",
+    "agePage_46-55": "46 - 55 years",
+    "agePage_56-65": "56 - 65 years",
+    "agePage_66-75": "66 - 75 years",
+    "agePage_76": "76 years and more",
+
+    "genrePage_title": "What gender do you identify with ?",
+    "genrePage_female": "Female",
+    "genrePage_male": "Male",
+    "genrePage_other": "Other gender",
+
+    "etudePage_title": "What is the highest level of education you have received to date ?",
+    "etudePage_primary": "Primary education levels.",
+    "etudePage_middle_school": "Junior high school level (Middle school) or less.",
+    "etudePage_high_school": "Senior high school level Agricultural and vocational high school.",
+    "etudePage_higher_education": "Higher education of short cycle (BAC+2).",
+    "etudePage_bac3": "Licence level or equivalent BAC+3.",
+    "etudePage_bac5": "Master level or equivalent BAC+5.",
+    "etudePage_doctorat": "PhD.",
+
+    "activitePage_title": "What is your current activity ?",
+    "activitePage_formation": "In formation :",
+    "activitePage_research_employs": "Looking for a job :",
+    "activitePage_activity": "Professional activity :",
+    "activitePage_retired": "Retired :",
+    "activitePage_jobless": "No professional activity :",
+
+    "endPage_thanks": "Thank you, ",
 
     "map_question": "To begin, please indicate the location of your landscape photograph", 
     "next_btn_text": "Next",
     "english_text": "english",
     "french_text": "french",
 
-    "btn_next": "Next"
+    "btn_next": "Next",
+    "btn_submit": "Submit"
 }

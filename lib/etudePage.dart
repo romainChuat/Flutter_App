@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/activitePage.dart';
 import 'package:flutter_application_1/homePage.dart';
@@ -55,8 +56,8 @@ class _etudePage extends State<etudePage> {
                         children: [
                           Container(
                             padding: const EdgeInsets.fromLTRB(1, 20, 1, 0),
-                            child: const Text(
-                              "Quel est le plus haut niveau d'éducation dont vous avez béneficié à ce jour ?",
+                            child: Text(
+                              "etudePage_title".tr(),
                               style: mylib.blueText,
                               textAlign: TextAlign.center,
                             ),
@@ -74,8 +75,8 @@ class _etudePage extends State<etudePage> {
                                 height: 40,
                                 child: RadioListTile(
                                   activeColor: const Color.fromARGB(255, 41, 59, 229),
-                                  title: const Text(
-                                      "Niveau enseignement primaire.",
+                                  title: Text(
+                                      "etudePage_primary".tr(),
                                       style: mylib.radioText),
                                   groupValue: niveau,
                                   onChanged: (value) {
@@ -93,8 +94,8 @@ class _etudePage extends State<etudePage> {
                                 height: 70,
                                 child: RadioListTile(
                                   activeColor: const Color.fromARGB(255, 41, 59, 229),
-                                  title: const Text(
-                                      "Niveau premier cycle de l'enseignement secondaire (Collège) ou moins.",
+                                  title: Text(
+                                      "etudePage_middle_school".tr(),
                                       style: mylib.radioText),
                                   groupValue: niveau,
                                   onChanged: (value) {
@@ -112,8 +113,8 @@ class _etudePage extends State<etudePage> {
                                 height: 65,
                                 child: RadioListTile(
                                   activeColor: const Color.fromARGB(255, 41, 59, 229),
-                                  title: const Text(
-                                      "Niveau deuxième cycle de l'enseignement secondaire Lycée agricole, professionel.",
+                                  title: Text(
+                                      "etudePage_high_school".tr(),
                                       style: mylib.radioText),
                                   groupValue: niveau,
                                   onChanged: (value) {
@@ -131,8 +132,8 @@ class _etudePage extends State<etudePage> {
                                 height: 55,
                                 child: RadioListTile(
                                   activeColor: const Color.fromARGB(255, 41, 59, 229),
-                                  title: const Text(
-                                      "Enseignement supérieur de cycle court(DEUG, BTS,DUT).",
+                                  title: Text(
+                                      "etudePage_higher_education".tr(),
                                       style: mylib.radioText),
                                   groupValue: niveau,
                                   onChanged: (value) {
@@ -150,8 +151,8 @@ class _etudePage extends State<etudePage> {
                                 height: 40,
                                 child: RadioListTile(
                                   activeColor: const Color.fromARGB(255, 41, 59, 229),
-                                  title: const Text(
-                                      "Niveau licence ou équivalent BAC+3",
+                                  title: Text(
+                                      "etudePage_bac3".tr(),
                                       style: mylib.radioText),
                                   groupValue: niveau,
                                   onChanged: (value) {
@@ -169,8 +170,8 @@ class _etudePage extends State<etudePage> {
                                 height: 45,
                                 child: RadioListTile(
                                   activeColor: const Color.fromARGB(255, 41, 59, 229),
-                                  title: const Text(
-                                      "Niveau master ou équivalent BAC+5",
+                                  title: Text(
+                                      "etudePage_bac5".tr(),
                                       style: mylib.radioText),
                                   groupValue: niveau,
                                   onChanged: (value) {
@@ -188,7 +189,7 @@ class _etudePage extends State<etudePage> {
                                 height: 32,
                                 child: RadioListTile(
                                   activeColor: const Color.fromARGB(255, 41, 59, 229),
-                                  title: const Text("Doctorat",
+                                  title: Text("etudePage_doctorat".tr(),
                                       style: mylib.radioText),
                                   groupValue: niveau,
                                   onChanged: (value) {
@@ -240,7 +241,7 @@ class _etudePage extends State<etudePage> {
                                     setState(() {
                                       niveau = Niveau.autre;
                                       print(niveau);
-                                        reponses['niveau_etude'] = text.toString();
+                                        //reponses['niveau_etude'] = text.toString();
 
                                       //reponses['niveau_etude'] =niveau.toString().split('.').last;
                                       print(reponses);
@@ -261,7 +262,7 @@ class _etudePage extends State<etudePage> {
                     children: [
                       mylib.createQuitButton(context, 141, 41, const MyHomePage(), reponses),
                       mylib.createNextButton(
-                        "Next",
+                        "btn_next".tr(),
                         context,
                         141,
                         41,
