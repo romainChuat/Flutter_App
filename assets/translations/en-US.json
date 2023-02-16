@@ -13,8 +13,16 @@
 
     "droits_auteur_title": "Please assign the copyright to continue.",
     "droits_auteur_text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    "droits_auteur_accept": "Accept",
 
+    "FichierPage_title": "Now upload the digital image file.",
+    "FichierPage_send_file": "Send a file",
+    "FichierPage_warning" : "! Please send at most 1 file.",
 
+    "datePage_title" : "Please indicate the date of your image send.",
+    "_datePage_enter_date": "Enter a date",
+
+    "motPage_title": "What words and expressions come to mind ?",
 
 
     "map_question": "To begin, please indicate the location of your landscape photograph", 
@@ -23,5 +31,4 @@
     "french_text": "french",
 
     "btn_next": "Next"
-
 }

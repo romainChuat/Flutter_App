@@ -216,7 +216,7 @@ class _etudePage extends State<etudePage> {
                                     style: mylib.simpleText.apply(fontSizeDelta: 5),
                                     cursorColor: Color.fromARGB(255, 117, 106, 106),
                                     decoration: InputDecoration(
-                                      contentPadding: const EdgeInsets.fromLTRB(0, 0, 0, 1),
+                                      contentPadding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                                       filled: true,
                                       fillColor: Colors.white,
                                       enabledBorder: const OutlineInputBorder(

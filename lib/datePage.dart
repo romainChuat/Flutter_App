@@ -1,4 +1,5 @@
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/startPage.dart';
 import 'mylib.dart' as mylib;
@@ -48,8 +49,8 @@ class _datePage extends State<datePage> {
                       children: [
                         Container(
                           padding: const EdgeInsets.fromLTRB(1, 20, 1, 0),
-                          child: const Text(
-                            "Veuillez indiquez la date de votre image envoyer",
+                          child: Text(
+                            "datePage_title".tr(),
                             style: mylib.blueText,
                             textAlign: TextAlign.center,
                           ),
@@ -88,7 +89,7 @@ class _datePage extends State<datePage> {
                                           //labelText: "Enter Date",
                                           filled: true,
                                           fillColor: Colors.white,
-                                          hintText: 'Enter a date',
+                                          hintText: 'datePage_enter_date',
                                           contentPadding:
                                               const EdgeInsets.fromLTRB(
                                                   10, 1, 0, 0),
@@ -148,7 +149,7 @@ class _datePage extends State<datePage> {
                   children: [
                     mylib.createQuitButton(context, 141, 41,startPage(), reponses),
                     mylib.createNextButton(
-                      "Next",
+                      "btn_next".tr(),
                       context,
                       141,
                       41,

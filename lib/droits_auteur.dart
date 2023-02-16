@@ -94,7 +94,7 @@ class _droits_auteur extends State<droits_auteur> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text("Accepter"),
+                            Text("droits_auteur_accept".tr()),
                             Checkbox(
                               value: accept, 
                               onChanged: (value) {
