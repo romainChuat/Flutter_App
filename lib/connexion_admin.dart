@@ -21,11 +21,24 @@ class _connexion_adminn extends State<connexion_adminn> {
   final passwordController = TextEditingController();
   bool connected = false;
   bool isRememberMe = false;
+  String _inputText = '';
+  bool _showErrorMessage = false;
+    Map<String, Object> reponses = new Map();
 
   @override
   void initState() {
     _loadUserEmailPassword();
     super.initState();
+  }
+
+      void _handleInputChange(String input){
+    setState(() {
+      _inputText = input;
+      _showErrorMessage = false;
+      reponses["email"] = input;
+      print(reponses);
+
+    });
   }
 
   Widget buildTitle() {
@@ -65,6 +78,7 @@ class _connexion_adminn extends State<connexion_adminn> {
                     color: Colors.black26, blurRadius: 6, offset: Offset(0, 2))
               ]),
           child: TextField(
+                                    onChanged: _handleInputChange,
             controller: mailController,
             keyboardType: TextInputType.emailAddress,
             style: const TextStyle(color: Colors.black87),
@@ -97,6 +111,7 @@ class _connexion_adminn extends State<connexion_adminn> {
               ]),
           //height: 60,
           child: TextField(
+                                    onChanged: _handleInputChange,
             controller: passwordController,
             obscureText: true,
             style: const TextStyle(color: Colors.black87),
@@ -158,7 +173,9 @@ class _connexion_adminn extends State<connexion_adminn> {
   }
 
   Widget buildLoginBtn() {
-    return SizedBox(
+    return Column(
+      children: [
+    SizedBox(
       width: 120,
       height: 43,
       child: ElevatedButton(
@@ -171,7 +188,13 @@ class _connexion_adminn extends State<connexion_adminn> {
                 builder: (BuildContext context) => const hello_admin_page(),
               ),
             );
-          }
+          }else {
+              print("Adresse mail ou mot de passe incorrect");
+              setState(() {
+                              _showErrorMessage = true;
+
+              });
+            }
         },
         style: ElevatedButton.styleFrom(
           shadowColor: Colors.grey.shade700,
@@ -187,7 +210,12 @@ class _connexion_adminn extends State<connexion_adminn> {
           textAlign: TextAlign.center,
         ),
       ),
-    );
+    ),
+        SizedBox(height: 14,),
+    if(_showErrorMessage)
+    Text("Email et/ou mot de passe incorrect.", style: mylib.warningText),
+    
+   ]);
   }
 
   Widget buildUserBtn() {
@@ -287,8 +315,7 @@ class _connexion_adminn extends State<connexion_adminn> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               buildTitle(),
-                              const SizedBox(height: 45),
-                              buildEmail(),
+                              if(!_showErrorMessage) SizedBox(height: 31) else SizedBox(height: 18),                              buildEmail(),
                               const SizedBox(height: 15),
                               buildPassword(),
                               Row(
