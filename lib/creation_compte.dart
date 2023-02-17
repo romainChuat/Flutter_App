@@ -22,7 +22,45 @@ class Creationcompte extends State<CreationCompte> {
   final mailController = TextEditingController();
   final passwordController_1 = TextEditingController();
   final passwordController_2 = TextEditingController();
+  bool _showErrorMessageMail = false;
+  bool _showErrorMessagePassword = false;
+  bool _showErrorMessageCondition = false;
+  String _inputTextMail = '';
+    String _inputTextPassword = '';
+  String _inputTextCondition = '';
+      Map<String, Object> reponses = new Map();
+
+
+   
   bool connected = false;
+
+
+
+      void _handleInputChangeMail(String input){
+    setState(() {
+      _inputTextMail = input;
+      _showErrorMessageMail = false;
+
+
+    });
+  }
+
+        void _handleInputChangePassword(String input){
+    setState(() {
+      _inputTextPassword= input;
+      _showErrorMessagePassword= false;
+
+
+    });
+  }
+          void _handleInputChangeCondition(String input){
+    setState(() {
+      _showErrorMessageCondition = false;
+
+    });
+  }
+
+
 
   Widget buildTitle() {
     return Container(
@@ -83,6 +121,7 @@ class Creationcompte extends State<CreationCompte> {
                     color: Colors.black26, blurRadius: 6, offset: Offset(0, 2))
               ]),
           child: TextField(
+                                    onChanged: _handleInputChangeMail,
             controller: mailController,
             keyboardType: TextInputType.emailAddress,
             style: const TextStyle(color: Colors.black87),
@@ -114,6 +153,7 @@ class Creationcompte extends State<CreationCompte> {
                     color: Colors.black26, blurRadius: 6, offset: Offset(0, 2))
               ]),
           child: TextField(
+                                    onChanged: _handleInputChangePassword,
             controller: passwordController_1,
             obscureText: true,
             style: const TextStyle(color: Colors.black87),
@@ -175,33 +215,50 @@ class Creationcompte extends State<CreationCompte> {
   }
 
   Widget buildLoginBtn() {
-    return SizedBox(
+    return Column(
+      children: [
+
+
+    SizedBox(
       width: 120,
       height: 43,
-      // padding: EdgeInsets.symmetric(vertical: 25),
-      //width: double.infinity,
       child: ElevatedButton(
         onPressed: () async {
           if (verifMail() == false) {
             print("Adresse mail incorrect");
+                          setState(() {
+                              _showErrorMessageMail = true;
+
+              });
           } else {
             if (verifPassword() == false) {
               print("Mot de passe incorrect");
+                            setState(() {
+                              _showErrorMessagePassword = true;
+
+              });
             } else {
               if (acceptTerms == false) {
                 print("Veuillez accepter les conditions d'utilisations");
+                                            setState(() {
+
+                _showErrorMessageCondition = true;
+                            });
+
               } else {
                 await insertUser();
                 if (connected == true) {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (BuildContext context) => hellologinpassword(),
+                      builder: (BuildContext context) => hellologinpassword(), 
+                      settings: RouteSettings(arguments: reponses),
                     ),
                   );
                 }
               }
             }
           }
+          
         },
         style: ElevatedButton.styleFrom(
           shadowColor: Colors.grey.shade700,
@@ -218,7 +275,14 @@ class Creationcompte extends State<CreationCompte> {
           textAlign: TextAlign.center,
         ),
       ),
-    );
+    ),
+        SizedBox(height: 14,),
+    if(_showErrorMessageMail)
+    Text("Email incorrect.", style: mylib.warningText) else if (_showErrorMessagePassword)
+    Text("Mot de passe incorrect.", style: mylib.warningText) else if(_showErrorMessageCondition)
+    Text("Veuillez accepter les termes et les conditions.", style: mylib.warningText),
+    
+   ]);
   }
 
   Widget buildUserBtn() {
@@ -385,13 +449,12 @@ class Creationcompte extends State<CreationCompte> {
                         child: Container(
                           color: const Color.fromARGB(255, 235, 233, 233),
                           width: 309,
-                          height: 520,
+                          height: 600,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               buildTitle(),
-                              const SizedBox(height: 10),
-                              builUserName(),
+ if(!(_showErrorMessageMail || _showErrorMessageCondition || _showErrorMessagePassword)) SizedBox(height: 44) else SizedBox(height: 31),                              builUserName(),
                               buildEmail(),
                               // SizedBox(height: 15),
                               buildPassword(),
