@@ -71,7 +71,7 @@ class _agePage extends State<agePage> {
                                     setState(() {
                                       age = 10;
                                       print(age);
-                                      reponses['age'] = age;
+                                      reponses['rep_age'] = age;
                                       print(reponses);
                                     });
                                   },
@@ -88,7 +88,7 @@ class _agePage extends State<agePage> {
                                   setState(() {
                                     age = 17;
                                     print(age);
-                                    reponses['age'] = age;
+                                    reponses['rep_age'] = age;
                                     print(reponses);
                                   });
                                 },
@@ -106,7 +106,7 @@ class _agePage extends State<agePage> {
                                   setState(() {
                                     age = 25;
                                     print(age);
-                                    reponses['age'] = age;
+                                    reponses['rep_age'] = age;
                                     print(reponses);
                                   });
                                 },
@@ -124,7 +124,7 @@ class _agePage extends State<agePage> {
                                   setState(() {
                                     age = 35;
                                     print(age);
-                                    reponses['age'] = age;
+                                    reponses['rep_age'] = age;
                                     print(reponses);
                                   });
                                 },
@@ -142,7 +142,7 @@ class _agePage extends State<agePage> {
                                   setState(() {
                                     age = 45;
                                     print(age);
-                                    reponses['age'] = age;
+                                    reponses['rep_age'] = age;
                                     print(reponses);
                                   });
                                 },
@@ -160,7 +160,7 @@ class _agePage extends State<agePage> {
                                   setState(() {
                                     age = 55;
                                     print(age);
-                                    reponses['age'] = age;
+                                    reponses['rep_age'] = age;
                                     print(reponses);
                                   });
                                 },
@@ -178,7 +178,7 @@ class _agePage extends State<agePage> {
                                   setState(() {
                                     age = 65;
                                     print(age);
-                                    reponses['age'] = age;
+                                    reponses['rep_age'] = age;
                                     print(reponses);
                                   });
                                 },
@@ -196,7 +196,7 @@ class _agePage extends State<agePage> {
                                   setState(() {
                                     age = 75;
                                     print(age);
-                                    reponses['age'] = age;
+                                    reponses['rep_age'] = age;
                                     print(reponses);
                                   });
                                 },
@@ -214,7 +214,7 @@ class _agePage extends State<agePage> {
                                   setState(() {
                                     age = 76;
                                     print(age);
-                                    reponses['age'] = age;
+                                    reponses['rep_age'] = age;
                                     print(reponses);
                                   });
                                 },

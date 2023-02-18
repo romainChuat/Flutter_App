@@ -50,31 +50,38 @@ class DatabaseHelperLocal {
             lieux_long real NOT NULL
           )''');
     await db.execute("""CREATE TABLE reponses(
-          id INTEGER AUTO_INCREMENT PRIMARY KEY,
-          username TEXT NOT NULL,
-          longitude REAL NOT NULL,
-          latitude REAL NOT NULL,
-          expressions TEXT NOT NULL,
-          date DATE FORMAT 'dd.mm.yyyy',
-          age INTEGER,
-          genre TEXT NOT NULL,
-          niveau_etude TEXT NOT NULL
+          rep_id INTEGER  PRIMARY KEY AUTOINCREMENT,
+          rep_userID INTEGER NOT NULL,
+          rep_expr TEXT NOT NULL,
+          rep_date DATE FORMAT 'dd.mm.yyyy',
+          rep_age INTEGER NOT NULL,
+          rep_genre CHARACTER(15) NOT NULL,
+          rep_etude CHARATER(30) NOT NULL,
+          rep_activite CHARACTER(40) NOT NULL,
+          rep_lieuxID INTEGER NOT NULL,
+          CONSTRAINT fk_user FOREIGN KEY (rep_userID) REFERENCES user(user_id),
+          CONSTRAINT fk_lieux FOREIGN KEY (rep_lieuxID) REFERENCES lieux(lieux_id)
           )""");
 
     await db.execute('''
           CREATE TABLE user(
-            id INTEGER PRIMARY KEY,
-            nom TEXT NOT NULL,
-            mail TEXT NOT NULL,
-            password BINARY NOT NULL
+            user_id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_mail CHARACTER(255) DEFAULT "NULL",
+            user_name CHARACTER(15) NOT NULL,
+            user_psswd CHARACTER(255) DEFAULT "NULL",
+            user_admin BOOLEAN NOT NULL DEFAULT false
           )
           ''');
   }
 
   /*Fonctions pour les lieux*/
   Future<int?> insertLieu(Map<String, Object> l) async {
-
-    return await _db?.insert("lieux", l);
+    final Database? db = await init();
+    final insert = await _db?.insert("lieux", l);
+    print(insert);
+    //final insertID = await _db?.rawQuery("SELECT last_insert_rowid()");
+    //print(insertID);
+    return insert;
   }
 
   Future<List<Map<String, dynamic>>?> queryAllRowsLieu() async {
@@ -111,8 +118,9 @@ class DatabaseHelperLocal {
   }
 
   /*Fonctions pour les utilisateurs*/
-  Future<int?> insertUser(Utilisateur u) async {
-    return await _db?.insert("user", u.toMap());
+  Future<int?> insertUser(Map<String,Object> u) async {
+    final Database? db = await init();
+    return await _db?.insert("user", u);
   }
 
   Future<List<Map<String, dynamic>>?> queryAllRowsUser() async {
