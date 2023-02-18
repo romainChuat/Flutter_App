@@ -58,12 +58,56 @@
 
     "endPage_thanks": "Merci, ",
 
+    "commentPage_title": "Avez-vous déjà visitez ce lieux ?",
+    "commentPage_opinion": "Donnez votre avis :",
+    "commentPage_add_comment": "Ajouter un commentaire :",
+    "commentPage_max_char": "*200 caractères max.",
+
+    "hello_admin_page_title1": "Bonjour, ",
+    "hello_admin_page_title2": "Veuillez choisir ce que vous souhaitez réaliser.",
+    "hello_admin_page_btn_gerer_markers": "Gérer les markers",
+    "hello_admin_page_btn_gerer_avis": "Gérer les avis",
+
+    "acceuil_gerer_les_markers_title": "Vous avez choisis de gérer les markers.",
+    "acceuil_gerer_les_markers_btn_validated": "Gérer les marker validé",
+    "acceuil_gerer_les_markers_btn_traiter_received": "Traiter les markers reçu",
+    "acceuil_gerer_les_markers_btn_rejected": "Gérer les markers refusé",
+
+    "Traiter_markers_recu_admin_title": "Titre jj/mm/aaaa",
+    "Traiter_markers_recu_admin_localisation":"Localisation",
+    "Traiter_markers_recu_admin_photo":"Photo",
+    "Traiter_markers_recu_admin_date":"Date",
+    "Traiter_markers_recu_admin_expression":"Expression",
+    "Traiter_markers_recu_admin_age":"Tranche d'age",
+    "Traiter_markers_recu_admin_years":"ans",
+    "Traiter_markers_recu_admin_gender":"Genre",
+    "Traiter_markers_recu_admin_etude":"Votre plus haut niveaux d'étude",
+    "Traiter_markers_recu_admin_activite":"Activité exercer actuellement",
+    "Traiter_markers_recu_admin_btn_annuler":"Annuler la validation",
+
+    "gerer_markers_refuse_admin_btn_annuler_refus": "Annuler le refus",
+
+    "acceuil_gerer_les_avis_title": "Vous avez choisis de gérer les avis.",
+    "acceuil_gerer_les_avis_btn_validated": "Gérer les avis validé",
+    "acceuil_gerer_les_avis_btn_traiter_received": "Traiter les avis reçu",
+    "acceuil_gerer_les_avis_btn_rejected": "Gérer les avis refusé",
+
+
+
+
+
+    "languagePage_title": "Veuillez sélectionner votre langue :",
+
     "map_question": "Pour commencer, veuillez indiquer la localisation de votre photographie de paysage", 
     "next_btn_text": "Suivant",
     "english_text": "anglais",
     "french_text": "français",
 
     "btn_next": "Suivant",
-    "btn_submit": "Envoyer"
+    "btn_submit": "Envoyer",
+    "btn_yes": "Oui",
+    "btn_no": "Non",
+    "btn_refuse": "Refuser",
+    "btn_validate": "Valider"
 
 }

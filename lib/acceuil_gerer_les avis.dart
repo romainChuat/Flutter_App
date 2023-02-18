@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'Traiter_avis_recu_admin.dart';
 import 'gerer_les_avis_refuse_admin.dart';
@@ -33,8 +34,8 @@ class _acceuilgererlesavis extends State<acceuilgererlesavis> {
             side: const BorderSide(color: Colors.white, width: 3),
           ),
         ),
-        child: const Text(
-          "Gérer les avis validé",
+        child: Text(
+          "acceuil_gerer_les_avis_btn_validated".tr(),
           style: mylib.titleStyle5,
           textAlign: TextAlign.center,
         ),
@@ -62,8 +63,8 @@ class _acceuilgererlesavis extends State<acceuilgererlesavis> {
             side: const BorderSide(color: Colors.white, width: 3),
           ),
         ),
-        child: const Text(
-          "Traiter les avis reçu",
+        child: Text(
+          "acceuil_gerer_les_avis_btn_traiter_received".tr(),
           style: mylib.titleStyle5,
           textAlign: TextAlign.center,
         ),
@@ -91,8 +92,8 @@ class _acceuilgererlesavis extends State<acceuilgererlesavis> {
             side: const BorderSide(color: Colors.white, width: 3),
           ),
         ),
-        child: const Text(
-          "Gérer les avis refusé",
+        child: Text(
+          "acceuil_gerer_les_avis_btn_rejected".tr(),
           style: mylib.titleStyle5,
           textAlign: TextAlign.center,
         ),
@@ -119,10 +120,10 @@ class _acceuilgererlesavis extends State<acceuilgererlesavis> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const SizedBox(height: 61),
-            const SizedBox(
+             SizedBox(height: 61),
+             SizedBox(
               width: 250,
-              child: Text('Vous avez choisis de gérer les avis.',
+              child: Text('acceuil_gerer_les_avis_title'.tr(),
                   style: mylib.titleStyle),
             ),
             const SizedBox(height: 61),

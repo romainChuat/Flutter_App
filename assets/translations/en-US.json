@@ -58,11 +58,57 @@
 
     "endPage_thanks": "Thank you, ",
 
+    "commentPage_title": "Have you ever visited this place ?",
+    "commentPage_opinion": "Give your opinion :",
+    "commentPage_add_comment": "Add a comment :",
+    "commentPage_max_char": "*200 characters max.",
+
+    "hello_admin_page_title1": "Hello, ",
+    "hello_admin_page_title2": "Please choose what you want to achieve.",
+    "hello_admin_page_btn_gerer_markers": "Manage markers",
+    "hello_admin_page_btn_gerer_avis": "Manage notifications",
+
+    "acceuil_gerer_les_markers_title": "You have chosen to manage markers.",
+    "acceuil_gerer_les_markers_btn_validated": "Manage validated markers",
+    "acceuil_gerer_les_markers_btn_traiter_received": "Process markers received",
+    "acceuil_gerer_les_markers_btn_rejected": "Manage rejected markers",
+
+    "Traiter_markers_recu_admin_title": "Title dd/mm/yyyy",
+    "Traiter_markers_recu_admin_localisation":"Location",
+    "Traiter_markers_recu_admin_photo":"Picture",
+    "Traiter_markers_recu_admin_date":"Date",
+    "Traiter_markers_recu_admin_expression":"Expression",
+    "Traiter_markers_recu_admin_age":"Age range",
+    "Traiter_markers_recu_admin_years":"years",
+    "Traiter_markers_recu_admin_gender":"Gender",
+    "Traiter_markers_recu_admin_etude":"Your highest level of study",
+    "Traiter_markers_recu_admin_activite":"Current activity",
+    "Traiter_markers_recu_admin_btn_annuler":"Cancel validation",
+
+    "gerer_markers_refuse_admin_btn_annuler_refus": "Cancel the refusal",
+
+    "acceuil_gerer_les_avis_title": "You have chosen to manage the notices.",
+    "acceuil_gerer_les_avis_btn_validated": "Manage validated notices",
+    "acceuil_gerer_les_avis_btn_traiter_received": "Process the notices received",
+    "acceuil_gerer_les_avis_btn_rejected": "Manage rejected notices",
+
+
+
+
+
+    "languagePage_title": "Please select your language :",
+
+
+
     "map_question": "To begin, please indicate the location of your landscape photograph", 
     "next_btn_text": "Next",
     "english_text": "english",
     "french_text": "french",
 
     "btn_next": "Next",
-    "btn_submit": "Submit"
+    "btn_submit": "Submit",
+    "btn_yes": "Yes",
+    "btn_no": "No",
+    "btn_refuse": "Refuser",
+    "btn_validate": "Valider"
 }
