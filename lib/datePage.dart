@@ -1,4 +1,5 @@
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/startPage.dart';
 import 'mylib.dart' as mylib;
@@ -22,9 +23,6 @@ class _datePage extends State<datePage> {
 
   @override
   Widget build(BuildContext context) {
-    final text = MediaQuery.of(context).platformBrightness == Brightness.dark
-        ? 'DarkTheme'
-        : 'LightTheme';
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
     return Scaffold(
@@ -42,14 +40,14 @@ class _datePage extends State<datePage> {
                   child: Container(
                     width: 336,
                     height: 290,
-                    color: Color.fromARGB(255, 235, 233, 233),
+                    color: const Color.fromARGB(255, 235, 233, 233),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Container(
                           padding: const EdgeInsets.fromLTRB(1, 20, 1, 0),
-                          child: const Text(
-                            "Veuillez indiquez la date de votre image envoyer",
+                          child: Text(
+                            "datePage_title".tr(),
                             style: mylib.blueText,
                             textAlign: TextAlign.center,
                           ),
@@ -60,7 +58,7 @@ class _datePage extends State<datePage> {
                           indent: 20,
                           endIndent: 20,
                         ),
-                        Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 0)),
+                        const Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 0)),
                         SizedBox(
                           width: 265,
                           height: 180,
@@ -72,7 +70,7 @@ class _datePage extends State<datePage> {
                                   child: Material(
                                     elevation: 5,
                                     borderRadius:
-                                        BorderRadius.all(Radius.circular(10)),
+                                        const BorderRadius.all(Radius.circular(10)),
                                     child: TextField(
                                       style: mylib.simpleText
                                           .apply(fontSizeDelta: 5),
@@ -88,7 +86,7 @@ class _datePage extends State<datePage> {
                                           //labelText: "Enter Date",
                                           filled: true,
                                           fillColor: Colors.white,
-                                          hintText: 'Enter a date',
+                                          hintText: 'Entrer une date',
                                           contentPadding:
                                               const EdgeInsets.fromLTRB(
                                                   10, 1, 0, 0),
@@ -146,9 +144,9 @@ class _datePage extends State<datePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    mylib.createQuitButton(context, 141, 41,startPage(), reponses),
+                    mylib.createQuitButton(context, 141, 41,const startPage(), reponses),
                     mylib.createNextButton(
-                      "Next",
+                      "btn_next".tr(),
                       context,
                       141,
                       41,

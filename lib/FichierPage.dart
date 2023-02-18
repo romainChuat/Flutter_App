@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/datePage.dart';
@@ -42,15 +43,15 @@ class _fichierPage extends State<fichierPage> {
                   child: Container(
                     width: 336,
                     height: 285,
-                    color: Color.fromARGB(255, 235, 233, 233),
+                    color: const Color.fromARGB(255, 235, 233, 233),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                        
                         Container(
                           padding: const EdgeInsets.fromLTRB(1, 20, 1, 0),
-                          child: const Text(
-                            "Déposez à présent le fichier de l'image numérique",
+                          child: Text(
+                            "FichierPage_title".tr(),
                             style: mylib.blueText,
                             textAlign: TextAlign.center,
                           ),
@@ -61,7 +62,7 @@ class _fichierPage extends State<fichierPage> {
                           indent: 20,
                           endIndent: 20,
                         ),
-                        Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                        const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
                         SizedBox(
     
   
@@ -109,10 +110,10 @@ class _fichierPage extends State<fichierPage> {
                                       Container(
                                         //padding:EdgeInsets.fromLTRB(20,0,0,0),
 
-                                        child: const Align(
+                                        child: Align(
                                           alignment: Alignment.centerLeft,
                                           child: Text(
-                                            "Envoyer un fichier",
+                                            "FichierPage_send_file".tr(),
                                             style: mylib.simpleTextdark,
                                           ),
                                         ),
@@ -125,7 +126,7 @@ class _fichierPage extends State<fichierPage> {
                             ),
                             Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
                             Text(
-                              "! Veuillez envoyez au plus 1 fichier",
+                              "FichierPage_warning".tr(),
                               style: mylib.warningText,
                             ),
                             Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 20)),
@@ -156,7 +157,7 @@ class _fichierPage extends State<fichierPage> {
                   children: [
                     //mylib.createQuitButton(context, 141, 41),
                     mylib.createNextButton(
-                      "Next",
+                      "btn_next".tr(),
                       context,
                       141,
                       41,

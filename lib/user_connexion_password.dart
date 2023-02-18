@@ -6,21 +6,15 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'database_helper.dart';
 import 'connexion_admin.dart';
 import 'creation_compte.dart';
-import 'forgot_password_page.dart';
 import 'forgotpassword_user.dart';
-import 'hello_admin_page.dart';
 import 'hello_login_password.dart';
-import 'startPage.dart';
-import 'mapPage.dart';
-import 'homePage.dart';
-import 'connexion.dart';
 import 'mylib.dart' as mylib;
 
 class userconnexionpassword extends StatefulWidget {
   const userconnexionpassword({super.key});
 
   @override
-  State<userconnexionpassword> createState() => _userconnexionpassword();
+  _userconnexionpassword createState() => _userconnexionpassword();
 }
 
 class _userconnexionpassword extends State<userconnexionpassword> {
@@ -28,6 +22,8 @@ class _userconnexionpassword extends State<userconnexionpassword> {
   final passwordController = TextEditingController();
   bool connected = false;
   bool isRememberMe = false;
+    String _inputText = '';
+  bool _showErrorMessage = false;
   Map<String, Object> reponses = new Map();
 
   @override
@@ -36,18 +32,28 @@ class _userconnexionpassword extends State<userconnexionpassword> {
     super.initState();
   }
 
+    void _handleInputChange(String input){
+    setState(() {
+      _inputText = input;
+      _showErrorMessage = false;
+      reponses["email"] = input;
+      print(reponses);
+
+    });
+  }
+
   Widget buildTitle() {
     return Container(
       width: 309,
       height: 156,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage("images/connexionpage.jpg"),
           fit: BoxFit.cover,
         ),
       ),
-      child: Align(
-        child: const Text(
+      child: const Align(
+        child: Text(
           "Sign In",
           style: mylib.titleStyle3,
           textAlign: TextAlign.center,
@@ -64,11 +70,11 @@ class _userconnexionpassword extends State<userconnexionpassword> {
           print("Sign up pressed"),
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) => CreationCompte(),
+              builder: (BuildContext context) => const CreationCompte(),
             ),
           ),
         },
-        child: Text(
+        child: const Text(
           'Sign Up',
           style: TextStyle(
             color: Colors.black38,
@@ -82,7 +88,7 @@ class _userconnexionpassword extends State<userconnexionpassword> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         Container(
           width: 222,
           height: 38,
@@ -90,17 +96,21 @@ class _userconnexionpassword extends State<userconnexionpassword> {
           decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
                     color: Colors.black26, blurRadius: 6, offset: Offset(0, 2))
               ]),
           child: TextField(
+                        onChanged: _handleInputChange,
             controller: mailController,
             keyboardType: TextInputType.emailAddress,
-            style: TextStyle(color: Colors.black87),
-            decoration: InputDecoration(
+            style: const TextStyle(color: Colors.black87),
+            decoration: const InputDecoration(
                 border: InputBorder.none,
-                prefixIcon: Icon(Icons.email, color: Color.fromARGB(255, 13, 12, 32),),
+                prefixIcon: Icon(
+                  Icons.email,
+                  color: Color.fromARGB(255, 13, 12, 32),
+                ),
                 hintText: 'Email',
                 hintStyle: TextStyle(color: Colors.black38)),
           ),
@@ -113,7 +123,7 @@ class _userconnexionpassword extends State<userconnexionpassword> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         Container(
           width: 222,
           height: 38,
@@ -121,18 +131,22 @@ class _userconnexionpassword extends State<userconnexionpassword> {
           decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
                     color: Colors.black26, blurRadius: 6, offset: Offset(0, 2))
               ]),
           //height: 60,
           child: TextField(
+                                    onChanged: _handleInputChange,
             controller: passwordController,
             obscureText: true,
-            style: TextStyle(color: Colors.black87),
-            decoration: InputDecoration(
+            style: const TextStyle(color: Colors.black87),
+            decoration: const InputDecoration(
                 border: InputBorder.none,
-                prefixIcon: Icon(Icons.lock, color:Color.fromARGB(255, 13, 12, 32),),
+                prefixIcon: Icon(
+                  Icons.lock,
+                  color: Color.fromARGB(255, 13, 12, 32),
+                ),
                 hintText: 'Password',
                 hintStyle: TextStyle(color: Colors.black38)),
           ),
@@ -149,11 +163,11 @@ class _userconnexionpassword extends State<userconnexionpassword> {
           print("Forgot password pressed"),
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) => forgot_password_user(),
+              builder: (BuildContext context) => const forgot_password_user(),
             ),
           ),
         }, // padding: EdgeInsets.only(right: 0),
-        child: Text(
+        child: const Text(
           'Forgot Password ?',
           style: TextStyle(
             color: Colors.black38,
@@ -165,19 +179,21 @@ class _userconnexionpassword extends State<userconnexionpassword> {
   }
 
   Widget buildRemeberCb() {
-    return Container(
+    return SizedBox(
         height: 20,
         child: Row(
           children: <Widget>[
-            Theme(
-              data: ThemeData(unselectedWidgetColor: Colors.white),
-              child: Checkbox(
-                  value: isRememberMe,
-                  checkColor: Color.fromARGB(255, 13, 12, 32),
-                  activeColor: Colors.white,
-                  onChanged: _handleRememberme),
-            ),
-            Text(
+            Checkbox(
+              value: isRememberMe,
+              checkColor: const Color.fromARGB(255, 13, 12, 32),
+              activeColor: Colors.white,
+              onChanged: (value) {
+                setState(() {
+                  isRememberMe = true;
+                });
+              }),
+          
+            const Text(
               'Remember me',
               style: TextStyle(
                 color: Colors.black38,
@@ -188,46 +204,54 @@ class _userconnexionpassword extends State<userconnexionpassword> {
   }
 
   Widget buildLoginBtn() {
-    return Container(
-      width: 120,
-      height: 43,
-      // padding: EdgeInsets.symmetric(vertical: 25),
-      //width: double.infinity,
-      child: ElevatedButton(
-        onPressed: () async {
-          await loginCorrect();
-          if (connected == true) {
-            Navigator.of(context).push(MaterialPageRoute(
-              builder: (BuildContext context) => const hellologinpassword(),
-              settings: RouteSettings(arguments: reponses),
-            ));
-          } else {
-            print("Adresse mail ou mot de passe incorrect");
-          }
-        },
-        style: ElevatedButton.styleFrom(
-          shadowColor: Colors.grey.shade700,
-          backgroundColor: Color.fromARGB(255, 13, 12, 32),
-          elevation: 20,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0),
-            side: BorderSide(color: Colors.white, width: 3),
+    return Column(children: [
+      SizedBox(
+        width: 120,
+        height: 43,
+        child: ElevatedButton(
+          onPressed: () async {
+            await loginCorrect();
+            if (connected == true) {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (BuildContext context) => const hellologinpassword(),
+                settings: RouteSettings(arguments: reponses),
+              ));
+            } else {
+              print("Adresse mail ou mot de passe incorrect");
+              setState(() {
+                              _showErrorMessage = true;
+
+              });
+            }
+          },
+          style: ElevatedButton.styleFrom(
+            shadowColor: Colors.grey.shade700,
+            backgroundColor: const Color.fromARGB(255, 13, 12, 32),
+            elevation: 20,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
+              side: const BorderSide(color: Colors.white, width: 3),
+            ),
+          ),
+          child: const Text(
+            "Login",
+            style: mylib.titleStyle,
+            textAlign: TextAlign.center,
           ),
         ),
-        child: const Text(
-          "Login",
-          style: mylib.titleStyle,
-          textAlign: TextAlign.center,
-        ),
       ),
-    );
+    SizedBox(height: 14,),
+    if(_showErrorMessage)
+    Text("Email et/ou mot de passe incorrect.", style: mylib.warningText),
+    
+   ]);
   }
 
   Widget buildUserBtn() {
     return Container(
       child: Align(
-        alignment: Alignment(-0.66, 0.0),
-        child: Container(
+        alignment: const Alignment(-0.66, 0.0),
+        child: SizedBox(
           width: 150,
           height: 50,
           child: ElevatedButton(
@@ -239,10 +263,10 @@ class _userconnexionpassword extends State<userconnexionpassword> {
               );
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: Color.fromARGB(255, 13, 12, 32),
+              backgroundColor: const Color.fromARGB(255, 13, 12, 32),
               shadowColor: Colors.grey.shade700,
               elevation: 20,
-              shape: RoundedRectangleBorder(
+              shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(10),
                     topRight: Radius.circular(10)),
@@ -260,35 +284,33 @@ class _userconnexionpassword extends State<userconnexionpassword> {
   }
 
   Widget buildAdminBtn() {
-    return Container(
-      child: Align(
-        alignment: Alignment(0.66, 0.0),
-        child: Container(
-          width: 150,
-          height: 50,
-          child: ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (BuildContext context) => connexion_adminn(),
-                ),
-              );
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Color.fromARGB(255, 235, 233, 233),
-              shadowColor: Colors.grey.shade700,
-              elevation: 20,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    topRight: Radius.circular(10)),
+    return Align(
+      alignment: const Alignment(0.66, 0.0),
+      child: SizedBox(
+        width: 150,
+        height: 50,
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (BuildContext context) => const connexion_adminn(),
               ),
+            );
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color.fromARGB(255, 235, 233, 233),
+            shadowColor: Colors.grey.shade700,
+            elevation: 20,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(10),
+                  topRight: Radius.circular(10)),
             ),
-            child: const Text(
-              "Admin",
-              style: mylib.titleStyle4,
-              textAlign: TextAlign.center,
-            ),
+          ),
+          child: const Text(
+            "Admin",
+            style: mylib.titleStyle4,
+            textAlign: TextAlign.center,
           ),
         ),
       ),
@@ -303,10 +325,9 @@ class _userconnexionpassword extends State<userconnexionpassword> {
         child: GestureDetector(
             child: Stack(
           children: <Widget>[
-            Container(
+            SizedBox(
               height: double.infinity,
               width: double.infinity,
-              //decoration: mylib.background1,
               child: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -315,25 +336,26 @@ class _userconnexionpassword extends State<userconnexionpassword> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         buildUserBtn(),
-                        SizedBox(width: 10),
+                        const SizedBox(width: 10),
                         buildAdminBtn(),
                       ],
                     ),
                     ClipRRect(
-                        borderRadius: BorderRadius.only(
+                        borderRadius: const BorderRadius.only(
                             bottomLeft: Radius.circular(15),
                             bottomRight: Radius.circular(15)),
                         child: Container(
-                          color: Color.fromARGB(255, 235, 233, 233),
+                          color: const Color.fromARGB(255, 235, 233, 233),
                           width: 309,
                           height: 464,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               buildTitle(),
-                              SizedBox(height: 30),
+                              if(!_showErrorMessage) SizedBox(height: 44) else SizedBox(height: 31),
                               buildEmail(),
-                              SizedBox(height: 15),
+
+                              const SizedBox(height: 15),
                               buildPassword(),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -348,17 +370,16 @@ class _userconnexionpassword extends State<userconnexionpassword> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                  Text(
+                                  const Text(
                                     'Don\'t have account ?',
                                     style: TextStyle(
                                       color: Colors.black38,
                                     ),
                                   ),
                                   buildSignUpBtn(),
-                                  SizedBox(height: 10),
                                 ],
                               ),
-                              SizedBox(height: 28),
+                              // const SizedBox(height: 28),
                             ],
                           ),
                         )),

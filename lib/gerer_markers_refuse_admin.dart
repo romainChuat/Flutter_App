@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:flutter_map/plugin_api.dart';
 import 'endPage.dart';
-import 'forgot_password_page.dart';
-import 'startPage.dart';
-import 'mapPage.dart';
 import 'homePage.dart';
-import 'connexion.dart';
 import 'mylib.dart' as mylib;
 
 class gerer_les_markers_refuse extends StatefulWidget {
@@ -24,7 +19,7 @@ class _gerer_les_markers_refuse extends State<gerer_les_markers_refuse> {
 
 
   Widget buildAccessMap() {
-    return Container(
+    return SizedBox(
       width: 296,
       height: 49,
       child: ElevatedButton(
@@ -37,11 +32,10 @@ class _gerer_les_markers_refuse extends State<gerer_les_markers_refuse> {
         },
         style: ElevatedButton.styleFrom(
           shadowColor: Colors.grey.shade700,
-          backgroundColor: const Color.fromARGB(255, 41, 59, 229),
           elevation: 20,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
-            side: BorderSide(color: Colors.white, width: 3),
+            side: const BorderSide(color: Colors.white, width: 3),
           ),
         ),
         child: const Text(
@@ -59,9 +53,7 @@ class _gerer_les_markers_refuse extends State<gerer_les_markers_refuse> {
       child: Container(
         width: 325,
         height: 60,
-        color: Color.fromARGB(255, 235, 233, 233),
-        //child: Column(
-        //children: [
+        color: const Color.fromARGB(255, 235, 233, 233),
         child: Container(
           padding: const EdgeInsets.fromLTRB(1, 15, 1, 0),
           child: const Text(
@@ -70,8 +62,6 @@ class _gerer_les_markers_refuse extends State<gerer_les_markers_refuse> {
             textAlign: TextAlign.center,
           ),
         ),
-        // ],
-        // ),
       ),
     );
   }
@@ -85,7 +75,7 @@ class _gerer_les_markers_refuse extends State<gerer_les_markers_refuse> {
           child: Container(
             width: 325,
             height: 454,
-            color: Color.fromARGB(255, 235, 233, 233),
+            color: const Color.fromARGB(255, 235, 233, 233),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -98,7 +88,7 @@ class _gerer_les_markers_refuse extends State<gerer_les_markers_refuse> {
                   ),
                 ),
                 const Divider(
-                  color: Color.fromARGB(255, 41, 59, 229),
+                  color: Colors.black,
                   thickness: 1,
                   indent: 20,
                   endIndent: 20,
@@ -121,7 +111,7 @@ class _gerer_les_markers_refuse extends State<gerer_les_markers_refuse> {
                                     point: value,
                                     builder: (ctx) => Container(
                                         child: IconButton(
-                                          icon: Icon(Icons.location_on, color: Colors.redAccent, size: 30,), 
+                                          icon: const Icon(Icons.location_on, color: Colors.redAccent, size: 30,), 
                                           onPressed: () { 
                                             print("afficher avis");
                                           },
@@ -161,7 +151,7 @@ class _gerer_les_markers_refuse extends State<gerer_les_markers_refuse> {
           child: Container(
             width: 325,
             height: 254,
-            color: Color.fromARGB(255, 235, 233, 233),
+            color: const Color.fromARGB(255, 235, 233, 233),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -174,7 +164,7 @@ class _gerer_les_markers_refuse extends State<gerer_les_markers_refuse> {
                   ),
                 ),
                 const Divider(
-                  color: Color.fromARGB(255, 41, 59, 229),
+                  color: Colors.black,
                   thickness: 1,
                   indent: 20,
                   endIndent: 20,
@@ -182,7 +172,7 @@ class _gerer_les_markers_refuse extends State<gerer_les_markers_refuse> {
                 Container(
                   width: 280,
                   height: 156,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage("images/photo_besancon.jpg"),
                       fit: BoxFit.cover,
@@ -206,7 +196,7 @@ class _gerer_les_markers_refuse extends State<gerer_les_markers_refuse> {
           child: Container(
             width: 325,
             height: 140,
-            color: Color.fromARGB(255, 235, 233, 233),
+            color: const Color.fromARGB(255, 235, 233, 233),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -219,7 +209,7 @@ class _gerer_les_markers_refuse extends State<gerer_les_markers_refuse> {
                   ),
                 ),
                 const Divider(
-                  color: Color.fromARGB(255, 41, 59, 229),
+                  color: Colors.black,
                   thickness: 1,
                   indent: 20,
                   endIndent: 20,
@@ -229,9 +219,9 @@ class _gerer_les_markers_refuse extends State<gerer_les_markers_refuse> {
                   child: Container(
                     width: 300,
                     height: 46,
-                    color: Color.fromARGB(255, 255, 255, 255),
-                    child: Align(
-                      child: const Text(
+                    color: const Color.fromARGB(255, 255, 255, 255),
+                    child: const Align(
+                      child: Text(
                         "jj/mm/aaaa",
                         style: mylib.titleStyle3,
                         textAlign: TextAlign.center,
@@ -256,7 +246,7 @@ class _gerer_les_markers_refuse extends State<gerer_les_markers_refuse> {
           child: Container(
             width: 325,
             height: 310,
-            color: Color.fromARGB(255, 235, 233, 233),
+            color: const Color.fromARGB(255, 235, 233, 233),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -269,7 +259,7 @@ class _gerer_les_markers_refuse extends State<gerer_les_markers_refuse> {
                   ),
                 ),
                 const Divider(
-                  color: Color.fromARGB(255, 41, 59, 229),
+                  color: Colors.black,
                   thickness: 1,
                   indent: 20,
                   endIndent: 20,
@@ -281,48 +271,48 @@ class _gerer_les_markers_refuse extends State<gerer_les_markers_refuse> {
                       Container(
                         width: 300,
                         height: 46,
-                        color: Color.fromARGB(255, 255, 255, 255),
-                        child: Align(
-                          child: const Text(
+                        color: const Color.fromARGB(255, 255, 255, 255),
+                        child: const Align(
+                          child: Text(
                             "1. Texte texte texte texte",
                             style: mylib.titleStyle3,
                             textAlign: TextAlign.center,
                           ),
                         ),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Container(
                         width: 300,
                         height: 46,
-                        color: Color.fromARGB(255, 255, 255, 255),
-                        child: Align(
-                          child: const Text(
+                        color: const Color.fromARGB(255, 255, 255, 255),
+                        child: const Align(
+                          child: Text(
                             "2. Texte texte texte texte",
                             style: mylib.titleStyle3,
                             textAlign: TextAlign.center,
                           ),
                         ),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Container(
                         width: 300,
                         height: 46,
-                        color: Color.fromARGB(255, 255, 255, 255),
-                        child: Align(
-                          child: const Text(
+                        color: const Color.fromARGB(255, 255, 255, 255),
+                        child: const Align(
+                          child: Text(
                             "3. Texte texte texte texte",
                             style: mylib.titleStyle3,
                             textAlign: TextAlign.center,
                           ),
                         ),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Container(
                         width: 300,
                         height: 46,
-                        color: Color.fromARGB(255, 255, 255, 255),
-                        child: Align(
-                          child: const Text(
+                        color: const Color.fromARGB(255, 255, 255, 255),
+                        child: const Align(
+                          child: Text(
                             "4. Texte texte texte texte",
                             style: mylib.titleStyle3,
                             textAlign: TextAlign.center,
@@ -349,7 +339,7 @@ class _gerer_les_markers_refuse extends State<gerer_les_markers_refuse> {
           child: Container(
             width: 325,
             height: 140,
-            color: Color.fromARGB(255, 235, 233, 233),
+            color: const Color.fromARGB(255, 235, 233, 233),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -362,7 +352,7 @@ class _gerer_les_markers_refuse extends State<gerer_les_markers_refuse> {
                   ),
                 ),
                 const Divider(
-                  color: Color.fromARGB(255, 41, 59, 229),
+                  color: Colors.black,
                   thickness: 1,
                   indent: 20,
                   endIndent: 20,
@@ -372,9 +362,9 @@ class _gerer_les_markers_refuse extends State<gerer_les_markers_refuse> {
                   child: Container(
                     width: 300,
                     height: 46,
-                    color: Color.fromARGB(255, 255, 255, 255),
-                    child: Align(
-                      child: const Text(
+                    color: const Color.fromARGB(255, 255, 255, 255),
+                    child: const Align(
+                      child: Text(
                         "... - ... ans",
                         style: mylib.titleStyle3,
                         textAlign: TextAlign.center,
@@ -399,7 +389,7 @@ class _gerer_les_markers_refuse extends State<gerer_les_markers_refuse> {
           child: Container(
             width: 325,
             height: 140,
-            color: Color.fromARGB(255, 235, 233, 233),
+            color: const Color.fromARGB(255, 235, 233, 233),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -412,7 +402,7 @@ class _gerer_les_markers_refuse extends State<gerer_les_markers_refuse> {
                   ),
                 ),
                 const Divider(
-                  color: Color.fromARGB(255, 41, 59, 229),
+                  color: Colors.black,
                   thickness: 1,
                   indent: 20,
                   endIndent: 20,
@@ -422,9 +412,9 @@ class _gerer_les_markers_refuse extends State<gerer_les_markers_refuse> {
                   child: Container(
                     width: 300,
                     height: 46,
-                    color: Color.fromARGB(255, 255, 255, 255),
-                    child: Align(
-                      child: const Text(
+                    color: const Color.fromARGB(255, 255, 255, 255),
+                    child: const Align(
+                      child: Text(
                         "TexteGenre",
                         style: mylib.titleStyle3,
                         textAlign: TextAlign.center,
@@ -449,7 +439,7 @@ class _gerer_les_markers_refuse extends State<gerer_les_markers_refuse> {
           child: Container(
             width: 325,
             height: 140,
-            color: Color.fromARGB(255, 235, 233, 233),
+            color: const Color.fromARGB(255, 235, 233, 233),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -462,7 +452,7 @@ class _gerer_les_markers_refuse extends State<gerer_les_markers_refuse> {
                   ),
                 ),
                 const Divider(
-                  color: Color.fromARGB(255, 41, 59, 229),
+                  color: Colors.black,
                   thickness: 1,
                   indent: 20,
                   endIndent: 20,
@@ -472,9 +462,9 @@ class _gerer_les_markers_refuse extends State<gerer_les_markers_refuse> {
                   child: Container(
                     width: 300,
                     height: 46,
-                    color: Color.fromARGB(255, 255, 255, 255),
-                    child: Align(
-                      child: const Text(
+                    color: const Color.fromARGB(255, 255, 255, 255),
+                    child: const Align(
+                      child: Text(
                         "Niveaux d'étude",
                         style: mylib.titleStyle3,
                         textAlign: TextAlign.center,
@@ -499,7 +489,7 @@ class _gerer_les_markers_refuse extends State<gerer_les_markers_refuse> {
           child: Container(
             width: 325,
             height: 140,
-            color: Color.fromARGB(255, 235, 233, 233),
+            color: const Color.fromARGB(255, 235, 233, 233),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -512,7 +502,7 @@ class _gerer_les_markers_refuse extends State<gerer_les_markers_refuse> {
                   ),
                 ),
                 const Divider(
-                  color: Color.fromARGB(255, 41, 59, 229),
+                  color: Colors.black,
                   thickness: 1,
                   indent: 20,
                   endIndent: 20,
@@ -522,9 +512,9 @@ class _gerer_les_markers_refuse extends State<gerer_les_markers_refuse> {
                   child: Container(
                     width: 300,
                     height: 46,
-                    color: Color.fromARGB(255, 255, 255, 255),
-                    child: Align(
-                      child: const Text(
+                    color: const Color.fromARGB(255, 255, 255, 255),
+                    child: const Align(
+                      child: Text(
                         "Activité",
                         style: mylib.titleStyle3,
                         textAlign: TextAlign.center,
@@ -541,7 +531,7 @@ class _gerer_les_markers_refuse extends State<gerer_les_markers_refuse> {
   }
 
   Widget btnAnnulerRefus() {
-    return Container(
+    return SizedBox(
       width: 310,
       height: 43,
       // padding: EdgeInsets.symmetric(vertical: 25),
@@ -556,11 +546,10 @@ class _gerer_les_markers_refuse extends State<gerer_les_markers_refuse> {
                       },
         style: ElevatedButton.styleFrom(
           shadowColor: Colors.grey.shade700,
-          backgroundColor: const Color.fromARGB(255, 41, 59, 229),
           elevation: 20,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
-            side: BorderSide(color: Colors.white, width: 3),
+            side: const BorderSide(color: Colors.white, width: 3),
           ),
         ),
         child: const Text(
@@ -574,9 +563,6 @@ class _gerer_les_markers_refuse extends State<gerer_les_markers_refuse> {
 
   @override
   Widget build(BuildContext context) {
-    final text = MediaQuery.of(context).platformBrightness == Brightness.dark
-    ? 'DarkTheme'
-    : 'LightTheme';
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: mylib.baseAppBar(
@@ -588,60 +574,54 @@ class _gerer_les_markers_refuse extends State<gerer_les_markers_refuse> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Padding(padding: EdgeInsets.fromLTRB(0, 55, 0, 0)),
+                    const Padding(padding: EdgeInsets.fromLTRB(0, 55, 0, 0)),
                     ClipRRect(
                       borderRadius: BorderRadius.circular(15.0),
                       child: Container(
                         width: 359,
                         height: 600,
+                        padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+
                         decoration: const BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment(0.0, 1),
-                            colors: <Color>[
-                              Color.fromARGB(255, 41, 59, 229),
-                              Color.fromARGB(255, 54, 191, 201),
-                            ],
-                            tileMode: TileMode.mirror,
-                          ),
+                                                    color: Color.fromARGB(118, 13, 12, 32),
                         ),
                         child: SingleChildScrollView(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                              const Padding(
+                                  padding: EdgeInsets.fromLTRB(0, 20, 0, 0)),
                               TitleDate(),
-                              Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                              const Padding(
+                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
                               Map(),
-                              Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                              const Padding(
+                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
                               Photo(),
-                              Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                              const Padding(
+                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
                               Date(),
-                              Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                              const Padding(
+                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
                               Expression(),
-                              Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                              const Padding(
+                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
                               Age(),
-                              Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                              const Padding(
+                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
                               Genre(),
-                              Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                              const Padding(
+                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
                               NiveauxEtude(),
-                              Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                              const Padding(
+                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
                               ActiviteExerce(),
                             ],
                           ),
                         ),
                       ),
                     ),
-                    Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                    const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
                     btnAnnulerRefus(),
                   ],
                 ),

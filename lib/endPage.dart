@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/homePage.dart';
 import 'package:flutter_icon_shadow/flutter_icon_shadow.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
-
 import 'database_helper_local.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'mylib.dart' as mylib;
 
 class endPage extends StatefulWidget {
@@ -21,9 +20,6 @@ class _endPage extends State<endPage> {
 
     print(reponses);
 
-    final text = MediaQuery.of(context).platformBrightness == Brightness.dark
-        ? 'DarkTheme'
-        : 'LightTheme';
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: mylib.baseAppBar(appBar: AppBar()),
@@ -32,29 +28,29 @@ class _endPage extends State<endPage> {
           padding: const EdgeInsets.fromLTRB(0, 100, 0, 0),
           child: Center(
             child: ClipRRect(
-              borderRadius: BorderRadius.all(Radius.circular(10)),
+              borderRadius: const BorderRadius.all(Radius.circular(10)),
               child: Container(
-                color: Color.fromARGB(255, 235, 233, 233),
+                color: const Color.fromARGB(255, 235, 233, 233),
                 width: 309,
                 height: 530,
                 padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-                    Text('Merci, Login', style: mylib.titleStyle),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("endPage_thanks".tr(), style: mylib.titleStyle),
+                        Text("${reponses["username"]}",
+                            style: mylib.titleStyle),
+                      ],
+                    ),
                     SizedBox(
                       width: 320,
                       height: 350,
                       child: Stack(
                         alignment: Alignment.center,
                         children: [
-                          /*const IconShadow(
-                          Icon(
-                            Icons.check, color: Color.fromARGB(255,95, 202, 131), size: 180,
-                          ),
-                          shadowColor: Color.fromARGB(255, 63, 63, 63),
-                          shadowOffset: Offset(2,2),
-                        ),*/
                           const IconShadow(
                             Icon(
                               Icons.check_circle_outline,
@@ -70,7 +66,6 @@ class _endPage extends State<endPage> {
                                 strokeCap: StrokeCap.round,
                                 color: Colors.white,
                                 rad: 130),
-                            //foregroundPainter: MakeCircle(strokeWidth: 15, strokeCap: StrokeCap.round, rad: 135, color: Colors.white ),
                           ),
                         ],
                       ),
@@ -100,6 +95,7 @@ class _endPage extends State<endPage> {
         onPressed: () {
           //envoie des données à la bd
           insertReponse(reponses);
+          insertLieu(reponses);
           Navigator.push(
               context,
               MaterialPageRoute(
@@ -108,11 +104,27 @@ class _endPage extends State<endPage> {
               ));
         },
         child: Text(
-          "Submit",
+          "btn_submit".tr(),
           style: mylib.titleStyle,
         ),
       ),
     );
+  }
+
+  void insertLieu(Map<String, Object> reponses) async {
+    Map<String, Object> lieux = new Map();
+    lieux['lieux_lat'] = reponses['latitude']!;
+    lieux['lieux_long'] = reponses['longitude']!;
+
+    WidgetsFlutterBinding.ensureInitialized();
+    DatabaseHelperLocal db = DatabaseHelperLocal();
+
+    try {
+      await db.insertLieu(lieux);
+      print("new lieux");
+    } catch (e) {
+      print("enregistrement lieux impossible");
+    }
   }
 
   void insertReponse(Map<String, Object> reponses) async {
@@ -123,7 +135,7 @@ class _endPage extends State<endPage> {
     print(reponses);
     //insert["reponses"] = reponses.toString();
     //print(insert);
-    reponses['username'] = "guest_" + reponses['username'].toString();
+    reponses['username'] = "guest_${reponses['username']}";
     WidgetsFlutterBinding.ensureInitialized();
     DatabaseHelperLocal db = DatabaseHelperLocal();
 
@@ -170,7 +182,7 @@ class MakeCircle extends CustomPainter {
       ..strokeWidth = strokeWidth
       ..style = PaintingStyle.stroke; //important set stroke style
 
-    canvas.drawCircle(Offset(0, 0), rad, paint);
+    canvas.drawCircle(const Offset(0, 0), rad, paint);
   }
 
   @override

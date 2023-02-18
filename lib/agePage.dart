@@ -1,7 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'genrePage.dart';
 import 'mylib.dart' as mylib;
-import 'package:intl/intl.dart';
 
 class agePage extends StatefulWidget {
   @override
@@ -15,9 +15,6 @@ class _agePage extends State<agePage> {
 
   @override
   Widget build(BuildContext context) {
-    final text = MediaQuery.of(context).platformBrightness == Brightness.dark
-        ? 'DarkTheme'
-        : 'LightTheme';
 
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
@@ -38,13 +35,13 @@ class _agePage extends State<agePage> {
                   child: Container(
                     width: 336,
                     height: 415,
-                    color: Color.fromARGB(255, 235, 233, 233),
+                    color: const Color.fromARGB(255, 235, 233, 233),
                     child: Column(
                       children: [
                         Container(
                           padding: const EdgeInsets.fromLTRB(1, 20, 1, 0),
-                          child: const Text(
-                            "Choisissez la tranche d'âge à laquelle vous situez-vous ?",
+                          child: Text(
+                            "agePage_title".tr(),
                             style: mylib.blueText,
                             textAlign: TextAlign.center,
                           ),
@@ -64,8 +61,8 @@ class _agePage extends State<agePage> {
                                 child: RadioListTile(
                                   
                                 activeColor: Colors.black,
-                                  title: const Text(
-                                    "3 - 10 ans",
+                                  title: Text(
+                                    "agePage_3-10".tr(),
                                     style: mylib.blueText2,
                                   ),
                                   
@@ -84,7 +81,7 @@ class _agePage extends State<agePage> {
                               height: 32,
                               child: RadioListTile(
                                 activeColor: Colors.black,
-                                title: const Text("11 - 17 ans",
+                                title: Text("agePage_11-17".tr(),
                                     style: mylib.blueText2),
                                 groupValue: age,
                                 onChanged: (value) {
@@ -102,7 +99,7 @@ class _agePage extends State<agePage> {
                               height: 32,
                               child: RadioListTile(
                                 activeColor: Colors.black,
-                                title: const Text("18 - 25 ans",
+                                title:  Text("agePage_18-25".tr(),
                                     style: mylib.blueText2),
                                 groupValue: age,
                                 onChanged: (value) {
@@ -120,7 +117,7 @@ class _agePage extends State<agePage> {
                               height: 32,
                               child: RadioListTile(
                                 activeColor: Colors.black,
-                                title: const Text("26 - 35 ans",
+                                title: Text("agePage_26-35".tr(),
                                     style: mylib.blueText2),
                                 groupValue: age,
                                 onChanged: (value) {
@@ -138,7 +135,7 @@ class _agePage extends State<agePage> {
                               height: 32,
                               child: RadioListTile(
                                 activeColor: Colors.black,
-                                title: const Text("36 - 45 ans",
+                                title: Text("agePage_36-45".tr(),
                                     style: mylib.blueText2),
                                 groupValue: age,
                                 onChanged: (value) {
@@ -156,7 +153,7 @@ class _agePage extends State<agePage> {
                               height: 32,
                               child: RadioListTile(
                                 activeColor: Colors.black,
-                                title: const Text("46 - 55 ans",
+                                title: Text("agePage_46-55".tr(),
                                     style: mylib.blueText2),
                                 groupValue: age,
                                 onChanged: (value) {
@@ -174,7 +171,7 @@ class _agePage extends State<agePage> {
                               height: 32,
                               child: RadioListTile(
                                 activeColor: Colors.black,
-                                title: const Text("56 - 65 ans",
+                                title: Text("agePage_56-65".tr(),
                                     style: mylib.blueText2),
                                 groupValue: age,
                                 onChanged: (value) {
@@ -192,7 +189,7 @@ class _agePage extends State<agePage> {
                               height: 32,
                               child: RadioListTile(
                                 activeColor: Colors.black,
-                                title: const Text("66 - 75 ans",
+                                title: Text("agePage_66-75".tr(),
                                     style: mylib.blueText2),
                                 groupValue: age,
                                 onChanged: (value) {
@@ -210,7 +207,7 @@ class _agePage extends State<agePage> {
                               height: 32,
                               child: RadioListTile(
                                 activeColor: Colors.black,
-                                title: const Text("76 ans et plus",
+                                title: Text("agePage_76".tr(),
                                     style: mylib.blueText2),
                                 groupValue: age,
                                 onChanged: (value) {
@@ -235,7 +232,7 @@ class _agePage extends State<agePage> {
                   children: [
                     //mylib.createQuitButton(context, 141, 41),
                     mylib.createNextButton(
-                      "Next",
+                      "btn_next".tr(),
                       context,
                       141,
                       41,

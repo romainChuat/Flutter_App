@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'genrePage.dart';
 import 'mylib.dart' as mylib;
-import 'package:intl/intl.dart';
 
 class commentPage extends StatefulWidget {
   @override
@@ -36,7 +35,7 @@ class _commentPage extends State<commentPage> {
                         height: 560,
                                   padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
 
-                        color: Color.fromARGB(97, 13, 12, 32),
+                          color: Color.fromARGB(118, 13, 12, 32),
                         child: SingleChildScrollView(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,

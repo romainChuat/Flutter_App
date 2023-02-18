@@ -13,11 +13,57 @@
     
     "droits_auteur_title": "Veuillez céder les droits d'auteur ou d'autrice pour poursuivre.",
     "droits_auteur_text": "L'auteur d'une oeuvre de l'esprit jouit sur cette oeuvre, du seul fait de sa création, d'un droit de propriété incorporelle exclusif et opposable à tous. Ce droit comporte des attributs d'ordre intellectuel et moral ainsi que des attributs d'ordre patrimonial, qui sont déterminés par les livres Ier et III du présent code. L'existence ou la conclusion d'un contrat de louage d'ouvrage ou de service par l'auteur d'une oeuvre de l'esprit n'emporte pas dérogation à la jouissance du droit reconnu par le premier alinéa, sous réserve des exceptions prévues par le présent code. Sous les mêmes réserves, il n'est pas non plus dérogé à la jouissance de ce même droit lorsque l'auteur de l'oeuvre de l'esprit est un agent de l'Etat, d'une collectivité territoriale, d'un établissement public à caractère administratif, d'une autorité administrative indépendante dotée de la personnalité morale, de la Banque de France, de l'Institut de France, de l'Académie française, de l'Académie des inscriptions et belles-lettres, de l'Académie des sciences, de l'Académie des beaux-arts ou de l'Académie des sciences morales et politique. Les dispositions des articles L. 121-7-1 et L. 131-3-1 à L. 131-3-3 ne s'appliquent pas aux agents auteurs d'oeuvres dont la divulgation n'est soumise, en vertu de leur statut ou des règles qui régissent leurs fonctions, à aucun contrôle préalable de l'autorité hiérarchique.",
-    
+    "droits_auteur_accept": "Accepter",
+
+    "FichierPage_title": "Déposez à présent le fichier de l'image numérique.",
+    "FichierPage_send_file": "Envoyer un fichier",
+    "FichierPage_warning" : "! Veuillez envoyez au plus 1 fichier.",
+
+    "datePage_title" : "Veuillez indiquez la date de votre image envoyer.",
+    "datePage_enter_date": "Entrer une date",
+
+    "motPage_title": "Quels sont les mots et expressions qui vous viennent à l'esprit ?",
+
+    "agePage_title": "Choisissez la tranche d'âge à laquelle vous situez-vous ?",
+    "agePage_3-10": "3 - 10 ans",
+    "agePage_11-17": "11 - 17 ans",
+    "agePage_18-25": "18 - 25 ans",
+    "agePage_26-35": "26 - 35 ans",
+    "agePage_36-45": "36 - 45 ans",
+    "agePage_46-55": "46 - 55 ans",
+    "agePage_56-65": "56 - 65 ans",
+    "agePage_66-75": "66 - 75 ans",
+    "agePage_76": "76 ans et plus",
+
+    "genrePage_title": "A quels genre vous identifiez vous ?",
+    "genrePage_female": "Féminin",
+    "genrePage_male": "Masculin",
+    "genrePage_other": "Autre genre",
+
+    "etudePage_title": "Quel est le plus haut niveau d'éducation dont vous avez bénéficié à ce jour ?",
+    "etudePage_primary": "Niveaux d'enseignement primaire.",
+    "etudePage_middle_school": "Niveau premier cycle de l'enseignement secondaire (Collège) ou moins.",
+    "etudePage_high_school": "Niveau deuxième cycle de l'enseignement secondaire Lycée agricole, professionel.",
+    "etudePage_higher_education": "Enseignement supérieur de cycle court(DEUG, BTS,DUT).",
+    "etudePage_bac3": "Niveau licence ou équivalent BAC+3.",
+    "etudePage_bac5": "Niveau master ou équivalent BAC+5.",
+    "etudePage_doctorat": "Doctorat.",
+
+    "activitePage_title": "Quelle activité exercer vous actuellement ?",
+    "activitePage_formation": "En formation :",
+    "activitePage_research_employs": "A la recherche d'un emploi :",
+    "activitePage_activity": "Activité professionnelle :",
+    "activitePage_retired": "Retraité :",
+    "activitePage_jobless": "Sans activité professionnelle :",
+
+    "endPage_thanks": "Merci, ",
+
     "map_question": "Pour commencer, veuillez indiquer la localisation de votre photographie de paysage", 
     "next_btn_text": "Suivant",
     "english_text": "anglais",
     "french_text": "français",
 
-    "btn_next": "Suivant"
+    "btn_next": "Suivant",
+    "btn_submit": "Envoyer"
+
 }

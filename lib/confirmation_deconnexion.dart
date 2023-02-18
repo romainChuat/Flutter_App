@@ -1,17 +1,19 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/endPage.dart';
+import 'package:flutter_application_1/user_choix_connexion.dart';
 import 'donner_avis_marker.dart';
 import 'homePage.dart';
 import 'mylib.dart' as mylib;
 
-class hello_login_page extends StatefulWidget {
-  const hello_login_page({super.key});
+class confirmation_deconnexion extends StatefulWidget {
+  const confirmation_deconnexion({super.key});
 
   @override
-  State<hello_login_page> createState() => _hello_login_page();
+  State<confirmation_deconnexion> createState() => _confirmation_deconnexion();
 }
 
-class _hello_login_page extends State<hello_login_page> {
+class _confirmation_deconnexion extends State<confirmation_deconnexion> {
   bool darkmode = false;
   dynamic savedThemeMode;
 
@@ -36,15 +38,15 @@ class _hello_login_page extends State<hello_login_page> {
     }
   }
 
-  Widget buildAccessMap() {
+  Widget buildBtnYes() {
     return SizedBox(
-      width: 286,
+      width: 120,
       height: 49,
       child: ElevatedButton(
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) => donner_avis_marker(),
+              builder: (BuildContext context) => userchoixconnexion(),
             ),
           );
         },
@@ -57,7 +59,7 @@ class _hello_login_page extends State<hello_login_page> {
           ),
         ),
         child: const Text(
-          "Accéder à la carte",
+          "Oui",
           style: mylib.titleStyle,
           textAlign: TextAlign.center,
         ),
@@ -65,18 +67,14 @@ class _hello_login_page extends State<hello_login_page> {
     );
   }
 
-  Widget buildAccessQuestionnaire(Map<String, Object> reponses) {
+  Widget buildBtnNo() {
     return SizedBox(
-      width: 286,
+      width: 120,
       height: 49,
       child: ElevatedButton(
         onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-                builder: (BuildContext context) => const MyHomePage(),
-                settings: RouteSettings(arguments: reponses)),
-          );
-        },
+                Navigator.pop(context);
+              },
         style: ElevatedButton.styleFrom(
           shadowColor: Colors.grey.shade700,
           elevation: 20,
@@ -86,7 +84,7 @@ class _hello_login_page extends State<hello_login_page> {
           ),
         ),
         child: const Text(
-          "Accéder au questionnaire",
+          "Non",
           style: mylib.titleStyle,
           textAlign: TextAlign.center,
         ),
@@ -96,8 +94,6 @@ class _hello_login_page extends State<hello_login_page> {
 
   @override
   Widget build(BuildContext context) {
-    Map<String, Object> reponses =
-        ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: mylib.baseAppBar(
@@ -110,27 +106,34 @@ class _hello_login_page extends State<hello_login_page> {
           child: Container(
             color: const Color.fromARGB(255, 235, 233, 233),
             width: 309,
-            height: 464,
+            height: 200,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 SizedBox(
                   width: 250,
-                  child: Text("Hello, ${reponses["username"]}",
-                      style: mylib.titleStyle2),
                 ),
-                const SizedBox(height: 61),
+                                const SizedBox(height: 15),
+
                 const SizedBox(
-                  width: 250,
+
                   child: Text(
-                      'Veuillez choisir ce que vous souhaitez réaliser.',
+                      'Voulez-vous vous déconnecter ?',
                       style: mylib.titleStyle),
                 ),
+                                const SizedBox(height: 35),
+
+                Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+
+                  children: [
+                //const SizedBox(height: 5),
+                buildBtnYes(),
+              //  const SizedBox(height: ),
+                buildBtnNo(),
                 const SizedBox(height: 61),
-                buildAccessMap(),
-                const SizedBox(height: 61),
-                buildAccessQuestionnaire(reponses),
-                const SizedBox(height: 61),
+                  ],
+                ),
               ],
             ),
           ),

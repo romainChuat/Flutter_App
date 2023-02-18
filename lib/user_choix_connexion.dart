@@ -1,13 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/user_connexion_password.dart';
 import 'connexion_admin.dart';
 import 'creation_compte.dart';
-import 'hello_login_page.dart';
-import 'startPage.dart';
-import 'mapPage.dart';
-import 'homePage.dart';
 import 'connexion.dart';
 import 'mylib.dart' as mylib;
 
@@ -22,14 +17,14 @@ class _userchoixconnexion extends State<userchoixconnexion> {
     return Container(
       width: 309,
       height: 156,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage("images/connexionpage.jpg"),
           fit: BoxFit.cover,
         ),
       ),
-      child: Align(
-        child: const Text(
+      child: const Align(
+        child: Text(
           "Sign In",
           style: mylib.titleStyle3,
           textAlign: TextAlign.center,
@@ -46,11 +41,11 @@ class _userchoixconnexion extends State<userchoixconnexion> {
           print("Création du compte"),
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) => CreationCompte(),
+              builder: (BuildContext context) => const CreationCompte(),
             ),
           ),
         },
-        child: Text(
+        child: const Text(
           'Sign Up',
           style: TextStyle(
             color: Colors.black38,
@@ -61,7 +56,7 @@ class _userchoixconnexion extends State<userchoixconnexion> {
   }
 
   Widget Continuer_sans_compte_btn() {
-    return Container(
+    return SizedBox(
       width: 270,
       height: 43,
       child: ElevatedButton(
@@ -75,10 +70,9 @@ class _userchoixconnexion extends State<userchoixconnexion> {
         style: ElevatedButton.styleFrom(
           shadowColor: Colors.grey.shade700,
           elevation: 20,
-          //backgroundColor: const Color.fromARGB(255, 41, 59, 229),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
-            side: BorderSide(color: Colors.white, width: 3),
+            side: const BorderSide(color: Colors.white, width: 3),
           ),
         ),
         child: const Text(
@@ -91,24 +85,24 @@ class _userchoixconnexion extends State<userchoixconnexion> {
   }
 
   Widget Continuer_avec_compte_btn() {
-    return Container(
+    return SizedBox(
       width: 270,
       height: 43,
       child: ElevatedButton(
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) => userconnexionpassword(),
+              builder: (BuildContext context) => const userconnexionpassword(),
             ),
           );
         },
         style: ElevatedButton.styleFrom(
           shadowColor: Colors.grey.shade700,
           elevation: 20,
-         // backgroundColor: const Color.fromARGB(255, 41, 59, 229),
+          // backgroundColor: const Color.fromARGB(255, 41, 59, 229),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
-            side: BorderSide(color: Colors.white, width: 3),
+            side: const BorderSide(color: Colors.white, width: 3),
           ),
         ),
         child: const Text(
@@ -123,8 +117,8 @@ class _userchoixconnexion extends State<userchoixconnexion> {
   Widget buildUserBtn() {
     return Container(
       child: Align(
-        alignment: Alignment(-0.66, 0.0),
-        child: Container(
+        alignment: const Alignment(-0.66, 0.0),
+        child: SizedBox(
           width: 150,
           height: 50,
           child: ElevatedButton(
@@ -136,10 +130,10 @@ class _userchoixconnexion extends State<userchoixconnexion> {
               );
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: Color.fromARGB(255, 13, 12, 32),
+              backgroundColor: const Color.fromARGB(255, 13, 12, 32),
               shadowColor: Colors.grey.shade700,
               elevation: 20,
-              shape: RoundedRectangleBorder(
+              shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(10),
                     topRight: Radius.circular(10)),
@@ -159,23 +153,23 @@ class _userchoixconnexion extends State<userchoixconnexion> {
   Widget buildAdminBtn() {
     return Container(
       child: Align(
-        alignment: Alignment(0.66, 0.0),
-        child: Container(
+        alignment: const Alignment(0.66, 0.0),
+        child: SizedBox(
           width: 150,
           height: 50,
           child: ElevatedButton(
             onPressed: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (BuildContext context) => connexion_adminn(),
+                  builder: (BuildContext context) => const connexion_adminn(),
                 ),
               );
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: Color.fromARGB(255, 235, 233, 233),
+              backgroundColor: const Color.fromARGB(255, 235, 233, 233),
               shadowColor: Colors.grey.shade700,
               elevation: 20,
-              shape: RoundedRectangleBorder(
+              shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(10),
                     topRight: Radius.circular(10)),
@@ -200,10 +194,10 @@ class _userchoixconnexion extends State<userchoixconnexion> {
         child: GestureDetector(
           child: Stack(
             children: <Widget>[
-              Container(
+              SizedBox(
                 height: double.infinity,
                 width: double.infinity,
-               // decoration: mylib.background1,
+                // decoration: mylib.background1,
                 child: Center(
                     child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -212,40 +206,40 @@ class _userchoixconnexion extends State<userchoixconnexion> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         buildUserBtn(),
-                        SizedBox(width: 10),
+                        const SizedBox(width: 10),
                         buildAdminBtn(),
                       ],
                     ),
                     ClipRRect(
-                      borderRadius: BorderRadius.only(
+                      borderRadius: const BorderRadius.only(
                           bottomLeft: Radius.circular(15),
                           bottomRight: Radius.circular(15)),
                       child: Container(
-                        color: Color.fromARGB(255, 235, 233, 233),
+                        color: const Color.fromARGB(255, 235, 233, 233),
                         width: 309,
                         height: 464,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             buildTitle(),
-                            SizedBox(height: 50),
+                            const SizedBox(height: 50),
 
                             Continuer_sans_compte_btn(),
-                            SizedBox(height: 40),
+                            const SizedBox(height: 40),
 
                             Continuer_avec_compte_btn(),
                             // SizedBox(height: 10),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
-                                Text(
+                                const Text(
                                   'Don\'t have account ?',
                                   style: TextStyle(
                                     color: Colors.black38,
                                   ),
                                 ),
                                 buildSignUpBtn(),
-                                SizedBox(height: 132),
+                                const SizedBox(height: 132),
                               ],
                             ),
                           ],

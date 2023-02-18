@@ -1,9 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/commentPage.dart';
-import 'package:flutter_application_1/genrePage.dart';
 import 'endPage.dart';
 import 'mylib.dart' as mylib;
-import 'package:intl/intl.dart';
 
 class activitePage extends StatefulWidget {
   @override
@@ -21,12 +19,9 @@ class _activitePage extends State<activitePage> {
 
   @override
   Widget build(BuildContext context) {
-    final text = MediaQuery.of(context).platformBrightness == Brightness.dark
-        ? 'DarkTheme'
-        : 'LightTheme';
+
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
-    Map<String, String>? activite = Map<String, String>();
 
     return Scaffold(
         extendBodyBehindAppBar: true,
@@ -40,20 +35,19 @@ class _activitePage extends State<activitePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   
-                  Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
+                  const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
                   ClipRRect(
                     borderRadius: BorderRadius.circular(15.0),
                     child: Container(
                       width: 342,
                       height: 500,
-                      color: Color.fromARGB(255, 235, 233, 233),
+                      color: const Color.fromARGB(255, 235, 233, 233),
                       child: Column(
-                        //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Container(
                             padding: const EdgeInsets.fromLTRB(1, 20, 1, 0),
-                            child: const Text(
-                              "Quelle activité exercer vous actuellement ?",
+                            child: Text(
+                              "activitePage_title".tr(),
                               style: mylib.blueText,
                               textAlign: TextAlign.center,
                             ),
@@ -74,14 +68,15 @@ class _activitePage extends State<activitePage> {
                                     width: 310,
                                     child: Column(
                                       children: [
-                                        Align(
+                                         Align(
                                           alignment: Alignment.topLeft,
                                           child: Text(
-                                            "En formation:",
+                                            "activitePage_formation".tr(),
                                             style: mylib.radioText,
                                           ),
                                         ),
                                         CheckboxListTile(
+                                          activeColor: const Color.fromARGB(255, 13, 12, 32),
                                           title: mylib.createInput(
                                             311,
                                             28,
@@ -106,11 +101,13 @@ class _activitePage extends State<activitePage> {
                                         Align(
                                           alignment: Alignment.topLeft,
                                           child: Text(
-                                            "A la recherche d'un emploi:",
+                                            "activitePage_research_employs".tr(),
                                             style: mylib.radioText,
                                           ),
                                         ),
                                         CheckboxListTile(
+                                          activeColor: const Color.fromARGB(255, 13, 12, 32),
+                                          //checkColor: Colors.white,
                                           title: mylib.createInput(311, 28),
                                           autofocus: false,
                                           selected: _empValue,
@@ -132,11 +129,12 @@ class _activitePage extends State<activitePage> {
                                         Align(
                                           alignment: Alignment.topLeft,
                                           child: Text(
-                                            "Activité professionnelle:",
+                                            "activitePage_activity".tr(),
                                             style: mylib.radioText,
                                           ),
                                         ),
                                         CheckboxListTile(
+                                          activeColor: const Color.fromARGB(255, 13, 12, 32),
                                           title: mylib.createInput(311, 28),
                                           autofocus: false,
                                           selected: _proValue,
@@ -158,11 +156,12 @@ class _activitePage extends State<activitePage> {
                                         Align(
                                           alignment: Alignment.topLeft,
                                           child: Text(
-                                            "Retraité :",
+                                            "activitePage_retired".tr(),
                                             style: mylib.radioText,
                                           ),
                                         ),
                                         CheckboxListTile(
+                                          activeColor: const Color.fromARGB(255, 13, 12, 32),
                                           title: mylib.createInput(311, 28),
                                           autofocus: false,
                                           selected: _retraiteValue,
@@ -184,11 +183,12 @@ class _activitePage extends State<activitePage> {
                                         Align(
                                           alignment: Alignment.topLeft,
                                           child: Text(
-                                            "Sans activité professionnelle:",
+                                            "activitePage_jobless".tr(),
                                             style: mylib.radioText,
                                           ),
                                         ),
                                         CheckboxListTile(
+                                          activeColor: const Color.fromARGB(255, 13, 12, 32),
                                           title: mylib.createInput(311, 28),
                                           autofocus: false,
                                           selected: _ssProValue,
@@ -209,13 +209,13 @@ class _activitePage extends State<activitePage> {
                       ),
                     ),
                   ),
-                  Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
+                  const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      //mylib.createQuitButton(context, 141, 41),
+                      mylib.createQuitButton(context, 141, 41, null, reponses),
                       mylib.createNextButton(
-                        "Next",
+                        "btn_next".tr(),
                         context,
                         141,
                         41,

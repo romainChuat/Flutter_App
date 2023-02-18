@@ -3,10 +3,10 @@ import 'mylib.dart' as mylib;
 
 
 class ThemeProvider extends ChangeNotifier{
-  ThemeMode themeMode = ThemeMode.dark;
-  bool get isDarkMode => themeMode == ThemeMode.dark;
+  ThemeMode themeMode = ThemeMode.light;
+  bool get isLightMode => themeMode == ThemeMode.light;
   void toggleTheme(bool isOn){
-    themeMode = isOn ? ThemeMode.dark : ThemeMode.light;
+    themeMode = isOn ? ThemeMode.light : ThemeMode.dark;
     notifyListeners();
   }
 }
@@ -27,9 +27,10 @@ class MyThemes{
            
     ),
     primaryColor: Colors.white,
-      primarySwatch: Colors.blue,
+      primarySwatch: Colors.yellow,
 
-    
+                canvasColor:Color.fromARGB(255, 20, 20, 20),
+
 
   );
   static final lightTheme = ThemeData(
@@ -45,7 +46,7 @@ class MyThemes{
     ),
 
 
-            canvasColor: Colors.red,
+            canvasColor: Color.fromARGB(255, 64, 224, 168),
             
             
     

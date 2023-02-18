@@ -1,10 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/activitePage.dart';
-import 'package:flutter_application_1/genrePage.dart';
 import 'package:flutter_application_1/homePage.dart';
-import 'package:flutter_application_1/startPage.dart';
 import 'mylib.dart' as mylib;
-import 'package:intl/intl.dart';
 
 class etudePage extends StatefulWidget {
   @override
@@ -27,13 +25,12 @@ enum Niveau {
 class _etudePage extends State<etudePage> {
   var niveau;
   TextEditingController textControler =  new TextEditingController();
+  
+  get text => null;
 
 
   @override
   Widget build(BuildContext context) {
-    final text = MediaQuery.of(context).platformBrightness == Brightness.dark
-        ? 'DarkTheme'
-        : 'LightTheme';
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
 
@@ -48,21 +45,19 @@ class _etudePage extends State<etudePage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                 
-                  Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
+                  const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
                   ClipRRect(
                     borderRadius: BorderRadius.circular(15.0),
                     child: Container(
                       width: 336,
                       height: 530,
-                      color: Color.fromARGB(255, 235, 233, 233),
+                      color: const Color.fromARGB(255, 235, 233, 233),
                       child: Column(
-                        //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Container(
                             padding: const EdgeInsets.fromLTRB(1, 20, 1, 0),
-                            child: const Text(
-                              "Quel est le plus haut niveau d'éducation dont vous avez béneficié à ce jour ?",
+                            child: Text(
+                              "etudePage_title".tr(),
                               style: mylib.blueText,
                               textAlign: TextAlign.center,
                             ),
@@ -79,9 +74,9 @@ class _etudePage extends State<etudePage> {
                               SizedBox(
                                 height: 40,
                                 child: RadioListTile(
-                                  activeColor: Color.fromARGB(255, 41, 59, 229),
-                                  title: const Text(
-                                      "Niveau enseignement primaire.",
+                                  activeColor: const Color.fromARGB(255, 41, 59, 229),
+                                  title: Text(
+                                      "etudePage_primary".tr(),
                                       style: mylib.radioText),
                                   groupValue: niveau,
                                   onChanged: (value) {
@@ -98,9 +93,9 @@ class _etudePage extends State<etudePage> {
                               SizedBox(
                                 height: 70,
                                 child: RadioListTile(
-                                  activeColor: Color.fromARGB(255, 41, 59, 229),
-                                  title: const Text(
-                                      "Niveau premier cycle de l'enseignement secondaire (Collège) ou moins.",
+                                  activeColor: const Color.fromARGB(255, 41, 59, 229),
+                                  title: Text(
+                                      "etudePage_middle_school".tr(),
                                       style: mylib.radioText),
                                   groupValue: niveau,
                                   onChanged: (value) {
@@ -117,9 +112,9 @@ class _etudePage extends State<etudePage> {
                               SizedBox(
                                 height: 65,
                                 child: RadioListTile(
-                                  activeColor: Color.fromARGB(255, 41, 59, 229),
-                                  title: const Text(
-                                      "Niveau deuxième cycle de l'enseignement secondaire Lycée agricole, professionel.",
+                                  activeColor: const Color.fromARGB(255, 41, 59, 229),
+                                  title: Text(
+                                      "etudePage_high_school".tr(),
                                       style: mylib.radioText),
                                   groupValue: niveau,
                                   onChanged: (value) {
@@ -136,9 +131,9 @@ class _etudePage extends State<etudePage> {
                               SizedBox(
                                 height: 55,
                                 child: RadioListTile(
-                                  activeColor: Color.fromARGB(255, 41, 59, 229),
-                                  title: const Text(
-                                      "Enseignement supérieur de cycle court(DEUG, BTS,DUT).",
+                                  activeColor: const Color.fromARGB(255, 41, 59, 229),
+                                  title: Text(
+                                      "etudePage_higher_education".tr(),
                                       style: mylib.radioText),
                                   groupValue: niveau,
                                   onChanged: (value) {
@@ -155,9 +150,9 @@ class _etudePage extends State<etudePage> {
                               SizedBox(
                                 height: 40,
                                 child: RadioListTile(
-                                  activeColor: Color.fromARGB(255, 41, 59, 229),
-                                  title: const Text(
-                                      "Niveau licence ou équivalent BAC+3",
+                                  activeColor: const Color.fromARGB(255, 41, 59, 229),
+                                  title: Text(
+                                      "etudePage_bac3".tr(),
                                       style: mylib.radioText),
                                   groupValue: niveau,
                                   onChanged: (value) {
@@ -174,9 +169,9 @@ class _etudePage extends State<etudePage> {
                               SizedBox(
                                 height: 45,
                                 child: RadioListTile(
-                                  activeColor: Color.fromARGB(255, 41, 59, 229),
-                                  title: const Text(
-                                      "Niveau master ou équivalent BAC+5",
+                                  activeColor: const Color.fromARGB(255, 41, 59, 229),
+                                  title: Text(
+                                      "etudePage_bac5".tr(),
                                       style: mylib.radioText),
                                   groupValue: niveau,
                                   onChanged: (value) {
@@ -193,8 +188,8 @@ class _etudePage extends State<etudePage> {
                               SizedBox(
                                 height: 32,
                                 child: RadioListTile(
-                                  activeColor: Color.fromARGB(255, 41, 59, 229),
-                                  title: const Text("Doctorat",
+                                  activeColor: const Color.fromARGB(255, 41, 59, 229),
+                                  title: Text("etudePage_doctorat".tr(),
                                       style: mylib.radioText),
                                   groupValue: niveau,
                                   onChanged: (value) {
@@ -215,18 +210,18 @@ class _etudePage extends State<etudePage> {
                                   title: TextField(
                                     style: mylib.simpleText.apply(fontSizeDelta: 5),
                                     cursorColor: Color.fromARGB(255, 117, 106, 106),
-                                    decoration: InputDecoration(
-                                      contentPadding: const EdgeInsets.fromLTRB(0, 0, 0, 1),
+                                    decoration: const InputDecoration(
+                                      contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 10),
                                       filled: true,
                                       fillColor: Colors.white,
-                                      enabledBorder: const OutlineInputBorder(
+                                      enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                           width: 1,
                                           color: Color.fromARGB(255, 255, 255, 255),
                                         ),
                                         borderRadius:BorderRadius.all(Radius.circular(15))
                                       ),
-                                      focusedBorder:const OutlineInputBorder(
+                                      focusedBorder:OutlineInputBorder(
                                         borderSide: BorderSide(
                                           width: 1,
                                           color: Color.fromARGB(255, 255, 255, 255),
@@ -246,7 +241,7 @@ class _etudePage extends State<etudePage> {
                                     setState(() {
                                       niveau = Niveau.autre;
                                       print(niveau);
-                                        reponses['niveau_etude'] = text.toString();
+                                        //reponses['niveau_etude'] = text.toString();
 
                                       //reponses['niveau_etude'] =niveau.toString().split('.').last;
                                       print(reponses);
@@ -261,13 +256,13 @@ class _etudePage extends State<etudePage> {
                       ),
                     ),
                   ),
-                  Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
+                  const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      mylib.createQuitButton(context, 141, 41, MyHomePage(), reponses),
+                      mylib.createQuitButton(context, 141, 41, const MyHomePage(), reponses),
                       mylib.createNextButton(
-                        "Next",
+                        "btn_next".tr(),
                         context,
                         141,
                         41,

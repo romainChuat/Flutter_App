@@ -7,10 +7,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'database_helper.dart';
 import 'forgot_password_page.dart';
 import 'hello_admin_page.dart';
-import 'startPage.dart';
-import 'mapPage.dart';
-import 'homePage.dart';
-import 'connexion.dart';
 import 'mylib.dart' as mylib;
 
 class connexion_adminn extends StatefulWidget {
@@ -25,11 +21,24 @@ class _connexion_adminn extends State<connexion_adminn> {
   final passwordController = TextEditingController();
   bool connected = false;
   bool isRememberMe = false;
+  String _inputText = '';
+  bool _showErrorMessage = false;
+    Map<String, Object> reponses = new Map();
 
   @override
   void initState() {
     _loadUserEmailPassword();
     super.initState();
+  }
+
+      void _handleInputChange(String input){
+    setState(() {
+      _inputText = input;
+      _showErrorMessage = false;
+      reponses["email"] = input;
+      print(reponses);
+
+    });
   }
 
   Widget buildTitle() {
@@ -64,11 +73,12 @@ class _connexion_adminn extends State<connexion_adminn> {
           decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                const BoxShadow(
+              boxShadow: const [
+                BoxShadow(
                     color: Colors.black26, blurRadius: 6, offset: Offset(0, 2))
               ]),
           child: TextField(
+                                    onChanged: _handleInputChange,
             controller: mailController,
             keyboardType: TextInputType.emailAddress,
             style: const TextStyle(color: Colors.black87),
@@ -95,12 +105,13 @@ class _connexion_adminn extends State<connexion_adminn> {
           decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                const BoxShadow(
+              boxShadow: const [
+                BoxShadow(
                     color: Colors.black26, blurRadius: 6, offset: Offset(0, 2))
               ]),
           //height: 60,
           child: TextField(
+                                    onChanged: _handleInputChange,
             controller: passwordController,
             obscureText: true,
             style: const TextStyle(color: Colors.black87),
@@ -139,7 +150,7 @@ class _connexion_adminn extends State<connexion_adminn> {
   }
 
   Widget buildRemeberCb() {
-    return Container(
+    return SizedBox(
         height: 20,
         child: Row(
           children: <Widget>[
@@ -162,11 +173,11 @@ class _connexion_adminn extends State<connexion_adminn> {
   }
 
   Widget buildLoginBtn() {
-    return Container(
+    return Column(
+      children: [
+    SizedBox(
       width: 120,
       height: 43,
-      // padding: EdgeInsets.symmetric(vertical: 25),
-      //width: double.infinity,
       child: ElevatedButton(
         onPressed: () async {
           await loginCorrect();
@@ -177,11 +188,16 @@ class _connexion_adminn extends State<connexion_adminn> {
                 builder: (BuildContext context) => const hello_admin_page(),
               ),
             );
-          }
+          }else {
+              print("Adresse mail ou mot de passe incorrect");
+              setState(() {
+                              _showErrorMessage = true;
+
+              });
+            }
         },
         style: ElevatedButton.styleFrom(
           shadowColor: Colors.grey.shade700,
-         // backgroundColor: const Color.fromARGB(255, 41, 59, 229),
           elevation: 20,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
@@ -194,39 +210,42 @@ class _connexion_adminn extends State<connexion_adminn> {
           textAlign: TextAlign.center,
         ),
       ),
-    );
+    ),
+        SizedBox(height: 14,),
+    if(_showErrorMessage)
+    Text("Email et/ou mot de passe incorrect.", style: mylib.warningText),
+    
+   ]);
   }
 
   Widget buildUserBtn() {
-    return Container(
-      child: Align(
-        alignment: const Alignment(-0.66, 0.0),
-        child: Container(
-          width: 150,
-          height: 50,
-          child: ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (BuildContext context) => userchoixconnexion(),
-                ),
-              );
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: const Color.fromARGB(255, 235, 233, 233),
-              shadowColor: Colors.grey.shade700,
-              elevation: 20,
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    topRight: Radius.circular(10)),
+    return Align(
+      alignment: const Alignment(-0.66, 0.0),
+      child: SizedBox(
+        width: 150,
+        height: 50,
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (BuildContext context) => userchoixconnexion(),
               ),
+            );
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color.fromARGB(255, 235, 233, 233),
+            shadowColor: Colors.grey.shade700,
+            elevation: 20,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(10),
+                  topRight: Radius.circular(10)),
             ),
-            child: const Text(
-              "User",
-              style: mylib.titleStyle4,
-              textAlign: TextAlign.center,
-            ),
+          ),
+          child: const Text(
+            "User",
+            style: mylib.titleStyle4,
+            textAlign: TextAlign.center,
           ),
         ),
       ),
@@ -234,29 +253,27 @@ class _connexion_adminn extends State<connexion_adminn> {
   }
 
   Widget buildAdminBtn() {
-    return Container(
-      child: Align(
-        alignment: const Alignment(0.66, 0.0),
-        child: Container(
-          width: 150,
-          height: 50,
-          child: ElevatedButton(
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Color.fromARGB(255, 13, 12, 32),
-              shadowColor: Colors.grey.shade700,
-              elevation: 20,
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    topRight: Radius.circular(10)),
-              ),
+    return Align(
+      alignment: const Alignment(0.66, 0.0),
+      child: SizedBox(
+        width: 150,
+        height: 50,
+        child: ElevatedButton(
+          onPressed: () {},
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Color.fromARGB(255, 13, 12, 32),
+            shadowColor: Colors.grey.shade700,
+            elevation: 20,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(10),
+                  topRight: Radius.circular(10)),
             ),
-            child: const Text(
-              "Admin",
-              style: mylib.titleStyle5,
-              textAlign: TextAlign.center,
-            ),
+          ),
+          child: const Text(
+            "Admin",
+            style: mylib.titleStyle5,
+            textAlign: TextAlign.center,
           ),
         ),
       ),
@@ -271,10 +288,9 @@ class _connexion_adminn extends State<connexion_adminn> {
         child: GestureDetector(
             child: Stack(
           children: <Widget>[
-            Container(
+            SizedBox(
               height: double.infinity,
               width: double.infinity,
-            //  decoration: mylib.background1,
               child: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -299,8 +315,7 @@ class _connexion_adminn extends State<connexion_adminn> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               buildTitle(),
-                              const SizedBox(height: 45),
-                              buildEmail(),
+                              if(!_showErrorMessage) SizedBox(height: 31) else SizedBox(height: 18),                              buildEmail(),
                               const SizedBox(height: 15),
                               buildPassword(),
                               Row(
@@ -373,16 +388,16 @@ class _connexion_adminn extends State<connexion_adminn> {
 
   void _loadUserEmailPassword() async {
     try {
-      SharedPreferences _prefsAdmin = await SharedPreferences.getInstance();
-      var _email = _prefsAdmin.getString("mail");
-      var _password = _prefsAdmin.getString("pass");
-      var _remeberMe = _prefsAdmin.getBool("remember") ?? false;
-      if (_remeberMe) {
+      SharedPreferences prefsAdmin = await SharedPreferences.getInstance();
+      var email = prefsAdmin.getString("mail");
+      var password = prefsAdmin.getString("pass");
+      var remeberMe = prefsAdmin.getBool("remember") ?? false;
+      if (remeberMe) {
         setState(() {
           isRememberMe = true;
         });
-        mailController.text = _email ?? "";
-        passwordController.text = _password ?? "";
+        mailController.text = email ?? "";
+        passwordController.text = password ?? "";
       }
     } catch (e) {
       print(e);

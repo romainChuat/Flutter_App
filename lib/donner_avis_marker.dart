@@ -1,5 +1,9 @@
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/commentPage.dart';
+import 'package:flutter_application_1/database_helper.dart';
+import 'package:flutter_application_1/database_helper_local.dart';
 import 'package:flutter_application_1/homePage.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map/plugin_api.dart';
@@ -8,18 +12,21 @@ import 'mylib.dart' as mylib;
 
 import 'droits_auteur.dart';
 
-class mapPage extends StatefulWidget {
+class donner_avis_marker extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return _mapPage();
+    return _donner_avis_marker();
   }
 }
 
-class _mapPage extends State<mapPage> {
+class _donner_avis_marker extends State<donner_avis_marker> {
   var marker = <Marker>[];
+  List<Map <String, dynamic>>? listMarker; 
   double currentZoom = 13.0;
   MapController mapController = MapController();
   LatLng currentCenter = LatLng(47.235198, 6.021029);
+
+  
 
   void _zoomOut() {
     currentZoom = currentZoom - 1;
@@ -31,11 +38,21 @@ class _mapPage extends State<mapPage> {
     mapController.move(mapController.center, currentZoom);
   }
 
+  Future<void> getMarker() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    DatabaseHelperLocal db = DatabaseHelperLocal();
+    try{
+      listMarker = await db.queryAllRowsLieu();
+    }catch(e){
+      print("erreur lors de la recuperation des markers");
+    }
+
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
-    Map<String, Object> reponses =
-        ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
-
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: mylib.baseAppBar(appBar: AppBar()),
@@ -82,27 +99,26 @@ class _mapPage extends State<mapPage> {
                                     zoom: 14,
                                     onTap: (LatLng value) {
                                       Map<String, Object> longLat = new Map();
-                                      reponses['longitude'] = value.longitude;
-                                      reponses['latitude'] = value.latitude;
-                                      print(reponses);
                                       print("tape");
-
                                       marker.clear();
                                       marker.add(Marker(
                                           width: 25.0,
                                           height: 25.0,
                                           point: value,
+                                          
                                           builder: (ctx) => IconButton(
-                                            icon: const Icon(
-                                              Icons.location_on,
-                                              color: Colors.redAccent,
-                                              size: 30,
-                                            ),
-                                            onPressed: () {
-                                              print("afficher avis");
-                                            },
-                                          )));
-                                      setState(() {});
+                                                icon: const Icon(
+                                                  Icons.location_on,
+                                                  color: Colors.redAccent,
+                                                  size: 30,
+                                                ),
+                                                onPressed: () {
+                                                  print("afficher avis");                                          
+                                                },
+                                          )
+                                      ),
+                                    );
+                                    setState(() {});
                                     },
                                   ),
                                   layers: [
@@ -113,6 +129,7 @@ class _mapPage extends State<mapPage> {
                                     MarkerLayerOptions(markers: marker),
                                   ],
                                 ),
+
                                 Positioned(
                                     bottom: 10,
                                     left: 10,
@@ -193,15 +210,15 @@ class _mapPage extends State<mapPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     mylib.createQuitButton(
-                        context, 141, 41, const MyHomePage(), reponses),
+                        context, 141, 41, const MyHomePage(), null),
                     mylib.createNextButton(
                       "btn_next".tr(),
                       context,
                       141,
                       41,
                       MaterialPageRoute(
-                        builder: (_) => droits_auteur(),
-                        settings: RouteSettings(arguments: reponses),
+                        builder: (_) => commentPage(),
+                        settings: RouteSettings(arguments: null),
                       ),
                     )
                   ],

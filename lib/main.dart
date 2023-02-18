@@ -1,16 +1,10 @@
-import 'dart:ui';
-import 'package:adaptive_theme/adaptive_theme.dart';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/user_choix_connexion.dart';
 import 'package:provider/provider.dart';
-
-import 'database_helper_local.dart';
-import 'connexion.dart';
 import 'controller/language_contoller.dart';
 import 'darkmode.dart';
-
-import 'database_helper.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,10 +14,10 @@ void main() async {
       ChangeNotifierProvider(create: (_) => LanguageController()),
     ],
     child: EasyLocalization(
-        supportedLocales: [Locale('en', 'US'), Locale('fr', 'FR')],
+        supportedLocales: [const Locale('en', 'US'), const Locale('fr', 'FR')],
         path: 'assets/translations',
-        fallbackLocale: Locale('en', 'US'),
-        child: MyApp()),
+        fallbackLocale: const Locale('en', 'US'),
+        child: const MyApp()),
   ));
 }
 

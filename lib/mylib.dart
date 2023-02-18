@@ -1,27 +1,21 @@
 library mylib;
 
 import 'package:adaptive_theme/adaptive_theme.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/hello_admin_page.dart';
-import 'package:flutter_application_1/hello_login_password.dart';
-import 'package:flutter_application_1/homePage.dart';
 import 'package:flutter_application_1/languagePage.dart';
 import 'package:flutter_application_1/provider.dart';
 import 'package:flutter_application_1/user_choix_connexion.dart';
 import 'package:provider/provider.dart';
 
+import 'confirmation_deconnexion.dart';
 import 'controller/language_contoller.dart';
 
 bool adminConnect = false;
 
-
-
 const TextStyle titleStyle = TextStyle(
   fontSize: 21,
   fontFamily: 'Nunito',
-  //fontWeight: FontWeight.bold,
+  fontWeight: FontWeight.w400,
  // color: Colors.white,
   /*shadows: <Shadow>[
     Shadow(
@@ -35,7 +29,7 @@ const TextStyle titleStyleDuration = TextStyle(
   fontSize: 15,
   fontFamily: 'Nunito',
   //fontWeight: FontWeight.bold,
- // color: Colors.white,
+  // color: Colors.white,
   /*shadows: <Shadow>[
     Shadow(
         offset: Offset(-2.0, 2.0),
@@ -75,7 +69,7 @@ const TextStyle titleStyle5 = TextStyle(
   fontSize: 20,
   fontFamily: 'Nunito',
   fontWeight: FontWeight.bold,
- // color: Colors.white,
+  // color: Colors.white,
   letterSpacing: 1,
 );
 
@@ -111,16 +105,17 @@ const TextStyle blueText2 = TextStyle(
 const TextStyle radioText = TextStyle(
   fontSize: 15,
   fontWeight: FontWeight.w600,
- // color: Color.fromARGB(255, 41, 59, 229),
+  // color: Color.fromARGB(255, 41, 59, 229),
   fontFamily: 'Nunito',
   letterSpacing: 1,
   //shadows:<Shadow> [ Shadow(offset:Offset(-1.0, 1.0) , blurRadius: 5.0 ,color: Color.fromARGB(195, 105, 105, 105))],
 );
 
 const TextStyle simpleText = TextStyle(
-  fontSize: 15,
+  fontSize: 20,
+  fontWeight: FontWeight.w800,
   color: Colors.white,
-  fontFamily: 'Spline Sans Mono',
+  fontFamily: 'Nunito',
   letterSpacing: 1,
 );
 
@@ -158,7 +153,7 @@ class baseAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       leading: IconButton(
-        padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
+        padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
         icon: const Icon(
           Icons.arrow_back_ios,
           size: 40,
@@ -175,7 +170,7 @@ class baseAppBar extends StatelessWidget implements PreferredSizeWidget {
         Builder(
           builder: (BuildContext context) {
             return IconButton(
-              icon: Icon(
+              icon: const Icon(
                 Icons.menu,
                 size: 50,
               ),
@@ -186,7 +181,7 @@ class baseAppBar extends StatelessWidget implements PreferredSizeWidget {
             );
           },
         ),
-        Padding(padding: EdgeInsets.fromLTRB(0, 0, 20, 0)),
+        const Padding(padding: EdgeInsets.fromLTRB(0, 0, 20, 0)),
       ],
       backgroundColor: Colors.transparent,
       elevation: 0.0,
@@ -265,14 +260,15 @@ createInputTextArea(double wdth, double hgth) {
           )));
 }
 
-createQuitButton(BuildContext context, double width, double height, var path, Map<String,Object>? args) {
+createQuitButton(BuildContext context, double width, double height, var path,
+    Map<String, Object>? args) {
   return SizedBox(
     width: width,
     height: height,
     child: ElevatedButton(
       style: ElevatedButton.styleFrom(
         foregroundColor: Colors.white,
-      //  backgroundColor: Color.fromARGB(255, 13, 12, 32),
+        //  backgroundColor: Color.fromARGB(255, 13, 12, 32),
         side: const BorderSide(color: Colors.white, width: 1),
         elevation: 15,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -286,7 +282,7 @@ createQuitButton(BuildContext context, double width, double height, var path, Ma
           ),
         );
       },
-      child: Text("Quit", style: titleStyle),
+      child: const Text("Quit", style: titleStyle),
     ),
   );
 }
@@ -325,7 +321,7 @@ createtButton(String text, BuildContext context, double width, double height) {
     child: ElevatedButton(
       style: ElevatedButton.styleFrom(
         //foregroundColor: Colors.white,
-        backgroundColor: Color.fromARGB(255, 13, 12, 32),
+        backgroundColor: const Color.fromARGB(255, 13, 12, 32),
         //side: const BorderSide(color: Colors.white, width: 1),
         elevation: 15,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -345,75 +341,61 @@ createMenu(BuildContext context) {
   return ClipRRect(
     borderRadius: BorderRadius.circular(30),
     child: Container(
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       width: 260,
       child: Drawer(
-        backgroundColor: Color.fromARGB(255, 30, 77, 233),
         child: Column(
           children: [
-            Padding(padding: EdgeInsets.all(30)),
             ClipRRect(
-              borderRadius: BorderRadius.circular(10),
+              // borderRadius: BorderRadius.circular(10),
               child: Container(
-                width: 230,
-                height: 58,
-                child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      foregroundColor: Color.fromARGB(255, 41, 59, 229),
-                      backgroundColor: Color.fromARGB(255, 235, 233, 233),
-                    ),
-                    onPressed: () {
-                      if (adminConnect == true) {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                const hello_admin_page(),
-                          ),
-                        );
-                      } else {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                const hellologinpassword(),
-                          ),
-                        );
-                      }
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(padding: EdgeInsets.all(6)),
-                        Text(
-                          "Menu",
-                          style: blueText,
-                        ),
-                      ],
-                    )),
+                  height: 78,
+                  color: const Color.fromARGB(255, 13, 12, 32),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children:  [
+                      Text(
+                        "Menu",
+                        style: simpleText,
+                      ),
+                       IconButton(
+              icon:  Icon(
+                Icons.menu,
+                color: Colors.white,
+                size: 50,
               ),
+              onPressed: () {
+                Navigator.pop(context);
+              }
             ),
-            Padding(padding: EdgeInsets.all(10)),
+                     
+                    ],
+                  )),
+            ),
+            const Padding(padding: EdgeInsets.all(20)),
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
-              child: Container(
+              child: SizedBox(
                 width: 230,
                 height: 58,
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      foregroundColor: Color.fromARGB(255, 41, 59, 229),
-                      backgroundColor: Color.fromARGB(255, 235, 233, 233),
+                      foregroundColor: const Color.fromARGB(255, 13, 12, 32),
+                      backgroundColor: const Color.fromARGB(255, 235, 233, 233),
                     ),
                     onPressed: () {
                       adminConnect = false;
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => userchoixconnexion(),
+                          builder: (_) => confirmation_deconnexion(),
+
                         ),
                       );
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
+                      children: const [
                         Icon(Icons.lens, size: 18),
                         Padding(padding: EdgeInsets.all(6)),
                         Text(
@@ -424,16 +406,16 @@ createMenu(BuildContext context) {
                     )),
               ),
             ),
-            Padding(padding: EdgeInsets.all(10)),
+            const Padding(padding: EdgeInsets.all(10)),
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
-              child: Container(
+              child: SizedBox(
                 width: 230,
                 height: 58,
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      foregroundColor: Color.fromARGB(255, 41, 59, 229),
-                      backgroundColor: Color.fromARGB(255, 235, 233, 233),
+                      foregroundColor: const Color.fromARGB(255, 13, 12, 32),
+                      backgroundColor: const Color.fromARGB(255, 235, 233, 233),
                     ),
                     onPressed: () {
                       AdaptiveTheme.of(context).setDark();
@@ -442,7 +424,7 @@ createMenu(BuildContext context) {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         ChangeThemeButtonWidget(),
-                        Text(
+                        const Text(
                           "Mode sombre",
                           style: blueText,
                         ),
@@ -450,7 +432,7 @@ createMenu(BuildContext context) {
                     )),
               ),
             ),
-            Padding(padding: EdgeInsets.all(10)),
+            const Padding(padding: EdgeInsets.all(10)),
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Container(
@@ -458,20 +440,20 @@ createMenu(BuildContext context) {
                 height: 58,
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      foregroundColor: Color.fromARGB(255, 41, 59, 229),
-                      backgroundColor: Color.fromARGB(255, 235, 233, 233),
+                      foregroundColor: const Color.fromARGB(255, 13, 12, 32),
+                      backgroundColor: const Color.fromARGB(255, 235, 233, 233),
                     ),
                     onPressed: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => languagePage(),
+                          builder: (_) => const languagePage(),
                         ),
                       );
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
+                      children: const [
                         Icon(Icons.lens, size: 18),
                         Padding(padding: EdgeInsets.all(6)),
                         Text(
