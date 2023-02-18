@@ -1,4 +1,3 @@
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/commentPage.dart';
@@ -21,12 +20,10 @@ class donner_avis_marker extends StatefulWidget {
 
 class _donner_avis_marker extends State<donner_avis_marker> {
   var marker = <Marker>[];
-  List<Map <String, dynamic>>? listMarker; 
+  List<Map<String, dynamic>>? listMarker;
   double currentZoom = 13.0;
   MapController mapController = MapController();
   LatLng currentCenter = LatLng(47.235198, 6.021029);
-
-  
 
   void _zoomOut() {
     currentZoom = currentZoom - 1;
@@ -41,15 +38,12 @@ class _donner_avis_marker extends State<donner_avis_marker> {
   Future<void> getMarker() async {
     WidgetsFlutterBinding.ensureInitialized();
     DatabaseHelperLocal db = DatabaseHelperLocal();
-    try{
-      listMarker = await db.queryAllRowsLieu();
-    }catch(e){
+    try {
+      //listMarker = await db.queryAllRowsLieu();
+    } catch (e) {
       print("erreur lors de la recuperation des markers");
     }
-
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -101,24 +95,23 @@ class _donner_avis_marker extends State<donner_avis_marker> {
                                       Map<String, Object> longLat = new Map();
                                       print("tape");
                                       marker.clear();
-                                      marker.add(Marker(
-                                          width: 25.0,
-                                          height: 25.0,
-                                          point: value,
-                                          
-                                          builder: (ctx) => IconButton(
-                                                icon: const Icon(
-                                                  Icons.location_on,
-                                                  color: Colors.redAccent,
-                                                  size: 30,
-                                                ),
-                                                onPressed: () {
-                                                  print("afficher avis");                                          
-                                                },
-                                          )
-                                      ),
-                                    );
-                                    setState(() {});
+                                      marker.add(
+                                        Marker(
+                                            width: 25.0,
+                                            height: 25.0,
+                                            point: value,
+                                            builder: (ctx) => IconButton(
+                                                  icon: const Icon(
+                                                    Icons.location_on,
+                                                    color: Colors.redAccent,
+                                                    size: 30,
+                                                  ),
+                                                  onPressed: () {
+                                                    print("afficher avis");
+                                                  },
+                                                )),
+                                      );
+                                      setState(() {});
                                     },
                                   ),
                                   layers: [
@@ -129,7 +122,6 @@ class _donner_avis_marker extends State<donner_avis_marker> {
                                     MarkerLayerOptions(markers: marker),
                                   ],
                                 ),
-
                                 Positioned(
                                     bottom: 10,
                                     left: 10,
