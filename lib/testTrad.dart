@@ -73,7 +73,7 @@ class _testTrad extends State<testTrad> {
                             ).tr(),
                           ),
                           const Divider(
-                            color: Color.fromARGB(255, 41, 59, 229),
+                            color: Colors.black,
                             thickness: 1,
                             indent: 20,
                             endIndent: 20,

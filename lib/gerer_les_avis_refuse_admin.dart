@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -24,8 +25,8 @@ class _gerer_avis_refuse extends State<gerer_avis_refuse> {
         color: const Color.fromARGB(255, 235, 233, 233),
         child: Container(
           padding: const EdgeInsets.fromLTRB(1, 15, 1, 0),
-          child: const Text(
-            "User_name jj/mm/aaaa",
+          child: Text(
+            "gerer_les_avis_valide_admin_nom_date".tr(),
             style: mylib.blueText,
             textAlign: TextAlign.center,
           ),
@@ -45,8 +46,8 @@ class _gerer_avis_refuse extends State<gerer_avis_refuse> {
           children: [
             Container(
               padding: const EdgeInsets.fromLTRB(1, 10, 1, 0),
-              child: const Text(
-                "Donnez votre avis",
+              child: Text(
+                "gerer_les_avis_valide_admin_note".tr(),
                 style: mylib.blueText,
                 textAlign: TextAlign.center,
               ),
@@ -96,8 +97,8 @@ class _gerer_avis_refuse extends State<gerer_avis_refuse> {
               children: [
                 Container(
                   padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
-                  child: const Text(
-                    "Ce lieu à déjà été visité par l'utilisateur ?",
+                  child: Text(
+                    "gerer_les_avis_valide_admin_place_already_visit".tr(),
                     style: mylib.blueText,
                     textAlign: TextAlign.center,
                   ),
@@ -146,8 +147,8 @@ class _gerer_avis_refuse extends State<gerer_avis_refuse> {
               children: [
                 Container(
                   padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
-                  child: const Text(
-                    "Commentaire :",
+                  child: Text(
+                    "gerer_les_avis_valide_admin_comment".tr(),
                     style: mylib.blueText,
                     textAlign: TextAlign.center,
                   ),
@@ -200,8 +201,8 @@ class _gerer_avis_refuse extends State<gerer_avis_refuse> {
               children: [
                 Container(
                   padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
-                  child: const Text(
-                    "Tranche d'age de l'utilisateur:",
+                  child: Text(
+                    "gerer_les_avis_valide_admin_tranche_age".tr(),
                     style: mylib.blueText,
                     textAlign: TextAlign.center,
                   ),
@@ -218,9 +219,9 @@ class _gerer_avis_refuse extends State<gerer_avis_refuse> {
                     width: 300,
                     height: 46,
                     color: const Color.fromARGB(255, 255, 255, 255),
-                    child: const Align(
+                    child: Align(
                       child: Text(
-                        "... - ... ans",
+                        "Traiter_markers_recu_admin_years".tr(),
                         style: mylib.titleStyle3,
                         textAlign: TextAlign.center,
                       ),
@@ -255,8 +256,8 @@ class _gerer_avis_refuse extends State<gerer_avis_refuse> {
             side: const BorderSide(color: Colors.white, width: 3),
           ),
         ),
-        child: const Text(
-          "Annuler le refus",
+        child: Text(
+          "gerer_markers_refuse_admin_btn_annuler_refus".tr(),
           style: mylib.titleStyle2,
           textAlign: TextAlign.center,
         ),

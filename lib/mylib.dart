@@ -1,12 +1,11 @@
 library mylib;
 
 import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/languagePage.dart';
 import 'package:flutter_application_1/provider.dart';
-import 'package:flutter_application_1/user_choix_connexion.dart';
 import 'package:provider/provider.dart';
-
 import 'confirmation_deconnexion.dart';
 import 'controller/language_contoller.dart';
 
@@ -282,7 +281,7 @@ createQuitButton(BuildContext context, double width, double height, var path,
           ),
         );
       },
-      child: const Text("Quit", style: titleStyle),
+      child: Text("btn_quit".tr(), style: titleStyle),
     ),
   );
 }
@@ -295,7 +294,6 @@ createNextButton(String text, BuildContext context, double width, double height,
     child: ElevatedButton(
       style: ElevatedButton.styleFrom(
         foregroundColor: Colors.white,
-        //backgroundColor: Color.fromARGB(255, 41, 59, 229),
         side: const BorderSide(color: Colors.white, width: 1),
         elevation: 15,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -320,9 +318,7 @@ createtButton(String text, BuildContext context, double width, double height) {
     height: height,
     child: ElevatedButton(
       style: ElevatedButton.styleFrom(
-        //foregroundColor: Colors.white,
         backgroundColor: const Color.fromARGB(255, 13, 12, 32),
-        //side: const BorderSide(color: Colors.white, width: 1),
         elevation: 15,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       ),
@@ -337,7 +333,6 @@ createtButton(String text, BuildContext context, double width, double height) {
 
 createMenu(BuildContext context) {
   LanguageController controller = context.read<LanguageController>();
-
   return ClipRRect(
     borderRadius: BorderRadius.circular(30),
     child: Container(
@@ -347,7 +342,6 @@ createMenu(BuildContext context) {
         child: Column(
           children: [
             ClipRRect(
-              // borderRadius: BorderRadius.circular(10),
               child: Container(
                   height: 78,
                   color: const Color.fromARGB(255, 13, 12, 32),
@@ -355,7 +349,7 @@ createMenu(BuildContext context) {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children:  [
                       Text(
-                        "Menu",
+                        "menu_title".tr(),
                         style: simpleText,
                       ),
                        IconButton(
@@ -395,11 +389,11 @@ createMenu(BuildContext context) {
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
-                      children: const [
-                        Icon(Icons.lens, size: 18),
-                        Padding(padding: EdgeInsets.all(6)),
+                      children:  [
+                        const Icon(Icons.lens, size: 18),
+                        const Padding(padding: EdgeInsets.all(6)),
                         Text(
-                          "Deconnexion",
+                          "btn_deconnexion".tr(),
                           style: blueText,
                         ),
                       ],
@@ -424,8 +418,8 @@ createMenu(BuildContext context) {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         ChangeThemeButtonWidget(),
-                        const Text(
-                          "Mode sombre",
+                         Text(
+                          "btn_mode_sombre".tr(),
                           style: blueText,
                         ),
                       ],
@@ -453,11 +447,11 @@ createMenu(BuildContext context) {
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
-                      children: const [
-                        Icon(Icons.lens, size: 18),
-                        Padding(padding: EdgeInsets.all(6)),
+                      children:  [
+                        const Icon(Icons.lens, size: 18),
+                        const Padding(padding: EdgeInsets.all(6)),
                         Text(
-                          "Traduire",
+                          "btn_traduire".tr(),
                           style: blueText,
                         ),
                       ],

@@ -92,8 +92,25 @@
     "acceuil_gerer_les_avis_btn_traiter_received": "Traiter les avis reçu",
     "acceuil_gerer_les_avis_btn_rejected": "Gérer les avis refusé",
 
+    "gerer_les_avis_valide_admin_nom_date":"Nom Utilisateur jj/mm/aaaa",
+    "gerer_les_avis_valide_admin_note":"Donnez une note :",
+    "gerer_les_avis_valide_admin_place_already_visit":"Ce lieu à déjà été visité par l'utilisateur ?",
+    "gerer_les_avis_valide_admin_comment":"Commentaire :",
+    "gerer_les_avis_valide_admin_tranche_age":"Tranche d'age de l'utilisateur :",
 
+    "consulter_les_avis_login_choisis_date": "jj/mm/aaaa",
+    "consulter_les_avis_login_choisis_already_visit": "Avez-vous déjà visité ce lieu ?",
+    "consulter_les_avis_login_choisis_age": "Tranche d'age :",
+    "consulter_les_avis_login_choisis_modifier": "Modifier",
+    "consulter_les_avis_login_choisis_supprimer": "Supprimer",
 
+    "hello_login_page_btn_acceder_map": "Accéder à la carte",
+    "hello_login_page_btn_acceder_quiz": "Accéder au questionnaire",
+
+    "hello_login_password_btn_questionnaire":"Consulter les questionnaires",
+    "hello_login_password_btn_avis":"Consulter les avis",
+
+    "confirmation_deconnexion_title": "Voulez-vous vous déconnecter ?",
 
 
     "languagePage_title": "Veuillez sélectionner votre langue :",
@@ -103,11 +120,19 @@
     "english_text": "anglais",
     "french_text": "français",
 
+    "menu_title": "Menu",
+
+    "btn_mode_sombre": "Mode sombre",
+    "btn_deconnexion": "Deconnexion",
+    "btn_traduire": "Traduire",
     "btn_next": "Suivant",
     "btn_submit": "Envoyer",
     "btn_yes": "Oui",
     "btn_no": "Non",
     "btn_refuse": "Refuser",
-    "btn_validate": "Valider"
+    "btn_validate": "Valider",
+    "btn_quit": "Quitter"
+    
+
 
 }
