@@ -2,13 +2,12 @@ library mylib;
 
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/hello_admin_page.dart';
-import 'package:flutter_application_1/hello_login_password.dart';
 import 'package:flutter_application_1/languagePage.dart';
 import 'package:flutter_application_1/provider.dart';
 import 'package:flutter_application_1/user_choix_connexion.dart';
 import 'package:provider/provider.dart';
 
+import 'confirmation_deconnexion.dart';
 import 'controller/language_contoller.dart';
 
 bool adminConnect = false;
@@ -354,17 +353,22 @@ createMenu(BuildContext context) {
                   color: const Color.fromARGB(255, 13, 12, 32),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: const [
+                    children:  [
                       Text(
                         "Menu",
                         style: simpleText,
                       ),
-          
-                      Icon(
-                        Icons.menu,
-                        color: Colors.white,
-                        size: 50,
-                      ),
+                       IconButton(
+              icon:  Icon(
+                Icons.menu,
+                color: Colors.white,
+                size: 50,
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              }
+            ),
+                     
                     ],
                   )),
             ),
@@ -384,7 +388,8 @@ createMenu(BuildContext context) {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => userchoixconnexion(),
+                          builder: (_) => confirmation_deconnexion(),
+
                         ),
                       );
                     },

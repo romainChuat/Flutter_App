@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_application_1/commentPage.dart';
 import 'consulter_les_avis_login_choisis.dart';
 import 'consulter_questionnaire_login_choisis.dart';
@@ -16,7 +15,7 @@ class hellologinpassword extends StatefulWidget {
 class _hellologinpassword extends State<hellologinpassword> {
   Widget buildAccessMap() {
     return SizedBox(
-      width: 340,
+      width: 300,
       height: 49,
       child: ElevatedButton(
         onPressed: () {
@@ -28,7 +27,6 @@ class _hellologinpassword extends State<hellologinpassword> {
         },
         style: ElevatedButton.styleFrom(
           shadowColor: Colors.grey.shade700,
-         // backgroundColor: const Color.fromARGB(255, 41, 59, 229),
           elevation: 20,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
@@ -37,7 +35,7 @@ class _hellologinpassword extends State<hellologinpassword> {
         ),
         child: const Text(
           "Accéder à la carte",
-          style: mylib.titleStyle5,
+          style: mylib.titleStyle,
           textAlign: TextAlign.center,
         ),
       ),
@@ -46,7 +44,7 @@ class _hellologinpassword extends State<hellologinpassword> {
 
   Widget buildAccessQuestionnaire(Map<String, Object> reponses) {
     return SizedBox(
-      width: 340,
+      width: 300,
       height: 49,
       child: ElevatedButton(
         onPressed: () {
@@ -58,7 +56,6 @@ class _hellologinpassword extends State<hellologinpassword> {
         },
         style: ElevatedButton.styleFrom(
           shadowColor: Colors.grey.shade700,
-         // backgroundColor: const Color.fromARGB(255, 41, 59, 229),
           elevation: 20,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
@@ -67,7 +64,7 @@ class _hellologinpassword extends State<hellologinpassword> {
         ),
         child: const Text(
           "Accéder au questionnaire",
-          style: mylib.titleStyle5,
+          style: mylib.titleStyle,
           textAlign: TextAlign.center,
         ),
       ),
@@ -76,7 +73,7 @@ class _hellologinpassword extends State<hellologinpassword> {
 
   Widget consultQuestionnaire() {
     return SizedBox(
-      width: 340,
+      width: 300,
       height: 49,
       child: ElevatedButton(
         onPressed: () {
@@ -89,7 +86,6 @@ class _hellologinpassword extends State<hellologinpassword> {
         },
         style: ElevatedButton.styleFrom(
           shadowColor: Colors.grey.shade700,
-          //backgroundColor: const Color.fromARGB(255, 41, 59, 229),
           elevation: 20,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
@@ -98,7 +94,7 @@ class _hellologinpassword extends State<hellologinpassword> {
         ),
         child: const Text(
           "Consulter les questionnaires",
-          style: mylib.titleStyle5,
+          style: mylib.titleStyle,
           textAlign: TextAlign.center,
         ),
       ),
@@ -107,7 +103,7 @@ class _hellologinpassword extends State<hellologinpassword> {
 
   Widget consultAvis() {
     return SizedBox(
-      width: 340,
+      width: 300,
       height: 49,
       child: ElevatedButton(
         onPressed: () {
@@ -120,7 +116,6 @@ class _hellologinpassword extends State<hellologinpassword> {
         },
         style: ElevatedButton.styleFrom(
           shadowColor: Colors.grey.shade700,
-          backgroundColor: const Color.fromARGB(255, 41, 59, 229),
           elevation: 20,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
@@ -129,7 +124,7 @@ class _hellologinpassword extends State<hellologinpassword> {
         ),
         child: const Text(
           "Consulter les avis",
-          style: mylib.titleStyle5,
+          style: mylib.titleStyle,
           textAlign: TextAlign.center,
         ),
       ),
@@ -168,11 +163,15 @@ class _hellologinpassword extends State<hellologinpassword> {
                           'Veuillez choisir ce que vous souhaitez réaliser.',
                           style: mylib.titleStyle),
                     ),
-                    const SizedBox(height: 61),
+                    const SizedBox(height: 30),
                     buildAccessMap(),
-                    const SizedBox(height: 61),
+                    const SizedBox(height: 10),
                     buildAccessQuestionnaire(reponses),
-                    const SizedBox(height: 61),
+                    const SizedBox(height: 10),
+                    consultQuestionnaire(),
+                    const SizedBox(height: 10),
+                    consultAvis(),
+                    const SizedBox(height: 30),
                   ],
                 ),
               ),
