@@ -1,8 +1,5 @@
-import 'package:flutter/foundation.dart';
-import 'package:flutter_application_1/utilisateur.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:path_provider/path_provider.dart';
 
 import 'Lieu.dart';
 
@@ -10,7 +7,7 @@ class DatabaseHelperLocal {
   static const _databaseName = "db_flutter.db";
   static const _databaseVersion = 1;
 
-  static DatabaseHelperLocal _instance = DatabaseHelperLocal._internal();
+  static final DatabaseHelperLocal _instance = DatabaseHelperLocal._internal();
 
   DatabaseHelperLocal._internal();
 
@@ -64,24 +61,14 @@ class DatabaseHelperLocal {
           genre TEXT NOT NULL,
           niveau_etude TEXT NOT NULL
           )""");
-
-    await db.execute('''
-          CREATE TABLE user(
-            id INTEGER PRIMARY KEY,
-            nom TEXT NOT NULL,
-            mail TEXT NOT NULL,
-            password BINARY NOT NULL
-          )
-          ''');
   }
 
   /*Fonctions pour les lieux*/
   Future<int?> insertLieu(Lieu l) async {
-
     return await _db?.insert("lieux", l.toMap());
   }
 
-  Future<List<Map<String, dynamic>>?> queryAllRowsLieu() async {
+  Future<List<Map>?> queryAllRowsLieu() async {
     return await _db?.query("lieux");
   }
 
@@ -95,39 +82,17 @@ class DatabaseHelperLocal {
 
   /*Fonctions pour les réponses*/
   Future<int?> insertReponse(Map<String, Object> r) async {
-    final Database? db = await init();
+    //final Database? _db = await init();
     return await _db?.insert("reponses", r);
   }
 
-  Future<List<Map<String, dynamic>>?> queryAllRowsReponse() async {
+  Future<List<Map>?> queryAllRowsReponse() async {
     return await _db?.query("reponses");
   }
 
   Future<int?> deleteReponse(int id) async {
     return await _db?.delete(
       "reponses",
-      where: 'id = ?',
-      whereArgs: [id],
-    );
-  }
-
-  /*Fonctions pour les utilisateurs*/
-  Future<int?> insertUser(Utilisateur u) async {
-    return await _db?.insert("user", u.toMap());
-  }
-
-  Future<List<Map<String, dynamic>>?> queryAllRowsUser() async {
-    return await _db?.query("user");
-  }
-
-  Future<List<Map<String, dynamic>>?> queryOneUser(String mail) async {
-    return await _db
-        ?.rawQuery("SELECT mail,password FROM user WHERE mail = ?", [mail]);
-  }
-
-  Future<int?> deleteUser(int id) async {
-    return await _db?.delete(
-      "user",
       where: 'id = ?',
       whereArgs: [id],
     );
