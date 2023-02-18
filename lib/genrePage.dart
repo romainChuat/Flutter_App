@@ -70,7 +70,7 @@ class _genrePage extends State<genrePage> {
                                     setState(() {
                                       genre = Genre.feminin;
                                       print(genre);
-                                      reponses['genre'] =
+                                      reponses['rep_genre'] =
                                           genre.toString().split('.').last;
                                       print(reponses);
                                     });
@@ -88,7 +88,7 @@ class _genrePage extends State<genrePage> {
                                   setState(() {
                                     genre = Genre.masculin;
                                     print(genre);
-                                    reponses['genre'] =
+                                    reponses['rep_genre'] =
                                         genre.toString().split('.').last;
                                     print(reponses);
                                   });
@@ -107,7 +107,7 @@ class _genrePage extends State<genrePage> {
                                   setState(() {
                                     genre = Genre.autre;
                                     print(genre);
-                                    reponses['genre'] =
+                                    reponses['rep_genre'] =
                                         genre.toString().split('.').last;
                                     print(reponses);
                                   });
