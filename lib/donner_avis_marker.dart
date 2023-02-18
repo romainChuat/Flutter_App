@@ -2,6 +2,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/commentPage.dart';
+import 'package:flutter_application_1/database_helper.dart';
+import 'package:flutter_application_1/database_helper_local.dart';
 import 'package:flutter_application_1/homePage.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map/plugin_api.dart';
@@ -19,9 +21,11 @@ class donner_avis_marker extends StatefulWidget {
 
 class _donner_avis_marker extends State<donner_avis_marker> {
   var marker = <Marker>[];
+  List<Map <String, dynamic>>? listMarker; 
   double currentZoom = 13.0;
   MapController mapController = MapController();
   LatLng currentCenter = LatLng(47.235198, 6.021029);
+
   
 
   void _zoomOut() {
@@ -33,6 +37,19 @@ class _donner_avis_marker extends State<donner_avis_marker> {
     currentZoom = currentZoom + 1;
     mapController.move(mapController.center, currentZoom);
   }
+
+  Future<void> getMarker() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    DatabaseHelperLocal db = DatabaseHelperLocal();
+    try{
+      listMarker = await db.queryAllRowsLieu();
+    }catch(e){
+      print("erreur lors de la recuperation des markers");
+    }
+
+  }
+
+
 
   @override
   Widget build(BuildContext context) {

@@ -171,18 +171,18 @@ class Creationcompte extends State<CreationCompte> {
   Widget buildTermsCase() {
     return Row(
       children: <Widget>[
-        Theme(
-          data: ThemeData(unselectedWidgetColor: Colors.white),
-          child: Checkbox(
+        //Theme(
+          //data: ThemeData(unselectedWidgetColor: Colors.white),
+          Checkbox(
               value: acceptTerms,
-              checkColor: Colors.blue,
+              checkColor: const Color.fromARGB(255, 13, 12, 32),
               activeColor: Colors.white,
               onChanged: (value) {
                 setState(() {
                   acceptTerms = true;
                 });
               }),
-        ),
+     //   ),
         const Text(
           'Accept',
           style: TextStyle(
@@ -300,7 +300,7 @@ class Creationcompte extends State<CreationCompte> {
             );
           },
           style: ElevatedButton.styleFrom(
-              backgroundColor: Color.fromARGB(255, 13, 12, 32),
+              backgroundColor: const Color.fromARGB(255, 13, 12, 32),
             shadowColor: Colors.grey.shade700,
             elevation: 20,
             shape: const RoundedRectangleBorder(
