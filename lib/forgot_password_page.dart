@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/user_choix_connexion.dart';
 import 'connexion_admin.dart';
+import 'database_helper.dart';
 import 'mylib.dart' as mylib;
 
 class forgot_password_page extends StatefulWidget {
@@ -12,7 +13,9 @@ class forgot_password_page extends StatefulWidget {
 }
 
 class _forgot_password_page extends State<forgot_password_page> {
+  final mailController = TextEditingController();
   bool isRememberMe = false;
+  bool exist = false;
   Widget buildTitle() {
     return Container(
       width: 309,
@@ -49,7 +52,8 @@ class _forgot_password_page extends State<forgot_password_page> {
                 BoxShadow(
                     color: Colors.black26, blurRadius: 6, offset: Offset(0, 2))
               ]),
-          child: const TextField(
+          child: TextField(
+            controller: mailController,
             keyboardType: TextInputType.emailAddress,
             style: TextStyle(color: Colors.black87),
             decoration: InputDecoration(
@@ -95,7 +99,12 @@ class _forgot_password_page extends State<forgot_password_page> {
       // padding: EdgeInsets.symmetric(vertical: 25),
       //width: double.infinity,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          loginCorrect();
+          if (exist == false) {
+            print("Aucun compte n'est associé à cet email.");
+          }
+        },
         style: ElevatedButton.styleFrom(
           shadowColor: Colors.grey.shade700,
           //backgroundColor: const Color.fromARGB(255, 41, 59, 229),
@@ -134,8 +143,7 @@ class _forgot_password_page extends State<forgot_password_page> {
             elevation: 20,
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  topRight: Radius.circular(10)),
+                  topLeft: Radius.circular(10), topRight: Radius.circular(10)),
             ),
           ),
           child: const Text(
@@ -162,8 +170,7 @@ class _forgot_password_page extends State<forgot_password_page> {
             elevation: 20,
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  topRight: Radius.circular(10)),
+                  topLeft: Radius.circular(10), topRight: Radius.circular(10)),
             ),
           ),
           child: const Text(
@@ -241,5 +248,18 @@ class _forgot_password_page extends State<forgot_password_page> {
         )),
       ),
     );
+  }
+
+  Future<void> loginCorrect() async {
+    String mail = mailController.text;
+
+    WidgetsFlutterBinding.ensureInitialized();
+    DatabaseHelper db = DatabaseHelper.getInstance();
+
+    var res = await db.queryUser(mail);
+
+    if (res != null) {
+      exist = true;
+    }
   }
 }

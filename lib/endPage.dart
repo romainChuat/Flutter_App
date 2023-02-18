@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/homePage.dart';
 import 'package:flutter_icon_shadow/flutter_icon_shadow.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'database_helper_local.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'mylib.dart' as mylib;
@@ -156,9 +157,9 @@ class _endPage extends State<endPage> {
       DatabaseHelperLocal db = DatabaseHelperLocal();
       var res = db.queryAllRowsReponse();
 
-      res.forEach((row) {
+      /*res.forEach((row) {
         print(row);
-      });
+      });*/
     }
   }
 }
