@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'acceuil_gerer_les avis.dart';
 import 'acceuil_gerer_les_markers.dart';
@@ -31,8 +32,8 @@ class _hello_admin_page extends State<hello_admin_page> {
             side: const BorderSide(color: Colors.white, width: 3),
           ),
         ),
-        child: const Text(
-          "Gérer les markers",
+        child: Text(
+          "hello_admin_page_btn_gerer_markers".tr(),
           style: mylib.titleStyle5,
           textAlign: TextAlign.center,
         ),
@@ -60,8 +61,8 @@ class _hello_admin_page extends State<hello_admin_page> {
             side: const BorderSide(color: Colors.white, width: 3),
           ),
         ),
-        child: const Text(
-          "Gérer les avis",
+        child: Text(
+          "hello_admin_page_btn_gerer_avis".tr(),
           style: mylib.titleStyle5,
           textAlign: TextAlign.center,
         ),
@@ -89,13 +90,13 @@ class _hello_admin_page extends State<hello_admin_page> {
           children: <Widget>[
             Container(
               width: 250,
-              child: const Text('Hello, Admin', style: mylib.titleStyle2),
+              child:  Text('hello_admin_page_title1'.tr(), style: mylib.titleStyle2),
             ),
             const SizedBox(height: 61),
             Container(
               width: 250,
-              child: const Text(
-                  'Veuillez choisir ce que vous souhaitez réaliser.',
+              child: Text(
+                  'hello_admin_page_title2'.tr(),
                   style: mylib.titleStyle),
             ),
             const SizedBox(height: 61),

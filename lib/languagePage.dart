@@ -23,12 +23,18 @@ class _languagePage extends State<languagePage> {
         appBar: AppBar(),
       ),
       endDrawer: mylib.createMenu(context),
-      //backgroundColor: Colors.red,
 
       body: Center(
+        child: ClipRRect(
+          borderRadius: const BorderRadius.all(Radius.circular(10)),
+          child: Container(
+            color: const Color.fromARGB(255, 235, 233, 233),
+            width: 309,
+            height: 300,
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
+          Text("languagePage_title".tr(), style: mylib.titleStyle),
           const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 20)),
           SizedBox(
             width: 296,
@@ -36,7 +42,6 @@ class _languagePage extends State<languagePage> {
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.white,
-                backgroundColor: const Color.fromARGB(255, 41, 59, 229),
                 side: const BorderSide(color: Colors.white, width: 3),
                 elevation: 15,
                 shape: RoundedRectangleBorder(
@@ -64,7 +69,6 @@ class _languagePage extends State<languagePage> {
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.white,
-                backgroundColor: const Color.fromARGB(255, 41, 59, 229),
                 side: const BorderSide(color: Colors.white, width: 3),
                 elevation: 15,
                 //padding: EdgeInsets.fromLTRB(10,0,110,0),
@@ -89,6 +93,8 @@ class _languagePage extends State<languagePage> {
           const Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 20)),
         ],
       )),
+        ),
+      ),
     );
   }
 }
