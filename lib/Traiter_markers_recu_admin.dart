@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/endPage.dart';
@@ -19,34 +20,7 @@ class _traiter_markers_recu_admin extends State<traiter_markers_recu_admin> {
   final mapController = MapController();
   var marker = <Marker>[];
 
-  Widget buildAccessMap() {
-    return SizedBox(
-      width: 296,
-      height: 49,
-      child: ElevatedButton(
-        onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (BuildContext context) => const MyHomePage(),
-            ),
-          );
-        },
-        style: ElevatedButton.styleFrom(
-          shadowColor: Colors.grey.shade700,
-          elevation: 20,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0),
-            side: const BorderSide(color: Colors.white, width: 3),
-          ),
-        ),
-        child: const Text(
-          "Accéder à la carte",
-          style: mylib.titleStyle5,
-          textAlign: TextAlign.center,
-        ),
-      ),
-    );
-  }
+
 
   Widget TitleDate() {
     return ClipRRect(
@@ -57,8 +31,8 @@ class _traiter_markers_recu_admin extends State<traiter_markers_recu_admin> {
         color: const Color.fromARGB(255, 235, 233, 233),
         child: Container(
           padding: const EdgeInsets.fromLTRB(1, 15, 1, 0),
-          child: const Text(
-            "Title jj/mm/aaaa",
+          child: Text(
+            "raiter_markers_recu_admin_title".tr(),
             style: mylib.blueText,
             textAlign: TextAlign.center,
           ),
@@ -84,8 +58,8 @@ class _traiter_markers_recu_admin extends State<traiter_markers_recu_admin> {
               children: [
                 Container(
                   padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
-                  child: const Text(
-                    "Localisation",
+                  child: Text(
+                    "Traiter_markers_recu_admin_localisation".tr(),
                     style: mylib.blueText,
                     textAlign: TextAlign.center,
                   ),
@@ -165,8 +139,8 @@ class _traiter_markers_recu_admin extends State<traiter_markers_recu_admin> {
               children: [
                 Container(
                   padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
-                  child: const Text(
-                    "Photo",
+                  child: Text(
+                    "Traiter_markers_recu_admin_photo".tr(),
                     style: mylib.blueText,
                     textAlign: TextAlign.center,
                   ),
@@ -210,8 +184,8 @@ class _traiter_markers_recu_admin extends State<traiter_markers_recu_admin> {
               children: [
                 Container(
                   padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
-                  child: const Text(
-                    "Date",
+                  child: Text(
+                    "Traiter_markers_recu_admin_date".tr(),
                     style: mylib.blueText,
                     textAlign: TextAlign.center,
                   ),
@@ -260,8 +234,8 @@ class _traiter_markers_recu_admin extends State<traiter_markers_recu_admin> {
               children: [
                 Container(
                   padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
-                  child: const Text(
-                    "Expression",
+                  child: Text(
+                    "Traiter_markers_recu_admin_expression".tr(),
                     style: mylib.blueText,
                     textAlign: TextAlign.center,
                   ),
@@ -353,8 +327,8 @@ class _traiter_markers_recu_admin extends State<traiter_markers_recu_admin> {
               children: [
                 Container(
                   padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
-                  child: const Text(
-                    "Tranche d'age :",
+                  child: Text(
+                    "Traiter_markers_recu_admin_age".tr(),
                     style: mylib.blueText,
                     textAlign: TextAlign.center,
                   ),
@@ -371,9 +345,9 @@ class _traiter_markers_recu_admin extends State<traiter_markers_recu_admin> {
                     width: 300,
                     height: 46,
                     color: const Color.fromARGB(255, 255, 255, 255),
-                    child: const Align(
+                    child: Align(
                       child: Text(
-                        "... - ... ans",
+                        "Traiter_markers_recu_admin_years".tr(),
                         style: mylib.titleStyle3,
                         textAlign: TextAlign.center,
                       ),
@@ -403,8 +377,8 @@ class _traiter_markers_recu_admin extends State<traiter_markers_recu_admin> {
               children: [
                 Container(
                   padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
-                  child: const Text(
-                    "Genre :",
+                  child: Text(
+                    "Traiter_markers_recu_admin_gender".tr(),
                     style: mylib.blueText,
                     textAlign: TextAlign.center,
                   ),
@@ -453,8 +427,8 @@ class _traiter_markers_recu_admin extends State<traiter_markers_recu_admin> {
               children: [
                 Container(
                   padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
-                  child: const Text(
-                    "Votre plus haut niveaux d'étude :",
+                  child: Text(
+                    "Traiter_markers_recu_admin_etude".tr(),
                     style: mylib.blueText,
                     textAlign: TextAlign.center,
                   ),
@@ -503,8 +477,8 @@ class _traiter_markers_recu_admin extends State<traiter_markers_recu_admin> {
               children: [
                 Container(
                   padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
-                  child: const Text(
-                    "Activité exercer actuellement :",
+                  child: Text(
+                    "Traiter_markers_recu_admin_activite".tr(),
                     style: mylib.blueText,
                     textAlign: TextAlign.center,
                   ),
@@ -558,8 +532,8 @@ class _traiter_markers_recu_admin extends State<traiter_markers_recu_admin> {
             side: const BorderSide(color: Colors.white, width: 3),
           ),
         ),
-        child: const Text(
-          "Annuler la validation",
+        child: Text(
+          "Traiter_markers_recu_admin_btn_annuler".tr(),
           style: mylib.titleStyle2,
           textAlign: TextAlign.center,
         ),

@@ -7,7 +7,7 @@ class DatabaseHelperLocal {
   static const _databaseName = "db_flutter.db";
   static const _databaseVersion = 1;
 
-  static DatabaseHelperLocal _instance = DatabaseHelperLocal._internal();
+  static final DatabaseHelperLocal _instance = DatabaseHelperLocal._internal();
 
   DatabaseHelperLocal._internal();
 
@@ -84,11 +84,11 @@ class DatabaseHelperLocal {
     return insert;
   }
 
-  Future<List<Map<String, dynamic>>?> queryAllRowsLieu() async {
+  Future<List<Map>?> queryAllRowsLieu() async {
     return await _db?.query("lieux");
   }
 
-  Future<List<Map <String, dynamic>>?> queryAllReponsesLieux() async {
+  Future<List<Map<String, dynamic>>?> queryAllReponsesLieux() async {
     return await _db?.rawQuery("SELECT lieux FROM reponses");
   }
 
@@ -102,13 +102,14 @@ class DatabaseHelperLocal {
 
   /*Fonctions pour les réponses*/
   Future<int?> insertReponse(Map<String, Object> r) async {
-    final Database? db = await init();
+    //final Database? _db = await init();
     return await _db?.insert("reponses", r);
   }
 
-  Future<List<Map<String, dynamic>>?> queryAllRowsReponse() async {
+  Future<List<Map>?> queryAllRowsReponse() async {
     return await _db?.query("reponses");
   }
+
   Future<int?> deleteReponse(int id) async {
     return await _db?.delete(
       "reponses",
@@ -116,6 +117,7 @@ class DatabaseHelperLocal {
       whereArgs: [id],
     );
   }
+
 
   /*Fonctions pour les utilisateurs*/
   Future<int?> insertUser(Map<String,Object> u) async {

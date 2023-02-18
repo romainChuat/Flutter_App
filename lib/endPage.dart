@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/homePage.dart';
 import 'package:flutter_icon_shadow/flutter_icon_shadow.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'database_helper_local.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'mylib.dart' as mylib;
@@ -118,8 +119,9 @@ class _endPage extends State<endPage> {
       ),
     );
   }
-  void insertLieu(Map<String,Object> reponses) async{
-    Map<String,Object> lieux = new Map();
+
+  void insertLieu(Map<String, Object> reponses) async {
+    Map<String, Object> lieux = new Map();
     lieux['lieux_lat'] = reponses['latitude']!;
     lieux['lieux_long'] = reponses['longitude']!;
     reponses.remove('longitude');
@@ -134,6 +136,7 @@ class _endPage extends State<endPage> {
       print("enregistrement lieux impossible");
     }
   }
+
   void insertUser(Map<String,Object> reponses) async{
     Map<String, Object> user = new Map();
     user['user_name'] = "gest_${reponses['username']!}";
@@ -148,6 +151,7 @@ class _endPage extends State<endPage> {
       print("enregistrement user impossible");
     }
   }
+
   void insertReponse(Map<String, Object> reponses) async {
     print(reponses);
 
@@ -161,6 +165,21 @@ class _endPage extends State<endPage> {
       print("new reponse");
     } catch (e) {
       print("enregistrement reponse impossible");
+    }
+
+    insertReponseServer();
+  }
+
+  void insertReponseServer() async {
+    bool result = await InternetConnectionChecker().hasConnection;
+    if (result == true) {
+      WidgetsFlutterBinding.ensureInitialized();
+      DatabaseHelperLocal db = DatabaseHelperLocal();
+      var res = db.queryAllRowsReponse();
+
+      /*res.forEach((row) {
+        print(row);
+      });*/
     }
   }
 }
