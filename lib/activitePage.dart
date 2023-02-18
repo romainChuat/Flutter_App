@@ -76,6 +76,7 @@ class _activitePage extends State<activitePage> {
                                           ),
                                         ),
                                         CheckboxListTile(
+                                          activeColor: const Color.fromARGB(255, 13, 12, 32),
                                           title: mylib.createInput(
                                             311,
                                             28,
@@ -105,8 +106,8 @@ class _activitePage extends State<activitePage> {
                                           ),
                                         ),
                                         CheckboxListTile(
-                                          activeColor: Colors.blue,
-                                          checkColor: Colors.white,
+                                          activeColor: const Color.fromARGB(255, 13, 12, 32),
+                                          //checkColor: Colors.white,
                                           title: mylib.createInput(311, 28),
                                           autofocus: false,
                                           selected: _empValue,
@@ -133,6 +134,7 @@ class _activitePage extends State<activitePage> {
                                           ),
                                         ),
                                         CheckboxListTile(
+                                          activeColor: const Color.fromARGB(255, 13, 12, 32),
                                           title: mylib.createInput(311, 28),
                                           autofocus: false,
                                           selected: _proValue,
@@ -159,6 +161,7 @@ class _activitePage extends State<activitePage> {
                                           ),
                                         ),
                                         CheckboxListTile(
+                                          activeColor: const Color.fromARGB(255, 13, 12, 32),
                                           title: mylib.createInput(311, 28),
                                           autofocus: false,
                                           selected: _retraiteValue,
@@ -185,6 +188,7 @@ class _activitePage extends State<activitePage> {
                                           ),
                                         ),
                                         CheckboxListTile(
+                                          activeColor: const Color.fromARGB(255, 13, 12, 32),
                                           title: mylib.createInput(311, 28),
                                           autofocus: false,
                                           selected: _ssProValue,
@@ -205,7 +209,7 @@ class _activitePage extends State<activitePage> {
                       ),
                     ),
                   ),
-                  Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
+                  const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [

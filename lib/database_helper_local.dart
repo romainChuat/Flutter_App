@@ -44,11 +44,10 @@ class DatabaseHelperLocal {
   // SQL code to create the database table
   Future _onCreate(Database db, int version) async {
     await db.execute('''
-          CREATE TABLE lieux(
-            id INTEGER PRIMARY KEY,
-            nom TEXT NOT NULL,
-            latitude REAL NOT NULL,
-            longitude REAL NOT NULL
+          CREATE TABLE  lieux(
+            lieux_id INTEGER PRIMARY KEY AUTOINCREMENT,
+            lieux_lat real NOT NULL,
+            lieux_long real NOT NULL
           )''');
     await db.execute("""CREATE TABLE reponses(
           id INTEGER AUTO_INCREMENT PRIMARY KEY,
@@ -73,13 +72,17 @@ class DatabaseHelperLocal {
   }
 
   /*Fonctions pour les lieux*/
-  Future<int?> insertLieu(Lieu l) async {
+  Future<int?> insertLieu(Map<String, Object> l) async {
 
-    return await _db?.insert("lieux", l.toMap());
+    return await _db?.insert("lieux", l);
   }
 
   Future<List<Map<String, dynamic>>?> queryAllRowsLieu() async {
     return await _db?.query("lieux");
+  }
+
+  Future<List<Map <String, dynamic>>?> queryAllReponsesLieux() async {
+    return await _db?.rawQuery("SELECT lieux FROM reponses");
   }
 
   Future<int?> deleteLieu(int id) async {
@@ -99,7 +102,6 @@ class DatabaseHelperLocal {
   Future<List<Map<String, dynamic>>?> queryAllRowsReponse() async {
     return await _db?.query("reponses");
   }
-
   Future<int?> deleteReponse(int id) async {
     return await _db?.delete(
       "reponses",

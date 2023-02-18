@@ -95,6 +95,7 @@ class _endPage extends State<endPage> {
         onPressed: () {
           //envoie des données à la bd
           insertReponse(reponses);
+          insertLieu(reponses);
           Navigator.push(
               context,
               MaterialPageRoute(
@@ -109,7 +110,21 @@ class _endPage extends State<endPage> {
       ),
     );
   }
+  void insertLieu(Map<String,Object> reponses) async{
+    Map<String,Object> lieux = new Map();
+    lieux['lieux_lat'] = reponses['latitude']!;
+    lieux['lieux_long'] = reponses['longitude']!;
+    
+    WidgetsFlutterBinding.ensureInitialized();
+    DatabaseHelperLocal db = DatabaseHelperLocal();
 
+    try {
+      await db.insertLieu(lieux);
+      print("new lieux");
+    } catch (e) {
+      print("enregistrement lieux impossible");
+    }
+  }
   void insertReponse(Map<String, Object> reponses) async {
     //Map<String, Object> insert = new Map();
     //insert['username'] = reponses['username'].toString();

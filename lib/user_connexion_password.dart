@@ -163,14 +163,16 @@ class _userconnexionpassword extends State<userconnexionpassword> {
         height: 20,
         child: Row(
           children: <Widget>[
-            Theme(
-              data: ThemeData(unselectedWidgetColor: Colors.white),
-              child: Checkbox(
-                  value: isRememberMe,
-                  checkColor: const Color.fromARGB(255, 13, 12, 32),
-                  activeColor: Colors.white,
-                  onChanged: _handleRememberme),
-            ),
+            Checkbox(
+              value: isRememberMe,
+              checkColor: const Color.fromARGB(255, 13, 12, 32),
+              activeColor: Colors.white,
+              onChanged: (value) {
+                setState(() {
+                  isRememberMe = true;
+                });
+              }),
+          
             const Text(
               'Remember me',
               style: TextStyle(

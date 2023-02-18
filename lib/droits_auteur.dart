@@ -91,6 +91,7 @@ class _droits_auteur extends State<droits_auteur> {
                           children: [
                             Text("droits_auteur_accept".tr()),
                             Checkbox(
+                              activeColor: const Color.fromARGB(255, 13, 12, 32),
                               value: accept,
                               onChanged: (value) {
                                 setState(() {
