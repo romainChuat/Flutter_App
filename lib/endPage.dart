@@ -117,8 +117,8 @@ class _endPage extends State<endPage> {
     lieux['lieux_lat'] = reponses['latitude']!;
     lieux['lieux_long'] = reponses['longitude']!;
 
-    WidgetsFlutterBinding.ensureInitialized();
     DatabaseHelperLocal db = DatabaseHelperLocal();
+    WidgetsFlutterBinding.ensureInitialized();
 
     try {
       await db.insertLieu(lieux);
@@ -137,8 +137,8 @@ class _endPage extends State<endPage> {
     //insert["reponses"] = reponses.toString();
     //print(insert);
     reponses['username'] = "guest_${reponses['username']}";
-    WidgetsFlutterBinding.ensureInitialized();
     DatabaseHelperLocal db = DatabaseHelperLocal();
+    WidgetsFlutterBinding.ensureInitialized();
 
     try {
       await db.insertReponse(reponses);
@@ -147,7 +147,7 @@ class _endPage extends State<endPage> {
       print("enregistrement impossible");
     }
 
-    insertReponseServer();
+    //insertReponseServer();
   }
 
   void insertReponseServer() async {
@@ -157,9 +157,7 @@ class _endPage extends State<endPage> {
       DatabaseHelperLocal db = DatabaseHelperLocal();
       var res = db.queryAllRowsReponse();
 
-      /*res.forEach((row) {
-        print(row);
-      });*/
+      print(await res);
     }
   }
 }

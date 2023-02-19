@@ -1,19 +1,40 @@
 import 'dart:convert';
 
 class Reponse {
-  final Map<String, dynamic> reponsesUser;
+  String username;
+  double longitude;
+  double latitude;
+  Map<int, String> expressions;
+  String date;
+  int age;
+  String genre;
+  String niveau_etude;
 
-  const Reponse({
-    required this.reponsesUser,
+  Reponse({
+    required this.username,
+    required this.longitude,
+    required this.latitude,
+    required this.expressions,
+    required this.date,
+    required this.age,
+    required this.genre,
+    required this.niveau_etude,
   });
 
   Map<String, dynamic> toMap() {
     return {
-      'reponsesUser': reponsesUser,
+      'username': username,
+      'longitude': longitude,
+      'latitude': latitude,
+      'expressions': expressions,
+      'date': date,
+      'age': age,
+      'genre': genre,
+      'niveau_etude': niveau_etude,
     };
   }
 
-  String toJson(Map<String, String> map) {
+  String toJson(Map map) {
     return jsonEncode(map);
   }
 
@@ -23,6 +44,6 @@ class Reponse {
 
   @override
   String toString() {
-    return 'Reponse{reponses: $reponsesUser}';
+    return 'Reponse{username: $username, longitude: $longitude,latitude: $latitude,expressions: $expressions,date: $date,age: $age,genre: $genre,niveau_etude: $niveau_etude}';
   }
 }

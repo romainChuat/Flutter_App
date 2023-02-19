@@ -2,6 +2,7 @@ import 'package:flutter_application_1/utilisateur.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'Lieu.dart';
+import 'Reponse.dart';
 
 class DatabaseHelperLocal {
   static const _databaseName = "db_flutter.db";
@@ -25,6 +26,7 @@ class DatabaseHelperLocal {
 
   // this opens the database (and creates it if it doesn't exist)
   Future<Database?> init() async {
+    print("test");
     final dbPath = await getDatabasesPath();
     final path = join(dbPath, _databaseName);
     print(path);
@@ -89,8 +91,15 @@ class DatabaseHelperLocal {
     return await _db?.insert("reponses", r);
   }
 
-  Future<List<Map>?> queryAllRowsReponse() async {
-    return await _db?.query("reponses");
+  Future queryAllRowsReponse() async {
+    //return await _db?.query("reponses");
+    final res = await _db?.rawQuery("SELECT * FROM reponses");
+
+    return List.generate(res!.length, (i) {
+      return Reponse(
+        reponsesUser: res[i],
+      );
+    });
   }
 
   Future<int?> deleteReponse(int id) async {
