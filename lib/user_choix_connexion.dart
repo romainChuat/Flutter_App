@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/user_connexion_password.dart';
@@ -23,9 +24,9 @@ class _userchoixconnexion extends State<userchoixconnexion> {
           fit: BoxFit.cover,
         ),
       ),
-      child: const Align(
+      child: Align(
         child: Text(
-          "Sign In",
+          "forgot_password_page_sign_in".tr(),
           style: mylib.titleStyle3,
           textAlign: TextAlign.center,
         ),
@@ -45,9 +46,9 @@ class _userchoixconnexion extends State<userchoixconnexion> {
             ),
           ),
         },
-        child: const Text(
-          'Sign Up',
-          style: TextStyle(
+        child: Text(
+          'creation_compte_sign_up'.tr(),
+          style: const TextStyle(
             color: Colors.black38,
           ),
         ),
@@ -75,8 +76,8 @@ class _userchoixconnexion extends State<userchoixconnexion> {
             side: const BorderSide(color: Colors.white, width: 3),
           ),
         ),
-        child: const Text(
-          "Continuer sans compte",
+        child: Text(
+          "user_choix_connexion_btn_sans_compte".tr(),
           style: mylib.titleStyle,
           textAlign: TextAlign.center,
         ),
@@ -99,14 +100,13 @@ class _userchoixconnexion extends State<userchoixconnexion> {
         style: ElevatedButton.styleFrom(
           shadowColor: Colors.grey.shade700,
           elevation: 20,
-          // backgroundColor: const Color.fromARGB(255, 41, 59, 229),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
             side: const BorderSide(color: Colors.white, width: 3),
           ),
         ),
-        child: const Text(
-          "Se connecter",
+        child: Text(
+          "user_choix_connexion_se_conencter".tr(),
           style: mylib.titleStyle,
           textAlign: TextAlign.center,
         ),
@@ -115,35 +115,33 @@ class _userchoixconnexion extends State<userchoixconnexion> {
   }
 
   Widget buildUserBtn() {
-    return Container(
-      child: Align(
-        alignment: const Alignment(-0.66, 0.0),
-        child: SizedBox(
-          width: 150,
-          height: 50,
-          child: ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (BuildContext context) => userchoixconnexion(),
-                ),
-              );
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: const Color.fromARGB(255, 13, 12, 32),
-              shadowColor: Colors.grey.shade700,
-              elevation: 20,
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    topRight: Radius.circular(10)),
+    return Align(
+      alignment: const Alignment(-0.66, 0.0),
+      child: SizedBox(
+        width: 150,
+        height: 50,
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (BuildContext context) => userchoixconnexion(),
               ),
+            );
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color.fromARGB(255, 13, 12, 32),
+            shadowColor: Colors.grey.shade700,
+            elevation: 20,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(10),
+                  topRight: Radius.circular(10)),
             ),
-            child: const Text(
-              "User",
-              style: mylib.titleStyle5,
-              textAlign: TextAlign.center,
-            ),
+          ),
+          child: Text(
+            "btn_user".tr(),
+            style: mylib.titleStyle5,
+            textAlign: TextAlign.center,
           ),
         ),
       ),
@@ -151,35 +149,33 @@ class _userchoixconnexion extends State<userchoixconnexion> {
   }
 
   Widget buildAdminBtn() {
-    return Container(
-      child: Align(
-        alignment: const Alignment(0.66, 0.0),
-        child: SizedBox(
-          width: 150,
-          height: 50,
-          child: ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (BuildContext context) => const connexion_adminn(),
-                ),
-              );
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: const Color.fromARGB(255, 235, 233, 233),
-              shadowColor: Colors.grey.shade700,
-              elevation: 20,
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    topRight: Radius.circular(10)),
+    return Align(
+      alignment: const Alignment(0.66, 0.0),
+      child: SizedBox(
+        width: 150,
+        height: 50,
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (BuildContext context) => const connexion_adminn(),
               ),
+            );
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color.fromARGB(255, 235, 233, 233),
+            shadowColor: Colors.grey.shade700,
+            elevation: 20,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(10),
+                  topRight: Radius.circular(10)),
             ),
-            child: const Text(
-              "Admin",
-              style: mylib.titleStyle4,
-              textAlign: TextAlign.center,
-            ),
+          ),
+          child: Text(
+            "btn_admin".tr(),
+            style: mylib.titleStyle4,
+            textAlign: TextAlign.center,
           ),
         ),
       ),
@@ -197,7 +193,6 @@ class _userchoixconnexion extends State<userchoixconnexion> {
               SizedBox(
                 height: double.infinity,
                 width: double.infinity,
-                // decoration: mylib.background1,
                 child: Center(
                     child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -228,12 +223,11 @@ class _userchoixconnexion extends State<userchoixconnexion> {
                             const SizedBox(height: 40),
 
                             Continuer_avec_compte_btn(),
-                            // SizedBox(height: 10),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
-                                const Text(
-                                  'Don\'t have account ?',
+                                Text(
+                                  'user_choix_connexion_pas_de_compte'.tr(),
                                   style: TextStyle(
                                     color: Colors.black38,
                                   ),
@@ -245,9 +239,7 @@ class _userchoixconnexion extends State<userchoixconnexion> {
                           ],
                         ),
                       ),
-                      // ),
-                      // ),
-                      // )
+                     
                     ),
                   ],
                 )),
@@ -257,7 +249,5 @@ class _userchoixconnexion extends State<userchoixconnexion> {
         ),
       ),
     );
-
-    //);
   }
 }

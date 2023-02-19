@@ -4,7 +4,6 @@ import 'package:flutter_application_1/commentPage.dart';
 import 'package:flutter_application_1/controller/language_contoller.dart';
 import 'startPage.dart';
 import 'mylib.dart' as mylib;
-import 'testTrad.dart';
 import 'package:provider/provider.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -202,12 +201,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                     ),
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => testTrad(),
-                        ),
-                      );
+                      
                     },
                     child: Container(
                       child: Row(

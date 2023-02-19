@@ -1,4 +1,5 @@
 import 'package:crypt/crypt.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/database_helper.dart';
@@ -72,9 +73,9 @@ class Creationcompte extends State<CreationCompte> {
           fit: BoxFit.cover,
         ),
       ),
-      child: const Align(
+      child: Align(
         child: Text(
-          "Sign In",
+          "creation_compte_sign_up".tr(),
           style: mylib.titleStyle3,
           textAlign: TextAlign.center,
         ),
@@ -94,8 +95,8 @@ class Creationcompte extends State<CreationCompte> {
             ),
           ),
         },
-        child: const Text(
-          'Sign In',
+        child: Text(
+          'forgot_password_page_sign_in'.tr(),
           style: TextStyle(
             color: Colors.black38,
           ),
@@ -171,9 +172,7 @@ class Creationcompte extends State<CreationCompte> {
   Widget buildTermsCase() {
     return Row(
       children: <Widget>[
-        //Theme(
-          //data: ThemeData(unselectedWidgetColor: Colors.white),
-          Checkbox(
+            Checkbox(
               value: acceptTerms,
               checkColor: const Color.fromARGB(255, 13, 12, 32),
               activeColor: Colors.white,
@@ -182,12 +181,10 @@ class Creationcompte extends State<CreationCompte> {
                   acceptTerms = true;
                 });
               }),
-     //   ),
-        const Text(
-          'Accept',
-          style: TextStyle(
+        Text(
+          'btn_accept'.tr(),
+          style: const TextStyle(
             color: Colors.black38,
-            //fontWeight: FontWeight.bold
           ),
         ),
       ],
@@ -206,8 +203,8 @@ class Creationcompte extends State<CreationCompte> {
             ),
           ),
         },
-        child: const Text(
-          'Terms & Conditions',
+        child: Text(
+          'creation_compte_terms_conditions'.tr(),
           style: TextStyle(color: Colors.black38, fontWeight: FontWeight.bold),
         ),
       ),
@@ -262,25 +259,24 @@ class Creationcompte extends State<CreationCompte> {
         },
         style: ElevatedButton.styleFrom(
           shadowColor: Colors.grey.shade700,
-         // backgroundColor: const Color.fromARGB(255, 41, 59, 229),
           elevation: 20,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
             side: const BorderSide(color: Colors.white, width: 3),
           ),
         ),
-        child: const Text(
-          "Login",
+        child: Text(
+          "connexion_user_login".tr(),
           style: mylib.titleStyle,
           textAlign: TextAlign.center,
         ),
       ),
     ),
-        SizedBox(height: 14,),
+        const SizedBox(height: 14,),
     if(_showErrorMessageMail)
-    Text("Email incorrect.", style: mylib.warningText) else if (_showErrorMessagePassword)
-    Text("Mot de passe incorrect.", style: mylib.warningText) else if(_showErrorMessageCondition)
-    Text("Veuillez accepter les termes et les conditions.", style: mylib.warningText),
+    Text("warning_email_incorrect".tr(), style: mylib.warningText) else if (_showErrorMessagePassword)
+    Text("warning_mdp_incorrect".tr(), style: mylib.warningText) else if(_showErrorMessageCondition)
+    Text("warning_mdp_terms_conditions".tr(), style: mylib.warningText),
     
    ]);
   }
@@ -308,8 +304,8 @@ class Creationcompte extends State<CreationCompte> {
                   topLeft: Radius.circular(10), topRight: Radius.circular(10)),
             ),
           ),
-          child: const Text(
-            "User",
+          child: Text(
+            "btn_user".tr(),
             style: mylib.titleStyle5,
             textAlign: TextAlign.center,
           ),
@@ -341,8 +337,8 @@ class Creationcompte extends State<CreationCompte> {
                   topLeft: Radius.circular(10), topRight: Radius.circular(10)),
             ),
           ),
-          child: const Text(
-            "Admin",
+          child: Text(
+            "btn_admin".tr(),
             style: mylib.titleStyle4,
             textAlign: TextAlign.center,
           ),
@@ -367,7 +363,6 @@ class Creationcompte extends State<CreationCompte> {
                 BoxShadow(
                     color: Colors.black26, blurRadius: 6, offset: Offset(0, 2))
               ]),
-          //height: 60,
           child: TextField(
             controller: passwordController_2,
             obscureText: true,
@@ -424,10 +419,9 @@ class Creationcompte extends State<CreationCompte> {
           
           child: Stack(
           children: <Widget>[
-            Container(
+            SizedBox(
               height: double.infinity,
               width: double.infinity,
-              //decoration: mylib.background1,
               child: Center(
              child: SingleChildScrollView(
               child: Center(
@@ -456,7 +450,6 @@ class Creationcompte extends State<CreationCompte> {
                               buildTitle(),
  if(!(_showErrorMessageMail || _showErrorMessageCondition || _showErrorMessagePassword)) SizedBox(height: 44) else SizedBox(height: 31),                              builUserName(),
                               buildEmail(),
-                              // SizedBox(height: 15),
                               buildPassword(),
                               confirmPassword(),
                               const SizedBox(height: 8),
@@ -466,7 +459,6 @@ class Creationcompte extends State<CreationCompte> {
                                 children: <Widget>[
                                   buildTermsCase(),
                                   buildTermsBtn(),
-                                  // SizedBox(height: 40),
                                 ],
                               ),
 
@@ -474,8 +466,8 @@ class Creationcompte extends State<CreationCompte> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                  const Text(
-                                    'Do you have account ?',
+                                  Text(
+                                    'creation_compte_account'.tr(),
                                     style: TextStyle(
                                       color: Colors.black38,
                                     ),
@@ -483,7 +475,6 @@ class Creationcompte extends State<CreationCompte> {
                                   buildSignUpBtn(),
                                 ],
                               ),
-                              //   SizedBox(height: 28),
                               const SizedBox(height: 11),
                             ],
                           ),

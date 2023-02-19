@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/user_choix_connexion.dart';
@@ -26,9 +27,9 @@ class _forgot_password_page extends State<forgot_password_page> {
           fit: BoxFit.cover,
         ),
       ),
-      child: const Align(
+      child: Align(
         child: Text(
-          "Forgot Password",
+          "forgot_password_page_title".tr(),
           style: mylib.titleStyle3,
           textAlign: TextAlign.center,
         ),
@@ -82,8 +83,8 @@ class _forgot_password_page extends State<forgot_password_page> {
             ),
           ),
         },
-        child: const Text(
-          'Sign In',
+        child: Text(
+          'forgot_password_page_sign_in'.tr(),
           style: TextStyle(
             color: Colors.black38,
           ),
@@ -96,8 +97,6 @@ class _forgot_password_page extends State<forgot_password_page> {
     return SizedBox(
       width: 189,
       height: 43,
-      // padding: EdgeInsets.symmetric(vertical: 25),
-      //width: double.infinity,
       child: ElevatedButton(
         onPressed: () {
           loginCorrect();
@@ -107,15 +106,14 @@ class _forgot_password_page extends State<forgot_password_page> {
         },
         style: ElevatedButton.styleFrom(
           shadowColor: Colors.grey.shade700,
-          //backgroundColor: const Color.fromARGB(255, 41, 59, 229),
           elevation: 20,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
             side: const BorderSide(color: Colors.white, width: 3),
           ),
         ),
-        child: const Text(
-          "Send reset link",
+        child: Text(
+          "forgot_password_page_send_link".tr(),
           style: mylib.titleStyle,
           textAlign: TextAlign.center,
         ),
@@ -146,8 +144,8 @@ class _forgot_password_page extends State<forgot_password_page> {
                   topLeft: Radius.circular(10), topRight: Radius.circular(10)),
             ),
           ),
-          child: const Text(
-            "User",
+          child: Text(
+            "btn_user".tr(),
             style: mylib.titleStyle4,
             textAlign: TextAlign.center,
           ),
@@ -173,8 +171,8 @@ class _forgot_password_page extends State<forgot_password_page> {
                   topLeft: Radius.circular(10), topRight: Radius.circular(10)),
             ),
           ),
-          child: const Text(
-            "Admin",
+          child: Text(
+            "btn_admin".tr(),
             style: mylib.titleStyle5,
             textAlign: TextAlign.center,
           ),
@@ -194,7 +192,6 @@ class _forgot_password_page extends State<forgot_password_page> {
             SizedBox(
               height: double.infinity,
               width: double.infinity,
-              // decoration:  mylib.background1,
               child: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -226,16 +223,16 @@ class _forgot_password_page extends State<forgot_password_page> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                  const Text(
-                                    'Back to',
-                                    style: TextStyle(
+                                  Text(
+                                    'forgot_password_page_back_to'.tr(),
+                                    style: const TextStyle(
                                       color: Colors.black38,
                                     ),
                                   ),
                                   buildForgotPassBtn(),
                                 ],
                               ),
-                              SizedBox(height: 70),
+                              const SizedBox(height: 70),
                             ],
                           ),
                         )),

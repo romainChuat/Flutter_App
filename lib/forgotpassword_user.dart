@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/user_choix_connexion.dart';
@@ -21,15 +22,15 @@ class _forgot_password_user extends State<forgot_password_user> {
     return Container(
       width: 309,
       height: 160,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage("images/connexionpage.jpg"),
           fit: BoxFit.cover,
         ),
       ),
       child: Align(
-        child: const Text(
-          "Forgot Password",
+        child: Text(
+          "forgot_password_page_title".tr(),
           style: mylib.titleStyle3,
           textAlign: TextAlign.center,
         ),
@@ -41,7 +42,7 @@ class _forgot_password_user extends State<forgot_password_user> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         Container(
           width: 222,
           height: 38,
@@ -50,14 +51,14 @@ class _forgot_password_user extends State<forgot_password_user> {
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
               boxShadow: [
-                BoxShadow(
+                const BoxShadow(
                     color: Colors.black26, blurRadius: 6, offset: Offset(0, 2))
               ]),
           child: TextField(
             controller: mailController,
             keyboardType: TextInputType.emailAddress,
-            style: TextStyle(color: Colors.black87),
-            decoration: InputDecoration(
+            style: const TextStyle(color: Colors.black87),
+            decoration: const InputDecoration(
                 border: InputBorder.none,
                 prefixIcon: Icon(
                   Icons.email,
@@ -79,13 +80,13 @@ class _forgot_password_user extends State<forgot_password_user> {
           print("Forgot password pressed"),
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) => userconnexionpassword(),
+              builder: (BuildContext context) => const userconnexionpassword(),
             ),
           ),
         },
         child: Text(
-          'Sign In',
-          style: TextStyle(
+          'forgot_password_page_sign_in'.tr(),
+          style: const TextStyle(
             color: Colors.black38,
           ),
         ),
@@ -94,11 +95,9 @@ class _forgot_password_user extends State<forgot_password_user> {
   }
 
   Widget buildSendBtn() {
-    return Container(
+    return SizedBox(
       width: 189,
       height: 43,
-      // padding: EdgeInsets.symmetric(vertical: 25),
-      //width: double.infinity,
       child: ElevatedButton(
         onPressed: () {
           loginCorrect();
@@ -108,15 +107,14 @@ class _forgot_password_user extends State<forgot_password_user> {
         },
         style: ElevatedButton.styleFrom(
           shadowColor: Colors.grey.shade700,
-          //backgroundColor: const Color.fromARGB(255, 41, 59, 229),
           elevation: 20,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
-            side: BorderSide(color: Colors.white, width: 3),
+            side: const BorderSide(color: Colors.white, width: 3),
           ),
         ),
-        child: const Text(
-          "Send reset link",
+        child: Text(
+          "forgot_password_page_send_link".tr(),
           style: mylib.titleStyle,
           textAlign: TextAlign.center,
         ),
@@ -127,8 +125,8 @@ class _forgot_password_user extends State<forgot_password_user> {
   Widget buildUserBtn() {
     return Container(
       child: Align(
-        alignment: Alignment(-0.66, 0.0),
-        child: Container(
+        alignment: const Alignment(-0.66, 0.0),
+        child: SizedBox(
           width: 150,
           height: 50,
           child: ElevatedButton(
@@ -140,17 +138,17 @@ class _forgot_password_user extends State<forgot_password_user> {
               );
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: Color.fromARGB(255, 13, 12, 32),
+              backgroundColor: const Color.fromARGB(255, 13, 12, 32),
               shadowColor: Colors.grey.shade700,
               elevation: 20,
-              shape: RoundedRectangleBorder(
+              shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(10),
                     topRight: Radius.circular(10)),
               ),
             ),
-            child: const Text(
-              "User",
+            child: Text(
+              "btn_user".tr(),
               style: mylib.titleStyle5,
               textAlign: TextAlign.center,
             ),
@@ -161,35 +159,33 @@ class _forgot_password_user extends State<forgot_password_user> {
   }
 
   Widget buildAdminBtn() {
-    return Container(
-      child: Align(
-        alignment: Alignment(0.66, 0.0),
-        child: Container(
-          width: 150,
-          height: 50,
-          child: ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (BuildContext context) => connexion_adminn(),
-                ),
-              );
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Color.fromARGB(255, 235, 233, 233),
-              shadowColor: Colors.grey.shade700,
-              elevation: 20,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    topRight: Radius.circular(10)),
+    return Align(
+      alignment: const Alignment(0.66, 0.0),
+      child: SizedBox(
+        width: 150,
+        height: 50,
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (BuildContext context) => const connexion_adminn(),
               ),
+            );
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color.fromARGB(255, 235, 233, 233),
+            shadowColor: Colors.grey.shade700,
+            elevation: 20,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(10),
+                  topRight: Radius.circular(10)),
             ),
-            child: const Text(
-              "Admin",
-              style: mylib.titleStyle4,
-              textAlign: TextAlign.center,
-            ),
+          ),
+          child: Text(
+            "btn_admin".tr(),
+            style: mylib.titleStyle4,
+            textAlign: TextAlign.center,
           ),
         ),
       ),
@@ -204,10 +200,9 @@ class _forgot_password_user extends State<forgot_password_user> {
         child: GestureDetector(
             child: Stack(
           children: <Widget>[
-            Container(
+            SizedBox(
               height: double.infinity,
               width: double.infinity,
-              // decoration: mylib.background1,
               child: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -216,39 +211,39 @@ class _forgot_password_user extends State<forgot_password_user> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         buildUserBtn(),
-                        SizedBox(width: 10),
+                        const SizedBox(width: 10),
                         buildAdminBtn(),
                       ],
                     ),
                     ClipRRect(
-                        borderRadius: BorderRadius.only(
+                        borderRadius: const BorderRadius.only(
                             bottomLeft: Radius.circular(15),
                             bottomRight: Radius.circular(15)),
                         child: Container(
-                          color: Color.fromARGB(255, 235, 233, 233),
+                          color: const Color.fromARGB(255, 235, 233, 233),
                           width: 309,
                           height: 464,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               buildTitle(),
-                              SizedBox(height: 60),
+                              const SizedBox(height: 60),
                               buildEmail(),
-                              SizedBox(height: 35),
+                              const SizedBox(height: 35),
                               buildSendBtn(),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
                                   Text(
-                                    'Back to',
-                                    style: TextStyle(
+                                    'forgot_password_page_back_to'.tr(),
+                                    style: const TextStyle(
                                       color: Colors.black38,
                                     ),
                                   ),
                                   buildSignInBtn(),
                                 ],
                               ),
-                              SizedBox(height: 70),
+                              const SizedBox(height: 70),
                             ],
                           ),
                         )),
