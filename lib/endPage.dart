@@ -15,7 +15,8 @@ class endPage extends StatefulWidget {
 
 class _endPage extends State<endPage> {
   var insert_lieuxID;
-  var insert_usID;
+  var insert_usID;  
+  
 
 
 
@@ -23,8 +24,9 @@ class _endPage extends State<endPage> {
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
-
     print(reponses);
+
+
 
     return Scaffold(
         extendBodyBehindAppBar: true,
@@ -98,12 +100,22 @@ class _endPage extends State<endPage> {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         ),
-        onPressed: () {
+        onPressed: () async{
           //envoie des données à la bd
-          insertUser(reponses);
-          print(insert_usID);
-          print(insert_lieuxID);
-          insertLieu(reponses);
+          try{
+            await insertUser(reponses);
+            //print(insert_usID);
+          }catch(e){
+            print("USER DEJA ENREGISTRER");
+            insert_lieuxID = reponses['rep_lieuxID'];
+            insert_usID = reponses['rep_userID'];
+          }
+          try{
+            await insertLieu(reponses);
+            //print(insert_lieuxID);
+          }catch(e){
+            print("ERREUR ID LIEUX");
+          }
           insertReponse(reponses);
           Navigator.push(
               context,
@@ -120,7 +132,7 @@ class _endPage extends State<endPage> {
     );
   }
 
-  void insertLieu(Map<String, Object> reponses) async {
+  Future<int?> insertLieu(Map<String, Object> reponses) async {
     Map<String, Object> lieux = new Map();
     lieux['lieux_lat'] = reponses['latitude']!;
     lieux['lieux_long'] = reponses['longitude']!;
@@ -135,9 +147,11 @@ class _endPage extends State<endPage> {
     } catch (e) {
       print("enregistrement lieux impossible");
     }
+    print(insert_lieuxID);
+    return insert_lieuxID;
   }
 
-  void insertUser(Map<String,Object> reponses) async{
+  Future<int?> insertUser(Map<String,Object> reponses) async{
     Map<String, Object> user = new Map();
     user['user_name'] = "gest_${reponses['username']!}";
     reponses.remove('username');
@@ -145,18 +159,20 @@ class _endPage extends State<endPage> {
     DatabaseHelperLocal db = DatabaseHelperLocal();
     try{
       insert_usID = await db.insertUser(user);
-      reponses['already_register'] = true;
+      //reponses['already_register'] = true;
       print("new user");
     }catch(e){
       print("enregistrement user impossible");
     }
+    print(insert_usID);
+    return insert_usID;
   }
 
   void insertReponse(Map<String, Object> reponses) async {
     print(reponses);
 
-    reponses['rep_userID'] = 1;
-    reponses['rep_lieuxID'] = 1;
+    reponses['rep_userID'] = insert_usID;
+    reponses['rep_lieuxID'] = insert_lieuxID;
     print(reponses);
     WidgetsFlutterBinding.ensureInitialized();
     DatabaseHelperLocal db = DatabaseHelperLocal();
@@ -166,7 +182,6 @@ class _endPage extends State<endPage> {
     } catch (e) {
       print("enregistrement reponse impossible");
     }
-
     insertReponseServer();
   }
 
