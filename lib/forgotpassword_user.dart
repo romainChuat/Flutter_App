@@ -18,6 +18,14 @@ class _forgot_password_user extends State<forgot_password_user> {
   final mailController = TextEditingController();
   bool isRememberMe = false;
   bool exist = false;
+  bool _showErrorMessage = false;
+
+  void _handleInputChange(String input) {
+    setState(() {
+      _showErrorMessage = false;
+    });
+  }
+
   Widget buildTitle() {
     return Container(
       width: 309,
@@ -55,6 +63,7 @@ class _forgot_password_user extends State<forgot_password_user> {
                     color: Colors.black26, blurRadius: 6, offset: Offset(0, 2))
               ]),
           child: TextField(
+            onChanged: _handleInputChange,
             controller: mailController,
             keyboardType: TextInputType.emailAddress,
             style: const TextStyle(color: Colors.black87),
@@ -95,31 +104,41 @@ class _forgot_password_user extends State<forgot_password_user> {
   }
 
   Widget buildSendBtn() {
-    return SizedBox(
-      width: 189,
-      height: 43,
-      child: ElevatedButton(
-        onPressed: () {
-          loginCorrect();
-          if (exist == false) {
-            print("Aucun compte n'est associé à cet email.");
-          }
-        },
-        style: ElevatedButton.styleFrom(
-          shadowColor: Colors.grey.shade700,
-          elevation: 20,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0),
-            side: const BorderSide(color: Colors.white, width: 3),
+    return Column(children: [
+      SizedBox(
+        width: 189,
+        height: 43,
+        child: ElevatedButton(
+          onPressed: () {
+            loginCorrect();
+            if (exist == false) {
+              print("Aucun compte n'est associé à cet email.");
+              setState(() {
+                _showErrorMessage = true;
+              });
+            }
+          },
+          style: ElevatedButton.styleFrom(
+            shadowColor: Colors.grey.shade700,
+            elevation: 20,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
+              side: const BorderSide(color: Colors.white, width: 3),
+            ),
+          ),
+          child: Text(
+            "forgot_password_page_send_link".tr(),
+            style: mylib.titleStyle,
+            textAlign: TextAlign.center,
           ),
         ),
-        child: Text(
-          "forgot_password_page_send_link".tr(),
-          style: mylib.titleStyle,
-          textAlign: TextAlign.center,
-        ),
       ),
-    );
+       const SizedBox(
+        height: 14,
+      ),
+      if (_showErrorMessage)
+        Text("warning_email_incorrect".tr(), style: mylib.warningText),
+    ]);
   }
 
   Widget buildUserBtn() {
@@ -178,8 +197,7 @@ class _forgot_password_user extends State<forgot_password_user> {
             elevation: 20,
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  topRight: Radius.circular(10)),
+                  topLeft: Radius.circular(10), topRight: Radius.circular(10)),
             ),
           ),
           child: Text(
@@ -227,9 +245,12 @@ class _forgot_password_user extends State<forgot_password_user> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               buildTitle(),
-                              const SizedBox(height: 60),
+                              if (!_showErrorMessage)
+                                const SizedBox(height: 51)
+                              else
+                                const SizedBox(height: 38),
                               buildEmail(),
-                              const SizedBox(height: 35),
+                              const SizedBox(height: 30),
                               buildSendBtn(),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
