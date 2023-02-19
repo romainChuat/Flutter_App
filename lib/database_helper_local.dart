@@ -102,7 +102,7 @@ class DatabaseHelperLocal {
 
   /*Fonctions pour les réponses*/
   Future<int?> insertReponse(Map<String, Object> r) async {
-    //final Database? _db = await init();
+    final Database? _db = await init();
     return await _db?.insert("reponses", r);
   }
 
