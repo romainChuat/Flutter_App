@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/commentPage.dart';
 import 'consulter_les_avis_login_choisis.dart';
@@ -33,8 +34,8 @@ class _hellologinpassword extends State<hellologinpassword> {
             side: const BorderSide(color: Colors.white, width: 3),
           ),
         ),
-        child: const Text(
-          "Accéder à la carte",
+        child: Text(
+          "hello_login_page_btn_acceder_map".tr(),
           style: mylib.titleStyle,
           textAlign: TextAlign.center,
         ),
@@ -62,8 +63,8 @@ class _hellologinpassword extends State<hellologinpassword> {
             side: const BorderSide(color: Colors.white, width: 3),
           ),
         ),
-        child: const Text(
-          "Accéder au questionnaire",
+        child: Text(
+          "hello_login_page_btn_acceder_quiz".tr(),
           style: mylib.titleStyle,
           textAlign: TextAlign.center,
         ),
@@ -92,8 +93,8 @@ class _hellologinpassword extends State<hellologinpassword> {
             side: const BorderSide(color: Colors.white, width: 3),
           ),
         ),
-        child: const Text(
-          "Consulter les questionnaires",
+        child:  Text(
+          "hello_login_password_btn_questionnaire".tr(),
           style: mylib.titleStyle,
           textAlign: TextAlign.center,
         ),
@@ -122,8 +123,8 @@ class _hellologinpassword extends State<hellologinpassword> {
             side: const BorderSide(color: Colors.white, width: 3),
           ),
         ),
-        child: const Text(
-          "Consulter les avis",
+        child:  Text(
+          "hello_login_password_btn_avis".tr(),
           style: mylib.titleStyle,
           textAlign: TextAlign.center,
         ),
@@ -153,14 +154,14 @@ class _hellologinpassword extends State<hellologinpassword> {
                   children: <Widget>[
                     SizedBox(
                       width: 250,
-                      child: Text("Hello,  ${reponses["username"]}",
+                      child: Text("hello_admin_page_title1,  ${reponses["username"]}".tr(),
                           style: mylib.titleStyle),
                     ),
                     const SizedBox(height: 61),
-                    const SizedBox(
+                     SizedBox(
                       width: 250,
                       child: Text(
-                          'Veuillez choisir ce que vous souhaitez réaliser.',
+                          'hello_admin_page_title2'.tr(),
                           style: mylib.titleStyle),
                     ),
                     const SizedBox(height: 30),

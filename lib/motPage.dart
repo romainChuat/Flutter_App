@@ -119,7 +119,7 @@ class _motPage extends State<motPage> {
                                             mots[index] = text;
                                             print(mots);
 
-                                            reponses['expressions'] =
+                                            reponses['rep_expr'] =
                                                 mots.toString();
                                             print(reponses);
                                           },

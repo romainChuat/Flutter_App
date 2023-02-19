@@ -22,6 +22,7 @@ class _activitePage extends State<activitePage> {
 
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
+    reponses['rep_activite'] = "tets";
 
     return Scaffold(
         extendBodyBehindAppBar: true,

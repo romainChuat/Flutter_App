@@ -83,7 +83,7 @@ class _etudePage extends State<etudePage> {
                                     setState(() {
                                       niveau = Niveau.primaire;
                                       print(niveau);
-                                      reponses['niveau_etude'] =
+                                      reponses['rep_etude'] =
                                           niveau.toString().split('.').last;
                                     });
                                   },
@@ -102,7 +102,7 @@ class _etudePage extends State<etudePage> {
                                     setState(() {
                                       niveau = Niveau.premierCycle;
                                       print(niveau);
-                                      reponses['niveau_etude'] =
+                                      reponses['rep_etude'] =
                                           niveau.toString().split('.').last;
                                     });
                                   },
@@ -121,7 +121,7 @@ class _etudePage extends State<etudePage> {
                                     setState(() {
                                       niveau = Niveau.secondCycle;
                                       print(niveau);
-                                      reponses['niveau_etude'] =
+                                      reponses['rep_etude'] =
                                           niveau.toString().split('.').last;
                                     });
                                   },
@@ -140,7 +140,7 @@ class _etudePage extends State<etudePage> {
                                     setState(() {
                                       niveau = Niveau.sup;
                                       print(niveau);
-                                      reponses['niveau_etude'] =
+                                      reponses['rep_etude'] =
                                           niveau.toString().split('.').last;
                                     });
                                   },
@@ -159,7 +159,7 @@ class _etudePage extends State<etudePage> {
                                     setState(() {
                                       niveau = Niveau.bac3;
                                       print(niveau);
-                                      reponses['niveau_etude'] =
+                                      reponses['rep_etude'] =
                                           niveau.toString().split('.').last;
                                     });
                                   },
@@ -178,7 +178,7 @@ class _etudePage extends State<etudePage> {
                                     setState(() {
                                       niveau = Niveau.bac5;
                                       print(niveau);
-                                      reponses['niveau_etude'] =
+                                      reponses['rep_etude'] =
                                           niveau.toString().split('.').last;
                                     });
                                   },
@@ -196,7 +196,7 @@ class _etudePage extends State<etudePage> {
                                     setState(() {
                                       niveau = Niveau.doctorat;
                                       print(niveau);
-                                      reponses['niveau_etude'] =
+                                      reponses['rep_etude'] =
                                           niveau.toString().split('.').last;
                                     });
                                   },
@@ -231,7 +231,7 @@ class _etudePage extends State<etudePage> {
                                     ),
                                     onChanged: (text) {
                                       if(niveau == Niveau.autre){
-                                        reponses['niveau_etude'] = text.toString();
+                                        reponses['rep_etude'] = text.toString();
                                         print(reponses);
                                       }
                                     },
@@ -241,9 +241,9 @@ class _etudePage extends State<etudePage> {
                                     setState(() {
                                       niveau = Niveau.autre;
                                       print(niveau);
-                                        //reponses['niveau_etude'] = text.toString();
+                                        //reponses['rep_etude'] = text.toString();
 
-                                      //reponses['niveau_etude'] =niveau.toString().split('.').last;
+                                      //reponses['rep_etude'] =niveau.toString().split('.').last;
                                       print(reponses);
                                     });
                                   },

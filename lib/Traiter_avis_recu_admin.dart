@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -25,8 +26,8 @@ class _traiter_avis_recu extends State<traiter_avis_recu> {
         color: const Color.fromARGB(255, 235, 233, 233),
         child: Container(
           padding: const EdgeInsets.fromLTRB(1, 15, 1, 0),
-          child: const Text(
-            "User_name jj/mm/aaaa",
+          child: Text(
+            "gerer_les_avis_valide_admin_nom_date".tr(),
             style: mylib.blueText,
             textAlign: TextAlign.center,
           ),
@@ -46,8 +47,8 @@ class _traiter_avis_recu extends State<traiter_avis_recu> {
           children: [
             Container(
               padding: const EdgeInsets.fromLTRB(1, 10, 1, 0),
-              child: const Text(
-                "Donnez votre avis",
+              child: Text(
+                "gerer_les_avis_valide_admin_note".tr(),
                 style: mylib.blueText,
                 textAlign: TextAlign.center,
               ),
@@ -97,8 +98,8 @@ class _traiter_avis_recu extends State<traiter_avis_recu> {
               children: [
                 Container(
                   padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
-                  child: const Text(
-                    "Ce lieu à déjà été visité par l'utilisateur ?",
+                  child:  Text(
+                    "gerer_les_avis_valide_admin_place_already_visit".tr(),
                     style: mylib.blueText,
                     textAlign: TextAlign.center,
                   ),
@@ -147,8 +148,8 @@ class _traiter_avis_recu extends State<traiter_avis_recu> {
               children: [
                 Container(
                   padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
-                  child: const Text(
-                    "Commentaire :",
+                  child: Text(
+                    "gerer_les_avis_valide_admin_comment".tr(),
                     style: mylib.blueText,
                     textAlign: TextAlign.center,
                   ),
@@ -202,7 +203,7 @@ class _traiter_avis_recu extends State<traiter_avis_recu> {
                 Container(
                   padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
                   child: const Text(
-                    "Tranche d'age de l'utilisateur:",
+                    "gerer_les_avis_valide_admin_tranche_age",
                     style: mylib.blueText,
                     textAlign: TextAlign.center,
                   ),
@@ -257,7 +258,7 @@ class _traiter_avis_recu extends State<traiter_avis_recu> {
           ),
         ),
         child: const Text(
-          "Annuler la validation",
+          "Traiter_markers_recu_admin_btn_annuler",
           style: mylib.titleStyle2,
           textAlign: TextAlign.center,
         ),

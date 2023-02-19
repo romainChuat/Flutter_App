@@ -125,7 +125,7 @@ class _datePage extends State<datePage> {
                                           setState(() {
                                             dateInput.text =
                                                 formattedDate; //set output date to TextField value.
-                                            reponses["date"] = dateInput.text;
+                                            reponses["rep_date"] = dateInput.text;
                                           });
                                         }
                                       },

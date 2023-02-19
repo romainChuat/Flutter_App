@@ -1,9 +1,7 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/endPage.dart';
 import 'package:flutter_application_1/user_choix_connexion.dart';
-import 'donner_avis_marker.dart';
-import 'homePage.dart';
 import 'mylib.dart' as mylib;
 
 class confirmation_deconnexion extends StatefulWidget {
@@ -58,8 +56,8 @@ class _confirmation_deconnexion extends State<confirmation_deconnexion> {
             side: const BorderSide(color: Colors.white, width: 3),
           ),
         ),
-        child: const Text(
-          "Oui",
+        child: Text(
+          "btn_yes".tr(),
           style: mylib.titleStyle,
           textAlign: TextAlign.center,
         ),
@@ -73,8 +71,8 @@ class _confirmation_deconnexion extends State<confirmation_deconnexion> {
       height: 49,
       child: ElevatedButton(
         onPressed: () {
-                Navigator.pop(context);
-              },
+          Navigator.pop(context);
+        },
         style: ElevatedButton.styleFrom(
           shadowColor: Colors.grey.shade700,
           elevation: 20,
@@ -83,8 +81,8 @@ class _confirmation_deconnexion extends State<confirmation_deconnexion> {
             side: const BorderSide(color: Colors.white, width: 3),
           ),
         ),
-        child: const Text(
-          "Non",
+        child: Text(
+          "btn_no".tr(),
           style: mylib.titleStyle,
           textAlign: TextAlign.center,
         ),
@@ -110,28 +108,23 @@ class _confirmation_deconnexion extends State<confirmation_deconnexion> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                SizedBox(
+                const SizedBox(
                   width: 250,
                 ),
-                                const SizedBox(height: 15),
-
-                const SizedBox(
-
-                  child: Text(
-                      'Voulez-vous vous déconnecter ?',
+                const SizedBox(height: 15),
+                 SizedBox(
+                  child: Text('confirmation_deconnexion_title'.tr(),
                       style: mylib.titleStyle),
                 ),
-                                const SizedBox(height: 35),
-
+                const SizedBox(height: 35),
                 Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                //const SizedBox(height: 5),
-                buildBtnYes(),
-              //  const SizedBox(height: ),
-                buildBtnNo(),
-                const SizedBox(height: 61),
+                    //const SizedBox(height: 5),
+                    buildBtnYes(),
+                    //  const SizedBox(height: ),
+                    buildBtnNo(),
+                    const SizedBox(height: 61),
                   ],
                 ),
               ],
