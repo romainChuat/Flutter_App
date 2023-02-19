@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/user_choix_connexion.dart';
@@ -55,9 +56,9 @@ class _connexion extends State<connexion> {
           fit: BoxFit.cover,
         ),
       ),
-      child: const Align(
+      child: Align(
         child: Text(
-          "Sign In",
+          "forgot_password_page_sign_in".tr(),
           style: mylib.titleStyle3,
           textAlign: TextAlign.center,
         ),
@@ -115,8 +116,8 @@ class _connexion extends State<connexion> {
             side: const BorderSide(color: Colors.white, width: 3),
           ),
         ),
-        child: const Text(
-          "Login",
+        child: Text(
+          "connexion_user_login".tr(),
           style: mylib.titleStyle,
           textAlign: TextAlign.center,
         ),
@@ -124,7 +125,7 @@ class _connexion extends State<connexion> {
     ),
     SizedBox(height: 14,),
     if(_showErrorMessage)
-    Text("username invalide", style: mylib.warningText),
+    Text("connexion_user_uername_invalid".tr(), style: mylib.warningText),
     
    ]);
   }
@@ -152,8 +153,8 @@ class _connexion extends State<connexion> {
                   topLeft: Radius.circular(10), topRight: Radius.circular(10)),
             ),
           ),
-          child: const Text(
-            "User",
+          child: Text(
+            "btn_user".tr(),
             style: mylib.titleStyle5,
             textAlign: TextAlign.center,
           ),
@@ -185,8 +186,8 @@ class _connexion extends State<connexion> {
                   topLeft: Radius.circular(10), topRight: Radius.circular(10)),
             ),
           ),
-          child: const Text(
-            "Admin",
+          child: Text(
+            "btn_admin".tr(),
             style: mylib.titleStyle4,
             textAlign: TextAlign.center,
           ),

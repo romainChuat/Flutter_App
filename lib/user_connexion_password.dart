@@ -1,4 +1,5 @@
 import 'package:crypt/crypt.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/user_choix_connexion.dart';
@@ -22,7 +23,7 @@ class _userconnexionpassword extends State<userconnexionpassword> {
   final passwordController = TextEditingController();
   bool connected = false;
   bool isRememberMe = false;
-    String _inputText = '';
+  String _inputText = '';
   bool _showErrorMessage = false;
   Map<String, Object> reponses = new Map();
 
@@ -32,13 +33,12 @@ class _userconnexionpassword extends State<userconnexionpassword> {
     super.initState();
   }
 
-    void _handleInputChange(String input){
+  void _handleInputChange(String input) {
     setState(() {
       _inputText = input;
       _showErrorMessage = false;
       reponses["email"] = input;
       print(reponses);
-
     });
   }
 
@@ -52,9 +52,9 @@ class _userconnexionpassword extends State<userconnexionpassword> {
           fit: BoxFit.cover,
         ),
       ),
-      child: const Align(
+      child: Align(
         child: Text(
-          "Sign In",
+          "forgot_password_page_sign_in".tr(),
           style: mylib.titleStyle3,
           textAlign: TextAlign.center,
         ),
@@ -74,9 +74,9 @@ class _userconnexionpassword extends State<userconnexionpassword> {
             ),
           ),
         },
-        child: const Text(
-          'Sign Up',
-          style: TextStyle(
+        child: Text(
+          'creation_compte_sign_up'.tr(),
+          style: const TextStyle(
             color: Colors.black38,
           ),
         ),
@@ -101,7 +101,7 @@ class _userconnexionpassword extends State<userconnexionpassword> {
                     color: Colors.black26, blurRadius: 6, offset: Offset(0, 2))
               ]),
           child: TextField(
-                        onChanged: _handleInputChange,
+            onChanged: _handleInputChange,
             controller: mailController,
             keyboardType: TextInputType.emailAddress,
             style: const TextStyle(color: Colors.black87),
@@ -135,9 +135,8 @@ class _userconnexionpassword extends State<userconnexionpassword> {
                 BoxShadow(
                     color: Colors.black26, blurRadius: 6, offset: Offset(0, 2))
               ]),
-          //height: 60,
           child: TextField(
-                                    onChanged: _handleInputChange,
+            onChanged: _handleInputChange,
             controller: passwordController,
             obscureText: true,
             style: const TextStyle(color: Colors.black87),
@@ -166,12 +165,11 @@ class _userconnexionpassword extends State<userconnexionpassword> {
               builder: (BuildContext context) => const forgot_password_user(),
             ),
           ),
-        }, // padding: EdgeInsets.only(right: 0),
-        child: const Text(
-          'Forgot Password ?',
-          style: TextStyle(
+        }, 
+        child: Text(
+          'forgot_password_page_title'.tr(),
+          style: const TextStyle(
             color: Colors.black38,
-            //fontWeight: FontWeight.bold
           ),
         ),
       ),
@@ -184,18 +182,17 @@ class _userconnexionpassword extends State<userconnexionpassword> {
         child: Row(
           children: <Widget>[
             Checkbox(
-              value: isRememberMe,
-              checkColor: const Color.fromARGB(255, 13, 12, 32),
-              activeColor: Colors.white,
-              onChanged: (value) {
-                setState(() {
-                  isRememberMe = true;
-                });
-              }),
-          
-            const Text(
-              'Remember me',
-              style: TextStyle(
+                value: isRememberMe,
+                checkColor: const Color.fromARGB(255, 13, 12, 32),
+                activeColor: Colors.white,
+                onChanged: (value) {
+                  setState(() {
+                    isRememberMe = true;
+                  });
+                }),
+            Text(
+              'connexion_admin_remeber_me'.tr(),
+              style: const TextStyle(
                 color: Colors.black38,
               ),
             ),
@@ -219,8 +216,7 @@ class _userconnexionpassword extends State<userconnexionpassword> {
             } else {
               print("Adresse mail ou mot de passe incorrect");
               setState(() {
-                              _showErrorMessage = true;
-
+                _showErrorMessage = true;
               });
             }
           },
@@ -233,18 +229,19 @@ class _userconnexionpassword extends State<userconnexionpassword> {
               side: const BorderSide(color: Colors.white, width: 3),
             ),
           ),
-          child: const Text(
-            "Login",
+          child: Text(
+            "connexion_user_login".tr(),
             style: mylib.titleStyle,
             textAlign: TextAlign.center,
           ),
         ),
       ),
-    SizedBox(height: 14,),
-    if(_showErrorMessage)
-    Text("Email et/ou mot de passe incorrect.", style: mylib.warningText),
-    
-   ]);
+      const SizedBox(
+        height: 14,
+      ),
+      if (_showErrorMessage)
+        Text("connexion_admin_email_mdp_incorrect".tr(), style: mylib.warningText),
+    ]);
   }
 
   Widget buildUserBtn() {
@@ -272,8 +269,8 @@ class _userconnexionpassword extends State<userconnexionpassword> {
                     topRight: Radius.circular(10)),
               ),
             ),
-            child: const Text(
-              "User",
+            child: Text(
+              "btn_user".tr(),
               style: mylib.titleStyle5,
               textAlign: TextAlign.center,
             ),
@@ -303,12 +300,11 @@ class _userconnexionpassword extends State<userconnexionpassword> {
             elevation: 20,
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  topRight: Radius.circular(10)),
+                  topLeft: Radius.circular(10), topRight: Radius.circular(10)),
             ),
           ),
-          child: const Text(
-            "Admin",
+          child: Text(
+            "btn_user".tr(),
             style: mylib.titleStyle4,
             textAlign: TextAlign.center,
           ),
@@ -352,7 +348,10 @@ class _userconnexionpassword extends State<userconnexionpassword> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               buildTitle(),
-                              if(!_showErrorMessage) SizedBox(height: 44) else SizedBox(height: 31),
+                              if (!_showErrorMessage)
+                                SizedBox(height: 44)
+                              else
+                                SizedBox(height: 31),
                               buildEmail(),
 
                               const SizedBox(height: 15),
@@ -370,8 +369,8 @@ class _userconnexionpassword extends State<userconnexionpassword> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                  const Text(
-                                    'Don\'t have account ?',
+                                  Text(
+                                    'user_choix_connexion_pas_de_compte'.tr(),
                                     style: TextStyle(
                                       color: Colors.black38,
                                     ),
@@ -379,7 +378,6 @@ class _userconnexionpassword extends State<userconnexionpassword> {
                                   buildSignUpBtn(),
                                 ],
                               ),
-                              // const SizedBox(height: 28),
                             ],
                           ),
                         )),

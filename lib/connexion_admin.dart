@@ -1,5 +1,6 @@
 
 import 'package:crypt/crypt.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/user_choix_connexion.dart';
@@ -51,9 +52,9 @@ class _connexion_adminn extends State<connexion_adminn> {
           fit: BoxFit.cover,
         ),
       ),
-      child: const Align(
+      child: Align(
         child: Text(
-          "Sign In",
+          "forgot_password_page_sign_in".tr(),
           style: mylib.titleStyle3,
           textAlign: TextAlign.center,
         ),
@@ -109,7 +110,6 @@ class _connexion_adminn extends State<connexion_adminn> {
                 BoxShadow(
                     color: Colors.black26, blurRadius: 6, offset: Offset(0, 2))
               ]),
-          //height: 60,
           child: TextField(
                                     onChanged: _handleInputChange,
             controller: passwordController,
@@ -138,8 +138,8 @@ class _connexion_adminn extends State<connexion_adminn> {
             ),
           ),
         }, // padding: EdgeInsets.only(right: 0),
-        child: const Text(
-          'Forgot Password ?',
+        child: Text(
+          'forgot_password_page_title'.tr(),
           style: TextStyle(
             color: Colors.black38,
             //fontWeight: FontWeight.bold
@@ -158,12 +158,12 @@ class _connexion_adminn extends State<connexion_adminn> {
               data: ThemeData(unselectedWidgetColor: Colors.white),
               child: Checkbox(
                   value: isRememberMe,
-                  checkColor: Colors.blue,
+                  checkColor: Color.fromARGB(255, 13, 12, 32),
                   activeColor: Colors.white,
                   onChanged: _handleRememberme),
             ),
-            const Text(
-              'Remember me',
+            Text(
+              'connexion_admin_remeber_me'.tr(),
               style: TextStyle(
                 color: Colors.black38,
               ),
@@ -204,8 +204,8 @@ class _connexion_adminn extends State<connexion_adminn> {
             side: const BorderSide(color: Colors.white, width: 3),
           ),
         ),
-        child: const Text(
-          "Login",
+        child: Text(
+          "connexion_user_login".tr(),
           style: mylib.titleStyle,
           textAlign: TextAlign.center,
         ),
@@ -213,7 +213,7 @@ class _connexion_adminn extends State<connexion_adminn> {
     ),
         SizedBox(height: 14,),
     if(_showErrorMessage)
-    Text("Email et/ou mot de passe incorrect.", style: mylib.warningText),
+    Text("connexion_admin_email_mdp_incorrect".tr(), style: mylib.warningText),
     
    ]);
   }
@@ -242,8 +242,8 @@ class _connexion_adminn extends State<connexion_adminn> {
                   topRight: Radius.circular(10)),
             ),
           ),
-          child: const Text(
-            "User",
+          child: Text(
+            "btn_user".tr(),
             style: mylib.titleStyle4,
             textAlign: TextAlign.center,
           ),
@@ -270,8 +270,8 @@ class _connexion_adminn extends State<connexion_adminn> {
                   topRight: Radius.circular(10)),
             ),
           ),
-          child: const Text(
-            "Admin",
+          child: Text(
+            "btn_admin".tr(),
             style: mylib.titleStyle5,
             textAlign: TextAlign.center,
           ),

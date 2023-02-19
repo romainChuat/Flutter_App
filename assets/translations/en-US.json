@@ -110,9 +110,35 @@
     "hello_login_password_btn_questionnaire": "Consult the questionnaires",
     "hello_login_password_btn_avis": "Consult the reviews",
 
-    "languagePage_title": "Please select your language :",
+    "confirmation_deconnexion_title": "Do you want to disconnect?",
 
-    "menu_title": "Menu",
+    "forgot_password_page_title":"Forgot Password",
+    "forgot_password_page_sign_in": "Sign In",
+    "forgot_password_page_send_link":"Send reset link",
+    "forgot_password_page_back_to":"Back to",
+
+    "connexion_user_name": "User name",
+    "connexion_user_login": "Login",
+    "connexion_user_uername_invalid": "Username invalide",
+
+    "connexion_admin_remeber_me": "Remember me",
+    "connexion_admin_email_mdp_incorrect": "Incorrect email and/or password.",
+
+    "creation_compte_sign_up": "Sign Up",
+    "creation_compte_terms_conditions": "Terms & Conditions",
+    "creation_compte_account": "Do you have a account ?",
+
+    "user_choix_connexion_btn_sans_compte": "Continue without account",
+    "user_choix_connexion_se_conencter": "Log in",
+    "user_choix_connexion_pas_de_compte": "Don't have account ?",
+
+    "use_condition_title":"Please read the terms of use below.",
+    "use_condition_text": "General conditions of use of the flutterapp site\n\n Article 1: Purpose\n\nThese T&Cs or General Conditions of Use provide a legal framework for the use of the services of the flutterapp site. Constituting the contract between flutterapp, the User, access to the site must be preceded by the acceptance of these Terms. Access to this platform signifies acceptance of these T&Cs.\n\nArticle 2: Access to the site\n\nThe site is accessible free of charge from anywhere by any user with Internet access. All the costs necessary for access to the services (computer equipment, Internet connection, etc.) are the responsibility of the user. Access to the services dedicated to members is carried out using an identifier and a password.For maintenance or other reasons, access to the site may be interrupted or suspended by the publisher without notice or justification.\n\nArticle 3: Data collection\n\nFor the creation of the account the User, the collection of information at the time of registration on the site is necessary and mandatory. In accordance with law n°78-17 of January 6 relating to data processing, files and freedoms, the collection and processing of personal information is carried out with respect for privacy. According to the Data Protection Act dated January 6, 1978, articles 39 and 40, the User has the right to access, rectify, delete and oppose his personal data. This right can be exercised via:\n• The contact form;\n• Its customer area.\n\nArticle 4: Intellectual property\n\nThe trademarks, logos and content of the flutterapp site (illustrations graphics, text, etc.) are protected by the Intellectual Property Code and by copyright. The reproduction and copying of content by the User requires prior authorization from the site. In this case, any use for commercial purposes or for advertising purposes is prohibited.\n\nArticle 5: Liability\n\nAlthough the information published on the site is deemed reliable, the site reserves the right to no guarantee of the reliability of the sources.\nThe information disseminated on the flutterapp site is presented for informational purposes only and has no contractual value. Despite regular updates, the site cannot be held liable in the event of changes to the administrative and legal provisions appearing after publication. The same applies to the use and interpretation of the information communicated on the platform.\nThe site declines all responsibility for any viruses that may infect the User's computer equipment after using or accessing this site. .\nThe site cannot be held responsible in the event of force majeure or the unforeseeable and insurmountable fact of a third party.\nThe total guarantee of data security and confidentiality is not provided by the site. However, the site undertakes to implement all the methods required to do so as well as possible.\n\nArticle 6: Hypertext links\n\nThe site may contain hypertext links. By clicking on these, the User will leave the platform. The latter has no control and cannot be held responsible for the content of the web pages relating to these links.\n\nArticle 7: Cookies\n\nDuring visits to the site, the automatic installation of a cookie on the User's browser software may occur.\nCookies correspond to small files temporarily stored on the hard drive of the User's computer. These cookies are necessary to ensure accessibility and navigation on the site. These files do not contain personal information and cannot be used to identify a person.\nThe information in the cookies is used to improve browsing performance on the flutterapp site.\nBy browsing the site, the User accepts cookies. Their deactivation can be done via the parameters of the navigation software.\n\nArticle 8: Publication by the User\n\nThe flutterapp site allows members to publish comments.\nIn his publications, the member is required to respect the rules of Netiquette as well as the rules of law in force.\nThe site has the right to exercise a priori moderation on the publications and may refuse to put them online without having to provide justification.\nThe member keeps the all of its intellectual property rights. However, any publication on the site implies the delegation of the non-exclusive and free right to the publishing company to represent, reproduce, modify, adapt, distribute and distribute the publication anywhere and on any medium for the duration of the intellectual property. This can be done directly or through an authorized third party. This concerns in particular the right to use the publication on the web and on mobile telephone networks.\nFor each use, the publisher undertakes to mention the name of the member near the publication.nThe User is required responsible for any content he puts online. The User undertakes not to publish content likely to harm the interests of third parties. Any legal proceedings initiated by an injured third party against the site must be borne by the User.\nThe deletion or modification by the site of the User's content may be carried out at any time, for n any reason and without notice.\n\nArticle 9: Duration of the contract\n\nThis contract is valid for an indefinite period. The beginning of the use of the services of the site marks the application of the contract with regard to the User.\n\nArticle 10: Applicable law and competent jurisdiction\n\nThis contract is subject to French law. The absence of amicable resolution of cases of dispute between the parties implies recourse to the competent French courts to settle the dispute.",
+
+
+
+
+    "languagePage_title": "Please select your language :",
 
 
     "map_question": "To begin, please indicate the location of your landscape photograph", 
@@ -120,6 +146,19 @@
     "english_text": "english",
     "french_text": "french",
 
+    "menu_title": "Menu",
+
+    "warning_email_incorrect": "Email incorrect.",
+    "warning_mdp_incorrect": "Incorrect password.",
+    "warning_mdp_terms_conditions": "Please accept the terms and conditions.",
+
+
+    "btn_user": "User",
+    "btn_admin": "Admin",
+    "btn_accept": "Accept",
+    "btn_mode_sombre": "Dark mode",
+    "btn_deconnexion": "Disconnection",
+    "btn_traduire": "Translate",
     "btn_next": "Next",
     "btn_submit": "Submit",
     "btn_yes": "Yes",
