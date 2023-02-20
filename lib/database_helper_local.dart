@@ -2,7 +2,7 @@ import 'package:flutter_application_1/utilisateur.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'Lieu.dart';
-import 'Reponse.dart';
+import 'reponse.dart';
 
 class DatabaseHelperLocal {
   static const _databaseName = "db_flutter.db";
@@ -127,9 +127,8 @@ class DatabaseHelperLocal {
     );
   }
 
-
   /*Fonctions pour les utilisateurs*/
-  Future<int?> insertUser(Map<String,Object> u) async {
+  Future<int?> insertUser(Map<String, Object> u) async {
     final Database? db = await init();
     return await _db?.insert("user", u);
   }
