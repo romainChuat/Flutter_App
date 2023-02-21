@@ -27,7 +27,7 @@ class Activitepage extends State<ActivitePage> {
 
     return Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: mylib.baseAppBar(appBar: AppBar()),
+        appBar: mylib.BaseAppBar(appBar: AppBar()),
         endDrawer: mylib.createMenu(context),
         body: Container(
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
@@ -227,7 +227,7 @@ class Activitepage extends State<ActivitePage> {
                         141,
                         41,
                         MaterialPageRoute(
-                            builder: (_) => EndPage(),
+                            builder: (_) => const EndPage(),
                             settings: RouteSettings(arguments: reponses)),
                       )
                     ],

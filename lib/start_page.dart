@@ -13,7 +13,7 @@ class StartPage extends StatelessWidget {
 
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: mylib.baseAppBar(appBar: AppBar()),
+      appBar: mylib.BaseAppBar(appBar: AppBar()),
       endDrawer: mylib.createMenu(context),
       body: Center(
         child: ClipRRect(

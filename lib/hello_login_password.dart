@@ -138,7 +138,7 @@ class Hellologinpassword extends State<HelloLoginPassword> {
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
     return Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: mylib.baseAppBar(
+        appBar: mylib.BaseAppBar(
           appBar: AppBar(),
         ),
         endDrawer: mylib.createMenu(context),

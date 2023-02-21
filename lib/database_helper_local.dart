@@ -80,7 +80,7 @@ class DatabaseHelperLocal {
   }
 
   /*Fonctions pour les lieux*/
-  Future<int?> insertLieu(Map<String, Object> l) async {
+  Future<int?> insertLieu(Map<String, dynamic> l) async {
     final Database? db = await init();
     final insert = await _db?.insert("lieux", l);
     print(insert);

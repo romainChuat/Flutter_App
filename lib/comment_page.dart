@@ -19,7 +19,7 @@ class Commentpage extends State<CommentPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: mylib.baseAppBar(appBar: AppBar()),
+        appBar: mylib.BaseAppBar(appBar: AppBar()),
         endDrawer: mylib.createMenu(context),
         body: Container(
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 20),
@@ -400,7 +400,7 @@ class Commentpage extends State<CommentPage> {
                         141,
                         41,
                         MaterialPageRoute(
-                          builder: (_) => GenrePage(),
+                          builder: (_) => const GenrePage(),
                         ),
                       )
                     ],

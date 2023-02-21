@@ -512,7 +512,6 @@ class Creationcompte extends State<CreationCompte> {
     var res = await dbHelper.queryUser(mailController.text);
     if (res == null) {
       var u = Utilisateur(
-        admin: true,
         nom: nomController.text,
         mail: mailController.text,
         password:
@@ -523,7 +522,7 @@ class Creationcompte extends State<CreationCompte> {
         await dbHelper.insertUser(u.toMap());
         print("new user");
       } catch (e) {
-        print("enregistrement impossible");
+        print(e);
         return;
       }
     } else {

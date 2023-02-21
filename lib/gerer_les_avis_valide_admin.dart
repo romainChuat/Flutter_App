@@ -186,7 +186,7 @@ class Gereravisvalide extends State<GererAvisValide> {
     );
   }
 
-  Widget Age() {
+  Widget age() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -298,7 +298,7 @@ class Gereravisvalide extends State<GererAvisValide> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: mylib.baseAppBar(
+      appBar: mylib.BaseAppBar(
         appBar: AppBar(),
       ),
       endDrawer: mylib.createMenu(context),
@@ -327,7 +327,7 @@ class Gereravisvalide extends State<GererAvisValide> {
                       const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
                       commentaire(),
                       const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                      Age(),
+                      age(),
                       const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
                       dejaVisite(),
                     ],

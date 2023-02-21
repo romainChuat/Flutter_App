@@ -26,7 +26,7 @@ class Genrepage extends State<GenrePage> {
 
     return Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: mylib.baseAppBar(appBar: AppBar()),
+        appBar: mylib.BaseAppBar(appBar: AppBar()),
         endDrawer: mylib.createMenu(context),
         body: Container(
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),

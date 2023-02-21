@@ -3,7 +3,7 @@ library mylib;
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/languagePage.dart';
+import 'package:flutter_application_1/language_page.dart';
 import 'package:flutter_application_1/provider.dart';
 import 'package:provider/provider.dart';
 import 'confirmation_deconnexion.dart';
@@ -143,10 +143,10 @@ const TextStyle warningText = TextStyle(
  * AppBar
  */
 
-class baseAppBar extends StatelessWidget implements PreferredSizeWidget {
+class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
   final AppBar appBar;
 
-  const baseAppBar({super.key, required this.appBar});
+  const BaseAppBar({super.key, required this.appBar});
 
   @override
   Widget build(BuildContext context) {
@@ -188,7 +188,7 @@ class baseAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => new Size.fromHeight(appBar.preferredSize.height);
+  Size get preferredSize => Size.fromHeight(appBar.preferredSize.height);
 }
 
 createInput(
@@ -353,7 +353,7 @@ createMenu(BuildContext context) {
                         style: simpleText,
                       ),
                       IconButton(
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.menu,
                             color: Colors.white,
                             size: 50,
@@ -380,7 +380,7 @@ createMenu(BuildContext context) {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => ConfirmationDeconnexion(),
+                          builder: (_) => const ConfirmationDeconnexion(),
                         ),
                       );
                     },
@@ -414,7 +414,7 @@ createMenu(BuildContext context) {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        ChangeThemeButtonWidget(),
+                        const ChangeThemeButtonWidget(),
                         Text(
                           "btn_mode_sombre".tr(),
                           style: blueText,
@@ -426,7 +426,7 @@ createMenu(BuildContext context) {
             const Padding(padding: EdgeInsets.all(10)),
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
-              child: Container(
+              child: SizedBox(
                 width: 230,
                 height: 58,
                 child: ElevatedButton(
