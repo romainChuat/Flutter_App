@@ -3,20 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_map/plugin_api.dart';
-import 'endPage.dart';
+import 'end_page.dart';
 import 'mylib.dart' as mylib;
 
-class gerer_avis_refuse extends StatefulWidget {
-  const gerer_avis_refuse({super.key});
+class GererAvisRefuse extends StatefulWidget {
+  const GererAvisRefuse({super.key});
 
   @override
-  State<gerer_avis_refuse> createState() => _gerer_avis_refuse();
+  State<GererAvisRefuse> createState() => Gereravisrefuse();
 }
 
-class _gerer_avis_refuse extends State<gerer_avis_refuse> {
+class Gereravisrefuse extends State<GererAvisRefuse> {
   final mapController = MapController();
 
-  Widget TitleDate() {
+  Widget titleDate() {
     return ClipRRect(
       borderRadius: BorderRadius.circular(15.0),
       child: Container(
@@ -35,7 +35,7 @@ class _gerer_avis_refuse extends State<gerer_avis_refuse> {
     );
   }
 
-  Widget Avis() {
+  Widget avis() {
     return ClipRRect(
       borderRadius: BorderRadius.circular(15.0),
       child: Container(
@@ -82,7 +82,7 @@ class _gerer_avis_refuse extends State<gerer_avis_refuse> {
     );
   }
 
-  Widget DejaVisite() {
+  Widget dejaVisite() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -132,7 +132,7 @@ class _gerer_avis_refuse extends State<gerer_avis_refuse> {
     );
   }
 
-  Widget Commentaire() {
+  Widget commentaire() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -186,7 +186,7 @@ class _gerer_avis_refuse extends State<gerer_avis_refuse> {
     );
   }
 
-  Widget Age() {
+  Widget age() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -244,7 +244,7 @@ class _gerer_avis_refuse extends State<gerer_avis_refuse> {
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) => endPage(),
+              builder: (BuildContext context) => const EndPage(),
             ),
           );
         },
@@ -284,24 +284,23 @@ class _gerer_avis_refuse extends State<gerer_avis_refuse> {
                 width: 359,
                 height: 600,
                 padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-
-                        decoration: const BoxDecoration(
-                 color: Color.fromARGB(118, 13, 12, 32),
-                        ),
+                decoration: const BoxDecoration(
+                  color: Color.fromARGB(118, 13, 12, 32),
+                ),
                 child: SingleChildScrollView(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       const Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 0)),
-                      TitleDate(),
+                      titleDate(),
                       const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                      Avis(),
+                      avis(),
                       const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                      Commentaire(),
+                      commentaire(),
                       const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                      Age(),
+                      age(),
                       const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                      DejaVisite(),
+                      dejaVisite(),
                     ],
                   ),
                 ),

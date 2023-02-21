@@ -69,9 +69,9 @@
     "hello_admin_page_btn_gerer_avis": "Manage notifications",
 
     "acceuil_gerer_les_markers_title": "You have chosen to manage markers.",
-    "acceuil_gerer_les_markers_btn_validated": "Manage validated markers",
-    "acceuil_gerer_les_markers_btn_traiter_received": "Process markers received",
-    "acceuil_gerer_les_markers_btn_rejected": "Manage rejected markers",
+    "accueil_gerer_les_markers_btn_validated": "Manage validated markers",
+    "accueil_gerer_les_markers_btn_traiter_received": "Process markers received",
+    "accueil_gerer_les_markers_btn_rejected": "Manage rejected markers",
 
     "Traiter_markers_recu_admin_title": "Title dd/mm/yyyy",
     "Traiter_markers_recu_admin_localisation":"Location",
@@ -87,10 +87,10 @@
 
     "gerer_markers_refuse_admin_btn_annuler_refus": "Cancel the refusal",
 
-    "acceuil_gerer_les_avis_title": "You have chosen to manage the notices.",
-    "acceuil_gerer_les_avis_btn_validated": "Manage validated notices",
-    "acceuil_gerer_les_avis_btn_traiter_received": "Process the notices received",
-    "acceuil_gerer_les_avis_btn_rejected": "Manage rejected notices",
+    "accueil_gerer_les_avis_title": "You have chosen to manage the notices.",
+    "accueil_gerer_les_avis_btn_validated": "Manage validated notices",
+    "accueil_gerer_les_avis_btn_traiter_received": "Process the notices received",
+    "accueil_gerer_les_avis_btn_rejected": "Manage rejected notices",
 
     "gerer_les_avis_valide_admin_nom_date": "User_name dd/mm/yyyy",
     "gerer_les_avis_valide_admin_note": "Give a grade :",

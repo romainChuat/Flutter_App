@@ -7,14 +7,14 @@ import 'connexion_admin.dart';
 import 'database_helper.dart';
 import 'mylib.dart' as mylib;
 
-class forgot_password_user extends StatefulWidget {
-  const forgot_password_user({super.key});
+class ForgotPasswordUser extends StatefulWidget {
+  const ForgotPasswordUser({super.key});
 
   @override
-  State<forgot_password_user> createState() => _forgot_password_user();
+  State<ForgotPasswordUser> createState() => Forgotpassworduser();
 }
 
-class _forgot_password_user extends State<forgot_password_user> {
+class Forgotpassworduser extends State<ForgotPasswordUser> {
   final mailController = TextEditingController();
   bool isRememberMe = false;
   bool exist = false;
@@ -58,8 +58,8 @@ class _forgot_password_user extends State<forgot_password_user> {
           decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                const BoxShadow(
+              boxShadow: const [
+                BoxShadow(
                     color: Colors.black26, blurRadius: 6, offset: Offset(0, 2))
               ]),
           child: TextField(
@@ -89,7 +89,7 @@ class _forgot_password_user extends State<forgot_password_user> {
           print("Forgot password pressed"),
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) => const userconnexionpassword(),
+              builder: (BuildContext context) => const UserConnexionPassword(),
             ),
           ),
         },
@@ -133,7 +133,7 @@ class _forgot_password_user extends State<forgot_password_user> {
           ),
         ),
       ),
-       const SizedBox(
+      const SizedBox(
         height: 14,
       ),
       if (_showErrorMessage)
@@ -142,35 +142,32 @@ class _forgot_password_user extends State<forgot_password_user> {
   }
 
   Widget buildUserBtn() {
-    return Container(
-      child: Align(
-        alignment: const Alignment(-0.66, 0.0),
-        child: SizedBox(
-          width: 150,
-          height: 50,
-          child: ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (BuildContext context) => userchoixconnexion(),
-                ),
-              );
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: const Color.fromARGB(255, 13, 12, 32),
-              shadowColor: Colors.grey.shade700,
-              elevation: 20,
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    topRight: Radius.circular(10)),
+    return Align(
+      alignment: const Alignment(-0.66, 0.0),
+      child: SizedBox(
+        width: 150,
+        height: 50,
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (BuildContext context) => const UserChoixConnexion(),
               ),
+            );
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color.fromARGB(255, 13, 12, 32),
+            shadowColor: Colors.grey.shade700,
+            elevation: 20,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(10), topRight: Radius.circular(10)),
             ),
-            child: Text(
-              "btn_user".tr(),
-              style: mylib.titleStyle5,
-              textAlign: TextAlign.center,
-            ),
+          ),
+          child: Text(
+            "btn_user".tr(),
+            style: mylib.titleStyle5,
+            textAlign: TextAlign.center,
           ),
         ),
       ),
@@ -187,7 +184,7 @@ class _forgot_password_user extends State<forgot_password_user> {
           onPressed: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (BuildContext context) => const connexion_adminn(),
+                builder: (BuildContext context) => const ConnexionAdminn(),
               ),
             );
           },

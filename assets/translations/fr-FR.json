@@ -69,9 +69,9 @@
     "hello_admin_page_btn_gerer_avis": "Gérer les avis",
 
     "acceuil_gerer_les_markers_title": "Vous avez choisis de gérer les markers.",
-    "acceuil_gerer_les_markers_btn_validated": "Gérer les marker validé",
-    "acceuil_gerer_les_markers_btn_traiter_received": "Traiter les markers reçu",
-    "acceuil_gerer_les_markers_btn_rejected": "Gérer les markers refusé",
+    "accueil_gerer_les_markers_btn_validated": "Gérer les marker validé",
+    "accueil_gerer_les_markers_btn_traiter_received": "Traiter les markers reçu",
+    "accueil_gerer_les_markers_btn_rejected": "Gérer les markers refusé",
 
     "Traiter_markers_recu_admin_title": "Titre jj/mm/aaaa",
     "Traiter_markers_recu_admin_localisation":"Localisation",
@@ -87,10 +87,10 @@
 
     "gerer_markers_refuse_admin_btn_annuler_refus": "Annuler le refus",
 
-    "acceuil_gerer_les_avis_title": "Vous avez choisis de gérer les avis.",
-    "acceuil_gerer_les_avis_btn_validated": "Gérer les avis validé",
-    "acceuil_gerer_les_avis_btn_traiter_received": "Traiter les avis reçu",
-    "acceuil_gerer_les_avis_btn_rejected": "Gérer les avis refusé",
+    "accueil_gerer_les_avis_title": "Vous avez choisis de gérer les avis.",
+    "accueil_gerer_les_avis_btn_validated": "Gérer les avis validé",
+    "accueil_gerer_les_avis_btn_traiter_received": "Traiter les avis reçu",
+    "accueil_gerer_les_avis_btn_rejected": "Gérer les avis refusé",
 
     "gerer_les_avis_valide_admin_nom_date":"Nom Utilisateur jj/mm/aaaa",
     "gerer_les_avis_valide_admin_note":"Donnez une note :",

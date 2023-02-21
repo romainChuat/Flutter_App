@@ -1,16 +1,18 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'endPage.dart';
+import 'end_page.dart';
 import 'mylib.dart' as mylib;
 
-class activitePage extends StatefulWidget {
+class ActivitePage extends StatefulWidget {
+  const ActivitePage({super.key});
+
   @override
   State<StatefulWidget> createState() {
-    return _activitePage();
+    return Activitepage();
   }
 }
 
-class _activitePage extends State<activitePage> {
+class Activitepage extends State<ActivitePage> {
   bool _formationValue = false;
   bool _empValue = false;
   bool _proValue = false;
@@ -19,7 +21,6 @@ class _activitePage extends State<activitePage> {
 
   @override
   Widget build(BuildContext context) {
-
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
     reponses['rep_activite'] = "tets";
@@ -35,7 +36,6 @@ class _activitePage extends State<activitePage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  
                   const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
                   ClipRRect(
                     borderRadius: BorderRadius.circular(15.0),
@@ -69,7 +69,7 @@ class _activitePage extends State<activitePage> {
                                     width: 310,
                                     child: Column(
                                       children: [
-                                         Align(
+                                        Align(
                                           alignment: Alignment.topLeft,
                                           child: Text(
                                             "activitePage_formation".tr(),
@@ -77,7 +77,8 @@ class _activitePage extends State<activitePage> {
                                           ),
                                         ),
                                         CheckboxListTile(
-                                          activeColor: const Color.fromARGB(255, 13, 12, 32),
+                                          activeColor: const Color.fromARGB(
+                                              255, 13, 12, 32),
                                           title: mylib.createInput(
                                             311,
                                             28,
@@ -102,12 +103,14 @@ class _activitePage extends State<activitePage> {
                                         Align(
                                           alignment: Alignment.topLeft,
                                           child: Text(
-                                            "activitePage_research_employs".tr(),
+                                            "activitePage_research_employs"
+                                                .tr(),
                                             style: mylib.radioText,
                                           ),
                                         ),
                                         CheckboxListTile(
-                                          activeColor: const Color.fromARGB(255, 13, 12, 32),
+                                          activeColor: const Color.fromARGB(
+                                              255, 13, 12, 32),
                                           //checkColor: Colors.white,
                                           title: mylib.createInput(311, 28),
                                           autofocus: false,
@@ -135,7 +138,8 @@ class _activitePage extends State<activitePage> {
                                           ),
                                         ),
                                         CheckboxListTile(
-                                          activeColor: const Color.fromARGB(255, 13, 12, 32),
+                                          activeColor: const Color.fromARGB(
+                                              255, 13, 12, 32),
                                           title: mylib.createInput(311, 28),
                                           autofocus: false,
                                           selected: _proValue,
@@ -162,7 +166,8 @@ class _activitePage extends State<activitePage> {
                                           ),
                                         ),
                                         CheckboxListTile(
-                                          activeColor: const Color.fromARGB(255, 13, 12, 32),
+                                          activeColor: const Color.fromARGB(
+                                              255, 13, 12, 32),
                                           title: mylib.createInput(311, 28),
                                           autofocus: false,
                                           selected: _retraiteValue,
@@ -189,7 +194,8 @@ class _activitePage extends State<activitePage> {
                                           ),
                                         ),
                                         CheckboxListTile(
-                                          activeColor: const Color.fromARGB(255, 13, 12, 32),
+                                          activeColor: const Color.fromARGB(
+                                              255, 13, 12, 32),
                                           title: mylib.createInput(311, 28),
                                           autofocus: false,
                                           selected: _ssProValue,
@@ -221,7 +227,7 @@ class _activitePage extends State<activitePage> {
                         141,
                         41,
                         MaterialPageRoute(
-                            builder: (_) => endPage(),
+                            builder: (_) => EndPage(),
                             settings: RouteSettings(arguments: reponses)),
                       )
                     ],

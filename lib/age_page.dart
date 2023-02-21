@@ -1,21 +1,22 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'genrePage.dart';
+import 'genre_page.dart';
 import 'mylib.dart' as mylib;
 
-class agePage extends StatefulWidget {
+class AgePage extends StatefulWidget {
+  const AgePage({super.key});
+
   @override
   State<StatefulWidget> createState() {
-    return _agePage();
+    return Agepage();
   }
 }
 
-class _agePage extends State<agePage> {
+class Agepage extends State<AgePage> {
   int age = 0;
 
   @override
   Widget build(BuildContext context) {
-
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
 
@@ -29,7 +30,6 @@ class _agePage extends State<agePage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                
                 ClipRRect(
                   borderRadius: BorderRadius.circular(15.0),
                   child: Container(
@@ -54,18 +54,15 @@ class _agePage extends State<agePage> {
                         ),
                         SizedBox(
                             child: Column(
-                              
                           children: [
                             SizedBox(
                                 height: 32,
                                 child: RadioListTile(
-                                  
-                                activeColor: Colors.black,
+                                  activeColor: Colors.black,
                                   title: Text(
                                     "agePage_3-10".tr(),
                                     style: mylib.blueText2,
                                   ),
-                                  
                                   groupValue: age,
                                   onChanged: (value) {
                                     setState(() {
@@ -99,7 +96,7 @@ class _agePage extends State<agePage> {
                               height: 32,
                               child: RadioListTile(
                                 activeColor: Colors.black,
-                                title:  Text("agePage_18-25".tr(),
+                                title: Text("agePage_18-25".tr(),
                                     style: mylib.blueText2),
                                 groupValue: age,
                                 onChanged: (value) {
@@ -237,7 +234,7 @@ class _agePage extends State<agePage> {
                       141,
                       41,
                       MaterialPageRoute(
-                          builder: (_) => genrePage(),
+                          builder: (_) => GenrePage(),
                           settings: RouteSettings(arguments: reponses)),
                     )
                   ],

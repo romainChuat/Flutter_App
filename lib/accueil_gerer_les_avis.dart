@@ -1,20 +1,20 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'Traiter_avis_recu_admin.dart';
+import 'traiter_avis_recu_admin.dart';
 import 'gerer_les_avis_refuse_admin.dart';
-import 'gerer_les_avis_validé_admin.dart';
+import 'gerer_les_avis_valide_admin.dart';
 
 import 'mylib.dart' as mylib;
 
-class acceuilgererlesavis extends StatefulWidget {
-  const acceuilgererlesavis({super.key});
+class AccueilGererLesAvis extends StatefulWidget {
+  const AccueilGererLesAvis({super.key});
 
   @override
-  State<acceuilgererlesavis> createState() => _acceuilgererlesavis();
+  State<AccueilGererLesAvis> createState() => AccueilGererLesavis();
 }
 
-class _acceuilgererlesavis extends State<acceuilgererlesavis> {
-  Widget GererLesAvisValide() {
+class AccueilGererLesavis extends State<AccueilGererLesAvis> {
+  Widget gererlesavisvalide() {
     return SizedBox(
       width: 296,
       height: 49,
@@ -22,7 +22,7 @@ class _acceuilgererlesavis extends State<acceuilgererlesavis> {
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) => const gerer_avis_valide(),
+              builder: (BuildContext context) => const GererAvisValide(),
             ),
           );
         },
@@ -35,7 +35,7 @@ class _acceuilgererlesavis extends State<acceuilgererlesavis> {
           ),
         ),
         child: Text(
-          "acceuil_gerer_les_avis_btn_validated".tr(),
+          "accueil_gerer_les_avis_btn_validated".tr(),
           style: mylib.titleStyle5,
           textAlign: TextAlign.center,
         ),
@@ -43,7 +43,7 @@ class _acceuilgererlesavis extends State<acceuilgererlesavis> {
     );
   }
 
-  Widget GererLesAvisRecu() {
+  Widget gererlesavisrecu() {
     return SizedBox(
       width: 296,
       height: 49,
@@ -51,7 +51,7 @@ class _acceuilgererlesavis extends State<acceuilgererlesavis> {
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) => const traiter_avis_recu(),
+              builder: (BuildContext context) => const TraiterAvisRecu(),
             ),
           );
         },
@@ -64,7 +64,7 @@ class _acceuilgererlesavis extends State<acceuilgererlesavis> {
           ),
         ),
         child: Text(
-          "acceuil_gerer_les_avis_btn_traiter_received".tr(),
+          "accueil_gerer_les_avis_btn_traiter_received".tr(),
           style: mylib.titleStyle5,
           textAlign: TextAlign.center,
         ),
@@ -72,7 +72,7 @@ class _acceuilgererlesavis extends State<acceuilgererlesavis> {
     );
   }
 
-  Widget GererLesAvisRefuse() {
+  Widget gererlesavisrefuse() {
     return SizedBox(
       width: 296,
       height: 49,
@@ -80,7 +80,7 @@ class _acceuilgererlesavis extends State<acceuilgererlesavis> {
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) => const gerer_avis_refuse(),
+              builder: (BuildContext context) => const GererAvisRefuse(),
             ),
           );
         },
@@ -93,7 +93,7 @@ class _acceuilgererlesavis extends State<acceuilgererlesavis> {
           ),
         ),
         child: Text(
-          "acceuil_gerer_les_avis_btn_rejected".tr(),
+          "accueil_gerer_les_avis_btn_rejected".tr(),
           style: mylib.titleStyle5,
           textAlign: TextAlign.center,
         ),
@@ -109,34 +109,33 @@ class _acceuilgererlesavis extends State<acceuilgererlesavis> {
         appBar: AppBar(),
       ),
       endDrawer: mylib.createMenu(context),
-
-      body: Center(        
+      body: Center(
         child: ClipRRect(
           borderRadius: const BorderRadius.all(Radius.circular(10)),
           child: Container(
             color: const Color.fromARGB(255, 235, 233, 233),
             width: 309,
             height: 464,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-             SizedBox(height: 61),
-             SizedBox(
-              width: 250,
-              child: Text('acceuil_gerer_les_avis_title'.tr(),
-                  style: mylib.titleStyle),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                const SizedBox(height: 61),
+                SizedBox(
+                  width: 250,
+                  child: Text('accueil_gerer_les_avis_title'.tr(),
+                      style: mylib.titleStyle),
+                ),
+                const SizedBox(height: 61),
+                gererlesavisvalide(),
+                const SizedBox(height: 30),
+                gererlesavisrecu(),
+                const SizedBox(height: 30),
+                gererlesavisrefuse(),
+                const SizedBox(height: 40),
+              ],
             ),
-            const SizedBox(height: 61),
-            GererLesAvisValide(),
-            const SizedBox(height: 30),
-            GererLesAvisRecu(),
-            const SizedBox(height: 30),
-            GererLesAvisRefuse(),
-            const SizedBox(height: 40),
-          ],
+          ),
         ),
-      ),
-       ),
       ),
     );
   }

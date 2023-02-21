@@ -61,13 +61,12 @@ class Useconditions extends State<UseConditions> {
                                       child: MediaQuery.removePadding(
                                     context: context,
                                     removeTop: true,
-                                    child:  SingleChildScrollView(
-                                      padding:
-                                          EdgeInsets.fromLTRB(10, 10, 10, 10),
-                                      child: Text(
-                                          "use_condition_text".tr(),
-                                          style:
-                                              TextStyle(color: Colors.black)),
+                                    child: SingleChildScrollView(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          10, 10, 10, 10),
+                                      child: Text("use_condition_text".tr(),
+                                          style: const TextStyle(
+                                              color: Colors.black)),
                                     ),
                                     //),
                                   )),

@@ -7,12 +7,14 @@ import 'creation_compte.dart';
 import 'connexion.dart';
 import 'mylib.dart' as mylib;
 
-class userchoixconnexion extends StatefulWidget {
+class UserChoixConnexion extends StatefulWidget {
+  const UserChoixConnexion({super.key});
+
   @override
-  _userchoixconnexion createState() => _userchoixconnexion();
+  Userchoixconnexion createState() => Userchoixconnexion();
 }
 
-class _userchoixconnexion extends State<userchoixconnexion> {
+class Userchoixconnexion extends State<UserChoixConnexion> {
   bool isRememberMe = false;
   Widget buildTitle() {
     return Container(
@@ -56,7 +58,7 @@ class _userchoixconnexion extends State<userchoixconnexion> {
     );
   }
 
-  Widget Continuer_sans_compte_btn() {
+  Widget continuerSansCompteBtn() {
     return SizedBox(
       width: 270,
       height: 43,
@@ -64,7 +66,7 @@ class _userchoixconnexion extends State<userchoixconnexion> {
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) => connexion(),
+              builder: (BuildContext context) => const Connexion(),
             ),
           );
         },
@@ -85,7 +87,7 @@ class _userchoixconnexion extends State<userchoixconnexion> {
     );
   }
 
-  Widget Continuer_avec_compte_btn() {
+  Widget continuerAvecCompteBtn() {
     return SizedBox(
       width: 270,
       height: 43,
@@ -93,7 +95,7 @@ class _userchoixconnexion extends State<userchoixconnexion> {
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) => const userconnexionpassword(),
+              builder: (BuildContext context) => const UserConnexionPassword(),
             ),
           );
         },
@@ -124,7 +126,7 @@ class _userchoixconnexion extends State<userchoixconnexion> {
           onPressed: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (BuildContext context) => userchoixconnexion(),
+                builder: (BuildContext context) => const UserChoixConnexion(),
               ),
             );
           },
@@ -134,8 +136,7 @@ class _userchoixconnexion extends State<userchoixconnexion> {
             elevation: 20,
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  topRight: Radius.circular(10)),
+                  topLeft: Radius.circular(10), topRight: Radius.circular(10)),
             ),
           ),
           child: Text(
@@ -158,7 +159,7 @@ class _userchoixconnexion extends State<userchoixconnexion> {
           onPressed: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (BuildContext context) => const connexion_adminn(),
+                builder: (BuildContext context) => const ConnexionAdminn(),
               ),
             );
           },
@@ -168,8 +169,7 @@ class _userchoixconnexion extends State<userchoixconnexion> {
             elevation: 20,
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  topRight: Radius.circular(10)),
+                  topLeft: Radius.circular(10), topRight: Radius.circular(10)),
             ),
           ),
           child: Text(
@@ -218,17 +218,15 @@ class _userchoixconnexion extends State<userchoixconnexion> {
                           children: <Widget>[
                             buildTitle(),
                             const SizedBox(height: 50),
-
-                            Continuer_sans_compte_btn(),
+                            continuerSansCompteBtn(),
                             const SizedBox(height: 40),
-
-                            Continuer_avec_compte_btn(),
+                            continuerAvecCompteBtn(),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 Text(
                                   'user_choix_connexion_pas_de_compte'.tr(),
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Colors.black38,
                                   ),
                                 ),
@@ -239,7 +237,6 @@ class _userchoixconnexion extends State<userchoixconnexion> {
                           ],
                         ),
                       ),
-                     
                     ),
                   ],
                 )),

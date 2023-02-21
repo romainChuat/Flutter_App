@@ -75,4 +75,19 @@ class DatabaseHelper {
     //Otherwise, return the results
     return results;
   }
+
+  //Insert a user in the database
+  //The user's informations are in the map data given as parameters
+  Future<int?> insertReponses(Map<String, dynamic> data) async {
+    final client = await db;
+    //If the database isn't open, the function return null
+    if (client == null) {
+      return null;
+    }
+
+    //Otherwise, return the result of the query
+    return await client.execute(
+        'INSERT INTO reponses (${data.keys.join(', ')}) VALUES (${data.keys.map((k) => '@$k').join(', ')})',
+        substitutionValues: data);
+  }
 }

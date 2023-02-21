@@ -1,19 +1,19 @@
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/startPage.dart';
+import 'package:flutter_application_1/start_page.dart';
 import 'mylib.dart' as mylib;
-import 'package:intl/intl.dart';
-import 'package:flutter_application_1/motPage.dart';
+import 'package:flutter_application_1/mot_page.dart';
 
-class datePage extends StatefulWidget {
+class DatePage extends StatefulWidget {
+  const DatePage({super.key});
+
   @override
   State<StatefulWidget> createState() {
-    return _datePage();
+    return Datepage();
   }
 }
 
-class _datePage extends State<datePage> {
+class Datepage extends State<DatePage> {
   TextEditingController dateInput = TextEditingController();
   @override
   void initState() {
@@ -58,7 +58,8 @@ class _datePage extends State<datePage> {
                           indent: 20,
                           endIndent: 20,
                         ),
-                        const Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 0)),
+                        const Padding(
+                            padding: EdgeInsets.fromLTRB(0, 20, 0, 0)),
                         SizedBox(
                           width: 265,
                           height: 180,
@@ -69,8 +70,8 @@ class _datePage extends State<datePage> {
                                   height: 45,
                                   child: Material(
                                     elevation: 5,
-                                    borderRadius:
-                                        const BorderRadius.all(Radius.circular(10)),
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(10)),
                                     child: TextField(
                                       style: mylib.simpleText
                                           .apply(fontSizeDelta: 5),
@@ -88,8 +89,7 @@ class _datePage extends State<datePage> {
                                           fillColor: Colors.white,
                                           hintText: 'Entrer une date',
                                           contentPadding:
-                                              const EdgeInsets.fromLTRB(
-                                                  10, 1, 0, 0),
+                                              EdgeInsets.fromLTRB(10, 1, 0, 0),
                                           enabledBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
                                                 width: 1,
@@ -125,7 +125,8 @@ class _datePage extends State<datePage> {
                                           setState(() {
                                             dateInput.text =
                                                 formattedDate; //set output date to TextField value.
-                                            reponses["rep_date"] = dateInput.text;
+                                            reponses["rep_date"] =
+                                                dateInput.text;
                                           });
                                         }
                                       },
@@ -144,14 +145,15 @@ class _datePage extends State<datePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    mylib.createQuitButton(context, 141, 41,const startPage(), reponses),
+                    mylib.createQuitButton(
+                        context, 141, 41, const StartPage(), reponses),
                     mylib.createNextButton(
                       "btn_next".tr(),
                       context,
                       141,
                       41,
                       MaterialPageRoute(
-                        builder: (_) => motPage(),
+                        builder: (_) => MotPage(),
                         settings: RouteSettings(arguments: reponses),
                       ),
                     )

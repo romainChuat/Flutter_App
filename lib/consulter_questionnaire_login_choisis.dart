@@ -3,26 +3,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:flutter_map/plugin_api.dart';
-import 'endPage.dart';
-import 'homePage.dart';
+import 'end_page.dart';
 import 'mylib.dart' as mylib;
 
-class consulter_questionnaire_login_choix extends StatefulWidget {
-  const consulter_questionnaire_login_choix({super.key});
+class ConsulterQuestionnaireLoginChoix extends StatefulWidget {
+  const ConsulterQuestionnaireLoginChoix({super.key});
 
   @override
-  State<consulter_questionnaire_login_choix> createState() =>
-      _consulter_questionnaire_login_choix();
+  State<ConsulterQuestionnaireLoginChoix> createState() =>
+      Consulterquestionnaireloginchoix();
 }
 
-class _consulter_questionnaire_login_choix
-    extends State<consulter_questionnaire_login_choix> {
+class Consulterquestionnaireloginchoix
+    extends State<ConsulterQuestionnaireLoginChoix> {
   final mapController = MapController();
   var marker = <Marker>[];
 
-
-
-  Widget TitleDate() {
+  Widget titleDate() {
     return ClipRRect(
       borderRadius: BorderRadius.circular(15.0),
       child: Container(
@@ -41,7 +38,7 @@ class _consulter_questionnaire_login_choix
     );
   }
 
-  Widget Map() {
+  Widget map() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -85,17 +82,15 @@ class _consulter_questionnaire_login_choix
                               width: 25.0,
                               height: 25.0,
                               point: value,
-                              builder: (ctx) => Container(
-                                child: IconButton(
-                                  icon: const Icon(
-                                    Icons.location_on,
-                                    color: Colors.redAccent,
-                                    size: 30,
-                                  ),
-                                  onPressed: () {
-                                    print("afficher avis");
-                                  },
+                              builder: (ctx) => IconButton(
+                                icon: const Icon(
+                                  Icons.location_on,
+                                  color: Colors.redAccent,
+                                  size: 30,
                                 ),
+                                onPressed: () {
+                                  print("afficher avis");
+                                },
                               ),
                             ),
                           );
@@ -122,7 +117,7 @@ class _consulter_questionnaire_login_choix
     );
   }
 
-  Widget Photo() {
+  Widget photo() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -137,7 +132,7 @@ class _consulter_questionnaire_login_choix
               children: [
                 Container(
                   padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
-                  child:  Text(
+                  child: Text(
                     "Traiter_markers_recu_admin_photo".tr(),
                     style: mylib.blueText,
                     textAlign: TextAlign.center,
@@ -167,7 +162,7 @@ class _consulter_questionnaire_login_choix
     );
   }
 
-  Widget Date() {
+  Widget date() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -217,7 +212,7 @@ class _consulter_questionnaire_login_choix
     );
   }
 
-  Widget Expression() {
+  Widget expression() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -310,7 +305,7 @@ class _consulter_questionnaire_login_choix
     );
   }
 
-  Widget Age() {
+  Widget age() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -360,7 +355,7 @@ class _consulter_questionnaire_login_choix
     );
   }
 
-  Widget Genre() {
+  Widget genre() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -410,7 +405,7 @@ class _consulter_questionnaire_login_choix
     );
   }
 
-  Widget NiveauxEtude() {
+  Widget niveauxEtude() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -460,7 +455,7 @@ class _consulter_questionnaire_login_choix
     );
   }
 
-  Widget ActiviteExerce() {
+  Widget activiteExerce() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -518,7 +513,7 @@ class _consulter_questionnaire_login_choix
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) => endPage(),
+              builder: (BuildContext context) => EndPage(),
             ),
           );
         },
@@ -547,7 +542,7 @@ class _consulter_questionnaire_login_choix
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) => endPage(),
+              builder: (BuildContext context) => EndPage(),
             ),
           );
         },
@@ -602,23 +597,23 @@ class _consulter_questionnaire_login_choix
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                      TitleDate(),
+                      titleDate(),
                       const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                      Map(),
+                      map(),
                       const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                      Photo(),
+                      photo(),
                       const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                      Date(),
+                      date(),
                       const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                      Expression(),
+                      expression(),
                       const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                      Age(),
+                      age(),
                       const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                      Genre(),
+                      genre(),
                       const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                      NiveauxEtude(),
+                      niveauxEtude(),
                       const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                      ActiviteExerce(),
+                      activiteExerce(),
                     ],
                   ),
                 ),
