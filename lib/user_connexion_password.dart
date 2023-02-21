@@ -401,8 +401,10 @@ class Userconnexionpassword extends State<UserConnexionPassword> {
     var map = res.last.asMap();
 
     var pass = map[3];
-    var pseudo = map[2];
+    var pseudo = map[1];
+    var idUser = map[0];
 
+    reponses["rep_userID"] = idUser;
     reponses["username"] = pseudo;
 
     final passSaisie = Crypt.sha256(password, salt: 'abcdefghijklmnop');

@@ -4,7 +4,6 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:flutter_map/plugin_api.dart';
 import 'end_page.dart';
-import 'home_page.dart';
 import 'mylib.dart' as mylib;
 
 class GererLesMarkersRefuse extends StatefulWidget {
@@ -537,7 +536,7 @@ class Gererlesmarkersrefuse extends State<GererLesMarkersRefuse> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: mylib.baseAppBar(
+      appBar: mylib.BaseAppBar(
         appBar: AppBar(),
       ),
       endDrawer: mylib.createMenu(context),

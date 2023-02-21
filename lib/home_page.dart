@@ -21,7 +21,7 @@ class _MyHomePageState extends State<MyHomePage> {
     context.watch<LanguageController>();
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: mylib.baseAppBar(
+      appBar: mylib.BaseAppBar(
         appBar: AppBar(),
       ),
       endDrawer: mylib.createMenu(context),

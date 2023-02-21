@@ -513,7 +513,7 @@ class Consulterquestionnaireloginchoix
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) => EndPage(),
+              builder: (BuildContext context) => const EndPage(),
             ),
           );
         },
@@ -542,7 +542,7 @@ class Consulterquestionnaireloginchoix
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) => EndPage(),
+              builder: (BuildContext context) => const EndPage(),
             ),
           );
         },
@@ -567,7 +567,7 @@ class Consulterquestionnaireloginchoix
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: mylib.baseAppBar(
+      appBar: mylib.BaseAppBar(
         appBar: AppBar(),
       ),
       endDrawer: mylib.createMenu(context),

@@ -40,7 +40,7 @@ class Mappage extends State<MapPage> {
 
     return Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: mylib.baseAppBar(appBar: AppBar()),
+        appBar: mylib.BaseAppBar(appBar: AppBar()),
         endDrawer: mylib.createMenu(context),
         body: Container(
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
@@ -83,7 +83,7 @@ class Mappage extends State<MapPage> {
                                     center: currentCenter,
                                     zoom: 14,
                                     onTap: (LatLng value) {
-                                      Map<String, Object> longLat = new Map();
+                                      Map<String, Object> longLat = {};
                                       reponses['longitude'] = value.longitude;
                                       reponses['latitude'] = value.latitude;
                                       print(reponses);

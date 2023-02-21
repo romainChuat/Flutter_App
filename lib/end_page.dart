@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/home_page.dart';
+import 'package:flutter_application_1/lieu.dart';
 import 'package:flutter_icon_shadow/flutter_icon_shadow.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'database_helper.dart';
@@ -19,6 +20,7 @@ class EndPage extends StatefulWidget {
 class Endpage extends State<EndPage> {
   var insertlieuxID;
   var insertusID;
+  Map<String, dynamic> lieux = {};
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +30,7 @@ class Endpage extends State<EndPage> {
 
     return Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: mylib.baseAppBar(appBar: AppBar()),
+        appBar: mylib.BaseAppBar(appBar: AppBar()),
         endDrawer: mylib.createMenu(context),
         body: Container(
           padding: const EdgeInsets.fromLTRB(0, 100, 0, 0),
@@ -131,7 +133,6 @@ class Endpage extends State<EndPage> {
   }
 
   Future<int?> insertLieu(Map<String, Object> reponses) async {
-    Map<String, Object> lieux = {};
     lieux['lieux_lat'] = reponses['latitude']!;
     lieux['lieux_long'] = reponses['longitude']!;
     reponses.remove('longitude');
@@ -170,7 +171,7 @@ class Endpage extends State<EndPage> {
   void insertReponse(Map<String, Object> reponses) async {
     print(reponses);
 
-    reponses['rep_userID'] = insertusID;
+    //reponses['rep_userID'] = insertusID;
     reponses['rep_lieuxID'] = insertlieuxID;
     print(reponses);
     WidgetsFlutterBinding.ensureInitialized();
@@ -195,10 +196,14 @@ class Endpage extends State<EndPage> {
       final DatabaseHelper dbHelper = DatabaseHelper.getInstance();
       WidgetsFlutterBinding.ensureInitialized();
 
+      Lieu l =
+          Lieu(latitude: lieux['lieux_lat'], longitude: lieux['lieux_long']);
+
       for (var i in res) {
         try {
           print(i.toString());
           await dbHelper.insertReponses(i.toMap());
+          //await dbHelper.insertLieu(l.toMap());
           print("new row");
           await db.delete();
         } catch (e) {

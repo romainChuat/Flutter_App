@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/date_page.dart';
-import 'dart:io' as Io;
+import 'dart:io' as io;
 import 'mylib.dart' as mylib;
 import 'package:image_picker/image_picker.dart';
 
@@ -16,7 +16,7 @@ class FichierPage extends StatefulWidget {
 }
 
 class Fichierpage extends State<FichierPage> {
-  late Io.File image;
+  late io.File image;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class Fichierpage extends State<FichierPage> {
 
     return Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: mylib.baseAppBar(appBar: AppBar()),
+        appBar: mylib.BaseAppBar(appBar: AppBar()),
         endDrawer: mylib.createMenu(context),
         body: Container(
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
@@ -85,8 +85,8 @@ class Fichierpage extends State<FichierPage> {
                                 onPressed: () {
                                   var newPath = _getFromGallery();
                                   final bytes =
-                                      Io.File(newPath).readAsBytesSync();
-                                  Map<String, Object>? res = new Map();
+                                      io.File(newPath).readAsBytesSync();
+                                  Map<String, Object>? res = {};
 
                                   reponses["Image"] = bytes;
 
@@ -179,7 +179,7 @@ class Fichierpage extends State<FichierPage> {
       maxHeight: 1800,
     );
     if (pickedFile != null) {
-      Io.File imageFile = Io.File(pickedFile.path);
+      io.File imageFile = io.File(pickedFile.path);
       path = imageFile.path;
       print(imageFile);
     }
@@ -191,7 +191,7 @@ class Fichierpage extends State<FichierPage> {
     try {
       final image = await ImagePicker().pickImage(source: ImageSource.camera);
       if (image == null) return;
-      final imageTemp = Io.File(image.path);
+      final imageTemp = io.File(image.path);
       setState(() {
         this.image = imageTemp;
         print(this.image);

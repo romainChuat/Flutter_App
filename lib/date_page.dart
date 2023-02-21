@@ -27,7 +27,7 @@ class Datepage extends State<DatePage> {
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
     return Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: mylib.baseAppBar(appBar: AppBar()),
+        appBar: mylib.BaseAppBar(appBar: AppBar()),
         endDrawer: mylib.createMenu(context),
         body: Container(
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
@@ -153,7 +153,7 @@ class Datepage extends State<DatePage> {
                       141,
                       41,
                       MaterialPageRoute(
-                        builder: (_) => MotPage(),
+                        builder: (_) => const MotPage(),
                         settings: RouteSettings(arguments: reponses),
                       ),
                     )
