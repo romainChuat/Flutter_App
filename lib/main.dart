@@ -1,4 +1,3 @@
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/user_choix_connexion.dart';
@@ -14,7 +13,7 @@ void main() async {
       ChangeNotifierProvider(create: (_) => LanguageController()),
     ],
     child: EasyLocalization(
-        supportedLocales: [const Locale('en', 'US'), const Locale('fr', 'FR')],
+        supportedLocales: const [Locale('en', 'US'), Locale('fr', 'FR')],
         path: 'assets/translations',
         fallbackLocale: const Locale('en', 'US'),
         child: const MyApp()),
@@ -38,7 +37,7 @@ class MyApp extends StatelessWidget {
             themeMode: themeProvider.themeMode,
             theme: MyThemes.lightTheme,
             darkTheme: MyThemes.darkTheme,
-            home: userchoixconnexion(),
+            home: const UserChoixConnexion(),
           );
         },
       );

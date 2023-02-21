@@ -1,32 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/homePage.dart';
+import 'package:flutter_application_1/home_page.dart';
 import 'package:flutter_icon_shadow/flutter_icon_shadow.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'database_helper.dart';
 import 'database_helper_local.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'mylib.dart' as mylib;
 
-class endPage extends StatefulWidget {
+class EndPage extends StatefulWidget {
+  const EndPage({super.key});
+
   @override
   State<StatefulWidget> createState() {
-    return _endPage();
+    return Endpage();
   }
 }
 
-class _endPage extends State<endPage> {
-  var insert_lieuxID;
-  var insert_usID;  
-  
-
-
+class Endpage extends State<EndPage> {
+  var insertlieuxID;
+  var insertusID;
 
   @override
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
     print(reponses);
-
-
 
     return Scaffold(
         extendBodyBehindAppBar: true,
@@ -100,20 +98,20 @@ class _endPage extends State<endPage> {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         ),
-        onPressed: () async{
+        onPressed: () async {
           //envoie des données à la bd
-          try{
+          try {
             await insertUser(reponses);
             //print(insert_usID);
-          }catch(e){
+          } catch (e) {
             print("USER DEJA ENREGISTRER");
-            insert_lieuxID = reponses['rep_lieuxID'];
-            insert_usID = reponses['rep_userID'];
+            insertlieuxID = reponses['rep_lieuxID'];
+            insertusID = reponses['rep_userID'];
           }
-          try{
+          try {
             await insertLieu(reponses);
             //print(insert_lieuxID);
-          }catch(e){
+          } catch (e) {
             print("ERREUR ID LIEUX");
           }
           insertReponse(reponses);
@@ -133,7 +131,7 @@ class _endPage extends State<endPage> {
   }
 
   Future<int?> insertLieu(Map<String, Object> reponses) async {
-    Map<String, Object> lieux = new Map();
+    Map<String, Object> lieux = {};
     lieux['lieux_lat'] = reponses['latitude']!;
     lieux['lieux_long'] = reponses['longitude']!;
     reponses.remove('longitude');
@@ -141,38 +139,39 @@ class _endPage extends State<endPage> {
     print(lieux);
     WidgetsFlutterBinding.ensureInitialized();
     DatabaseHelperLocal db = DatabaseHelperLocal();
+
     try {
-      insert_lieuxID = await db.insertLieu(lieux);
+      insertlieuxID = await db.insertLieu(lieux);
       print("new lieux");
     } catch (e) {
       print("enregistrement lieux impossible");
     }
-    print(insert_lieuxID);
-    return insert_lieuxID;
+    print(insertlieuxID);
+    return insertlieuxID;
   }
 
-  Future<int?> insertUser(Map<String,Object> reponses) async{
-    Map<String, Object> user = new Map();
+  Future<int?> insertUser(Map<String, Object> reponses) async {
+    Map<String, Object> user = {};
     user['user_name'] = "gest_${reponses['username']!}";
     reponses.remove('username');
     WidgetsFlutterBinding.ensureInitialized();
     DatabaseHelperLocal db = DatabaseHelperLocal();
-    try{
-      insert_usID = await db.insertUser(user);
+    try {
+      insertusID = await db.insertUser(user);
       //reponses['already_register'] = true;
       print("new user");
-    }catch(e){
+    } catch (e) {
       print("enregistrement user impossible");
     }
-    print(insert_usID);
-    return insert_usID;
+    print(insertusID);
+    return insertusID;
   }
 
   void insertReponse(Map<String, Object> reponses) async {
     print(reponses);
 
-    reponses['rep_userID'] = insert_usID;
-    reponses['rep_lieuxID'] = insert_lieuxID;
+    reponses['rep_userID'] = insertusID;
+    reponses['rep_lieuxID'] = insertlieuxID;
     print(reponses);
     WidgetsFlutterBinding.ensureInitialized();
     DatabaseHelperLocal db = DatabaseHelperLocal();
@@ -182,6 +181,7 @@ class _endPage extends State<endPage> {
     } catch (e) {
       print("enregistrement reponse impossible");
     }
+
     insertReponseServer();
   }
 
@@ -190,11 +190,21 @@ class _endPage extends State<endPage> {
     if (result == true) {
       WidgetsFlutterBinding.ensureInitialized();
       DatabaseHelperLocal db = DatabaseHelperLocal();
-      var res = db.queryAllRowsReponse();
+      var res = await db.queryAllRowsReponse();
 
-      /*res.forEach((row) {
-        print(row);
-      });*/
+      WidgetsFlutterBinding.ensureInitialized();
+      final DatabaseHelper dbHelper = DatabaseHelper.getInstance();
+
+      for (var i in res) {
+        try {
+          await dbHelper.insertReponses(i.toMap());
+          print("new row");
+        } catch (e) {
+          print("enregistrement impossible");
+        }
+      }
+    } else {
+      print("Pas de connexion");
     }
   }
 }

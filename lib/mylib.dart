@@ -15,7 +15,7 @@ const TextStyle titleStyle = TextStyle(
   fontSize: 21,
   fontFamily: 'Nunito',
   fontWeight: FontWeight.w400,
- // color: Colors.white,
+  // color: Colors.white,
   /*shadows: <Shadow>[
     Shadow(
         offset: Offset(-2.0, 2.0),
@@ -347,22 +347,20 @@ createMenu(BuildContext context) {
                   color: const Color.fromARGB(255, 13, 12, 32),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children:  [
+                    children: [
                       Text(
                         "menu_title".tr(),
                         style: simpleText,
                       ),
-                       IconButton(
-              icon:  Icon(
-                Icons.menu,
-                color: Colors.white,
-                size: 50,
-              ),
-              onPressed: () {
-                Navigator.pop(context);
-              }
-            ),
-                     
+                      IconButton(
+                          icon: Icon(
+                            Icons.menu,
+                            color: Colors.white,
+                            size: 50,
+                          ),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          }),
                     ],
                   )),
             ),
@@ -382,14 +380,13 @@ createMenu(BuildContext context) {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => confirmation_deconnexion(),
-
+                          builder: (_) => ConfirmationDeconnexion(),
                         ),
                       );
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
-                      children:  [
+                      children: [
                         const Icon(Icons.lens, size: 18),
                         const Padding(padding: EdgeInsets.all(6)),
                         Text(
@@ -418,7 +415,7 @@ createMenu(BuildContext context) {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         ChangeThemeButtonWidget(),
-                         Text(
+                        Text(
                           "btn_mode_sombre".tr(),
                           style: blueText,
                         ),
@@ -441,13 +438,13 @@ createMenu(BuildContext context) {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => const languagePage(),
+                          builder: (_) => const LanguagePage(),
                         ),
                       );
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
-                      children:  [
+                      children: [
                         const Icon(Icons.lens, size: 18),
                         const Padding(padding: EdgeInsets.all(6)),
                         Text(

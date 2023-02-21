@@ -1,7 +1,6 @@
-import 'package:flutter_application_1/utilisateur.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-import 'Lieu.dart';
+import 'reponse.dart';
 
 class DatabaseHelperLocal {
   static const _databaseName = "db_flutter.db";
@@ -76,7 +75,6 @@ class DatabaseHelperLocal {
 
   /*Fonctions pour les lieux*/
   Future<int?> insertLieu(Map<String, Object> l) async {
-    final Database? db = await init();
     final insert = await _db?.insert("lieux", l);
     print(insert);
     //final insertID = await _db?.rawQuery("SELECT last_insert_rowid()");
@@ -102,12 +100,26 @@ class DatabaseHelperLocal {
 
   /*Fonctions pour les réponses*/
   Future<int?> insertReponse(Map<String, Object> r) async {
-    final Database? _db = await init();
     return await _db?.insert("reponses", r);
   }
 
-  Future<List<Map>?> queryAllRowsReponse() async {
-    return await _db?.query("reponses");
+  Future<List<Reponse>> queryAllRowsReponse() async {
+    //return await _db?.query("reponses");
+    final List<Map<String, dynamic>>? res =
+        await _db?.rawQuery("SELECT * FROM reponses");
+
+    return List.generate(res!.length, (i) {
+      return Reponse(
+        idUser: res[i]['rep_userID'],
+        idLieu: res[i]['rep_lieuxID'],
+        expressions: res[i]['rep_expr'],
+        date: res[i]['rep_date'].toString(),
+        age: res[i]['rep_age'],
+        genre: res[i]['rep_genre'],
+        etude: res[i]['rep_etude'],
+        activite: res[i]['rep_activite'],
+      );
+    });
   }
 
   Future<int?> deleteReponse(int id) async {
@@ -118,10 +130,8 @@ class DatabaseHelperLocal {
     );
   }
 
-
   /*Fonctions pour les utilisateurs*/
-  Future<int?> insertUser(Map<String,Object> u) async {
-    final Database? db = await init();
+  Future<int?> insertUser(Map<String, Object> u) async {
     return await _db?.insert("user", u);
   }
 

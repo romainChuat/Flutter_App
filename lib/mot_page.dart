@@ -1,20 +1,22 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/agePage.dart';
-import 'package:flutter_application_1/homePage.dart';
+import 'package:flutter_application_1/age_page.dart';
+import 'package:flutter_application_1/home_page.dart';
 import 'mylib.dart' as mylib;
 
-class motPage extends StatefulWidget {
+class MotPage extends StatefulWidget {
+  const MotPage({super.key});
+
   @override
   State<StatefulWidget> createState() {
-    return _motPage();
+    return Motpage();
   }
 }
 
-class _motPage extends State<motPage> {
+class Motpage extends State<MotPage> {
   @override
   Widget build(BuildContext context) {
-    Map<int, String>? mots = Map<int, String>();
+    Map<int, String>? mots = <int, String>{};
     print(mots);
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
@@ -35,7 +37,7 @@ class _motPage extends State<motPage> {
                   child: Container(
                     width: 336,
                     height: 370,
-                    color: Color.fromARGB(255, 235, 233, 233),
+                    color: const Color.fromARGB(255, 235, 233, 233),
                     child: Column(
                       //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
@@ -55,7 +57,7 @@ class _motPage extends State<motPage> {
                         ),
                         const Padding(
                             padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                        Container(
+                        SizedBox(
                           width: 263,
                           height: 240,
                           child: MediaQuery.removePadding(
@@ -68,13 +70,13 @@ class _motPage extends State<motPage> {
                                     height: 38,
                                     child: Material(
                                         elevation: 5,
-                                        borderRadius: BorderRadius.all(
+                                        borderRadius: const BorderRadius.all(
                                             Radius.circular(10)),
                                         child: TextField(
                                           //controller: motController[index],
                                           style: mylib.simpleText
                                               .apply(fontSizeDelta: 5),
-                                          cursorColor: Color.fromARGB(
+                                          cursorColor: const Color.fromARGB(
                                               255, 117, 106, 106),
                                           decoration: InputDecoration(
                                               prefixIcon: Padding(
@@ -140,14 +142,14 @@ class _motPage extends State<motPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     mylib.createQuitButton(
-                        context, 141, 41, MyHomePage(), reponses),
+                        context, 141, 41, const MyHomePage(), reponses),
                     mylib.createNextButton(
                       "btn_next".tr(),
                       context,
                       141,
                       41,
                       MaterialPageRoute(
-                        builder: (_) => agePage(),
+                        builder: (_) => const AgePage(),
                         settings: RouteSettings(arguments: reponses),
                       ),
                     )

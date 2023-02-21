@@ -1,17 +1,19 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/startPage.dart';
-import 'FichierPage.dart';
+import 'package:flutter_application_1/start_page.dart';
+import 'fichier_page.dart';
 import 'mylib.dart' as mylib;
 
-class droits_auteur extends StatefulWidget {
+class DroitsAuteur extends StatefulWidget {
+  const DroitsAuteur({super.key});
+
   @override
   State<StatefulWidget> createState() {
-    return _droits_auteur();
+    return Droitsauteur();
   }
 }
 
-class _droits_auteur extends State<droits_auteur> {
+class Droitsauteur extends State<DroitsAuteur> {
   bool accept = false;
 
   @override
@@ -91,7 +93,8 @@ class _droits_auteur extends State<droits_auteur> {
                           children: [
                             Text("droits_auteur_accept".tr()),
                             Checkbox(
-                              activeColor: const Color.fromARGB(255, 13, 12, 32),
+                              activeColor:
+                                  const Color.fromARGB(255, 13, 12, 32),
                               value: accept,
                               onChanged: (value) {
                                 setState(() {
@@ -109,14 +112,14 @@ class _droits_auteur extends State<droits_auteur> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     mylib.createQuitButton(
-                        context, 141, 41, const startPage(), reponses),
+                        context, 141, 41, const StartPage(), reponses),
                     mylib.createNextButton(
                       "btn_next".tr(),
                       context,
                       141,
                       41,
                       MaterialPageRoute(
-                        builder: (_) => fichierPage(),
+                        builder: (_) => const FichierPage(),
                         settings: RouteSettings(arguments: reponses),
                       ),
                     )

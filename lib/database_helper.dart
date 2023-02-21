@@ -22,11 +22,11 @@ class DatabaseHelper {
 
   //Return the connection information
   PostgreSQLConnection connection() {
-    return PostgreSQLConnection("10.0.2.2", 5432, 'postgres',
+    return PostgreSQLConnection("10.0.2.2", 5432, 'city',
         queryTimeoutInSeconds: 3600,
         timeoutInSeconds: 3600,
-        username: 'katty',
-        password: 'admin');
+        username: 'postgres',
+        password: 'fluttertest');
   }
 
   //Open a connection to the database in a variable, then return it
@@ -74,5 +74,20 @@ class DatabaseHelper {
 
     //Otherwise, return the results
     return results;
+  }
+
+  //Insert a user in the database
+  //The user's informations are in the map data given as parameters
+  Future<int?> insertReponses(Map<String, dynamic> data) async {
+    final client = await db;
+    //If the database isn't open, the function return null
+    if (client == null) {
+      return null;
+    }
+
+    //Otherwise, return the result of the query
+    return await client.execute(
+        'INSERT INTO reponses (${data.keys.join(', ')}) VALUES (${data.keys.map((k) => '@$k').join(', ')})',
+        substitutionValues: data);
   }
 }

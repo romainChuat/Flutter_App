@@ -6,14 +6,14 @@ import 'connexion_admin.dart';
 import 'database_helper.dart';
 import 'mylib.dart' as mylib;
 
-class forgot_password_page extends StatefulWidget {
-  const forgot_password_page({super.key});
+class ForgotPasswordPage extends StatefulWidget {
+  const ForgotPasswordPage({super.key});
 
   @override
-  State<forgot_password_page> createState() => _forgot_password_page();
+  State<ForgotPasswordPage> createState() => Forgotpasswordpage();
 }
 
-class _forgot_password_page extends State<forgot_password_page> {
+class Forgotpasswordpage extends State<ForgotPasswordPage> {
   final mailController = TextEditingController();
   bool isRememberMe = false;
   bool exist = false;
@@ -65,8 +65,8 @@ class _forgot_password_page extends State<forgot_password_page> {
             onChanged: _handleInputChange,
             controller: mailController,
             keyboardType: TextInputType.emailAddress,
-            style: TextStyle(color: Colors.black87),
-            decoration: InputDecoration(
+            style: const TextStyle(color: Colors.black87),
+            decoration: const InputDecoration(
                 border: InputBorder.none,
                 prefixIcon: Icon(
                   Icons.email,
@@ -88,13 +88,13 @@ class _forgot_password_page extends State<forgot_password_page> {
           print("Forgot password pressed"),
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) => const connexion_adminn(),
+              builder: (BuildContext context) => const ConnexionAdminn(),
             ),
           ),
         },
         child: Text(
           'forgot_password_page_sign_in'.tr(),
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.black38,
           ),
         ),
@@ -132,7 +132,7 @@ class _forgot_password_page extends State<forgot_password_page> {
           ),
         ),
       ),
-      SizedBox(
+      const SizedBox(
         height: 14,
       ),
       if (_showErrorMessage)
@@ -150,7 +150,7 @@ class _forgot_password_page extends State<forgot_password_page> {
           onPressed: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (BuildContext context) => userchoixconnexion(),
+                builder: (BuildContext context) => const UserChoixConnexion(),
               ),
             );
           },
@@ -236,9 +236,9 @@ class _forgot_password_page extends State<forgot_password_page> {
                             children: <Widget>[
                               buildTitle(),
                               if (!_showErrorMessage)
-                                SizedBox(height: 55)
+                                const SizedBox(height: 55)
                               else
-                                SizedBox(height: 42),
+                                const SizedBox(height: 42),
                               buildEmail(),
                               const SizedBox(height: 30),
                               buildLoginBtn(),
@@ -251,8 +251,7 @@ class _forgot_password_page extends State<forgot_password_page> {
                                       color: Colors.black38,
                                     ),
                                   ),
-                                                                const SizedBox(height: 40),
-
+                                  const SizedBox(height: 40),
                                   buildForgotPassBtn(),
                                 ],
                               ),
