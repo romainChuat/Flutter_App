@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 class Reponse {
-  int idUser;
-  int idLieu;
+  int iduser;
+  int idlieu;
   String expressions;
   String date;
   int age;
@@ -11,8 +11,8 @@ class Reponse {
   String activite;
 
   Reponse({
-    required this.idUser,
-    required this.idLieu,
+    required this.iduser,
+    required this.idlieu,
     required this.expressions,
     required this.date,
     required this.age,
@@ -27,7 +27,10 @@ class Reponse {
       'date': date,
       'age': age,
       'genre': genre,
-      'niveau_etude': etude,
+      'etude': etude,
+      'activite': activite,
+      'iduser': iduser,
+      'idlieu': idlieu,
     };
   }
 
@@ -41,6 +44,6 @@ class Reponse {
 
   @override
   String toString() {
-    return 'Reponse{expressions: $expressions,date: $date,age: $age,genre: $genre,etude: $etude}';
+    return 'Reponse{expressions: $expressions,date: $date,age: $age,genre: $genre,etude: $etude,idUser: $iduser,idLieu: $idlieu, activite: $activite}';
   }
 }

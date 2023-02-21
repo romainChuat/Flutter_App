@@ -40,6 +40,12 @@ class DatabaseHelperLocal {
     await _db?.close();
   }
 
+  Future<void> delete() async {
+    final dbPath = await getDatabasesPath();
+    final path = join(dbPath, _databaseName);
+    await deleteDatabase(path);
+  }
+
   // SQL code to create the database table
   Future _onCreate(Database db, int version) async {
     await db.execute('''
@@ -75,6 +81,7 @@ class DatabaseHelperLocal {
 
   /*Fonctions pour les lieux*/
   Future<int?> insertLieu(Map<String, Object> l) async {
+    final Database? db = await init();
     final insert = await _db?.insert("lieux", l);
     print(insert);
     //final insertID = await _db?.rawQuery("SELECT last_insert_rowid()");
@@ -110,8 +117,8 @@ class DatabaseHelperLocal {
 
     return List.generate(res!.length, (i) {
       return Reponse(
-        idUser: res[i]['rep_userID'],
-        idLieu: res[i]['rep_lieuxID'],
+        iduser: res[i]['rep_userID'],
+        idlieu: res[i]['rep_lieuxID'],
         expressions: res[i]['rep_expr'],
         date: res[i]['rep_date'].toString(),
         age: res[i]['rep_age'],
@@ -132,6 +139,7 @@ class DatabaseHelperLocal {
 
   /*Fonctions pour les utilisateurs*/
   Future<int?> insertUser(Map<String, Object> u) async {
+    final Database? db = await init();
     return await _db?.insert("user", u);
   }
 

@@ -192,15 +192,17 @@ class Endpage extends State<EndPage> {
       DatabaseHelperLocal db = DatabaseHelperLocal();
       var res = await db.queryAllRowsReponse();
 
-      WidgetsFlutterBinding.ensureInitialized();
       final DatabaseHelper dbHelper = DatabaseHelper.getInstance();
+      WidgetsFlutterBinding.ensureInitialized();
 
       for (var i in res) {
         try {
+          print(i.toString());
           await dbHelper.insertReponses(i.toMap());
           print("new row");
+          await db.delete();
         } catch (e) {
-          print("enregistrement impossible");
+          print(e);
         }
       }
     } else {
