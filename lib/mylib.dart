@@ -3,7 +3,7 @@ library mylib;
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/languagePage.dart';
+import 'package:flutter_application_1/language_page.dart';
 import 'package:flutter_application_1/provider.dart';
 import 'package:provider/provider.dart';
 import 'confirmation_deconnexion.dart';
@@ -15,7 +15,7 @@ const TextStyle titleStyle = TextStyle(
   fontSize: 21,
   fontFamily: 'Nunito',
   fontWeight: FontWeight.w400,
- // color: Colors.white,
+  // color: Colors.white,
   /*shadows: <Shadow>[
     Shadow(
         offset: Offset(-2.0, 2.0),
@@ -143,10 +143,10 @@ const TextStyle warningText = TextStyle(
  * AppBar
  */
 
-class baseAppBar extends StatelessWidget implements PreferredSizeWidget {
+class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
   final AppBar appBar;
 
-  const baseAppBar({super.key, required this.appBar});
+  const BaseAppBar({super.key, required this.appBar});
 
   @override
   Widget build(BuildContext context) {
@@ -188,7 +188,7 @@ class baseAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => new Size.fromHeight(appBar.preferredSize.height);
+  Size get preferredSize => Size.fromHeight(appBar.preferredSize.height);
 }
 
 createInput(
@@ -347,22 +347,20 @@ createMenu(BuildContext context) {
                   color: const Color.fromARGB(255, 13, 12, 32),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children:  [
+                    children: [
                       Text(
                         "menu_title".tr(),
                         style: simpleText,
                       ),
-                       IconButton(
-              icon:  Icon(
-                Icons.menu,
-                color: Colors.white,
-                size: 50,
-              ),
-              onPressed: () {
-                Navigator.pop(context);
-              }
-            ),
-                     
+                      IconButton(
+                          icon: const Icon(
+                            Icons.menu,
+                            color: Colors.white,
+                            size: 50,
+                          ),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          }),
                     ],
                   )),
             ),
@@ -382,14 +380,13 @@ createMenu(BuildContext context) {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => confirmation_deconnexion(),
-
+                          builder: (_) => const ConfirmationDeconnexion(),
                         ),
                       );
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
-                      children:  [
+                      children: [
                         const Icon(Icons.lens, size: 18),
                         const Padding(padding: EdgeInsets.all(6)),
                         Text(
@@ -417,8 +414,8 @@ createMenu(BuildContext context) {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        ChangeThemeButtonWidget(),
-                         Text(
+                        const ChangeThemeButtonWidget(),
+                        Text(
                           "btn_mode_sombre".tr(),
                           style: blueText,
                         ),
@@ -429,7 +426,7 @@ createMenu(BuildContext context) {
             const Padding(padding: EdgeInsets.all(10)),
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
-              child: Container(
+              child: SizedBox(
                 width: 230,
                 height: 58,
                 child: ElevatedButton(
@@ -441,13 +438,13 @@ createMenu(BuildContext context) {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => const languagePage(),
+                          builder: (_) => const LanguagePage(),
                         ),
                       );
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
-                      children:  [
+                      children: [
                         const Icon(Icons.lens, size: 18),
                         const Padding(padding: EdgeInsets.all(6)),
                         Text(

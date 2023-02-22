@@ -1,23 +1,25 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'genrePage.dart';
+import 'genre_page.dart';
 import 'mylib.dart' as mylib;
 
-class commentPage extends StatefulWidget {
+class CommentPage extends StatefulWidget {
+  const CommentPage({super.key});
+
   @override
   State<StatefulWidget> createState() {
-    return _commentPage();
+    return Commentpage();
   }
 }
 
-class _commentPage extends State<commentPage> {
+class Commentpage extends State<CommentPage> {
   int age = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: mylib.baseAppBar(appBar: AppBar()),
+        appBar: mylib.BaseAppBar(appBar: AppBar()),
         endDrawer: mylib.createMenu(context),
         body: Container(
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 20),
@@ -31,9 +33,8 @@ class _commentPage extends State<commentPage> {
                     child: Container(
                         width: 359,
                         height: 560,
-                                  padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-
-                          color: const Color.fromARGB(118, 13, 12, 32),
+                        padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+                        color: const Color.fromARGB(118, 13, 12, 32),
                         child: SingleChildScrollView(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -45,7 +46,8 @@ class _commentPage extends State<commentPage> {
                                 child: Container(
                                   width: 325,
                                   height: 405,
-                                  color: const Color.fromARGB(255, 235, 233, 233),
+                                  color:
+                                      const Color.fromARGB(255, 235, 233, 233),
                                   child: Column(
                                     children: [
                                       /**
@@ -54,7 +56,7 @@ class _commentPage extends State<commentPage> {
                                       Container(
                                         padding: const EdgeInsets.fromLTRB(
                                             1, 20, 1, 0),
-                                        child:  Text(
+                                        child: Text(
                                           "agePage_title".tr(),
                                           style: mylib.blueText,
                                           textAlign: TextAlign.center,
@@ -72,8 +74,10 @@ class _commentPage extends State<commentPage> {
                                           SizedBox(
                                               height: 32,
                                               child: RadioListTile(
-                                                activeColor: const Color.fromARGB(255, 13, 12, 32),
-                                                title:  Text("agePage_3-10".tr(),
+                                                activeColor:
+                                                    const Color.fromARGB(
+                                                        255, 13, 12, 32),
+                                                title: Text("agePage_3-10".tr(),
                                                     style: mylib.radioText),
                                                 groupValue: age,
                                                 onChanged: (value) {
@@ -87,8 +91,9 @@ class _commentPage extends State<commentPage> {
                                           SizedBox(
                                             height: 32,
                                             child: RadioListTile(
-                                              activeColor: const Color.fromARGB(255, 13, 12, 32),
-                                              title:  Text("agePage_11-17".tr(),
+                                              activeColor: const Color.fromARGB(
+                                                  255, 13, 12, 32),
+                                              title: Text("agePage_11-17".tr(),
                                                   style: mylib.radioText),
                                               groupValue: age,
                                               onChanged: (value) {
@@ -103,7 +108,8 @@ class _commentPage extends State<commentPage> {
                                           SizedBox(
                                             height: 32,
                                             child: RadioListTile(
-                                              activeColor: const Color.fromARGB(255, 13, 12, 32),
+                                              activeColor: const Color.fromARGB(
+                                                  255, 13, 12, 32),
                                               title: Text("agePage_18-25".tr(),
                                                   style: mylib.radioText),
                                               groupValue: age,
@@ -119,8 +125,9 @@ class _commentPage extends State<commentPage> {
                                           SizedBox(
                                             height: 32,
                                             child: RadioListTile(
-                                              activeColor: const Color.fromARGB(255, 13, 12, 32),
-                                              title:  Text("agePage_26-35".tr(),
+                                              activeColor: const Color.fromARGB(
+                                                  255, 13, 12, 32),
+                                              title: Text("agePage_26-35".tr(),
                                                   style: mylib.radioText),
                                               groupValue: age,
                                               onChanged: (value) {
@@ -135,7 +142,8 @@ class _commentPage extends State<commentPage> {
                                           SizedBox(
                                             height: 32,
                                             child: RadioListTile(
-                                              activeColor:const Color.fromARGB(255, 13, 12, 32),
+                                              activeColor: const Color.fromARGB(
+                                                  255, 13, 12, 32),
                                               title: Text("agePage_36-45".tr(),
                                                   style: mylib.radioText),
                                               groupValue: age,
@@ -151,7 +159,8 @@ class _commentPage extends State<commentPage> {
                                           SizedBox(
                                             height: 32,
                                             child: RadioListTile(
-                                              activeColor: const Color.fromARGB(255, 13, 12, 32),
+                                              activeColor: const Color.fromARGB(
+                                                  255, 13, 12, 32),
                                               title: Text("agePage_46-55".tr(),
                                                   style: mylib.radioText),
                                               groupValue: age,
@@ -167,8 +176,9 @@ class _commentPage extends State<commentPage> {
                                           SizedBox(
                                             height: 32,
                                             child: RadioListTile(
-                                              activeColor: const Color.fromARGB(255, 13, 12, 32),
-                                              title:  Text("agePage_56-65".tr(),
+                                              activeColor: const Color.fromARGB(
+                                                  255, 13, 12, 32),
+                                              title: Text("agePage_56-65".tr(),
                                                   style: mylib.radioText),
                                               groupValue: age,
                                               onChanged: (value) {
@@ -183,7 +193,8 @@ class _commentPage extends State<commentPage> {
                                           SizedBox(
                                             height: 32,
                                             child: RadioListTile(
-                                              activeColor: const Color.fromARGB(255, 13, 12, 32),
+                                              activeColor: const Color.fromARGB(
+                                                  255, 13, 12, 32),
                                               title: Text("agePage_66-75".tr(),
                                                   style: mylib.radioText),
                                               groupValue: age,
@@ -199,9 +210,9 @@ class _commentPage extends State<commentPage> {
                                           SizedBox(
                                             height: 32,
                                             child: RadioListTile(
-                                              activeColor: const Color.fromARGB(255, 13, 12, 32),
-                                              title: Text(
-                                                  "agePage_76".tr(),
+                                              activeColor: const Color.fromARGB(
+                                                  255, 13, 12, 32),
+                                              title: Text("agePage_76".tr(),
                                                   style: mylib.radioText),
                                               groupValue: age,
                                               onChanged: (value) {
@@ -230,7 +241,8 @@ class _commentPage extends State<commentPage> {
                                 child: Container(
                                   width: 325,
                                   height: 150,
-                                  color: const Color.fromARGB(255, 235, 233, 233),
+                                  color:
+                                      const Color.fromARGB(255, 235, 233, 233),
                                   child: Column(
                                     //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                     children: [
@@ -277,7 +289,8 @@ class _commentPage extends State<commentPage> {
                                 child: Container(
                                   width: 325,
                                   height: 150,
-                                  color: const Color.fromARGB(255, 235, 233, 233),
+                                  color:
+                                      const Color.fromARGB(255, 235, 233, 233),
                                   child: Column(
                                     children: [
                                       Container(
@@ -305,9 +318,11 @@ class _commentPage extends State<commentPage> {
                                           direction: Axis.horizontal,
                                           allowHalfRating: true,
                                           itemCount: 5,
-                                          itemPadding: const EdgeInsets.symmetric(
-                                              horizontal: 4.0),
-                                          itemBuilder: (context, _) => const Icon(
+                                          itemPadding:
+                                              const EdgeInsets.symmetric(
+                                                  horizontal: 4.0),
+                                          itemBuilder: (context, _) =>
+                                              const Icon(
                                             Icons.star,
                                             color: Colors.amber,
                                           ),
@@ -330,7 +345,8 @@ class _commentPage extends State<commentPage> {
                                 child: Container(
                                   width: 325,
                                   height: 305,
-                                  color: const Color.fromARGB(255, 235, 233, 233),
+                                  color:
+                                      const Color.fromARGB(255, 235, 233, 233),
                                   child: Column(
                                     children: [
                                       Container(
@@ -355,8 +371,8 @@ class _commentPage extends State<commentPage> {
                                       Align(
                                         alignment: Alignment.bottomRight,
                                         child: Container(
-                                          padding:
-                                              const EdgeInsets.fromLTRB(0, 5, 10, 2),
+                                          padding: const EdgeInsets.fromLTRB(
+                                              0, 5, 10, 2),
                                           child: Text(
                                             "commentPage_max_char".tr(),
                                             style: mylib.warningText,
@@ -376,9 +392,7 @@ class _commentPage extends State<commentPage> {
                   const Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 0)),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    
                     children: [
-                      
                       //mylib.createQuitButton(context, 141, 41),
                       mylib.createNextButton(
                         "btn_next".tr(),
@@ -386,7 +400,7 @@ class _commentPage extends State<commentPage> {
                         141,
                         41,
                         MaterialPageRoute(
-                          builder: (_) => genrePage(),
+                          builder: (_) => const GenrePage(),
                         ),
                       )
                     ],

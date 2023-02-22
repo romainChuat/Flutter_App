@@ -1,34 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/homePage.dart';
+import 'package:flutter_application_1/home_page.dart';
+import 'package:flutter_application_1/lieu.dart';
 import 'package:flutter_icon_shadow/flutter_icon_shadow.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'database_helper.dart';
 import 'database_helper_local.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'mylib.dart' as mylib;
 
-class endPage extends StatefulWidget {
+class EndPage extends StatefulWidget {
+  const EndPage({super.key});
+
   @override
   State<StatefulWidget> createState() {
-    return _endPage();
+    return Endpage();
   }
 }
 
-class _endPage extends State<endPage> {
-  var insert_lieuxID;
-  var insert_usID;
-
-
+class Endpage extends State<EndPage> {
+  var insertlieuxID;
+  var insertusID;
+  Map<String, dynamic> lieux = {};
 
   @override
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
-
     print(reponses);
 
     return Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: mylib.baseAppBar(appBar: AppBar()),
+        appBar: mylib.BaseAppBar(appBar: AppBar()),
         endDrawer: mylib.createMenu(context),
         body: Container(
           padding: const EdgeInsets.fromLTRB(0, 100, 0, 0),
@@ -98,12 +100,22 @@ class _endPage extends State<endPage> {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         ),
-        onPressed: () {
+        onPressed: () async {
           //envoie des données à la bd
-          insertUser(reponses);
-          print(insert_usID);
-          print(insert_lieuxID);
-          insertLieu(reponses);
+          try {
+            await insertUser(reponses);
+            //print(insert_usID);
+          } catch (e) {
+            print("USER DEJA ENREGISTRER");
+            insertlieuxID = reponses['rep_lieuxID'];
+            insertusID = reponses['rep_userID'];
+          }
+          try {
+            await insertLieu(reponses);
+            //print(insert_lieuxID);
+          } catch (e) {
+            print("ERREUR ID LIEUX");
+          }
           insertReponse(reponses);
           Navigator.push(
               context,
@@ -120,43 +132,64 @@ class _endPage extends State<endPage> {
     );
   }
 
-  void insertLieu(Map<String, Object> reponses) async {
-    Map<String, Object> lieux = new Map();
-    lieux['lieux_lat'] = reponses['latitude']!;
-    lieux['lieux_long'] = reponses['longitude']!;
+  Future<int?> insertLieu(Map<String, Object> reponses) async {
+    lieux['latitude'] = reponses['latitude']!;
+    lieux['longitude'] = reponses['longitude']!;
     reponses.remove('longitude');
     reponses.remove('latitude');
     print(lieux);
-    WidgetsFlutterBinding.ensureInitialized();
+    /*WidgetsFlutterBinding.ensureInitialized();
     DatabaseHelperLocal db = DatabaseHelperLocal();
+
     try {
-      insert_lieuxID = await db.insertLieu(lieux);
+      insertlieuxID = await db.insertLieu(lieux);
       print("new lieux");
     } catch (e) {
       print("enregistrement lieux impossible");
     }
+    print(insertlieuxID);*/
+
+    final DatabaseHelper dbHelper = DatabaseHelper.getInstance();
+    WidgetsFlutterBinding.ensureInitialized();
+
+    var res = await dbHelper.queryLieu(lieux['longitude'], lieux['latitude']);
+    if (res == null) {
+      try {
+        await dbHelper.insertLieu(lieux);
+        res = await dbHelper.queryLieu(lieux['longitude'], lieux['latitude']);
+        insertlieuxID = res?.first[0];
+      } catch (e) {
+        print(e);
+        return null;
+      }
+    } else {
+      insertlieuxID = res.first[0];
+    }
+    return insertlieuxID;
   }
 
-  void insertUser(Map<String,Object> reponses) async{
-    Map<String, Object> user = new Map();
+  Future<int?> insertUser(Map<String, Object> reponses) async {
+    Map<String, Object> user = {};
     user['user_name'] = "gest_${reponses['username']!}";
     reponses.remove('username');
     WidgetsFlutterBinding.ensureInitialized();
     DatabaseHelperLocal db = DatabaseHelperLocal();
-    try{
-      insert_usID = await db.insertUser(user);
-      reponses['already_register'] = true;
+    try {
+      insertusID = await db.insertUser(user);
+      //reponses['already_register'] = true;
       print("new user");
-    }catch(e){
+    } catch (e) {
       print("enregistrement user impossible");
     }
+    print(insertusID);
+    return insertusID;
   }
 
   void insertReponse(Map<String, Object> reponses) async {
     print(reponses);
 
-    reponses['rep_userID'] = 1;
-    reponses['rep_lieuxID'] = 1;
+    //reponses['rep_userID'] = insertusID;
+    reponses['rep_lieuxID'] = insertlieuxID;
     print(reponses);
     WidgetsFlutterBinding.ensureInitialized();
     DatabaseHelperLocal db = DatabaseHelperLocal();
@@ -175,11 +208,24 @@ class _endPage extends State<endPage> {
     if (result == true) {
       WidgetsFlutterBinding.ensureInitialized();
       DatabaseHelperLocal db = DatabaseHelperLocal();
-      var res = db.queryAllRowsReponse();
+      var res = await db.queryAllRowsReponse();
 
-      /*res.forEach((row) {
-        print(row);
-      });*/
+      final DatabaseHelper dbHelper = DatabaseHelper.getInstance();
+      WidgetsFlutterBinding.ensureInitialized();
+
+      for (var i in res) {
+        try {
+          print(i.toString());
+          await dbHelper.insertReponses(i.toMap());
+          //await dbHelper.insertLieu(l.toMap());
+          print("new row");
+          await db.delete();
+        } catch (e) {
+          print(e);
+        }
+      }
+    } else {
+      print("Pas de connexion");
     }
   }
 }

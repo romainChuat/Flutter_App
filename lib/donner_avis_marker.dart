@@ -1,24 +1,22 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/commentPage.dart';
-import 'package:flutter_application_1/database_helper.dart';
-import 'package:flutter_application_1/database_helper_local.dart';
-import 'package:flutter_application_1/homePage.dart';
+import 'package:flutter_application_1/comment_page.dart';
+import 'package:flutter_application_1/home_page.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map/plugin_api.dart';
 import 'package:latlong2/latlong.dart';
 import 'mylib.dart' as mylib;
 
-import 'droits_auteur.dart';
+class DonnerAvisMarker extends StatefulWidget {
+  const DonnerAvisMarker({super.key});
 
-class donner_avis_marker extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return _donner_avis_marker();
+    return Donneravismarker();
   }
 }
 
-class _donner_avis_marker extends State<donner_avis_marker> {
+class Donneravismarker extends State<DonnerAvisMarker> {
   var marker = <Marker>[];
   List<Map<String, dynamic>>? listMarker;
   double currentZoom = 13.0;
@@ -37,7 +35,6 @@ class _donner_avis_marker extends State<donner_avis_marker> {
 
   Future<void> getMarker() async {
     WidgetsFlutterBinding.ensureInitialized();
-    DatabaseHelperLocal db = DatabaseHelperLocal();
     try {
       //listMarker = await db.queryAllRowsLieu();
     } catch (e) {
@@ -49,7 +46,7 @@ class _donner_avis_marker extends State<donner_avis_marker> {
   Widget build(BuildContext context) {
     return Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: mylib.baseAppBar(appBar: AppBar()),
+        appBar: mylib.BaseAppBar(appBar: AppBar()),
         endDrawer: mylib.createMenu(context),
         body: Container(
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
@@ -92,7 +89,6 @@ class _donner_avis_marker extends State<donner_avis_marker> {
                                     center: currentCenter,
                                     zoom: 14,
                                     onTap: (LatLng value) {
-                                      Map<String, Object> longLat = new Map();
                                       print("tape");
                                       marker.clear();
                                       marker.add(
@@ -136,10 +132,6 @@ class _donner_avis_marker extends State<donner_avis_marker> {
                                               onPressed: () {
                                                 _zoomIn();
                                               },
-                                              child: const Icon(
-                                                Icons.zoom_in,
-                                                size: 25,
-                                              ),
                                               style: ButtonStyle(
                                                 shape:
                                                     MaterialStateProperty.all<
@@ -158,6 +150,10 @@ class _donner_avis_marker extends State<donner_avis_marker> {
                                                     MaterialStateProperty.all(
                                                         EdgeInsets.zero),
                                               ),
+                                              child: const Icon(
+                                                Icons.zoom_in,
+                                                size: 25,
+                                              ),
                                             ),
                                           ),
                                           SizedBox(
@@ -167,10 +163,6 @@ class _donner_avis_marker extends State<donner_avis_marker> {
                                               onPressed: () {
                                                 _zoomOut();
                                               },
-                                              child: const Icon(
-                                                Icons.zoom_out,
-                                                size: 25,
-                                              ),
                                               style: ButtonStyle(
                                                 shape:
                                                     MaterialStateProperty.all<
@@ -188,6 +180,10 @@ class _donner_avis_marker extends State<donner_avis_marker> {
                                                 padding:
                                                     MaterialStateProperty.all(
                                                         EdgeInsets.zero),
+                                              ),
+                                              child: const Icon(
+                                                Icons.zoom_out,
+                                                size: 25,
                                               ),
                                             ),
                                           )
@@ -209,8 +205,8 @@ class _donner_avis_marker extends State<donner_avis_marker> {
                       141,
                       41,
                       MaterialPageRoute(
-                        builder: (_) => commentPage(),
-                        settings: RouteSettings(arguments: null),
+                        builder: (_) => const CommentPage(),
+                        settings: const RouteSettings(arguments: null),
                       ),
                     )
                   ],

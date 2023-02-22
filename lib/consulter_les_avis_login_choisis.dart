@@ -3,22 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_map/plugin_api.dart';
-import 'endPage.dart';
+import 'end_page.dart';
 import 'mylib.dart' as mylib;
 
-class consulter_avis_login_choisis extends StatefulWidget {
-  const consulter_avis_login_choisis({super.key});
+class ConsulterAvisLoginChoisis extends StatefulWidget {
+  const ConsulterAvisLoginChoisis({super.key});
 
   @override
-  State<consulter_avis_login_choisis> createState() =>
-      _consulter_avis_login_choisis();
+  State<ConsulterAvisLoginChoisis> createState() => Consulteravisloginchoisis();
 }
 
-class _consulter_avis_login_choisis
-    extends State<consulter_avis_login_choisis> {
+class Consulteravisloginchoisis extends State<ConsulterAvisLoginChoisis> {
   final mapController = MapController();
 
-  Widget TitleDate() {
+  Widget titleDate() {
     return ClipRRect(
       borderRadius: BorderRadius.circular(15.0),
       child: Container(
@@ -37,7 +35,7 @@ class _consulter_avis_login_choisis
     );
   }
 
-  Widget Avis() {
+  Widget avis() {
     return ClipRRect(
       borderRadius: BorderRadius.circular(15.0),
       child: Container(
@@ -84,7 +82,7 @@ class _consulter_avis_login_choisis
     );
   }
 
-  Widget DejaVisite() {
+  Widget dejaVisite() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -134,7 +132,7 @@ class _consulter_avis_login_choisis
     );
   }
 
-  Widget Commentaire() {
+  Widget commentaire() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -188,7 +186,7 @@ class _consulter_avis_login_choisis
     );
   }
 
-  Widget Age() {
+  Widget age() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -246,7 +244,7 @@ class _consulter_avis_login_choisis
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) => endPage(),
+              builder: (BuildContext context) => const EndPage(),
             ),
           );
         },
@@ -258,7 +256,7 @@ class _consulter_avis_login_choisis
             side: const BorderSide(color: Colors.white, width: 3),
           ),
         ),
-        child:  Text(
+        child: Text(
           "consulter_les_avis_login_choisis_modifier".tr(),
           style: mylib.titleStyle2,
           textAlign: TextAlign.center,
@@ -275,7 +273,7 @@ class _consulter_avis_login_choisis
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) => endPage(),
+              builder: (BuildContext context) => const EndPage(),
             ),
           );
         },
@@ -300,7 +298,7 @@ class _consulter_avis_login_choisis
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: mylib.baseAppBar(
+      appBar: mylib.BaseAppBar(
         appBar: AppBar(),
       ),
       endDrawer: mylib.createMenu(context),
@@ -330,15 +328,15 @@ class _consulter_avis_login_choisis
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                      TitleDate(),
+                      titleDate(),
                       const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                      Avis(),
+                      avis(),
                       const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                      Commentaire(),
+                      commentaire(),
                       const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                      Age(),
+                      age(),
                       const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                      DejaVisite(),
+                      dejaVisite(),
                     ],
                   ),
                 ),

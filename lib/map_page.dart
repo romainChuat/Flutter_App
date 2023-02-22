@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/homePage.dart';
+import 'package:flutter_application_1/home_page.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map/plugin_api.dart';
 import 'package:latlong2/latlong.dart';
@@ -8,14 +8,16 @@ import 'mylib.dart' as mylib;
 
 import 'droits_auteur.dart';
 
-class mapPage extends StatefulWidget {
+class MapPage extends StatefulWidget {
+  const MapPage({super.key});
+
   @override
   State<StatefulWidget> createState() {
-    return _mapPage();
+    return Mappage();
   }
 }
 
-class _mapPage extends State<mapPage> {
+class Mappage extends State<MapPage> {
   var marker = <Marker>[];
   double currentZoom = 13.0;
   MapController mapController = MapController();
@@ -38,7 +40,7 @@ class _mapPage extends State<mapPage> {
 
     return Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: mylib.baseAppBar(appBar: AppBar()),
+        appBar: mylib.BaseAppBar(appBar: AppBar()),
         endDrawer: mylib.createMenu(context),
         body: Container(
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
@@ -81,7 +83,7 @@ class _mapPage extends State<mapPage> {
                                     center: currentCenter,
                                     zoom: 14,
                                     onTap: (LatLng value) {
-                                      Map<String, Object> longLat = new Map();
+                                      Map<String, Object> longLat = {};
                                       reponses['longitude'] = value.longitude;
                                       reponses['latitude'] = value.latitude;
                                       print(reponses);
@@ -93,15 +95,15 @@ class _mapPage extends State<mapPage> {
                                           height: 25.0,
                                           point: value,
                                           builder: (ctx) => IconButton(
-                                            icon: const Icon(
-                                              Icons.location_on,
-                                              color: Colors.redAccent,
-                                              size: 30,
-                                            ),
-                                            onPressed: () {
-                                              print("afficher avis");
-                                            },
-                                          )));
+                                                icon: const Icon(
+                                                  Icons.location_on,
+                                                  color: Colors.redAccent,
+                                                  size: 30,
+                                                ),
+                                                onPressed: () {
+                                                  print("afficher avis");
+                                                },
+                                              )));
                                       setState(() {});
                                     },
                                   ),
@@ -127,10 +129,6 @@ class _mapPage extends State<mapPage> {
                                               onPressed: () {
                                                 _zoomIn();
                                               },
-                                              child: const Icon(
-                                                Icons.zoom_in,
-                                                size: 25,
-                                              ),
                                               style: ButtonStyle(
                                                 shape:
                                                     MaterialStateProperty.all<
@@ -149,6 +147,10 @@ class _mapPage extends State<mapPage> {
                                                     MaterialStateProperty.all(
                                                         EdgeInsets.zero),
                                               ),
+                                              child: const Icon(
+                                                Icons.zoom_in,
+                                                size: 25,
+                                              ),
                                             ),
                                           ),
                                           SizedBox(
@@ -158,10 +160,6 @@ class _mapPage extends State<mapPage> {
                                               onPressed: () {
                                                 _zoomOut();
                                               },
-                                              child: const Icon(
-                                                Icons.zoom_out,
-                                                size: 25,
-                                              ),
                                               style: ButtonStyle(
                                                 shape:
                                                     MaterialStateProperty.all<
@@ -179,6 +177,10 @@ class _mapPage extends State<mapPage> {
                                                 padding:
                                                     MaterialStateProperty.all(
                                                         EdgeInsets.zero),
+                                              ),
+                                              child: const Icon(
+                                                Icons.zoom_out,
+                                                size: 25,
                                               ),
                                             ),
                                           )
@@ -200,7 +202,7 @@ class _mapPage extends State<mapPage> {
                       141,
                       41,
                       MaterialPageRoute(
-                        builder: (_) => droits_auteur(),
+                        builder: (_) => const DroitsAuteur(),
                         settings: RouteSettings(arguments: reponses),
                       ),
                     )

@@ -1,13 +1,15 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/activitePage.dart';
-import 'package:flutter_application_1/homePage.dart';
+import 'package:flutter_application_1/activite_page.dart';
+import 'package:flutter_application_1/home_page.dart';
 import 'mylib.dart' as mylib;
 
-class etudePage extends StatefulWidget {
+class EtudePage extends StatefulWidget {
+  const EtudePage({super.key});
+
   @override
   State<StatefulWidget> createState() {
-    return _etudePage();
+    return Etudepage();
   }
 }
 
@@ -22,12 +24,11 @@ enum Niveau {
   autre
 }
 
-class _etudePage extends State<etudePage> {
+class Etudepage extends State<EtudePage> {
   var niveau;
-  TextEditingController textControler =  new TextEditingController();
-  
-  get text => null;
+  TextEditingController textControler = TextEditingController();
 
+  get text => null;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +37,7 @@ class _etudePage extends State<etudePage> {
 
     return Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: mylib.baseAppBar(appBar: AppBar()),
+        appBar: mylib.BaseAppBar(appBar: AppBar()),
         endDrawer: mylib.createMenu(context),
         body: Container(
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
@@ -74,9 +75,9 @@ class _etudePage extends State<etudePage> {
                               SizedBox(
                                 height: 40,
                                 child: RadioListTile(
-                                  activeColor: const Color.fromARGB(255, 41, 59, 229),
-                                  title: Text(
-                                      "etudePage_primary".tr(),
+                                  activeColor:
+                                      const Color.fromARGB(255, 41, 59, 229),
+                                  title: Text("etudePage_primary".tr(),
                                       style: mylib.radioText),
                                   groupValue: niveau,
                                   onChanged: (value) {
@@ -93,9 +94,9 @@ class _etudePage extends State<etudePage> {
                               SizedBox(
                                 height: 70,
                                 child: RadioListTile(
-                                  activeColor: const Color.fromARGB(255, 41, 59, 229),
-                                  title: Text(
-                                      "etudePage_middle_school".tr(),
+                                  activeColor:
+                                      const Color.fromARGB(255, 41, 59, 229),
+                                  title: Text("etudePage_middle_school".tr(),
                                       style: mylib.radioText),
                                   groupValue: niveau,
                                   onChanged: (value) {
@@ -112,9 +113,9 @@ class _etudePage extends State<etudePage> {
                               SizedBox(
                                 height: 65,
                                 child: RadioListTile(
-                                  activeColor: const Color.fromARGB(255, 41, 59, 229),
-                                  title: Text(
-                                      "etudePage_high_school".tr(),
+                                  activeColor:
+                                      const Color.fromARGB(255, 41, 59, 229),
+                                  title: Text("etudePage_high_school".tr(),
                                       style: mylib.radioText),
                                   groupValue: niveau,
                                   onChanged: (value) {
@@ -131,9 +132,9 @@ class _etudePage extends State<etudePage> {
                               SizedBox(
                                 height: 55,
                                 child: RadioListTile(
-                                  activeColor: const Color.fromARGB(255, 41, 59, 229),
-                                  title: Text(
-                                      "etudePage_higher_education".tr(),
+                                  activeColor:
+                                      const Color.fromARGB(255, 41, 59, 229),
+                                  title: Text("etudePage_higher_education".tr(),
                                       style: mylib.radioText),
                                   groupValue: niveau,
                                   onChanged: (value) {
@@ -150,9 +151,9 @@ class _etudePage extends State<etudePage> {
                               SizedBox(
                                 height: 40,
                                 child: RadioListTile(
-                                  activeColor: const Color.fromARGB(255, 41, 59, 229),
-                                  title: Text(
-                                      "etudePage_bac3".tr(),
+                                  activeColor:
+                                      const Color.fromARGB(255, 41, 59, 229),
+                                  title: Text("etudePage_bac3".tr(),
                                       style: mylib.radioText),
                                   groupValue: niveau,
                                   onChanged: (value) {
@@ -169,9 +170,9 @@ class _etudePage extends State<etudePage> {
                               SizedBox(
                                 height: 45,
                                 child: RadioListTile(
-                                  activeColor: const Color.fromARGB(255, 41, 59, 229),
-                                  title: Text(
-                                      "etudePage_bac5".tr(),
+                                  activeColor:
+                                      const Color.fromARGB(255, 41, 59, 229),
+                                  title: Text("etudePage_bac5".tr(),
                                       style: mylib.radioText),
                                   groupValue: niveau,
                                   onChanged: (value) {
@@ -188,7 +189,8 @@ class _etudePage extends State<etudePage> {
                               SizedBox(
                                 height: 32,
                                 child: RadioListTile(
-                                  activeColor: const Color.fromARGB(255, 41, 59, 229),
+                                  activeColor:
+                                      const Color.fromARGB(255, 41, 59, 229),
                                   title: Text("etudePage_doctorat".tr(),
                                       style: mylib.radioText),
                                   groupValue: niveau,
@@ -206,31 +208,36 @@ class _etudePage extends State<etudePage> {
                               SizedBox(
                                 height: 32,
                                 child: RadioListTile(
-                                  activeColor: Color.fromARGB(255, 41, 59, 229),
+                                  activeColor:
+                                      const Color.fromARGB(255, 41, 59, 229),
                                   title: TextField(
-                                    style: mylib.simpleText.apply(fontSizeDelta: 5),
-                                    cursorColor: Color.fromARGB(255, 117, 106, 106),
+                                    style: mylib.simpleText
+                                        .apply(fontSizeDelta: 5),
+                                    cursorColor: const Color.fromARGB(
+                                        255, 117, 106, 106),
                                     decoration: const InputDecoration(
-                                      contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                                      filled: true,
-                                      fillColor: Colors.white,
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          width: 1,
-                                          color: Color.fromARGB(255, 255, 255, 255),
-                                        ),
-                                        borderRadius:BorderRadius.all(Radius.circular(15))
-                                      ),
-                                      focusedBorder:OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          width: 1,
-                                          color: Color.fromARGB(255, 255, 255, 255),
-                                        ),
-                                        borderRadius:BorderRadius.all(Radius.circular(15))
-                                      )
-                                    ),
+                                        contentPadding:
+                                            EdgeInsets.fromLTRB(0, 0, 0, 10),
+                                        filled: true,
+                                        fillColor: Colors.white,
+                                        enabledBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              width: 1,
+                                              color: Color.fromARGB(
+                                                  255, 255, 255, 255),
+                                            ),
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(15))),
+                                        focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              width: 1,
+                                              color: Color.fromARGB(
+                                                  255, 255, 255, 255),
+                                            ),
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(15)))),
                                     onChanged: (text) {
-                                      if(niveau == Niveau.autre){
+                                      if (niveau == Niveau.autre) {
                                         reponses['rep_etude'] = text.toString();
                                         print(reponses);
                                       }
@@ -241,7 +248,7 @@ class _etudePage extends State<etudePage> {
                                     setState(() {
                                       niveau = Niveau.autre;
                                       print(niveau);
-                                        //reponses['rep_etude'] = text.toString();
+                                      //reponses['rep_etude'] = text.toString();
 
                                       //reponses['rep_etude'] =niveau.toString().split('.').last;
                                       print(reponses);
@@ -260,14 +267,15 @@ class _etudePage extends State<etudePage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      mylib.createQuitButton(context, 141, 41, const MyHomePage(), reponses),
+                      mylib.createQuitButton(
+                          context, 141, 41, const MyHomePage(), reponses),
                       mylib.createNextButton(
                         "btn_next".tr(),
                         context,
                         141,
                         41,
                         MaterialPageRoute(
-                            builder: (_) => activitePage(),
+                            builder: (_) => const ActivitePage(),
                             settings: RouteSettings(arguments: reponses)),
                       )
                     ],
@@ -279,7 +287,8 @@ class _etudePage extends State<etudePage> {
         ));
   }
 
-  Widget createInput(double wdth, double hgth, TextEditingController textControler) {
+  Widget createInput(
+      double wdth, double hgth, TextEditingController textControler) {
     return SizedBox(
         height: hgth,
         width: wdth,
@@ -294,22 +303,17 @@ class _etudePage extends State<etudePage> {
                   filled: true,
                   fillColor: Colors.white,
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      width: 1,
-                      color: Color.fromARGB(255, 255, 255, 255),
-                    ),
-                    borderRadius: BorderRadius.all(Radius.circular(15))
-                  ),
+                      borderSide: BorderSide(
+                        width: 1,
+                        color: Color.fromARGB(255, 255, 255, 255),
+                      ),
+                      borderRadius: BorderRadius.all(Radius.circular(15))),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                    width: 1,
-                    color: Color.fromARGB(255, 255, 255, 255),
-                    ),
-                      borderRadius: BorderRadius.all(Radius.circular(15)))
-                    ),
-                  
-            )
-        )
-      );
+                      borderSide: BorderSide(
+                        width: 1,
+                        color: Color.fromARGB(255, 255, 255, 255),
+                      ),
+                      borderRadius: BorderRadius.all(Radius.circular(15)))),
+            )));
   }
 }

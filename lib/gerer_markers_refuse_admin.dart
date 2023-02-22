@@ -3,23 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:flutter_map/plugin_api.dart';
-import 'endPage.dart';
-import 'homePage.dart';
+import 'end_page.dart';
 import 'mylib.dart' as mylib;
 
-class gerer_les_markers_refuse extends StatefulWidget {
-  const gerer_les_markers_refuse({super.key});
+class GererLesMarkersRefuse extends StatefulWidget {
+  const GererLesMarkersRefuse({super.key});
 
   @override
-  State<gerer_les_markers_refuse> createState() => _gerer_les_markers_refuse();
+  State<GererLesMarkersRefuse> createState() => Gererlesmarkersrefuse();
 }
 
-class _gerer_les_markers_refuse extends State<gerer_les_markers_refuse> {
+class Gererlesmarkersrefuse extends State<GererLesMarkersRefuse> {
   final mapController = MapController();
-    var marker = <Marker>[];
+  var marker = <Marker>[];
 
-
-  Widget TitleDate() {
+  Widget titleDate() {
     return ClipRRect(
       borderRadius: BorderRadius.circular(15.0),
       child: Container(
@@ -38,7 +36,7 @@ class _gerer_les_markers_refuse extends State<gerer_les_markers_refuse> {
     );
   }
 
-  Widget Map() {
+  Widget map() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -66,46 +64,49 @@ class _gerer_les_markers_refuse extends State<gerer_les_markers_refuse> {
                   endIndent: 20,
                 ),
                 SizedBox(
-                          width: 265,
-                          height: 378,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(15.0),
-                            child: FlutterMap(
-                              mapController: mapController,
-                              options: MapOptions(
-                                center: LatLng(47.235198, 6.021029), 
-                                zoom: 14,
-                                onTap: (LatLng value) {
-                                  print("tape");
-                                  marker.add(Marker(
-                                    width: 25.0,
-                                    height: 25.0,
-                                    point: value,
-                                    builder: (ctx) => Container(
-                                        child: IconButton(
-                                          icon: const Icon(Icons.location_on, color: Colors.redAccent, size: 30,), 
-                                          onPressed: () { 
-                                            print("afficher avis");
-                                          },
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                                  setState(() {});
+                  width: 265,
+                  height: 378,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(15.0),
+                    child: FlutterMap(
+                      mapController: mapController,
+                      options: MapOptions(
+                        center: LatLng(47.235198, 6.021029),
+                        zoom: 14,
+                        onTap: (LatLng value) {
+                          print("tape");
+                          marker.add(
+                            Marker(
+                              width: 25.0,
+                              height: 25.0,
+                              point: value,
+                              builder: (ctx) => IconButton(
+                                icon: const Icon(
+                                  Icons.location_on,
+                                  color: Colors.redAccent,
+                                  size: 30,
+                                ),
+                                onPressed: () {
+                                  print("afficher avis");
                                 },
                               ),
-                              layers: [
-                                TileLayerOptions(
-                                  urlTemplate: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-                                ),
-                                MarkerLayerOptions(
-                                  markers: marker,
-                                ),                
-                              ],
-                              
                             ),
-                          ),
+                          );
+                          setState(() {});
+                        },
+                      ),
+                      layers: [
+                        TileLayerOptions(
+                          urlTemplate:
+                              "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
                         ),
+                        MarkerLayerOptions(
+                          markers: marker,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
@@ -114,7 +115,7 @@ class _gerer_les_markers_refuse extends State<gerer_les_markers_refuse> {
     );
   }
 
-  Widget Photo() {
+  Widget photo() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -159,7 +160,7 @@ class _gerer_les_markers_refuse extends State<gerer_les_markers_refuse> {
     );
   }
 
-  Widget Date() {
+  Widget date() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -209,7 +210,7 @@ class _gerer_les_markers_refuse extends State<gerer_les_markers_refuse> {
     );
   }
 
-  Widget Expression() {
+  Widget expression() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -302,7 +303,7 @@ class _gerer_les_markers_refuse extends State<gerer_les_markers_refuse> {
     );
   }
 
-  Widget Age() {
+  Widget age() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -352,7 +353,7 @@ class _gerer_les_markers_refuse extends State<gerer_les_markers_refuse> {
     );
   }
 
-  Widget Genre() {
+  Widget genre() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -402,7 +403,7 @@ class _gerer_les_markers_refuse extends State<gerer_les_markers_refuse> {
     );
   }
 
-  Widget NiveauxEtude() {
+  Widget niveauxEtude() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -452,7 +453,7 @@ class _gerer_les_markers_refuse extends State<gerer_les_markers_refuse> {
     );
   }
 
-  Widget ActiviteExerce() {
+  Widget activiteExerce() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -507,13 +508,13 @@ class _gerer_les_markers_refuse extends State<gerer_les_markers_refuse> {
       width: 310,
       height: 43,
       child: ElevatedButton(
-       onPressed: () {
-                       Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (BuildContext context) =>  endPage(),
-                        ),
-                      );
-                      },
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (BuildContext context) => const EndPage(),
+            ),
+          );
+        },
         style: ElevatedButton.styleFrom(
           shadowColor: Colors.grey.shade700,
           elevation: 20,
@@ -535,67 +536,56 @@ class _gerer_les_markers_refuse extends State<gerer_les_markers_refuse> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: mylib.baseAppBar(
+      appBar: mylib.BaseAppBar(
         appBar: AppBar(),
       ),
-            endDrawer: mylib.createMenu(context),
-
+      endDrawer: mylib.createMenu(context),
       body: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    const Padding(padding: EdgeInsets.fromLTRB(0, 55, 0, 0)),
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(15.0),
-                      child: Container(
-                        width: 359,
-                        height: 600,
-                        padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-
-                        decoration: const BoxDecoration(
-                                                    color: Color.fromARGB(118, 13, 12, 32),
-                        ),
-                        child: SingleChildScrollView(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              const Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 20, 0, 0)),
-                              TitleDate(),
-                              const Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                              Map(),
-                              const Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                              Photo(),
-                              const Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                              Date(),
-                              const Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                              Expression(),
-                              const Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                              Age(),
-                              const Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                              Genre(),
-                              const Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                              NiveauxEtude(),
-                              const Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                              ActiviteExerce(),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                    btnAnnulerRefus(),
-                  ],
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            const Padding(padding: EdgeInsets.fromLTRB(0, 55, 0, 0)),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(15.0),
+              child: Container(
+                width: 359,
+                height: 600,
+                padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+                decoration: const BoxDecoration(
+                  color: Color.fromARGB(118, 13, 12, 32),
+                ),
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      const Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 0)),
+                      titleDate(),
+                      const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                      map(),
+                      const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                      photo(),
+                      const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                      date(),
+                      const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                      expression(),
+                      const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                      age(),
+                      const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                      genre(),
+                      const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                      niveauxEtude(),
+                      const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                      activiteExerce(),
+                    ],
+                  ),
                 ),
               ),
+            ),
+            const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+            btnAnnulerRefus(),
+          ],
+        ),
+      ),
     );
   }
 }

@@ -1,4 +1,3 @@
-
 import 'package:crypt/crypt.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -10,21 +9,20 @@ import 'forgot_password_page.dart';
 import 'hello_admin_page.dart';
 import 'mylib.dart' as mylib;
 
-class connexion_adminn extends StatefulWidget {
-  const connexion_adminn({super.key});
+class ConnexionAdminn extends StatefulWidget {
+  const ConnexionAdminn({super.key});
 
   @override
-  State<connexion_adminn> createState() => _connexion_adminn();
+  State<ConnexionAdminn> createState() => Connexionadminn();
 }
 
-class _connexion_adminn extends State<connexion_adminn> {
+class Connexionadminn extends State<ConnexionAdminn> {
   final mailController = TextEditingController();
   final passwordController = TextEditingController();
   bool connected = false;
   bool isRememberMe = false;
-  String _inputText = '';
   bool _showErrorMessage = false;
-    Map<String, Object> reponses = new Map();
+  Map<String, Object> reponses = {};
 
   @override
   void initState() {
@@ -32,13 +30,11 @@ class _connexion_adminn extends State<connexion_adminn> {
     super.initState();
   }
 
-      void _handleInputChange(String input){
+  void _handleInputChange(String input) {
     setState(() {
-      _inputText = input;
       _showErrorMessage = false;
       reponses["email"] = input;
       print(reponses);
-
     });
   }
 
@@ -79,13 +75,16 @@ class _connexion_adminn extends State<connexion_adminn> {
                     color: Colors.black26, blurRadius: 6, offset: Offset(0, 2))
               ]),
           child: TextField(
-                                    onChanged: _handleInputChange,
+            onChanged: _handleInputChange,
             controller: mailController,
             keyboardType: TextInputType.emailAddress,
             style: const TextStyle(color: Colors.black87),
             decoration: const InputDecoration(
                 border: InputBorder.none,
-                prefixIcon: Icon(Icons.email, color: Color.fromARGB(255, 13, 12, 32),),
+                prefixIcon: Icon(
+                  Icons.email,
+                  color: Color.fromARGB(255, 13, 12, 32),
+                ),
                 hintText: 'Email',
                 hintStyle: TextStyle(color: Colors.black38)),
           ),
@@ -111,13 +110,16 @@ class _connexion_adminn extends State<connexion_adminn> {
                     color: Colors.black26, blurRadius: 6, offset: Offset(0, 2))
               ]),
           child: TextField(
-                                    onChanged: _handleInputChange,
+            onChanged: _handleInputChange,
             controller: passwordController,
             obscureText: true,
             style: const TextStyle(color: Colors.black87),
             decoration: const InputDecoration(
                 border: InputBorder.none,
-                prefixIcon: Icon(Icons.lock, color: Color.fromARGB(255, 13, 12, 32),),
+                prefixIcon: Icon(
+                  Icons.lock,
+                  color: Color.fromARGB(255, 13, 12, 32),
+                ),
                 hintText: 'Password',
                 hintStyle: TextStyle(color: Colors.black38)),
           ),
@@ -134,13 +136,13 @@ class _connexion_adminn extends State<connexion_adminn> {
           print("Forgot password pressed"),
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) => const forgot_password_page(),
+              builder: (BuildContext context) => const ForgotPasswordPage(),
             ),
           ),
         }, // padding: EdgeInsets.only(right: 0),
         child: Text(
           'forgot_password_page_title'.tr(),
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.black38,
             //fontWeight: FontWeight.bold
           ),
@@ -158,13 +160,13 @@ class _connexion_adminn extends State<connexion_adminn> {
               data: ThemeData(unselectedWidgetColor: Colors.white),
               child: Checkbox(
                   value: isRememberMe,
-                  checkColor: Color.fromARGB(255, 13, 12, 32),
+                  checkColor: const Color.fromARGB(255, 13, 12, 32),
                   activeColor: Colors.white,
                   onChanged: _handleRememberme),
             ),
             Text(
               'connexion_admin_remeber_me'.tr(),
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.black38,
               ),
             ),
@@ -173,49 +175,49 @@ class _connexion_adminn extends State<connexion_adminn> {
   }
 
   Widget buildLoginBtn() {
-    return Column(
-      children: [
-    SizedBox(
-      width: 120,
-      height: 43,
-      child: ElevatedButton(
-        onPressed: () async {
-          await loginCorrect();
-          if (connected == true) {
-            mylib.adminConnect = true;
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (BuildContext context) => const hello_admin_page(),
-              ),
-            );
-          }else {
+    return Column(children: [
+      SizedBox(
+        width: 120,
+        height: 43,
+        child: ElevatedButton(
+          onPressed: () async {
+            await loginCorrect();
+            if (connected == true) {
+              mylib.adminConnect = true;
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (BuildContext context) => const HelloAdminPage(),
+                ),
+              );
+            } else {
               print("Adresse mail ou mot de passe incorrect");
               setState(() {
-                              _showErrorMessage = true;
-
+                _showErrorMessage = true;
               });
             }
-        },
-        style: ElevatedButton.styleFrom(
-          shadowColor: Colors.grey.shade700,
-          elevation: 20,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0),
-            side: const BorderSide(color: Colors.white, width: 3),
+          },
+          style: ElevatedButton.styleFrom(
+            shadowColor: Colors.grey.shade700,
+            elevation: 20,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
+              side: const BorderSide(color: Colors.white, width: 3),
+            ),
+          ),
+          child: Text(
+            "connexion_user_login".tr(),
+            style: mylib.titleStyle,
+            textAlign: TextAlign.center,
           ),
         ),
-        child: Text(
-          "connexion_user_login".tr(),
-          style: mylib.titleStyle,
-          textAlign: TextAlign.center,
-        ),
       ),
-    ),
-        SizedBox(height: 14,),
-    if(_showErrorMessage)
-    Text("connexion_admin_email_mdp_incorrect".tr(), style: mylib.warningText),
-    
-   ]);
+      const SizedBox(
+        height: 14,
+      ),
+      if (_showErrorMessage)
+        Text("connexion_admin_email_mdp_incorrect".tr(),
+            style: mylib.warningText),
+    ]);
   }
 
   Widget buildUserBtn() {
@@ -228,7 +230,7 @@ class _connexion_adminn extends State<connexion_adminn> {
           onPressed: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (BuildContext context) => userchoixconnexion(),
+                builder: (BuildContext context) => const UserChoixConnexion(),
               ),
             );
           },
@@ -238,8 +240,7 @@ class _connexion_adminn extends State<connexion_adminn> {
             elevation: 20,
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  topRight: Radius.circular(10)),
+                  topLeft: Radius.circular(10), topRight: Radius.circular(10)),
             ),
           ),
           child: Text(
@@ -261,13 +262,12 @@ class _connexion_adminn extends State<connexion_adminn> {
         child: ElevatedButton(
           onPressed: () {},
           style: ElevatedButton.styleFrom(
-            backgroundColor: Color.fromARGB(255, 13, 12, 32),
+            backgroundColor: const Color.fromARGB(255, 13, 12, 32),
             shadowColor: Colors.grey.shade700,
             elevation: 20,
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  topRight: Radius.circular(10)),
+                  topLeft: Radius.circular(10), topRight: Radius.circular(10)),
             ),
           ),
           child: Text(
@@ -315,7 +315,11 @@ class _connexion_adminn extends State<connexion_adminn> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               buildTitle(),
-                              if(!_showErrorMessage) SizedBox(height: 31) else SizedBox(height: 18),                              buildEmail(),
+                              if (!_showErrorMessage)
+                                const SizedBox(height: 31)
+                              else
+                                const SizedBox(height: 18),
+                              buildEmail(),
                               const SizedBox(height: 15),
                               buildPassword(),
                               Row(
@@ -355,17 +359,14 @@ class _connexion_adminn extends State<connexion_adminn> {
       return;
     }
 
-    if (res.last.first == false) {
+    if (res.first[4] == false) {
       print("Ce compte n'est pas administrateur");
       return;
     }
 
-    var pass = res.last.last;
+    var pass = res.first[3];
 
     final passSaisie = Crypt.sha256(password, salt: 'abcdefghijklmnop');
-
-    print(passSaisie.toString());
-    print(pass);
 
     if (passSaisie.toString() == pass) {
       connected = true;

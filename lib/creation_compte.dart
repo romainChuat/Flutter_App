@@ -26,42 +26,21 @@ class Creationcompte extends State<CreationCompte> {
   bool _showErrorMessageMail = false;
   bool _showErrorMessagePassword = false;
   bool _showErrorMessageCondition = false;
-  String _inputTextMail = '';
-    String _inputTextPassword = '';
-  String _inputTextCondition = '';
-      Map<String, Object> reponses = new Map();
+  Map<String, Object> reponses = {};
 
-
-   
   bool connected = false;
 
-
-
-      void _handleInputChangeMail(String input){
+  void _handleInputChangeMail(String input) {
     setState(() {
-      _inputTextMail = input;
       _showErrorMessageMail = false;
-
-
     });
   }
 
-        void _handleInputChangePassword(String input){
+  void _handleInputChangePassword(String input) {
     setState(() {
-      _inputTextPassword= input;
-      _showErrorMessagePassword= false;
-
-
+      _showErrorMessagePassword = false;
     });
   }
-          void _handleInputChangeCondition(String input){
-    setState(() {
-      _showErrorMessageCondition = false;
-
-    });
-  }
-
-
 
   Widget buildTitle() {
     return Container(
@@ -91,13 +70,13 @@ class Creationcompte extends State<CreationCompte> {
           print("Choix de connexion"),
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) => userchoixconnexion(),
+              builder: (BuildContext context) => const UserChoixConnexion(),
             ),
           ),
         },
         child: Text(
           'forgot_password_page_sign_in'.tr(),
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.black38,
           ),
         ),
@@ -122,13 +101,14 @@ class Creationcompte extends State<CreationCompte> {
                     color: Colors.black26, blurRadius: 6, offset: Offset(0, 2))
               ]),
           child: TextField(
-                                    onChanged: _handleInputChangeMail,
+            onChanged: _handleInputChangeMail,
             controller: mailController,
             keyboardType: TextInputType.emailAddress,
             style: const TextStyle(color: Colors.black87),
             decoration: const InputDecoration(
                 border: InputBorder.none,
-                prefixIcon: Icon(Icons.email, color: Color.fromARGB(255, 13, 12, 32)),
+                prefixIcon:
+                    Icon(Icons.email, color: Color.fromARGB(255, 13, 12, 32)),
                 hintText: 'Email',
                 hintStyle: TextStyle(color: Colors.black38)),
           ),
@@ -154,13 +134,16 @@ class Creationcompte extends State<CreationCompte> {
                     color: Colors.black26, blurRadius: 6, offset: Offset(0, 2))
               ]),
           child: TextField(
-                                    onChanged: _handleInputChangePassword,
+            onChanged: _handleInputChangePassword,
             controller: passwordController_1,
             obscureText: true,
             style: const TextStyle(color: Colors.black87),
             decoration: const InputDecoration(
                 border: InputBorder.none,
-                prefixIcon: Icon(Icons.lock, color: Color.fromARGB(255, 13, 12, 32),),
+                prefixIcon: Icon(
+                  Icons.lock,
+                  color: Color.fromARGB(255, 13, 12, 32),
+                ),
                 hintText: 'Password',
                 hintStyle: TextStyle(color: Colors.black38)),
           ),
@@ -172,15 +155,15 @@ class Creationcompte extends State<CreationCompte> {
   Widget buildTermsCase() {
     return Row(
       children: <Widget>[
-            Checkbox(
-              value: acceptTerms,
-              checkColor: const Color.fromARGB(255, 13, 12, 32),
-              activeColor: Colors.white,
-              onChanged: (value) {
-                setState(() {
-                  acceptTerms = true;
-                });
-              }),
+        Checkbox(
+            value: acceptTerms,
+            checkColor: const Color.fromARGB(255, 13, 12, 32),
+            activeColor: Colors.white,
+            onChanged: (value) {
+              setState(() {
+                acceptTerms = true;
+              });
+            }),
         Text(
           'btn_accept'.tr(),
           style: const TextStyle(
@@ -205,80 +188,77 @@ class Creationcompte extends State<CreationCompte> {
         },
         child: Text(
           'creation_compte_terms_conditions'.tr(),
-          style: TextStyle(color: Colors.black38, fontWeight: FontWeight.bold),
+          style: const TextStyle(
+              color: Colors.black38, fontWeight: FontWeight.bold),
         ),
       ),
     );
   }
 
   Widget buildLoginBtn() {
-    return Column(
-      children: [
-
-
-    SizedBox(
-      width: 120,
-      height: 43,
-      child: ElevatedButton(
-        onPressed: () async {
-          if (verifMail() == false) {
-            print("Adresse mail incorrect");
-                          setState(() {
-                              _showErrorMessageMail = true;
-
-              });
-          } else {
-            if (verifPassword() == false) {
-              print("Mot de passe incorrect");
-                            setState(() {
-                              _showErrorMessagePassword = true;
-
+    return Column(children: [
+      SizedBox(
+        width: 120,
+        height: 43,
+        child: ElevatedButton(
+          onPressed: () async {
+            if (verifMail() == false) {
+              print("Adresse mail incorrect");
+              setState(() {
+                _showErrorMessageMail = true;
               });
             } else {
-              if (acceptTerms == false) {
-                print("Veuillez accepter les conditions d'utilisations");
-                                            setState(() {
-
-                _showErrorMessageCondition = true;
-                            });
-
+              if (verifPassword() == false) {
+                print("Mot de passe incorrect");
+                setState(() {
+                  _showErrorMessagePassword = true;
+                });
               } else {
-                await insertUser();
-                if (connected == true) {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (BuildContext context) => hellologinpassword(), 
-                      settings: RouteSettings(arguments: reponses),
-                    ),
-                  );
+                if (acceptTerms == false) {
+                  print("Veuillez accepter les conditions d'utilisations");
+                  setState(() {
+                    _showErrorMessageCondition = true;
+                  });
+                } else {
+                  await insertUser();
+                  if (connected == true) {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            const HelloLoginPassword(),
+                        settings: RouteSettings(arguments: reponses),
+                      ),
+                    );
+                  }
                 }
               }
             }
-          }
-          
-        },
-        style: ElevatedButton.styleFrom(
-          shadowColor: Colors.grey.shade700,
-          elevation: 20,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0),
-            side: const BorderSide(color: Colors.white, width: 3),
+          },
+          style: ElevatedButton.styleFrom(
+            shadowColor: Colors.grey.shade700,
+            elevation: 20,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
+              side: const BorderSide(color: Colors.white, width: 3),
+            ),
+          ),
+          child: Text(
+            "connexion_user_login".tr(),
+            style: mylib.titleStyle,
+            textAlign: TextAlign.center,
           ),
         ),
-        child: Text(
-          "connexion_user_login".tr(),
-          style: mylib.titleStyle,
-          textAlign: TextAlign.center,
-        ),
       ),
-    ),
-        const SizedBox(height: 14,),
-    if(_showErrorMessageMail)
-    Text("warning_email_incorrect".tr(), style: mylib.warningText) else if (_showErrorMessagePassword)
-    Text("warning_mdp_incorrect".tr(), style: mylib.warningText) else if(_showErrorMessageCondition)
-    Text("warning_mdp_terms_conditions".tr(), style: mylib.warningText),
-    
-   ]);
+      const SizedBox(
+        height: 14,
+      ),
+      if (_showErrorMessageMail)
+        Text("warning_email_incorrect".tr(), style: mylib.warningText)
+      else if (_showErrorMessagePassword)
+        Text("warning_mdp_incorrect".tr(), style: mylib.warningText)
+      else if (_showErrorMessageCondition)
+        Text("warning_mdp_terms_conditions".tr(), style: mylib.warningText),
+    ]);
   }
 
   Widget buildUserBtn() {
@@ -291,12 +271,12 @@ class Creationcompte extends State<CreationCompte> {
           onPressed: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (BuildContext context) => userchoixconnexion(),
+                builder: (BuildContext context) => const UserChoixConnexion(),
               ),
             );
           },
           style: ElevatedButton.styleFrom(
-              backgroundColor: const Color.fromARGB(255, 13, 12, 32),
+            backgroundColor: const Color.fromARGB(255, 13, 12, 32),
             shadowColor: Colors.grey.shade700,
             elevation: 20,
             shape: const RoundedRectangleBorder(
@@ -324,7 +304,7 @@ class Creationcompte extends State<CreationCompte> {
           onPressed: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (BuildContext context) => const connexion_adminn(),
+                builder: (BuildContext context) => const ConnexionAdminn(),
               ),
             );
           },
@@ -369,7 +349,10 @@ class Creationcompte extends State<CreationCompte> {
             style: const TextStyle(color: Colors.black87),
             decoration: const InputDecoration(
                 border: InputBorder.none,
-                prefixIcon: Icon(Icons.lock, color: Color.fromARGB(255, 13, 12, 32),),
+                prefixIcon: Icon(
+                  Icons.lock,
+                  color: Color.fromARGB(255, 13, 12, 32),
+                ),
                 hintText: 'Confirm Password',
                 hintStyle: TextStyle(color: Colors.black38)),
           ),
@@ -400,8 +383,10 @@ class Creationcompte extends State<CreationCompte> {
             style: const TextStyle(color: Colors.black87),
             decoration: const InputDecoration(
                 border: InputBorder.none,
-                prefixIcon:
-                    Icon(Icons.account_circle_sharp, color: Color.fromARGB(255, 13, 12, 32),),
+                prefixIcon: Icon(
+                  Icons.account_circle_sharp,
+                  color: Color.fromARGB(255, 13, 12, 32),
+                ),
                 hintText: 'User name',
                 hintStyle: TextStyle(color: Colors.black38)),
           ),
@@ -416,75 +401,76 @@ class Creationcompte extends State<CreationCompte> {
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,
         child: GestureDetector(
-          
-          child: Stack(
+            child: Stack(
           children: <Widget>[
             SizedBox(
-              height: double.infinity,
-              width: double.infinity,
-              child: Center(
-             child: SingleChildScrollView(
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Row(
+                height: double.infinity,
+                width: double.infinity,
+                child: Center(
+                    child: SingleChildScrollView(
+                  child: Center(
+                    child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        buildUserBtn(),
-                        const SizedBox(width: 10),
-                        buildAdminBtn(),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            buildUserBtn(),
+                            const SizedBox(width: 10),
+                            buildAdminBtn(),
+                          ],
+                        ),
+                        ClipRRect(
+                            borderRadius: const BorderRadius.only(
+                                bottomLeft: Radius.circular(15),
+                                bottomRight: Radius.circular(15)),
+                            child: Container(
+                              color: const Color.fromARGB(255, 235, 233, 233),
+                              width: 309,
+                              height: 600,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  buildTitle(),
+                                  if (!(_showErrorMessageMail ||
+                                      _showErrorMessageCondition ||
+                                      _showErrorMessagePassword))
+                                    const SizedBox(height: 44)
+                                  else
+                                    const SizedBox(height: 31),
+                                  builUserName(),
+                                  buildEmail(),
+                                  buildPassword(),
+                                  confirmPassword(),
+                                  const SizedBox(height: 8),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      buildTermsCase(),
+                                      buildTermsBtn(),
+                                    ],
+                                  ),
+                                  buildLoginBtn(),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Text(
+                                        'creation_compte_account'.tr(),
+                                        style: const TextStyle(
+                                          color: Colors.black38,
+                                        ),
+                                      ),
+                                      buildSignUpBtn(),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 11),
+                                ],
+                              ),
+                            )),
                       ],
                     ),
-                    ClipRRect(
-                        borderRadius: const BorderRadius.only(
-                            bottomLeft: Radius.circular(15),
-                            bottomRight: Radius.circular(15)),
-                        child: Container(
-                          color: const Color.fromARGB(255, 235, 233, 233),
-                          width: 309,
-                          height: 600,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              buildTitle(),
- if(!(_showErrorMessageMail || _showErrorMessageCondition || _showErrorMessagePassword)) SizedBox(height: 44) else SizedBox(height: 31),                              builUserName(),
-                              buildEmail(),
-                              buildPassword(),
-                              confirmPassword(),
-                              const SizedBox(height: 8),
-
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  buildTermsCase(),
-                                  buildTermsBtn(),
-                                ],
-                              ),
-
-                              buildLoginBtn(),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Text(
-                                    'creation_compte_account'.tr(),
-                                    style: TextStyle(
-                                      color: Colors.black38,
-                                    ),
-                                  ),
-                                  buildSignUpBtn(),
-                                ],
-                              ),
-                              const SizedBox(height: 11),
-                            ],
-                          ),
-                        )),
-                  ],
-                ),
-              ),
-             )
-              )
-            )
+                  ),
+                )))
           ],
         )),
       ),
@@ -526,7 +512,6 @@ class Creationcompte extends State<CreationCompte> {
     var res = await dbHelper.queryUser(mailController.text);
     if (res == null) {
       var u = Utilisateur(
-        admin: true,
         nom: nomController.text,
         mail: mailController.text,
         password:
@@ -537,7 +522,7 @@ class Creationcompte extends State<CreationCompte> {
         await dbHelper.insertUser(u.toMap());
         print("new user");
       } catch (e) {
-        print("enregistrement impossible");
+        print(e);
         return;
       }
     } else {

@@ -3,26 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:flutter_map/plugin_api.dart';
-import 'endPage.dart';
-import 'homePage.dart';
+import 'end_page.dart';
 import 'mylib.dart' as mylib;
 
-class gerer_markers_recu_admin extends StatefulWidget {
-  const gerer_markers_recu_admin({super.key});
+class GererMarkersRecuAdmin extends StatefulWidget {
+  const GererMarkersRecuAdmin({super.key});
 
   @override
-  State<gerer_markers_recu_admin> createState() =>
-      _gerer_markers_recu_admin();
+  State<GererMarkersRecuAdmin> createState() => Gerermarkersrecuadmin();
 }
 
-class _gerer_markers_recu_admin
-    extends State<gerer_markers_recu_admin> {
+class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
   final mapController = MapController();
-    var marker = <Marker>[];
+  var marker = <Marker>[];
 
-
-
-  Widget TitleDate() {
+  Widget titleDate() {
     return ClipRRect(
       borderRadius: BorderRadius.circular(15.0),
       child: Container(
@@ -41,7 +36,7 @@ class _gerer_markers_recu_admin
     );
   }
 
-  Widget Map() {
+  Widget map() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -69,46 +64,49 @@ class _gerer_markers_recu_admin
                   endIndent: 20,
                 ),
                 SizedBox(
-                          width: 265,
-                          height: 378,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(15.0),
-                            child: FlutterMap(
-                              mapController: mapController,
-                              options: MapOptions(
-                                center: LatLng(47.235198, 6.021029), 
-                                zoom: 14,
-                                onTap: (LatLng value) {
-                                  print("tape");
-                                  marker.add(Marker(
-                                    width: 25.0,
-                                    height: 25.0,
-                                    point: value,
-                                    builder: (ctx) => Container(
-                                        child: IconButton(
-                                          icon: const Icon(Icons.location_on, color: Colors.redAccent, size: 30,), 
-                                          onPressed: () { 
-                                            print("afficher avis");
-                                          },
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                                  setState(() {});
+                  width: 265,
+                  height: 378,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(15.0),
+                    child: FlutterMap(
+                      mapController: mapController,
+                      options: MapOptions(
+                        center: LatLng(47.235198, 6.021029),
+                        zoom: 14,
+                        onTap: (LatLng value) {
+                          print("tape");
+                          marker.add(
+                            Marker(
+                              width: 25.0,
+                              height: 25.0,
+                              point: value,
+                              builder: (ctx) => IconButton(
+                                icon: const Icon(
+                                  Icons.location_on,
+                                  color: Colors.redAccent,
+                                  size: 30,
+                                ),
+                                onPressed: () {
+                                  print("afficher avis");
                                 },
                               ),
-                              layers: [
-                                TileLayerOptions(
-                                  urlTemplate: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-                                ),
-                                MarkerLayerOptions(
-                                  markers: marker,
-                                ),                
-                              ],
-                              
                             ),
-                          ),
+                          );
+                          setState(() {});
+                        },
+                      ),
+                      layers: [
+                        TileLayerOptions(
+                          urlTemplate:
+                              "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
                         ),
+                        MarkerLayerOptions(
+                          markers: marker,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
@@ -117,7 +115,7 @@ class _gerer_markers_recu_admin
     );
   }
 
-  Widget Photo() {
+  Widget photo() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -162,7 +160,7 @@ class _gerer_markers_recu_admin
     );
   }
 
-  Widget Date() {
+  Widget date() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -190,19 +188,19 @@ class _gerer_markers_recu_admin
                   endIndent: 20,
                 ),
                 ClipRRect(
-          borderRadius: BorderRadius.circular(15.0),
-          child: Container(
-            width: 300,
-            height: 46,
-            color: const Color.fromARGB(255, 255, 255, 255),
-            child: const Align(
-                      child: Text("jj/mm/aaaa", 
-                            style: mylib.titleStyle3,
-                                    textAlign: TextAlign.center,
-                                    
-                          ),
+                  borderRadius: BorderRadius.circular(15.0),
+                  child: Container(
+                    width: 300,
+                    height: 46,
+                    color: const Color.fromARGB(255, 255, 255, 255),
+                    child: const Align(
+                      child: Text(
+                        "jj/mm/aaaa",
+                        style: mylib.titleStyle3,
+                        textAlign: TextAlign.center,
                       ),
-          ),
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -212,8 +210,7 @@ class _gerer_markers_recu_admin
     );
   }
 
-  Widget Expression() {
-
+  Widget expression() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -241,65 +238,62 @@ class _gerer_markers_recu_admin
                   endIndent: 20,
                 ),
                 ClipRRect(
-          borderRadius: BorderRadius.circular(15.0),
-        child: Column(
-          children: [
-           Container(
-            
-            width: 300,
-            height: 46,
-            color: const Color.fromARGB(255, 255, 255, 255),
-            child: const Align(
-                      child: Text("1. Texte texte texte texte", 
+                  borderRadius: BorderRadius.circular(15.0),
+                  child: Column(
+                    children: [
+                      Container(
+                        width: 300,
+                        height: 46,
+                        color: const Color.fromARGB(255, 255, 255, 255),
+                        child: const Align(
+                          child: Text(
+                            "1. Texte texte texte texte",
                             style: mylib.titleStyle3,
-                                    textAlign: TextAlign.center,
-                                    
+                            textAlign: TextAlign.center,
                           ),
+                        ),
                       ),
-          ),
-                   const SizedBox(height: 10),                   
-          Container(
-            width: 300,
-            height: 46,
-            color: const Color.fromARGB(255, 255, 255, 255),
-            child: const Align(
-                      child: Text("2. Texte texte texte texte", 
+                      const SizedBox(height: 10),
+                      Container(
+                        width: 300,
+                        height: 46,
+                        color: const Color.fromARGB(255, 255, 255, 255),
+                        child: const Align(
+                          child: Text(
+                            "2. Texte texte texte texte",
                             style: mylib.titleStyle3,
-                                    textAlign: TextAlign.center,
-                                    
+                            textAlign: TextAlign.center,
                           ),
+                        ),
                       ),
-          ),
-                             const SizedBox(height: 10),                   
-
-          Container(
-            width: 300,
-            height: 46,
-            color: const Color.fromARGB(255, 255, 255, 255),
-            child: const Align(
-                      child: Text("3. Texte texte texte texte", 
+                      const SizedBox(height: 10),
+                      Container(
+                        width: 300,
+                        height: 46,
+                        color: const Color.fromARGB(255, 255, 255, 255),
+                        child: const Align(
+                          child: Text(
+                            "3. Texte texte texte texte",
                             style: mylib.titleStyle3,
-                                    textAlign: TextAlign.center,
-                                    
+                            textAlign: TextAlign.center,
                           ),
+                        ),
                       ),
-          ),
-                             const SizedBox(height: 10),                   
-
-          Container(
-            width: 300,
-            height: 46,
-            color: const Color.fromARGB(255, 255, 255, 255),
-            child: const Align(
-                      child: Text("4. Texte texte texte texte", 
+                      const SizedBox(height: 10),
+                      Container(
+                        width: 300,
+                        height: 46,
+                        color: const Color.fromARGB(255, 255, 255, 255),
+                        child: const Align(
+                          child: Text(
+                            "4. Texte texte texte texte",
                             style: mylib.titleStyle3,
-                                    textAlign: TextAlign.center,
-                                    
+                            textAlign: TextAlign.center,
                           ),
+                        ),
                       ),
-          ),
-          ],
-        ),
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -308,8 +302,8 @@ class _gerer_markers_recu_admin
       ],
     );
   }
- 
- Widget Age() {
+
+  Widget age() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -337,19 +331,19 @@ class _gerer_markers_recu_admin
                   endIndent: 20,
                 ),
                 ClipRRect(
-          borderRadius: BorderRadius.circular(15.0),
-          child: Container(
-            width: 300,
-            height: 46,
-            color: const Color.fromARGB(255, 255, 255, 255),
-            child: Align(
-                      child: Text("Traiter_markers_recu_admin_years".tr(), 
-                            style: mylib.titleStyle3,
-                                    textAlign: TextAlign.center,
-                                    
-                          ),
+                  borderRadius: BorderRadius.circular(15.0),
+                  child: Container(
+                    width: 300,
+                    height: 46,
+                    color: const Color.fromARGB(255, 255, 255, 255),
+                    child: Align(
+                      child: Text(
+                        "Traiter_markers_recu_admin_years".tr(),
+                        style: mylib.titleStyle3,
+                        textAlign: TextAlign.center,
                       ),
-          ),
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -359,7 +353,7 @@ class _gerer_markers_recu_admin
     );
   }
 
- Widget Genre() {
+  Widget genre() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -387,19 +381,19 @@ class _gerer_markers_recu_admin
                   endIndent: 20,
                 ),
                 ClipRRect(
-          borderRadius: BorderRadius.circular(15.0),
-          child: Container(
-            width: 300,
-            height: 46,
-            color: const Color.fromARGB(255, 255, 255, 255),
-            child: const Align(
-                      child: Text("TexteGenre", 
-                            style: mylib.titleStyle3,
-                                    textAlign: TextAlign.center,
-                                    
-                          ),
+                  borderRadius: BorderRadius.circular(15.0),
+                  child: Container(
+                    width: 300,
+                    height: 46,
+                    color: const Color.fromARGB(255, 255, 255, 255),
+                    child: const Align(
+                      child: Text(
+                        "TexteGenre",
+                        style: mylib.titleStyle3,
+                        textAlign: TextAlign.center,
                       ),
-          ),
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -408,8 +402,8 @@ class _gerer_markers_recu_admin
       ],
     );
   }
- 
- Widget NiveauxEtude() {
+
+  Widget niveauxEtude() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -437,19 +431,19 @@ class _gerer_markers_recu_admin
                   endIndent: 20,
                 ),
                 ClipRRect(
-          borderRadius: BorderRadius.circular(15.0),
-          child: Container(
-            width: 300,
-            height: 46,
-            color: const Color.fromARGB(255, 255, 255, 255),
-            child: const Align(
-                      child: Text("Niveaux d'étude", 
-                            style: mylib.titleStyle3,
-                                    textAlign: TextAlign.center,
-                                    
-                          ),
+                  borderRadius: BorderRadius.circular(15.0),
+                  child: Container(
+                    width: 300,
+                    height: 46,
+                    color: const Color.fromARGB(255, 255, 255, 255),
+                    child: const Align(
+                      child: Text(
+                        "Niveaux d'étude",
+                        style: mylib.titleStyle3,
+                        textAlign: TextAlign.center,
                       ),
-          ),
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -459,7 +453,7 @@ class _gerer_markers_recu_admin
     );
   }
 
-   Widget ActiviteExerce() {
+  Widget activiteExerce() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -487,19 +481,19 @@ class _gerer_markers_recu_admin
                   endIndent: 20,
                 ),
                 ClipRRect(
-          borderRadius: BorderRadius.circular(15.0),
-          child: Container(
-            width: 300,
-            height: 46,
-            color: const Color.fromARGB(255, 255, 255, 255),
-            child: const Align(
-                      child: Text("Activité", 
-                            style: mylib.titleStyle3,
-                                    textAlign: TextAlign.center,
-                                    
-                          ),
+                  borderRadius: BorderRadius.circular(15.0),
+                  child: Container(
+                    width: 300,
+                    height: 46,
+                    color: const Color.fromARGB(255, 255, 255, 255),
+                    child: const Align(
+                      child: Text(
+                        "Activité",
+                        style: mylib.titleStyle3,
+                        textAlign: TextAlign.center,
                       ),
-          ),
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -509,142 +503,127 @@ class _gerer_markers_recu_admin
     );
   }
 
-Widget btnRefuser(){
-  return Container(
-     width: 160,
-    height: 43,
-    child: ElevatedButton(                    
-                     onPressed: () {
-                       Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (BuildContext context) =>  endPage(),
-                        ),
-                      );
-                      },  
-                                       
-                        style: ElevatedButton.styleFrom(
-                         shadowColor: Colors.grey.shade700,
-                         elevation: 20,
-                          shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.0),
-                    side: const BorderSide(color: Colors.white, width: 3),
-                  ),
-                        ),
-                        child: Text("btn_refuse".tr(), 
-                            style: mylib.titleStyle2,
-                            textAlign: TextAlign.center,        
-                          ),
-                      ),
-  );
-}
+  Widget btnRefuser() {
+    return SizedBox(
+      width: 160,
+      height: 43,
+      child: ElevatedButton(
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (BuildContext context) => const EndPage(),
+            ),
+          );
+        },
+        style: ElevatedButton.styleFrom(
+          shadowColor: Colors.grey.shade700,
+          elevation: 20,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15.0),
+            side: const BorderSide(color: Colors.white, width: 3),
+          ),
+        ),
+        child: Text(
+          "btn_refuse".tr(),
+          style: mylib.titleStyle2,
+          textAlign: TextAlign.center,
+        ),
+      ),
+    );
+  }
 
-Widget btnValider(){
-  return Container(
-     width: 160,
-    height: 43,
-   // padding: EdgeInsets.symmetric(vertical: 25),
-    //width: double.infinity,
-    child: ElevatedButton(                    
-                      onPressed: () {
-                       Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (BuildContext context) =>  endPage(),
-                        ),
-                      );
-                      },  
-                                       
-                        style: ElevatedButton.styleFrom(
-                         shadowColor: Colors.grey.shade700,
-                         elevation: 20,
-                          shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.0),
-                    side: const BorderSide(color: Colors.white, width: 3),
-                  ),
-                        ),
-                        child: Text("btn_validate".tr(), 
-                            style: mylib.titleStyle2,
-                            textAlign: TextAlign.center,        
-                          ),
-                      ),
-  );
-}
+  Widget btnValider() {
+    return SizedBox(
+      width: 160,
+      height: 43,
+      // padding: EdgeInsets.symmetric(vertical: 25),
+      //width: double.infinity,
+      child: ElevatedButton(
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (BuildContext context) => const EndPage(),
+            ),
+          );
+        },
+        style: ElevatedButton.styleFrom(
+          shadowColor: Colors.grey.shade700,
+          elevation: 20,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15.0),
+            side: const BorderSide(color: Colors.white, width: 3),
+          ),
+        ),
+        child: Text(
+          "btn_validate".tr(),
+          style: mylib.titleStyle2,
+          textAlign: TextAlign.center,
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: mylib.baseAppBar(
+      appBar: mylib.BaseAppBar(
         appBar: AppBar(),
       ),
-            endDrawer: mylib.createMenu(context),
-
+      endDrawer: mylib.createMenu(context),
       body: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    const Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 55, 0, 0)),
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(15.0),
-                      
-                      child: Container(
-                        
-                        width: 359,
-                        height: 600,
-                        padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-                        decoration: const BoxDecoration(
-                          color: Color.fromARGB(118, 13, 12, 32),
-                        ),
-                        child: SingleChildScrollView(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              const Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 20, 0, 0)),
-                              TitleDate(),
-                              const Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                              Map(),
-                              const Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                              Photo(),
-                              const Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                              Date(),
-                              const Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                              Expression(),
-                              const Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                              Age(),
-                              const Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                              Genre(),
-                              const Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                              NiveauxEtude(),
-                              const Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                              ActiviteExerce(),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                     children: <Widget>[
- const Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 30, 0, 50)),
-                    btnRefuser(),
-                     const Padding(
-                                  padding: EdgeInsets.fromLTRB(35, 0, 0, 0)),
-                    btnValider(),
-                     ],
-                    ),
-                  ],
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            const Padding(padding: EdgeInsets.fromLTRB(0, 55, 0, 0)),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(15.0),
+              child: Container(
+                width: 359,
+                height: 600,
+                padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+                decoration: const BoxDecoration(
+                  color: Color.fromARGB(118, 13, 12, 32),
+                ),
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      const Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 0)),
+                      titleDate(),
+                      const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                      map(),
+                      const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                      photo(),
+                      const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                      date(),
+                      const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                      expression(),
+                      const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                      age(),
+                      const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                      genre(),
+                      const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                      niveauxEtude(),
+                      const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                      activiteExerce(),
+                    ],
+                  ),
                 ),
               ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 50)),
+                btnRefuser(),
+                const Padding(padding: EdgeInsets.fromLTRB(35, 0, 0, 0)),
+                btnValider(),
+              ],
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/user_choix_connexion.dart';
 import 'mylib.dart' as mylib;
 
-class confirmation_deconnexion extends StatefulWidget {
-  const confirmation_deconnexion({super.key});
+class ConfirmationDeconnexion extends StatefulWidget {
+  const ConfirmationDeconnexion({super.key});
 
   @override
-  State<confirmation_deconnexion> createState() => _confirmation_deconnexion();
+  State<ConfirmationDeconnexion> createState() => Confirmationdeconnexion();
 }
 
-class _confirmation_deconnexion extends State<confirmation_deconnexion> {
+class Confirmationdeconnexion extends State<ConfirmationDeconnexion> {
   bool darkmode = false;
   dynamic savedThemeMode;
 
@@ -44,7 +44,7 @@ class _confirmation_deconnexion extends State<confirmation_deconnexion> {
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) => userchoixconnexion(),
+              builder: (BuildContext context) => const UserChoixConnexion(),
             ),
           );
         },
@@ -94,7 +94,7 @@ class _confirmation_deconnexion extends State<confirmation_deconnexion> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: mylib.baseAppBar(
+      appBar: mylib.BaseAppBar(
         appBar: AppBar(),
       ),
       endDrawer: mylib.createMenu(context),
@@ -112,7 +112,7 @@ class _confirmation_deconnexion extends State<confirmation_deconnexion> {
                   width: 250,
                 ),
                 const SizedBox(height: 15),
-                 SizedBox(
+                SizedBox(
                   child: Text('confirmation_deconnexion_title'.tr(),
                       style: mylib.titleStyle),
                 ),

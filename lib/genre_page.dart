@@ -1,20 +1,21 @@
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/homePage.dart';
-import 'etudePage.dart';
+import 'package:flutter_application_1/home_page.dart';
+import 'etude_page.dart';
 import 'mylib.dart' as mylib;
 
-class genrePage extends StatefulWidget {
+class GenrePage extends StatefulWidget {
+  const GenrePage({super.key});
+
   @override
   State<StatefulWidget> createState() {
-    return _genrePage();
+    return Genrepage();
   }
 }
 
 enum Genre { feminin, masculin, autre }
 
-class _genrePage extends State<genrePage> {
+class Genrepage extends State<GenrePage> {
   var genre;
 
   @override
@@ -25,7 +26,7 @@ class _genrePage extends State<genrePage> {
 
     return Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: mylib.baseAppBar(appBar: AppBar()),
+        appBar: mylib.BaseAppBar(appBar: AppBar()),
         endDrawer: mylib.createMenu(context),
         body: Container(
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
@@ -33,7 +34,6 @@ class _genrePage extends State<genrePage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                
                 ClipRRect(
                   borderRadius: BorderRadius.circular(15.0),
                   child: Container(
@@ -51,7 +51,7 @@ class _genrePage extends State<genrePage> {
                           ),
                         ),
                         const Divider(
-                          color: Colors. black,
+                          color: Colors.black,
                           thickness: 1,
                           indent: 20,
                           endIndent: 20,
@@ -62,7 +62,8 @@ class _genrePage extends State<genrePage> {
                             SizedBox(
                                 height: 32,
                                 child: RadioListTile(
-                                  activeColor: const Color.fromARGB(255, 41, 59, 229),
+                                  activeColor:
+                                      const Color.fromARGB(255, 41, 59, 229),
                                   title: Text("genrePage_female".tr(),
                                       style: mylib.radioText),
                                   groupValue: genre,
@@ -80,7 +81,8 @@ class _genrePage extends State<genrePage> {
                             SizedBox(
                               height: 32,
                               child: RadioListTile(
-                                activeColor: const Color.fromARGB(255, 41, 59, 229),
+                                activeColor:
+                                    const Color.fromARGB(255, 41, 59, 229),
                                 title: Text("genrePage_male".tr(),
                                     style: mylib.radioText),
                                 groupValue: genre,
@@ -99,7 +101,8 @@ class _genrePage extends State<genrePage> {
                             SizedBox(
                               height: 32,
                               child: RadioListTile(
-                                activeColor: const Color.fromARGB(255, 41, 59, 229),
+                                activeColor:
+                                    const Color.fromARGB(255, 41, 59, 229),
                                 title: Text("genrePage_other".tr(),
                                     style: mylib.radioText),
                                 groupValue: genre,
@@ -124,14 +127,15 @@ class _genrePage extends State<genrePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    mylib.createQuitButton(context, 141, 41, const MyHomePage(), reponses),
+                    mylib.createQuitButton(
+                        context, 141, 41, const MyHomePage(), reponses),
                     mylib.createNextButton(
                       "btn_next".tr(),
                       context,
                       141,
                       41,
                       MaterialPageRoute(
-                          builder: (_) => etudePage(),
+                          builder: (_) => const EtudePage(),
                           settings: RouteSettings(arguments: reponses)),
                     )
                   ],

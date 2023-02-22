@@ -1,28 +1,24 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_application_1/endPage.dart';
+import 'package:flutter_application_1/end_page.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:flutter_map/plugin_api.dart';
-import 'homePage.dart';
 import 'mylib.dart' as mylib;
 
-class traiter_markers_recu_admin extends StatefulWidget {
-  const traiter_markers_recu_admin({super.key});
+class TraiterMarkersRecuAdmin extends StatefulWidget {
+  const TraiterMarkersRecuAdmin({super.key});
 
   @override
-  State<traiter_markers_recu_admin> createState() =>
-      _traiter_markers_recu_admin();
+  State<TraiterMarkersRecuAdmin> createState() => Traitermarkersrecuadmin();
 }
 
-class _traiter_markers_recu_admin extends State<traiter_markers_recu_admin> {
+class Traitermarkersrecuadmin extends State<TraiterMarkersRecuAdmin> {
   final mapController = MapController();
   var marker = <Marker>[];
 
-
-
-  Widget TitleDate() {
+  Widget titleDate() {
     return ClipRRect(
       borderRadius: BorderRadius.circular(15.0),
       child: Container(
@@ -43,7 +39,7 @@ class _traiter_markers_recu_admin extends State<traiter_markers_recu_admin> {
     );
   }
 
-  Widget Map() {
+  Widget map() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -87,17 +83,15 @@ class _traiter_markers_recu_admin extends State<traiter_markers_recu_admin> {
                               width: 25.0,
                               height: 25.0,
                               point: value,
-                              builder: (ctx) => Container(
-                                child: IconButton(
-                                  icon: const Icon(
-                                    Icons.location_on,
-                                    color: Colors.redAccent,
-                                    size: 30,
-                                  ),
-                                  onPressed: () {
-                                    print("afficher avis");
-                                  },
+                              builder: (ctx) => IconButton(
+                                icon: const Icon(
+                                  Icons.location_on,
+                                  color: Colors.redAccent,
+                                  size: 30,
                                 ),
+                                onPressed: () {
+                                  print("afficher avis");
+                                },
                               ),
                             ),
                           );
@@ -124,7 +118,7 @@ class _traiter_markers_recu_admin extends State<traiter_markers_recu_admin> {
     );
   }
 
-  Widget Photo() {
+  Widget photo() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -169,7 +163,7 @@ class _traiter_markers_recu_admin extends State<traiter_markers_recu_admin> {
     );
   }
 
-  Widget Date() {
+  Widget date() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -219,7 +213,7 @@ class _traiter_markers_recu_admin extends State<traiter_markers_recu_admin> {
     );
   }
 
-  Widget Expression() {
+  Widget expression() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -312,7 +306,7 @@ class _traiter_markers_recu_admin extends State<traiter_markers_recu_admin> {
     );
   }
 
-  Widget Age() {
+  Widget age() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -362,7 +356,7 @@ class _traiter_markers_recu_admin extends State<traiter_markers_recu_admin> {
     );
   }
 
-  Widget Genre() {
+  Widget genre() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -412,7 +406,7 @@ class _traiter_markers_recu_admin extends State<traiter_markers_recu_admin> {
     );
   }
 
-  Widget NiveauxEtude() {
+  Widget niveauxEtude() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -462,7 +456,7 @@ class _traiter_markers_recu_admin extends State<traiter_markers_recu_admin> {
     );
   }
 
-  Widget ActiviteExerce() {
+  Widget activiteExerce() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -520,7 +514,7 @@ class _traiter_markers_recu_admin extends State<traiter_markers_recu_admin> {
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) => endPage(),
+              builder: (BuildContext context) => const EndPage(),
             ),
           );
         },
@@ -545,7 +539,7 @@ class _traiter_markers_recu_admin extends State<traiter_markers_recu_admin> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: mylib.baseAppBar(
+      appBar: mylib.BaseAppBar(
         appBar: AppBar(),
       ),
       endDrawer: mylib.createMenu(context),
@@ -567,11 +561,9 @@ class _traiter_markers_recu_admin extends State<traiter_markers_recu_admin> {
                       child: Container(
                         width: 359,
                         height: 600,
-                                                padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-
+                        padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
                         decoration: const BoxDecoration(
-                                                    color: Color.fromARGB(118, 13, 12, 32),
-
+                          color: Color.fromARGB(118, 13, 12, 32),
                         ),
                         child: SingleChildScrollView(
                           child: Column(
@@ -579,31 +571,31 @@ class _traiter_markers_recu_admin extends State<traiter_markers_recu_admin> {
                             children: [
                               const Padding(
                                   padding: EdgeInsets.fromLTRB(0, 20, 0, 0)),
-                              TitleDate(),
+                              titleDate(),
                               const Padding(
                                   padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                              Map(),
+                              map(),
                               const Padding(
                                   padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                              Photo(),
+                              photo(),
                               const Padding(
                                   padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                              Date(),
+                              date(),
                               const Padding(
                                   padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                              Expression(),
+                              expression(),
                               const Padding(
                                   padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                              Age(),
+                              age(),
                               const Padding(
                                   padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                              Genre(),
+                              genre(),
                               const Padding(
                                   padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                              NiveauxEtude(),
+                              niveauxEtude(),
                               const Padding(
                                   padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                              ActiviteExerce(),
+                              activiteExerce(),
                             ],
                           ),
                         ),

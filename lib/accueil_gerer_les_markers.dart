@@ -1,19 +1,19 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'Traiter_markers_recu_admin.dart';
+import 'traiter_markers_recu_admin.dart';
 import 'gerer_les_markers_recu_admin_choisis.dart';
 import 'gerer_markers_refuse_admin.dart';
 import 'mylib.dart' as mylib;
 
-class acceuilgererlesmarkers extends StatefulWidget {
-  const acceuilgererlesmarkers({super.key});
+class AccueilGererLesMarkers extends StatefulWidget {
+  const AccueilGererLesMarkers({super.key});
 
   @override
-  State<acceuilgererlesmarkers> createState() => _acceuilgererlesmarkers();
+  State<AccueilGererLesMarkers> createState() => Accueilgererlesmarkers();
 }
 
-class _acceuilgererlesmarkers extends State<acceuilgererlesmarkers> {
-  Widget GererLesMarkersValide() {
+class Accueilgererlesmarkers extends State<AccueilGererLesMarkers> {
+  Widget gererlesmarkersvalide() {
     return SizedBox(
       width: 296,
       height: 49,
@@ -21,8 +21,7 @@ class _acceuilgererlesmarkers extends State<acceuilgererlesmarkers> {
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) =>
-                  const gerer_markers_recu_admin(),
+              builder: (BuildContext context) => const GererMarkersRecuAdmin(),
             ),
           );
         },
@@ -35,7 +34,7 @@ class _acceuilgererlesmarkers extends State<acceuilgererlesmarkers> {
           ),
         ),
         child: Text(
-          "acceuil_gerer_les_markers_btn_validated".tr(),
+          "accueil_gerer_les_markers_btn_validated".tr(),
           style: mylib.titleStyle5,
           textAlign: TextAlign.center,
         ),
@@ -43,7 +42,7 @@ class _acceuilgererlesmarkers extends State<acceuilgererlesmarkers> {
     );
   }
 
-  Widget GererLesMarkersRecu() {
+  Widget gererlesmarkersrecu() {
     return SizedBox(
       width: 296,
       height: 49,
@@ -52,7 +51,7 @@ class _acceuilgererlesmarkers extends State<acceuilgererlesmarkers> {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (BuildContext context) =>
-                  const traiter_markers_recu_admin(),
+                  const TraiterMarkersRecuAdmin(),
             ),
           );
         },
@@ -65,7 +64,7 @@ class _acceuilgererlesmarkers extends State<acceuilgererlesmarkers> {
           ),
         ),
         child: Text(
-          "acceuil_gerer_les_markers_btn_traiter_received".tr(),
+          "accueil_gerer_les_markers_btn_traiter_received".tr(),
           style: mylib.titleStyle5,
           textAlign: TextAlign.center,
         ),
@@ -73,7 +72,7 @@ class _acceuilgererlesmarkers extends State<acceuilgererlesmarkers> {
     );
   }
 
-  Widget GererLesMarkersRefuse() {
+  Widget gererlesmarkersrefuse() {
     return SizedBox(
       width: 296,
       height: 49,
@@ -81,8 +80,7 @@ class _acceuilgererlesmarkers extends State<acceuilgererlesmarkers> {
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) =>
-                  const gerer_les_markers_refuse(),
+              builder: (BuildContext context) => const GererLesMarkersRefuse(),
             ),
           );
         },
@@ -95,7 +93,7 @@ class _acceuilgererlesmarkers extends State<acceuilgererlesmarkers> {
           ),
         ),
         child: Text(
-          "acceuil_gerer_les_markers_btn_rejected".tr(),
+          "accueil_gerer_les_markers_btn_rejected".tr(),
           style: mylib.titleStyle5,
           textAlign: TextAlign.center,
         ),
@@ -107,7 +105,7 @@ class _acceuilgererlesmarkers extends State<acceuilgererlesmarkers> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: mylib.baseAppBar(
+      appBar: mylib.BaseAppBar(
         appBar: AppBar(),
       ),
       endDrawer: mylib.createMenu(context),
@@ -118,25 +116,25 @@ class _acceuilgererlesmarkers extends State<acceuilgererlesmarkers> {
             color: const Color.fromARGB(255, 235, 233, 233),
             width: 309,
             height: 464,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-             SizedBox(height: 61),
-             SizedBox(
-              width: 250,
-              child: Text('acceuil_gerer_les_markers_title'.tr(),
-                  style: mylib.titleStyle),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                const SizedBox(height: 61),
+                SizedBox(
+                  width: 250,
+                  child: Text('acceuil_gerer_les_markers_title'.tr(),
+                      style: mylib.titleStyle),
+                ),
+                const SizedBox(height: 61),
+                gererlesmarkersvalide(),
+                const SizedBox(height: 30),
+                gererlesmarkersrecu(),
+                const SizedBox(height: 30),
+                gererlesmarkersrefuse(),
+                const SizedBox(height: 40),
+              ],
             ),
-            const SizedBox(height: 61),
-            GererLesMarkersValide(),
-            const SizedBox(height: 30),
-            GererLesMarkersRecu(),
-            const SizedBox(height: 30),
-            GererLesMarkersRefuse(),
-            const SizedBox(height: 40),
-          ],
-        ),
-      ),
+          ),
         ),
       ),
     );

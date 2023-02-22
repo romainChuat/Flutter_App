@@ -11,21 +11,20 @@ import 'forgotpassword_user.dart';
 import 'hello_login_password.dart';
 import 'mylib.dart' as mylib;
 
-class userconnexionpassword extends StatefulWidget {
-  const userconnexionpassword({super.key});
+class UserConnexionPassword extends StatefulWidget {
+  const UserConnexionPassword({super.key});
 
   @override
-  _userconnexionpassword createState() => _userconnexionpassword();
+  Userconnexionpassword createState() => Userconnexionpassword();
 }
 
-class _userconnexionpassword extends State<userconnexionpassword> {
+class Userconnexionpassword extends State<UserConnexionPassword> {
   final mailController = TextEditingController();
   final passwordController = TextEditingController();
   bool connected = false;
   bool isRememberMe = false;
-  String _inputText = '';
   bool _showErrorMessage = false;
-  Map<String, Object> reponses = new Map();
+  Map<String, Object> reponses = {};
 
   @override
   void initState() {
@@ -35,10 +34,7 @@ class _userconnexionpassword extends State<userconnexionpassword> {
 
   void _handleInputChange(String input) {
     setState(() {
-      _inputText = input;
       _showErrorMessage = false;
-      reponses["email"] = input;
-      print(reponses);
     });
   }
 
@@ -162,10 +158,10 @@ class _userconnexionpassword extends State<userconnexionpassword> {
           print("Forgot password pressed"),
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) => const forgot_password_user(),
+              builder: (BuildContext context) => const ForgotPasswordUser(),
             ),
           ),
-        }, 
+        },
         child: Text(
           'forgot_password_page_title'.tr(),
           style: const TextStyle(
@@ -185,11 +181,7 @@ class _userconnexionpassword extends State<userconnexionpassword> {
                 value: isRememberMe,
                 checkColor: const Color.fromARGB(255, 13, 12, 32),
                 activeColor: Colors.white,
-                onChanged: (value) {
-                  setState(() {
-                    isRememberMe = true;
-                  });
-                }),
+                onChanged: handleRememberme),
             Text(
               'connexion_admin_remeber_me'.tr(),
               style: const TextStyle(
@@ -210,7 +202,7 @@ class _userconnexionpassword extends State<userconnexionpassword> {
             await loginCorrect();
             if (connected == true) {
               Navigator.of(context).push(MaterialPageRoute(
-                builder: (BuildContext context) => const hellologinpassword(),
+                builder: (BuildContext context) => const HelloLoginPassword(),
                 settings: RouteSettings(arguments: reponses),
               ));
             } else {
@@ -240,40 +232,38 @@ class _userconnexionpassword extends State<userconnexionpassword> {
         height: 14,
       ),
       if (_showErrorMessage)
-        Text("connexion_admin_email_mdp_incorrect".tr(), style: mylib.warningText),
+        Text("connexion_admin_email_mdp_incorrect".tr(),
+            style: mylib.warningText),
     ]);
   }
 
   Widget buildUserBtn() {
-    return Container(
-      child: Align(
-        alignment: const Alignment(-0.66, 0.0),
-        child: SizedBox(
-          width: 150,
-          height: 50,
-          child: ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (BuildContext context) => userchoixconnexion(),
-                ),
-              );
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: const Color.fromARGB(255, 13, 12, 32),
-              shadowColor: Colors.grey.shade700,
-              elevation: 20,
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    topRight: Radius.circular(10)),
+    return Align(
+      alignment: const Alignment(-0.66, 0.0),
+      child: SizedBox(
+        width: 150,
+        height: 50,
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (BuildContext context) => const UserChoixConnexion(),
               ),
+            );
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color.fromARGB(255, 13, 12, 32),
+            shadowColor: Colors.grey.shade700,
+            elevation: 20,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(10), topRight: Radius.circular(10)),
             ),
-            child: Text(
-              "btn_user".tr(),
-              style: mylib.titleStyle5,
-              textAlign: TextAlign.center,
-            ),
+          ),
+          child: Text(
+            "btn_user".tr(),
+            style: mylib.titleStyle5,
+            textAlign: TextAlign.center,
           ),
         ),
       ),
@@ -290,7 +280,7 @@ class _userconnexionpassword extends State<userconnexionpassword> {
           onPressed: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (BuildContext context) => const connexion_adminn(),
+                builder: (BuildContext context) => const ConnexionAdminn(),
               ),
             );
           },
@@ -349,11 +339,10 @@ class _userconnexionpassword extends State<userconnexionpassword> {
                             children: <Widget>[
                               buildTitle(),
                               if (!_showErrorMessage)
-                                SizedBox(height: 44)
+                                const SizedBox(height: 44)
                               else
-                                SizedBox(height: 31),
+                                const SizedBox(height: 31),
                               buildEmail(),
-
                               const SizedBox(height: 15),
                               buildPassword(),
                               Row(
@@ -371,7 +360,7 @@ class _userconnexionpassword extends State<userconnexionpassword> {
                                 children: <Widget>[
                                   Text(
                                     'user_choix_connexion_pas_de_compte'.tr(),
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       color: Colors.black38,
                                     ),
                                   ),
@@ -408,8 +397,10 @@ class _userconnexionpassword extends State<userconnexionpassword> {
     var map = res.last.asMap();
 
     var pass = map[3];
-    var pseudo = map[2];
+    var pseudo = map[1];
+    var idUser = map[0];
 
+    reponses["rep_userID"] = idUser;
     reponses["username"] = pseudo;
 
     final passSaisie = Crypt.sha256(password, salt: 'abcdefghijklmnop');
@@ -419,7 +410,7 @@ class _userconnexionpassword extends State<userconnexionpassword> {
     }
   }
 
-  void _handleRememberme(bool? value) {
+  void handleRememberme(bool? value) {
     isRememberMe = value!;
     SharedPreferences.getInstance().then(
       (prefs) {
@@ -435,16 +426,16 @@ class _userconnexionpassword extends State<userconnexionpassword> {
 
   void _loadUserEmailPassword() async {
     try {
-      SharedPreferences _prefs = await SharedPreferences.getInstance();
-      var _email = _prefs.getString("email");
-      var _password = _prefs.getString("password");
-      var _remeberMe = _prefs.getBool("remember_me") ?? false;
-      if (_remeberMe) {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      var email = prefs.getString("email");
+      var password = prefs.getString("password");
+      var remeberMe = prefs.getBool("remember_me") ?? false;
+      if (remeberMe) {
         setState(() {
           isRememberMe = true;
         });
-        mailController.text = _email ?? "";
-        passwordController.text = _password ?? "";
+        mailController.text = email ?? "";
+        passwordController.text = password ?? "";
       }
     } catch (e) {
       print(e);

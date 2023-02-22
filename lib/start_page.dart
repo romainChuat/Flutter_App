@@ -1,10 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'mapPage.dart';
+import 'map_page.dart';
 import 'mylib.dart' as mylib;
 
-class startPage extends StatelessWidget {
-  const startPage({super.key});
+class StartPage extends StatelessWidget {
+  const StartPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class startPage extends StatelessWidget {
 
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: mylib.baseAppBar(appBar: AppBar()),
+      appBar: mylib.BaseAppBar(appBar: AppBar()),
       endDrawer: mylib.createMenu(context),
       body: Center(
         child: ClipRRect(
@@ -57,7 +57,7 @@ class startPage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => mapPage(),
+                          builder: (_) => const MapPage(),
                           settings: RouteSettings(arguments: reponses),
                         ),
                       );

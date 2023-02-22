@@ -2,17 +2,17 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'donner_avis_marker.dart';
-import 'homePage.dart';
+import 'home_page.dart';
 import 'mylib.dart' as mylib;
 
-class hello_login_page extends StatefulWidget {
-  const hello_login_page({super.key});
+class HelloLoginPage extends StatefulWidget {
+  const HelloLoginPage({super.key});
 
   @override
-  State<hello_login_page> createState() => _hello_login_page();
+  State<HelloLoginPage> createState() => Hellologinpage();
 }
 
-class _hello_login_page extends State<hello_login_page> {
+class Hellologinpage extends State<HelloLoginPage> {
   bool darkmode = false;
   dynamic savedThemeMode;
 
@@ -45,7 +45,7 @@ class _hello_login_page extends State<hello_login_page> {
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) => donner_avis_marker(),
+              builder: (BuildContext context) => const DonnerAvisMarker(),
             ),
           );
         },
@@ -101,7 +101,7 @@ class _hello_login_page extends State<hello_login_page> {
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: mylib.baseAppBar(
+      appBar: mylib.BaseAppBar(
         appBar: AppBar(),
       ),
       endDrawer: mylib.createMenu(context),
@@ -119,12 +119,12 @@ class _hello_login_page extends State<hello_login_page> {
                   width: 250,
                   child: Text("hello_admin_page_title1, ${reponses["username"]}",
                       style: mylib.titleStyle2).tr(),
+
                 ),
                 const SizedBox(height: 61),
-                 SizedBox(
+                SizedBox(
                   width: 250,
-                  child: Text(
-                      'hello_admin_page_title2'.tr(),
+                  child: Text('hello_admin_page_title2'.tr(),
                       style: mylib.titleStyle),
                 ),
                 const SizedBox(height: 61),

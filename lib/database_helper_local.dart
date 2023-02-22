@@ -1,7 +1,6 @@
-import 'package:flutter_application_1/utilisateur.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-import 'Lieu.dart';
+import 'reponse.dart';
 
 class DatabaseHelperLocal {
   static const _databaseName = "db_flutter.db";
@@ -41,6 +40,12 @@ class DatabaseHelperLocal {
     await _db?.close();
   }
 
+  Future<void> delete() async {
+    final dbPath = await getDatabasesPath();
+    final path = join(dbPath, _databaseName);
+    await deleteDatabase(path);
+  }
+
   // SQL code to create the database table
   Future _onCreate(Database db, int version) async {
     await db.execute('''
@@ -75,7 +80,7 @@ class DatabaseHelperLocal {
   }
 
   /*Fonctions pour les lieux*/
-  Future<int?> insertLieu(Map<String, Object> l) async {
+  Future<int?> insertLieu(Map<String, dynamic> l) async {
     final Database? db = await init();
     final insert = await _db?.insert("lieux", l);
     print(insert);
@@ -102,12 +107,26 @@ class DatabaseHelperLocal {
 
   /*Fonctions pour les réponses*/
   Future<int?> insertReponse(Map<String, Object> r) async {
-    //final Database? _db = await init();
     return await _db?.insert("reponses", r);
   }
 
-  Future<List<Map>?> queryAllRowsReponse() async {
-    return await _db?.query("reponses");
+  Future<List<Reponse>> queryAllRowsReponse() async {
+    //return await _db?.query("reponses");
+    final List<Map<String, dynamic>>? res =
+        await _db?.rawQuery("SELECT * FROM reponses");
+
+    return List.generate(res!.length, (i) {
+      return Reponse(
+        iduser: res[i]['rep_userID'],
+        idlieu: res[i]['rep_lieuxID'],
+        expressions: res[i]['rep_expr'],
+        date: res[i]['rep_date'].toString(),
+        age: res[i]['rep_age'],
+        genre: res[i]['rep_genre'],
+        etude: res[i]['rep_etude'],
+        activite: res[i]['rep_activite'],
+      );
+    });
   }
 
   Future<int?> deleteReponse(int id) async {
@@ -118,9 +137,8 @@ class DatabaseHelperLocal {
     );
   }
 
-
   /*Fonctions pour les utilisateurs*/
-  Future<int?> insertUser(Map<String,Object> u) async {
+  Future<int?> insertUser(Map<String, Object> u) async {
     final Database? db = await init();
     return await _db?.insert("user", u);
   }

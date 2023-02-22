@@ -1,18 +1,18 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'acceuil_gerer_les avis.dart';
-import 'acceuil_gerer_les_markers.dart';
+import 'accueil_gerer_les_avis.dart';
+import 'accueil_gerer_les_markers.dart';
 import 'mylib.dart' as mylib;
 
-class hello_admin_page extends StatefulWidget {
-  const hello_admin_page({super.key});
+class HelloAdminPage extends StatefulWidget {
+  const HelloAdminPage({super.key});
 
   @override
-  State<hello_admin_page> createState() => _hello_admin_page();
+  State<HelloAdminPage> createState() => Helloadminpage();
 }
 
-class _hello_admin_page extends State<hello_admin_page> {
-  Widget GererLesMarkers() {
+class Helloadminpage extends State<HelloAdminPage> {
+  Widget gererLesMarkers() {
     return SizedBox(
       width: 296,
       height: 49,
@@ -20,7 +20,7 @@ class _hello_admin_page extends State<hello_admin_page> {
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) => const acceuilgererlesmarkers(),
+              builder: (BuildContext context) => const AccueilGererLesMarkers(),
             ),
           );
         },
@@ -41,7 +41,7 @@ class _hello_admin_page extends State<hello_admin_page> {
     );
   }
 
-  Widget GererLesAvis() {
+  Widget gererLesAvis() {
     return SizedBox(
       width: 296,
       height: 49,
@@ -49,7 +49,7 @@ class _hello_admin_page extends State<hello_admin_page> {
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) => const acceuilgererlesavis(),
+              builder: (BuildContext context) => const AccueilGererLesAvis(),
             ),
           );
         },
@@ -74,7 +74,7 @@ class _hello_admin_page extends State<hello_admin_page> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: mylib.baseAppBar(
+      appBar: mylib.BaseAppBar(
         appBar: AppBar(),
       ),
       endDrawer: mylib.createMenu(context),
@@ -85,28 +85,28 @@ class _hello_admin_page extends State<hello_admin_page> {
             color: const Color.fromARGB(255, 235, 233, 233),
             width: 309,
             height: 464,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Container(
-              width: 250,
-              child:  Text('hello_admin_page_title1'.tr(), style: mylib.titleStyle2),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                SizedBox(
+                  width: 250,
+                  child: Text('hello_admin_page_title1'.tr(),
+                      style: mylib.titleStyle2),
+                ),
+                const SizedBox(height: 61),
+                SizedBox(
+                  width: 250,
+                  child: Text('hello_admin_page_title2'.tr(),
+                      style: mylib.titleStyle),
+                ),
+                const SizedBox(height: 61),
+                gererLesMarkers(),
+                const SizedBox(height: 30),
+                gererLesAvis(),
+                const SizedBox(height: 61),
+              ],
             ),
-            const SizedBox(height: 61),
-            Container(
-              width: 250,
-              child: Text(
-                  'hello_admin_page_title2'.tr(),
-                  style: mylib.titleStyle),
-            ),
-            const SizedBox(height: 61),
-            GererLesMarkers(),
-            const SizedBox(height: 30),
-            GererLesAvis(),
-            const SizedBox(height: 61),
-          ],
-        ),
-      ),
+          ),
         ),
       ),
     );

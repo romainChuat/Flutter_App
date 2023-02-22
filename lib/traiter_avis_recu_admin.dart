@@ -1,22 +1,23 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_map/plugin_api.dart';
-import 'endPage.dart';
+import 'end_page.dart';
 import 'mylib.dart' as mylib;
 
-class gerer_avis_valide extends StatefulWidget {
-  const gerer_avis_valide({super.key});
+class TraiterAvisRecu extends StatefulWidget {
+  const TraiterAvisRecu({super.key});
 
   @override
-  State<gerer_avis_valide> createState() => _gerer_avis_valide();
+  State<TraiterAvisRecu> createState() => Traiteravisrecu();
 }
 
-class _gerer_avis_valide extends State<gerer_avis_valide> {
+class Traiteravisrecu extends State<TraiterAvisRecu> {
   final mapController = MapController();
 
-  Widget TitleDate() {
+  Widget titleDate() {
     return ClipRRect(
       borderRadius: BorderRadius.circular(15.0),
       child: Container(
@@ -35,7 +36,7 @@ class _gerer_avis_valide extends State<gerer_avis_valide> {
     );
   }
 
-  Widget Avis() {
+  Widget avis() {
     return ClipRRect(
       borderRadius: BorderRadius.circular(15.0),
       child: Container(
@@ -82,7 +83,7 @@ class _gerer_avis_valide extends State<gerer_avis_valide> {
     );
   }
 
-  Widget DejaVisite() {
+  Widget dejaVisite() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -132,7 +133,7 @@ class _gerer_avis_valide extends State<gerer_avis_valide> {
     );
   }
 
-  Widget Commentaire() {
+  Widget commentaire() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -186,7 +187,7 @@ class _gerer_avis_valide extends State<gerer_avis_valide> {
     );
   }
 
-  Widget Age() {
+  Widget age() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -201,8 +202,8 @@ class _gerer_avis_valide extends State<gerer_avis_valide> {
               children: [
                 Container(
                   padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
-                  child: Text(
-                    "gerer_les_avis_valide_admin_tranche_age".tr(),
+                  child: const Text(
+                    "gerer_les_avis_valide_admin_tranche_age",
                     style: mylib.blueText,
                     textAlign: TextAlign.center,
                   ),
@@ -219,9 +220,9 @@ class _gerer_avis_valide extends State<gerer_avis_valide> {
                     width: 300,
                     height: 46,
                     color: const Color.fromARGB(255, 255, 255, 255),
-                    child: Align(
+                    child: const Align(
                       child: Text(
-                        "Traiter_markers_recu_admin_years".tr(),
+                        "... - ... ans",
                         style: mylib.titleStyle3,
                         textAlign: TextAlign.center,
                       ),
@@ -236,15 +237,15 @@ class _gerer_avis_valide extends State<gerer_avis_valide> {
     );
   }
 
-  Widget btnRefuser() {
+  Widget btnAnnulerValidation() {
     return SizedBox(
-      width: 160,
+      width: 350,
       height: 43,
       child: ElevatedButton(
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) => endPage(),
+              builder: (BuildContext context) => const EndPage(),
             ),
           );
         },
@@ -256,37 +257,8 @@ class _gerer_avis_valide extends State<gerer_avis_valide> {
             side: const BorderSide(color: Colors.white, width: 3),
           ),
         ),
-        child:  Text(
-          "btn_refuse".tr(),
-          style: mylib.titleStyle2,
-          textAlign: TextAlign.center,
-        ),
-      ),
-    );
-  }
-
-  Widget btnValider() {
-    return SizedBox(
-      width: 160,
-      height: 43,
-      child: ElevatedButton(
-        onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (BuildContext context) => endPage(),
-            ),
-          );
-        },
-        style: ElevatedButton.styleFrom(
-          shadowColor: Colors.grey.shade700,
-          elevation: 20,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0),
-            side: const BorderSide(color: Colors.white, width: 3),
-          ),
-        ),
-        child: Text(
-          "btn_validate".tr(),
+        child: const Text(
+          "Traiter_markers_recu_admin_btn_annuler",
           style: mylib.titleStyle2,
           textAlign: TextAlign.center,
         ),
@@ -298,55 +270,65 @@ class _gerer_avis_valide extends State<gerer_avis_valide> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: mylib.baseAppBar(
+      appBar: mylib.BaseAppBar(
         appBar: AppBar(),
       ),
       endDrawer: mylib.createMenu(context),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+      body: AnnotatedRegion<SystemUiOverlayStyle>(
+        value: SystemUiOverlayStyle.light,
+        child: GestureDetector(
+            child: Stack(
           children: <Widget>[
-            const Padding(padding: EdgeInsets.fromLTRB(0, 55, 0, 0)),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(15.0),
-              child: Container(
-                width: 359,
-                height: 600,
-                padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-
+            SizedBox(
+              height: double.infinity,
+              width: double.infinity,
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    const Padding(padding: EdgeInsets.fromLTRB(0, 55, 0, 0)),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(15.0),
+                      child: Container(
+                        width: 359,
+                        height: 600,
+                        padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
                         decoration: const BoxDecoration(
-                 color: Color.fromARGB(118, 13, 12, 32),
-                ),
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 0)),
-                      TitleDate(),
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                      Avis(),
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                      Commentaire(),
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                      Age(),
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                      DejaVisite(),
-                    ],
-                  ),
+                          color: Color.fromARGB(118, 13, 12, 32),
+                        ),
+                        child: SingleChildScrollView(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              const Padding(
+                                  padding: EdgeInsets.fromLTRB(0, 20, 0, 0)),
+                              titleDate(),
+                              const Padding(
+                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                              avis(),
+                              const Padding(
+                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                              commentaire(),
+                              const Padding(
+                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                              age(),
+                              const Padding(
+                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                              dejaVisite(),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                    btnAnnulerValidation(),
+                  ],
                 ),
               ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 50)),
-                btnRefuser(),
-                const Padding(padding: EdgeInsets.fromLTRB(35, 0, 0, 0)),
-                btnValider(),
-              ],
-            ),
+              // )
+            )
           ],
-        ),
+        )),
       ),
     );
   }
