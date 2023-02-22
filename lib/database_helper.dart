@@ -105,4 +105,25 @@ class DatabaseHelper {
         'INSERT INTO lieu (${data.keys.join(', ')}) VALUES (${data.keys.map((k) => '@$k').join(', ')})',
         substitutionValues: data);
   }
+
+  //Returns the information of a user present in the database
+  //The user is found thanks to the email address transmitted in parameters
+  Future<PostgreSQLResult?> queryLieu(double longitude, double latitude) async {
+    final client = await db;
+    //If the database isn't open, the function return null
+    if (client == null) {
+      return null;
+    }
+    var results = await client.query(
+        'SELECT * FROM lieu WHERE longitude = @aValue and latitude = @bValue',
+        substitutionValues: {"aValue": longitude, "bValue": latitude});
+
+    //If the query doesn't find a user, the function return null
+    if (results.isEmpty == true) {
+      return null;
+    }
+
+    //Otherwise, return the results
+    return results;
+  }
 }
