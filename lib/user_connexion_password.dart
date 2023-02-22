@@ -181,11 +181,7 @@ class Userconnexionpassword extends State<UserConnexionPassword> {
                 value: isRememberMe,
                 checkColor: const Color.fromARGB(255, 13, 12, 32),
                 activeColor: Colors.white,
-                onChanged: (value) {
-                  setState(() {
-                    isRememberMe = true;
-                  });
-                }),
+                onChanged: handleRememberme),
             Text(
               'connexion_admin_remeber_me'.tr(),
               style: const TextStyle(

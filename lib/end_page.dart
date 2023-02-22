@@ -133,12 +133,12 @@ class Endpage extends State<EndPage> {
   }
 
   Future<int?> insertLieu(Map<String, Object> reponses) async {
-    lieux['lieux_lat'] = reponses['latitude']!;
-    lieux['lieux_long'] = reponses['longitude']!;
+    lieux['latitude'] = reponses['latitude']!;
+    lieux['longitude'] = reponses['longitude']!;
     reponses.remove('longitude');
     reponses.remove('latitude');
     print(lieux);
-    WidgetsFlutterBinding.ensureInitialized();
+    /*WidgetsFlutterBinding.ensureInitialized();
     DatabaseHelperLocal db = DatabaseHelperLocal();
 
     try {
@@ -147,7 +147,24 @@ class Endpage extends State<EndPage> {
     } catch (e) {
       print("enregistrement lieux impossible");
     }
-    print(insertlieuxID);
+    print(insertlieuxID);*/
+
+    final DatabaseHelper dbHelper = DatabaseHelper.getInstance();
+    WidgetsFlutterBinding.ensureInitialized();
+
+    var res = await dbHelper.queryLieu(lieux['longitude'], lieux['latitude']);
+    if (res == null) {
+      try {
+        await dbHelper.insertLieu(lieux);
+        res = await dbHelper.queryLieu(lieux['longitude'], lieux['latitude']);
+        insertlieuxID = res?.first[0];
+      } catch (e) {
+        print(e);
+        return null;
+      }
+    } else {
+      insertlieuxID = res.first[0];
+    }
     return insertlieuxID;
   }
 
@@ -195,9 +212,6 @@ class Endpage extends State<EndPage> {
 
       final DatabaseHelper dbHelper = DatabaseHelper.getInstance();
       WidgetsFlutterBinding.ensureInitialized();
-
-      Lieu l =
-          Lieu(latitude: lieux['lieux_lat'], longitude: lieux['lieux_long']);
 
       for (var i in res) {
         try {
