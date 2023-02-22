@@ -15,15 +15,14 @@ class DroitsAuteur extends StatefulWidget {
 
 class Droitsauteur extends State<DroitsAuteur> {
   bool accept = false;
+    bool _showErrorMessage = false;
+
+
 
   @override
   Widget build(BuildContext context) {
-    final text = MediaQuery.of(context).platformBrightness == Brightness.dark
-        ? 'DarkTheme'
-        : 'LightTheme';
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
-
     print(reponses);
     //print(username);
 
@@ -73,8 +72,6 @@ class Droitsauteur extends State<DroitsAuteur> {
                                       child: MediaQuery.removePadding(
                                     context: context,
                                     removeTop: true,
-                                    //child: Scrollbar( //optionnel
-                                    //isAlwaysShown: true,
                                     child: SingleChildScrollView(
                                       padding: const EdgeInsets.fromLTRB(
                                           10, 10, 10, 10),
@@ -93,17 +90,23 @@ class Droitsauteur extends State<DroitsAuteur> {
                           children: [
                             Text("droits_auteur_accept".tr()),
                             Checkbox(
-                              activeColor:
-                                  const Color.fromARGB(255, 13, 12, 32),
+                              
+                              activeColor: const Color.fromARGB(255, 13, 12, 32),
+
                               value: accept,
                               onChanged: (value) {
                                 setState(() {
                                   accept = value!;
+                                  _showErrorMessage = true;
                                 });
                               },
                             )
                           ],
-                        )
+                        ),
+    if(_showErrorMessage)
+    Text("droits_auteur_warning".tr(), style: mylib.warningText),
+                            SizedBox(height: 14,),
+
                       ],
                     ),
                   ),
@@ -124,7 +127,9 @@ class Droitsauteur extends State<DroitsAuteur> {
                       ),
                     )
                   ],
-                )
+                ),
+                
+   
               ],
             ),
           ),
