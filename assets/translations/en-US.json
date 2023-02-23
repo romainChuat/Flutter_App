@@ -112,6 +112,11 @@
 
     "confirmation_deconnexion_title": "Do you want to disconnect?",
 
+    "user_confirmation_enregistrement_title": "Would you like to register your progress?",
+
+    "user_confirmation_abandon_title": "Are you sure you want to give up ?",
+
+
     "forgot_password_page_title":"Forgot Password",
     "forgot_password_page_sign_in": "Sign In",
     "forgot_password_page_send_link":"Send reset link",

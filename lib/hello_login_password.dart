@@ -154,9 +154,8 @@ class Hellologinpassword extends State<HelloLoginPassword> {
               children: <Widget>[
                 SizedBox(
                   width: 250,
-                  child: Text(
-                      "hello_admin_page_title1,  ${reponses["username"]}".tr(),
-                      style: mylib.titleStyle),
+                  child: Text("${"hello_admin_page_title1".tr()} ${reponses["username"]}",
+                      style: mylib.titleStyle2),
                 ),
                 const SizedBox(height: 61),
                 SizedBox(

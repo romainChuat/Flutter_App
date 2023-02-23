@@ -112,6 +112,11 @@
 
     "confirmation_deconnexion_title": "Voulez-vous vous déconnecter ?",
 
+    "user_confirmation_enregistrement_title": "Souhaitez-vous enregistrer votre avancé ?",
+
+    "user_confirmation_abandon_title": "Etes-vous sur de vouloirs abandonné ?",
+
+
     "forgot_password_page_title":"Mot de passe oublié",
     "forgot_password_page_sign_in":"Se connecter",
     "forgot_password_page_send_link":"Envoyer le lien de réinitialisation",

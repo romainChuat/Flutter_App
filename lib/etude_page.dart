@@ -2,6 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/activite_page.dart';
 import 'package:flutter_application_1/home_page.dart';
+import 'package:flutter_application_1/user_confirm_abandon_quiz.dart';
+import 'package:flutter_application_1/user_confirm_enregistrement.dart';
 import 'mylib.dart' as mylib;
 
 class EtudePage extends StatefulWidget {
@@ -267,8 +269,14 @@ class Etudepage extends State<EtudePage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      mylib.createQuitButton(
-                          context, 141, 41, const MyHomePage(), reponses),
+                      if(reponses['mdp'] == true)
+                    mylib.createQuitButton(
+                        context, 141, 41, 
+                         confirmationEnregistrement(), reponses)
+                    else 
+                    mylib.createQuitButton(
+                        context, 141, 41, 
+                         confirmationAbandon(), reponses),
                       mylib.createNextButton(
                         "btn_next".tr(),
                         context,
