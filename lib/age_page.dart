@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/start_page.dart';
+import 'package:flutter_application_1/user_confirm_abandon_quiz.dart';
+import 'package:flutter_application_1/user_confirm_enregistrement.dart';
 import 'genre_page.dart';
 import 'mylib.dart' as mylib;
 
@@ -228,8 +230,14 @@ class Agepage extends State<AgePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
+                    if(reponses['mdp'] == true)
                     mylib.createQuitButton(
-                        context, 141, 41, const StartPage(), reponses),
+                        context, 141, 41, 
+                         confirmationEnregistrement(), reponses)
+                    else 
+                    mylib.createQuitButton(
+                        context, 141, 41, 
+                         confirmationAbandon(), reponses),
                     mylib.createNextButton(
                       "btn_next".tr(),
                       context,

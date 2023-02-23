@@ -1,5 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/user_confirm_abandon_quiz.dart';
+import 'package:flutter_application_1/user_confirm_enregistrement.dart';
 import 'end_page.dart';
 import 'mylib.dart' as mylib;
 
@@ -219,7 +221,14 @@ class Activitepage extends State<ActivitePage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      mylib.createQuitButton(context, 141, 41, null, reponses),
+                      if(reponses['mdp'] == true)
+                    mylib.createQuitButton(
+                        context, 141, 41, 
+                         confirmationEnregistrement(), reponses)
+                    else 
+                    mylib.createQuitButton(
+                        context, 141, 41, 
+                         confirmationAbandon(), reponses),
                       mylib.createNextButton(
                         "btn_next".tr(),
                         context,
