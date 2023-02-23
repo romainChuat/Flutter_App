@@ -45,14 +45,9 @@ class Endpage extends State<EndPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("endPage_thanks".tr(), style: mylib.titleStyle),
-                        Text("${reponses["user_name"]}",
-                            style: mylib.titleStyle),
-                      ],
-                    ),
+                    Text(
+                        "${"hello_admin_page_title1".tr()} ${reponses["username"]}",
+                        style: mylib.titleStyle),
                     SizedBox(
                       width: 320,
                       height: 350,

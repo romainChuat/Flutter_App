@@ -15,9 +15,7 @@ class DroitsAuteur extends StatefulWidget {
 
 class Droitsauteur extends State<DroitsAuteur> {
   bool accept = false;
-    bool _showErrorMessage = false;
-
-
+  bool _showErrorMessage = false;
 
   @override
   Widget build(BuildContext context) {
@@ -90,9 +88,8 @@ class Droitsauteur extends State<DroitsAuteur> {
                           children: [
                             Text("droits_auteur_accept".tr()),
                             Checkbox(
-                              
-                              activeColor: const Color.fromARGB(255, 13, 12, 32),
-
+                              activeColor:
+                                  const Color.fromARGB(255, 13, 12, 32),
                               value: accept,
                               onChanged: (value) {
                                 setState(() {
@@ -103,10 +100,12 @@ class Droitsauteur extends State<DroitsAuteur> {
                             )
                           ],
                         ),
-    if(_showErrorMessage)
-    Text("droits_auteur_warning".tr(), style: mylib.warningText),
-                            SizedBox(height: 14,),
-
+                        if (!_showErrorMessage)
+                          Text("droits_auteur_warning".tr(),
+                              style: mylib.warningText),
+                        const SizedBox(
+                          height: 14,
+                        ),
                       ],
                     ),
                   ),
@@ -116,20 +115,19 @@ class Droitsauteur extends State<DroitsAuteur> {
                   children: [
                     mylib.createQuitButton(
                         context, 141, 41, const StartPage(), reponses),
-                    mylib.createNextButton(
-                      "btn_next".tr(),
-                      context,
-                      141,
-                      41,
-                      MaterialPageRoute(
-                        builder: (_) => const FichierPage(),
-                        settings: RouteSettings(arguments: reponses),
+                    if (_showErrorMessage)
+                      mylib.createNextButton(
+                        "btn_next".tr(),
+                        context,
+                        141,
+                        41,
+                        MaterialPageRoute(
+                          builder: (_) => const FichierPage(),
+                          settings: RouteSettings(arguments: reponses),
+                        ),
                       ),
-                    )
                   ],
                 ),
-                
-   
               ],
             ),
           ),

@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/start_page.dart';
 import 'genre_page.dart';
 import 'mylib.dart' as mylib;
 
@@ -227,7 +228,8 @@ class Agepage extends State<AgePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    //mylib.createQuitButton(context, 141, 41),
+                    mylib.createQuitButton(
+                        context, 141, 41, const StartPage(), reponses),
                     mylib.createNextButton(
                       "btn_next".tr(),
                       context,
