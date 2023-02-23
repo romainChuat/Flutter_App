@@ -166,6 +166,8 @@ class Userconnexionpassword extends State<UserConnexionPassword> {
           'forgot_password_page_title'.tr(),
           style: const TextStyle(
             color: Colors.black38,
+              fontSize: 13,
+
           ),
         ),
       ),
@@ -186,6 +188,7 @@ class Userconnexionpassword extends State<UserConnexionPassword> {
               'connexion_admin_remeber_me'.tr(),
               style: const TextStyle(
                 color: Colors.black38,
+                fontSize: 13,
               ),
             ),
           ],
@@ -195,7 +198,7 @@ class Userconnexionpassword extends State<UserConnexionPassword> {
   Widget buildLoginBtn() {
     return Column(children: [
       SizedBox(
-        width: 120,
+        width: 130,
         height: 43,
         child: ElevatedButton(
           onPressed: () async {
@@ -294,7 +297,7 @@ class Userconnexionpassword extends State<UserConnexionPassword> {
             ),
           ),
           child: Text(
-            "btn_user".tr(),
+            "btn_admin".tr(),
             style: mylib.titleStyle4,
             textAlign: TextAlign.center,
           ),
@@ -349,7 +352,6 @@ class Userconnexionpassword extends State<UserConnexionPassword> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
                                   buildRemeberCb(),
-                                  // SizedBox(height: 40),
 
                                   buildForgotPassBtn(),
                                 ],

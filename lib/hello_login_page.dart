@@ -117,8 +117,8 @@ class Hellologinpage extends State<HelloLoginPage> {
               children: <Widget>[
                 SizedBox(
                   width: 250,
-                  child: Text("hello_admin_page_title1, ${reponses["username"]}",
-                      style: mylib.titleStyle2).tr(),
+                  child: Text("${"hello_admin_page_title1".tr()} ${reponses["username"]}",
+                      style: mylib.titleStyle2),
 
                 ),
                 const SizedBox(height: 61),

@@ -56,10 +56,10 @@ class Etudepage extends State<EtudePage> {
                       child: Column(
                         children: [
                           Container(
-                            padding: const EdgeInsets.fromLTRB(1, 20, 1, 0),
+                            padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
                             child: Text(
                               "etudePage_title".tr(),
-                              style: mylib.blueText,
+                              style: mylib.titleStyle,
                               textAlign: TextAlign.center,
                             ),
                           ),
@@ -76,9 +76,9 @@ class Etudepage extends State<EtudePage> {
                                 height: 40,
                                 child: RadioListTile(
                                   activeColor:
-                                      const Color.fromARGB(255, 41, 59, 229),
+                                      const Color.fromARGB(255, 13, 12, 32),
                                   title: Text("etudePage_primary".tr(),
-                                      style: mylib.radioText),
+                                      style: mylib.titleStyleDuration),
                                   groupValue: niveau,
                                   onChanged: (value) {
                                     setState(() {
@@ -95,9 +95,9 @@ class Etudepage extends State<EtudePage> {
                                 height: 70,
                                 child: RadioListTile(
                                   activeColor:
-                                      const Color.fromARGB(255, 41, 59, 229),
+                                      const Color.fromARGB(255, 13, 12, 32),
                                   title: Text("etudePage_middle_school".tr(),
-                                      style: mylib.radioText),
+                                      style: mylib.titleStyleDuration),
                                   groupValue: niveau,
                                   onChanged: (value) {
                                     setState(() {
@@ -114,9 +114,9 @@ class Etudepage extends State<EtudePage> {
                                 height: 65,
                                 child: RadioListTile(
                                   activeColor:
-                                      const Color.fromARGB(255, 41, 59, 229),
+                                      const Color.fromARGB(255, 13, 12, 32),
                                   title: Text("etudePage_high_school".tr(),
-                                      style: mylib.radioText),
+                                      style: mylib.titleStyleDuration),
                                   groupValue: niveau,
                                   onChanged: (value) {
                                     setState(() {
@@ -133,9 +133,9 @@ class Etudepage extends State<EtudePage> {
                                 height: 55,
                                 child: RadioListTile(
                                   activeColor:
-                                      const Color.fromARGB(255, 41, 59, 229),
+                                      const Color.fromARGB(255, 13, 12, 32),
                                   title: Text("etudePage_higher_education".tr(),
-                                      style: mylib.radioText),
+                                      style: mylib.titleStyleDuration),
                                   groupValue: niveau,
                                   onChanged: (value) {
                                     setState(() {
@@ -152,9 +152,9 @@ class Etudepage extends State<EtudePage> {
                                 height: 40,
                                 child: RadioListTile(
                                   activeColor:
-                                      const Color.fromARGB(255, 41, 59, 229),
+                                      const Color.fromARGB(255, 13, 12, 32),
                                   title: Text("etudePage_bac3".tr(),
-                                      style: mylib.radioText),
+                                      style: mylib.titleStyleDuration),
                                   groupValue: niveau,
                                   onChanged: (value) {
                                     setState(() {
@@ -171,9 +171,9 @@ class Etudepage extends State<EtudePage> {
                                 height: 45,
                                 child: RadioListTile(
                                   activeColor:
-                                      const Color.fromARGB(255, 41, 59, 229),
+                                      const Color.fromARGB(255, 13, 12, 32),
                                   title: Text("etudePage_bac5".tr(),
-                                      style: mylib.radioText),
+                                      style: mylib.titleStyleDuration),
                                   groupValue: niveau,
                                   onChanged: (value) {
                                     setState(() {
@@ -190,9 +190,9 @@ class Etudepage extends State<EtudePage> {
                                 height: 32,
                                 child: RadioListTile(
                                   activeColor:
-                                      const Color.fromARGB(255, 41, 59, 229),
+                                      const Color.fromARGB(255, 13, 12, 32),
                                   title: Text("etudePage_doctorat".tr(),
-                                      style: mylib.radioText),
+                                      style: mylib.titleStyleDuration),
                                   groupValue: niveau,
                                   onChanged: (value) {
                                     setState(() {
@@ -209,7 +209,7 @@ class Etudepage extends State<EtudePage> {
                                 height: 32,
                                 child: RadioListTile(
                                   activeColor:
-                                      const Color.fromARGB(255, 41, 59, 229),
+                                      const Color.fromARGB(255, 13, 12, 32),
                                   title: TextField(
                                     style: mylib.simpleText
                                         .apply(fontSizeDelta: 5),

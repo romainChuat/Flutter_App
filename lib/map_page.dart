@@ -58,11 +58,13 @@ class Mappage extends State<MapPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Container(
-                            padding: const EdgeInsets.fromLTRB(7, 0, 3, 0),
+                            padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                             child: Align(
                               alignment: Alignment.center,
                               child: Text("mapPage_title".tr(),
-                                  style: mylib.blueText),
+                                  style: mylib.titleStyle,
+                                  textAlign: TextAlign.center,
+                              ),
                             ),
                           ),
                           const Divider(
