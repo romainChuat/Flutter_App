@@ -100,7 +100,7 @@ class Connexion1 extends State<Connexion> {
   Widget buildLoginBtn(erreur) {
     return Column(children: [
       SizedBox(
-        width: 120,
+        width: 130,
         height: 43,
         child: ElevatedButton(
           onPressed: _handleButtonPress,

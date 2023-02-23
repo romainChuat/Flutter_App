@@ -20,9 +20,6 @@ class Fichierpage extends State<FichierPage> {
 
   @override
   Widget build(BuildContext context) {
-    final text = MediaQuery.of(context).platformBrightness == Brightness.dark
-        ? 'DarkTheme'
-        : 'LightTheme';
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
 
@@ -51,7 +48,7 @@ class Fichierpage extends State<FichierPage> {
                           padding: const EdgeInsets.fromLTRB(1, 20, 1, 0),
                           child: Text(
                             "FichierPage_title".tr(),
-                            style: mylib.blueText,
+                            style: mylib.titleStyle,
                             textAlign: TextAlign.center,
                           ),
                         ),

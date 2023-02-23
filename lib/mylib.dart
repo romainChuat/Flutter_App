@@ -25,8 +25,10 @@ const TextStyle titleStyle = TextStyle(
   letterSpacing: -1,
 );
 const TextStyle titleStyleDuration = TextStyle(
-  fontSize: 15,
+  fontSize: 17,
   fontFamily: 'Nunito',
+    fontWeight: FontWeight.w400,
+
   //fontWeight: FontWeight.bold,
   // color: Colors.white,
   /*shadows: <Shadow>[

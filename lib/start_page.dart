@@ -36,7 +36,7 @@ class StartPage extends StatelessWidget {
                             style: mylib.titleStyle),
                       ),
                       const Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 10)),
-                      Text("startPage_duration".tr(), style: mylib.titleStyle),
+                      Text("startPage_duration".tr(), style: mylib.titleStyleDuration),
                     ],
                   ),
                 ),
@@ -46,10 +46,8 @@ class StartPage extends StatelessWidget {
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Colors.white,
-                      // backgroundColor: Color.fromARGB(255, 41, 59, 229),
                       side: const BorderSide(color: Colors.white, width: 1),
                       elevation: 15,
-                      //padding: EdgeInsets.fromLTRB(10,0,110,0),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10)),
                     ),

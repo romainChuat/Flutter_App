@@ -38,7 +38,7 @@ class Genrepage extends State<GenrePage> {
                   borderRadius: BorderRadius.circular(15.0),
                   child: Container(
                     width: 336,
-                    height: 265,
+                    height: 230,
                     color: const Color.fromARGB(255, 235, 233, 233),
                     child: Column(
                       children: [
@@ -46,7 +46,7 @@ class Genrepage extends State<GenrePage> {
                           padding: const EdgeInsets.fromLTRB(1, 20, 1, 0),
                           child: Text(
                             "genrePage_title".tr(),
-                            style: mylib.blueText,
+                            style: mylib.titleStyle,
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -63,9 +63,9 @@ class Genrepage extends State<GenrePage> {
                                 height: 32,
                                 child: RadioListTile(
                                   activeColor:
-                                      const Color.fromARGB(255, 41, 59, 229),
+                                      const Color.fromARGB(255, 13, 12, 32),
                                   title: Text("genrePage_female".tr(),
-                                      style: mylib.radioText),
+                                      style: mylib.titleStyleDuration),
                                   groupValue: genre,
                                   onChanged: (value) {
                                     setState(() {
@@ -82,9 +82,9 @@ class Genrepage extends State<GenrePage> {
                               height: 32,
                               child: RadioListTile(
                                 activeColor:
-                                    const Color.fromARGB(255, 41, 59, 229),
+                                    const Color.fromARGB(255, 13, 12, 32),
                                 title: Text("genrePage_male".tr(),
-                                    style: mylib.radioText),
+                                    style: mylib.titleStyleDuration),
                                 groupValue: genre,
                                 onChanged: (value) {
                                   setState(() {
@@ -102,9 +102,9 @@ class Genrepage extends State<GenrePage> {
                               height: 32,
                               child: RadioListTile(
                                 activeColor:
-                                    const Color.fromARGB(255, 41, 59, 229),
+                                    const Color.fromARGB(255, 13, 12, 32),
                                 title: Text("genrePage_other".tr(),
-                                    style: mylib.radioText),
+                                    style: mylib.titleStyleDuration),
                                 groupValue: genre,
                                 onChanged: (value) {
                                   setState(() {

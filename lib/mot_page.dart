@@ -27,7 +27,6 @@ class Motpage extends State<MotPage> {
         endDrawer: mylib.createMenu(context),
         body: Container(
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
-          //decoration: mylib.background1,
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -39,13 +38,12 @@ class Motpage extends State<MotPage> {
                     height: 370,
                     color: const Color.fromARGB(255, 235, 233, 233),
                     child: Column(
-                      //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Container(
-                          padding: const EdgeInsets.fromLTRB(1, 20, 1, 0),
+                          padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
                           child: Text(
                             "motPage_title".tr(),
-                            style: mylib.blueText,
+                            style: mylib.titleStyle,
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -73,7 +71,6 @@ class Motpage extends State<MotPage> {
                                         borderRadius: const BorderRadius.all(
                                             Radius.circular(10)),
                                         child: TextField(
-                                          //controller: motController[index],
                                           style: mylib.simpleText
                                               .apply(fontSizeDelta: 5),
                                           cursorColor: const Color.fromARGB(
@@ -138,7 +135,6 @@ class Motpage extends State<MotPage> {
                   ),
                 ),
                 Row(
-                  //reponses!["mots"] = mots;
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     mylib.createQuitButton(

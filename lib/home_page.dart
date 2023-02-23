@@ -25,7 +25,6 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(),
       ),
       endDrawer: mylib.createMenu(context),
-      //backgroundColor: Colors.red,
 
       body: Center(
         child: ClipRRect(
@@ -38,7 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Container(
-                    padding: const EdgeInsets.fromLTRB(50, 0, 90, 0),
+                    padding: const EdgeInsets.fromLTRB(30, 0, 10, 0),
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child:

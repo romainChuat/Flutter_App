@@ -46,10 +46,10 @@ class Droitsauteur extends State<DroitsAuteur> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Container(
-                          padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
+                          padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                           child: Text(
                             "droits_auteur_title".tr(),
-                            style: mylib.blueText,
+                            style: mylib.titleStyle,
                             textAlign: TextAlign.center,
                           ),
                         ),
