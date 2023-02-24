@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/start_page.dart';
+import 'package:flutter_application_1/user_confirm_abandon_quiz.dart';
+import 'package:flutter_application_1/user_confirm_enregistrement.dart';
 import 'mylib.dart' as mylib;
 import 'package:flutter_application_1/mot_page.dart';
 
@@ -48,7 +50,7 @@ class Datepage extends State<DatePage> {
                           padding: const EdgeInsets.fromLTRB(1, 20, 1, 0),
                           child: Text(
                             "datePage_title".tr(),
-                            style: mylib.blueText,
+                            style: mylib.titleStyle,
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -59,14 +61,14 @@ class Datepage extends State<DatePage> {
                           endIndent: 20,
                         ),
                         const Padding(
-                            padding: EdgeInsets.fromLTRB(0, 20, 0, 0)),
+                            padding: EdgeInsets.fromLTRB(0, 16, 0, 0)),
                         SizedBox(
                           width: 265,
                           height: 180,
                           child: Column(
                             children: [
                               SizedBox(
-                                  width: 250,
+                                  width: 275,
                                   height: 45,
                                   child: Material(
                                     elevation: 5,
@@ -132,8 +134,7 @@ class Datepage extends State<DatePage> {
                                       },
                                     ),
                                   )
-                                  //Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
-                                  //Text("! Veuillez envoyez au plus 1 fichier", style: mylib.warningText,)
+                                
                                   ),
                             ],
                           ),
@@ -145,8 +146,14 @@ class Datepage extends State<DatePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
+                    if(reponses['mdp'] == true)
                     mylib.createQuitButton(
-                        context, 141, 41, const StartPage(), reponses),
+                        context, 141, 41, 
+                         confirmationEnregistrement(), reponses)
+                    else 
+                    mylib.createQuitButton(
+                        context, 141, 41, 
+                         confirmationAbandon(), reponses),
                     mylib.createNextButton(
                       "btn_next".tr(),
                       context,

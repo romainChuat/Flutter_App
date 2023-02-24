@@ -144,6 +144,8 @@ class Connexionadminn extends State<ConnexionAdminn> {
           'forgot_password_page_title'.tr(),
           style: const TextStyle(
             color: Colors.black38,
+                            fontSize: 13,
+
             //fontWeight: FontWeight.bold
           ),
         ),
@@ -168,6 +170,8 @@ class Connexionadminn extends State<ConnexionAdminn> {
               'connexion_admin_remeber_me'.tr(),
               style: const TextStyle(
                 color: Colors.black38,
+                                fontSize: 13,
+
               ),
             ),
           ],
@@ -177,7 +181,7 @@ class Connexionadminn extends State<ConnexionAdminn> {
   Widget buildLoginBtn() {
     return Column(children: [
       SizedBox(
-        width: 120,
+        width: 130,
         height: 43,
         child: ElevatedButton(
           onPressed: () async {

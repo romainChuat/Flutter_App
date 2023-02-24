@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/home_page.dart';
+import 'package:flutter_application_1/user_confirm_abandon_quiz.dart';
+import 'package:flutter_application_1/user_confirm_enregistrement.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map/plugin_api.dart';
 import 'package:latlong2/latlong.dart';
@@ -58,11 +60,13 @@ class Mappage extends State<MapPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Container(
-                            padding: const EdgeInsets.fromLTRB(7, 0, 3, 0),
+                            padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                             child: Align(
                               alignment: Alignment.center,
                               child: Text("mapPage_title".tr(),
-                                  style: mylib.blueText),
+                                  style: mylib.titleStyle,
+                                  textAlign: TextAlign.center,
+                              ),
                             ),
                           ),
                           const Divider(
@@ -194,8 +198,15 @@ class Mappage extends State<MapPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
+                    if(reponses['mdp'] == true)
                     mylib.createQuitButton(
-                        context, 141, 41, const MyHomePage(), reponses),
+                        context, 141, 41, 
+                         confirmationEnregistrement(), reponses)
+                    else 
+                    mylib.createQuitButton(
+                        context, 141, 41, 
+                         confirmationAbandon(), reponses),
+
                     mylib.createNextButton(
                       "btn_next".tr(),
                       context,

@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/start_page.dart';
+import 'package:flutter_application_1/user_confirm_abandon_quiz.dart';
+import 'package:flutter_application_1/user_confirm_enregistrement.dart';
 import 'fichier_page.dart';
 import 'mylib.dart' as mylib;
 
@@ -15,15 +17,12 @@ class DroitsAuteur extends StatefulWidget {
 
 class Droitsauteur extends State<DroitsAuteur> {
   bool accept = false;
+  bool _showErrorMessage = false;
 
   @override
   Widget build(BuildContext context) {
-    final text = MediaQuery.of(context).platformBrightness == Brightness.dark
-        ? 'DarkTheme'
-        : 'LightTheme';
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
-
     print(reponses);
     //print(username);
 
@@ -47,10 +46,10 @@ class Droitsauteur extends State<DroitsAuteur> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Container(
-                          padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
+                          padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                           child: Text(
                             "droits_auteur_title".tr(),
-                            style: mylib.blueText,
+                            style: mylib.titleStyle,
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -73,8 +72,6 @@ class Droitsauteur extends State<DroitsAuteur> {
                                       child: MediaQuery.removePadding(
                                     context: context,
                                     removeTop: true,
-                                    //child: Scrollbar( //optionnel
-                                    //isAlwaysShown: true,
                                     child: SingleChildScrollView(
                                       padding: const EdgeInsets.fromLTRB(
                                           10, 10, 10, 10),
@@ -99,11 +96,18 @@ class Droitsauteur extends State<DroitsAuteur> {
                               onChanged: (value) {
                                 setState(() {
                                   accept = value!;
+                                  _showErrorMessage = true;
                                 });
                               },
                             )
                           ],
-                        )
+                        ),
+                        if (!_showErrorMessage)
+                          Text("droits_auteur_warning".tr(),
+                              style: mylib.warningText),
+                        const SizedBox(
+                          height: 14,
+                        ),
                       ],
                     ),
                   ),
@@ -111,20 +115,27 @@ class Droitsauteur extends State<DroitsAuteur> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
+                    if(reponses['mdp'] == true)
                     mylib.createQuitButton(
-                        context, 141, 41, const StartPage(), reponses),
-                    mylib.createNextButton(
-                      "btn_next".tr(),
-                      context,
-                      141,
-                      41,
-                      MaterialPageRoute(
-                        builder: (_) => const FichierPage(),
-                        settings: RouteSettings(arguments: reponses),
+                        context, 141, 41, 
+                         confirmationEnregistrement(), reponses)
+                    else 
+                    mylib.createQuitButton(
+                        context, 141, 41, 
+                         confirmationAbandon(), reponses),
+                    if (_showErrorMessage)
+                      mylib.createNextButton(
+                        "btn_next".tr(),
+                        context,
+                        141,
+                        41,
+                        MaterialPageRoute(
+                          builder: (_) => const FichierPage(),
+                          settings: RouteSettings(arguments: reponses),
+                        ),
                       ),
-                    )
                   ],
-                )
+                ),
               ],
             ),
           ),

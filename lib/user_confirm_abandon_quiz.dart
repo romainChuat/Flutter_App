@@ -1,18 +1,19 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'donner_avis_marker.dart';
+import 'hello_login_page.dart';
+import 'hello_login_password.dart';
 import 'home_page.dart';
 import 'mylib.dart' as mylib;
 
-class HelloLoginPage extends StatefulWidget {
-  const HelloLoginPage({super.key});
+class confirmationAbandon extends StatefulWidget {
+  const confirmationAbandon({super.key});
 
   @override
-  State<HelloLoginPage> createState() => Hellologinpage();
+  State<confirmationAbandon> createState() => _confirmationAbandon();
 }
 
-class Hellologinpage extends State<HelloLoginPage> {
+class _confirmationAbandon extends State<confirmationAbandon> {
   bool darkmode = false;
   dynamic savedThemeMode;
 
@@ -37,18 +38,29 @@ class Hellologinpage extends State<HelloLoginPage> {
     }
   }
 
-  Widget buildAccessMap() {
+  Widget buildBtnYes(reponses) {
     return SizedBox(
-      width: 286,
+      width: 120,
       height: 49,
       child: ElevatedButton(
         onPressed: () {
-          Navigator.of(context).push(
+          if(reponses['mdp'] != true){
+            Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) => const DonnerAvisMarker(),
+              builder: (BuildContext context) => const HelloLoginPage(), 
+              settings: RouteSettings(arguments: reponses),
             ),
           );
+          }else{
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (BuildContext context) => const HelloLoginPassword(), 
+              settings: RouteSettings(arguments: reponses),
+            ),
+          );
+          };
         },
+
         style: ElevatedButton.styleFrom(
           shadowColor: Colors.grey.shade700,
           elevation: 20,
@@ -58,7 +70,7 @@ class Hellologinpage extends State<HelloLoginPage> {
           ),
         ),
         child: Text(
-          "hello_login_page_btn_acceder_map".tr(),
+          "btn_yes".tr(),
           style: mylib.titleStyle,
           textAlign: TextAlign.center,
         ),
@@ -66,17 +78,13 @@ class Hellologinpage extends State<HelloLoginPage> {
     );
   }
 
-  Widget buildAccessQuestionnaire(Map<String, Object> reponses) {
+  Widget buildBtnNo() {
     return SizedBox(
-      width: 286,
+      width: 120,
       height: 49,
       child: ElevatedButton(
         onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-                builder: (BuildContext context) => const MyHomePage(),
-                settings: RouteSettings(arguments: reponses)),
-          );
+          Navigator.pop(context);
         },
         style: ElevatedButton.styleFrom(
           shadowColor: Colors.grey.shade700,
@@ -87,7 +95,7 @@ class Hellologinpage extends State<HelloLoginPage> {
           ),
         ),
         child: Text(
-          "hello_login_page_btn_acceder_quiz".tr(),
+          "btn_no".tr(),
           style: mylib.titleStyle,
           textAlign: TextAlign.center,
         ),
@@ -111,27 +119,27 @@ class Hellologinpage extends State<HelloLoginPage> {
           child: Container(
             color: const Color.fromARGB(255, 235, 233, 233),
             width: 309,
-            height: 464,
+            height: 200,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                SizedBox(
+                const SizedBox(
                   width: 250,
-                  child: Text("${"hello_admin_page_title1".tr()} ${reponses["username"]}",
-                      style: mylib.titleStyle2),
-
                 ),
-                const SizedBox(height: 61),
+                const SizedBox(height: 15),
                 SizedBox(
-                  width: 250,
-                  child: Text('hello_admin_page_title2'.tr(),
+                  child: Text('user_confirmation_abandon_title'.tr(),
                       style: mylib.titleStyle),
                 ),
-                const SizedBox(height: 61),
-                buildAccessMap(),
-                const SizedBox(height: 61),
-                buildAccessQuestionnaire(reponses),
-                const SizedBox(height: 61),
+                const SizedBox(height: 35),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    buildBtnYes(reponses),
+                    buildBtnNo(),
+                    const SizedBox(height: 61),
+                  ],
+                ),
               ],
             ),
           ),

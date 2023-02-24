@@ -1,5 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/user_confirm_abandon_quiz.dart';
+import 'package:flutter_application_1/user_confirm_enregistrement.dart';
 import 'end_page.dart';
 import 'mylib.dart' as mylib;
 
@@ -46,10 +48,10 @@ class Activitepage extends State<ActivitePage> {
                       child: Column(
                         children: [
                           Container(
-                            padding: const EdgeInsets.fromLTRB(1, 20, 1, 0),
+                            padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
                             child: Text(
                               "activitePage_title".tr(),
-                              style: mylib.blueText,
+                              style: mylib.titleStyle,
                               textAlign: TextAlign.center,
                             ),
                           ),
@@ -73,7 +75,7 @@ class Activitepage extends State<ActivitePage> {
                                           alignment: Alignment.topLeft,
                                           child: Text(
                                             "activitePage_formation".tr(),
-                                            style: mylib.radioText,
+                                            style: mylib.titleStyleDuration,
                                           ),
                                         ),
                                         CheckboxListTile(
@@ -105,13 +107,12 @@ class Activitepage extends State<ActivitePage> {
                                           child: Text(
                                             "activitePage_research_employs"
                                                 .tr(),
-                                            style: mylib.radioText,
+                                            style: mylib.titleStyleDuration,
                                           ),
                                         ),
                                         CheckboxListTile(
                                           activeColor: const Color.fromARGB(
                                               255, 13, 12, 32),
-                                          //checkColor: Colors.white,
                                           title: mylib.createInput(311, 28),
                                           autofocus: false,
                                           selected: _empValue,
@@ -134,7 +135,7 @@ class Activitepage extends State<ActivitePage> {
                                           alignment: Alignment.topLeft,
                                           child: Text(
                                             "activitePage_activity".tr(),
-                                            style: mylib.radioText,
+                                            style: mylib.titleStyleDuration,
                                           ),
                                         ),
                                         CheckboxListTile(
@@ -162,7 +163,7 @@ class Activitepage extends State<ActivitePage> {
                                           alignment: Alignment.topLeft,
                                           child: Text(
                                             "activitePage_retired".tr(),
-                                            style: mylib.radioText,
+                                            style: mylib.titleStyleDuration,
                                           ),
                                         ),
                                         CheckboxListTile(
@@ -190,7 +191,7 @@ class Activitepage extends State<ActivitePage> {
                                           alignment: Alignment.topLeft,
                                           child: Text(
                                             "activitePage_jobless".tr(),
-                                            style: mylib.radioText,
+                                            style: mylib.titleStyleDuration,
                                           ),
                                         ),
                                         CheckboxListTile(
@@ -220,7 +221,14 @@ class Activitepage extends State<ActivitePage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      mylib.createQuitButton(context, 141, 41, null, reponses),
+                      if(reponses['mdp'] == true)
+                    mylib.createQuitButton(
+                        context, 141, 41, 
+                         confirmationEnregistrement(), reponses)
+                    else 
+                    mylib.createQuitButton(
+                        context, 141, 41, 
+                         confirmationAbandon(), reponses),
                       mylib.createNextButton(
                         "btn_next".tr(),
                         context,

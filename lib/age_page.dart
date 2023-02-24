@@ -1,5 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/start_page.dart';
+import 'package:flutter_application_1/user_confirm_abandon_quiz.dart';
+import 'package:flutter_application_1/user_confirm_enregistrement.dart';
 import 'genre_page.dart';
 import 'mylib.dart' as mylib;
 
@@ -42,7 +45,7 @@ class Agepage extends State<AgePage> {
                           padding: const EdgeInsets.fromLTRB(1, 20, 1, 0),
                           child: Text(
                             "agePage_title".tr(),
-                            style: mylib.blueText,
+                            style: mylib.titleStyle,
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -61,7 +64,7 @@ class Agepage extends State<AgePage> {
                                   activeColor: Colors.black,
                                   title: Text(
                                     "agePage_3-10".tr(),
-                                    style: mylib.blueText2,
+                                    style: mylib.titleStyleDuration,
                                   ),
                                   groupValue: age,
                                   onChanged: (value) {
@@ -79,7 +82,7 @@ class Agepage extends State<AgePage> {
                               child: RadioListTile(
                                 activeColor: Colors.black,
                                 title: Text("agePage_11-17".tr(),
-                                    style: mylib.blueText2),
+                                    style: mylib.titleStyleDuration),
                                 groupValue: age,
                                 onChanged: (value) {
                                   setState(() {
@@ -97,7 +100,7 @@ class Agepage extends State<AgePage> {
                               child: RadioListTile(
                                 activeColor: Colors.black,
                                 title: Text("agePage_18-25".tr(),
-                                    style: mylib.blueText2),
+                                    style: mylib.titleStyleDuration),
                                 groupValue: age,
                                 onChanged: (value) {
                                   setState(() {
@@ -115,7 +118,7 @@ class Agepage extends State<AgePage> {
                               child: RadioListTile(
                                 activeColor: Colors.black,
                                 title: Text("agePage_26-35".tr(),
-                                    style: mylib.blueText2),
+                                    style: mylib.titleStyleDuration),
                                 groupValue: age,
                                 onChanged: (value) {
                                   setState(() {
@@ -133,7 +136,7 @@ class Agepage extends State<AgePage> {
                               child: RadioListTile(
                                 activeColor: Colors.black,
                                 title: Text("agePage_36-45".tr(),
-                                    style: mylib.blueText2),
+                                    style: mylib.titleStyleDuration),
                                 groupValue: age,
                                 onChanged: (value) {
                                   setState(() {
@@ -151,7 +154,7 @@ class Agepage extends State<AgePage> {
                               child: RadioListTile(
                                 activeColor: Colors.black,
                                 title: Text("agePage_46-55".tr(),
-                                    style: mylib.blueText2),
+                                    style: mylib.titleStyleDuration),
                                 groupValue: age,
                                 onChanged: (value) {
                                   setState(() {
@@ -169,7 +172,7 @@ class Agepage extends State<AgePage> {
                               child: RadioListTile(
                                 activeColor: Colors.black,
                                 title: Text("agePage_56-65".tr(),
-                                    style: mylib.blueText2),
+                                    style: mylib.titleStyleDuration),
                                 groupValue: age,
                                 onChanged: (value) {
                                   setState(() {
@@ -187,7 +190,7 @@ class Agepage extends State<AgePage> {
                               child: RadioListTile(
                                 activeColor: Colors.black,
                                 title: Text("agePage_66-75".tr(),
-                                    style: mylib.blueText2),
+                                    style: mylib.titleStyleDuration),
                                 groupValue: age,
                                 onChanged: (value) {
                                   setState(() {
@@ -205,7 +208,7 @@ class Agepage extends State<AgePage> {
                               child: RadioListTile(
                                 activeColor: Colors.black,
                                 title: Text("agePage_76".tr(),
-                                    style: mylib.blueText2),
+                                    style: mylib.titleStyleDuration),
                                 groupValue: age,
                                 onChanged: (value) {
                                   setState(() {
@@ -227,7 +230,14 @@ class Agepage extends State<AgePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    //mylib.createQuitButton(context, 141, 41),
+                    if(reponses['mdp'] == true)
+                    mylib.createQuitButton(
+                        context, 141, 41, 
+                         confirmationEnregistrement(), reponses)
+                    else 
+                    mylib.createQuitButton(
+                        context, 141, 41, 
+                         confirmationAbandon(), reponses),
                     mylib.createNextButton(
                       "btn_next".tr(),
                       context,

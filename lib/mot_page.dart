@@ -2,6 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/age_page.dart';
 import 'package:flutter_application_1/home_page.dart';
+import 'package:flutter_application_1/user_confirm_abandon_quiz.dart';
+import 'package:flutter_application_1/user_confirm_enregistrement.dart';
 import 'mylib.dart' as mylib;
 
 class MotPage extends StatefulWidget {
@@ -17,6 +19,7 @@ class Motpage extends State<MotPage> {
   @override
   Widget build(BuildContext context) {
     Map<int, String>? mots = <int, String>{};
+    
     print(mots);
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
@@ -27,7 +30,6 @@ class Motpage extends State<MotPage> {
         endDrawer: mylib.createMenu(context),
         body: Container(
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
-          //decoration: mylib.background1,
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -39,13 +41,12 @@ class Motpage extends State<MotPage> {
                     height: 370,
                     color: const Color.fromARGB(255, 235, 233, 233),
                     child: Column(
-                      //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Container(
-                          padding: const EdgeInsets.fromLTRB(1, 20, 1, 0),
+                          padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
                           child: Text(
                             "motPage_title".tr(),
-                            style: mylib.blueText,
+                            style: mylib.titleStyle,
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -73,7 +74,6 @@ class Motpage extends State<MotPage> {
                                         borderRadius: const BorderRadius.all(
                                             Radius.circular(10)),
                                         child: TextField(
-                                          //controller: motController[index],
                                           style: mylib.simpleText
                                               .apply(fontSizeDelta: 5),
                                           cursorColor: const Color.fromARGB(
@@ -138,11 +138,16 @@ class Motpage extends State<MotPage> {
                   ),
                 ),
                 Row(
-                  //reponses!["mots"] = mots;
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
+                    if(reponses['mdp'] == true)
                     mylib.createQuitButton(
-                        context, 141, 41, const MyHomePage(), reponses),
+                        context, 141, 41, 
+                         confirmationEnregistrement(), reponses)
+                    else 
+                    mylib.createQuitButton(
+                        context, 141, 41, 
+                         confirmationAbandon(), reponses),
                     mylib.createNextButton(
                       "btn_next".tr(),
                       context,
