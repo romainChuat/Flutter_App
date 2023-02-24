@@ -1,3 +1,4 @@
+import 'package:flutter_application_1/utilisateur.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'reponse.dart';
@@ -70,11 +71,11 @@ class DatabaseHelperLocal {
 
     await db.execute('''
           CREATE TABLE user(
-            user_id INTEGER PRIMARY KEY AUTOINCREMENT,
-            user_mail CHARACTER(255) DEFAULT "NULL",
-            user_name CHARACTER(15) NOT NULL,
-            user_psswd CHARACTER(255) DEFAULT "NULL",
-            user_admin BOOLEAN NOT NULL DEFAULT false
+            user_id INTEGER PRIMARY KEY,
+            nom CHARACTER(15) NOT NULL,
+            mail CHARACTER(255) DEFAULT "NULL",
+            password CHARACTER(255) DEFAULT "NULL",
+            user_admin BOOLEAN DEFAULT false
           )
           ''');
   }
@@ -137,8 +138,12 @@ class DatabaseHelperLocal {
     );
   }
 
+  Future<void> deleteAllReponses() async {
+    await _db?.rawDelete('DELETE FROM reponses');
+  }
+
   /*Fonctions pour les utilisateurs*/
-  Future<int?> insertUser(Map<String, Object> u) async {
+  Future<int?> insertUser(Map<String, dynamic> u) async {
     final Database? db = await init();
     return await _db?.insert("user", u);
   }
@@ -147,9 +152,18 @@ class DatabaseHelperLocal {
     return await _db?.query("user");
   }
 
-  Future<List<Map<String, dynamic>>?> queryOneUser(String mail) async {
-    return await _db
-        ?.rawQuery("SELECT mail,password FROM user WHERE mail = ?", [mail]);
+  Future<List<Map>?> queryOneUser(String mail) async {
+    final List<Map<String, dynamic>>? res =
+        await _db?.rawQuery("SELECT * FROM user WHERE mail = ?", [mail]);
+
+    return List.generate(res!.length, (i) {
+      return {
+        'nom': res[i]['nom'],
+        'password': res[i]['password'],
+        'mail': res[i]['mail'],
+        'id': res[i]['user_id'],
+      };
+    });
   }
 
   Future<int?> deleteUser(int id) async {

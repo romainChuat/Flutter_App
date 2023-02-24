@@ -6,7 +6,9 @@ import 'package:flutter_application_1/database_helper.dart';
 import 'package:flutter_application_1/utilisateur.dart';
 import 'package:flutter_application_1/use_conditions.dart';
 import 'package:flutter_application_1/user_choix_connexion.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'connexion_admin.dart';
+import 'database_helper_local.dart';
 import 'hello_login_password.dart';
 import 'mylib.dart' as mylib;
 
@@ -504,31 +506,45 @@ class Creationcompte extends State<CreationCompte> {
   }
 
   Future<void> insertUser() async {
-    final DatabaseHelper dbHelper = DatabaseHelper.getInstance();
-    WidgetsFlutterBinding.ensureInitialized();
+    var u = Utilisateur(
+      nom: nomController.text,
+      mail: mailController.text,
+      password:
+          Crypt.sha256(passwordController_1.text, salt: 'abcdefghijklmnop')
+              .toString(),
+    );
 
-    final c1 = Crypt.sha256('p@ssw0rd');
+    bool result = await InternetConnectionChecker().hasConnection;
+    if (result == true) {
+      final DatabaseHelper dbHelper = DatabaseHelper.getInstance();
+      WidgetsFlutterBinding.ensureInitialized();
 
-    var res = await dbHelper.queryUser(mailController.text);
-    if (res == null) {
-      var u = Utilisateur(
-        nom: nomController.text,
-        mail: mailController.text,
-        password:
-            Crypt.sha256(passwordController_1.text, salt: 'abcdefghijklmnop')
-                .toString(),
-      );
-      try {
-        await dbHelper.insertUser(u.toMap());
-        print("new user");
-      } catch (e) {
-        print(e);
+      var res = await dbHelper.queryUser(mailController.text);
+      if (res == null) {
+        try {
+          await dbHelper.insertUser(u.toMap());
+          print("new user");
+        } catch (e) {
+          print(e);
+          return;
+        }
+
+        res = await dbHelper.queryUser(mailController.text);
+
+        var map = res!.last.asMap();
+
+        reponses['rep_userID'] = map[0];
+      } else {
+        print("mail existant");
         return;
       }
-    } else {
-      print("mail existant");
-      return;
     }
+
+    WidgetsFlutterBinding.ensureInitialized();
+    DatabaseHelperLocal db = DatabaseHelperLocal();
+
+    var res = await db.insertUser(u.toMapLocal(reponses['rep_userID']));
+
     connected = true;
   }
 }

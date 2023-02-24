@@ -3,10 +3,13 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/user_choix_connexion.dart';
+import 'package:flutter_application_1/utilisateur.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'database_helper.dart';
 import 'connexion_admin.dart';
 import 'creation_compte.dart';
+import 'database_helper_local.dart';
 import 'forgotpassword_user.dart';
 import 'hello_login_password.dart';
 import 'mylib.dart' as mylib;
@@ -385,20 +388,40 @@ class Userconnexionpassword extends State<UserConnexionPassword> {
     String mail = mailController.text;
     String password = passwordController.text;
 
-    WidgetsFlutterBinding.ensureInitialized();
-    DatabaseHelper db = DatabaseHelper.getInstance();
+    bool result = await InternetConnectionChecker().hasConnection;
 
-    var res = await db.queryUser(mail);
+    var res;
+    var pass;
+    var pseudo;
+    var idUser;
+
+    if (result == true) {
+      WidgetsFlutterBinding.ensureInitialized();
+      DatabaseHelper db = DatabaseHelper.getInstance();
+
+      res = await db.queryUser(mail);
+
+      var map = res.last.asMap();
+
+      pass = map[3];
+      pseudo = map[1];
+      idUser = map[0];
+    } else {
+      WidgetsFlutterBinding.ensureInitialized();
+      DatabaseHelperLocal db = DatabaseHelperLocal();
+
+      res = await db.queryOneUser(mail);
+
+      Map u = res[0];
+
+      pass = u["password"];
+      pseudo = u["nom"];
+      idUser = u["id"];
+    }
 
     if (res == null) {
       return;
     }
-
-    var map = res.last.asMap();
-
-    var pass = map[3];
-    var pseudo = map[1];
-    var idUser = map[0];
 
     reponses["rep_userID"] = idUser;
     reponses["username"] = pseudo;
