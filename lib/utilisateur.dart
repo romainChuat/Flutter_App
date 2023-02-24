@@ -5,6 +5,15 @@ class Utilisateur {
 
   Utilisateur({required this.nom, required this.mail, required this.password});
 
+  Map<String, dynamic> toMapLocal(dynamic id) {
+    return {
+      'nom': nom,
+      'mail': mail,
+      'password': password,
+      'user_id': id,
+    };
+  }
+
   Map<String, dynamic> toMap() {
     return {
       'nom': nom,
