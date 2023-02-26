@@ -75,7 +75,7 @@ class Datepage extends State<DatePage> {
                                     borderRadius: const BorderRadius.all(
                                         Radius.circular(10)),
                                     child: TextField(
-                                      style: mylib.simpleText
+                                      style: mylib.titleStyleDuration
                                           .apply(fontSizeDelta: 5),
 
                                       controller: dateInput,
@@ -83,20 +83,21 @@ class Datepage extends State<DatePage> {
                                       decoration: const InputDecoration(
                                           suffixIcon: Icon(
                                             Icons.calendar_today,
-                                            color: Colors.black,
+                                           // color: Colors.white,
                                             size: 30,
                                           ), //icon of text field
                                           //labelText: "Enter Date",
                                           filled: true,
                                           fillColor: Colors.white,
                                           hintText: 'Entrer une date',
+                                          hintStyle: mylib.titleStyleDuration,
                                           contentPadding:
                                               EdgeInsets.fromLTRB(10, 1, 0, 0),
                                           enabledBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
                                                 width: 1,
-                                                color: Color.fromARGB(
-                                                    255, 255, 255, 255),
+                                               // color: Color.fromARGB(
+                                                   // 255, 255, 255, 255),
                                               ),
                                               borderRadius: BorderRadius.all(
                                                   Radius.circular(15))),

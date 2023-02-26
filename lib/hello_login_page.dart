@@ -37,7 +37,7 @@ class Hellologinpage extends State<HelloLoginPage> {
     }
   }
 
-  Widget buildAccessMap() {
+  Widget buildAccessMap(reponses) {
     return SizedBox(
       width: 286,
       height: 49,
@@ -46,6 +46,8 @@ class Hellologinpage extends State<HelloLoginPage> {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (BuildContext context) => const DonnerAvisMarker(),
+                        settings: RouteSettings(arguments: reponses),
+
             ),
           );
         },
@@ -128,7 +130,7 @@ class Hellologinpage extends State<HelloLoginPage> {
                       style: mylib.titleStyle),
                 ),
                 const SizedBox(height: 61),
-                buildAccessMap(),
+                buildAccessMap(reponses),
                 const SizedBox(height: 61),
                 buildAccessQuestionnaire(reponses),
                 const SizedBox(height: 61),

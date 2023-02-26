@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'genre_page.dart';
+import 'hello_login_page.dart';
 import 'mylib.dart' as mylib;
 
 class CommentPage extends StatefulWidget {
@@ -17,6 +18,8 @@ class Commentpage extends State<CommentPage> {
   int age = 0;
   @override
   Widget build(BuildContext context) {
+    Map<String, Object> reponses =
+        ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: mylib.BaseAppBar(appBar: AppBar()),
@@ -394,15 +397,19 @@ class Commentpage extends State<CommentPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       //mylib.createQuitButton(context, 141, 41),
-                      mylib.createNextButton(
+                      
+                      mylib.createNextButton1(
                         "btn_next".tr(),
                         context,
                         141,
                         41,
+                        reponses,
                         MaterialPageRoute(
-                          builder: (_) => const GenrePage(),
+                          builder: (BuildContext context) => const HelloLoginPage(),
+          settings: RouteSettings(arguments: reponses),
+            ),
+                        
                         ),
-                      )
                     ],
                   )
                 ],

@@ -3,6 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/user_confirm_abandon_quiz.dart';
 import 'package:flutter_application_1/user_confirm_enregistrement.dart';
 import 'end_page.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/src/widgets/basic.dart';
+import 'package:flutter/src/widgets/framework.dart';
+import 'package:quickalert/quickalert.dart';
+
+
+import 'home_page.dart';
 import 'mylib.dart' as mylib;
 
 class ActivitePage extends StatefulWidget {
@@ -21,7 +29,9 @@ class Activitepage extends State<ActivitePage> {
   bool _retraiteValue = false;
   bool _ssProValue = false;
 
-  @override
+
+
+
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
@@ -229,15 +239,19 @@ class Activitepage extends State<ActivitePage> {
                     mylib.createQuitButton(
                         context, 141, 41, 
                          confirmationAbandon(), reponses),
-                      mylib.createNextButton(
+                      mylib.createNextButton1(
                         "btn_next".tr(),
                         context,
                         141,
                         41,
+                        reponses,
                         MaterialPageRoute(
-                            builder: (_) => const EndPage(),
-                            settings: RouteSettings(arguments: reponses)),
-                      )
+              builder: (BuildContext context) => const MyHomePage(),
+              settings: RouteSettings(arguments: reponses)
+            ),
+                        
+                        ),
+                    
                     ],
                   )
                 ],
