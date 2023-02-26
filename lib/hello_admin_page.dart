@@ -41,7 +41,7 @@ class Helloadminpage extends State<HelloAdminPage> {
     );
   }
 
-  Widget gererLesAvis() {
+  Widget gererLesAvis(reponses) {
     return SizedBox(
       width: 296,
       height: 49,
@@ -50,6 +50,7 @@ class Helloadminpage extends State<HelloAdminPage> {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (BuildContext context) => const AccueilGererLesAvis(),
+              settings: RouteSettings(arguments: reponses),
             ),
           );
         },
@@ -72,6 +73,8 @@ class Helloadminpage extends State<HelloAdminPage> {
 
   @override
   Widget build(BuildContext context) {
+ Map<String, Object> reponses =
+        ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: mylib.BaseAppBar(
@@ -90,7 +93,8 @@ class Helloadminpage extends State<HelloAdminPage> {
               children: <Widget>[
                 SizedBox(
                   width: 250,
-                  child: Text('hello_admin_page_title1'.tr(),
+                    child: Text("${"hello_admin_page_title1".tr()} ${reponses["username"]}",
+
                       style: mylib.titleStyle2),
                 ),
                 const SizedBox(height: 61),
@@ -102,7 +106,7 @@ class Helloadminpage extends State<HelloAdminPage> {
                 const SizedBox(height: 61),
                 gererLesMarkers(),
                 const SizedBox(height: 30),
-                gererLesAvis(),
+                gererLesAvis(reponses),
                 const SizedBox(height: 61),
               ],
             ),

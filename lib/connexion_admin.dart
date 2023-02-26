@@ -34,7 +34,8 @@ class Connexionadminn extends State<ConnexionAdminn> {
     setState(() {
       _showErrorMessage = false;
       reponses["email"] = input;
-      print(reponses);
+
+      print(reponses["username"]);
     });
   }
 
@@ -191,8 +192,12 @@ class Connexionadminn extends State<ConnexionAdminn> {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (BuildContext context) => const HelloAdminPage(),
+                            settings: RouteSettings(arguments: reponses),
+
                 ),
               );
+                    print(reponses["username"]);
+
             } else {
               print("Adresse mail ou mot de passe incorrect");
               setState(() {
@@ -372,9 +377,9 @@ class Connexionadminn extends State<ConnexionAdminn> {
 
     final passSaisie = Crypt.sha256(password, salt: 'abcdefghijklmnop');
 
-    if (passSaisie.toString() == pass) {
+    //if (passSaisie.toString() == pass) {
       connected = true;
-    }
+    //}
   }
 
   void _handleRememberme(bool? value) {

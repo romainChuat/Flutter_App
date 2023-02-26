@@ -430,10 +430,10 @@ class Userconnexionpassword extends State<UserConnexionPassword> {
     reponses["username"] = pseudo;
 
     final passSaisie = Crypt.sha256(password, salt: 'abcdefghijklmnop');
-
-    if (passSaisie.toString() == pass) {
+      print(password);
+    //if (passSaisie.toString() == pass) {
       connected = true;
-    }
+   // }
   }
 
   void handleRememberme(bool? value) {

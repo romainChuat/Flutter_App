@@ -16,7 +16,7 @@ class HelloLoginPassword extends StatefulWidget {
 class Hellologinpassword extends State<HelloLoginPassword> {
   Widget buildAccessMap() {
     return SizedBox(
-      width: 300,
+      width: 290,
       height: 49,
       child: ElevatedButton(
         onPressed: () {
@@ -45,7 +45,7 @@ class Hellologinpassword extends State<HelloLoginPassword> {
 
   Widget buildAccessQuestionnaire(Map<String, Object> reponses) {
     return SizedBox(
-      width: 300,
+      width: 290,
       height: 49,
       child: ElevatedButton(
         onPressed: () {
@@ -74,7 +74,7 @@ class Hellologinpassword extends State<HelloLoginPassword> {
 
   Widget consultQuestionnaire() {
     return SizedBox(
-      width: 300,
+      width: 290,
       height: 49,
       child: ElevatedButton(
         onPressed: () {
@@ -104,7 +104,7 @@ class Hellologinpassword extends State<HelloLoginPassword> {
 
   Widget consultAvis() {
     return SizedBox(
-      width: 300,
+      width: 290,
       height: 49,
       child: ElevatedButton(
         onPressed: () {
@@ -152,12 +152,13 @@ class Hellologinpassword extends State<HelloLoginPassword> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
+                const SizedBox(height: 25,),
                 SizedBox(
                   width: 250,
                   child: Text("${"hello_admin_page_title1".tr()} ${reponses["username"]}",
                       style: mylib.titleStyle2),
                 ),
-                const SizedBox(height: 61),
+                const SizedBox(height: 40),
                 SizedBox(
                   width: 250,
                   child: Text('hello_admin_page_title2'.tr(),

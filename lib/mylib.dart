@@ -3,11 +3,16 @@ library mylib;
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/end_page.dart';
 import 'package:flutter_application_1/language_page.dart';
 import 'package:flutter_application_1/provider.dart';
 import 'package:provider/provider.dart';
 import 'confirmation_deconnexion.dart';
 import 'controller/language_contoller.dart';
+import 'package:quickalert/quickalert.dart';
+
+import 'home_page.dart';
+
 
 bool adminConnect = false;
 
@@ -115,7 +120,7 @@ const TextStyle radioText = TextStyle(
 const TextStyle simpleText = TextStyle(
   fontSize: 20,
   fontWeight: FontWeight.w800,
-  color: Colors.white,
+  color: Colors.black,
   fontFamily: 'Nunito',
   letterSpacing: 1,
 );
@@ -123,6 +128,13 @@ const TextStyle simpleText = TextStyle(
 const TextStyle simpleTextdark = TextStyle(
   fontSize: 15,
   color: Colors.black,
+  fontFamily: 'Spline Sans Mono',
+  letterSpacing: 1,
+);
+
+const TextStyle simpleTextwhite = TextStyle(
+  fontSize: 15,
+  color: Colors.white,
   fontFamily: 'Spline Sans Mono',
   letterSpacing: 1,
 );
@@ -192,6 +204,8 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Size get preferredSize => Size.fromHeight(appBar.preferredSize.height);
 }
+
+
 
 createInput(
   double wdth,
@@ -305,6 +319,43 @@ createNextButton(String text, BuildContext context, double width, double height,
           context,
           page,
         );
+      },
+      child: Text(
+        text,
+        style: titleStyle,
+      ),
+    ),
+  );
+}
+
+createNextButton1(String text, BuildContext context, double width, double height, Map<String, Object> reponses, MaterialPageRoute page) {
+  return SizedBox(
+    width: width,
+    height: height,
+    child: ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        foregroundColor: Colors.white,
+        side: const BorderSide(color: Colors.white, width: 1),
+        elevation: 15,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      ),
+      onPressed: () {
+           
+        QuickAlert.show(
+          context: context,
+          type: QuickAlertType.confirm,
+          text: 'sur de vouloirs envoyer ?',
+          confirmBtnText: 'Yes' ,
+          onConfirmBtnTap: () {Navigator.of(context).push(
+            page,
+          );},
+          cancelBtnText: 'No',
+          confirmBtnColor: const Color.fromARGB(255, 64, 224, 168),
+        );
+      
+     
+    
+      
       },
       child: Text(
         text,

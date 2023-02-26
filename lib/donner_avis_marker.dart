@@ -44,6 +44,8 @@ class Donneravismarker extends State<DonnerAvisMarker> {
 
   @override
   Widget build(BuildContext context) {
+    Map<String, Object> reponses =
+        ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: mylib.BaseAppBar(appBar: AppBar()),
@@ -206,7 +208,7 @@ class Donneravismarker extends State<DonnerAvisMarker> {
                       41,
                       MaterialPageRoute(
                         builder: (_) => const CommentPage(),
-                        settings: const RouteSettings(arguments: null),
+          settings: RouteSettings(arguments: reponses),
                       ),
                     )
                   ],

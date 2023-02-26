@@ -74,7 +74,7 @@ class Motpage extends State<MotPage> {
                                         borderRadius: const BorderRadius.all(
                                             Radius.circular(10)),
                                         child: TextField(
-                                          style: mylib.simpleText
+                                          style: mylib.titleStyleDuration
                                               .apply(fontSizeDelta: 5),
                                           cursorColor: const Color.fromARGB(
                                               255, 117, 106, 106),
@@ -94,6 +94,7 @@ class Motpage extends State<MotPage> {
                                                       0, 0, 0, 1),
                                               filled: true,
                                               fillColor: Colors.white,
+                                             
                                               enabledBorder:
                                                   const OutlineInputBorder(
                                                       borderSide: BorderSide(

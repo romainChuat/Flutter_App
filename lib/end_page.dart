@@ -5,6 +5,7 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'database_helper.dart';
 import 'database_helper_local.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:quickalert/quickalert.dart';
 import 'mylib.dart' as mylib;
 
 class EndPage extends StatefulWidget {
@@ -27,59 +28,27 @@ class Endpage extends State<EndPage> {
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
     print(reponses);
 
-    return Scaffold(
-        extendBodyBehindAppBar: true,
-        appBar: mylib.BaseAppBar(appBar: AppBar()),
-        endDrawer: mylib.createMenu(context),
-        body: Container(
-          padding: const EdgeInsets.fromLTRB(0, 100, 0, 0),
-          child: Center(
-            child: ClipRRect(
-              borderRadius: const BorderRadius.all(Radius.circular(10)),
-              child: Container(
-                color: const Color.fromARGB(255, 235, 233, 233),
-                width: 309,
-                height: 530,
-                padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    Text(
-                        "${"hello_admin_page_title1".tr()} ${reponses["username"]}",
-                        style: mylib.titleStyle),
-                    SizedBox(
-                      width: 320,
-                      height: 350,
-                      child: Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          const IconShadow(
-                            Icon(
-                              Icons.check_circle_outline,
-                              size: 320,
-                              color: Color.fromARGB(255, 13, 12, 32),
-                            ),
-                            shadowColor: Color.fromARGB(255, 63, 63, 63),
-                            shadowOffset: Offset(2, 2),
-                          ),
-                          CustomPaint(
-                            painter: MakeCircle(
-                                strokeWidth: 15,
-                                strokeCap: StrokeCap.round,
-                                color: Colors.white,
-                                rad: 130),
-                          ),
-                        ],
-                      ),
-                    ),
-                    createSubmitButton(141, 41, reponses),
-                  ],
-                ),
-              ),
-            ),
+    return AlertDialog(
+        title: const Text('AlertDialog Title'),
+        content: SingleChildScrollView(
+          child: ListBody(
+            children: const <Widget>[
+              Text('This is a demo alert dialog.'),
+              Text('Would you like to approve of this message?'),
+            ],
           ),
-        ));
+        ),
+        actions: <Widget>[
+          TextButton(
+            child: const Text('Approve'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
   }
+
 
   createSubmitButton(
       double width, double height, Map<String, Object> reponses) {
