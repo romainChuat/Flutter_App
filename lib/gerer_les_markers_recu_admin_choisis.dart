@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:flutter_map/plugin_api.dart';
+import 'accueil_gerer_les_markers.dart';
 import 'end_page.dart';
 import 'mylib.dart' as mylib;
 
@@ -532,39 +533,11 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
     );
   }
 
-  Widget btnValider() {
-    return SizedBox(
-      width: 160,
-      height: 43,
-      // padding: EdgeInsets.symmetric(vertical: 25),
-      //width: double.infinity,
-      child: ElevatedButton(
-        onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (BuildContext context) => const EndPage(),
-            ),
-          );
-        },
-        style: ElevatedButton.styleFrom(
-          shadowColor: Colors.grey.shade700,
-          elevation: 20,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0),
-            side: const BorderSide(color: Colors.white, width: 3),
-          ),
-        ),
-        child: Text(
-          "btn_validate".tr(),
-          style: mylib.titleStyle2,
-          textAlign: TextAlign.center,
-        ),
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
+    Map<String, Object> reponses =
+        ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: mylib.BaseAppBar(
@@ -618,7 +591,18 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
                 const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 50)),
                 btnRefuser(),
                 const Padding(padding: EdgeInsets.fromLTRB(35, 0, 0, 0)),
-                btnValider(),
+                mylib.createNextButton1(
+                        "btn_validate".tr(),
+                        context,
+                        141,
+                        41,
+                        reponses,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) => const AccueilGererLesMarkers(),
+          settings: RouteSettings(arguments: reponses),
+            ),
+                        
+                        ),
               ],
             ),
           ],
