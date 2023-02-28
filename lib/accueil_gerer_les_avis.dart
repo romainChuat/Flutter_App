@@ -14,7 +14,7 @@ class AccueilGererLesAvis extends StatefulWidget {
 }
 
 class AccueilGererLesavis extends State<AccueilGererLesAvis> {
-  Widget gererlesavisvalide() {
+  Widget gererlesavisvalide(reponses) {
     return SizedBox(
       width: 296,
       height: 49,
@@ -23,6 +23,7 @@ class AccueilGererLesavis extends State<AccueilGererLesAvis> {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (BuildContext context) => const GererAvisValide(),
+              settings: RouteSettings(arguments: reponses),
             ),
           );
         },
@@ -43,7 +44,7 @@ class AccueilGererLesavis extends State<AccueilGererLesAvis> {
     );
   }
 
-  Widget gererlesavisrecu() {
+  Widget gererlesavisrecu(reponses) {
     return SizedBox(
       width: 296,
       height: 49,
@@ -52,6 +53,7 @@ class AccueilGererLesavis extends State<AccueilGererLesAvis> {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (BuildContext context) => const TraiterAvisRecu(),
+              settings: RouteSettings(arguments: reponses),
             ),
           );
         },
@@ -72,7 +74,7 @@ class AccueilGererLesavis extends State<AccueilGererLesAvis> {
     );
   }
 
-  Widget gererlesavisrefuse() {
+  Widget gererlesavisrefuse(reponses) {
     return SizedBox(
       width: 296,
       height: 49,
@@ -81,6 +83,7 @@ class AccueilGererLesavis extends State<AccueilGererLesAvis> {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (BuildContext context) => const GererAvisRefuse(),
+              settings: RouteSettings(arguments: reponses),
             ),
           );
         },
@@ -103,6 +106,8 @@ class AccueilGererLesavis extends State<AccueilGererLesAvis> {
 
   @override
   Widget build(BuildContext context) {
+    Map<String, Object> reponses =
+        ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: mylib.BaseAppBar(
@@ -126,11 +131,11 @@ class AccueilGererLesavis extends State<AccueilGererLesAvis> {
                       style: mylib.titleStyle),
                 ),
                 const SizedBox(height: 61),
-                gererlesavisvalide(),
+                gererlesavisvalide(reponses),
                 const SizedBox(height: 30),
-                gererlesavisrecu(),
+                gererlesavisrecu(reponses),
                 const SizedBox(height: 30),
-                gererlesavisrefuse(),
+                gererlesavisrefuse(reponses),
                 const SizedBox(height: 40),
               ],
             ),
