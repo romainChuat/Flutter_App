@@ -23,7 +23,6 @@ class Connexion1 extends State<Connexion> {
     setState(() {
       _showErrorMessage = false;
       reponses["username"] = input;
-      print(reponses);
     });
   }
 
@@ -33,7 +32,6 @@ class Connexion1 extends State<Connexion> {
         _showErrorMessage = true;
       });
     } else {
-      print(reponses);
       Navigator.of(context).push(
         MaterialPageRoute(
           builder: (BuildContext context) => const HelloLoginPage(),
