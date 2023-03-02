@@ -396,13 +396,20 @@ class Userconnexionpassword extends State<UserConnexionPassword> {
       WidgetsFlutterBinding.ensureInitialized();
       DatabaseHelper db = DatabaseHelper.getInstance();
 
-      res = await db.queryUser(mail);
-
+      try{
+        res = await db.queryUser(mail);
+      }catch(e){
+        print("email incorrect");
+      }
       var map = res.last.asMap();
-
+      
       pass = map[3];
-      pseudo = map[1];
+      print("pass "+pass);
+      pseudo = map[2];
+      print("pseudo "+pseudo);
       idUser = map[0];
+      print(idUser);
+
     } else {
       WidgetsFlutterBinding.ensureInitialized();
       DatabaseHelperLocal db = DatabaseHelperLocal();
@@ -415,13 +422,9 @@ class Userconnexionpassword extends State<UserConnexionPassword> {
       pseudo = u["nom"];
       idUser = u["id"];
     }
-
-    if (res == null) {
-      return;
-    }
-
     reponses["rep_userID"] = idUser;
     reponses["username"] = pseudo;
+    
 
     final passSaisie = Crypt.sha256(password, salt: 'abcdefghijklmnop');
     //if (passSaisie.toString() == pass) {

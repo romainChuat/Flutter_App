@@ -368,11 +368,16 @@ class Connexionadminn extends State<ConnexionAdminn> {
 
     var pass = res.first[3];
 
+    print("pass"+pass);
+
     final passSaisie = Crypt.sha256(password, salt: 'abcdefghijklmnop');
 
     //if (passSaisie.toString() == pass) {
       connected = true;
     //}
+    if(connected){
+      reponses['username'] = res[2];
+    }
   }
 
   void _handleRememberme(bool? value) {
