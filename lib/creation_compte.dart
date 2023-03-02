@@ -509,9 +509,7 @@ class Creationcompte extends State<CreationCompte> {
     var u = Utilisateur(
       nom: nomController.text,
       mail: mailController.text,
-      password:
-          Crypt.sha256(passwordController_1.text, salt: 'abcdefghijklmnop')
-              .toString(),
+      password:Crypt.sha256(passwordController_1.text, salt: 'abcdefghijklmnop').toString(),
     );
 
     bool result = await InternetConnectionChecker().hasConnection;
@@ -539,11 +537,11 @@ class Creationcompte extends State<CreationCompte> {
         return;
       }
     }
-
+    print(u.nom);
     WidgetsFlutterBinding.ensureInitialized();
     DatabaseHelperLocal db = DatabaseHelperLocal();
 
-    var res = await db.insertUser(u.toMapLocal(reponses['rep_userID']));
+    var res = await db.insertUser(u.toMapLocal());
 
     connected = true;
   }

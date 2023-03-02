@@ -90,10 +90,13 @@ class DatabaseHelperLocal {
     return insert;
   }
 
-  Future<List<Map>?> queryAllRowsLieu() async {
-    return await _db?.query("lieux");
+  Future<List<Map<String, dynamic>>?> queryAllRowsLieu() async {
+    final Database? db = await init();
+    return await db?.query("lieux");
   }
-
+  Future<List<Map<String, dynamic>>?> queryLieu(double longitude, double latitude) async {
+    return await _db?.rawQuery("SELECT * FROM lieux WHERE lieux_lat = ${latitude} AND lieux_long=${longitude}");
+  }
   Future<List<Map<String, dynamic>>?> queryAllReponsesLieux() async {
     return await _db?.rawQuery("SELECT lieux FROM reponses");
   }
