@@ -41,7 +41,6 @@ class Userchoixconnexion extends State<UserChoixConnexion> {
       alignment: Alignment.centerRight,
       child: TextButton(
         onPressed: () => {
-          print("Création du compte"),
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (BuildContext context) => const CreationCompte(),

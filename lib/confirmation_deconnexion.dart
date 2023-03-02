@@ -24,7 +24,6 @@ class Confirmationdeconnexion extends State<ConfirmationDeconnexion> {
   Future getCurrentTheme() async {
     savedThemeMode = await AdaptiveTheme.getThemeMode();
     if (savedThemeMode.toString() == 'AdaptiveThemeMode.dark') {
-      print('mode sombre');
       setState(() {
         darkmode = true;
       });
@@ -32,7 +31,6 @@ class Confirmationdeconnexion extends State<ConfirmationDeconnexion> {
       setState(() {
         darkmode = false;
       });
-      print('mode clair');
     }
   }
 
