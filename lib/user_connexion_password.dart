@@ -3,7 +3,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/user_choix_connexion.dart';
-import 'package:flutter_application_1/utilisateur.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'database_helper.dart';
@@ -66,7 +65,6 @@ class Userconnexionpassword extends State<UserConnexionPassword> {
       alignment: Alignment.centerRight,
       child: TextButton(
         onPressed: () => {
-          print("Sign up pressed"),
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (BuildContext context) => const CreationCompte(),
@@ -158,7 +156,6 @@ class Userconnexionpassword extends State<UserConnexionPassword> {
       alignment: Alignment.centerRight,
       child: TextButton(
         onPressed: () => {
-          print("Forgot password pressed"),
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (BuildContext context) => const ForgotPasswordUser(),
@@ -169,8 +166,7 @@ class Userconnexionpassword extends State<UserConnexionPassword> {
           'forgot_password_page_title'.tr(),
           style: const TextStyle(
             color: Colors.black38,
-              fontSize: 13,
-
+            fontSize: 13,
           ),
         ),
       ),
@@ -284,7 +280,6 @@ class Userconnexionpassword extends State<UserConnexionPassword> {
         height: 50,
         child: ElevatedButton(
           onPressed: () {
-            reponses['mdp'] = true;
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (BuildContext context) => const ConnexionAdminn(),
@@ -356,7 +351,6 @@ class Userconnexionpassword extends State<UserConnexionPassword> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
                                   buildRemeberCb(),
-
                                   buildForgotPassBtn(),
                                 ],
                               ),
@@ -435,8 +429,7 @@ class Userconnexionpassword extends State<UserConnexionPassword> {
     final passSaisie = Crypt.sha256(password, salt: 'abcdefghijklmnop');
     //if (passSaisie.toString() == pass) {
       connected = true;
-
-
+      reponses['mdp'] = true;
    // }
   }
 

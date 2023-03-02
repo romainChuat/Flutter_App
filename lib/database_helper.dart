@@ -25,7 +25,7 @@ class DatabaseHelper {
     return PostgreSQLConnection("10.0.2.2", 5432, 'postgres',
         queryTimeoutInSeconds: 3600,
         timeoutInSeconds: 3600,
-        username: 'romain',
+        username: 'katty',
         password: 'admin');
   }
 

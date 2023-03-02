@@ -13,6 +13,8 @@ class HelloAdminPage extends StatefulWidget {
 
 class Helloadminpage extends State<HelloAdminPage> {
   Widget gererLesMarkers() {
+    Map<String, Object> reponses =
+        ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
     return SizedBox(
       width: 296,
       height: 49,
@@ -21,6 +23,7 @@ class Helloadminpage extends State<HelloAdminPage> {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (BuildContext context) => const AccueilGererLesMarkers(),
+              settings: RouteSettings(arguments: reponses),
             ),
           );
         },

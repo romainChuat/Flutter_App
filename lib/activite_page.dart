@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/user_confirm_abandon_quiz.dart';
 import 'package:flutter_application_1/user_confirm_enregistrement.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'end_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:quickalert/quickalert.dart';
 
 
+import 'hello_login_page.dart';
+import 'hello_login_password.dart';
 import 'home_page.dart';
 import 'mylib.dart' as mylib;
 
@@ -48,6 +51,7 @@ class Activitepage extends State<ActivitePage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
+                                  mylib.percentIndicator(context, 1.0),
                   const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
                   ClipRRect(
                     borderRadius: BorderRadius.circular(15.0),
@@ -239,21 +243,50 @@ class Activitepage extends State<ActivitePage> {
                     mylib.createQuitButton(
                         context, 141, 41, 
                          confirmationAbandon(), reponses),
-                      mylib.createNextButton1(
-                        "btn_next".tr(),
+                         
+
+
+                         
+                    if (reponses['mdp'] == true)
+                      mylib.createNextButton1("btn_next".tr(),
                         context,
                         141,
                         41,
                         reponses,
                         MaterialPageRoute(
-              builder: (BuildContext context) => const MyHomePage(),
+                          
+              builder: (BuildContext context) => const HelloLoginPassword(),
               settings: RouteSettings(arguments: reponses)
-            ),
-                        
-                        ),
+            ))
+                    else
+                    mylib.createNextButton1("btn_next".tr(),
+                        context,
+                        141,
+                        41,
+                        reponses,
+                        MaterialPageRoute(
+                          
+              builder: (BuildContext context) => const HelloLoginPage(),
+              settings: RouteSettings(arguments: reponses)
+                      ),
+                    )
+                  
+                     
                     
                     ],
-                  )
+                  ),
+                  Container(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+                  child: const Align(
+                    alignment: Alignment.bottomRight,
+                    child: Text(
+                      "9/9",
+                      textAlign: TextAlign.right,
+                      style: mylib.titleStyleBasDePage,
+
+                    ),
+                  ),
+                ),
                 ],
               ),
             ),

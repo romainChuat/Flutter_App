@@ -13,7 +13,9 @@ class AccueilGererLesMarkers extends StatefulWidget {
 }
 
 class Accueilgererlesmarkers extends State<AccueilGererLesMarkers> {
-  Widget gererlesmarkersvalide() {
+  
+  Widget gererlesmarkersvalide(reponses) {
+    
     return SizedBox(
       width: 296,
       height: 49,
@@ -22,6 +24,7 @@ class Accueilgererlesmarkers extends State<AccueilGererLesMarkers> {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (BuildContext context) => const GererMarkersRecuAdmin(),
+              settings: RouteSettings(arguments: reponses),
             ),
           );
         },
@@ -42,7 +45,7 @@ class Accueilgererlesmarkers extends State<AccueilGererLesMarkers> {
     );
   }
 
-  Widget gererlesmarkersrecu() {
+  Widget gererlesmarkersrecu(reponses) {
     return SizedBox(
       width: 296,
       height: 49,
@@ -52,6 +55,7 @@ class Accueilgererlesmarkers extends State<AccueilGererLesMarkers> {
             MaterialPageRoute(
               builder: (BuildContext context) =>
                   const TraiterMarkersRecuAdmin(),
+              settings: RouteSettings(arguments: reponses),
             ),
           );
         },
@@ -72,7 +76,7 @@ class Accueilgererlesmarkers extends State<AccueilGererLesMarkers> {
     );
   }
 
-  Widget gererlesmarkersrefuse() {
+  Widget gererlesmarkersrefuse(reponses) {
     return SizedBox(
       width: 296,
       height: 49,
@@ -81,6 +85,7 @@ class Accueilgererlesmarkers extends State<AccueilGererLesMarkers> {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (BuildContext context) => const GererLesMarkersRefuse(),
+              settings: RouteSettings(arguments: reponses),
             ),
           );
         },
@@ -103,6 +108,8 @@ class Accueilgererlesmarkers extends State<AccueilGererLesMarkers> {
 
   @override
   Widget build(BuildContext context) {
+    Map<String, Object> reponses =
+        ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: mylib.BaseAppBar(
@@ -126,11 +133,11 @@ class Accueilgererlesmarkers extends State<AccueilGererLesMarkers> {
                       style: mylib.titleStyle),
                 ),
                 const SizedBox(height: 61),
-                gererlesmarkersvalide(),
+                gererlesmarkersvalide(reponses),
                 const SizedBox(height: 30),
-                gererlesmarkersrecu(),
+                gererlesmarkersrecu(reponses),
                 const SizedBox(height: 30),
-                gererlesmarkersrefuse(),
+                gererlesmarkersrefuse(reponses),
                 const SizedBox(height: 40),
               ],
             ),

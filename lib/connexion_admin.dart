@@ -34,8 +34,6 @@ class Connexionadminn extends State<ConnexionAdminn> {
     setState(() {
       _showErrorMessage = false;
       reponses["email"] = input;
-
-      print(reponses["username"]);
     });
   }
 
@@ -134,7 +132,6 @@ class Connexionadminn extends State<ConnexionAdminn> {
       alignment: Alignment.centerRight,
       child: TextButton(
         onPressed: () => {
-          print("Forgot password pressed"),
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (BuildContext context) => const ForgotPasswordPage(),
@@ -145,7 +142,7 @@ class Connexionadminn extends State<ConnexionAdminn> {
           'forgot_password_page_title'.tr(),
           style: const TextStyle(
             color: Colors.black38,
-                            fontSize: 13,
+            fontSize: 13,
 
             //fontWeight: FontWeight.bold
           ),
@@ -171,8 +168,7 @@ class Connexionadminn extends State<ConnexionAdminn> {
               'connexion_admin_remeber_me'.tr(),
               style: const TextStyle(
                 color: Colors.black38,
-                                fontSize: 13,
-
+                fontSize: 13,
               ),
             ),
           ],
@@ -192,12 +188,9 @@ class Connexionadminn extends State<ConnexionAdminn> {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (BuildContext context) => const HelloAdminPage(),
-                            settings: RouteSettings(arguments: reponses),
-
+                  settings: RouteSettings(arguments: reponses),
                 ),
               );
-                    print(reponses["username"]);
-
             } else {
               print("Adresse mail ou mot de passe incorrect");
               setState(() {

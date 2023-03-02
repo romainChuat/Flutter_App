@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_map/plugin_api.dart';
+import 'accueil_gerer_les_avis.dart';
 import 'end_page.dart';
 import 'mylib.dart' as mylib;
 
@@ -237,37 +238,12 @@ class Traiteravisrecu extends State<TraiterAvisRecu> {
     );
   }
 
-  Widget btnAnnulerValidation() {
-    return SizedBox(
-      width: 350,
-      height: 43,
-      child: ElevatedButton(
-        onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (BuildContext context) => const EndPage(),
-            ),
-          );
-        },
-        style: ElevatedButton.styleFrom(
-          shadowColor: Colors.grey.shade700,
-          elevation: 20,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0),
-            side: const BorderSide(color: Colors.white, width: 3),
-          ),
-        ),
-        child: const Text(
-          "Traiter_markers_recu_admin_btn_annuler",
-          style: mylib.titleStyle2,
-          textAlign: TextAlign.center,
-        ),
-      ),
-    );
-  }
+
 
   @override
   Widget build(BuildContext context) {
+    Map<String, Object> reponses =
+        ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: mylib.BaseAppBar(
@@ -321,7 +297,18 @@ class Traiteravisrecu extends State<TraiterAvisRecu> {
                       ),
                     ),
                     const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                    btnAnnulerValidation(),
+                    mylib.createNextButton1(
+                        "Traiter_markers_recu_admin_btn_annuler".tr(),
+                        context,
+                        141,
+                        41,
+                        reponses,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) => const AccueilGererLesAvis(),
+          settings: RouteSettings(arguments: reponses),
+            ),
+                        
+                        ),
                   ],
                 ),
               ),

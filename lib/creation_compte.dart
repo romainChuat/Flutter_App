@@ -200,7 +200,7 @@ class Creationcompte extends State<CreationCompte> {
   Widget buildLoginBtn() {
     return Column(children: [
       SizedBox(
-        width: 120,
+        width: 140,
         height: 43,
         child: ElevatedButton(
           onPressed: () async {
@@ -429,7 +429,7 @@ class Creationcompte extends State<CreationCompte> {
                             child: Container(
                               color: const Color.fromARGB(255, 235, 233, 233),
                               width: 309,
-                              height: 600,
+                              height: 568,
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
