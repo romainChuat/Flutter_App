@@ -29,7 +29,7 @@ class Traitermarkersrecuadmin extends State<TraiterMarkersRecuAdmin> {
         child: Container(
           padding: const EdgeInsets.fromLTRB(1, 15, 1, 0),
           child: Text(
-            "raiter_markers_recu_admin_title".tr(),
+            "Traiter_markers_recu_admin_title".tr(),
             style: mylib.blueText,
             textAlign: TextAlign.center,
           ),
@@ -581,7 +581,7 @@ class Traitermarkersrecuadmin extends State<TraiterMarkersRecuAdmin> {
                     mylib.createNextButton1(
                         "Traiter_markers_recu_admin_btn_annuler".tr(),
                         context,
-                        141,
+                        220,
                         41,
                         reponses,
                         MaterialPageRoute(

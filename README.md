@@ -17,4 +17,5 @@ samples, guidance on mobile development, and a full API reference.
 
 
 
-- Parler du la barre d'avancée
+- Parler du la barre d'avancé
+- Icon application

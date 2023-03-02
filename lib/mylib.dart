@@ -11,7 +11,6 @@ import 'confirmation_deconnexion.dart';
 import 'controller/language_contoller.dart';
 import 'package:quickalert/quickalert.dart';
 
-import 'home_page.dart';
 
 bool adminConnect = false;
 
@@ -369,7 +368,6 @@ createQuitButton(BuildContext context, double width, double height, var path,
     child: ElevatedButton(
       style: ElevatedButton.styleFrom(
         foregroundColor: Colors.white,
-        //  backgroundColor: Color.fromARGB(255, 13, 12, 32),
         side: const BorderSide(color: Colors.white, width: 1),
         elevation: 15,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -378,7 +376,7 @@ createQuitButton(BuildContext context, double width, double height, var path,
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => path,
+            builder: (context) => path, 
             settings: RouteSettings(arguments: args),
           ),
         );
@@ -534,32 +532,7 @@ createMenu(BuildContext context) {
                     )),
               ),
             ),
-            const Padding(padding: EdgeInsets.all(10)),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: SizedBox(
-                width: 230,
-                height: 58,
-                child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      foregroundColor: const Color.fromARGB(255, 13, 12, 32),
-                      backgroundColor: const Color.fromARGB(255, 235, 233, 233),
-                    ),
-                    onPressed: () {
-                      AdaptiveTheme.of(context).setDark();
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        const ChangeThemeButtonWidget(),
-                        Text(
-                          "btn_mode_sombre".tr(),
-                          style: blueText,
-                        ),
-                      ],
-                    )),
-              ),
-            ),
+            
             const Padding(padding: EdgeInsets.all(10)),
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
@@ -586,6 +559,29 @@ createMenu(BuildContext context) {
                         const Padding(padding: EdgeInsets.all(6)),
                         Text(
                           "btn_traduire".tr(),
+                          style: blueText,
+                        ),
+                      ],
+                    )),
+              ),
+            ),
+            const Padding(padding: EdgeInsets.all(10)),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: SizedBox(
+                width: 230,
+                height: 58,
+                child: Container(
+                  
+                    width: 336,
+                      height: 570,
+                      color: const Color.fromARGB(255, 235, 233, 233),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        const ChangeThemeButtonWidget(),
+                        Text(
+                          "btn_mode_sombre".tr(),
                           style: blueText,
                         ),
                       ],

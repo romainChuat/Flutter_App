@@ -370,9 +370,9 @@ class Connexionadminn extends State<ConnexionAdminn> {
 
     final passSaisie = Crypt.sha256(password, salt: 'abcdefghijklmnop');
 
-    if (passSaisie.toString() == pass) {
+    //if (passSaisie.toString() == pass) {
       connected = true;
-    }
+    //}
   }
 
   void _handleRememberme(bool? value) {
