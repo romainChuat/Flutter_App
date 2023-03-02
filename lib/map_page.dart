@@ -1,11 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/home_page.dart';
 import 'package:flutter_application_1/user_confirm_abandon_quiz.dart';
 import 'package:flutter_application_1/user_confirm_enregistrement.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map/plugin_api.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'mylib.dart' as mylib;
 
 import 'droits_auteur.dart';
@@ -50,6 +50,7 @@ class Mappage extends State<MapPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
+                mylib.percentIndicator(context, 0.11),
                 ClipRRect(
                     borderRadius: BorderRadius.circular(15.0),
                     child: Container(
@@ -63,9 +64,10 @@ class Mappage extends State<MapPage> {
                             padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                             child: Align(
                               alignment: Alignment.center,
-                              child: Text("mapPage_title".tr(),
-                                  style: mylib.titleStyle,
-                                  textAlign: TextAlign.center,
+                              child: Text(
+                                "mapPage_title".tr(),
+                                style: mylib.titleStyle,
+                                textAlign: TextAlign.center,
                               ),
                             ),
                           ),
@@ -198,15 +200,12 @@ class Mappage extends State<MapPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    if(reponses['mdp'] == true)
-                    mylib.createQuitButton(
-                        context, 141, 41, 
-                         confirmationEnregistrement(), reponses)
-                    else 
-                    mylib.createQuitButton(
-                        context, 141, 41, 
-                         confirmationAbandon(), reponses),
-
+                    if (reponses['mdp'] == true)
+                      mylib.createQuitButton(context, 141, 41,
+                          confirmationEnregistrement(), reponses)
+                    else
+                      mylib.createQuitButton(
+                          context, 141, 41, confirmationAbandon(), reponses),
                     mylib.createNextButton(
                       "btn_next".tr(),
                       context,
@@ -218,6 +217,18 @@ class Mappage extends State<MapPage> {
                       ),
                     )
                   ],
+                ),
+                Container(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+                  child: const Align(
+                    alignment: Alignment.bottomRight,
+                    child: Text(
+                      "1/9",
+                      textAlign: TextAlign.right,
+                      style: mylib.titleStyleBasDePage,
+
+                    ),
+                  ),
                 ),
               ],
             ),

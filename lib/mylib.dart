@@ -3,16 +3,15 @@ library mylib;
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/end_page.dart';
 import 'package:flutter_application_1/language_page.dart';
 import 'package:flutter_application_1/provider.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'confirmation_deconnexion.dart';
 import 'controller/language_contoller.dart';
 import 'package:quickalert/quickalert.dart';
 
 import 'home_page.dart';
-
 
 bool adminConnect = false;
 
@@ -29,10 +28,24 @@ const TextStyle titleStyle = TextStyle(
   ],*/
   letterSpacing: -1,
 );
+const TextStyle titleStyleBasDePage = TextStyle(
+  fontSize: 18,
+  fontFamily: 'Nunito',
+  fontWeight: FontWeight.w400,
+   // letterSpacing: 1,
+
+  // color: Colors.white,
+  /*shadows: <Shadow>[
+    Shadow(
+        offset: Offset(-2.0, 2.0),
+        blurRadius: 3.0,
+        color: Color.fromARGB(195, 105, 105, 105))
+  ],*/
+);
 const TextStyle titleStyleDuration = TextStyle(
   fontSize: 17,
   fontFamily: 'Nunito',
-    fontWeight: FontWeight.w400,
+  fontWeight: FontWeight.w400,
 
   //fontWeight: FontWeight.bold,
   // color: Colors.white,
@@ -175,10 +188,6 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
           Navigator.pop(context);
         },
       ),
-      /*actions: const [ 
-          Icon(Icons.menu, size: 50,),
-          Padding(padding: EdgeInsets.fromLTRB(0,0,20,0))
-        ],*/
       actions: [
         Builder(
           builder: (BuildContext context) {
@@ -205,7 +214,84 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
   Size get preferredSize => Size.fromHeight(appBar.preferredSize.height);
 }
 
+class BaseAppBar1 extends StatelessWidget implements PreferredSizeWidget {
+  final AppBar appBar;
 
+  const BaseAppBar1({super.key, required this.appBar});
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      bottom: PreferredSize(
+        preferredSize: Size.fromHeight(0.0),
+       child: LinearPercentIndicator(
+                  padding: EdgeInsets.fromLTRB(60, 0, 25, 0),
+                  //      width: MediaQuery.of(context).size.width - 100,
+                  width: MediaQuery.of(context).size.width -
+                   50,
+                animation: true,
+                lineHeight: 20.0,
+                animationDuration: 2000,
+                percent: 20.0,
+                linearStrokeCap: LinearStrokeCap.roundAll,
+               // progressColor: Colors.greenAccent,
+                  backgroundColor: const Color.fromARGB(255, 235, 233, 233),
+                  progressColor: const Color.fromARGB(255, 13, 12, 32),
+                ),
+      ),
+      leading: IconButton(
+        padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+        icon: const Icon(
+          Icons.arrow_back_ios,
+          size: 40,
+        ),
+        onPressed: () {
+          Navigator.pop(context);
+        },
+      ),
+      
+      actions: [
+        Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: const Icon(
+                Icons.menu,
+                size: 50,
+              ),
+              onPressed: () {
+                Scaffold.of(context).openEndDrawer();
+              },
+              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+            );
+          },
+        ),
+        const Padding(padding: EdgeInsets.fromLTRB(0, 0, 20, 0)),
+      ],
+      backgroundColor: Colors.transparent,
+      elevation: 0.0,
+    );
+  }
+
+  @override
+  Size get preferredSize => Size.fromHeight(appBar.preferredSize.height);
+}
+
+percentIndicator(BuildContext context, double percentPage){
+  return LinearPercentIndicator(
+                  padding: EdgeInsets.fromLTRB(60, 0, 25, 0),
+                  //      width: MediaQuery.of(context).size.width - 100,
+                  width: MediaQuery.of(context).size.width -
+                   50,
+                animation: true,
+                lineHeight: 20.0,
+                animationDuration: 2000,
+                percent: percentPage,
+                linearStrokeCap: LinearStrokeCap.roundAll,
+               // progressColor: Colors.greenAccent,
+                  backgroundColor: const Color.fromARGB(255, 235, 233, 233),
+                  progressColor: Color.fromARGB(255, 13, 12, 32),
+                );
+}
 
 createInput(
   double wdth,
@@ -328,7 +414,8 @@ createNextButton(String text, BuildContext context, double width, double height,
   );
 }
 
-createNextButton1(String text, BuildContext context, double width, double height, Map<String, Object> reponses, MaterialPageRoute page) {
+createNextButton1(String text, BuildContext context, double width,
+    double height, Map<String, Object> reponses, MaterialPageRoute page) {
   return SizedBox(
     width: width,
     height: height,
@@ -340,22 +427,19 @@ createNextButton1(String text, BuildContext context, double width, double height
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       ),
       onPressed: () {
-           
         QuickAlert.show(
           context: context,
           type: QuickAlertType.confirm,
           text: 'sur de vouloirs envoyer ?',
-          confirmBtnText: 'Yes' ,
-          onConfirmBtnTap: () {Navigator.of(context).push(
-            page,
-          );},
+          confirmBtnText: 'Yes',
+          onConfirmBtnTap: () {
+            Navigator.of(context).push(
+              page,
+            );
+          },
           cancelBtnText: 'No',
           confirmBtnColor: const Color.fromARGB(255, 64, 224, 168),
         );
-      
-     
-    
-      
       },
       child: Text(
         text,

@@ -4,6 +4,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:flutter_map/plugin_api.dart';
 import 'end_page.dart';
+import 'hello_login_password.dart';
 import 'mylib.dart' as mylib;
 
 class ConsulterQuestionnaireLoginChoix extends StatefulWidget {
@@ -534,37 +535,12 @@ class Consulterquestionnaireloginchoix
     );
   }
 
-  Widget btnSupprimer() {
-    return SizedBox(
-      width: 160,
-      height: 43,
-      child: ElevatedButton(
-        onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (BuildContext context) => const EndPage(),
-            ),
-          );
-        },
-        style: ElevatedButton.styleFrom(
-          shadowColor: Colors.grey.shade700,
-          elevation: 20,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0),
-            side: const BorderSide(color: Colors.white, width: 3),
-          ),
-        ),
-        child: Text(
-          "consulter_les_avis_login_choisis_supprimer".tr(),
-          style: mylib.titleStyle2,
-          textAlign: TextAlign.center,
-        ),
-      ),
-    );
-  }
+
 
   @override
   Widget build(BuildContext context) {
+    Map<String, Object> reponses =
+        ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: mylib.BaseAppBar(
@@ -625,7 +601,18 @@ class Consulterquestionnaireloginchoix
                 const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 50)),
                 btnModifier(),
                 const Padding(padding: EdgeInsets.fromLTRB(35, 0, 0, 0)),
-                btnSupprimer(),
+                mylib.createNextButton1(
+                        "consulter_les_avis_login_choisis_supprimer".tr(),
+                        context,
+                        141,
+                        41,
+                        reponses,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) => const HelloLoginPassword(),
+          settings: RouteSettings(arguments: reponses),
+            ),
+                        
+                        ),
               ],
             ),
           ],

@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'genre_page.dart';
 import 'hello_login_page.dart';
 import 'mylib.dart' as mylib;
 
