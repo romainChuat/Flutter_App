@@ -1,7 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/user_confirm_abandon_quiz.dart';
+import 'package:flutter_application_1/user_confirm_enregistrement.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'hello_login_page.dart';
+import 'hello_login_password.dart';
 import 'mylib.dart' as mylib;
 
 class CommentPage extends StatefulWidget {
@@ -395,20 +398,41 @@ class Commentpage extends State<CommentPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      //mylib.createQuitButton(context, 141, 41),
-                      
-                      mylib.createNextButton1(
-                        "btn_next".tr(),
+                      if(reponses['mdp'] == true)
+                    mylib.createQuitButton(
+                        context, 141, 41, 
+                         confirmationEnregistrement(), reponses)
+                    else 
+                    mylib.createQuitButton(
+                        context, 141, 41, 
+                         confirmationAbandon(), reponses),
+                         
+
+
+                         
+                    if (reponses['mdp'] == true)
+                      mylib.createNextButton1("btn_next".tr(),
                         context,
                         141,
                         41,
                         reponses,
                         MaterialPageRoute(
-                          builder: (BuildContext context) => const HelloLoginPage(),
-          settings: RouteSettings(arguments: reponses),
-            ),
-                        
-                        ),
+                          
+              builder: (BuildContext context) => const HelloLoginPassword(),
+              settings: RouteSettings(arguments: reponses)
+            ))
+                    else
+                    mylib.createNextButton1("btn_next".tr(),
+                        context,
+                        141,
+                        41,
+                        reponses,
+                        MaterialPageRoute(
+                          
+              builder: (BuildContext context) => const HelloLoginPage(),
+              settings: RouteSettings(arguments: reponses)
+                      ),
+                    )
                     ],
                   )
                 ],

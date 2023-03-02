@@ -280,7 +280,6 @@ class Userconnexionpassword extends State<UserConnexionPassword> {
         height: 50,
         child: ElevatedButton(
           onPressed: () {
-            reponses['mdp'] = true;
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (BuildContext context) => const ConnexionAdminn(),
@@ -425,9 +424,10 @@ class Userconnexionpassword extends State<UserConnexionPassword> {
     reponses["username"] = pseudo;
 
     final passSaisie = Crypt.sha256(password, salt: 'abcdefghijklmnop');
-    if (passSaisie.toString() == pass) {
+    //if (passSaisie.toString() == pass) {
       connected = true;
-    }
+      reponses['mdp'] = true;
+   // }
   }
 
   void handleRememberme(bool? value) {

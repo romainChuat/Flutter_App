@@ -11,6 +11,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:quickalert/quickalert.dart';
 
 
+import 'hello_login_page.dart';
+import 'hello_login_password.dart';
 import 'home_page.dart';
 import 'mylib.dart' as mylib;
 
@@ -241,18 +243,35 @@ class Activitepage extends State<ActivitePage> {
                     mylib.createQuitButton(
                         context, 141, 41, 
                          confirmationAbandon(), reponses),
-                      mylib.createNextButton1(
-                        "btn_next".tr(),
+                         
+
+
+                         
+                    if (reponses['mdp'] == true)
+                      mylib.createNextButton1("btn_next".tr(),
                         context,
                         141,
                         41,
                         reponses,
                         MaterialPageRoute(
-              builder: (BuildContext context) => const MyHomePage(),
+                          
+              builder: (BuildContext context) => const HelloLoginPassword(),
               settings: RouteSettings(arguments: reponses)
-            ),
-                        
-                        ),
+            ))
+                    else
+                    mylib.createNextButton1("btn_next".tr(),
+                        context,
+                        141,
+                        41,
+                        reponses,
+                        MaterialPageRoute(
+                          
+              builder: (BuildContext context) => const HelloLoginPage(),
+              settings: RouteSettings(arguments: reponses)
+                      ),
+                    )
+                  
+                     
                     
                     ],
                   ),
