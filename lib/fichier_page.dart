@@ -5,6 +5,7 @@ import 'package:flutter_application_1/date_page.dart';
 import 'package:flutter_application_1/start_page.dart';
 import 'package:flutter_application_1/user_confirm_abandon_quiz.dart';
 import 'package:flutter_application_1/user_confirm_enregistrement.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'dart:io' as io;
 import 'mylib.dart' as mylib;
 import 'package:image_picker/image_picker.dart';
@@ -38,6 +39,8 @@ class Fichierpage extends State<FichierPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
+                               mylib.percentIndicator(context, 0.33),
+
                 ClipRRect(
                   borderRadius: BorderRadius.circular(15.0),
                   child: Container(
@@ -170,7 +173,19 @@ class Fichierpage extends State<FichierPage> {
                       ),
                     )
                   ],
-                )
+                ),
+                Container(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+                  child: const Align(
+                    alignment: Alignment.bottomRight,
+                    child: Text(
+                      "3/9",
+                      textAlign: TextAlign.right,
+                      style: mylib.titleStyleBasDePage,
+
+                    ),
+                  ),
+                ),
               ],
             ),
           ),

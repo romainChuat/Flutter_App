@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/home_page.dart';
 import 'package:flutter_application_1/user_confirm_abandon_quiz.dart';
 import 'package:flutter_application_1/user_confirm_enregistrement.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'etude_page.dart';
 import 'mylib.dart' as mylib;
 
@@ -17,14 +17,13 @@ class GenrePage extends StatefulWidget {
 
 enum Genre { feminin, masculin, autre }
 
+
 class Genrepage extends State<GenrePage> {
   var genre;
-
   @override
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
-    print(reponses);
 
     return Scaffold(
         extendBodyBehindAppBar: true,
@@ -33,36 +32,42 @@ class Genrepage extends State<GenrePage> {
         body: Container(
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
           child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(15.0),
-                  child: Container(
-                    width: 336,
-                    height: 230,
-                    color: const Color.fromARGB(255, 235, 233, 233),
-                    child: Column(
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.fromLTRB(1, 20, 1, 0),
-                          child: Text(
-                            "genrePage_title".tr(),
-                            style: mylib.titleStyle,
-                            textAlign: TextAlign.center,
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                 // const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
+                                 mylib.percentIndicator(context, 0.77),
+
+                                  const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
+
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(15.0),
+                    child: Container(
+                      width: 336,
+                      height: 240,
+                      color: const Color.fromARGB(255, 235, 233, 233),
+                      child: Column(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
+                            child: Text(
+                              "genrePage_title".tr(),
+                              style: mylib.titleStyle,
+                              textAlign: TextAlign.center,
+                            ),
                           ),
-                        ),
-                        const Divider(
-                          color: Colors.black,
-                          thickness: 1,
-                          indent: 20,
-                          endIndent: 20,
-                        ),
-                        SizedBox(
-                            child: Column(
-                          children: [
-                            SizedBox(
-                                height: 32,
+                          const Divider(
+                            color: Colors.black,
+                            thickness: 1,
+                            indent: 20,
+                            endIndent: 20,
+                          ),
+                          SizedBox(
+                              child: Column(
+                            children: [
+                              SizedBox(
+                                height: 40,
                                 child: RadioListTile(
                                   activeColor:
                                       const Color.fromARGB(255, 13, 12, 32),
@@ -71,44 +76,45 @@ class Genrepage extends State<GenrePage> {
                                   groupValue: genre,
                                   onChanged: (value) {
                                     setState(() {
-                                      genre = Genre.feminin;
+                                     genre = Genre.feminin;
                                       print(genre);
                                       reponses['rep_genre'] =
                                           genre.toString().split('.').last;
                                       print(reponses);
                                     });
                                   },
-                                  value: 10,
-                                )),
-                            SizedBox(
-                              height: 32,
-                              child: RadioListTile(
-                                activeColor:
-                                    const Color.fromARGB(255, 13, 12, 32),
-                                title: Text("genrePage_male".tr(),
-                                    style: mylib.titleStyleDuration),
-                                groupValue: genre,
-                                onChanged: (value) {
+                                  value: Genre.feminin,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 40,
+                                child: RadioListTile(
+                                  activeColor:
+                                      const Color.fromARGB(255, 13, 12, 32),
+                                  title: Text("genrePage_male".tr(),
+                                      style: mylib.titleStyleDuration),
+                                  groupValue: genre,
+                                  onChanged: (value) {
                                   setState(() {
-                                    genre = Genre.masculin;
+                                   genre = Genre.masculin;
                                     print(genre);
                                     reponses['rep_genre'] =
                                         genre.toString().split('.').last;
                                     print(reponses);
                                   });
                                 },
-                                value: 17,
+                                  value: Genre.masculin,
+                                ),
                               ),
-                            ),
-                            SizedBox(
-                              height: 32,
-                              child: RadioListTile(
-                                activeColor:
-                                    const Color.fromARGB(255, 13, 12, 32),
-                                title: Text("genrePage_other".tr(),
-                                    style: mylib.titleStyleDuration),
-                                groupValue: genre,
-                                onChanged: (value) {
+                              SizedBox(
+                                height: 65,
+                                child: RadioListTile(
+                                  activeColor:
+                                      const Color.fromARGB(255, 13, 12, 32),
+                                  title: Text("genrePage_other".tr(),
+                                      style: mylib.titleStyleDuration),
+                                  groupValue: genre,
+                                  onChanged: (value) {
                                   setState(() {
                                     genre = Genre.autre;
                                     print(genre);
@@ -117,40 +123,84 @@ class Genrepage extends State<GenrePage> {
                                     print(reponses);
                                   });
                                 },
-                                value: 25,
+                                  value: Genre.autre,
+                                ),
                               ),
-                            ),
-                          ],
-                        ))
-                      ],
+                             
+                             
+                            ],
+                          ))
+                        ],
+                      ),
+                    ),
+                  ),
+                  const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      if (reponses['mdp'] == true)
+                        mylib.createQuitButton(context, 141, 41,
+                            confirmationEnregistrement(), reponses)
+                      else
+                        mylib.createQuitButton(
+                            context, 141, 41, confirmationAbandon(), reponses),
+                      mylib.createNextButton(
+                        "btn_next".tr(),
+                        context,
+                        141,
+                        41,
+                        MaterialPageRoute(
+                            builder: (_) => const EtudePage(),
+                            settings: RouteSettings(arguments: reponses)),
+                      )
+                    ],
+                  ),
+                  Container(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+                  child: const Align(
+                    alignment: Alignment.bottomRight,
+                    child: Text(
+                      "7/9",
+                      textAlign: TextAlign.right,
+                      style: mylib.titleStyleBasDePage,
+
                     ),
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    if(reponses['mdp'] == true)
-                    mylib.createQuitButton(
-                        context, 141, 41, 
-                         confirmationEnregistrement(), reponses)
-                    else 
-                    mylib.createQuitButton(
-                        context, 141, 41, 
-                         confirmationAbandon(), reponses),
-                    mylib.createNextButton(
-                      "btn_next".tr(),
-                      context,
-                      141,
-                      41,
-                      MaterialPageRoute(
-                          builder: (_) => const EtudePage(),
-                          settings: RouteSettings(arguments: reponses)),
-                    )
-                  ],
-                )
-              ],
+                ],
+              ),
             ),
           ),
         ));
+  }
+
+  Widget createInput(
+      double wdth, double hgth, TextEditingController textControler) {
+    return SizedBox(
+        height: hgth,
+        width: wdth,
+        child: const Material(
+            elevation: 5,
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+            child: TextField(
+              style: mylib.simpleText1,
+              cursorColor: Color.fromARGB(255, 117, 106, 106),
+              decoration: InputDecoration(
+                  contentPadding: EdgeInsets.fromLTRB(10, 0, 0, 1),
+                  filled: true,
+                  fillColor: Colors.white,
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        width: 1,
+                        color: Color.fromARGB(255, 255, 255, 255),
+                      ),
+                      borderRadius: BorderRadius.all(Radius.circular(15))),
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        width: 1,
+                        color: Color.fromARGB(255, 255, 255, 255),
+                      ),
+                      borderRadius: BorderRadius.all(Radius.circular(15)))),
+            )));
   }
 }
