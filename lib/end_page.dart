@@ -29,26 +29,25 @@ class Endpage extends State<EndPage> {
     print(reponses);
 
     return AlertDialog(
-        title: const Text('AlertDialog Title'),
-        content: SingleChildScrollView(
-          child: ListBody(
-            children: const <Widget>[
-              Text('This is a demo alert dialog.'),
-              Text('Would you like to approve of this message?'),
-            ],
-          ),
+      title: const Text('AlertDialog Title'),
+      content: SingleChildScrollView(
+        child: ListBody(
+          children: const <Widget>[
+            Text('This is a demo alert dialog.'),
+            Text('Would you like to approve of this message?'),
+          ],
         ),
-        actions: <Widget>[
-          TextButton(
-            child: const Text('Approve'),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-        ],
-      );
+      ),
+      actions: <Widget>[
+        TextButton(
+          child: const Text('Approve'),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+      ],
+    );
   }
-
 
   createSubmitButton(
       double width, double height, Map<String, Object> reponses) {
@@ -135,7 +134,6 @@ class Endpage extends State<EndPage> {
     DatabaseHelperLocal db = DatabaseHelperLocal();
     try {
       await db.insertReponse(reponses);
-      print("new reponse");
     } catch (e) {
       print("enregistrement reponse impossible");
     }
@@ -157,8 +155,8 @@ class Endpage extends State<EndPage> {
         try {
           print(i.toString());
           await dbHelper.insertReponses(i.toMap());
-          print("new row");
           await db.deleteAllReponses();
+          print("reussi");
         } catch (e) {
           print(e);
         }

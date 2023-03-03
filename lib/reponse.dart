@@ -1,6 +1,9 @@
 import 'dart:convert';
 
+//Cette classe permet de représenter les réponses d'un utilisateur
+
 class Reponse {
+  //Champs qui composent la map finale à insérer dans la BD
   int iduser;
   int idlieu;
   String expressions;
@@ -10,6 +13,7 @@ class Reponse {
   String etude;
   String activite;
 
+  //Constructeur de la classe
   Reponse({
     required this.iduser,
     required this.idlieu,
@@ -21,6 +25,7 @@ class Reponse {
     required this.activite,
   });
 
+  //Retourne une map à partir d'une instance de réponse
   Map<String, dynamic> toMap() {
     return {
       'expressions': expressions,
@@ -34,14 +39,17 @@ class Reponse {
     };
   }
 
+  //Convertit une map en un objet Json
   String toJson(Map map) {
     return jsonEncode(map);
   }
 
+  //Convertit un objet Json en une map
   Map<String, String> fromJson(String j) {
     return jsonDecode(j);
   }
 
+  //Affiche les réponses
   @override
   String toString() {
     return 'Reponse{expressions: $expressions,date: $date,age: $age,genre: $genre,etude: $etude,idUser: $iduser,idLieu: $idlieu, activite: $activite}';

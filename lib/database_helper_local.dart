@@ -1,20 +1,19 @@
-import 'package:flutter_application_1/utilisateur.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'reponse.dart';
 
+//Cette classe permet de gérer la connexion ainsi que l'envoi de requêtes à une base de données locale
+
 class DatabaseHelperLocal {
+  //Informations sur la BD
   static const _databaseName = "db_flutter.db";
   static const _databaseVersion = 1;
 
+  //Permet de créer une instance de la BD
   static final DatabaseHelperLocal _instance = DatabaseHelperLocal._internal();
-
   DatabaseHelperLocal._internal();
-
   factory DatabaseHelperLocal() => _instance;
-
   static Database? _db;
-
   Future<Database?> get db async {
     if (_db != null) {
       return _db;
@@ -23,11 +22,10 @@ class DatabaseHelperLocal {
     return _db;
   }
 
-  // this opens the database (and creates it if it doesn't exist)
+  //Ouvre la BD, et la créée si elle n'existe pas
   Future<Database?> init() async {
     final dbPath = await getDatabasesPath();
     final path = join(dbPath, _databaseName);
-    print(path);
     _db = await openDatabase(
       path,
       version: _databaseVersion,
@@ -37,17 +35,19 @@ class DatabaseHelperLocal {
     return _db;
   }
 
+  //Ferme la BD
   Future<void> close() async {
     await _db?.close();
   }
 
+  //Supprime le fichier de BD
   Future<void> delete() async {
     final dbPath = await getDatabasesPath();
     final path = join(dbPath, _databaseName);
     await deleteDatabase(path);
   }
 
-  // SQL code to create the database table
+  //Code SQL permettant de créer la BD ainsi que l'ensemble de ses tables
   Future _onCreate(Database db, int version) async {
     await db.execute('''
           CREATE TABLE  lieux(
@@ -80,24 +80,25 @@ class DatabaseHelperLocal {
           ''');
   }
 
-  /*Fonctions pour les lieux*/
+  //Insère un lieu dans la BD
+  //Ses coordonnées sont transmis en paramètres
   Future<int?> insertLieu(Map<String, dynamic> l) async {
-    final Database? db = await init();
+    await init();
     final insert = await _db?.insert("lieux", l);
-    print(insert);
-    //final insertID = await _db?.rawQuery("SELECT last_insert_rowid()");
-    //print(insertID);
     return insert;
   }
 
+  //Récupère tous les lieux présents dans la BD
   Future<List<Map>?> queryAllRowsLieu() async {
     return await _db?.query("lieux");
   }
 
+  //Récupère toutes les lieux présentes dans la table réponses
   Future<List<Map<String, dynamic>>?> queryAllReponsesLieux() async {
     return await _db?.rawQuery("SELECT lieux FROM reponses");
   }
 
+  //Supprime le lieu dans la BD dont l'id correspond à celui transmis en paramètres
   Future<int?> deleteLieu(int id) async {
     return await _db?.delete(
       "lieux",
@@ -106,13 +107,13 @@ class DatabaseHelperLocal {
     );
   }
 
-  /*Fonctions pour les réponses*/
+  //Insère dans la BD les réponses de l'utilisateur transmis en paramètres
   Future<int?> insertReponse(Map<String, Object> r) async {
     return await _db?.insert("reponses", r);
   }
 
+  //Récupère toutes les réponses présentes dans la BD
   Future<List<Reponse>> queryAllRowsReponse() async {
-    //return await _db?.query("reponses");
     final List<Map<String, dynamic>>? res =
         await _db?.rawQuery("SELECT * FROM reponses");
 
@@ -130,6 +131,7 @@ class DatabaseHelperLocal {
     });
   }
 
+  //Supprime les réponses dans la BD dont l'id correspond à celui transmis en paramètres
   Future<int?> deleteReponse(int id) async {
     return await _db?.delete(
       "reponses",
@@ -138,20 +140,23 @@ class DatabaseHelperLocal {
     );
   }
 
+  //Supprime toutes les réponses de la BD
   Future<void> deleteAllReponses() async {
     await _db?.rawDelete('DELETE FROM reponses');
   }
 
-  /*Fonctions pour les utilisateurs*/
+  //Insère un utilisateur dans la BD
   Future<int?> insertUser(Map<String, dynamic> u) async {
     final Database? db = await init();
     return await _db?.insert("user", u);
   }
 
+  //Récupère tous les utilisateurs présents dans la BD
   Future<List<Map<String, dynamic>>?> queryAllRowsUser() async {
     return await _db?.query("user");
   }
 
+  //Récupère un utilisateur dont le mail correspond avec celui transmis en paramètres
   Future<List<Map>?> queryOneUser(String mail) async {
     final List<Map<String, dynamic>>? res =
         await _db?.rawQuery("SELECT * FROM user WHERE mail = ?", [mail]);
@@ -166,6 +171,7 @@ class DatabaseHelperLocal {
     });
   }
 
+  //Supprime un utilisateur dont l'id correspond à celui transmis en paramètres
   Future<int?> deleteUser(int id) async {
     return await _db?.delete(
       "user",
@@ -174,19 +180,3 @@ class DatabaseHelperLocal {
     );
   }
 }
-/*await db.execute("""CREATE TABLE reponses(
-          id INTEGER AUTO_INCREMENT PRIMARY KEY
-          longitude REAL NOT NULL,
-          latitude REAL NOT NULL,
-          expressions TEXT NOT NULL,
-          Date DATE FORMAT 'dd.mm.yyyy',
-          age INTEGER,
-          genre TEXT NOT NULL,
-          niveau_etude TEXT NOT NULL,
-          ac
-          )""");*/
-
-/*await db.execute("""CREATE TABLE reponses(
-          username INTEGER AUTO_INCREMENT PRIMARY KEY,
-          reponses TEXT NOT NULL
-          )""");*/
