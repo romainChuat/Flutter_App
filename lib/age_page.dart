@@ -1,9 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/start_page.dart';
 import 'package:flutter_application_1/user_confirm_abandon_quiz.dart';
 import 'package:flutter_application_1/user_confirm_enregistrement.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'genre_page.dart';
 import 'mylib.dart' as mylib;
 
@@ -32,10 +30,11 @@ class Agepage extends State<AgePage> {
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
           child: Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
+                const Spacer(),
                                mylib.percentIndicator(context, 0.66),
-
+ const SizedBox(height: 20,),
                 ClipRRect(
                   borderRadius: BorderRadius.circular(15.0),
                   child: Container(
@@ -73,9 +72,7 @@ class Agepage extends State<AgePage> {
                                   onChanged: (value) {
                                     setState(() {
                                       age = 10;
-                                      print(age);
                                       reponses['rep_age'] = age;
-                                      print(reponses);
                                     });
                                   },
                                   value: 10,
@@ -90,9 +87,7 @@ class Agepage extends State<AgePage> {
                                 onChanged: (value) {
                                   setState(() {
                                     age = 17;
-                                    print(age);
                                     reponses['rep_age'] = age;
-                                    print(reponses);
                                   });
                                 },
                                 value: 17,
@@ -108,9 +103,7 @@ class Agepage extends State<AgePage> {
                                 onChanged: (value) {
                                   setState(() {
                                     age = 25;
-                                    print(age);
                                     reponses['rep_age'] = age;
-                                    print(reponses);
                                   });
                                 },
                                 value: 25,
@@ -126,9 +119,7 @@ class Agepage extends State<AgePage> {
                                 onChanged: (value) {
                                   setState(() {
                                     age = 35;
-                                    print(age);
                                     reponses['rep_age'] = age;
-                                    print(reponses);
                                   });
                                 },
                                 value: 35,
@@ -144,9 +135,7 @@ class Agepage extends State<AgePage> {
                                 onChanged: (value) {
                                   setState(() {
                                     age = 45;
-                                    print(age);
                                     reponses['rep_age'] = age;
-                                    print(reponses);
                                   });
                                 },
                                 value: 45,
@@ -162,9 +151,7 @@ class Agepage extends State<AgePage> {
                                 onChanged: (value) {
                                   setState(() {
                                     age = 55;
-                                    print(age);
                                     reponses['rep_age'] = age;
-                                    print(reponses);
                                   });
                                 },
                                 value: 55,
@@ -180,9 +167,7 @@ class Agepage extends State<AgePage> {
                                 onChanged: (value) {
                                   setState(() {
                                     age = 65;
-                                    print(age);
                                     reponses['rep_age'] = age;
-                                    print(reponses);
                                   });
                                 },
                                 value: 65,
@@ -198,9 +183,7 @@ class Agepage extends State<AgePage> {
                                 onChanged: (value) {
                                   setState(() {
                                     age = 75;
-                                    print(age);
                                     reponses['rep_age'] = age;
-                                    print(reponses);
                                   });
                                 },
                                 value: 75,
@@ -216,9 +199,7 @@ class Agepage extends State<AgePage> {
                                 onChanged: (value) {
                                   setState(() {
                                     age = 76;
-                                    print(age);
                                     reponses['rep_age'] = age;
-                                    print(reponses);
                                   });
                                 },
                                 value: 76,
@@ -230,17 +211,18 @@ class Agepage extends State<AgePage> {
                     ),
                   ),
                 ),
+                 const SizedBox(height: 20,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     if(reponses['mdp'] == true)
                     mylib.createQuitButton(
                         context, 141, 41, 
-                         confirmationEnregistrement(), reponses)
+                         const confirmationEnregistrement(), reponses)
                     else 
                     mylib.createQuitButton(
                         context, 141, 41, 
-                         confirmationAbandon(), reponses),
+                         const confirmationAbandon(), reponses),
                     mylib.createNextButton(
                       "btn_next".tr(),
                       context,
@@ -252,9 +234,8 @@ class Agepage extends State<AgePage> {
                     )
                   ],
                 ),
-                Container(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
-                  child: const Align(
+                const Spacer(),
+                const Align(
                     alignment: Alignment.bottomRight,
                     child: Text(
                       "6/9",
@@ -262,7 +243,7 @@ class Agepage extends State<AgePage> {
                       style: mylib.titleStyleBasDePage,
 
                     ),
-                  ),
+                  
                 ),
               ],
             ),

@@ -35,9 +35,12 @@ class Droitsauteur extends State<DroitsAuteur> {
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
           child: Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
+                Spacer(),
                                 mylib.percentIndicator(context, 0.22),
+                                                          SizedBox(height: 20,),
+
 
                 ClipRRect(
                   borderRadius: BorderRadius.circular(15.0),
@@ -115,6 +118,8 @@ class Droitsauteur extends State<DroitsAuteur> {
                     ),
                   ),
                 ),
+                                          SizedBox(height: 20,),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -139,9 +144,8 @@ class Droitsauteur extends State<DroitsAuteur> {
                       ),
                   ],
                 ),
-                Container(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
-                  child: const Align(
+                Spacer(),
+                Align(
                     alignment: Alignment.bottomRight,
                     child: Text(
                       "2/9",
@@ -150,7 +154,7 @@ class Droitsauteur extends State<DroitsAuteur> {
 
                     ),
                   ),
-                ),
+                
               ],
             ),
           ),

@@ -58,6 +58,7 @@ dependencies:
   flutter_map_marker_popup: any
   percent_indicator: ^4.2.2
   flutter_launcher_icons: ^0.12.0
+  number_paginator: ^0.2.3
 
 flutter_icons:
   image_path: "./assets/icon/logo_Android.png"

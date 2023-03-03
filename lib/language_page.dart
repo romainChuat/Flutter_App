@@ -49,6 +49,8 @@ class Languagepage extends State<LanguagePage> {
                       onPressed: () {
                         context.setLocale(const Locale('en', 'US'));
                         controller.onLanguageChanged();
+                                                    Navigator.pop(context);
+
                       },
                       child: SizedBox(
                         width: 230,
@@ -77,6 +79,7 @@ class Languagepage extends State<LanguagePage> {
                       onPressed: () {
                         context.setLocale(const Locale('fr', 'FR'));
                         controller.onLanguageChanged();
+                        Navigator.pop(context);
                       },
                       child: SizedBox(
                         width: 230,

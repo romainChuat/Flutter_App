@@ -44,12 +44,14 @@ class Etudepage extends State<EtudePage> {
         body: Container(
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
           child: Center(
-            child: SingleChildScrollView(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                                  mylib.percentIndicator(context, 0.88),
-
+                  const Spacer(),
+                  mylib.percentIndicator(context, 0.88),
+                  const SizedBox(
+                    height: 20,
+                  ),
                   const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
                   ClipRRect(
                     borderRadius: BorderRadius.circular(15.0),
@@ -267,16 +269,18 @@ class Etudepage extends State<EtudePage> {
                       ),
                     ),
                   ),
-                  const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
+                  const SizedBox(
+                    height: 20,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       if (reponses['mdp'] == true)
                         mylib.createQuitButton(context, 141, 41,
-                            confirmationEnregistrement(), reponses)
+                            const confirmationEnregistrement(), reponses)
                       else
                         mylib.createQuitButton(
-                            context, 141, 41, confirmationAbandon(), reponses),
+                            context, 141, 41, const confirmationAbandon(), reponses),
                       mylib.createNextButton(
                         "btn_next".tr(),
                         context,
@@ -288,23 +292,21 @@ class Etudepage extends State<EtudePage> {
                       )
                     ],
                   ),
-                  Container(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
-                  child: const Align(
-                    alignment: Alignment.bottomRight,
-                    child: Text(
-                      "8/9",
-                      textAlign: TextAlign.right,
-                      style: mylib.titleStyleBasDePage,
-
+                  const Spacer(),
+                  const Align(
+                      alignment: Alignment.bottomRight,
+                      child: Text(
+                        "8/9",
+                        textAlign: TextAlign.right,
+                        style: mylib.titleStyleBasDePage,
+                      ),
                     ),
-                  ),
-                ),
+                  
                 ],
               ),
             ),
           ),
-        ));
+        );
   }
 
   Widget createInput(

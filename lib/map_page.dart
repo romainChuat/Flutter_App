@@ -48,9 +48,12 @@ class Mappage extends State<MapPage> {
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
           child: Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
+                const Spacer(),
                 mylib.percentIndicator(context, 0.11),
+                                          SizedBox(height: 20,),
+
                 ClipRRect(
                     borderRadius: BorderRadius.circular(15.0),
                     child: Container(
@@ -197,6 +200,8 @@ class Mappage extends State<MapPage> {
                         ],
                       ),
                     )),
+                                              SizedBox(height: 20,),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -218,9 +223,8 @@ class Mappage extends State<MapPage> {
                     )
                   ],
                 ),
-                Container(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
-                  child: const Align(
+                const Spacer(),
+                const Align(
                     alignment: Alignment.bottomRight,
                     child: Text(
                       "1/9",
@@ -229,7 +233,7 @@ class Mappage extends State<MapPage> {
 
                     ),
                   ),
-                ),
+                
               ],
             ),
           ),

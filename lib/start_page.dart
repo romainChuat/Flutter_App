@@ -21,7 +21,7 @@ class StartPage extends StatelessWidget {
           child: Container(
             color: const Color.fromARGB(255, 235, 233, 233),
             width: 309,
-            height: 340,
+            height: 260,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[

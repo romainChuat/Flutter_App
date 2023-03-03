@@ -29,17 +29,20 @@ class Datepage extends State<DatePage> {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
     return Scaffold(
-        extendBodyBehindAppBar: true,
-        appBar: mylib.BaseAppBar(appBar: AppBar()),
-        endDrawer: mylib.createMenu(context),
-        body: Container(
+      extendBodyBehindAppBar: true,
+      appBar: mylib.BaseAppBar(appBar: AppBar()),
+      endDrawer: mylib.createMenu(context),
+      body: Container(
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
           child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                                mylib.percentIndicator(context, 0.44),
-
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                const Spacer(),
+                mylib.percentIndicator(context, 0.44),
+                const SizedBox(
+                  height: 20,
+                ),
                 ClipRRect(
                   borderRadius: BorderRadius.circular(15.0),
                   child: Container(
@@ -86,7 +89,7 @@ class Datepage extends State<DatePage> {
                                       decoration: const InputDecoration(
                                           suffixIcon: Icon(
                                             Icons.calendar_today,
-                                           // color: Colors.white,
+                                            // color: Colors.white,
                                             size: 30,
                                           ), //icon of text field
                                           //labelText: "Enter Date",
@@ -99,8 +102,8 @@ class Datepage extends State<DatePage> {
                                           enabledBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
                                                 width: 1,
-                                               // color: Color.fromARGB(
-                                                   // 255, 255, 255, 255),
+                                                // color: Color.fromARGB(
+                                                // 255, 255, 255, 255),
                                               ),
                                               borderRadius: BorderRadius.all(
                                                   Radius.circular(15))),
@@ -137,9 +140,7 @@ class Datepage extends State<DatePage> {
                                         }
                                       },
                                     ),
-                                  )
-                                
-                                  ),
+                                  )),
                             ],
                           ),
                         ),
@@ -147,17 +148,18 @@ class Datepage extends State<DatePage> {
                     ),
                   ),
                 ),
+                const SizedBox(
+                  height: 20,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    if(reponses['mdp'] == true)
-                    mylib.createQuitButton(
-                        context, 141, 41, 
-                         confirmationEnregistrement(), reponses)
-                    else 
-                    mylib.createQuitButton(
-                        context, 141, 41, 
-                         confirmationAbandon(), reponses),
+                    if (reponses['mdp'] == true)
+                      mylib.createQuitButton(context, 141, 41,
+                          const confirmationEnregistrement(), reponses)
+                    else
+                      mylib.createQuitButton(
+                          context, 141, 41, const confirmationAbandon(), reponses),
                     mylib.createNextButton(
                       "btn_next".tr(),
                       context,
@@ -170,21 +172,18 @@ class Datepage extends State<DatePage> {
                     )
                   ],
                 ),
-                Container(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
-                  child: const Align(
-                    alignment: Alignment.bottomRight,
-                    child: Text(
-                      "4/9",
-                      textAlign: TextAlign.right,
-                      style: mylib.titleStyleBasDePage,
 
-                    ),
+                // padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+                const Spacer(),
+                const Align(
+                  alignment: Alignment.bottomRight,
+                  child: Text(
+                    "4/9",
+                    textAlign: TextAlign.right,
+                    style: mylib.titleStyleBasDePage,
                   ),
                 ),
-              ],
-            ),
-          ),
-        ));
+              ]))),
+    );
   }
 }

@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/user_confirm_abandon_quiz.dart';
 import 'package:flutter_application_1/user_confirm_enregistrement.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'etude_page.dart';
 import 'mylib.dart' as mylib;
 
@@ -16,7 +15,6 @@ class GenrePage extends StatefulWidget {
 }
 
 enum Genre { feminin, masculin, autre }
-
 
 class Genrepage extends State<GenrePage> {
   var genre;
@@ -32,14 +30,16 @@ class Genrepage extends State<GenrePage> {
         body: Container(
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
           child: Center(
-            child: SingleChildScrollView(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                 // const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
-                                 mylib.percentIndicator(context, 0.77),
-
-                                  const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
+                  const Spacer(),
+                  // const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
+                  mylib.percentIndicator(context, 0.77),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  //const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
 
                   ClipRRect(
                     borderRadius: BorderRadius.circular(15.0),
@@ -76,7 +76,7 @@ class Genrepage extends State<GenrePage> {
                                   groupValue: genre,
                                   onChanged: (value) {
                                     setState(() {
-                                     genre = Genre.feminin;
+                                      genre = Genre.feminin;
                                       print(genre);
                                       reponses['rep_genre'] =
                                           genre.toString().split('.').last;
@@ -95,14 +95,14 @@ class Genrepage extends State<GenrePage> {
                                       style: mylib.titleStyleDuration),
                                   groupValue: genre,
                                   onChanged: (value) {
-                                  setState(() {
-                                   genre = Genre.masculin;
-                                    print(genre);
-                                    reponses['rep_genre'] =
-                                        genre.toString().split('.').last;
-                                    print(reponses);
-                                  });
-                                },
+                                    setState(() {
+                                      genre = Genre.masculin;
+                                      print(genre);
+                                      reponses['rep_genre'] =
+                                          genre.toString().split('.').last;
+                                      print(reponses);
+                                    });
+                                  },
                                   value: Genre.masculin,
                                 ),
                               ),
@@ -115,35 +115,35 @@ class Genrepage extends State<GenrePage> {
                                       style: mylib.titleStyleDuration),
                                   groupValue: genre,
                                   onChanged: (value) {
-                                  setState(() {
-                                    genre = Genre.autre;
-                                    print(genre);
-                                    reponses['rep_genre'] =
-                                        genre.toString().split('.').last;
-                                    print(reponses);
-                                  });
-                                },
+                                    setState(() {
+                                      genre = Genre.autre;
+                                      print(genre);
+                                      reponses['rep_genre'] =
+                                          genre.toString().split('.').last;
+                                      print(reponses);
+                                    });
+                                  },
                                   value: Genre.autre,
                                 ),
                               ),
-                             
-                             
                             ],
                           ))
                         ],
                       ),
                     ),
                   ),
-                  const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
+                  const SizedBox(
+                    height: 20,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       if (reponses['mdp'] == true)
                         mylib.createQuitButton(context, 141, 41,
-                            confirmationEnregistrement(), reponses)
+                            const confirmationEnregistrement(), reponses)
                       else
                         mylib.createQuitButton(
-                            context, 141, 41, confirmationAbandon(), reponses),
+                            context, 141, 41, const confirmationAbandon(), reponses),
                       mylib.createNextButton(
                         "btn_next".tr(),
                         context,
@@ -155,23 +155,21 @@ class Genrepage extends State<GenrePage> {
                       )
                     ],
                   ),
-                  Container(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
-                  child: const Align(
-                    alignment: Alignment.bottomRight,
-                    child: Text(
-                      "7/9",
-                      textAlign: TextAlign.right,
-                      style: mylib.titleStyleBasDePage,
-
+                  const Spacer(),
+                  const Align(
+                      alignment: Alignment.bottomRight,
+                      child: Text(
+                        "7/9",
+                        textAlign: TextAlign.right,
+                        style: mylib.titleStyleBasDePage,
+                      ),
                     ),
-                  ),
-                ),
+                  
                 ],
               ),
             ),
           ),
-        ));
+        );
   }
 
   Widget createInput(
