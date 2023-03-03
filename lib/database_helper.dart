@@ -22,11 +22,11 @@ class DatabaseHelper {
 
   //Retourne les informations de connexion
   PostgreSQLConnection connection() {
-    return PostgreSQLConnection("10.0.2.2", 5432, 'postgres',
+    return PostgreSQLConnection("10.0.2.2", 5432, 'city',
         queryTimeoutInSeconds: 3600,
         timeoutInSeconds: 3600,
-        username: 'katty',
-        password: 'admin');
+        username: 'postgres',
+        password: 'fluttertest');
   }
 
   //Ouvre une connexion à la BD dans une variable, puis la retourne

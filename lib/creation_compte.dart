@@ -181,7 +181,6 @@ class Creationcompte extends State<CreationCompte> {
       alignment: Alignment.centerRight,
       child: TextButton(
         onPressed: () => {
-          print("Use conditions pressed"),
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (BuildContext context) => const UseConditions(),
@@ -509,7 +508,9 @@ class Creationcompte extends State<CreationCompte> {
     var u = Utilisateur(
       nom: nomController.text,
       mail: mailController.text,
-      password:Crypt.sha256(passwordController_1.text, salt: 'abcdefghijklmnop').toString(),
+      password:
+          Crypt.sha256(passwordController_1.text, salt: 'abcdefghijklmnop')
+              .toString(),
     );
 
     bool result = await InternetConnectionChecker().hasConnection;
