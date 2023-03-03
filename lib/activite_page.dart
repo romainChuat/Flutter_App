@@ -32,9 +32,7 @@ class Activitepage extends State<ActivitePage> {
   bool _retraiteValue = false;
   bool _ssProValue = false;
 
-
-
-
+  @override
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
@@ -286,7 +284,6 @@ class Activitepage extends State<ActivitePage> {
                     ),
                   ),
                 
-                ],
               ),
             ),
           ),
