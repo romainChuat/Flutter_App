@@ -5,11 +5,16 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/language_page.dart';
 import 'package:flutter_application_1/provider.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'confirmation_deconnexion.dart';
 import 'controller/language_contoller.dart';
 import 'package:quickalert/quickalert.dart';
+
+import 'database_helper.dart';
+import 'database_helper_local.dart';
+import 'home_page.dart';
 
 
 bool adminConnect = false;
@@ -412,8 +417,9 @@ createNextButton(String text, BuildContext context, double width, double height,
   );
 }
 
-createNextButton1(String text, BuildContext context, double width,
-    double height, Map<String, Object> reponses, MaterialPageRoute page) {
+createNextButton1(String text, BuildContext context, double width, double height, Map<String, Object> reponses, MaterialPageRoute page) {
+  var insertlieuxID;
+  var insertusID;
   return SizedBox(
     width: width,
     height: height,
@@ -429,11 +435,26 @@ createNextButton1(String text, BuildContext context, double width,
           context: context,
           type: QuickAlertType.confirm,
           text: 'sur de vouloirs envoyer ?',
-          confirmBtnText: 'Yes',
-          onConfirmBtnTap: () {
-            Navigator.of(context).push(
-              page,
-            );
+          confirmBtnText: 'Yes' ,
+          onConfirmBtnTap: () async {
+            Navigator.of(context).push(page,);
+          try {
+            insertusID = await insertUser(reponses);
+          } catch (e) {
+            print("USER DEJA ENREGISTRER");
+            insertlieuxID = reponses['rep_lieuxID'];
+            insertusID = reponses['rep_userID'];
+          }
+          try {
+            insertlieuxID = await insertLieu(reponses);
+            //print(insert_lieuxID);
+          } catch (e) {
+            print("ERREUR ID LIEUX");
+          }
+            reponses['rep_lieuxID'] = insertlieuxID;
+            reponses['rep_userID'] = insertusID;
+
+            insertReponse
           },
           cancelBtnText: 'No',
           confirmBtnColor: const Color.fromARGB(255, 64, 224, 168),
@@ -446,6 +467,82 @@ createNextButton1(String text, BuildContext context, double width,
     ),
   );
 }
+  Future<int>? insertLieu(Map<String,Object> reponses) async{
+    Map<String,Object> lieux = new Map();
+    var insert_lieuxID;
+    lieux['lieux_lat'] = reponses['latitude']!;
+    lieux['lieux_long'] = reponses['longitude']!;
+    reponses.remove('longitude');
+    reponses.remove('latitude');
+    print(lieux);
+    WidgetsFlutterBinding.ensureInitialized();
+    DatabaseHelperLocal db = DatabaseHelperLocal();
+    try {
+      insert_lieuxID = await db.insertLieu(lieux);
+      print("new lieux");
+    } catch (e) {
+      print("enregistrement lieux impossible");
+    }
+    return insert_lieuxID;
+  }
+
+  Future<int?> insertUser(Map<String, Object> reponses)async {
+    Map<String, Object> user = {};
+    var usID;
+    user['nom'] = "gest_${reponses['username']!}";
+    reponses.remove('username');
+    WidgetsFlutterBinding.ensureInitialized();
+    DatabaseHelperLocal db = DatabaseHelperLocal();
+    try{
+      usID = await db.insertUser(user);
+      print("new user");
+    } catch(e){
+      print("enregistrement user impossible");
+    }
+    return usID;
+  }
+
+  void insertReponse(Map<String, Object> reponses) async {
+    print(reponses);
+    WidgetsFlutterBinding.ensureInitialized();
+    DatabaseHelperLocal db = DatabaseHelperLocal();
+    try {
+      await db.insertReponse(reponses);
+      print("new reponse");
+    } catch (e) {
+      print("enregistrement reponse impossible");
+    }
+
+    insertReponseServer();
+  }
+
+  void insertReponseServer() async {
+    bool result = await InternetConnectionChecker().hasConnection;
+    if (result == true) {
+      WidgetsFlutterBinding.ensureInitialized();
+      DatabaseHelperLocal db = DatabaseHelperLocal();
+      var res = await db.queryAllRowsReponse();
+
+      final DatabaseHelper dbHelper = DatabaseHelper.getInstance();
+      WidgetsFlutterBinding.ensureInitialized();
+
+      for (var i in res) {
+        try {
+          print(i.toString());
+          await dbHelper.insertReponses(i.toMap());
+          print("new row");
+          await db.deleteAllReponses();
+        } catch (e) {
+          print(e);
+        }
+      }
+    } else {
+      print("Pas de connexion");
+    }
+  }
+
+
+
 
 createtButton(String text, BuildContext context, double width, double height) {
   return SizedBox(
