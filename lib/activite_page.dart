@@ -47,13 +47,13 @@ class Activitepage extends State<ActivitePage> {
         body: Container(
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
           child: Center(
-            child: SingleChildScrollView(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
+                  const Spacer(),
                                   mylib.percentIndicator(context, 1.0),
-                  const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
-                  ClipRRect(
+ const SizedBox(height: 20,),
+                   ClipRRect(
                     borderRadius: BorderRadius.circular(15.0),
                     child: Container(
                       width: 342,
@@ -231,18 +231,18 @@ class Activitepage extends State<ActivitePage> {
                       ),
                     ),
                   ),
-                  const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
+                  const SizedBox(height: 20,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       if(reponses['mdp'] == true)
                     mylib.createQuitButton(
                         context, 141, 41, 
-                         confirmationEnregistrement(), reponses)
+                         const confirmationEnregistrement(), reponses)
                     else 
                     mylib.createQuitButton(
                         context, 141, 41, 
-                         confirmationAbandon(), reponses),
+                         const confirmationAbandon(), reponses),
                          
 
 
@@ -275,9 +275,8 @@ class Activitepage extends State<ActivitePage> {
                     
                     ],
                   ),
-                  Container(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
-                  child: const Align(
+                  const Spacer(),
+                  const Align(
                     alignment: Alignment.bottomRight,
                     child: Text(
                       "9/9",
@@ -286,12 +285,12 @@ class Activitepage extends State<ActivitePage> {
 
                     ),
                   ),
-                ),
+                
                 ],
               ),
             ),
           ),
-        ));
+        );
   }
 
   void onChanged(dynamic text) {}

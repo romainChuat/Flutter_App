@@ -37,15 +37,18 @@ class Fichierpage extends State<FichierPage> {
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
           child: Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
+Spacer(),
                                mylib.percentIndicator(context, 0.33),
+                               
+                          SizedBox(height: 20,),
 
                 ClipRRect(
                   borderRadius: BorderRadius.circular(15.0),
                   child: Container(
                     width: 336,
-                    height: 285,
+                    height: 284,
                     color: const Color.fromARGB(255, 235, 233, 233),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -151,6 +154,8 @@ class Fichierpage extends State<FichierPage> {
                     ),
                   ),
                 ),
+                                          SizedBox(height: 20,),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -174,9 +179,8 @@ class Fichierpage extends State<FichierPage> {
                     )
                   ],
                 ),
-                Container(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
-                  child: const Align(
+                Spacer(),
+                Align(
                     alignment: Alignment.bottomRight,
                     child: Text(
                       "3/9",
@@ -185,7 +189,7 @@ class Fichierpage extends State<FichierPage> {
 
                     ),
                   ),
-                ),
+                
               ],
             ),
           ),

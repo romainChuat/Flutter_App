@@ -113,17 +113,19 @@ class Hellologinpage extends State<HelloLoginPage> {
           child: Container(
             color: const Color.fromARGB(255, 235, 233, 233),
             width: 309,
-            height: 464,
+            height: 372,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
+                                const SizedBox(height: 30),
+
                 SizedBox(
                   width: 250,
                   child: Text("${"hello_admin_page_title1".tr()} ${reponses["username"]}",
                       style: mylib.titleStyle2),
 
                 ),
-                const SizedBox(height: 61),
+                const SizedBox(height: 20),
                 SizedBox(
                   width: 250,
                   child: Text('hello_admin_page_title2'.tr(),
@@ -131,9 +133,10 @@ class Hellologinpage extends State<HelloLoginPage> {
                 ),
                 const SizedBox(height: 61),
                 buildAccessMap(reponses),
-                const SizedBox(height: 61),
+                const SizedBox(height: 20),
                 buildAccessQuestionnaire(reponses),
-                const SizedBox(height: 61),
+                                const SizedBox(height: 20),
+
               ],
             ),
           ),
