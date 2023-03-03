@@ -89,8 +89,15 @@ class DatabaseHelperLocal {
   }
 
   //Récupère tous les lieux présents dans la BD
-  Future<List<Map>?> queryAllRowsLieu() async {
-    return await _db?.query("lieux");
+  Future<List<Map<String, dynamic>>?> queryAllRowsLieu() async {
+    final Database? db = await init();
+    return await db?.query("lieux");
+  }
+
+  Future<List<Map<String, dynamic>>?> queryLieu(
+      double longitude, double latitude) async {
+    return await _db?.rawQuery(
+        "SELECT * FROM lieux WHERE lieux_lat = ${latitude} AND lieux_long=${longitude}");
   }
 
   //Récupère toutes les lieux présentes dans la table réponses

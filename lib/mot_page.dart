@@ -4,6 +4,7 @@ import 'package:flutter_application_1/age_page.dart';
 import 'package:flutter_application_1/home_page.dart';
 import 'package:flutter_application_1/user_confirm_abandon_quiz.dart';
 import 'package:flutter_application_1/user_confirm_enregistrement.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'mylib.dart' as mylib;
 
 class MotPage extends StatefulWidget {
@@ -32,8 +33,11 @@ class Motpage extends State<MotPage> {
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
           child: Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
+                Spacer(),
+                                mylib.percentIndicator(context, 0.55),
+ SizedBox(height: 20,),
                 ClipRRect(
                   borderRadius: BorderRadius.circular(15.0),
                   child: Container(
@@ -138,6 +142,7 @@ class Motpage extends State<MotPage> {
                     ),
                   ),
                 ),
+                 SizedBox(height: 20,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -160,7 +165,18 @@ class Motpage extends State<MotPage> {
                       ),
                     )
                   ],
-                )
+                ),
+                Spacer(),
+               Align(
+                    alignment: Alignment.bottomRight,
+                    child: Text(
+                      "5/9",
+                      textAlign: TextAlign.right,
+                      style: mylib.titleStyleBasDePage,
+
+                    ),
+                  ),
+                
               ],
             ),
           ),

@@ -5,6 +5,7 @@ import 'package:flutter_application_1/date_page.dart';
 import 'package:flutter_application_1/start_page.dart';
 import 'package:flutter_application_1/user_confirm_abandon_quiz.dart';
 import 'package:flutter_application_1/user_confirm_enregistrement.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'dart:io' as io;
 import 'mylib.dart' as mylib;
 import 'package:image_picker/image_picker.dart';
@@ -36,13 +37,18 @@ class Fichierpage extends State<FichierPage> {
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
           child: Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
+Spacer(),
+                               mylib.percentIndicator(context, 0.33),
+                               
+                          SizedBox(height: 20,),
+
                 ClipRRect(
                   borderRadius: BorderRadius.circular(15.0),
                   child: Container(
                     width: 336,
-                    height: 285,
+                    height: 284,
                     color: const Color.fromARGB(255, 235, 233, 233),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -148,6 +154,8 @@ class Fichierpage extends State<FichierPage> {
                     ),
                   ),
                 ),
+                                          SizedBox(height: 20,),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -170,7 +178,18 @@ class Fichierpage extends State<FichierPage> {
                       ),
                     )
                   ],
-                )
+                ),
+                Spacer(),
+                Align(
+                    alignment: Alignment.bottomRight,
+                    child: Text(
+                      "3/9",
+                      textAlign: TextAlign.right,
+                      style: mylib.titleStyleBasDePage,
+
+                    ),
+                  ),
+                
               ],
             ),
           ),

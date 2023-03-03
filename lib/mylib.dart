@@ -3,14 +3,17 @@ library mylib;
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/end_page.dart';
 import 'package:flutter_application_1/language_page.dart';
 import 'package:flutter_application_1/provider.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'confirmation_deconnexion.dart';
 import 'controller/language_contoller.dart';
 import 'package:quickalert/quickalert.dart';
 
+import 'database_helper.dart';
+import 'database_helper_local.dart';
 import 'home_page.dart';
 
 
@@ -29,10 +32,24 @@ const TextStyle titleStyle = TextStyle(
   ],*/
   letterSpacing: -1,
 );
+const TextStyle titleStyleBasDePage = TextStyle(
+  fontSize: 18,
+  fontFamily: 'Nunito',
+  fontWeight: FontWeight.w400,
+   // letterSpacing: 1,
+
+  // color: Colors.white,
+  /*shadows: <Shadow>[
+    Shadow(
+        offset: Offset(-2.0, 2.0),
+        blurRadius: 3.0,
+        color: Color.fromARGB(195, 105, 105, 105))
+  ],*/
+);
 const TextStyle titleStyleDuration = TextStyle(
   fontSize: 17,
   fontFamily: 'Nunito',
-    fontWeight: FontWeight.w400,
+  fontWeight: FontWeight.w400,
 
   //fontWeight: FontWeight.bold,
   // color: Colors.white,
@@ -175,10 +192,6 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
           Navigator.pop(context);
         },
       ),
-      /*actions: const [ 
-          Icon(Icons.menu, size: 50,),
-          Padding(padding: EdgeInsets.fromLTRB(0,0,20,0))
-        ],*/
       actions: [
         Builder(
           builder: (BuildContext context) {
@@ -205,7 +218,84 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
   Size get preferredSize => Size.fromHeight(appBar.preferredSize.height);
 }
 
+class BaseAppBar1 extends StatelessWidget implements PreferredSizeWidget {
+  final AppBar appBar;
 
+  const BaseAppBar1({super.key, required this.appBar});
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      bottom: PreferredSize(
+        preferredSize: Size.fromHeight(0.0),
+       child: LinearPercentIndicator(
+                  padding: EdgeInsets.fromLTRB(60, 0, 25, 0),
+                  //      width: MediaQuery.of(context).size.width - 100,
+                  width: MediaQuery.of(context).size.width -
+                   50,
+                animation: true,
+                lineHeight: 20.0,
+                animationDuration: 2000,
+                percent: 20.0,
+                linearStrokeCap: LinearStrokeCap.roundAll,
+               // progressColor: Colors.greenAccent,
+                  backgroundColor: const Color.fromARGB(255, 235, 233, 233),
+                  progressColor: const Color.fromARGB(255, 13, 12, 32),
+                ),
+      ),
+      leading: IconButton(
+        padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+        icon: const Icon(
+          Icons.arrow_back_ios,
+          size: 40,
+        ),
+        onPressed: () {
+          Navigator.pop(context);
+        },
+      ),
+      
+      actions: [
+        Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: const Icon(
+                Icons.menu,
+                size: 50,
+              ),
+              onPressed: () {
+                Scaffold.of(context).openEndDrawer();
+              },
+              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+            );
+          },
+        ),
+        const Padding(padding: EdgeInsets.fromLTRB(0, 0, 20, 0)),
+      ],
+      backgroundColor: Colors.transparent,
+      elevation: 0.0,
+    );
+  }
+
+  @override
+  Size get preferredSize => Size.fromHeight(appBar.preferredSize.height);
+}
+
+percentIndicator(BuildContext context, double percentPage){
+  return LinearPercentIndicator(
+                  padding: EdgeInsets.fromLTRB(60, 0, 25, 0),
+                  //      width: MediaQuery.of(context).size.width - 100,
+                  width: MediaQuery.of(context).size.width -
+                   50,
+                animation: true,
+                lineHeight: 20.0,
+                animationDuration: 2000,
+                percent: percentPage,
+                linearStrokeCap: LinearStrokeCap.roundAll,
+               // progressColor: Colors.greenAccent,
+                  backgroundColor: const Color.fromARGB(255, 235, 233, 233),
+                  progressColor: Color.fromARGB(255, 13, 12, 32),
+                );
+}
 
 createInput(
   double wdth,
@@ -283,7 +373,6 @@ createQuitButton(BuildContext context, double width, double height, var path,
     child: ElevatedButton(
       style: ElevatedButton.styleFrom(
         foregroundColor: Colors.white,
-        //  backgroundColor: Color.fromARGB(255, 13, 12, 32),
         side: const BorderSide(color: Colors.white, width: 1),
         elevation: 15,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -292,7 +381,7 @@ createQuitButton(BuildContext context, double width, double height, var path,
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => path,
+            builder: (context) => path, 
             settings: RouteSettings(arguments: args),
           ),
         );
@@ -329,6 +418,8 @@ createNextButton(String text, BuildContext context, double width, double height,
 }
 
 createNextButton1(String text, BuildContext context, double width, double height, Map<String, Object> reponses, MaterialPageRoute page) {
+  var insertlieuxID;
+  var insertusID;
   return SizedBox(
     width: width,
     height: height,
@@ -340,22 +431,34 @@ createNextButton1(String text, BuildContext context, double width, double height
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       ),
       onPressed: () {
-           
         QuickAlert.show(
           context: context,
           type: QuickAlertType.confirm,
           text: 'sur de vouloirs envoyer ?',
           confirmBtnText: 'Yes' ,
-          onConfirmBtnTap: () {Navigator.of(context).push(
-            page,
-          );},
+          onConfirmBtnTap: () async {
+            Navigator.of(context).push(page,);
+          try {
+            insertusID = await insertUser(reponses);
+          } catch (e) {
+            print("USER DEJA ENREGISTRER");
+            insertlieuxID = reponses['rep_lieuxID'];
+            insertusID = reponses['rep_userID'];
+          }
+          try {
+            insertlieuxID = await insertLieu(reponses);
+            //print(insert_lieuxID);
+          } catch (e) {
+            print("ERREUR ID LIEUX");
+          }
+            reponses['rep_lieuxID'] = insertlieuxID;
+            reponses['rep_userID'] = insertusID;
+
+            insertReponse
+          },
           cancelBtnText: 'No',
           confirmBtnColor: const Color.fromARGB(255, 64, 224, 168),
         );
-      
-     
-    
-      
       },
       child: Text(
         text,
@@ -364,6 +467,82 @@ createNextButton1(String text, BuildContext context, double width, double height
     ),
   );
 }
+  Future<int>? insertLieu(Map<String,Object> reponses) async{
+    Map<String,Object> lieux = new Map();
+    var insert_lieuxID;
+    lieux['lieux_lat'] = reponses['latitude']!;
+    lieux['lieux_long'] = reponses['longitude']!;
+    reponses.remove('longitude');
+    reponses.remove('latitude');
+    print(lieux);
+    WidgetsFlutterBinding.ensureInitialized();
+    DatabaseHelperLocal db = DatabaseHelperLocal();
+    try {
+      insert_lieuxID = await db.insertLieu(lieux);
+      print("new lieux");
+    } catch (e) {
+      print("enregistrement lieux impossible");
+    }
+    return insert_lieuxID;
+  }
+
+  Future<int?> insertUser(Map<String, Object> reponses)async {
+    Map<String, Object> user = {};
+    var usID;
+    user['nom'] = "gest_${reponses['username']!}";
+    reponses.remove('username');
+    WidgetsFlutterBinding.ensureInitialized();
+    DatabaseHelperLocal db = DatabaseHelperLocal();
+    try{
+      usID = await db.insertUser(user);
+      print("new user");
+    } catch(e){
+      print("enregistrement user impossible");
+    }
+    return usID;
+  }
+
+  void insertReponse(Map<String, Object> reponses) async {
+    print(reponses);
+    WidgetsFlutterBinding.ensureInitialized();
+    DatabaseHelperLocal db = DatabaseHelperLocal();
+    try {
+      await db.insertReponse(reponses);
+      print("new reponse");
+    } catch (e) {
+      print("enregistrement reponse impossible");
+    }
+
+    insertReponseServer();
+  }
+
+  void insertReponseServer() async {
+    bool result = await InternetConnectionChecker().hasConnection;
+    if (result == true) {
+      WidgetsFlutterBinding.ensureInitialized();
+      DatabaseHelperLocal db = DatabaseHelperLocal();
+      var res = await db.queryAllRowsReponse();
+
+      final DatabaseHelper dbHelper = DatabaseHelper.getInstance();
+      WidgetsFlutterBinding.ensureInitialized();
+
+      for (var i in res) {
+        try {
+          print(i.toString());
+          await dbHelper.insertReponses(i.toMap());
+          print("new row");
+          await db.deleteAllReponses();
+        } catch (e) {
+          print(e);
+        }
+      }
+    } else {
+      print("Pas de connexion");
+    }
+  }
+
+
+
 
 createtButton(String text, BuildContext context, double width, double height) {
   return SizedBox(
@@ -450,32 +629,7 @@ createMenu(BuildContext context) {
                     )),
               ),
             ),
-            const Padding(padding: EdgeInsets.all(10)),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: SizedBox(
-                width: 230,
-                height: 58,
-                child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      foregroundColor: const Color.fromARGB(255, 13, 12, 32),
-                      backgroundColor: const Color.fromARGB(255, 235, 233, 233),
-                    ),
-                    onPressed: () {
-                      AdaptiveTheme.of(context).setDark();
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        const ChangeThemeButtonWidget(),
-                        Text(
-                          "btn_mode_sombre".tr(),
-                          style: blueText,
-                        ),
-                      ],
-                    )),
-              ),
-            ),
+            
             const Padding(padding: EdgeInsets.all(10)),
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
@@ -502,6 +656,29 @@ createMenu(BuildContext context) {
                         const Padding(padding: EdgeInsets.all(6)),
                         Text(
                           "btn_traduire".tr(),
+                          style: blueText,
+                        ),
+                      ],
+                    )),
+              ),
+            ),
+            const Padding(padding: EdgeInsets.all(10)),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: SizedBox(
+                width: 230,
+                height: 58,
+                child: Container(
+                  
+                    width: 336,
+                      height: 570,
+                      color: const Color.fromARGB(255, 235, 233, 233),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        const ChangeThemeButtonWidget(),
+                        Text(
+                          "btn_mode_sombre".tr(),
                           style: blueText,
                         ),
                       ],

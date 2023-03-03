@@ -200,7 +200,7 @@ class Creationcompte extends State<CreationCompte> {
   Widget buildLoginBtn() {
     return Column(children: [
       SizedBox(
-        width: 120,
+        width: 140,
         height: 43,
         child: ElevatedButton(
           onPressed: () async {
@@ -429,7 +429,7 @@ class Creationcompte extends State<CreationCompte> {
                             child: Container(
                               color: const Color.fromARGB(255, 235, 233, 233),
                               width: 309,
-                              height: 600,
+                              height: 568,
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
@@ -509,9 +509,7 @@ class Creationcompte extends State<CreationCompte> {
     var u = Utilisateur(
       nom: nomController.text,
       mail: mailController.text,
-      password:
-          Crypt.sha256(passwordController_1.text, salt: 'abcdefghijklmnop')
-              .toString(),
+      password:Crypt.sha256(passwordController_1.text, salt: 'abcdefghijklmnop').toString(),
     );
 
     bool result = await InternetConnectionChecker().hasConnection;
@@ -539,11 +537,11 @@ class Creationcompte extends State<CreationCompte> {
         return;
       }
     }
-
+    print(u.nom);
     WidgetsFlutterBinding.ensureInitialized();
     DatabaseHelperLocal db = DatabaseHelperLocal();
 
-    var res = await db.insertUser(u.toMapLocal(reponses['rep_userID']));
+    var res = await db.insertUser(u.toMapLocal());
 
     connected = true;
   }

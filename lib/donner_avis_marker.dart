@@ -1,10 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/comment_page.dart';
+import 'package:flutter_application_1/database_helper_local.dart';
 import 'package:flutter_application_1/home_page.dart';
+import 'package:flutter_application_1/user_confirm_abandon_quiz.dart';
+import 'package:flutter_application_1/user_confirm_enregistrement.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map/plugin_api.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:flutter_map_marker_popup/flutter_map_marker_popup.dart';
 import 'mylib.dart' as mylib;
 
 class DonnerAvisMarker extends StatefulWidget {
@@ -18,7 +22,7 @@ class DonnerAvisMarker extends StatefulWidget {
 
 class Donneravismarker extends State<DonnerAvisMarker> {
   var marker = <Marker>[];
-  List<Map<String, dynamic>>? listMarker;
+  List<Map <String, dynamic>>? listMarker;
   double currentZoom = 13.0;
   MapController mapController = MapController();
   LatLng currentCenter = LatLng(47.235198, 6.021029);
@@ -32,20 +36,47 @@ class Donneravismarker extends State<DonnerAvisMarker> {
     currentZoom = currentZoom + 1;
     mapController.move(mapController.center, currentZoom);
   }
-
-  Future<void> getMarker() async {
+  @override
+  void initState() {
+    super.initState();
+    getMarkers();
+  }
+  Future<void> getMarkers() async {
     WidgetsFlutterBinding.ensureInitialized();
+    DatabaseHelperLocal db = DatabaseHelperLocal();
     try {
-      //listMarker = await db.queryAllRowsLieu();
+      listMarker = await db.queryAllRowsLieu();
+      print("marker "+ listMarker.toString());
     } catch (e) {
       print("erreur lors de la recuperation des markers");
     }
-  }
+    for(int i = 1; i<listMarker!.length; i++  ){
+      LatLng point = LatLng(listMarker![i]['lieux_lat'], listMarker![i]['lieux_long']);
+      Marker new_marker = Marker(
+        width: 25.0,
+        height: 25.0,
+        point: point,
+        builder: (ctx) => IconButton(
+          icon: const Icon(
+            Icons.location_on,
+            color: Colors.redAccent,
+            size: 30,
+          ),
+          onPressed: () {
+            print("afficher avis");
+          },
+        )
+      );
+      marker.add(new_marker);
+    }
 
+  }
+  
   @override
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
+
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: mylib.BaseAppBar(appBar: AppBar()),
@@ -67,11 +98,6 @@ class Donneravismarker extends State<DonnerAvisMarker> {
                         children: [
                           Container(
                             padding: const EdgeInsets.fromLTRB(7, 0, 3, 0),
-                            child: Align(
-                              alignment: Alignment.center,
-                              child: Text("mapPage_title".tr(),
-                                  style: mylib.blueText),
-                            ),
                           ),
                           const Divider(
                             color: Colors.black,
@@ -90,27 +116,7 @@ class Donneravismarker extends State<DonnerAvisMarker> {
                                   options: MapOptions(
                                     center: currentCenter,
                                     zoom: 14,
-                                    onTap: (LatLng value) {
-                                      print("tape");
-                                      marker.clear();
-                                      marker.add(
-                                        Marker(
-                                            width: 25.0,
-                                            height: 25.0,
-                                            point: value,
-                                            builder: (ctx) => IconButton(
-                                                  icon: const Icon(
-                                                    Icons.location_on,
-                                                    color: Colors.redAccent,
-                                                    size: 30,
-                                                  ),
-                                                  onPressed: () {
-                                                    print("afficher avis");
-                                                  },
-                                                )),
-                                      );
-                                      setState(() {});
-                                    },
+                                    onTap: (value) {},
                                   ),
                                   layers: [
                                     TileLayerOptions(
@@ -124,8 +130,7 @@ class Donneravismarker extends State<DonnerAvisMarker> {
                                     bottom: 10,
                                     left: 10,
                                     child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
+                                        mainAxisAlignment:MainAxisAlignment.start,
                                         children: [
                                           SizedBox(
                                             width: 40,
@@ -135,13 +140,10 @@ class Donneravismarker extends State<DonnerAvisMarker> {
                                                 _zoomIn();
                                               },
                                               style: ButtonStyle(
-                                                shape:
-                                                    MaterialStateProperty.all<
-                                                        RoundedRectangleBorder>(
+                                                shape:MaterialStateProperty.all<RoundedRectangleBorder>(
                                                   const RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.only(
-                                                            topLeft: Radius
+                                                    borderRadius:BorderRadius.only(topLeft: Radius
+                                                  
                                                                 .circular(10),
                                                             topRight:
                                                                 Radius.circular(
@@ -199,8 +201,16 @@ class Donneravismarker extends State<DonnerAvisMarker> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
+                    if(reponses['mdp'] == true)
                     mylib.createQuitButton(
-                        context, 141, 41, const MyHomePage(), null),
+                        context, 141, 41, 
+                         confirmationEnregistrement(), reponses)
+                    else 
+                    mylib.createQuitButton(
+                        context, 141, 41, 
+                         confirmationAbandon(), reponses),
+                         
+
                     mylib.createNextButton(
                       "btn_next".tr(),
                       context,
@@ -208,7 +218,7 @@ class Donneravismarker extends State<DonnerAvisMarker> {
                       41,
                       MaterialPageRoute(
                         builder: (_) => const CommentPage(),
-          settings: RouteSettings(arguments: reponses),
+                        settings: RouteSettings(arguments: reponses),
                       ),
                     )
                   ],

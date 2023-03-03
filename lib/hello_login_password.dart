@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/comment_page.dart';
 import 'consulter_les_avis_login_choisis.dart';
 import 'consulter_questionnaire_login_choisis.dart';
+import 'donner_avis_marker.dart';
 import 'home_page.dart';
 import 'mylib.dart' as mylib;
 
@@ -14,7 +15,7 @@ class HelloLoginPassword extends StatefulWidget {
 }
 
 class Hellologinpassword extends State<HelloLoginPassword> {
-  Widget buildAccessMap() {
+  Widget buildAccessMap(reponses) {
     return SizedBox(
       width: 290,
       height: 49,
@@ -22,7 +23,8 @@ class Hellologinpassword extends State<HelloLoginPassword> {
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) => const CommentPage(),
+              builder: (BuildContext context) => const DonnerAvisMarker(),
+              settings: RouteSettings(arguments: reponses),
             ),
           );
         },
@@ -72,7 +74,7 @@ class Hellologinpassword extends State<HelloLoginPassword> {
     );
   }
 
-  Widget consultQuestionnaire() {
+  Widget consultQuestionnaire(reponses) {
     return SizedBox(
       width: 290,
       height: 49,
@@ -82,6 +84,7 @@ class Hellologinpassword extends State<HelloLoginPassword> {
             MaterialPageRoute(
               builder: (BuildContext context) =>
                   const ConsulterQuestionnaireLoginChoix(),
+                  settings: RouteSettings(arguments: reponses),
             ),
           );
         },
@@ -102,7 +105,7 @@ class Hellologinpassword extends State<HelloLoginPassword> {
     );
   }
 
-  Widget consultAvis() {
+  Widget consultAvis(reponses) {
     return SizedBox(
       width: 290,
       height: 49,
@@ -112,6 +115,7 @@ class Hellologinpassword extends State<HelloLoginPassword> {
             MaterialPageRoute(
               builder: (BuildContext context) =>
                   const ConsulterAvisLoginChoisis(),
+                  settings: RouteSettings(arguments: reponses),
             ),
           );
         },
@@ -165,13 +169,13 @@ class Hellologinpassword extends State<HelloLoginPassword> {
                       style: mylib.titleStyle),
                 ),
                 const SizedBox(height: 30),
-                buildAccessMap(),
+                buildAccessMap(reponses),
                 const SizedBox(height: 10),
                 buildAccessQuestionnaire(reponses),
                 const SizedBox(height: 10),
-                consultQuestionnaire(),
+                consultQuestionnaire(reponses),
                 const SizedBox(height: 10),
-                consultAvis(),
+                consultAvis(reponses),
                 const SizedBox(height: 30),
               ],
             ),

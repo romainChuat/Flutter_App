@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/user_confirm_abandon_quiz.dart';
 import 'package:flutter_application_1/user_confirm_enregistrement.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'end_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,9 @@ import 'package:flutter/src/widgets/basic.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:quickalert/quickalert.dart';
 
+
+import 'hello_login_page.dart';
+import 'hello_login_password.dart';
 import 'home_page.dart';
 import 'mylib.dart' as mylib;
 
@@ -41,12 +45,13 @@ class Activitepage extends State<ActivitePage> {
         body: Container(
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
           child: Center(
-            child: SingleChildScrollView(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
-                  ClipRRect(
+                  const Spacer(),
+                                  mylib.percentIndicator(context, 1.0),
+ const SizedBox(height: 20,),
+                   ClipRRect(
                     borderRadius: BorderRadius.circular(15.0),
                     child: Container(
                       width: 342,
@@ -224,34 +229,65 @@ class Activitepage extends State<ActivitePage> {
                       ),
                     ),
                   ),
-                  const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
+                  const SizedBox(height: 20,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      if (reponses['mdp'] == true)
-                        mylib.createQuitButton(context, 141, 41,
-                            const confirmationEnregistrement(), reponses)
-                      else
-                        mylib.createQuitButton(context, 141, 41,
-                            const confirmationAbandon(), reponses),
-                      mylib.createNextButton1(
-                        "btn_next".tr(),
+                      if(reponses['mdp'] == true)
+                    mylib.createQuitButton(
+                        context, 141, 41, 
+                         const confirmationEnregistrement(), reponses)
+                    else 
+                    mylib.createQuitButton(
+                        context, 141, 41, 
+                         const confirmationAbandon(), reponses),
+                         
+
+
+                         
+                    if (reponses['mdp'] == true)
+                      mylib.createNextButton1("btn_next".tr(),
                         context,
                         141,
                         41,
                         reponses,
                         MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                const MyHomePage(),
-                            settings: RouteSettings(arguments: reponses)),
+                          
+              builder: (BuildContext context) => const HelloLoginPassword(),
+              settings: RouteSettings(arguments: reponses)
+            ))
+                    else
+                    mylib.createNextButton1("btn_next".tr(),
+                        context,
+                        141,
+                        41,
+                        reponses,
+                        MaterialPageRoute(
+                          
+              builder: (BuildContext context) => const HelloLoginPage(),
+              settings: RouteSettings(arguments: reponses)
                       ),
+                    )
+                  
+                     
+                    
                     ],
-                  )
-                ],
+                  ),
+                  const Spacer(),
+                  const Align(
+                    alignment: Alignment.bottomRight,
+                    child: Text(
+                      "9/9",
+                      textAlign: TextAlign.right,
+                      style: mylib.titleStyleBasDePage,
+
+                    ),
+                  ),
+                
               ),
             ),
           ),
-        ));
+        );
   }
 
   void onChanged(dynamic text) {}

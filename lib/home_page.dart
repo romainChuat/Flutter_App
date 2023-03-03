@@ -32,7 +32,7 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Container(
               color: const Color.fromARGB(255, 235, 233, 233),
               width: 309,
-              height: 464,
+              height: 420,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -51,10 +51,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.white,
-                        //backgroundColor: const Color.fromARGB(255, 41, 59, 229),
                         side: const BorderSide(color: Colors.white, width: 3),
                         elevation: 15,
-                        //padding: EdgeInsets.fromLTRB(10,0,110,0),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10)),
                       ),
@@ -76,7 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             child: Align(
                               alignment: Alignment.centerLeft,
                               child: Text("title1_text".tr(),
-                                  style: mylib.buttonTextStyle),
+                                  style: mylib.titleStyle),
                             ),
                           ),
                           const Align(
@@ -122,7 +120,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             child: Align(
                               alignment: Alignment.centerLeft,
                               child: Text("title2_text".tr(),
-                                  style: mylib.buttonTextStyle),
+                                  style: mylib.titleStyle),
                             ),
                           ),
                           const Align(
@@ -144,10 +142,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.white,
-                        //backgroundColor: Color.fromARGB(255, 41, 59, 229),
                         side: const BorderSide(color: Colors.white, width: 3),
                         elevation: 15,
-                        //padding: EdgeInsets.fromLTRB(10,0,110,0),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10)),
                       ),
@@ -163,7 +159,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             child: Align(
                               alignment: Alignment.centerLeft,
                               child: Text("title3_text".tr(),
-                                  style: mylib.buttonTextStyle),
+                                  style: mylib.titleStyle),
                             ),
                           ),
                           const Align(
@@ -185,10 +181,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.white,
-                        //backgroundColor: Color.fromARGB(255, 41, 59, 229),
                         side: const BorderSide(color: Colors.white, width: 3),
                         elevation: 15,
-                        //padding: EdgeInsets.fromLTRB(10,0,110,0),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10)),
                       ),
@@ -202,7 +196,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             child: Align(
                               alignment: Alignment.centerLeft,
                               child: Text("title4_text".tr(),
-                                  style: mylib.buttonTextStyle),
+                                  style: mylib.titleStyle),
                             ),
                           ),
                           const Align(

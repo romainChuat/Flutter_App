@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/start_page.dart';
 import 'package:flutter_application_1/user_confirm_abandon_quiz.dart';
 import 'package:flutter_application_1/user_confirm_enregistrement.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'fichier_page.dart';
 import 'mylib.dart' as mylib;
 
@@ -34,8 +35,13 @@ class Droitsauteur extends State<DroitsAuteur> {
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
           child: Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
+                Spacer(),
+                                mylib.percentIndicator(context, 0.22),
+                                                          SizedBox(height: 20,),
+
+
                 ClipRRect(
                   borderRadius: BorderRadius.circular(15.0),
                   child: Container(
@@ -112,6 +118,8 @@ class Droitsauteur extends State<DroitsAuteur> {
                     ),
                   ),
                 ),
+                                          SizedBox(height: 20,),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -136,6 +144,17 @@ class Droitsauteur extends State<DroitsAuteur> {
                       ),
                   ],
                 ),
+                Spacer(),
+                Align(
+                    alignment: Alignment.bottomRight,
+                    child: Text(
+                      "2/9",
+                      textAlign: TextAlign.right,
+                      style: mylib.titleStyleBasDePage,
+
+                    ),
+                  ),
+                
               ],
             ),
           ),

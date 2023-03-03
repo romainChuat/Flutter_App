@@ -10,12 +10,11 @@ class Utilisateur {
   Utilisateur({required this.nom, required this.mail, required this.password});
 
   //Permet de créer une map à partir d'un utilisateur récupéré de la BD locale
-  Map<String, dynamic> toMapLocal(dynamic id) {
+  Map<String, dynamic> toMapLocal() {
     return {
       'nom': nom,
       'mail': mail,
       'password': password,
-      'user_id': id,
     };
   }
 

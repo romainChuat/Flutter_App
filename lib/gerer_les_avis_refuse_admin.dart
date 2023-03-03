@@ -4,7 +4,6 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_map/plugin_api.dart';
 import 'accueil_gerer_les_avis.dart';
-import 'end_page.dart';
 import 'mylib.dart' as mylib;
 
 class GererAvisRefuse extends StatefulWidget {
