@@ -16,7 +16,6 @@ import 'database_helper.dart';
 import 'database_helper_local.dart';
 import 'home_page.dart';
 
-
 bool adminConnect = false;
 
 const TextStyle titleStyle = TextStyle(
@@ -36,7 +35,7 @@ const TextStyle titleStyleBasDePage = TextStyle(
   fontSize: 18,
   fontFamily: 'Nunito',
   fontWeight: FontWeight.w400,
-   // letterSpacing: 1,
+  // letterSpacing: 1,
 
   // color: Colors.white,
   /*shadows: <Shadow>[
@@ -228,20 +227,19 @@ class BaseAppBar1 extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       bottom: PreferredSize(
         preferredSize: Size.fromHeight(0.0),
-       child: LinearPercentIndicator(
-                  padding: EdgeInsets.fromLTRB(60, 0, 25, 0),
-                  //      width: MediaQuery.of(context).size.width - 100,
-                  width: MediaQuery.of(context).size.width -
-                   50,
-                animation: true,
-                lineHeight: 20.0,
-                animationDuration: 2000,
-                percent: 20.0,
-                linearStrokeCap: LinearStrokeCap.roundAll,
-               // progressColor: Colors.greenAccent,
-                  backgroundColor: const Color.fromARGB(255, 235, 233, 233),
-                  progressColor: const Color.fromARGB(255, 13, 12, 32),
-                ),
+        child: LinearPercentIndicator(
+          padding: EdgeInsets.fromLTRB(60, 0, 25, 0),
+          //      width: MediaQuery.of(context).size.width - 100,
+          width: MediaQuery.of(context).size.width - 50,
+          animation: true,
+          lineHeight: 20.0,
+          animationDuration: 2000,
+          percent: 20.0,
+          linearStrokeCap: LinearStrokeCap.roundAll,
+          // progressColor: Colors.greenAccent,
+          backgroundColor: const Color.fromARGB(255, 235, 233, 233),
+          progressColor: const Color.fromARGB(255, 13, 12, 32),
+        ),
       ),
       leading: IconButton(
         padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
@@ -253,7 +251,6 @@ class BaseAppBar1 extends StatelessWidget implements PreferredSizeWidget {
           Navigator.pop(context);
         },
       ),
-      
       actions: [
         Builder(
           builder: (BuildContext context) {
@@ -280,21 +277,20 @@ class BaseAppBar1 extends StatelessWidget implements PreferredSizeWidget {
   Size get preferredSize => Size.fromHeight(appBar.preferredSize.height);
 }
 
-percentIndicator(BuildContext context, double percentPage){
+percentIndicator(BuildContext context, double percentPage) {
   return LinearPercentIndicator(
-                  padding: EdgeInsets.fromLTRB(60, 0, 25, 0),
-                  //      width: MediaQuery.of(context).size.width - 100,
-                  width: MediaQuery.of(context).size.width -
-                   50,
-                animation: true,
-                lineHeight: 20.0,
-                animationDuration: 2000,
-                percent: percentPage,
-                linearStrokeCap: LinearStrokeCap.roundAll,
-               // progressColor: Colors.greenAccent,
-                  backgroundColor: const Color.fromARGB(255, 235, 233, 233),
-                  progressColor: Color.fromARGB(255, 13, 12, 32),
-                );
+    padding: EdgeInsets.fromLTRB(60, 0, 25, 0),
+    //      width: MediaQuery.of(context).size.width - 100,
+    width: MediaQuery.of(context).size.width - 50,
+    animation: true,
+    lineHeight: 20.0,
+    animationDuration: 2000,
+    percent: percentPage,
+    linearStrokeCap: LinearStrokeCap.roundAll,
+    // progressColor: Colors.greenAccent,
+    backgroundColor: const Color.fromARGB(255, 235, 233, 233),
+    progressColor: Color.fromARGB(255, 13, 12, 32),
+  );
 }
 
 createInput(
@@ -381,7 +377,7 @@ createQuitButton(BuildContext context, double width, double height, var path,
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => path, 
+            builder: (context) => path,
             settings: RouteSettings(arguments: args),
           ),
         );
@@ -417,7 +413,8 @@ createNextButton(String text, BuildContext context, double width, double height,
   );
 }
 
-createNextButton1(String text, BuildContext context, double width, double height, Map<String, Object> reponses, MaterialPageRoute page) {
+createNextButton1(String text, BuildContext context, double width,
+    double height, Map<String, Object> reponses, MaterialPageRoute page) {
   var insertlieuxID;
   var insertusID;
   return SizedBox(
@@ -435,26 +432,28 @@ createNextButton1(String text, BuildContext context, double width, double height
           context: context,
           type: QuickAlertType.confirm,
           text: 'sur de vouloirs envoyer ?',
-          confirmBtnText: 'Yes' ,
+          confirmBtnText: 'Yes',
           onConfirmBtnTap: () async {
-            Navigator.of(context).push(page,);
-          try {
-            insertusID = await insertUser(reponses);
-          } catch (e) {
-            print("USER DEJA ENREGISTRER");
-            insertlieuxID = reponses['rep_lieuxID'];
-            insertusID = reponses['rep_userID'];
-          }
-          try {
-            insertlieuxID = await insertLieu(reponses);
-            //print(insert_lieuxID);
-          } catch (e) {
-            print("ERREUR ID LIEUX");
-          }
+            Navigator.of(context).push(
+              page,
+            );
+            try {
+              insertusID = await insertUser(reponses);
+            } catch (e) {
+              print("USER DEJA ENREGISTRER");
+              insertlieuxID = reponses['rep_lieuxID'];
+              insertusID = reponses['rep_userID'];
+            }
+            try {
+              insertlieuxID = await insertLieu(reponses);
+              //print(insert_lieuxID);
+            } catch (e) {
+              print("ERREUR ID LIEUX");
+            }
             reponses['rep_lieuxID'] = insertlieuxID;
             reponses['rep_userID'] = insertusID;
 
-            insertReponse
+            insertReponse;
           },
           cancelBtnText: 'No',
           confirmBtnColor: const Color.fromARGB(255, 64, 224, 168),
@@ -467,82 +466,80 @@ createNextButton1(String text, BuildContext context, double width, double height
     ),
   );
 }
-  Future<int>? insertLieu(Map<String,Object> reponses) async{
-    Map<String,Object> lieux = new Map();
-    var insert_lieuxID;
-    lieux['lieux_lat'] = reponses['latitude']!;
-    lieux['lieux_long'] = reponses['longitude']!;
-    reponses.remove('longitude');
-    reponses.remove('latitude');
-    print(lieux);
-    WidgetsFlutterBinding.ensureInitialized();
-    DatabaseHelperLocal db = DatabaseHelperLocal();
-    try {
-      insert_lieuxID = await db.insertLieu(lieux);
-      print("new lieux");
-    } catch (e) {
-      print("enregistrement lieux impossible");
-    }
-    return insert_lieuxID;
+
+Future<int>? insertLieu(Map<String, Object> reponses) async {
+  Map<String, Object> lieux = new Map();
+  var insert_lieuxID;
+  lieux['lieux_lat'] = reponses['latitude']!;
+  lieux['lieux_long'] = reponses['longitude']!;
+  reponses.remove('longitude');
+  reponses.remove('latitude');
+  print(lieux);
+  WidgetsFlutterBinding.ensureInitialized();
+  DatabaseHelperLocal db = DatabaseHelperLocal();
+  try {
+    insert_lieuxID = await db.insertLieu(lieux);
+    print("new lieux");
+  } catch (e) {
+    print("enregistrement lieux impossible");
+  }
+  return insert_lieuxID;
+}
+
+Future<int?> insertUser(Map<String, Object> reponses) async {
+  Map<String, Object> user = {};
+  var usID;
+  user['nom'] = "gest_${reponses['username']!}";
+  reponses.remove('username');
+  WidgetsFlutterBinding.ensureInitialized();
+  DatabaseHelperLocal db = DatabaseHelperLocal();
+  try {
+    usID = await db.insertUser(user);
+    print("new user");
+  } catch (e) {
+    print("enregistrement user impossible");
+  }
+  return usID;
+}
+
+void insertReponse(Map<String, Object> reponses) async {
+  print(reponses);
+  WidgetsFlutterBinding.ensureInitialized();
+  DatabaseHelperLocal db = DatabaseHelperLocal();
+  try {
+    await db.insertReponse(reponses);
+    print("new reponse");
+  } catch (e) {
+    print("enregistrement reponse impossible");
   }
 
-  Future<int?> insertUser(Map<String, Object> reponses)async {
-    Map<String, Object> user = {};
-    var usID;
-    user['nom'] = "gest_${reponses['username']!}";
-    reponses.remove('username');
+  insertReponseServer();
+}
+
+void insertReponseServer() async {
+  bool result = await InternetConnectionChecker().hasConnection;
+  if (result == true) {
     WidgetsFlutterBinding.ensureInitialized();
     DatabaseHelperLocal db = DatabaseHelperLocal();
-    try{
-      usID = await db.insertUser(user);
-      print("new user");
-    } catch(e){
-      print("enregistrement user impossible");
-    }
-    return usID;
-  }
+    var res = await db.queryAllRowsReponse();
 
-  void insertReponse(Map<String, Object> reponses) async {
-    print(reponses);
+    final DatabaseHelper dbHelper = DatabaseHelper.getInstance();
     WidgetsFlutterBinding.ensureInitialized();
-    DatabaseHelperLocal db = DatabaseHelperLocal();
-    try {
-      await db.insertReponse(reponses);
-      print("new reponse");
-    } catch (e) {
-      print("enregistrement reponse impossible");
-    }
 
-    insertReponseServer();
-  }
-
-  void insertReponseServer() async {
-    bool result = await InternetConnectionChecker().hasConnection;
-    if (result == true) {
-      WidgetsFlutterBinding.ensureInitialized();
-      DatabaseHelperLocal db = DatabaseHelperLocal();
-      var res = await db.queryAllRowsReponse();
-
-      final DatabaseHelper dbHelper = DatabaseHelper.getInstance();
-      WidgetsFlutterBinding.ensureInitialized();
-
-      for (var i in res) {
-        try {
-          print(i.toString());
-          await dbHelper.insertReponses(i.toMap());
-          print("new row");
-          await db.deleteAllReponses();
-        } catch (e) {
-          print(e);
-        }
+    for (var i in res) {
+      try {
+        print(i.toString());
+        await dbHelper.insertReponses(i.toMap());
+        print("new row");
+        await db.deleteAllReponses();
+      } catch (e) {
+        print(e);
       }
-    } else {
-      print("Pas de connexion");
     }
+  } else {
+    print("Pas de connexion");
   }
-
-
-
+}
 
 createtButton(String text, BuildContext context, double width, double height) {
   return SizedBox(
@@ -629,7 +626,6 @@ createMenu(BuildContext context) {
                     )),
               ),
             ),
-            
             const Padding(padding: EdgeInsets.all(10)),
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
@@ -669,10 +665,9 @@ createMenu(BuildContext context) {
                 width: 230,
                 height: 58,
                 child: Container(
-                  
                     width: 336,
-                      height: 570,
-                      color: const Color.fromARGB(255, 235, 233, 233),
+                    height: 570,
+                    color: const Color.fromARGB(255, 235, 233, 233),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
