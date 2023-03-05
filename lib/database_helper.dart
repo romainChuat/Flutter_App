@@ -1,9 +1,9 @@
 import 'package:postgres/postgres.dart';
 
-//This class is used to connect and send queries to online database.
+//Cette classe est utilisée pour connecter et envoyer des requêtes à la base de données en ligne
 
 class DatabaseHelper {
-  //Attributes used to create a database instance
+  //Attributs utilisés pour créer une instance de la base de données
   static final DatabaseHelper _instance = DatabaseHelper._internal();
   DatabaseHelper._internal();
   factory DatabaseHelper.getInstance() => _instance;
@@ -20,97 +20,97 @@ class DatabaseHelper {
     return _db;
   }
 
-  //Return the connection information
+  //Retourne les informations de connexion
   PostgreSQLConnection connection() {
-    return PostgreSQLConnection("10.0.2.2", 5432, 'postgres',
+    return PostgreSQLConnection("10.0.2.2", 5432, 'city',
         queryTimeoutInSeconds: 3600,
         timeoutInSeconds: 3600,
-        username: 'katty',
-        password: 'admin');
+        username: 'postgres',
+        password: 'fluttertest');
   }
 
-  //Open a connection to the database in a variable, then return it
+  //Ouvre une connexion à la BD dans une variable, puis la retourne
   initDatabaseConnection(PostgreSQLConnection connection) async {
     await connection.open();
     return connection;
   }
 
-  //Close the connection to the database
+  //Ferme la connexion à la base de données
   close() async {
     final client = await db;
     client!.close();
   }
 
-  //Insert a user in the database
-  //The user's informations are in the map data given as parameters
+  //Insère un utilisateur dans la base de données
+  //Les informations de l'utilisateur sont dans une map transmises en paramètres
   Future<int?> insertUser(Map<String, dynamic> data) async {
     final client = await db;
-    //If the database isn't open, the function return null
+    //Si la base de données n'est pas ouverte, la fonction retourne null
     if (client == null) {
       return null;
     }
 
-    //Otherwise, return the result of the query
+    //Sinon, on retourne le résultat de la requête
     return await client.execute(
         'INSERT INTO users (${data.keys.join(', ')}) VALUES (${data.keys.map((k) => '@$k').join(', ')})',
         substitutionValues: data);
   }
 
-  //Returns the information of a user present in the database
-  //The user is found thanks to the email address transmitted in parameters
+  //Retourne les informations d'un utilisateur présent dans la base de données
+  //L'utilisateur est trouvé dans la BD grâce à son adresse mail transmise en paramètres
   Future<PostgreSQLResult?> queryUser(String mail) async {
     final client = await db;
-    //If the database isn't open, the function return null
+    //Si la base de données n'est pas ouverte, la fonction retourne null
     if (client == null) {
       return null;
     }
     var results = await client.query('SELECT * FROM users WHERE mail = @aValue',
         substitutionValues: {"aValue": mail});
 
-    //If the query doesn't find a user, the function return null
+    //Si la requête n'a pas trouvé d'utilisateur, on retourne null
     if (results.isEmpty == true) {
       return null;
     }
 
-    //Otherwise, return the results
+    //Sinon on retourne le résultat
     return results;
   }
 
-  //Insert a user in the database
-  //The user's informations are in the map data given as parameters
+  //Insère les réponses de l'utilisateur dans la BD
+  //Les réponses sont transmises dans une map en paramètres
   Future<int?> insertReponses(Map<String, dynamic> data) async {
     final client = await db;
-    //If the database isn't open, the function return null
+    //Si la BD n'est pas ouverte, on retourne null
     if (client == null) {
       return null;
     }
 
-    //Otherwise, return the result of the query
+    //Sinon on retourne le résultat de la requête
     return await client.execute(
         'INSERT INTO reponses (${data.keys.join(', ')}) VALUES (${data.keys.map((k) => '@$k').join(', ')})',
         substitutionValues: data);
   }
 
-  //Insert a user in the database
-  //The user's informations are in the map data given as parameters
+  //Insère un lieu dans la BD
+  //Les informations sur le lieu sont transmis dans une map en paramètres
   Future<int?> insertLieu(Map<String, dynamic> data) async {
     final client = await db;
-    //If the database isn't open, the function return null
+    //Si la BD n'est pas ouverte, on retourne null
     if (client == null) {
       return null;
     }
 
-    //Otherwise, return the result of the query
+    //Sinon on retourne le résultat de la requête
     return await client.execute(
         'INSERT INTO lieu (${data.keys.join(', ')}) VALUES (${data.keys.map((k) => '@$k').join(', ')})',
         substitutionValues: data);
   }
 
-  //Returns the information of a user present in the database
-  //The user is found thanks to the email address transmitted in parameters
+  //Retourne les informations d'un lieu présent dans la BD
+  //Le lieu est trouvé grâce à ses coordonnées (longitude, latitude) transmises en paramètres
   Future<PostgreSQLResult?> queryLieu(double longitude, double latitude) async {
     final client = await db;
-    //If the database isn't open, the function return null
+    //Si la BD n'est pas ouverte, on retourne null
     if (client == null) {
       return null;
     }
@@ -118,12 +118,12 @@ class DatabaseHelper {
         'SELECT * FROM lieu WHERE longitude = @aValue and latitude = @bValue',
         substitutionValues: {"aValue": longitude, "bValue": latitude});
 
-    //If the query doesn't find a user, the function return null
+    //Si le lieu n'est pas présent dans la BD, on retourne null
     if (results.isEmpty == true) {
       return null;
     }
 
-    //Otherwise, return the results
+    //Sinon, on retourne le résultat de la requête
     return results;
   }
 }
