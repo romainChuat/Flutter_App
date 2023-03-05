@@ -1,6 +1,7 @@
 library mylib;
 
 import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:auto_reload/auto_reload.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/language_page.dart';
@@ -453,7 +454,7 @@ createNextButton1(String text, BuildContext context, double width,
             reponses['rep_lieuxID'] = insertlieuxID;
             reponses['rep_userID'] = insertusID;
 
-            insertReponse;
+
           },
           cancelBtnText: 'No',
           confirmBtnColor: const Color.fromARGB(255, 64, 224, 168),
@@ -642,8 +643,10 @@ createMenu(BuildContext context) {
                         context,
                         MaterialPageRoute(
                           builder: (_) => const LanguagePage(),
+                           
                         ),
                       );
+                      
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,

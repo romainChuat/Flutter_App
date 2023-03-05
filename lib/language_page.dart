@@ -1,3 +1,4 @@
+import 'package:auto_reload/auto_reload.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/controller/language_contoller.dart';
@@ -12,10 +13,14 @@ class LanguagePage extends StatefulWidget {
 }
 
 class Languagepage extends State<LanguagePage> {
+
+
   @override
+  
   Widget build(BuildContext context) {
     LanguageController controller = context.read<LanguageController>();
     context.watch<LanguageController>();
+    
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -49,8 +54,7 @@ class Languagepage extends State<LanguagePage> {
                       onPressed: () {
                         context.setLocale(const Locale('en', 'US'));
                         controller.onLanguageChanged();
-                                                    Navigator.pop(context);
-
+                          Navigator.pop(context);
                       },
                       child: SizedBox(
                         width: 230,
@@ -80,7 +84,9 @@ class Languagepage extends State<LanguagePage> {
                         context.setLocale(const Locale('fr', 'FR'));
                         controller.onLanguageChanged();
                         Navigator.pop(context);
-                      },
+                                                  AutoReloader;
+
+                        },
                       child: SizedBox(
                         width: 230,
                         height: 49,

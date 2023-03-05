@@ -88,7 +88,6 @@ class Commentpage extends State<CommentPage> {
                                                 onChanged: (value) {
                                                   setState(() {
                                                     age = 10;
-                                                    print(age);
                                                   });
                                                 },
                                                 value: 10,
@@ -104,7 +103,6 @@ class Commentpage extends State<CommentPage> {
                                               onChanged: (value) {
                                                 setState(() {
                                                   age = 17;
-                                                  print(age);
                                                 });
                                               },
                                               value: 17,
@@ -121,7 +119,6 @@ class Commentpage extends State<CommentPage> {
                                               onChanged: (value) {
                                                 setState(() {
                                                   age = 25;
-                                                  print(age);
                                                 });
                                               },
                                               value: 25,
@@ -138,7 +135,6 @@ class Commentpage extends State<CommentPage> {
                                               onChanged: (value) {
                                                 setState(() {
                                                   age = 35;
-                                                  print(age);
                                                 });
                                               },
                                               value: 35,
@@ -155,7 +151,6 @@ class Commentpage extends State<CommentPage> {
                                               onChanged: (value) {
                                                 setState(() {
                                                   age = 45;
-                                                  print(age);
                                                 });
                                               },
                                               value: 45,
@@ -172,7 +167,6 @@ class Commentpage extends State<CommentPage> {
                                               onChanged: (value) {
                                                 setState(() {
                                                   age = 55;
-                                                  print(age);
                                                 });
                                               },
                                               value: 55,
@@ -189,7 +183,6 @@ class Commentpage extends State<CommentPage> {
                                               onChanged: (value) {
                                                 setState(() {
                                                   age = 65;
-                                                  print(age);
                                                 });
                                               },
                                               value: 65,
@@ -206,7 +199,6 @@ class Commentpage extends State<CommentPage> {
                                               onChanged: (value) {
                                                 setState(() {
                                                   age = 75;
-                                                  print(age);
                                                 });
                                               },
                                               value: 75,
@@ -223,7 +215,6 @@ class Commentpage extends State<CommentPage> {
                                               onChanged: (value) {
                                                 setState(() {
                                                   age = 76;
-                                                  print(age);
                                                 });
                                               },
                                               value: 76,
@@ -332,7 +323,6 @@ class Commentpage extends State<CommentPage> {
                                             color: Colors.amber,
                                           ),
                                           onRatingUpdate: (rating) {
-                                            print(rating);
                                           },
                                         ),
                                       ),
@@ -401,11 +391,11 @@ class Commentpage extends State<CommentPage> {
                       if(reponses['mdp'] == true)
                     mylib.createQuitButton(
                         context, 141, 41, 
-                         confirmationEnregistrement(), reponses)
+                         const confirmationEnregistrement(), reponses)
                     else 
                     mylib.createQuitButton(
                         context, 141, 41, 
-                         confirmationAbandon(), reponses),
+                         const confirmationAbandon(), reponses),
                          
 
 

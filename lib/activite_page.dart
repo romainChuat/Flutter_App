@@ -2,17 +2,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/user_confirm_abandon_quiz.dart';
 import 'package:flutter_application_1/user_confirm_enregistrement.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
-import 'end_page.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/basic.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:quickalert/quickalert.dart';
 
 import 'hello_login_page.dart';
 import 'hello_login_password.dart';
-import 'home_page.dart';
 import 'mylib.dart' as mylib;
 
 class ActivitePage extends StatefulWidget {

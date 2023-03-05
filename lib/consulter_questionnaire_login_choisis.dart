@@ -77,7 +77,6 @@ class Consulterquestionnaireloginchoix
                         center: LatLng(47.235198, 6.021029),
                         zoom: 14,
                         onTap: (LatLng value) {
-                          print("tape");
                           marker.add(
                             Marker(
                               width: 25.0,
@@ -90,7 +89,6 @@ class Consulterquestionnaireloginchoix
                                   size: 30,
                                 ),
                                 onPressed: () {
-                                  print("afficher avis");
                                 },
                               ),
                             ),
