@@ -192,7 +192,6 @@ class Connexionadminn extends State<ConnexionAdminn> {
                 ),
               );
             } else {
-              print("Adresse mail ou mot de passe incorrect");
               setState(() {
                 _showErrorMessage = true;
               });
@@ -362,22 +361,20 @@ class Connexionadminn extends State<ConnexionAdminn> {
     }
 
     if (res.first[4] == false) {
-      print("Ce compte n'est pas administrateur");
       return;
     }
 
     var pass = res.first[3];
 
-    print("pass"+pass);
 
     final passSaisie = Crypt.sha256(password, salt: 'abcdefghijklmnop');
 
     //if (passSaisie.toString() == pass) {
       connected = true;
     //}
-    if(connected){
-      reponses['username'] = res[2];
-    }
+  //  if(connected){
+    //  reponses['username'] = res[2];
+    //}
   }
 
   void _handleRememberme(bool? value) {
@@ -408,7 +405,6 @@ class Connexionadminn extends State<ConnexionAdminn> {
         passwordController.text = password ?? "";
       }
     } catch (e) {
-      print(e);
     }
   }
 }

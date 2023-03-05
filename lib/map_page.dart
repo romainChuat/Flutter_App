@@ -5,7 +5,6 @@ import 'package:flutter_application_1/user_confirm_enregistrement.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map/plugin_api.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'mylib.dart' as mylib;
 
 import 'droits_auteur.dart';
