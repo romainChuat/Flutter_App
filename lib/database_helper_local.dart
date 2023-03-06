@@ -66,7 +66,6 @@ class DatabaseHelperLocal {
           rep_etude CHARATER(30) NOT NULL,
           rep_activite CHARACTER(40) NOT NULL,
           rep_lieuxID INTEGER NOT NULL,
-          rep_mdp BOOLEAN,
           CONSTRAINT fk_user FOREIGN KEY (rep_userID) REFERENCES user(user_id),
           CONSTRAINT fk_lieux FOREIGN KEY (rep_lieuxID) REFERENCES lieux(lieux_id)
           )""");
