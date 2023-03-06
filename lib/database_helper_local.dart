@@ -57,6 +57,7 @@ class DatabaseHelperLocal {
           )''');
     await db.execute("""CREATE TABLE reponses(
           rep_id INTEGER  PRIMARY KEY AUTOINCREMENT,
+          rep_titre TEXT NOT NULL,
           rep_userID INTEGER NOT NULL,
           rep_expr TEXT NOT NULL,
           rep_date DATE FORMAT 'dd.mm.yyyy',
@@ -65,6 +66,7 @@ class DatabaseHelperLocal {
           rep_etude CHARATER(30) NOT NULL,
           rep_activite CHARACTER(40) NOT NULL,
           rep_lieuxID INTEGER NOT NULL,
+          rep_mdp BOOLEAN,
           CONSTRAINT fk_user FOREIGN KEY (rep_userID) REFERENCES user(user_id),
           CONSTRAINT fk_lieux FOREIGN KEY (rep_lieuxID) REFERENCES lieux(lieux_id)
           )""");
@@ -126,6 +128,7 @@ class DatabaseHelperLocal {
 
     return List.generate(res!.length, (i) {
       return Reponse(
+        titre: res[i]['rep_titre'],
         iduser: res[i]['rep_userID'],
         idlieu: res[i]['rep_lieuxID'],
         expressions: res[i]['rep_expr'],

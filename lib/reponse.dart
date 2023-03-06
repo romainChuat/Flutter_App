@@ -6,6 +6,7 @@ class Reponse {
   //Champs qui composent la map finale à insérer dans la BD
   int iduser;
   int idlieu;
+  String titre;
   String expressions;
   String date;
   int age;
@@ -15,6 +16,7 @@ class Reponse {
 
   //Constructeur de la classe
   Reponse({
+    required this.titre,
     required this.iduser,
     required this.idlieu,
     required this.expressions,
@@ -28,6 +30,7 @@ class Reponse {
   //Retourne une map à partir d'une instance de réponse
   Map<String, dynamic> toMap() {
     return {
+      'titre': titre,
       'expressions': expressions,
       'date': date,
       'age': age,

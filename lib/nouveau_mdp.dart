@@ -108,7 +108,7 @@ class Nouveaumdp extends State<NouveauMdp> {
                   MaterialPageRoute(
                     builder: (BuildContext context) =>
                         const HelloLoginPassword(),
-                    settings: RouteSettings(arguments: reponses),
+                    //settings: RouteSettings(arguments: reponses),
                   ),
                 );
               }
@@ -226,7 +226,7 @@ class Nouveaumdp extends State<NouveauMdp> {
   }
 
   Future<void> changeMdp() async {
-    String password =
+    /*String password =
         Crypt.sha256(passwordController_1.text, salt: 'abcdefghijklmnop')
             .toString();
 
@@ -258,7 +258,7 @@ class Nouveaumdp extends State<NouveauMdp> {
     WidgetsFlutterBinding.ensureInitialized();
     DatabaseHelperLocal db = DatabaseHelperLocal();
 
-    var res = await db.insertUser(u.toMapLocal());
+    var res = await db.insertUser(u.toMapLocal());*/
 
     mdpCorrect = true;
   }

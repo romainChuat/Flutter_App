@@ -1,13 +1,5 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/user_confirm_abandon_quiz.dart';
-import 'package:flutter_application_1/user_confirm_enregistrement.dart';
-import 'package:flutter_map/flutter_map.dart';
-import 'package:flutter_map/plugin_api.dart';
-import 'package:latlong2/latlong.dart';
-import 'mylib.dart' as mylib;
-
-import 'droits_auteur.dart';
+import 'database_helper.dart';
 
 class Recherchepage extends StatefulWidget {
   const Recherchepage({super.key});
@@ -22,57 +14,54 @@ class _Recherchepage extends State<Recherchepage> {
   TextEditingController controllerSearch = TextEditingController();
   List allresults = [];
   List resultsList = [];
-  
+
   @override
-/*void initState() {
-  super.initState();
-  controllerSearch.addListener(listResult());
-}*/
-listResult(){
-  var results = [];
-  // si il y a des mot dans la barre recherche
-  if(controllerSearch.text != ""){
-    //on affiche selon la recherche
+  /*void initState() {
+    super.initState();
+    controllerSearch.addListener(getResult());
+  }*/
 
-  }else{
-    results = List.from(allresults);
+  getResult() async {
+    final DatabaseHelper dbHelper = DatabaseHelper.getInstance();
+    WidgetsFlutterBinding.ensureInitialized();
+
+    // si il y a des mot dans la barre recherche
+    if (controllerSearch.text != "") {
+      var results = await dbHelper.queryReponses(controllerSearch.text);
+      var it = results!.iterator;
+      while (it.moveNext()) {
+        Map r = it.current.asMap();
+        print(r);
+      }
+    } else {
+      var results = await dbHelper.queryAllReponses();
+      var it = results!.iterator;
+      while (it.moveNext()) {
+        Map r = it.current.asMap();
+        print(r);
+      }
+    }
+    /*setState(() {
+      resultsList = results;
+    });*/
   }
-  setState(() {
-    resultsList = results;
-  });
 
-}
-
-get(){
-  // appeler base
-  //faire requete
-  var resul; //-->resultat de la requete
-  setState(() {
-    allresults = resul.toList();
-  });
-  listResult();
-}
-
+  @override
   Widget build(BuildContext context) {
-   
-
+    getResult();
     return Scaffold(
-      body: Container(
-        
-        child: Column(
-          children: [
-            SizedBox(height: 50,),
-            
-            TextField(
-              controller: controllerSearch,
-              decoration: InputDecoration(
-                prefixIcon: Icon(Icons.search),
-              ),
-
+      body: Column(
+        children: [
+          const SizedBox(
+            height: 50,
+          ),
+          TextField(
+            controller: controllerSearch,
+            decoration: const InputDecoration(
+              prefixIcon: Icon(Icons.search),
             ),
-           
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -25,7 +25,6 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(),
       ),
       endDrawer: mylib.createMenu(context),
-
       body: Center(
         child: ClipRRect(
           borderRadius: const BorderRadius.all(Radius.circular(10)),
@@ -57,6 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             borderRadius: BorderRadius.circular(10)),
                       ),
                       onPressed: () {
+                        reponses["rep_titre"] = "title1_text".tr();
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (BuildContext context) =>
@@ -104,6 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             borderRadius: BorderRadius.circular(10)),
                       ),
                       onPressed: () {
+                        reponses["rep_titre"] = "title2_text".tr();
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -148,6 +149,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             borderRadius: BorderRadius.circular(10)),
                       ),
                       onPressed: () {
+                        reponses["rep_titre"] = "title3_text".tr();
                         Navigator.pop(context);
                       },
                       child: Row(
@@ -186,7 +188,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10)),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        reponses["rep_titre"] = "title4_text".tr();
+                      },
                       child: Row(
                         children: [
                           Container(
