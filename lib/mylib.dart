@@ -432,7 +432,7 @@ createNextButton1(String text, BuildContext context, double width,
         QuickAlert.show(
           context: context,
           type: QuickAlertType.confirm,
-          text: 'sur de vouloirs envoyer ?',
+          text: 'Êtes-vous sûr de vouloir envoyer vos réponses ?',
           confirmBtnText: 'Yes',
           onConfirmBtnTap: () async {
             Navigator.of(context).push(
@@ -449,12 +449,16 @@ createNextButton1(String text, BuildContext context, double width,
               insertlieuxID = await insertLieu(reponses);
               //print(insert_lieuxID);
             } catch (e) {
-              print("ERREUR ID LIEUX");
+              print(e);
             }
             reponses['rep_lieuxID'] = insertlieuxID;
             reponses['rep_userID'] = insertusID;
 
-
+            try {
+              insertReponse(reponses);
+            } catch (e) {
+              print(e);
+            }
           },
           cancelBtnText: 'No',
           confirmBtnColor: const Color.fromARGB(255, 64, 224, 168),
@@ -482,7 +486,7 @@ Future<int>? insertLieu(Map<String, Object> reponses) async {
     insert_lieuxID = await db.insertLieu(lieux);
     print("new lieux");
   } catch (e) {
-    print("enregistrement lieux impossible");
+    print(e);
   }
   return insert_lieuxID;
 }
@@ -643,10 +647,8 @@ createMenu(BuildContext context) {
                         context,
                         MaterialPageRoute(
                           builder: (_) => const LanguagePage(),
-                           
                         ),
                       );
-                      
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,

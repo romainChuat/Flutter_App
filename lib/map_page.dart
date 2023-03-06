@@ -51,8 +51,9 @@ class Mappage extends State<MapPage> {
               children: <Widget>[
                 const Spacer(),
                 mylib.percentIndicator(context, 0.11),
-                                          SizedBox(height: 20,),
-
+                SizedBox(
+                  height: 20,
+                ),
                 ClipRRect(
                     borderRadius: BorderRadius.circular(15.0),
                     child: Container(
@@ -94,8 +95,6 @@ class Mappage extends State<MapPage> {
                                       Map<String, Object> longLat = {};
                                       reponses['longitude'] = value.longitude;
                                       reponses['latitude'] = value.latitude;
-                                      print(reponses);
-                                      print("tape");
 
                                       marker.clear();
                                       marker.add(Marker(
@@ -199,8 +198,9 @@ class Mappage extends State<MapPage> {
                         ],
                       ),
                     )),
-                                              SizedBox(height: 20,),
-
+                SizedBox(
+                  height: 20,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -224,15 +224,13 @@ class Mappage extends State<MapPage> {
                 ),
                 const Spacer(),
                 const Align(
-                    alignment: Alignment.bottomRight,
-                    child: Text(
-                      "1/9",
-                      textAlign: TextAlign.right,
-                      style: mylib.titleStyleBasDePage,
-
-                    ),
+                  alignment: Alignment.bottomRight,
+                  child: Text(
+                    "1/9",
+                    textAlign: TextAlign.right,
+                    style: mylib.titleStyleBasDePage,
                   ),
-                
+                ),
               ],
             ),
           ),

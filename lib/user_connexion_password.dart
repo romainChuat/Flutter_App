@@ -396,20 +396,19 @@ class Userconnexionpassword extends State<UserConnexionPassword> {
       WidgetsFlutterBinding.ensureInitialized();
       DatabaseHelper db = DatabaseHelper.getInstance();
 
-      try{
+      try {
         res = await db.queryUser(mail);
-      }catch(e){
+      } catch (e) {
         print("email incorrect");
       }
       var map = res.last.asMap();
-      
+
       pass = map[3];
-      print("pass "+pass);
+      print("pass " + pass);
       pseudo = map[2];
-      print("pseudo "+pseudo);
+      print("pseudo " + pseudo);
       idUser = map[0];
       print(idUser);
-
     } else {
       WidgetsFlutterBinding.ensureInitialized();
       DatabaseHelperLocal db = DatabaseHelperLocal();
@@ -424,13 +423,12 @@ class Userconnexionpassword extends State<UserConnexionPassword> {
     }
     reponses["rep_userID"] = idUser;
     reponses["username"] = pseudo;
-    
 
     final passSaisie = Crypt.sha256(password, salt: 'abcdefghijklmnop');
     //if (passSaisie.toString() == pass) {
-      connected = true;
-      reponses['mdp'] = true;
-   // }
+    connected = true;
+    reponses['rep_mdp'] = true;
+    // }
   }
 
   void handleRememberme(bool? value) {

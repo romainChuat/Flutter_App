@@ -91,6 +91,45 @@ class DatabaseHelper {
         substitutionValues: data);
   }
 
+  //Retourne des réponses présentes dans la base de données
+  //Les réponses sont trouvées dans la BD grâce à une chaîne de caractères transmise en paramètres
+  Future<PostgreSQLResult?> queryReponses(String text) async {
+    final client = await db;
+    //Si la base de données n'est pas ouverte, la fonction retourne null
+    if (client == null) {
+      return null;
+    }
+    var results = await client.query(
+        'SELECT * FROM reponses WHERE date LIKE @value OR expressions LIKE @value OR genre LIKE @value OR etude LIKE @value OR activite LIKE @value OR titre LIKE @value',
+        substitutionValues: {"value": "%$text%"});
+
+    //Si la requête n'a pas trouvé de réponses, on retourne null
+    if (results.isEmpty == true) {
+      return null;
+    }
+
+    //Sinon on retourne le résultat
+    return results;
+  }
+
+  //Retourne l'ensemble des réponses présentes dans la base de données
+  Future<PostgreSQLResult?> queryAllReponses() async {
+    final client = await db;
+    //Si la base de données n'est pas ouverte, la fonction retourne null
+    if (client == null) {
+      return null;
+    }
+    var results = await client.query('SELECT * FROM reponses');
+
+    //Si la requête n'a pas trouvé de réponses, on retourne null
+    if (results.isEmpty == true) {
+      return null;
+    }
+
+    //Sinon on retourne le résultat
+    return results;
+  }
+
   //Insère un lieu dans la BD
   //Les informations sur le lieu sont transmis dans une map en paramètres
   Future<int?> insertLieu(Map<String, dynamic> data) async {
