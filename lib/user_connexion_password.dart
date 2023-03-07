@@ -404,11 +404,8 @@ class Userconnexionpassword extends State<UserConnexionPassword> {
       var map = res.last.asMap();
 
       pass = map[3];
-      print("pass " + pass);
       pseudo = map[2];
-      print("pseudo " + pseudo);
       idUser = map[0];
-      print(idUser);
     } else {
       WidgetsFlutterBinding.ensureInitialized();
       DatabaseHelperLocal db = DatabaseHelperLocal();

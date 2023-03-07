@@ -44,10 +44,15 @@ class Etudepage extends State<EtudePage> {
         body: Container(
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
           child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                 child: Align(
+                                                  alignment: Alignment.center,
+
+        child: ListView(
+          shrinkWrap: true,
+
+              
                 children: <Widget>[
-                  const Spacer(),
+                 // const Spacer(),
                   mylib.percentIndicator(context, 0.88),
                   const SizedBox(
                     height: 20,
@@ -89,7 +94,6 @@ class Etudepage extends State<EtudePage> {
                                   onChanged: (value) {
                                     setState(() {
                                       niveau = Niveau.primaire;
-                                      print(niveau);
                                       reponses['rep_etude'] =
                                           niveau.toString().split('.').last;
                                     });
@@ -108,7 +112,6 @@ class Etudepage extends State<EtudePage> {
                                   onChanged: (value) {
                                     setState(() {
                                       niveau = Niveau.premierCycle;
-                                      print(niveau);
                                       reponses['rep_etude'] =
                                           niveau.toString().split('.').last;
                                     });
@@ -127,7 +130,6 @@ class Etudepage extends State<EtudePage> {
                                   onChanged: (value) {
                                     setState(() {
                                       niveau = Niveau.secondCycle;
-                                      print(niveau);
                                       reponses['rep_etude'] =
                                           niveau.toString().split('.').last;
                                     });
@@ -146,7 +148,6 @@ class Etudepage extends State<EtudePage> {
                                   onChanged: (value) {
                                     setState(() {
                                       niveau = Niveau.sup;
-                                      print(niveau);
                                       reponses['rep_etude'] =
                                           niveau.toString().split('.').last;
                                     });
@@ -165,7 +166,6 @@ class Etudepage extends State<EtudePage> {
                                   onChanged: (value) {
                                     setState(() {
                                       niveau = Niveau.bac3;
-                                      print(niveau);
                                       reponses['rep_etude'] =
                                           niveau.toString().split('.').last;
                                     });
@@ -184,7 +184,6 @@ class Etudepage extends State<EtudePage> {
                                   onChanged: (value) {
                                     setState(() {
                                       niveau = Niveau.bac5;
-                                      print(niveau);
                                       reponses['rep_etude'] =
                                           niveau.toString().split('.').last;
                                     });
@@ -203,7 +202,6 @@ class Etudepage extends State<EtudePage> {
                                   onChanged: (value) {
                                     setState(() {
                                       niveau = Niveau.doctorat;
-                                      print(niveau);
                                       reponses['rep_etude'] =
                                           niveau.toString().split('.').last;
                                     });
@@ -217,7 +215,7 @@ class Etudepage extends State<EtudePage> {
                                   activeColor:
                                       const Color.fromARGB(255, 13, 12, 32),
                                   title: TextField(
-                                    style: mylib.simpleText
+                                    style: mylib.simpleTextdark
                                         .apply(fontSizeDelta: 5),
                                     cursorColor: const Color.fromARGB(
                                         255, 117, 106, 106),
@@ -245,7 +243,6 @@ class Etudepage extends State<EtudePage> {
                                     onChanged: (text) {
                                       if (niveau == Niveau.autre) {
                                         reponses['rep_etude'] = text.toString();
-                                        print(reponses);
                                       }
                                     },
                                   ),
@@ -292,7 +289,7 @@ class Etudepage extends State<EtudePage> {
                       )
                     ],
                   ),
-                  const Spacer(),
+                 // const Spacer(),
                   const Align(
                       alignment: Alignment.bottomRight,
                       child: Text(
@@ -305,7 +302,12 @@ class Etudepage extends State<EtudePage> {
                 ],
               ),
             ),
+          
           ),
+          
+          ),
+          
+        
         );
   }
 
