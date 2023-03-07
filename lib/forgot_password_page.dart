@@ -85,7 +85,6 @@ class Forgotpasswordpage extends State<ForgotPasswordPage> {
       alignment: Alignment.centerRight,
       child: TextButton(
         onPressed: () => {
-          print("Forgot password pressed"),
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (BuildContext context) => const ConnexionAdminn(),
@@ -106,12 +105,11 @@ class Forgotpasswordpage extends State<ForgotPasswordPage> {
     return Column(children: [
       SizedBox(
         width: 189,
-        height: 43,
+        height: 83,
         child: ElevatedButton(
           onPressed: () {
             loginCorrect();
             if (exist == false) {
-              print("Aucun compte n'est associé à cet email.");
               setState(() {
                 _showErrorMessage = true;
               });
@@ -236,9 +234,9 @@ class Forgotpasswordpage extends State<ForgotPasswordPage> {
                             children: <Widget>[
                               buildTitle(),
                               if (!_showErrorMessage)
-                                const SizedBox(height: 55)
+                                const SizedBox(height: 35)
                               else
-                                const SizedBox(height: 42),
+                                const SizedBox(height: 22),
                               buildEmail(),
                               const SizedBox(height: 30),
                               buildLoginBtn(),
@@ -251,11 +249,11 @@ class Forgotpasswordpage extends State<ForgotPasswordPage> {
                                       color: Colors.black38,
                                     ),
                                   ),
-                                  const SizedBox(height: 40),
+                                  const SizedBox(height: 30),
                                   buildForgotPassBtn(),
                                 ],
                               ),
-                              const SizedBox(height: 70),
+                              const SizedBox(height: 50),
                             ],
                           ),
                         )),

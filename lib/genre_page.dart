@@ -30,22 +30,20 @@ class Genrepage extends State<GenrePage> {
         body: Container(
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
           child: Center(
+            
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   const Spacer(),
-                  // const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
                   mylib.percentIndicator(context, 0.77),
                   const SizedBox(
                     height: 20,
                   ),
-                  //const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
-
                   ClipRRect(
                     borderRadius: BorderRadius.circular(15.0),
                     child: Container(
                       width: 336,
-                      height: 240,
+                      height: 225,
                       color: const Color.fromARGB(255, 235, 233, 233),
                       child: Column(
                         children: [

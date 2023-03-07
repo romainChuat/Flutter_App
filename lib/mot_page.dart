@@ -1,10 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/age_page.dart';
-import 'package:flutter_application_1/home_page.dart';
 import 'package:flutter_application_1/user_confirm_abandon_quiz.dart';
 import 'package:flutter_application_1/user_confirm_enregistrement.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'mylib.dart' as mylib;
 
 class MotPage extends StatefulWidget {
@@ -20,11 +18,9 @@ class Motpage extends State<MotPage> {
   @override
   Widget build(BuildContext context) {
     Map<int, String>? mots = <int, String>{};
-    
-    print(mots);
+
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
-    print(reponses);
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: mylib.BaseAppBar(appBar: AppBar()),
@@ -35,14 +31,18 @@ class Motpage extends State<MotPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Spacer(),
-                                mylib.percentIndicator(context, 0.55),
- SizedBox(height: 20,),
+                const Spacer(),
+                mylib.percentIndicator(context, 0.55),
+                const SizedBox(
+                  height: 20,
+                ),
                 ClipRRect(
                   borderRadius: BorderRadius.circular(15.0),
                   child: Container(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
+
                     width: 336,
-                    height: 370,
+                    height: 355,
                     color: const Color.fromARGB(255, 235, 233, 233),
                     child: Column(
                       children: [
@@ -73,6 +73,8 @@ class Motpage extends State<MotPage> {
                               itemBuilder: (BuildContext context, int index) {
                                 return SizedBox(
                                     height: 38,
+                                    
+
                                     child: Material(
                                         elevation: 5,
                                         borderRadius: const BorderRadius.all(
@@ -98,7 +100,6 @@ class Motpage extends State<MotPage> {
                                                       0, 0, 0, 1),
                                               filled: true,
                                               fillColor: Colors.white,
-                                             
                                               enabledBorder:
                                                   const OutlineInputBorder(
                                                       borderSide: BorderSide(
@@ -122,13 +123,10 @@ class Motpage extends State<MotPage> {
                                                               Radius.circular(
                                                                   15)))),
                                           onChanged: (text) {
-                                            print(text);
                                             mots[index] = text;
-                                            print(mots);
 
                                             reponses['rep_expr'] =
                                                 mots.toString();
-                                            print(reponses);
                                           },
                                         )));
                               },
@@ -142,18 +140,18 @@ class Motpage extends State<MotPage> {
                     ),
                   ),
                 ),
-                 SizedBox(height: 20,),
+                const SizedBox(
+                  height: 20,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    if(reponses['mdp'] == true)
-                    mylib.createQuitButton(
-                        context, 141, 41, 
-                         confirmationEnregistrement(), reponses)
-                    else 
-                    mylib.createQuitButton(
-                        context, 141, 41, 
-                         confirmationAbandon(), reponses),
+                    if (reponses['mdp'] == true)
+                      mylib.createQuitButton(context, 141, 41,
+                          const confirmationEnregistrement(), reponses)
+                    else
+                      mylib.createQuitButton(context, 141, 41,
+                          const confirmationAbandon(), reponses),
                     mylib.createNextButton(
                       "btn_next".tr(),
                       context,
@@ -166,17 +164,15 @@ class Motpage extends State<MotPage> {
                     )
                   ],
                 ),
-                Spacer(),
-               Align(
-                    alignment: Alignment.bottomRight,
-                    child: Text(
-                      "5/9",
-                      textAlign: TextAlign.right,
-                      style: mylib.titleStyleBasDePage,
-
-                    ),
+                const Spacer(),
+                const Align(
+                  alignment: Alignment.bottomRight,
+                  child: Text(
+                    "5/9",
+                    textAlign: TextAlign.right,
+                    style: mylib.titleStyleBasDePage,
                   ),
-                
+                ),
               ],
             ),
           ),
