@@ -158,6 +158,11 @@
     "warning_mdp_incorrect": "Incorrect password.",
     "warning_mdp_terms_conditions": "Please accept the terms and conditions.",
 
+    "nouveau_mdp_title": "Reset password",
+    "nouveau_mdp_reinitialiser_btn" :"Reset",
+
+
+
 
     "btn_user": "User",
     "btn_admin": "Admin",

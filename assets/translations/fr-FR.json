@@ -155,6 +155,9 @@
 
     "droits_auteur_warning": "Veuillez accepter",
 
+    "nouveau_mdp_title": "Réinitialiser",
+    "nouveau_mdp_reinitialiser_btn" :"Réinitialiser",
+
     "btn_user": "User",
     "btn_admin": "Admin",
     "btn_accept": "Accepter",
