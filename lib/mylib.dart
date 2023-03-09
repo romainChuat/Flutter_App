@@ -19,6 +19,12 @@ import 'home_page.dart';
 
 bool adminConnect = false;
 
+/// IDENTIFIANTS DE CONNEXION BASE DE DONNÉES
+const bduser = "postgres";
+const bdpass = "fluttertest";
+const bdserver = "10.0.2.2";
+const bdname = "city";
+
 const TextStyle titleStyle = TextStyle(
   fontSize: 21,
   fontFamily: 'Nunito',
@@ -474,7 +480,7 @@ createNextButton1(String text, BuildContext context, double width,
 
 Future<int>? insertLieu(Map<String, Object> reponses) async {
   Map<String, Object> lieux = new Map();
-  var insert_lieuxID;
+  var insertLieuxid;
   lieux['lieux_lat'] = reponses['latitude']!;
   lieux['lieux_long'] = reponses['longitude']!;
   reponses.remove('longitude');
@@ -483,12 +489,12 @@ Future<int>? insertLieu(Map<String, Object> reponses) async {
   WidgetsFlutterBinding.ensureInitialized();
   DatabaseHelperLocal db = DatabaseHelperLocal();
   try {
-    insert_lieuxID = await db.insertLieu(lieux);
+    insertLieuxid = await db.insertLieu(lieux);
     print("new lieux");
   } catch (e) {
     print(e);
   }
-  return insert_lieuxID;
+  return insertLieuxid;
 }
 
 Future<int?> insertUser(Map<String, Object> reponses) async {
