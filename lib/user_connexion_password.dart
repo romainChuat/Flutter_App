@@ -418,6 +418,10 @@ class Userconnexionpassword extends State<UserConnexionPassword> {
 
       res = await db.queryOneUser(mail);
 
+      if (res == null) {
+        return;
+      }
+
       Map u = res[0];
 
       pass = u["password"];

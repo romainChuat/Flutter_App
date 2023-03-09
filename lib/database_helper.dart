@@ -1,3 +1,4 @@
+import 'package:flutter_application_1/mylib.dart';
 import 'package:postgres/postgres.dart';
 
 //Cette classe est utilisée pour connecter et envoyer des requêtes à la base de données en ligne
@@ -22,11 +23,11 @@ class DatabaseHelper {
 
   //Retourne les informations de connexion
   PostgreSQLConnection connection() {
-    return PostgreSQLConnection("10.0.2.2", 5432, 'postgres',
+    return PostgreSQLConnection(bdserver, 5432, bdname,
         queryTimeoutInSeconds: 3600,
         timeoutInSeconds: 3600,
-        username: 'katty',
-        password: 'admin');
+        username: bduser,
+        password: bdpass);
   }
 
   //Ouvre une connexion à la BD dans une variable, puis la retourne
