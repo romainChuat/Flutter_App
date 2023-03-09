@@ -2,13 +2,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/comment_page.dart';
 import 'package:flutter_application_1/database_helper_local.dart';
-import 'package:flutter_application_1/home_page.dart';
 import 'package:flutter_application_1/user_confirm_abandon_quiz.dart';
 import 'package:flutter_application_1/user_confirm_enregistrement.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map/plugin_api.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:flutter_map_marker_popup/flutter_map_marker_popup.dart';
 import 'mylib.dart' as mylib;
 
 class DonnerAvisMarker extends StatefulWidget {
@@ -63,7 +61,6 @@ class Donneravismarker extends State<DonnerAvisMarker> {
             size: 30,
           ),
           onPressed: () {
-            print("afficher avis");
           },
         )
       );

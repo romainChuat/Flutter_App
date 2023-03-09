@@ -129,6 +129,8 @@
     "connexion_admin_remeber_me": "Remember me",
     "connexion_admin_email_mdp_incorrect": "Incorrect email and/or password.",
 
+    "connexion_hintext_user_name": "Nom utilisateur",
+
     "creation_compte_sign_up": "Sign Up",
     "creation_compte_terms_conditions": "Terms & Conditions",
     "creation_compte_account": "Do you have a account ?",
