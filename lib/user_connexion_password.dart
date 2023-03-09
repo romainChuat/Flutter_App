@@ -210,7 +210,6 @@ class Userconnexionpassword extends State<UserConnexionPassword> {
                 settings: RouteSettings(arguments: reponses),
               ));
             } else {
-              print("Adresse mail ou mot de passe incorrect");
               setState(() {
                 _showErrorMessage = true;
               });
@@ -403,7 +402,11 @@ class Userconnexionpassword extends State<UserConnexionPassword> {
         res = await db.queryUser(mail);
       } catch (e) {
         print("email incorrect");
+       // setState(() {
+               // _showErrorMessage = true;
+             // });
       }
+      
       var map = res.last.asMap();
 
       pass = map[3];
@@ -425,9 +428,12 @@ class Userconnexionpassword extends State<UserConnexionPassword> {
     reponses["username"] = pseudo;
 
     final passSaisie = Crypt.sha256(password, salt: 'abcdefghijklmnop');
-    //if (passSaisie.toString() == pass) {
+
+
+    if (passSaisie.toString().trim() == pass.toString().trim()) {
     connected = true;
-    // }
+    reponses['mdp'] = true;
+     }
   }
 
   void handleRememberme(bool? value) {

@@ -41,7 +41,7 @@ class Useconditions extends State<UseConditions> {
                           padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
                           child: Text(
                             "use_condition_title".tr(),
-                            style: mylib.blueText,
+                            style: mylib.titleStyle,
                             textAlign: TextAlign.center,
                           ),
                         ),

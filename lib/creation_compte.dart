@@ -71,7 +71,6 @@ class Creationcompte extends State<CreationCompte> {
       alignment: Alignment.centerRight,
       child: TextButton(
         onPressed: () => {
-          print("Choix de connexion"),
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (BuildContext context) => const UserChoixConnexion(),
@@ -206,19 +205,16 @@ class Creationcompte extends State<CreationCompte> {
         child: ElevatedButton(
           onPressed: () async {
             if (verifMail() == false) {
-              print("Adresse mail incorrect");
               setState(() {
                 _showErrorMessageMail = true;
               });
             } else {
               if (verifPassword() == false) {
-                print("Mot de passe incorrect");
                 setState(() {
                   _showErrorMessagePassword = true;
                 });
               } else {
                 if (acceptTerms == false) {
-                  print("Veuillez accepter les conditions d'utilisations");
                   setState(() {
                     _showErrorMessageCondition = true;
                   });
@@ -536,6 +532,7 @@ class Creationcompte extends State<CreationCompte> {
         var map = res!.last.asMap();
 
         reponses['rep_userID'] = map[0];
+        
       } else {
         print("mail existant");
         return;

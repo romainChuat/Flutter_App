@@ -38,7 +38,7 @@ class Connexionadminn extends State<ConnexionAdminn> {
       reponses["email"] = input;
     });
   }
-
+   String string = 'Email';
   Widget buildTitle() {
     return Container(
       width: 309,
@@ -145,8 +145,6 @@ class Connexionadminn extends State<ConnexionAdminn> {
           style: const TextStyle(
             color: Colors.black38,
             fontSize: 13,
-
-            //fontWeight: FontWeight.bold
           ),
         ),
       ),
@@ -372,12 +370,12 @@ class Connexionadminn extends State<ConnexionAdminn> {
 
     final passSaisie = Crypt.sha256(password, salt: 'abcdefghijklmnop');
 
-    //if (passSaisie.toString() == pass) {
+    if (passSaisie.toString() == pass) {
       connected = true;
-    //}
-  //  if(connected){
-    //  reponses['username'] = res[2];
-    //}
+    }
+    if(connected){
+      reponses['username'] = res[2];
+    }
   }
 
   void _handleRememberme(bool? value) {

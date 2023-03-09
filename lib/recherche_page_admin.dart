@@ -40,7 +40,6 @@ class _Recherchepage extends State<Recherchepage> {
       var it = results!.iterator;
       while (it.moveNext()) {
         Map r = it.current.asMap();
-        print(r);
       }
     }
     /*setState(() {
