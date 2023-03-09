@@ -27,7 +27,7 @@ class Helloadminpage extends State<HelloAdminPage> {
             ),
           );
         },
-        style: ElevatedButton.styleFrom(
+         style: ElevatedButton.styleFrom(
           shadowColor: Colors.grey.shade700,
           elevation: 20,
           shape: RoundedRectangleBorder(
@@ -37,12 +37,13 @@ class Helloadminpage extends State<HelloAdminPage> {
         ),
         child: Text(
           "hello_admin_page_btn_gerer_markers".tr(),
-          style: mylib.titleStyle5,
+          style: mylib.titleStyle,
           textAlign: TextAlign.center,
         ),
       ),
     );
   }
+  
 
   Widget gererLesAvis(reponses) {
     return SizedBox(
@@ -67,7 +68,7 @@ class Helloadminpage extends State<HelloAdminPage> {
         ),
         child: Text(
           "hello_admin_page_btn_gerer_avis".tr(),
-          style: mylib.titleStyle5,
+          style: mylib.titleStyle,
           textAlign: TextAlign.center,
         ),
       ),
@@ -90,17 +91,19 @@ class Helloadminpage extends State<HelloAdminPage> {
           child: Container(
             color: const Color.fromARGB(255, 235, 233, 233),
             width: 309,
-            height: 464,
+            height: 372,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
+                                const SizedBox(height: 20),
+
                 SizedBox(
                   width: 250,
                     child: Text("${"hello_admin_page_title1".tr()} ${reponses["username"]}",
 
                       style: mylib.titleStyle2),
                 ),
-                const SizedBox(height: 61),
+                const SizedBox(height: 20),
                 SizedBox(
                   width: 250,
                   child: Text('hello_admin_page_title2'.tr(),
@@ -108,9 +111,9 @@ class Helloadminpage extends State<HelloAdminPage> {
                 ),
                 const SizedBox(height: 61),
                 gererLesMarkers(),
-                const SizedBox(height: 30),
+                const SizedBox(height: 20),
                 gererLesAvis(reponses),
-                const SizedBox(height: 61),
+                const SizedBox(height: 20),
               ],
             ),
           ),

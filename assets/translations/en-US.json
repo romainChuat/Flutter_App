@@ -129,6 +129,8 @@
     "connexion_admin_remeber_me": "Remember me",
     "connexion_admin_email_mdp_incorrect": "Incorrect email and/or password.",
 
+    "connexion_hintext_user_name": "Nom utilisateur",
+
     "creation_compte_sign_up": "Sign Up",
     "creation_compte_terms_conditions": "Terms & Conditions",
     "creation_compte_account": "Do you have a account ?",
@@ -154,9 +156,14 @@
 
     "menu_title": "Menu",
 
-    "warning_email_incorrect": "Email incorrect.",
+    "warning_email_incorrect": "Incorrect email.",
     "warning_mdp_incorrect": "Incorrect password.",
     "warning_mdp_terms_conditions": "Please accept the terms and conditions.",
+
+    "nouveau_mdp_title": "Reset password",
+    "nouveau_mdp_reinitialiser_btn" :"Reset",
+
+
 
 
     "btn_user": "User",

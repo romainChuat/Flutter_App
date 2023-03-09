@@ -31,7 +31,7 @@ class StartPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: <Widget>[
                       Align(
-                        alignment: Alignment.center,
+                        alignment: Alignment.centerLeft,
                         child: Text("startPage_title".tr(),
                             style: mylib.titleStyle),
                       ),

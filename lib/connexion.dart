@@ -87,7 +87,7 @@ class Connexion1 extends State<Connexion> {
                   Icons.account_circle_sharp,
                   color: Color.fromARGB(255, 13, 12, 32),
                 ),
-                hintText: 'User name',
+                hintText: "connexion_hintext_user_name",
                 hintStyle: TextStyle(color: Colors.black38)),
           ),
         ),
