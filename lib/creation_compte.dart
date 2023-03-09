@@ -7,7 +7,9 @@ import 'package:flutter_application_1/utilisateur.dart';
 import 'package:flutter_application_1/use_conditions.dart';
 import 'package:flutter_application_1/user_choix_connexion.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:provider/provider.dart';
 import 'connexion_admin.dart';
+import 'controller/language_contoller.dart';
 import 'database_helper_local.dart';
 import 'hello_login_password.dart';
 import 'mylib.dart' as mylib;
@@ -398,6 +400,7 @@ class Creationcompte extends State<CreationCompte> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<LanguageController>();
     return Scaffold(
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,

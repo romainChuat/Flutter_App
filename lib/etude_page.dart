@@ -4,6 +4,8 @@ import 'package:flutter_application_1/activite_page.dart';
 import 'package:flutter_application_1/user_confirm_abandon_quiz.dart';
 import 'package:flutter_application_1/user_confirm_enregistrement.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:provider/provider.dart';
+import 'controller/language_contoller.dart';
 import 'mylib.dart' as mylib;
 
 class EtudePage extends StatefulWidget {
@@ -36,7 +38,7 @@ class Etudepage extends State<EtudePage> {
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
-
+context.watch<LanguageController>();
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: mylib.BaseAppBar(appBar: AppBar()),

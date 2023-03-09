@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/creation_compte.dart';
+import 'package:provider/provider.dart';
+import 'controller/language_contoller.dart';
 import 'mylib.dart' as mylib;
 
 //This class allows to display the terms of use of the application before creating an account
@@ -15,6 +17,7 @@ class UseConditions extends StatefulWidget {
 class Useconditions extends State<UseConditions> {
   @override
   Widget build(BuildContext context) {
+    context.watch<LanguageController>();
     //Text display management
     return Scaffold(
         extendBodyBehindAppBar: true,

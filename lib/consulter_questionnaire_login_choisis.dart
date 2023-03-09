@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:flutter_map/plugin_api.dart';
-import 'end_page.dart';
+import 'package:provider/provider.dart';
+import 'controller/language_contoller.dart';
 import 'hello_login_password.dart';
 import 'mylib.dart' as mylib;
 
@@ -534,6 +535,7 @@ class Consulterquestionnaireloginchoix
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
+        context.watch<LanguageController>();
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: mylib.BaseAppBar(
