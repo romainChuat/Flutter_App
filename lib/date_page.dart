@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/controller/language_contoller.dart';
 import 'package:flutter_application_1/user_confirm_abandon_quiz.dart';
 import 'package:flutter_application_1/user_confirm_enregistrement.dart';
+import 'package:path/path.dart';
 import 'package:provider/provider.dart';
 import 'mylib.dart' as mylib;
 import 'package:flutter_application_1/mot_page.dart';
@@ -121,13 +122,12 @@ class Datepage extends State<DatePage> {
                                             //DateTime.now() - not to allow to choose before today.
                                             lastDate: DateTime(2100));
                                         if (pickedDate != null) {
-                                          print(
-                                              pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
+                                          
+                                        //pickedDate output format => 2021-03-10 00:00:00.000
                                           String formattedDate =
                                               DateFormat('dd/MM/yyyy')
                                                   .format(pickedDate);
-                                          print(
-                                              formattedDate); //formatted date output using intl package =>  2021-03-16
+                                         
                                           setState(() {
                                             dateInput.text =
                                                 formattedDate; //set output date to TextField value.

@@ -3,7 +3,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/user_choix_connexion.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'controller/language_contoller.dart';
 import 'database_helper.dart';
 import 'forgot_password_page.dart';
 import 'hello_admin_page.dart';
@@ -36,7 +38,7 @@ class Connexionadminn extends State<ConnexionAdminn> {
       reponses["email"] = input;
     });
   }
-
+   String string = 'Email';
   Widget buildTitle() {
     return Container(
       width: 309,
@@ -143,8 +145,6 @@ class Connexionadminn extends State<ConnexionAdminn> {
           style: const TextStyle(
             color: Colors.black38,
             fontSize: 13,
-
-            //fontWeight: FontWeight.bold
           ),
         ),
       ),
@@ -283,6 +283,7 @@ class Connexionadminn extends State<ConnexionAdminn> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<LanguageController>();
     return Scaffold(
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,
@@ -369,12 +370,12 @@ class Connexionadminn extends State<ConnexionAdminn> {
 
     final passSaisie = Crypt.sha256(password, salt: 'abcdefghijklmnop');
 
-    //if (passSaisie.toString() == pass) {
+    if (passSaisie.toString() == pass) {
       connected = true;
-    //}
-  //  if(connected){
-    //  reponses['username'] = res[2];
-    //}
+    }
+    if(connected){
+      reponses['username'] = res[2];
+    }
   }
 
   void _handleRememberme(bool? value) {

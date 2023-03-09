@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'controller/language_contoller.dart';
 import 'database_helper.dart';
 
 class Recherchepage extends StatefulWidget {
@@ -38,7 +40,6 @@ class _Recherchepage extends State<Recherchepage> {
       var it = results!.iterator;
       while (it.moveNext()) {
         Map r = it.current.asMap();
-        print(r);
       }
     }
     /*setState(() {
@@ -49,6 +50,7 @@ class _Recherchepage extends State<Recherchepage> {
   @override
   Widget build(BuildContext context) {
     getResult();
+    context.watch<LanguageController>();
     return Scaffold(
       body: Column(
         children: [

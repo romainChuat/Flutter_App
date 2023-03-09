@@ -1,8 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/comment_page.dart';
+import 'package:provider/provider.dart';
 import 'consulter_les_avis_login_choisis.dart';
 import 'consulter_questionnaire_login_choisis.dart';
+import 'controller/language_contoller.dart';
 import 'donner_avis_marker.dart';
 import 'home_page.dart';
 import 'mylib.dart' as mylib;
@@ -140,6 +141,7 @@ class Hellologinpassword extends State<HelloLoginPassword> {
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
+        context.watch<LanguageController>();
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: mylib.BaseAppBar(
@@ -152,7 +154,7 @@ class Hellologinpassword extends State<HelloLoginPassword> {
           child: Container(
             color: const Color.fromARGB(255, 235, 233, 233),
             width: 309,
-            height: 464,
+            height: 484,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
