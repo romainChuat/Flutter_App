@@ -17,7 +17,7 @@ class Accueilgererlesmarkers extends State<AccueilGererLesMarkers> {
   Widget gererlesmarkersvalide(reponses) {
     
     return SizedBox(
-      width: 296,
+      width: 285,
       height: 49,
       child: ElevatedButton(
         onPressed: () {
@@ -38,7 +38,7 @@ class Accueilgererlesmarkers extends State<AccueilGererLesMarkers> {
         ),
         child: Text(
           "accueil_gerer_les_markers_btn_validated".tr(),
-          style: mylib.titleStyle5,
+          style: mylib.titleStyle,
           textAlign: TextAlign.center,
         ),
       ),
@@ -47,7 +47,7 @@ class Accueilgererlesmarkers extends State<AccueilGererLesMarkers> {
 
   Widget gererlesmarkersrecu(reponses) {
     return SizedBox(
-      width: 296,
+      width: 285,
       height: 49,
       child: ElevatedButton(
         onPressed: () {
@@ -69,7 +69,7 @@ class Accueilgererlesmarkers extends State<AccueilGererLesMarkers> {
         ),
         child: Text(
           "accueil_gerer_les_markers_btn_traiter_received".tr(),
-          style: mylib.titleStyle5,
+          style: mylib.titleStyle,
           textAlign: TextAlign.center,
         ),
       ),
@@ -78,7 +78,7 @@ class Accueilgererlesmarkers extends State<AccueilGererLesMarkers> {
 
   Widget gererlesmarkersrefuse(reponses) {
     return SizedBox(
-      width: 296,
+      width: 285,
       height: 49,
       child: ElevatedButton(
         onPressed: () {
@@ -99,7 +99,7 @@ class Accueilgererlesmarkers extends State<AccueilGererLesMarkers> {
         ),
         child: Text(
           "accueil_gerer_les_markers_btn_rejected".tr(),
-          style: mylib.titleStyle5,
+          style: mylib.titleStyle,
           textAlign: TextAlign.center,
         ),
       ),
@@ -122,23 +122,22 @@ class Accueilgererlesmarkers extends State<AccueilGererLesMarkers> {
           child: Container(
             color: const Color.fromARGB(255, 235, 233, 233),
             width: 309,
-            height: 464,
+            height: 380,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                const SizedBox(height: 61),
+                const SizedBox(height: 10),
                 SizedBox(
                   width: 250,
                   child: Text('acceuil_gerer_les_markers_title'.tr(),
                       style: mylib.titleStyle),
                 ),
-                const SizedBox(height: 61),
+                const SizedBox(height: 50),
                 gererlesmarkersvalide(reponses),
-                const SizedBox(height: 30),
+                const SizedBox(height: 20),
                 gererlesmarkersrecu(reponses),
-                const SizedBox(height: 30),
+                const SizedBox(height: 20),
                 gererlesmarkersrefuse(reponses),
-                const SizedBox(height: 40),
               ],
             ),
           ),

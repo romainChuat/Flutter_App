@@ -13,14 +13,10 @@ class LanguagePage extends StatefulWidget {
 }
 
 class Languagepage extends State<LanguagePage> {
-
-
   @override
-  
   Widget build(BuildContext context) {
     LanguageController controller = context.read<LanguageController>();
     context.watch<LanguageController>();
-    
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -54,7 +50,7 @@ class Languagepage extends State<LanguagePage> {
                       onPressed: () {
                         context.setLocale(const Locale('en', 'US'));
                         controller.onLanguageChanged();
-                          Navigator.pop(context);
+                        Navigator.pop(context);
                       },
                       child: SizedBox(
                         width: 230,
@@ -76,7 +72,6 @@ class Languagepage extends State<LanguagePage> {
                         foregroundColor: Colors.white,
                         side: const BorderSide(color: Colors.white, width: 3),
                         elevation: 15,
-                        //padding: EdgeInsets.fromLTRB(10,0,110,0),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10)),
                       ),
@@ -84,9 +79,8 @@ class Languagepage extends State<LanguagePage> {
                         context.setLocale(const Locale('fr', 'FR'));
                         controller.onLanguageChanged();
                         Navigator.pop(context);
-                                                  AutoReloader;
-
-                        },
+                        AutoReloader;
+                      },
                       child: SizedBox(
                         width: 230,
                         height: 49,

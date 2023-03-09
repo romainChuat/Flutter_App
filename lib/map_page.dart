@@ -51,7 +51,7 @@ class Mappage extends State<MapPage> {
               children: <Widget>[
                 const Spacer(),
                 mylib.percentIndicator(context, 0.11),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 ClipRRect(
@@ -108,7 +108,6 @@ class Mappage extends State<MapPage> {
                                                   size: 30,
                                                 ),
                                                 onPressed: () {
-                                                  print("afficher avis");
                                                 },
                                               )));
                                       setState(() {});
@@ -198,7 +197,7 @@ class Mappage extends State<MapPage> {
                         ],
                       ),
                     )),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Row(
@@ -206,10 +205,10 @@ class Mappage extends State<MapPage> {
                   children: [
                     if (reponses['mdp'] == true)
                       mylib.createQuitButton(context, 141, 41,
-                          confirmationEnregistrement(), reponses)
+                          const confirmationEnregistrement(), reponses)
                     else
                       mylib.createQuitButton(
-                          context, 141, 41, confirmationAbandon(), reponses),
+                          context, 141, 41, const confirmationAbandon(), reponses),
                     mylib.createNextButton(
                       "btn_next".tr(),
                       context,

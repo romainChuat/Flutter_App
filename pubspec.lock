@@ -826,6 +826,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.4.16"
+  to_string:
+    dependency: "direct main"
+    description:
+      name: to_string
+      sha256: "1f3d2fa040ea822ee098b862cb6cc4af4e9fed82cf2b434e64b97de3dd9b804e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.1"
   transparent_image:
     dependency: transitive
     description:

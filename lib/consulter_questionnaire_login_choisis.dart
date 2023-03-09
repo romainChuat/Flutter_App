@@ -31,7 +31,7 @@ class Consulterquestionnaireloginchoix
           padding: const EdgeInsets.fromLTRB(1, 15, 1, 0),
           child: Text(
             "Traiter_markers_recu_admin_title".tr(),
-            style: mylib.blueText,
+            style: mylib.titleStyle,
             textAlign: TextAlign.center,
           ),
         ),
@@ -40,7 +40,7 @@ class Consulterquestionnaireloginchoix
   }
 
   Widget map() {
-    return Column(
+    return SizedBox(child: Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
         ClipRRect(
@@ -56,7 +56,7 @@ class Consulterquestionnaireloginchoix
                   padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
                   child: Text(
                     "Traiter_markers_recu_admin_localisation".tr(),
-                    style: mylib.blueText,
+                    style: mylib.titleStyle,
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -113,6 +113,7 @@ class Consulterquestionnaireloginchoix
           ),
         ),
       ],
+    ),
     );
   }
 
@@ -133,12 +134,12 @@ class Consulterquestionnaireloginchoix
                   padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
                   child: Text(
                     "Traiter_markers_recu_admin_photo".tr(),
-                    style: mylib.blueText,
+                    style: mylib.titleStyle,
                     textAlign: TextAlign.center,
                   ),
                 ),
                 const Divider(
-                  color: Color.fromARGB(255, 41, 59, 229),
+                  color: Colors.black,
                   thickness: 1,
                   indent: 20,
                   endIndent: 20,
@@ -178,7 +179,7 @@ class Consulterquestionnaireloginchoix
                   padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
                   child: Text(
                     "Traiter_markers_recu_admin_date".tr(),
-                    style: mylib.blueText,
+                    style: mylib.titleStyle,
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -197,7 +198,7 @@ class Consulterquestionnaireloginchoix
                     child: const Align(
                       child: Text(
                         "jj/mm/aaaa",
-                        style: mylib.titleStyle3,
+                        style: mylib.titleStyleDuration,
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -228,7 +229,7 @@ class Consulterquestionnaireloginchoix
                   padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
                   child: Text(
                     "Traiter_markers_recu_admin_expression".tr(),
-                    style: mylib.blueText,
+                    style: mylib.titleStyle,
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -249,7 +250,7 @@ class Consulterquestionnaireloginchoix
                         child: const Align(
                           child: Text(
                             "1. Texte texte texte texte",
-                            style: mylib.titleStyle3,
+                            style: mylib.titleStyleDuration,
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -262,7 +263,7 @@ class Consulterquestionnaireloginchoix
                         child: const Align(
                           child: Text(
                             "2. Texte texte texte texte",
-                            style: mylib.titleStyle3,
+                            style: mylib.titleStyleDuration,
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -275,7 +276,7 @@ class Consulterquestionnaireloginchoix
                         child: const Align(
                           child: Text(
                             "3. Texte texte texte texte",
-                            style: mylib.titleStyle3,
+                            style: mylib.titleStyleDuration,
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -288,7 +289,7 @@ class Consulterquestionnaireloginchoix
                         child: const Align(
                           child: Text(
                             "4. Texte texte texte texte",
-                            style: mylib.titleStyle3,
+                            style: mylib.titleStyleDuration,
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -321,7 +322,7 @@ class Consulterquestionnaireloginchoix
                   padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
                   child: Text(
                     "Traiter_markers_recu_admin_age".tr(),
-                    style: mylib.blueText,
+                    style: mylib.titleStyle,
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -340,7 +341,7 @@ class Consulterquestionnaireloginchoix
                     child: Align(
                       child: Text(
                         "Traiter_markers_recu_admin_years".tr(),
-                        style: mylib.titleStyle3,
+                        style: mylib.titleStyleDuration,
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -371,7 +372,7 @@ class Consulterquestionnaireloginchoix
                   padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
                   child: Text(
                     "Traiter_markers_recu_admin_gender".tr(),
-                    style: mylib.blueText,
+                    style: mylib.titleStyle,
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -390,7 +391,7 @@ class Consulterquestionnaireloginchoix
                     child: const Align(
                       child: Text(
                         "TexteGenre",
-                        style: mylib.titleStyle3,
+                        style: mylib.titleStyleDuration,
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -421,7 +422,7 @@ class Consulterquestionnaireloginchoix
                   padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
                   child: Text(
                     "Traiter_markers_recu_admin_etude".tr(),
-                    style: mylib.blueText,
+                    style: mylib.titleStyle,
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -440,7 +441,7 @@ class Consulterquestionnaireloginchoix
                     child: const Align(
                       child: Text(
                         "Niveaux d'étude",
-                        style: mylib.titleStyle3,
+                        style: mylib.titleStyleDuration,
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -471,7 +472,7 @@ class Consulterquestionnaireloginchoix
                   padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
                   child: Text(
                     "Traiter_markers_recu_admin_activite".tr(),
-                    style: mylib.blueText,
+                    style: mylib.titleStyle,
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -490,7 +491,7 @@ class Consulterquestionnaireloginchoix
                     child: const Align(
                       child: Text(
                         "Activité",
-                        style: mylib.titleStyle3,
+                        style: mylib.titleStyleDuration,
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -504,29 +505,23 @@ class Consulterquestionnaireloginchoix
     );
   }
 
-  Widget btnModifier() {
+ Widget btnModifier() {
     return SizedBox(
-      width: 160,
-      height: 43,
+      width: 141,
+      height: 41,
       child: ElevatedButton(
         onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (BuildContext context) => const EndPage(),
-            ),
-          );
+          
         },
         style: ElevatedButton.styleFrom(
-          shadowColor: Colors.grey.shade700,
-          elevation: 20,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0),
-            side: const BorderSide(color: Colors.white, width: 3),
-          ),
-        ),
+        foregroundColor: Colors.white,
+        side: const BorderSide(color: Colors.white, width: 1),
+        elevation: 15,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      ),
         child: Text(
           "consulter_les_avis_login_choisis_modifier".tr(),
-          style: mylib.titleStyle2,
+          style: mylib.titleStyle,
           textAlign: TextAlign.center,
         ),
       ),
@@ -555,17 +550,8 @@ class Consulterquestionnaireloginchoix
               child: Container(
                 width: 359,
                 height: 600,
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment(0.0, 1),
-                    colors: <Color>[
-                      Color.fromARGB(255, 41, 59, 229),
-                      Color.fromARGB(255, 54, 191, 201),
-                    ],
-                    tileMode: TileMode.mirror,
-                  ),
-                ),
+                color: const Color.fromARGB(118, 13, 12, 32),
+                        padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
                 child: SingleChildScrollView(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,

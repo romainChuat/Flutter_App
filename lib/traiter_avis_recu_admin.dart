@@ -4,8 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_map/plugin_api.dart';
-import 'accueil_gerer_les_avis.dart';
-import 'end_page.dart';
+import 'hello_admin_page.dart';
 import 'mylib.dart' as mylib;
 
 class TraiterAvisRecu extends StatefulWidget {
@@ -29,7 +28,7 @@ class Traiteravisrecu extends State<TraiterAvisRecu> {
           padding: const EdgeInsets.fromLTRB(1, 15, 1, 0),
           child: Text(
             "gerer_les_avis_valide_admin_nom_date".tr(),
-            style: mylib.blueText,
+            style: mylib.titleStyle,
             textAlign: TextAlign.center,
           ),
         ),
@@ -50,7 +49,7 @@ class Traiteravisrecu extends State<TraiterAvisRecu> {
               padding: const EdgeInsets.fromLTRB(1, 10, 1, 0),
               child: Text(
                 "gerer_les_avis_valide_admin_note".tr(),
-                style: mylib.blueText,
+                style: mylib.titleStyle,
                 textAlign: TextAlign.center,
               ),
             ),
@@ -101,7 +100,7 @@ class Traiteravisrecu extends State<TraiterAvisRecu> {
                   padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
                   child: Text(
                     "gerer_les_avis_valide_admin_place_already_visit".tr(),
-                    style: mylib.blueText,
+                    style: mylib.titleStyle,
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -120,7 +119,7 @@ class Traiteravisrecu extends State<TraiterAvisRecu> {
                     child: const Align(
                       child: Text(
                         "Oui/Non",
-                        style: mylib.titleStyle3,
+                        style: mylib.titleStyleDuration,
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -151,7 +150,7 @@ class Traiteravisrecu extends State<TraiterAvisRecu> {
                   padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
                   child: Text(
                     "gerer_les_avis_valide_admin_comment".tr(),
-                    style: mylib.blueText,
+                    style: mylib.titleStyle,
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -172,7 +171,7 @@ class Traiteravisrecu extends State<TraiterAvisRecu> {
                         child: const Align(
                           child: Text(
                             "Texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte",
-                            style: mylib.titleStyle3,
+                            style: mylib.titleStyleDuration,
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -203,9 +202,9 @@ class Traiteravisrecu extends State<TraiterAvisRecu> {
               children: [
                 Container(
                   padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
-                  child: const Text(
-                    "gerer_les_avis_valide_admin_tranche_age",
-                    style: mylib.blueText,
+                  child: Text(
+                    "gerer_les_avis_valide_admin_tranche_age".tr(),
+                    style: mylib.titleStyle,
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -224,7 +223,7 @@ class Traiteravisrecu extends State<TraiterAvisRecu> {
                     child: const Align(
                       child: Text(
                         "... - ... ans",
-                        style: mylib.titleStyle3,
+                        style: mylib.titleStyleDuration,
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -300,11 +299,11 @@ class Traiteravisrecu extends State<TraiterAvisRecu> {
                     mylib.createNextButton1(
                         "Traiter_markers_recu_admin_btn_annuler".tr(),
                         context,
-                        141,
+                        215,
                         41,
                         reponses,
                         MaterialPageRoute(
-                          builder: (BuildContext context) => const AccueilGererLesAvis(),
+                          builder: (BuildContext context) => const HelloAdminPage(),
           settings: RouteSettings(arguments: reponses),
             ),
                         

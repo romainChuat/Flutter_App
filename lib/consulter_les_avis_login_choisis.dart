@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_map/plugin_api.dart';
-import 'end_page.dart';
 import 'hello_login_password.dart';
 import 'mylib.dart' as mylib;
 
@@ -28,7 +27,7 @@ class Consulteravisloginchoisis extends State<ConsulterAvisLoginChoisis> {
           padding: const EdgeInsets.fromLTRB(1, 15, 1, 0),
           child: Text(
             "consulter_les_avis_login_choisis_date".tr(),
-            style: mylib.blueText,
+            style: mylib.titleStyle,
             textAlign: TextAlign.center,
           ),
         ),
@@ -49,7 +48,7 @@ class Consulteravisloginchoisis extends State<ConsulterAvisLoginChoisis> {
               padding: const EdgeInsets.fromLTRB(1, 10, 1, 0),
               child: Text(
                 "gerer_les_avis_valide_admin_note".tr(),
-                style: mylib.blueText,
+                style: mylib.titleStyle,
                 textAlign: TextAlign.center,
               ),
             ),
@@ -73,7 +72,6 @@ class Consulteravisloginchoisis extends State<ConsulterAvisLoginChoisis> {
                   color: Colors.amber,
                 ),
                 onRatingUpdate: (rating) {
-                  print(rating);
                 },
               ),
             ),
@@ -100,7 +98,7 @@ class Consulteravisloginchoisis extends State<ConsulterAvisLoginChoisis> {
                   padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
                   child: Text(
                     "consulter_les_avis_login_choisis_already_visit".tr(),
-                    style: mylib.blueText,
+                    style: mylib.titleStyle,
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -119,7 +117,7 @@ class Consulteravisloginchoisis extends State<ConsulterAvisLoginChoisis> {
                     child: const Align(
                       child: Text(
                         "Oui/Non",
-                        style: mylib.titleStyle3,
+                        style: mylib.titleStyleDuration,
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -150,7 +148,7 @@ class Consulteravisloginchoisis extends State<ConsulterAvisLoginChoisis> {
                   padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
                   child: Text(
                     "gerer_les_avis_valide_admin_comment".tr(),
-                    style: mylib.blueText,
+                    style: mylib.titleStyle,
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -171,7 +169,7 @@ class Consulteravisloginchoisis extends State<ConsulterAvisLoginChoisis> {
                         child: const Align(
                           child: Text(
                             "Texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte",
-                            style: mylib.titleStyle3,
+                            style: mylib.titleStyleDuration,
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -196,7 +194,7 @@ class Consulteravisloginchoisis extends State<ConsulterAvisLoginChoisis> {
           child: Container(
             width: 325,
             height: 140,
-            color: const Color.fromARGB(255, 235, 233, 233),
+                    color: const Color.fromARGB(255, 255, 255, 255),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -204,7 +202,7 @@ class Consulteravisloginchoisis extends State<ConsulterAvisLoginChoisis> {
                   padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
                   child: Text(
                     "consulter_les_avis_login_choisis_age".tr(),
-                    style: mylib.blueText,
+                    style: mylib.titleStyle,
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -223,7 +221,7 @@ class Consulteravisloginchoisis extends State<ConsulterAvisLoginChoisis> {
                     child: Align(
                       child: Text(
                         "Traiter_markers_recu_admin_years".tr(),
-                        style: mylib.titleStyle3,
+                        style: mylib.titleStyleDuration,
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -239,27 +237,21 @@ class Consulteravisloginchoisis extends State<ConsulterAvisLoginChoisis> {
 
   Widget btnModifier() {
     return SizedBox(
-      width: 160,
-      height: 43,
+      width: 141,
+      height: 41,
       child: ElevatedButton(
         onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (BuildContext context) => const EndPage(),
-            ),
-          );
+          
         },
         style: ElevatedButton.styleFrom(
-          shadowColor: Colors.grey.shade700,
-          elevation: 20,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0),
-            side: const BorderSide(color: Colors.white, width: 3),
-          ),
-        ),
+        foregroundColor: Colors.white,
+        side: const BorderSide(color: Colors.white, width: 1),
+        elevation: 15,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      ),
         child: Text(
           "consulter_les_avis_login_choisis_modifier".tr(),
-          style: mylib.titleStyle2,
+          style: mylib.titleStyle,
           textAlign: TextAlign.center,
         ),
       ),
@@ -288,17 +280,9 @@ class Consulteravisloginchoisis extends State<ConsulterAvisLoginChoisis> {
               child: Container(
                 width: 359,
                 height: 600,
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment(0.0, 1),
-                    colors: <Color>[
-                      Color.fromARGB(255, 41, 59, 229),
-                      Color.fromARGB(255, 54, 191, 201),
-                    ],
-                    tileMode: TileMode.mirror,
-                  ),
-                ),
+                                       color: const Color.fromARGB(118, 13, 12, 32),
+                        padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+
                 child: SingleChildScrollView(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,

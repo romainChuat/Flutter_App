@@ -63,7 +63,7 @@ class Commentpage extends State<CommentPage> {
                                             1, 20, 1, 0),
                                         child: Text(
                                           "agePage_title".tr(),
-                                          style: mylib.blueText,
+                                          style: mylib.titleStyle,
                                           textAlign: TextAlign.center,
                                         ),
                                       ),
@@ -83,7 +83,7 @@ class Commentpage extends State<CommentPage> {
                                                     const Color.fromARGB(
                                                         255, 13, 12, 32),
                                                 title: Text("agePage_3-10".tr(),
-                                                    style: mylib.radioText),
+                                                    style: mylib.titleStyleDuration),
                                                 groupValue: age,
                                                 onChanged: (value) {
                                                   setState(() {
@@ -98,7 +98,7 @@ class Commentpage extends State<CommentPage> {
                                               activeColor: const Color.fromARGB(
                                                   255, 13, 12, 32),
                                               title: Text("agePage_11-17".tr(),
-                                                  style: mylib.radioText),
+                                                  style: mylib.titleStyleDuration),
                                               groupValue: age,
                                               onChanged: (value) {
                                                 setState(() {
@@ -114,7 +114,7 @@ class Commentpage extends State<CommentPage> {
                                               activeColor: const Color.fromARGB(
                                                   255, 13, 12, 32),
                                               title: Text("agePage_18-25".tr(),
-                                                  style: mylib.radioText),
+                                                  style: mylib.titleStyleDuration),
                                               groupValue: age,
                                               onChanged: (value) {
                                                 setState(() {
@@ -130,7 +130,7 @@ class Commentpage extends State<CommentPage> {
                                               activeColor: const Color.fromARGB(
                                                   255, 13, 12, 32),
                                               title: Text("agePage_26-35".tr(),
-                                                  style: mylib.radioText),
+                                                  style: mylib.titleStyleDuration),
                                               groupValue: age,
                                               onChanged: (value) {
                                                 setState(() {
@@ -146,7 +146,7 @@ class Commentpage extends State<CommentPage> {
                                               activeColor: const Color.fromARGB(
                                                   255, 13, 12, 32),
                                               title: Text("agePage_36-45".tr(),
-                                                  style: mylib.radioText),
+                                                  style: mylib.titleStyleDuration),
                                               groupValue: age,
                                               onChanged: (value) {
                                                 setState(() {
@@ -162,7 +162,7 @@ class Commentpage extends State<CommentPage> {
                                               activeColor: const Color.fromARGB(
                                                   255, 13, 12, 32),
                                               title: Text("agePage_46-55".tr(),
-                                                  style: mylib.radioText),
+                                                  style: mylib.titleStyleDuration),
                                               groupValue: age,
                                               onChanged: (value) {
                                                 setState(() {
@@ -178,7 +178,7 @@ class Commentpage extends State<CommentPage> {
                                               activeColor: const Color.fromARGB(
                                                   255, 13, 12, 32),
                                               title: Text("agePage_56-65".tr(),
-                                                  style: mylib.radioText),
+                                                  style: mylib.titleStyleDuration),
                                               groupValue: age,
                                               onChanged: (value) {
                                                 setState(() {
@@ -194,7 +194,7 @@ class Commentpage extends State<CommentPage> {
                                               activeColor: const Color.fromARGB(
                                                   255, 13, 12, 32),
                                               title: Text("agePage_66-75".tr(),
-                                                  style: mylib.radioText),
+                                                  style: mylib.titleStyleDuration),
                                               groupValue: age,
                                               onChanged: (value) {
                                                 setState(() {
@@ -210,7 +210,7 @@ class Commentpage extends State<CommentPage> {
                                               activeColor: const Color.fromARGB(
                                                   255, 13, 12, 32),
                                               title: Text("agePage_76".tr(),
-                                                  style: mylib.radioText),
+                                                  style: mylib.titleStyleDuration),
                                               groupValue: age,
                                               onChanged: (value) {
                                                 setState(() {
@@ -247,7 +247,7 @@ class Commentpage extends State<CommentPage> {
                                             1, 10, 1, 0),
                                         child: Text(
                                           "commentPage_title".tr(),
-                                          style: mylib.blueText,
+                                          style: mylib.titleStyle,
                                           textAlign: TextAlign.center,
                                         ),
                                       ),
@@ -294,7 +294,7 @@ class Commentpage extends State<CommentPage> {
                                             1, 10, 1, 0),
                                         child: Text(
                                           "commentPage_opinion".tr(),
-                                          style: mylib.blueText,
+                                          style: mylib.titleStyle,
                                           textAlign: TextAlign.center,
                                         ),
                                       ),
@@ -349,7 +349,7 @@ class Commentpage extends State<CommentPage> {
                                             1, 10, 1, 0),
                                         child: Text(
                                           "commentPage_add_comment".tr(),
-                                          style: mylib.blueText,
+                                          style: mylib.titleStyle,
                                           textAlign: TextAlign.center,
                                         ),
                                       ),
