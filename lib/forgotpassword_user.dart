@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/user_choix_connexion.dart';
 import 'package:flutter_application_1/user_connexion_password.dart';
+import 'package:provider/provider.dart';
 import 'connexion_admin.dart';
+import 'controller/language_contoller.dart';
 import 'database_helper.dart';
 import 'mylib.dart' as mylib;
 
@@ -207,6 +209,7 @@ class Forgotpassworduser extends State<ForgotPasswordUser> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<LanguageController>();
     return Scaffold(
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,

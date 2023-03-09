@@ -2,7 +2,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/user_choix_connexion.dart';
+import 'package:provider/provider.dart';
 import 'connexion_admin.dart';
+import 'controller/language_contoller.dart';
 import 'hello_login_page.dart';
 import 'mylib.dart' as mylib;
 
@@ -194,6 +196,7 @@ class Connexion1 extends State<Connexion> {
   @override
   Widget build(BuildContext context) {
     var erreur = false;
+    context.watch<LanguageController>();
     return Scaffold(
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,

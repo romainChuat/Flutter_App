@@ -7,7 +7,9 @@ import 'package:flutter_application_1/utilisateur.dart';
 import 'package:flutter_application_1/use_conditions.dart';
 import 'package:flutter_application_1/user_choix_connexion.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:provider/provider.dart';
 import 'connexion_admin.dart';
+import 'controller/language_contoller.dart';
 import 'database_helper_local.dart';
 import 'hello_login_password.dart';
 import 'mylib.dart' as mylib;
@@ -69,7 +71,6 @@ class Creationcompte extends State<CreationCompte> {
       alignment: Alignment.centerRight,
       child: TextButton(
         onPressed: () => {
-          print("Choix de connexion"),
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (BuildContext context) => const UserChoixConnexion(),
@@ -204,19 +205,16 @@ class Creationcompte extends State<CreationCompte> {
         child: ElevatedButton(
           onPressed: () async {
             if (verifMail() == false) {
-              print("Adresse mail incorrect");
               setState(() {
                 _showErrorMessageMail = true;
               });
             } else {
               if (verifPassword() == false) {
-                print("Mot de passe incorrect");
                 setState(() {
                   _showErrorMessagePassword = true;
                 });
               } else {
                 if (acceptTerms == false) {
-                  print("Veuillez accepter les conditions d'utilisations");
                   setState(() {
                     _showErrorMessageCondition = true;
                   });
@@ -398,6 +396,7 @@ class Creationcompte extends State<CreationCompte> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<LanguageController>();
     return Scaffold(
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,
@@ -533,6 +532,7 @@ class Creationcompte extends State<CreationCompte> {
         var map = res!.last.asMap();
 
         reponses['rep_userID'] = map[0];
+        
       } else {
         print("mail existant");
         return;

@@ -1,7 +1,5 @@
 library mylib;
 
-import 'package:adaptive_theme/adaptive_theme.dart';
-import 'package:auto_reload/auto_reload.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/language_page.dart';
@@ -12,10 +10,8 @@ import 'package:provider/provider.dart';
 import 'confirmation_deconnexion.dart';
 import 'controller/language_contoller.dart';
 import 'package:quickalert/quickalert.dart';
-
 import 'database_helper.dart';
 import 'database_helper_local.dart';
-import 'home_page.dart';
 
 bool adminConnect = false;
 
@@ -29,55 +25,23 @@ const TextStyle titleStyle = TextStyle(
   fontSize: 21,
   fontFamily: 'Nunito',
   fontWeight: FontWeight.w400,
-  // color: Colors.white,
-  /*shadows: <Shadow>[
-    Shadow(
-        offset: Offset(-2.0, 2.0),
-        blurRadius: 3.0,
-        color: Color.fromARGB(195, 105, 105, 105))
-  ],*/
   letterSpacing: -1,
 );
 const TextStyle titleStyleBasDePage = TextStyle(
   fontSize: 18,
   fontFamily: 'Nunito',
   fontWeight: FontWeight.w400,
-  // letterSpacing: 1,
-
-  // color: Colors.white,
-  /*shadows: <Shadow>[
-    Shadow(
-        offset: Offset(-2.0, 2.0),
-        blurRadius: 3.0,
-        color: Color.fromARGB(195, 105, 105, 105))
-  ],*/
 );
 const TextStyle titleStyleDuration = TextStyle(
   fontSize: 17,
   fontFamily: 'Nunito',
   fontWeight: FontWeight.w400,
-
-  //fontWeight: FontWeight.bold,
-  // color: Colors.white,
-  /*shadows: <Shadow>[
-    Shadow(
-        offset: Offset(-2.0, 2.0),
-        blurRadius: 3.0,
-        color: Color.fromARGB(195, 105, 105, 105))
-  ],*/
   letterSpacing: -1,
 );
 const TextStyle titleStyle2 = TextStyle(
   fontSize: 25,
   fontFamily: 'Nunito',
   fontWeight: FontWeight.bold,
-  //color: Colors.white,
-  /*shadows: <Shadow>[
-    Shadow(
-        offset: Offset(-2.0, 2.0),
-        blurRadius: 3.0,
-        color: Color.fromARGB(195, 105, 105, 105))
-  ],*/
   letterSpacing: -1,
 );
 const TextStyle titleStyle3 = TextStyle(
@@ -105,24 +69,9 @@ const TextStyle titleStyle5 = TextStyle(
 const TextStyle buttonTextStyle = TextStyle(
     fontSize: 20,
     fontWeight: FontWeight.bold,
-    //color: Colors.white,
     fontFamily: 'Nunito',
     letterSpacing: 1);
 
-const TextStyle blueText = TextStyle(
-  fontSize: 20,
-  fontWeight: FontWeight.w800,
-  color: Color.fromARGB(255, 24, 24, 24),
-  fontFamily: 'Nunito',
-  letterSpacing: 1,
-);
-const TextStyle blueText1 = TextStyle(
-  fontSize: 12,
-  //color: Color.fromARGB(255, 41, 59, 229),
-  fontFamily: 'Spline Sans Mono ',
-  letterSpacing: 1,
-  //shadows:<Shadow> [ Shadow(offset:Offset(-1.0, 1.0) , blurRadius: 5.0 ,color: Color.fromARGB(195, 105, 105, 105))],
-);
 const TextStyle blueText2 = TextStyle(
   fontSize: 15,
   fontWeight: FontWeight.w600,
@@ -134,10 +83,8 @@ const TextStyle blueText2 = TextStyle(
 const TextStyle radioText = TextStyle(
   fontSize: 15,
   fontWeight: FontWeight.w600,
-  // color: Color.fromARGB(255, 41, 59, 229),
   fontFamily: 'Nunito',
   letterSpacing: 1,
-  //shadows:<Shadow> [ Shadow(offset:Offset(-1.0, 1.0) , blurRadius: 5.0 ,color: Color.fromARGB(195, 105, 105, 105))],
 );
 
 const TextStyle simpleText = TextStyle(
@@ -233,9 +180,9 @@ class BaseAppBar1 extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       bottom: PreferredSize(
-        preferredSize: Size.fromHeight(0.0),
+        preferredSize: const Size.fromHeight(0.0),
         child: LinearPercentIndicator(
-          padding: EdgeInsets.fromLTRB(60, 0, 25, 0),
+          padding: const EdgeInsets.fromLTRB(60, 0, 25, 0),
           //      width: MediaQuery.of(context).size.width - 100,
           width: MediaQuery.of(context).size.width - 50,
           animation: true,
@@ -286,7 +233,7 @@ class BaseAppBar1 extends StatelessWidget implements PreferredSizeWidget {
 
 percentIndicator(BuildContext context, double percentPage) {
   return LinearPercentIndicator(
-    padding: EdgeInsets.fromLTRB(60, 0, 25, 0),
+    padding: const EdgeInsets.fromLTRB(60, 0, 25, 0),
     //      width: MediaQuery.of(context).size.width - 100,
     width: MediaQuery.of(context).size.width - 50,
     animation: true,
@@ -296,7 +243,7 @@ percentIndicator(BuildContext context, double percentPage) {
     linearStrokeCap: LinearStrokeCap.roundAll,
     // progressColor: Colors.greenAccent,
     backgroundColor: const Color.fromARGB(255, 235, 233, 233),
-    progressColor: Color.fromARGB(255, 13, 12, 32),
+    progressColor: const Color.fromARGB(255, 13, 12, 32),
   );
 }
 
@@ -631,7 +578,7 @@ createMenu(BuildContext context) {
                         const Padding(padding: EdgeInsets.all(6)),
                         Text(
                           "btn_deconnexion".tr(),
-                          style: blueText,
+                          style: titleStyle,
                         ),
                       ],
                     )),
@@ -663,7 +610,7 @@ createMenu(BuildContext context) {
                         const Padding(padding: EdgeInsets.all(6)),
                         Text(
                           "btn_traduire".tr(),
-                          style: blueText,
+                          style: titleStyle,
                         ),
                       ],
                     )),
@@ -685,7 +632,7 @@ createMenu(BuildContext context) {
                         const ChangeThemeButtonWidget(),
                         Text(
                           "btn_mode_sombre".tr(),
-                          style: blueText,
+                          style: titleStyle,
                         ),
                       ],
                     )),

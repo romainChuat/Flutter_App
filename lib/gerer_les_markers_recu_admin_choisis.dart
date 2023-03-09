@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:flutter_map/plugin_api.dart';
+import 'package:provider/provider.dart';
 import 'accueil_gerer_les_markers.dart';
+import 'controller/language_contoller.dart';
 import 'hello_admin_page.dart';
 import 'mylib.dart' as mylib;
 
@@ -510,6 +512,7 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
+        context.watch<LanguageController>();
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: mylib.BaseAppBar(

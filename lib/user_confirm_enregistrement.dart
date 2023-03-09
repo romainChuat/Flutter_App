@@ -1,6 +1,8 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'controller/language_contoller.dart';
 import 'hello_login_page.dart';
 import 'hello_login_password.dart';
 import 'home_page.dart';
@@ -107,6 +109,7 @@ class _confirmationEnregistrement extends State<confirmationEnregistrement> {
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
+        context.watch<LanguageController>();
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: mylib.BaseAppBar(

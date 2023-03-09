@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_map/plugin_api.dart';
+import 'package:provider/provider.dart';
 import 'accueil_gerer_les_avis.dart';
+import 'controller/language_contoller.dart';
 import 'end_page.dart';
 import 'hello_admin_page.dart';
 import 'mylib.dart' as mylib;
@@ -272,6 +274,7 @@ class Gereravisvalide extends State<GererAvisValide> {
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
+        context.watch<LanguageController>();
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: mylib.BaseAppBar(

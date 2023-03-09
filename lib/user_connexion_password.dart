@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/user_choix_connexion.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'controller/language_contoller.dart';
 import 'database_helper.dart';
 import 'connexion_admin.dart';
 import 'creation_compte.dart';
@@ -208,7 +210,6 @@ class Userconnexionpassword extends State<UserConnexionPassword> {
                 settings: RouteSettings(arguments: reponses),
               ));
             } else {
-              print("Adresse mail ou mot de passe incorrect");
               setState(() {
                 _showErrorMessage = true;
               });
@@ -307,6 +308,7 @@ class Userconnexionpassword extends State<UserConnexionPassword> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<LanguageController>();
     return Scaffold(
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,
@@ -400,7 +402,11 @@ class Userconnexionpassword extends State<UserConnexionPassword> {
         res = await db.queryUser(mail);
       } catch (e) {
         print("email incorrect");
+       // setState(() {
+               // _showErrorMessage = true;
+             // });
       }
+      
       var map = res.last.asMap();
 
       pass = map[3];
@@ -426,9 +432,12 @@ class Userconnexionpassword extends State<UserConnexionPassword> {
     reponses["username"] = pseudo;
 
     final passSaisie = Crypt.sha256(password, salt: 'abcdefghijklmnop');
-    //if (passSaisie.toString() == pass) {
+
+
+    if (passSaisie.toString().trim() == pass.toString().trim()) {
     connected = true;
-    // }
+    reponses['mdp'] = true;
+     }
   }
 
   void handleRememberme(bool? value) {
