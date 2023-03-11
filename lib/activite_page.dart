@@ -283,7 +283,7 @@ class Activitepage extends State<ActivitePage> {
 
                     ),
                   ),
-                
+                ]  
               ),
             ),
           ),

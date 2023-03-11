@@ -7,6 +7,7 @@ import 'package:flutter_application_1/language_page.dart';
 import 'package:flutter_application_1/provider.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:postgres/postgres.dart';
 import 'package:provider/provider.dart';
 import 'confirmation_deconnexion.dart';
 import 'controller/language_contoller.dart';
@@ -439,22 +440,14 @@ createNextButton1(String text, BuildContext context, double width, double height
           onConfirmBtnTap: () async {
             Navigator.of(context).push(page,);
           try {
-            insertusID = await insertUser(reponses);
-          } catch (e) {
-            print("USER DEJA ENREGISTRER");
-            insertlieuxID = reponses['rep_lieuxID'];
-            insertusID = reponses['rep_userID'];
-          }
-          try {
             insertlieuxID = await insertLieu(reponses);
             //print(insert_lieuxID);
           } catch (e) {
             print("ERREUR ID LIEUX");
           }
             reponses['rep_lieuxID'] = insertlieuxID;
-            reponses['rep_userID'] = insertusID;
-
-            insertReponse
+            insertReponse(reponses);
+            insertServer(reponses);
           },
           cancelBtnText: 'No',
           confirmBtnColor: const Color.fromARGB(255, 64, 224, 168),
@@ -486,24 +479,39 @@ createNextButton1(String text, BuildContext context, double width, double height
     return insert_lieuxID;
   }
 
-  Future<int?> insertUser(Map<String, Object> reponses)async {
-    Map<String, Object> user = {};
+  Future<int?> insertUserLocal(Map<String, dynamic> user)async {
     var usID;
-    user['nom'] = "gest_${reponses['username']!}";
-    reponses.remove('username');
+    if(!user.containsKey('password')){
+      user['nom'] = "gest_${user['nom']}";
+    }
     WidgetsFlutterBinding.ensureInitialized();
     DatabaseHelperLocal db = DatabaseHelperLocal();
     try{
       usID = await db.insertUser(user);
-      print("new user");
+      print("new user local");
     } catch(e){
-      print("enregistrement user impossible");
+      print("enregistrement LOCAL user impossible");
+    }
+    return usID;
+  }
+  Future<PostgreSQLResult?> insertUserServer(Map<String, dynamic> user)async {
+    var usID;
+    user['nom'] = "${user['nom']}";
+    WidgetsFlutterBinding.ensureInitialized();
+    DatabaseHelper db = DatabaseHelper.getInstance();
+    try{
+      usID = await db.insertUser(user);
+      print(usID);
+      print("new user server");
+    } catch(e){
+      print("enregistrement SERVER user impossible");
     }
     return usID;
   }
 
-  void insertReponse(Map<String, Object> reponses) async {
+  void insertReponse(Map<String, Object> reponses) async {    
     print(reponses);
+    Map<String,Object> data = reponses;
     WidgetsFlutterBinding.ensureInitialized();
     DatabaseHelperLocal db = DatabaseHelperLocal();
     try {
@@ -513,10 +521,10 @@ createNextButton1(String text, BuildContext context, double width, double height
       print("enregistrement reponse impossible");
     }
 
-    insertReponseServer();
+    
   }
 
-  void insertReponseServer() async {
+  void insertServer(Map<String, Object> reponses) async {
     bool result = await InternetConnectionChecker().hasConnection;
     if (result == true) {
       WidgetsFlutterBinding.ensureInitialized();
@@ -526,10 +534,15 @@ createNextButton1(String text, BuildContext context, double width, double height
       final DatabaseHelper dbHelper = DatabaseHelper.getInstance();
       WidgetsFlutterBinding.ensureInitialized();
 
+      //get user ID
+      //dbHelper.queryUser(mail)
+
+
       for (var i in res) {
         try {
           print(i.toString());
           await dbHelper.insertReponses(i.toMap());
+          print(i.toMap());
           print("new row");
           await db.deleteAllReponses();
         } catch (e) {

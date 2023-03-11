@@ -13,7 +13,7 @@ class Utilisateur {
   Map<String, dynamic> toMapLocal() {
     return {
       'nom': nom,
-      'mail': mail,
+      'mail': mail.toString().trim(),
       'password': password,
     };
   }
@@ -23,7 +23,7 @@ class Utilisateur {
     return {
       'nom': nom,
       'mail': mail,
-      'password': password,
+      'password': password.toString().trim(),
     };
   }
 

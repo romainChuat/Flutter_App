@@ -25,7 +25,7 @@ class DatabaseHelper {
     return PostgreSQLConnection("10.0.2.2", 5432, 'postgres',
         queryTimeoutInSeconds: 3600,
         timeoutInSeconds: 3600,
-        username: 'katty',
+        username: 'romain',
         password: 'admin');
   }
 
@@ -43,17 +43,18 @@ class DatabaseHelper {
 
   //Insère un utilisateur dans la base de données
   //Les informations de l'utilisateur sont dans une map transmises en paramètres
-  Future<int?> insertUser(Map<String, dynamic> data) async {
+  Future<PostgreSQLResult?> insertUser(Map<String, dynamic> data) async {
     final client = await db;
     //Si la base de données n'est pas ouverte, la fonction retourne null
     if (client == null) {
       return null;
     }
-
+    
     //Sinon, on retourne le résultat de la requête
-    return await client.execute(
-        'INSERT INTO users (${data.keys.join(', ')}) VALUES (${data.keys.map((k) => '@$k').join(', ')})',
-        substitutionValues: data);
+    return await client.query(
+        'INSERT INTO users (${data.keys.join(', ')}) VALUES (${data.keys.map((k) => '@$k').join(', ')}) RETURNING user_id',
+        substitutionValues: data); 
+    
   }
 
   //Retourne les informations d'un utilisateur présent dans la base de données

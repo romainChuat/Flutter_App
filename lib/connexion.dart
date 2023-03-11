@@ -2,7 +2,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/user_choix_connexion.dart';
+import 'package:flutter_application_1/utilisateur.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'connexion_admin.dart';
+import 'database_helper.dart';
 import 'hello_login_page.dart';
 import 'mylib.dart' as mylib;
 
@@ -26,12 +29,24 @@ class Connexion1 extends State<Connexion> {
     });
   }
 
-  void _handleButtonPress() {
+  void _handleButtonPress() async {
     if (reponses["username"] == null || reponses["username"] == "") {
       setState(() {
         _showErrorMessage = true;
       });
-    } else {
+    } else {  
+      Map<String,dynamic> user = new Map();
+      user['nom'] = reponses['username'].toString();
+      var userID = await mylib.insertUserLocal(user);
+      reponses['rep_userID'] = userID!;
+      bool result = await InternetConnectionChecker().hasConnection;
+      if(result){
+        var usIDServer;
+        usIDServer = await mylib.insertUserServer(user);
+        //le resultat retourner est un tableau 2d
+        reponses['rep_userIDServer'] = usIDServer[0][0];  
+        print(reponses);
+      }
       Navigator.of(context).push(
         MaterialPageRoute(
           builder: (BuildContext context) => const HelloLoginPage(),

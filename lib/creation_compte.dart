@@ -511,38 +511,38 @@ class Creationcompte extends State<CreationCompte> {
       mail: mailController.text,
       password:Crypt.sha256(passwordController_1.text, salt: 'abcdefghijklmnop').toString(),
     );
-
+    //Insertion en distant
     bool result = await InternetConnectionChecker().hasConnection;
     if (result == true) {
       final DatabaseHelper dbHelper = DatabaseHelper.getInstance();
       WidgetsFlutterBinding.ensureInitialized();
-
       var res = await dbHelper.queryUser(mailController.text);
       if (res == null) {
-        try {
-          await dbHelper.insertUser(u.toMap());
-          print("new user");
-        } catch (e) {
-          print(e);
-          return;
-        }
-
-        res = await dbHelper.queryUser(mailController.text);
-
-        var map = res!.last.asMap();
-
-        reponses['rep_userID'] = map[0];
+        var userIDServer = await mylib.insertUserServer(u.toMap());
+        reponses['rep_userIDServer'] = userIDServer![0][0];  
+        reponses['username'] = u.nom!;
       } else {
         print("mail existant");
         return;
       }
+    }else{
+      print("erreur de connexion internet");
     }
-    print(u.nom);
+    //Insertion en Local
     WidgetsFlutterBinding.ensureInitialized();
-    DatabaseHelperLocal db = DatabaseHelperLocal();
-
-    var res = await db.insertUser(u.toMapLocal());
-
+    DatabaseHelperLocal dbLocal = DatabaseHelperLocal();
+    print(mailController.text);
+    var res = await dbLocal.queryOneUser(mailController.text.trim());
+    print(res);
+    if(res == null){
+      var res = await mylib.insertUserLocal(u.toMapLocal());
+      reponses['rep_userID'] = res.toString();
+      reponses['username'] = u.nom!;
+    }else{
+      print("mail existant");
+      return;    
+    }
+    print(reponses);
     connected = true;
   }
 }
