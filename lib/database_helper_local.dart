@@ -165,9 +165,12 @@ class DatabaseHelperLocal {
 
   //Récupère un utilisateur dont le mail correspond avec celui transmis en paramètres
   Future<List<Map>?> queryOneUser(String mail) async {
-    print(mail);
-    var res = await _db?.query("SELECT * FROM user WHERE mail='${mail}'");   
-    print(res); 
+    final Database? db = await init();
+    var res = await _db?.rawQuery("SELECT * FROM user WHERE mail='${mail}'");
+    if(res!.isEmpty){
+      return null;
+    }  
+    return res;
   }
 
   //Supprime un utilisateur dont l'id correspond à celui transmis en paramètres

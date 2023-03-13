@@ -522,7 +522,7 @@ class Creationcompte extends State<CreationCompte> {
         reponses['rep_userIDServer'] = userIDServer![0][0];  
         reponses['username'] = u.nom!;
       } else {
-        print("mail existant");
+        print("mail existant server");
         return;
       }
     }else{
@@ -539,7 +539,7 @@ class Creationcompte extends State<CreationCompte> {
       reponses['rep_userID'] = res.toString();
       reponses['username'] = u.nom!;
     }else{
-      print("mail existant");
+      print("mail existant local");
       return;    
     }
     print(reponses);
