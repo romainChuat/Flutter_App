@@ -44,17 +44,18 @@ class DatabaseHelper {
 
   //Insère un utilisateur dans la base de données
   //Les informations de l'utilisateur sont dans une map transmises en paramètres
-  Future<int?> insertUser(Map<String, dynamic> data) async {
+  Future<PostgreSQLResult?> insertUser(Map<String, dynamic> data) async {
     final client = await db;
     //Si la base de données n'est pas ouverte, la fonction retourne null
     if (client == null) {
       return null;
     }
-
+    
     //Sinon, on retourne le résultat de la requête
-    return await client.execute(
-        'INSERT INTO users (${data.keys.join(', ')}) VALUES (${data.keys.map((k) => '@$k').join(', ')})',
-        substitutionValues: data);
+    return await client.query(
+        'INSERT INTO users (${data.keys.join(', ')}) VALUES (${data.keys.map((k) => '@$k').join(', ')}) RETURNING user_id',
+        substitutionValues: data); 
+    
   }
 
   //Retourne les informations d'un utilisateur présent dans la base de données
@@ -133,7 +134,7 @@ class DatabaseHelper {
 
   //Insère un lieu dans la BD
   //Les informations sur le lieu sont transmis dans une map en paramètres
-  Future<int?> insertLieu(Map<String, dynamic> data) async {
+  Future<PostgreSQLResult?> insertLieu(Map<String, dynamic> data) async {
     final client = await db;
     //Si la BD n'est pas ouverte, on retourne null
     if (client == null) {
@@ -141,8 +142,8 @@ class DatabaseHelper {
     }
 
     //Sinon on retourne le résultat de la requête
-    return await client.execute(
-        'INSERT INTO lieu (${data.keys.join(', ')}) VALUES (${data.keys.map((k) => '@$k').join(', ')})',
+    return await client.query(
+        'INSERT INTO lieu (${data.keys.join(', ')}) VALUES (${data.keys.map((k) => '@$k').join(', ')}) RETURNING lieu_id',
         substitutionValues: data);
   }
 

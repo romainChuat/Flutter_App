@@ -400,44 +400,47 @@ class Userconnexionpassword extends State<UserConnexionPassword> {
 
       try {
         res = await db.queryUser(mail);
-      } catch (e) {
+        print('res'+ res.toString());
+      }catch(e){
         print("email incorrect");
        // setState(() {
                // _showErrorMessage = true;
              // });
       }
-      
       var map = res.last.asMap();
-
+      print(map);
       pass = map[3];
       pseudo = map[2];
       idUser = map[0];
-    } else {
-      WidgetsFlutterBinding.ensureInitialized();
-      DatabaseHelperLocal db = DatabaseHelperLocal();
+      reponses['rep_userIDServer'] = idUser;
 
-      res = await db.queryOneUser(mail);
-
-      if (res == null) {
-        return;
-      }
-
-      Map u = res[0];
-
-      pass = u["password"];
-      pseudo = u["nom"];
-      idUser = u["id"];
     }
-    reponses["rep_userID"] = idUser;
+      WidgetsFlutterBinding.ensureInitialized();
+      DatabaseHelperLocal dbHelper = DatabaseHelperLocal();
+      print(mail);
+      try{
+        res = await dbHelper.queryOneUser(mail);
+        print(res);
+      }catch(e){
+        print("erreur");
+      }
+      print(res);
+
+
+      print(res[0]["nom"]);
+      pseudo = res[0]["nom"].toString();
+      reponses["rep_userID"] = res[0]['user_id'];
+      reponses['mail'] = mail;
+  
     reponses["username"] = pseudo;
+    print(reponses);
+    
 
-    final passSaisie = Crypt.sha256(password, salt: 'abcdefghijklmnop');
-
-
-    if (passSaisie.toString().trim() == pass.toString().trim()) {
-    connected = true;
-    reponses['mdp'] = true;
-     }
+    final passSaisie = Crypt.sha256(password, salt: 'abcdefghijklmnop').toString();
+    if (passSaisie == pass.toString().trim()) {   
+      connected = true;
+      //reponses['mdp'] = true;
+    }
   }
 
   void handleRememberme(bool? value) {

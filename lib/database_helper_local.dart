@@ -50,24 +50,23 @@ class DatabaseHelperLocal {
   //Code SQL permettant de créer la BD ainsi que l'ensemble de ses tables
   Future _onCreate(Database db, int version) async {
     await db.execute('''
-          CREATE TABLE  lieux(
-            lieux_id INTEGER PRIMARY KEY AUTOINCREMENT,
-            lieux_lat real NOT NULL,
-            lieux_long real NOT NULL
+          CREATE TABLE  lieu(
+            lieu_id INTEGER PRIMARY KEY AUTOINCREMENT,
+            lieu_lat real NOT NULL,
+            lieu_long real NOT NULL
           )''');
     await db.execute("""CREATE TABLE reponses(
           rep_id INTEGER  PRIMARY KEY AUTOINCREMENT,
-          rep_titre TEXT NOT NULL,
-          rep_userID INTEGER NOT NULL,
+          rep_user INTEGER NOT NULL,
           rep_expr TEXT NOT NULL,
           rep_date DATE FORMAT 'dd.mm.yyyy',
           rep_age INTEGER NOT NULL,
           rep_genre CHARACTER(15) NOT NULL,
           rep_etude CHARATER(30) NOT NULL,
           rep_activite CHARACTER(40) NOT NULL,
-          rep_lieuxID INTEGER NOT NULL,
-          CONSTRAINT fk_user FOREIGN KEY (rep_userID) REFERENCES user(user_id),
-          CONSTRAINT fk_lieux FOREIGN KEY (rep_lieuxID) REFERENCES lieux(lieux_id)
+          rep_lieu INTEGER NOT NULL,
+          CONSTRAINT fk_user FOREIGN KEY (rep_user) REFERENCES user(user_id),
+          CONSTRAINT fk_lieux FOREIGN KEY (rep_lieu) REFERENCES lieu(lieu_id)
           )""");
 
     await db.execute('''
@@ -85,7 +84,7 @@ class DatabaseHelperLocal {
   //Ses coordonnées sont transmis en paramètres
   Future<int?> insertLieu(Map<String, dynamic> l) async {
     await init();
-    final insert = await _db?.insert("lieux", l);
+    final insert = await _db?.insert("lieu", l);
     return insert;
   }
 
@@ -167,17 +166,12 @@ class DatabaseHelperLocal {
 
   //Récupère un utilisateur dont le mail correspond avec celui transmis en paramètres
   Future<List<Map>?> queryOneUser(String mail) async {
-    final List<Map<String, dynamic>>? res =
-        await _db?.rawQuery("SELECT * FROM user WHERE mail = ?", [mail]);
-
-    return List.generate(res!.length, (i) {
-      return {
-        'nom': res[i]['nom'],
-        'password': res[i]['password'],
-        'mail': res[i]['mail'],
-        'id': res[i]['user_id'],
-      };
-    });
+    final Database? db = await init();
+    var res = await _db?.rawQuery("SELECT * FROM user WHERE mail='${mail}'");
+    if(res!.isEmpty){
+      return null;
+    }  
+    return res;
   }
 
   //Supprime un utilisateur dont l'id correspond à celui transmis en paramètres

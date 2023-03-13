@@ -95,9 +95,10 @@ context.watch<LanguageController>();
                                     zoom: 14,
                                     onTap: (LatLng value) {
                                       Map<String, Object> longLat = {};
-                                      reponses['longitude'] = value.longitude;
-                                      reponses['latitude'] = value.latitude;
-
+                                      reponses['lieu_long'] = value.longitude;
+                                      reponses['lieu_lat'] = value.latitude;
+                                      print(reponses);
+                                      print("tape");
                                       marker.clear();
                                       marker.add(Marker(
                                           width: 25.0,
