@@ -438,30 +438,30 @@ createNextButton1(String text, BuildContext context, double width, double height
           text: 'sur de vouloirs envoyer ?',
           confirmBtnText: 'Yes' ,
           onConfirmBtnTap: () async {
-            Navigator.of(context).push(page);
             var userID = reponses['rep_userID'].toString();
-            var userIDServer;
+            var userIDServer = reponses['rep_userIDServer'].toString();
             var username = reponses['username'].toString();
             var lat = reponses['lieu_lat'].toString();
             var long = reponses['lieu_long'].toString();
             reponses.remove('username');
             reponses.remove('rep_userID');
             reponses.remove('rep_userIDServer');
+            reponses.remove('mail');
 
             if(await InternetConnectionChecker().hasConnection){
               //insertion dans le server
-              if(reponses.containsKey('rep_userIDServer')){
-                userIDServer = reponses['rep_userIDServer'].toString();
-              }else{
-                WidgetsFlutterBinding.ensureInitialized();
-                DatabaseHelper db = DatabaseHelper.getInstance();
-                if(reponses.containsKey('mail')){
+              //if(reponses.containsKey('rep_userIDServer')){
+                
+              //}else{
+                //WidgetsFlutterBinding.ensureInitialized();
+                //DatabaseHelper db = DatabaseHelper.getInstance();
+                /*if(reponses.containsKey('mail')){
                   //userIDServer = query BY MAIL
                   // checker si inserer en server 
                 }else{
                   //user ID = insert user 
-                }
-              }
+                }*/
+              //}
               print("insertion server");
               reponses['rep_user'] = userIDServer;
               await insertLieuServer(reponses);
@@ -475,6 +475,10 @@ createNextButton1(String text, BuildContext context, double width, double height
             await insertLieuLocal(reponses);
             await insertReponse(reponses);
             reponses['username'] = username;
+
+
+            Navigator.of(context).push(page);
+            
 
           },
           cancelBtnText: 'No',
