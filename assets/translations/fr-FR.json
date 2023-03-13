@@ -1,7 +1,7 @@
 {
     "home_page_title": "Veuillez choisir votre questionnaire :",
-    "title1_text": "Un lieu",
-    "title2_text": "Deux lieux",
+    "title1_text": "Votre expérience pour un lieu",
+    "title2_text": "Votre expérience pour deux lieux",
     "title3_text": "Titre 3",
     "title4_text": "Titre 4",
 
@@ -104,7 +104,7 @@
     "consulter_les_avis_login_choisis_modifier": "Modifier",
     "consulter_les_avis_login_choisis_supprimer": "Supprimer",
 
-    "hello_login_page_btn_acceder_map": "Accéder à la carte",
+    "hello_login_page_btn_acceder_map": "Donner un avis",
     "hello_login_page_btn_acceder_quiz": "Accéder au questionnaire",
 
     "hello_login_password_btn_questionnaire":"Consulter les questionnaires",

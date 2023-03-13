@@ -25,6 +25,7 @@ class Motpage extends State<MotPage> {
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
         context.watch<LanguageController>();
     return Scaffold(
+      resizeToAvoidBottomInset: false, 
         extendBodyBehindAppBar: true,
         appBar: mylib.BaseAppBar(appBar: AppBar()),
         endDrawer: mylib.createMenu(context),

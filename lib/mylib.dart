@@ -21,6 +21,14 @@ const TextStyle titleStyle = TextStyle(
   fontWeight: FontWeight.w400,
   letterSpacing: -1,
 );
+const TextStyle titleStyleMenu = TextStyle(
+  fontSize: 25,
+  fontFamily: 'Nunito',
+    color: Colors.white,
+
+  fontWeight: FontWeight.w400,
+  letterSpacing: -1,
+);
 const TextStyle titleStyleBasDePage = TextStyle(
   fontSize: 18,
   fontFamily: 'Nunito',
@@ -531,7 +539,7 @@ createMenu(BuildContext context) {
                     children: [
                       Text(
                         "menu_title".tr(),
-                        style: simpleText,
+                        style: titleStyleMenu,
                       ),
                       IconButton(
                           icon: const Icon(
