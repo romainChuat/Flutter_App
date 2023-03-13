@@ -94,7 +94,7 @@ class DatabaseHelper {
 
   //Insère un lieu dans la BD
   //Les informations sur le lieu sont transmis dans une map en paramètres
-  Future<int?> insertLieu(Map<String, dynamic> data) async {
+  Future<PostgreSQLResult?> insertLieu(Map<String, dynamic> data) async {
     final client = await db;
     //Si la BD n'est pas ouverte, on retourne null
     if (client == null) {
@@ -102,8 +102,8 @@ class DatabaseHelper {
     }
 
     //Sinon on retourne le résultat de la requête
-    return await client.execute(
-        'INSERT INTO lieu (${data.keys.join(', ')}) VALUES (${data.keys.map((k) => '@$k').join(', ')})',
+    return await client.query(
+        'INSERT INTO lieu (${data.keys.join(', ')}) VALUES (${data.keys.map((k) => '@$k').join(', ')}) RETURNING lieu_id',
         substitutionValues: data);
   }
 

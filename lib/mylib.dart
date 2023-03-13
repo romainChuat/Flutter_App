@@ -438,16 +438,44 @@ createNextButton1(String text, BuildContext context, double width, double height
           text: 'sur de vouloirs envoyer ?',
           confirmBtnText: 'Yes' ,
           onConfirmBtnTap: () async {
-            Navigator.of(context).push(page,);
-          try {
-            insertlieuxID = await insertLieu(reponses);
-            //print(insert_lieuxID);
-          } catch (e) {
-            print("ERREUR ID LIEUX");
-          }
-            reponses['rep_lieuxID'] = insertlieuxID;
-            insertReponse(reponses);
-            insertServer(reponses);
+            Navigator.of(context).push(page);
+            var userID = reponses['rep_userID'].toString();
+            var userIDServer;
+            var username = reponses['username'].toString();
+            var lat = reponses['lieu_lat'].toString();
+            var long = reponses['lieu_long'].toString();
+            reponses.remove('username');
+            reponses.remove('rep_userID');
+            reponses.remove('rep_userIDServer');
+
+            if(await InternetConnectionChecker().hasConnection){
+              //insertion dans le server
+              if(reponses.containsKey('rep_userIDServer')){
+                userIDServer = reponses['rep_userIDServer'].toString();
+              }else{
+                WidgetsFlutterBinding.ensureInitialized();
+                DatabaseHelper db = DatabaseHelper.getInstance();
+                if(reponses.containsKey('mail')){
+                  //userIDServer = query BY MAIL
+                  // checker si inserer en server 
+                }else{
+                  //user ID = insert user 
+                }
+              }
+              print("insertion server");
+              reponses['rep_user'] = userIDServer;
+              await insertLieuServer(reponses);
+              await insertReponseServer(reponses);
+            }
+            //insertion dans la base local
+            print("insertion local");
+            reponses['rep_user'] = userID;
+            reponses['lieu_lat'] = lat;
+            reponses['lieu_long'] = long;
+            await insertLieuLocal(reponses);
+            await insertReponse(reponses);
+            reponses['username'] = username;
+
           },
           cancelBtnText: 'No',
           confirmBtnColor: const Color.fromARGB(255, 64, 224, 168),
@@ -460,23 +488,42 @@ createNextButton1(String text, BuildContext context, double width, double height
     ),
   );
 }
-  Future<int>? insertLieu(Map<String,Object> reponses) async{
+  Future<void> insertLieuLocal(Map<String,Object> reponses) async{
     Map<String,Object> lieux = new Map();
     var insert_lieuxID;
-    lieux['lieux_lat'] = reponses['latitude']!;
-    lieux['lieux_long'] = reponses['longitude']!;
-    reponses.remove('longitude');
-    reponses.remove('latitude');
+    lieux['lieu_lat'] = reponses['lieu_lat']!;
+    lieux['lieu_long'] = reponses['lieu_long']!;
+    reponses.remove('lieu_lat');
+    reponses.remove('lieu_long');
     print(lieux);
     WidgetsFlutterBinding.ensureInitialized();
     DatabaseHelperLocal db = DatabaseHelperLocal();
     try {
       insert_lieuxID = await db.insertLieu(lieux);
-      print("new lieux");
+      print("new lieux local");
     } catch (e) {
       print("enregistrement lieux impossible");
     }
-    return insert_lieuxID;
+    reponses['rep_lieu'] = insert_lieuxID;
+  }
+  Future<void> insertLieuServer(Map<String,Object> reponses) async{
+    Map<String,Object> lieux = new Map();
+    var insert_lieuxID;
+    lieux['lieu_lat'] = reponses['lieu_lat']!;
+    lieux['lieu_long'] = reponses['lieu_long']!;
+    reponses.remove('lieu_lat');
+    reponses.remove('lieu_long');
+    print(lieux);
+    WidgetsFlutterBinding.ensureInitialized();
+    DatabaseHelper db = DatabaseHelper.getInstance();
+    try {
+      insert_lieuxID = await db.insertLieu(lieux);
+      print("new lieux server");
+    } catch (e) {
+      print("enregistrement lieux server impossible");
+    }
+    reponses['rep_lieu'] = insert_lieuxID[0][0];
+    //return insert_lieuxID;
   }
 
   Future<int?> insertUserLocal(Map<String, dynamic> user)async {
@@ -509,7 +556,7 @@ createNextButton1(String text, BuildContext context, double width, double height
     return usID;
   }
 
-  void insertReponse(Map<String, Object> reponses) async {    
+  Future<void> insertReponse(Map<String, Object> reponses) async {    
     print(reponses);
     Map<String,Object> data = reponses;
     WidgetsFlutterBinding.ensureInitialized();
@@ -518,27 +565,20 @@ createNextButton1(String text, BuildContext context, double width, double height
       await db.insertReponse(reponses);
       print("new reponse");
     } catch (e) {
-      print("enregistrement reponse impossible");
+      print("enregistrement Local reponse impossible");
     }
-
-    
   }
 
-  void insertServer(Map<String, Object> reponses) async {
-    bool result = await InternetConnectionChecker().hasConnection;
-    if (result == true) {
-      WidgetsFlutterBinding.ensureInitialized();
-      DatabaseHelperLocal db = DatabaseHelperLocal();
-      var res = await db.queryAllRowsReponse();
-
-      final DatabaseHelper dbHelper = DatabaseHelper.getInstance();
-      WidgetsFlutterBinding.ensureInitialized();
-
+  Future<void> insertReponseServer(Map<String, Object> reponses) async {
+      // A FAIRE !!! RECUPERER LES REPONSE LOCAL NON INSERER DANS LE SERVER
+      //WidgetsFlutterBinding.ensureInitialized();
+      //DatabaseHelperLocal db = DatabaseHelperLocal();
+      //var res = await db.queryAllRowsReponse();
+      //final DatabaseHelper dbHelper = DatabaseHelper.getInstance();
+      //WidgetsFlutterBinding.ensureInitialized();
       //get user ID
       //dbHelper.queryUser(mail)
-
-
-      for (var i in res) {
+      /*for (var i in res) {
         try {
           print(i.toString());
           await dbHelper.insertReponses(i.toMap());
@@ -546,12 +586,19 @@ createNextButton1(String text, BuildContext context, double width, double height
           print("new row");
           await db.deleteAllReponses();
         } catch (e) {
-          print(e);
+          print("enregistrement server reponse impossible");
         }
+      }*/
+
+      final DatabaseHelper dbHelper = DatabaseHelper.getInstance();
+      WidgetsFlutterBinding.ensureInitialized();
+      print(reponses);
+      try{
+        await dbHelper.insertReponses(reponses);
+        print("reponse reponse server");
+      }catch(e){
+        print("enregistrement reponse server impossible");
       }
-    } else {
-      print("Pas de connexion");
-    }
   }
 
 

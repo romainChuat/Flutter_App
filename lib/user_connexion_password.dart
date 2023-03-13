@@ -424,7 +424,7 @@ class Userconnexionpassword extends State<UserConnexionPassword> {
 
       pseudo = res["nom"];
       reponses["rep_userID"] = res['user_id'];
-
+      reponses['mail'] = mail;
   
     reponses["username"] = pseudo;
     print(reponses);
