@@ -31,7 +31,7 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Container(
               color: const Color.fromARGB(255, 235, 233, 233),
               width: 309,
-              height: 420,
+              height: 450,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -46,7 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 20)),
                   SizedBox(
                     width: 280,
-                    height: 49,
+                    height: 75,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.white,
@@ -70,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           Container(
                             padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
                             width: 210,
-                            height: 49,
+                            height: 75,
                             child: Align(
                               alignment: Alignment.centerLeft,
                               child: Text("title1_text".tr(),
@@ -92,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   const Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 20)),
                   SizedBox(
                     width: 280,
-                    height: 49,
+                    height: 75,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.white,
@@ -117,7 +117,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           Container(
                             padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
                             width: 210,
-                            height: 49,
+                            height: 75,
                             child: Align(
                               alignment: Alignment.centerLeft,
                               child: Text("title2_text".tr(),

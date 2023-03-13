@@ -193,6 +193,27 @@ class Connexion1 extends State<Connexion> {
     );
   }
 
+    Widget buildSignUpBtn() {
+    return Container(
+      alignment: Alignment.centerRight,
+      child: TextButton(
+        onPressed: () => {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (BuildContext context) => const UserChoixConnexion(),
+            ),
+          ),
+        },
+        child: Text(
+          'forgot_password_page_sign_in'.tr(),
+          style: const TextStyle(
+            color: Colors.black38,
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     var erreur = false;
@@ -235,9 +256,21 @@ class Connexion1 extends State<Connexion> {
                               else
                                 const SizedBox(height: 50),
                               builUserName(),
-                              const SizedBox(height: 50),
+                              const SizedBox(height: 30),
                               buildLoginBtn(erreur),
-                              const SizedBox(height: 90)
+                              Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Text(
+                                        'creation_compte_account'.tr(),
+                                        style: const TextStyle(
+                                          color: Colors.black38,
+                                        ),
+                                      ),
+                                      buildSignUpBtn(),
+                                    ],
+                                  ),
+                              const SizedBox(height: 60)
                             ],
                           ),
                         )),

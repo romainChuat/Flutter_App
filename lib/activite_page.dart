@@ -35,12 +35,16 @@ context.watch<LanguageController>();
       extendBodyBehindAppBar: true,
       appBar: mylib.BaseAppBar(appBar: AppBar()),
       endDrawer: mylib.createMenu(context),
-      body: Container(
+      body: SingleChildScrollView(
+      child: Container(
         padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
         child: Center(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: <
               Widget>[
-            const Spacer(),
+           // const Spacer(),
+           const SizedBox(
+              height: 55,
+            ),
             mylib.percentIndicator(context, 1.0),
             const SizedBox(
               height: 20,
@@ -259,7 +263,8 @@ context.watch<LanguageController>();
                   )
               ],
             ),
-            const Spacer(),
+           // const Spacer(),
+           SizedBox(height: 55),
             const Align(
               alignment: Alignment.bottomRight,
               child: Text(
@@ -270,6 +275,7 @@ context.watch<LanguageController>();
             ),
           ]),
         ),
+      ),
       ),
     );
   }

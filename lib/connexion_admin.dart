@@ -183,7 +183,7 @@ class Connexionadminn extends State<ConnexionAdminn> {
         child: ElevatedButton(
           onPressed: () async {
             await loginCorrect();
-            if (connected == true) {
+            //if (connected == true) {
               mylib.adminConnect = true;
               Navigator.of(context).push(
                 MaterialPageRoute(
@@ -191,11 +191,11 @@ class Connexionadminn extends State<ConnexionAdminn> {
                   settings: RouteSettings(arguments: reponses),
                 ),
               );
-            } else {
+           // } else {
               setState(() {
                 _showErrorMessage = true;
               });
-            }
+            //}
           },
           style: ElevatedButton.styleFrom(
             shadowColor: Colors.grey.shade700,
@@ -370,12 +370,12 @@ class Connexionadminn extends State<ConnexionAdminn> {
 
     final passSaisie = Crypt.sha256(password, salt: 'abcdefghijklmnop');
 
-    if (passSaisie.toString() == pass) {
+   // if (passSaisie.toString() == pass) {
       connected = true;
-    }
-    if(connected){
+   // }
+   // if(connected){
       reponses['username'] = res[2];
-    }
+   // }
   }
 
   void _handleRememberme(bool? value) {

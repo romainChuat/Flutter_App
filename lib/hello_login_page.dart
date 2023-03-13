@@ -27,7 +27,6 @@ class Hellologinpage extends State<HelloLoginPage> {
   Future getCurrentTheme() async {
     savedThemeMode = await AdaptiveTheme.getThemeMode();
     if (savedThemeMode.toString() == 'AdaptiveThemeMode.dark') {
-      print('mode sombre');
       setState(() {
         darkmode = true;
       });
