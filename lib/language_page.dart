@@ -1,3 +1,4 @@
+import 'package:auto_reload/auto_reload.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/controller/language_contoller.dart';
@@ -49,8 +50,7 @@ class Languagepage extends State<LanguagePage> {
                       onPressed: () {
                         context.setLocale(const Locale('en', 'US'));
                         controller.onLanguageChanged();
-                                                    Navigator.pop(context);
-
+                        Navigator.pop(context);
                       },
                       child: SizedBox(
                         width: 230,
@@ -72,7 +72,6 @@ class Languagepage extends State<LanguagePage> {
                         foregroundColor: Colors.white,
                         side: const BorderSide(color: Colors.white, width: 3),
                         elevation: 15,
-                        //padding: EdgeInsets.fromLTRB(10,0,110,0),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10)),
                       ),
@@ -80,6 +79,7 @@ class Languagepage extends State<LanguagePage> {
                         context.setLocale(const Locale('fr', 'FR'));
                         controller.onLanguageChanged();
                         Navigator.pop(context);
+                        AutoReloader;
                       },
                       child: SizedBox(
                         width: 230,

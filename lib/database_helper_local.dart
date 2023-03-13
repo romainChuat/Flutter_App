@@ -126,6 +126,7 @@ class DatabaseHelperLocal {
 
     return List.generate(res!.length, (i) {
       return Reponse(
+        titre: res[i]['rep_titre'],
         iduser: res[i]['rep_userID'],
         idlieu: res[i]['rep_lieuxID'],
         expressions: res[i]['rep_expr'],

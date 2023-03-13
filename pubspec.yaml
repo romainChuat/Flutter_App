@@ -59,11 +59,14 @@ dependencies:
   percent_indicator: ^4.2.2
   flutter_launcher_icons: ^0.12.0
   number_paginator: ^0.2.3
+  auto_reload: ^1.1.0
+  to_string: ^1.2.1
 
 flutter_icons:
-  image_path: "./assets/icon/logo_Android.png"
+  image_path_android: "./assets/icon/logo_Android.png"
   android: true
   ios: true
+  image_path_ios: "./assets/icon/logo_ios.png"
 
   
 
@@ -77,6 +80,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+  
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

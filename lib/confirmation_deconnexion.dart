@@ -2,6 +2,8 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/user_choix_connexion.dart';
+import 'package:provider/provider.dart';
+import 'controller/language_contoller.dart';
 import 'mylib.dart' as mylib;
 
 class ConfirmationDeconnexion extends StatefulWidget {
@@ -90,6 +92,7 @@ class Confirmationdeconnexion extends State<ConfirmationDeconnexion> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<LanguageController>();
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: mylib.BaseAppBar(

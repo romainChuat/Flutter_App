@@ -1,9 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/start_page.dart';
+import 'package:flutter_application_1/controller/language_contoller.dart';
 import 'package:flutter_application_1/user_confirm_abandon_quiz.dart';
 import 'package:flutter_application_1/user_confirm_enregistrement.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:path/path.dart';
+import 'package:provider/provider.dart';
 import 'mylib.dart' as mylib;
 import 'package:flutter_application_1/mot_page.dart';
 
@@ -28,6 +29,7 @@ class Datepage extends State<DatePage> {
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
+        context.watch<LanguageController>();
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: mylib.BaseAppBar(appBar: AppBar()),
@@ -47,7 +49,7 @@ class Datepage extends State<DatePage> {
                   borderRadius: BorderRadius.circular(15.0),
                   child: Container(
                     width: 336,
-                    height: 290,
+                    height: 240,
                     color: const Color.fromARGB(255, 235, 233, 233),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -70,11 +72,11 @@ class Datepage extends State<DatePage> {
                             padding: EdgeInsets.fromLTRB(0, 16, 0, 0)),
                         SizedBox(
                           width: 265,
-                          height: 180,
+                          height: 105,
                           child: Column(
                             children: [
                               SizedBox(
-                                  width: 275,
+                                  width: 265,
                                   height: 45,
                                   child: Material(
                                     elevation: 5,
@@ -85,11 +87,9 @@ class Datepage extends State<DatePage> {
                                           .apply(fontSizeDelta: 5),
 
                                       controller: dateInput,
-                                      //editing controller of this TextField
                                       decoration: const InputDecoration(
                                           suffixIcon: Icon(
                                             Icons.calendar_today,
-                                            // color: Colors.white,
                                             size: 30,
                                           ), //icon of text field
                                           //labelText: "Enter Date",
@@ -102,8 +102,6 @@ class Datepage extends State<DatePage> {
                                           enabledBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
                                                 width: 1,
-                                                // color: Color.fromARGB(
-                                                // 255, 255, 255, 255),
                                               ),
                                               borderRadius: BorderRadius.all(
                                                   Radius.circular(15))),
@@ -124,13 +122,12 @@ class Datepage extends State<DatePage> {
                                             //DateTime.now() - not to allow to choose before today.
                                             lastDate: DateTime(2100));
                                         if (pickedDate != null) {
-                                          print(
-                                              pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
+                                          
+                                        //pickedDate output format => 2021-03-10 00:00:00.000
                                           String formattedDate =
                                               DateFormat('dd/MM/yyyy')
                                                   .format(pickedDate);
-                                          print(
-                                              formattedDate); //formatted date output using intl package =>  2021-03-16
+                                         
                                           setState(() {
                                             dateInput.text =
                                                 formattedDate; //set output date to TextField value.

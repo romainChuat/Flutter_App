@@ -2,10 +2,13 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/user_connexion_password.dart';
+import 'package:provider/provider.dart';
 import 'connexion_admin.dart';
+import 'controller/language_contoller.dart';
 import 'creation_compte.dart';
 import 'connexion.dart';
 import 'mylib.dart' as mylib;
+import 'nouveau_mdp.dart';
 
 class UserChoixConnexion extends StatefulWidget {
   const UserChoixConnexion({super.key});
@@ -183,6 +186,7 @@ class Userchoixconnexion extends State<UserChoixConnexion> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<LanguageController>();
     return Scaffold(
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,

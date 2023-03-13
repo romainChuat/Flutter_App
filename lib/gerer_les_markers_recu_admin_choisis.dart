@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:flutter_map/plugin_api.dart';
+import 'package:provider/provider.dart';
 import 'accueil_gerer_les_markers.dart';
-import 'end_page.dart';
+import 'controller/language_contoller.dart';
+import 'hello_admin_page.dart';
 import 'mylib.dart' as mylib;
 
 class GererMarkersRecuAdmin extends StatefulWidget {
@@ -29,7 +31,7 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
           padding: const EdgeInsets.fromLTRB(1, 15, 1, 0),
           child: Text(
             "Traiter_markers_recu_admin_title".tr(),
-            style: mylib.blueText,
+            style: mylib.titleStyle,
             textAlign: TextAlign.center,
           ),
         ),
@@ -54,7 +56,7 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
                   padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
                   child: Text(
                     "Traiter_markers_recu_admin_localisation".tr(),
-                    style: mylib.blueText,
+                    style: mylib.titleStyle,
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -133,7 +135,7 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
                   padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
                   child: Text(
                     "Traiter_markers_recu_admin_photo".tr(),
-                    style: mylib.blueText,
+                    style: mylib.titleStyle,
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -178,7 +180,7 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
                   padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
                   child: Text(
                     "Traiter_markers_recu_admin_date".tr(),
-                    style: mylib.blueText,
+                    style: mylib.titleStyle,
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -197,7 +199,7 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
                     child: const Align(
                       child: Text(
                         "jj/mm/aaaa",
-                        style: mylib.titleStyle3,
+                        style: mylib.titleStyleDuration,
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -228,7 +230,7 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
                   padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
                   child: Text(
                     "Traiter_markers_recu_admin_expression".tr(),
-                    style: mylib.blueText,
+                    style: mylib.titleStyle,
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -249,7 +251,7 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
                         child: const Align(
                           child: Text(
                             "1. Texte texte texte texte",
-                            style: mylib.titleStyle3,
+                            style: mylib.titleStyleDuration,
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -262,7 +264,7 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
                         child: const Align(
                           child: Text(
                             "2. Texte texte texte texte",
-                            style: mylib.titleStyle3,
+                            style: mylib.titleStyleDuration,
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -275,7 +277,7 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
                         child: const Align(
                           child: Text(
                             "3. Texte texte texte texte",
-                            style: mylib.titleStyle3,
+                            style: mylib.titleStyleDuration,
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -288,7 +290,7 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
                         child: const Align(
                           child: Text(
                             "4. Texte texte texte texte",
-                            style: mylib.titleStyle3,
+                            style: mylib.titleStyleDuration,
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -321,7 +323,7 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
                   padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
                   child: Text(
                     "Traiter_markers_recu_admin_age".tr(),
-                    style: mylib.blueText,
+                    style: mylib.titleStyle,
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -340,7 +342,7 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
                     child: Align(
                       child: Text(
                         "Traiter_markers_recu_admin_years".tr(),
-                        style: mylib.titleStyle3,
+                        style: mylib.titleStyleDuration,
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -371,7 +373,7 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
                   padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
                   child: Text(
                     "Traiter_markers_recu_admin_gender".tr(),
-                    style: mylib.blueText,
+                    style: mylib.titleStyle,
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -390,7 +392,7 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
                     child: const Align(
                       child: Text(
                         "TexteGenre",
-                        style: mylib.titleStyle3,
+                        style: mylib.titleStyleDuration,
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -421,7 +423,7 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
                   padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
                   child: Text(
                     "Traiter_markers_recu_admin_etude".tr(),
-                    style: mylib.blueText,
+                    style: mylib.titleStyle,
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -440,7 +442,7 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
                     child: const Align(
                       child: Text(
                         "Niveaux d'étude",
-                        style: mylib.titleStyle3,
+                        style: mylib.titleStyleDuration,
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -469,9 +471,9 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
               children: [
                 Container(
                   padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
-                  child: const Text(
-                    "Traiter_markers_recu_admin_activite",
-                    style: mylib.blueText,
+                  child: Text(
+                    "Traiter_markers_recu_admin_activite".tr(),
+                    style: mylib.titleStyle,
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -490,7 +492,7 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
                     child: const Align(
                       child: Text(
                         "Activité",
-                        style: mylib.titleStyle3,
+                        style: mylib.titleStyleDuration,
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -504,40 +506,13 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
     );
   }
 
-  Widget btnRefuser() {
-    return SizedBox(
-      width: 160,
-      height: 43,
-      child: ElevatedButton(
-        onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (BuildContext context) => const EndPage(),
-            ),
-          );
-        },
-        style: ElevatedButton.styleFrom(
-          shadowColor: Colors.grey.shade700,
-          elevation: 20,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0),
-            side: const BorderSide(color: Colors.white, width: 3),
-          ),
-        ),
-        child: Text(
-          "btn_refuse".tr(),
-          style: mylib.titleStyle2,
-          textAlign: TextAlign.center,
-        ),
-      ),
-    );
-  }
 
 
   @override
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
+        context.watch<LanguageController>();
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: mylib.BaseAppBar(
@@ -589,7 +564,18 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 50)),
-                btnRefuser(),
+                mylib.createNextButton1(
+                        "btn_refuse".tr(),
+                        context,
+                        141,
+                        41,
+                        reponses,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) => const AccueilGererLesMarkers(),
+          settings: RouteSettings(arguments: reponses),
+            ),
+                        
+                        ),
                 const Padding(padding: EdgeInsets.fromLTRB(35, 0, 0, 0)),
                 mylib.createNextButton1(
                         "btn_validate".tr(),
@@ -598,7 +584,7 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
                         41,
                         reponses,
                         MaterialPageRoute(
-                          builder: (BuildContext context) => const AccueilGererLesMarkers(),
+                          builder: (BuildContext context) => const HelloAdminPage(),
           settings: RouteSettings(arguments: reponses),
             ),
                         

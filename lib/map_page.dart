@@ -5,7 +5,8 @@ import 'package:flutter_application_1/user_confirm_enregistrement.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map/plugin_api.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:provider/provider.dart';
+import 'controller/language_contoller.dart';
 import 'mylib.dart' as mylib;
 
 import 'droits_auteur.dart';
@@ -39,7 +40,7 @@ class Mappage extends State<MapPage> {
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
-
+context.watch<LanguageController>();
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: mylib.BaseAppBar(appBar: AppBar()),
@@ -52,8 +53,9 @@ class Mappage extends State<MapPage> {
               children: <Widget>[
                 const Spacer(),
                 mylib.percentIndicator(context, 0.11),
-                                          SizedBox(height: 20,),
-
+                const SizedBox(
+                  height: 20,
+                ),
                 ClipRRect(
                     borderRadius: BorderRadius.circular(15.0),
                     child: Container(
@@ -97,7 +99,6 @@ class Mappage extends State<MapPage> {
                                       reponses['lieu_lat'] = value.latitude;
                                       print(reponses);
                                       print("tape");
-
                                       marker.clear();
                                       marker.add(Marker(
                                           width: 25.0,
@@ -110,7 +111,6 @@ class Mappage extends State<MapPage> {
                                                   size: 30,
                                                 ),
                                                 onPressed: () {
-                                                  print("afficher avis");
                                                 },
                                               )));
                                       setState(() {});
@@ -200,17 +200,18 @@ class Mappage extends State<MapPage> {
                         ],
                       ),
                     )),
-                                              SizedBox(height: 20,),
-
+                const SizedBox(
+                  height: 20,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     if (reponses['mdp'] == true)
                       mylib.createQuitButton(context, 141, 41,
-                          confirmationEnregistrement(), reponses)
+                          const confirmationEnregistrement(), reponses)
                     else
                       mylib.createQuitButton(
-                          context, 141, 41, confirmationAbandon(), reponses),
+                          context, 141, 41, const confirmationAbandon(), reponses),
                     mylib.createNextButton(
                       "btn_next".tr(),
                       context,
@@ -225,15 +226,13 @@ class Mappage extends State<MapPage> {
                 ),
                 const Spacer(),
                 const Align(
-                    alignment: Alignment.bottomRight,
-                    child: Text(
-                      "1/9",
-                      textAlign: TextAlign.right,
-                      style: mylib.titleStyleBasDePage,
-
-                    ),
+                  alignment: Alignment.bottomRight,
+                  child: Text(
+                    "1/9",
+                    textAlign: TextAlign.right,
+                    style: mylib.titleStyleBasDePage,
                   ),
-                
+                ),
               ],
             ),
           ),

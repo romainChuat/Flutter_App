@@ -1,6 +1,5 @@
 library mylib;
 
-import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/language_page.dart';
@@ -12,67 +11,46 @@ import 'package:provider/provider.dart';
 import 'confirmation_deconnexion.dart';
 import 'controller/language_contoller.dart';
 import 'package:quickalert/quickalert.dart';
-
 import 'database_helper.dart';
 import 'database_helper_local.dart';
-import 'home_page.dart';
-
 
 bool adminConnect = false;
+
+/// IDENTIFIANTS DE CONNEXION BASE DE DONNÉES
+const bduser = "postgres";
+const bdpass = "fluttertest";
+const bdserver = "10.0.2.2";
+const bdname = "city";
 
 const TextStyle titleStyle = TextStyle(
   fontSize: 21,
   fontFamily: 'Nunito',
   fontWeight: FontWeight.w400,
-  // color: Colors.white,
-  /*shadows: <Shadow>[
-    Shadow(
-        offset: Offset(-2.0, 2.0),
-        blurRadius: 3.0,
-        color: Color.fromARGB(195, 105, 105, 105))
-  ],*/
+  letterSpacing: -1,
+);
+const TextStyle titleStyleMenu = TextStyle(
+  fontSize: 25,
+  fontFamily: 'Nunito',
+    color: Colors.white,
+
+  fontWeight: FontWeight.w400,
   letterSpacing: -1,
 );
 const TextStyle titleStyleBasDePage = TextStyle(
   fontSize: 18,
   fontFamily: 'Nunito',
   fontWeight: FontWeight.w400,
-   // letterSpacing: 1,
-
-  // color: Colors.white,
-  /*shadows: <Shadow>[
-    Shadow(
-        offset: Offset(-2.0, 2.0),
-        blurRadius: 3.0,
-        color: Color.fromARGB(195, 105, 105, 105))
-  ],*/
 );
 const TextStyle titleStyleDuration = TextStyle(
   fontSize: 17,
   fontFamily: 'Nunito',
   fontWeight: FontWeight.w400,
-
-  //fontWeight: FontWeight.bold,
-  // color: Colors.white,
-  /*shadows: <Shadow>[
-    Shadow(
-        offset: Offset(-2.0, 2.0),
-        blurRadius: 3.0,
-        color: Color.fromARGB(195, 105, 105, 105))
-  ],*/
   letterSpacing: -1,
 );
 const TextStyle titleStyle2 = TextStyle(
   fontSize: 25,
   fontFamily: 'Nunito',
   fontWeight: FontWeight.bold,
-  //color: Colors.white,
-  /*shadows: <Shadow>[
-    Shadow(
-        offset: Offset(-2.0, 2.0),
-        blurRadius: 3.0,
-        color: Color.fromARGB(195, 105, 105, 105))
-  ],*/
   letterSpacing: -1,
 );
 const TextStyle titleStyle3 = TextStyle(
@@ -100,24 +78,9 @@ const TextStyle titleStyle5 = TextStyle(
 const TextStyle buttonTextStyle = TextStyle(
     fontSize: 20,
     fontWeight: FontWeight.bold,
-    //color: Colors.white,
     fontFamily: 'Nunito',
     letterSpacing: 1);
 
-const TextStyle blueText = TextStyle(
-  fontSize: 20,
-  fontWeight: FontWeight.w800,
-  color: Color.fromARGB(255, 24, 24, 24),
-  fontFamily: 'Nunito',
-  letterSpacing: 1,
-);
-const TextStyle blueText1 = TextStyle(
-  fontSize: 12,
-  //color: Color.fromARGB(255, 41, 59, 229),
-  fontFamily: 'Spline Sans Mono ',
-  letterSpacing: 1,
-  //shadows:<Shadow> [ Shadow(offset:Offset(-1.0, 1.0) , blurRadius: 5.0 ,color: Color.fromARGB(195, 105, 105, 105))],
-);
 const TextStyle blueText2 = TextStyle(
   fontSize: 15,
   fontWeight: FontWeight.w600,
@@ -129,10 +92,8 @@ const TextStyle blueText2 = TextStyle(
 const TextStyle radioText = TextStyle(
   fontSize: 15,
   fontWeight: FontWeight.w600,
-  // color: Color.fromARGB(255, 41, 59, 229),
   fontFamily: 'Nunito',
   letterSpacing: 1,
-  //shadows:<Shadow> [ Shadow(offset:Offset(-1.0, 1.0) , blurRadius: 5.0 ,color: Color.fromARGB(195, 105, 105, 105))],
 );
 
 const TextStyle simpleText = TextStyle(
@@ -228,21 +189,20 @@ class BaseAppBar1 extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       bottom: PreferredSize(
-        preferredSize: Size.fromHeight(0.0),
-       child: LinearPercentIndicator(
-                  padding: EdgeInsets.fromLTRB(60, 0, 25, 0),
-                  //      width: MediaQuery.of(context).size.width - 100,
-                  width: MediaQuery.of(context).size.width -
-                   50,
-                animation: true,
-                lineHeight: 20.0,
-                animationDuration: 2000,
-                percent: 20.0,
-                linearStrokeCap: LinearStrokeCap.roundAll,
-               // progressColor: Colors.greenAccent,
-                  backgroundColor: const Color.fromARGB(255, 235, 233, 233),
-                  progressColor: const Color.fromARGB(255, 13, 12, 32),
-                ),
+        preferredSize: const Size.fromHeight(0.0),
+        child: LinearPercentIndicator(
+          padding: const EdgeInsets.fromLTRB(60, 0, 25, 0),
+          //      width: MediaQuery.of(context).size.width - 100,
+          width: MediaQuery.of(context).size.width - 50,
+          animation: true,
+          lineHeight: 20.0,
+          animationDuration: 2000,
+          percent: 20.0,
+          linearStrokeCap: LinearStrokeCap.roundAll,
+          // progressColor: Colors.greenAccent,
+          backgroundColor: const Color.fromARGB(255, 235, 233, 233),
+          progressColor: const Color.fromARGB(255, 13, 12, 32),
+        ),
       ),
       leading: IconButton(
         padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
@@ -254,7 +214,6 @@ class BaseAppBar1 extends StatelessWidget implements PreferredSizeWidget {
           Navigator.pop(context);
         },
       ),
-      
       actions: [
         Builder(
           builder: (BuildContext context) {
@@ -281,21 +240,20 @@ class BaseAppBar1 extends StatelessWidget implements PreferredSizeWidget {
   Size get preferredSize => Size.fromHeight(appBar.preferredSize.height);
 }
 
-percentIndicator(BuildContext context, double percentPage){
+percentIndicator(BuildContext context, double percentPage) {
   return LinearPercentIndicator(
-                  padding: EdgeInsets.fromLTRB(60, 0, 25, 0),
-                  //      width: MediaQuery.of(context).size.width - 100,
-                  width: MediaQuery.of(context).size.width -
-                   50,
-                animation: true,
-                lineHeight: 20.0,
-                animationDuration: 2000,
-                percent: percentPage,
-                linearStrokeCap: LinearStrokeCap.roundAll,
-               // progressColor: Colors.greenAccent,
-                  backgroundColor: const Color.fromARGB(255, 235, 233, 233),
-                  progressColor: Color.fromARGB(255, 13, 12, 32),
-                );
+    padding: const EdgeInsets.fromLTRB(60, 0, 25, 0),
+    //      width: MediaQuery.of(context).size.width - 100,
+    width: MediaQuery.of(context).size.width - 50,
+    animation: true,
+    lineHeight: 20.0,
+    animationDuration: 2000,
+    percent: percentPage,
+    linearStrokeCap: LinearStrokeCap.roundAll,
+    // progressColor: Colors.greenAccent,
+    backgroundColor: const Color.fromARGB(255, 235, 233, 233),
+    progressColor: const Color.fromARGB(255, 13, 12, 32),
+  );
 }
 
 createInput(
@@ -382,7 +340,7 @@ createQuitButton(BuildContext context, double width, double height, var path,
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => path, 
+            builder: (context) => path,
             settings: RouteSettings(arguments: args),
           ),
         );
@@ -418,7 +376,8 @@ createNextButton(String text, BuildContext context, double width, double height,
   );
 }
 
-createNextButton1(String text, BuildContext context, double width, double height, Map<String, Object> reponses, MaterialPageRoute page) {
+createNextButton1(String text, BuildContext context, double width,
+    double height, Map<String, Object> reponses, MaterialPageRoute page) {
   var insertlieuxID;
   var insertusID;
   return SizedBox(
@@ -435,8 +394,8 @@ createNextButton1(String text, BuildContext context, double width, double height
         QuickAlert.show(
           context: context,
           type: QuickAlertType.confirm,
-          text: 'sur de vouloirs envoyer ?',
-          confirmBtnText: 'Yes' ,
+          text: 'Êtes-vous sûr de vouloir envoyer vos réponses ?',
+          confirmBtnText: 'Yes',
           onConfirmBtnTap: () async {
             var userID = reponses['rep_userID'].toString();
             var userIDServer = reponses['rep_userIDServer'].toString();
@@ -477,9 +436,7 @@ createNextButton1(String text, BuildContext context, double width, double height
             reponses['username'] = username;
 
 
-            Navigator.of(context).push(page);
-            
-
+            Navigator.of(context).push
           },
           cancelBtnText: 'No',
           confirmBtnColor: const Color.fromARGB(255, 64, 224, 168),
@@ -558,7 +515,10 @@ createNextButton1(String text, BuildContext context, double width, double height
       print("enregistrement SERVER user impossible");
     }
     return usID;
+
   }
+  return usID;
+}
 
   Future<void> insertReponse(Map<String, Object> reponses) async {    
     print(reponses);
@@ -603,10 +563,9 @@ createNextButton1(String text, BuildContext context, double width, double height
       }catch(e){
         print("enregistrement reponse server impossible");
       }
+
   }
-
-
-
+}
 
 createtButton(String text, BuildContext context, double width, double height) {
   return SizedBox(
@@ -646,7 +605,7 @@ createMenu(BuildContext context) {
                     children: [
                       Text(
                         "menu_title".tr(),
-                        style: simpleText,
+                        style: titleStyleMenu,
                       ),
                       IconButton(
                           icon: const Icon(
@@ -687,13 +646,12 @@ createMenu(BuildContext context) {
                         const Padding(padding: EdgeInsets.all(6)),
                         Text(
                           "btn_deconnexion".tr(),
-                          style: blueText,
+                          style: titleStyle,
                         ),
                       ],
                     )),
               ),
             ),
-            
             const Padding(padding: EdgeInsets.all(10)),
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
@@ -720,7 +678,7 @@ createMenu(BuildContext context) {
                         const Padding(padding: EdgeInsets.all(6)),
                         Text(
                           "btn_traduire".tr(),
-                          style: blueText,
+                          style: titleStyle,
                         ),
                       ],
                     )),
@@ -733,17 +691,16 @@ createMenu(BuildContext context) {
                 width: 230,
                 height: 58,
                 child: Container(
-                  
                     width: 336,
-                      height: 570,
-                      color: const Color.fromARGB(255, 235, 233, 233),
+                    height: 570,
+                    color: const Color.fromARGB(255, 235, 233, 233),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         const ChangeThemeButtonWidget(),
                         Text(
                           "btn_mode_sombre".tr(),
-                          style: blueText,
+                          style: titleStyle,
                         ),
                       ],
                     )),

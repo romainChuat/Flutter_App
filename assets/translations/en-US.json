@@ -1,7 +1,7 @@
 {
     "home_page_title": "Please select your quiz :",
-    "title1_text": "One place",
-    "title2_text": "Two place",
+    "title1_text": "Your experience for a place",
+    "title2_text": "Your experience for two places",
     "title3_text": "Title 3",
     "title4_text": "Title 4",
 
@@ -104,7 +104,7 @@
     "consulter_les_avis_login_choisis_modifier": "Edit",
     "consulter_les_avis_login_choisis_supprimer": "Delete",
 
-    "hello_login_page_btn_acceder_map": "Access to the map",
+    "hello_login_page_btn_acceder_map": "Give an opinion",
     "hello_login_page_btn_acceder_quiz": "Access the questionnaire",
 
     "hello_login_password_btn_questionnaire": "Consult the questionnaires",
@@ -128,6 +128,8 @@
 
     "connexion_admin_remeber_me": "Remember me",
     "connexion_admin_email_mdp_incorrect": "Incorrect email and/or password.",
+
+    "connexion_hintext_user_name": "Nom utilisateur",
 
     "creation_compte_sign_up": "Sign Up",
     "creation_compte_terms_conditions": "Terms & Conditions",
@@ -154,9 +156,14 @@
 
     "menu_title": "Menu",
 
-    "warning_email_incorrect": "Email incorrect.",
+    "warning_email_incorrect": "Incorrect email.",
     "warning_mdp_incorrect": "Incorrect password.",
     "warning_mdp_terms_conditions": "Please accept the terms and conditions.",
+
+    "nouveau_mdp_title": "Reset password",
+    "nouveau_mdp_reinitialiser_btn" :"Reset",
+
+
 
 
     "btn_user": "User",

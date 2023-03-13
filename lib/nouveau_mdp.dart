@@ -1,63 +1,44 @@
+import 'package:crypt/crypt.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/user_choix_connexion.dart';
-import 'package:flutter_application_1/utilisateur.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'database_helper.dart';
 import 'package:provider/provider.dart';
+
 import 'connexion_admin.dart';
 import 'controller/language_contoller.dart';
-import 'hello_login_page.dart';
+import 'creation_compte.dart';
+import 'database_helper.dart';
+import 'database_helper_local.dart';
+import 'forgotpassword_user.dart';
+import 'hello_login_password.dart';
 import 'mylib.dart' as mylib;
 
-class Connexion extends StatefulWidget {
-  const Connexion({super.key});
+class NouveauMdp extends StatefulWidget {
+  const NouveauMdp({super.key});
 
   @override
-  Connexion1 createState() => Connexion1();
+  State<NouveauMdp> createState() => Nouveaumdp();
 }
 
-class Connexion1 extends State<Connexion> {
+class Nouveaumdp extends State<NouveauMdp> {
+final mailController = TextEditingController();
+  final passwordController_1 = TextEditingController();
+  final passwordController_2 = TextEditingController();
+   bool connected = false;
+  bool isRememberMe = false;
+  bool _showErrorMessagePassword = false;
   Map<String, Object> reponses = {};
 
-  bool isRememberMe = false;
-  bool _showErrorMessage = false;
-
-  void _handleInputChange(String input) {
+   void _handleInputChangePassword(String input) {
     setState(() {
-      _showErrorMessage = false;
-      reponses["username"] = input;
+      _showErrorMessagePassword = false;
     });
   }
 
-  void _handleButtonPress() async {
-    if (reponses["username"] == null || reponses["username"] == "") {
-      setState(() {
-        _showErrorMessage = true;
-      });
-    } else {  
-      Map<String,dynamic> user = new Map();
-      user['nom'] = reponses['username'].toString();
-      var userID = await mylib.insertUserLocal(user);
-      reponses['rep_userID'] = userID!;
-      bool result = await InternetConnectionChecker().hasConnection;
-      if(result){
-        var usIDServer;
-        usIDServer = await mylib.insertUserServer(user);
-        //le resultat retourner est un tableau 2d
-        reponses['rep_userIDServer'] = usIDServer[0][0];  
-        print(reponses);
-      }
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (BuildContext context) => const HelloLoginPage(),
-          settings: RouteSettings(arguments: reponses),
-        ),
-      );
-    }
-  }
-
+  @override
+ 
   Widget buildTitle() {
     return Container(
       width: 309,
@@ -70,7 +51,7 @@ class Connexion1 extends State<Connexion> {
       ),
       child: Align(
         child: Text(
-          "forgot_password_page_sign_in".tr(),
+          "nouveau_mdp_title".tr(),
           style: mylib.titleStyle3,
           textAlign: TextAlign.center,
         ),
@@ -78,9 +59,11 @@ class Connexion1 extends State<Connexion> {
     );
   }
 
-  Widget builUserName() {
+
+
+  Widget buildPasswordConfirm() {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         const SizedBox(height: 10),
         Container(
@@ -95,16 +78,16 @@ class Connexion1 extends State<Connexion> {
                     color: Colors.black26, blurRadius: 6, offset: Offset(0, 2))
               ]),
           child: TextField(
-            onChanged: _handleInputChange,
-            keyboardType: TextInputType.name,
+            controller: passwordController_2,
+            obscureText: true,
             style: const TextStyle(color: Colors.black87),
             decoration: const InputDecoration(
                 border: InputBorder.none,
                 prefixIcon: Icon(
-                  Icons.account_circle_sharp,
+                  Icons.lock,
                   color: Color.fromARGB(255, 13, 12, 32),
                 ),
-                hintText: "connexion_hintext_user_name",
+                hintText: 'Confirm Password',
                 hintStyle: TextStyle(color: Colors.black38)),
           ),
         ),
@@ -112,15 +95,68 @@ class Connexion1 extends State<Connexion> {
     );
   }
 
-  Widget buildLoginBtn(erreur) {
+  Widget buildPassword() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        const SizedBox(height: 10),
+        Container(
+          width: 222,
+          height: 38,
+          alignment: Alignment.centerLeft,
+          decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: const [
+                BoxShadow(
+                    color: Colors.black26, blurRadius: 6, offset: Offset(0, 2))
+              ]),
+          child: TextField(
+            controller: passwordController_1,
+            obscureText: true,
+            style: const TextStyle(color: Colors.black87),
+            decoration: const InputDecoration(
+                border: InputBorder.none,
+                prefixIcon: Icon(
+                  Icons.lock,
+                  color: Color.fromARGB(255, 13, 12, 32),
+                ),
+                hintText: 'New password',
+                hintStyle: TextStyle(color: Colors.black38)),
+          ),
+        ),
+      ],
+    );
+  }
+
+ 
+
+ 
+
+  Widget buildResetBtn() {
     return Column(children: [
       SizedBox(
-        width: 130,
+        width: 170,
         height: 43,
         child: ElevatedButton(
-          onPressed: _handleButtonPress,
+          onPressed: () async {
+            await loginCorrect();
+            if (connected == true) {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (BuildContext context) => const HelloLoginPassword(),
+                settings: RouteSettings(arguments: reponses),
+              ));
+            } else {
+              if (verifPassword() == false) {
+                setState(() {
+                  _showErrorMessagePassword = true;
+                });
+              } 
+            }
+          },
           style: ElevatedButton.styleFrom(
             shadowColor: Colors.grey.shade700,
+            backgroundColor: const Color.fromARGB(255, 13, 12, 32),
             elevation: 20,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15.0),
@@ -128,7 +164,7 @@ class Connexion1 extends State<Connexion> {
             ),
           ),
           child: Text(
-            "connexion_user_login".tr(),
+            "nouveau_mdp_reinitialiser_btn".tr(),
             style: mylib.titleStyle,
             textAlign: TextAlign.center,
           ),
@@ -137,8 +173,9 @@ class Connexion1 extends State<Connexion> {
       const SizedBox(
         height: 14,
       ),
-      if (_showErrorMessage)
-        Text("connexion_user_uername_invalid".tr(), style: mylib.warningText),
+      if (_showErrorMessagePassword)
+        Text("warning_mdp_incorrect".tr(),
+            style: mylib.warningText),
     ]);
   }
 
@@ -208,30 +245,8 @@ class Connexion1 extends State<Connexion> {
     );
   }
 
-    Widget buildSignUpBtn() {
-    return Container(
-      alignment: Alignment.centerRight,
-      child: TextButton(
-        onPressed: () => {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (BuildContext context) => const UserChoixConnexion(),
-            ),
-          ),
-        },
-        child: Text(
-          'forgot_password_page_sign_in'.tr(),
-          style: const TextStyle(
-            color: Colors.black38,
-          ),
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
-    var erreur = false;
     context.watch<LanguageController>();
     return Scaffold(
       body: AnnotatedRegion<SystemUiOverlayStyle>(
@@ -266,26 +281,24 @@ class Connexion1 extends State<Connexion> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               buildTitle(),
-                              if (!_showErrorMessage)
-                                const SizedBox(height: 63)
+                              if (!_showErrorMessagePassword)
+                                const SizedBox(height: 44)
                               else
-                                const SizedBox(height: 50),
-                              builUserName(),
-                              const SizedBox(height: 30),
-                              buildLoginBtn(erreur),
+                                const SizedBox(height: 31),
+                              buildPassword(),
+                              const SizedBox(height: 15),
+                              buildPasswordConfirm(),
                               Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      Text(
-                                        'creation_compte_account'.tr(),
-                                        style: const TextStyle(
-                                          color: Colors.black38,
-                                        ),
-                                      ),
-                                      buildSignUpBtn(),
-                                    ],
-                                  ),
-                              const SizedBox(height: 60)
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                ],
+                              ),
+                                const SizedBox(height: 46),
+
+                              buildResetBtn(),
+                                const SizedBox(height: 50),
+
+                              
                             ],
                           ),
                         )),
@@ -299,4 +312,27 @@ class Connexion1 extends State<Connexion> {
       ),
     );
   }
+  
+  loginCorrect() {}
+  
+  bool verifPassword() {
+    String pass1 = passwordController_1.text;
+    String pass2 = passwordController_2.text;
+
+    if (pass1.isEmpty) {
+      return false;
+    }
+
+    if (pass1 != pass2) {
+      return false;
+    }
+
+    if (pass1.length < 8) {
+      return false;
+    }
+
+    return true;
+  }
+
+
 }

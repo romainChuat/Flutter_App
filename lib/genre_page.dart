@@ -2,6 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/user_confirm_abandon_quiz.dart';
 import 'package:flutter_application_1/user_confirm_enregistrement.dart';
+import 'package:provider/provider.dart';
+import 'controller/language_contoller.dart';
 import 'etude_page.dart';
 import 'mylib.dart' as mylib;
 
@@ -22,7 +24,7 @@ class Genrepage extends State<GenrePage> {
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
-
+context.watch<LanguageController>();
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: mylib.BaseAppBar(appBar: AppBar()),
@@ -30,22 +32,20 @@ class Genrepage extends State<GenrePage> {
         body: Container(
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
           child: Center(
+            
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   const Spacer(),
-                  // const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
                   mylib.percentIndicator(context, 0.77),
                   const SizedBox(
                     height: 20,
                   ),
-                  //const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
-
                   ClipRRect(
                     borderRadius: BorderRadius.circular(15.0),
                     child: Container(
                       width: 336,
-                      height: 240,
+                      height: 225,
                       color: const Color.fromARGB(255, 235, 233, 233),
                       child: Column(
                         children: [

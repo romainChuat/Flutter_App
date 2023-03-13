@@ -1,5 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'controller/language_contoller.dart';
 import 'map_page.dart';
 import 'mylib.dart' as mylib;
 
@@ -10,7 +12,7 @@ class StartPage extends StatelessWidget {
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
-
+context.watch<LanguageController>();
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: mylib.BaseAppBar(appBar: AppBar()),
@@ -31,7 +33,7 @@ class StartPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: <Widget>[
                       Align(
-                        alignment: Alignment.center,
+                        alignment: Alignment.centerLeft,
                         child: Text("startPage_title".tr(),
                             style: mylib.titleStyle),
                       ),

@@ -1,9 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/start_page.dart';
 import 'package:flutter_application_1/user_confirm_abandon_quiz.dart';
 import 'package:flutter_application_1/user_confirm_enregistrement.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:provider/provider.dart';
+import 'controller/language_contoller.dart';
 import 'fichier_page.dart';
 import 'mylib.dart' as mylib;
 
@@ -24,9 +24,8 @@ class Droitsauteur extends State<DroitsAuteur> {
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
-    print(reponses);
-    //print(username);
-
+   
+context.watch<LanguageController>();
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: mylib.BaseAppBar(appBar: AppBar()),
@@ -37,9 +36,9 @@ class Droitsauteur extends State<DroitsAuteur> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Spacer(),
+                const Spacer(),
                                 mylib.percentIndicator(context, 0.22),
-                                                          SizedBox(height: 20,),
+                                                          const SizedBox(height: 20,),
 
 
                 ClipRRect(
@@ -118,7 +117,7 @@ class Droitsauteur extends State<DroitsAuteur> {
                     ),
                   ),
                 ),
-                                          SizedBox(height: 20,),
+                                          const SizedBox(height: 20,),
 
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -126,11 +125,11 @@ class Droitsauteur extends State<DroitsAuteur> {
                     if(reponses['mdp'] == true)
                     mylib.createQuitButton(
                         context, 141, 41, 
-                         confirmationEnregistrement(), reponses)
+                         const confirmationEnregistrement(), reponses)
                     else 
                     mylib.createQuitButton(
                         context, 141, 41, 
-                         confirmationAbandon(), reponses),
+                         const confirmationAbandon(), reponses),
                     if (_showErrorMessage)
                       mylib.createNextButton(
                         "btn_next".tr(),
@@ -144,8 +143,8 @@ class Droitsauteur extends State<DroitsAuteur> {
                       ),
                   ],
                 ),
-                Spacer(),
-                Align(
+                const Spacer(),
+                const Align(
                     alignment: Alignment.bottomRight,
                     child: Text(
                       "2/9",

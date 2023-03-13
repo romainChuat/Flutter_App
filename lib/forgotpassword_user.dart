@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/user_choix_connexion.dart';
 import 'package:flutter_application_1/user_connexion_password.dart';
+import 'package:provider/provider.dart';
 import 'connexion_admin.dart';
+import 'controller/language_contoller.dart';
 import 'database_helper.dart';
 import 'mylib.dart' as mylib;
 
@@ -86,7 +88,6 @@ class Forgotpassworduser extends State<ForgotPasswordUser> {
       alignment: Alignment.centerRight,
       child: TextButton(
         onPressed: () => {
-          print("Forgot password pressed"),
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (BuildContext context) => const UserConnexionPassword(),
@@ -107,12 +108,11 @@ class Forgotpassworduser extends State<ForgotPasswordUser> {
     return Column(children: [
       SizedBox(
         width: 189,
-        height: 43,
+        height: 83,
         child: ElevatedButton(
           onPressed: () {
             loginCorrect();
             if (exist == false) {
-              print("Aucun compte n'est associé à cet email.");
               setState(() {
                 _showErrorMessage = true;
               });
@@ -209,6 +209,7 @@ class Forgotpassworduser extends State<ForgotPasswordUser> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<LanguageController>();
     return Scaffold(
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,
@@ -243,9 +244,9 @@ class Forgotpassworduser extends State<ForgotPasswordUser> {
                             children: <Widget>[
                               buildTitle(),
                               if (!_showErrorMessage)
-                                const SizedBox(height: 51)
+                                const SizedBox(height: 35)
                               else
-                                const SizedBox(height: 38),
+                                const SizedBox(height: 22),
                               buildEmail(),
                               const SizedBox(height: 30),
                               buildSendBtn(),
@@ -258,17 +259,18 @@ class Forgotpassworduser extends State<ForgotPasswordUser> {
                                       color: Colors.black38,
                                     ),
                                   ),
+                                    const SizedBox(height: 30),
+
                                   buildSignInBtn(),
                                 ],
                               ),
-                              const SizedBox(height: 70),
+                              const SizedBox(height: 46),
                             ],
                           ),
                         )),
                   ],
                 ),
               ),
-              // )
             )
           ],
         )),

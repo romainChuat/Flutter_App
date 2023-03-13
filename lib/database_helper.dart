@@ -1,3 +1,4 @@
+import 'package:flutter_application_1/mylib.dart';
 import 'package:postgres/postgres.dart';
 
 //Cette classe est utilisée pour connecter et envoyer des requêtes à la base de données en ligne
@@ -22,11 +23,11 @@ class DatabaseHelper {
 
   //Retourne les informations de connexion
   PostgreSQLConnection connection() {
-    return PostgreSQLConnection("10.0.2.2", 5432, 'postgres',
+    return PostgreSQLConnection(bdserver, 5432, bdname,
         queryTimeoutInSeconds: 3600,
         timeoutInSeconds: 3600,
-        username: 'romain',
-        password: 'admin');
+        username: bduser,
+        password: bdpass);
   }
 
   //Ouvre une connexion à la BD dans une variable, puis la retourne
@@ -90,6 +91,45 @@ class DatabaseHelper {
     return await client.execute(
         'INSERT INTO reponses (${data.keys.join(', ')}) VALUES (${data.keys.map((k) => '@$k').join(', ')})',
         substitutionValues: data);
+  }
+
+  //Retourne des réponses présentes dans la base de données
+  //Les réponses sont trouvées dans la BD grâce à une chaîne de caractères transmise en paramètres
+  Future<PostgreSQLResult?> queryReponses(String text) async {
+    final client = await db;
+    //Si la base de données n'est pas ouverte, la fonction retourne null
+    if (client == null) {
+      return null;
+    }
+    var results = await client.query(
+        'SELECT * FROM reponses WHERE date LIKE @value OR expressions LIKE @value OR genre LIKE @value OR etude LIKE @value OR activite LIKE @value OR titre LIKE @value',
+        substitutionValues: {"value": "%$text%"});
+
+    //Si la requête n'a pas trouvé de réponses, on retourne null
+    if (results.isEmpty == true) {
+      return null;
+    }
+
+    //Sinon on retourne le résultat
+    return results;
+  }
+
+  //Retourne l'ensemble des réponses présentes dans la base de données
+  Future<PostgreSQLResult?> queryAllReponses() async {
+    final client = await db;
+    //Si la base de données n'est pas ouverte, la fonction retourne null
+    if (client == null) {
+      return null;
+    }
+    var results = await client.query('SELECT * FROM reponses');
+
+    //Si la requête n'a pas trouvé de réponses, on retourne null
+    if (results.isEmpty == true) {
+      return null;
+    }
+
+    //Sinon on retourne le résultat
+    return results;
   }
 
   //Insère un lieu dans la BD

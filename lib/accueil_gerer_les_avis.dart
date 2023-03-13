@@ -1,5 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/recherche_page_admin.dart';
+import 'package:provider/provider.dart';
+import 'controller/language_contoller.dart';
 import 'traiter_avis_recu_admin.dart';
 import 'gerer_les_avis_refuse_admin.dart';
 import 'gerer_les_avis_valide_admin.dart';
@@ -22,7 +25,7 @@ class AccueilGererLesavis extends State<AccueilGererLesAvis> {
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) => const GererAvisValide(),
+              builder: (BuildContext context) => const Recherchepage(),
               settings: RouteSettings(arguments: reponses),
             ),
           );
@@ -37,7 +40,7 @@ class AccueilGererLesavis extends State<AccueilGererLesAvis> {
         ),
         child: Text(
           "accueil_gerer_les_avis_btn_validated".tr(),
-          style: mylib.titleStyle5,
+          style: mylib.titleStyle,
           textAlign: TextAlign.center,
         ),
       ),
@@ -67,7 +70,7 @@ class AccueilGererLesavis extends State<AccueilGererLesAvis> {
         ),
         child: Text(
           "accueil_gerer_les_avis_btn_traiter_received".tr(),
-          style: mylib.titleStyle5,
+          style: mylib.titleStyle,
           textAlign: TextAlign.center,
         ),
       ),
@@ -97,7 +100,7 @@ class AccueilGererLesavis extends State<AccueilGererLesAvis> {
         ),
         child: Text(
           "accueil_gerer_les_avis_btn_rejected".tr(),
-          style: mylib.titleStyle5,
+          style: mylib.titleStyle,
           textAlign: TextAlign.center,
         ),
       ),
@@ -108,6 +111,7 @@ class AccueilGererLesavis extends State<AccueilGererLesAvis> {
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
+        context.watch<LanguageController>();
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: mylib.BaseAppBar(
@@ -120,23 +124,22 @@ class AccueilGererLesavis extends State<AccueilGererLesAvis> {
           child: Container(
             color: const Color.fromARGB(255, 235, 233, 233),
             width: 309,
-            height: 464,
+            height: 380,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                const SizedBox(height: 61),
+                const SizedBox(height: 10),
                 SizedBox(
                   width: 250,
                   child: Text('accueil_gerer_les_avis_title'.tr(),
                       style: mylib.titleStyle),
                 ),
-                const SizedBox(height: 61),
+                const SizedBox(height: 50),
                 gererlesavisvalide(reponses),
-                const SizedBox(height: 30),
+                const SizedBox(height: 20),
                 gererlesavisrecu(reponses),
-                const SizedBox(height: 30),
+                const SizedBox(height: 20),
                 gererlesavisrefuse(reponses),
-                const SizedBox(height: 40),
               ],
             ),
           ),

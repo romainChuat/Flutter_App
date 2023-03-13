@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:flutter_map/plugin_api.dart';
+import 'package:provider/provider.dart';
 import 'accueil_gerer_les_markers.dart';
-import 'end_page.dart';
+import 'controller/language_contoller.dart';
+import 'hello_admin_page.dart';
 import 'mylib.dart' as mylib;
 
 class GererLesMarkersRefuse extends StatefulWidget {
@@ -29,7 +31,7 @@ class Gererlesmarkersrefuse extends State<GererLesMarkersRefuse> {
           padding: const EdgeInsets.fromLTRB(1, 15, 1, 0),
           child: Text(
             "Traiter_markers_recu_admin_title".tr(),
-            style: mylib.blueText,
+            style: mylib.titleStyle,
             textAlign: TextAlign.center,
           ),
         ),
@@ -54,7 +56,7 @@ class Gererlesmarkersrefuse extends State<GererLesMarkersRefuse> {
                   padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
                   child: Text(
                     "Traiter_markers_recu_admin_localisation".tr(),
-                    style: mylib.blueText,
+                    style: mylib.titleStyle,
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -133,7 +135,7 @@ class Gererlesmarkersrefuse extends State<GererLesMarkersRefuse> {
                   padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
                   child: Text(
                     "Traiter_markers_recu_admin_photo".tr(),
-                    style: mylib.blueText,
+                    style: mylib.titleStyle,
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -178,7 +180,7 @@ class Gererlesmarkersrefuse extends State<GererLesMarkersRefuse> {
                   padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
                   child: Text(
                     "Traiter_markers_recu_admin_date".tr(),
-                    style: mylib.blueText,
+                    style: mylib.titleStyle,
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -197,7 +199,7 @@ class Gererlesmarkersrefuse extends State<GererLesMarkersRefuse> {
                     child: const Align(
                       child: Text(
                         "jj/mm/aaaa",
-                        style: mylib.titleStyle3,
+                        style: mylib.titleStyleDuration,
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -228,7 +230,7 @@ class Gererlesmarkersrefuse extends State<GererLesMarkersRefuse> {
                   padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
                   child: Text(
                     "Traiter_markers_recu_admin_expression".tr(),
-                    style: mylib.blueText,
+                    style: mylib.titleStyle,
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -249,7 +251,7 @@ class Gererlesmarkersrefuse extends State<GererLesMarkersRefuse> {
                         child: const Align(
                           child: Text(
                             "1. Texte texte texte texte",
-                            style: mylib.titleStyle3,
+                            style: mylib.titleStyleDuration,
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -262,7 +264,7 @@ class Gererlesmarkersrefuse extends State<GererLesMarkersRefuse> {
                         child: const Align(
                           child: Text(
                             "2. Texte texte texte texte",
-                            style: mylib.titleStyle3,
+                            style: mylib.titleStyleDuration,
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -275,7 +277,7 @@ class Gererlesmarkersrefuse extends State<GererLesMarkersRefuse> {
                         child: const Align(
                           child: Text(
                             "3. Texte texte texte texte",
-                            style: mylib.titleStyle3,
+                            style: mylib.titleStyleDuration,
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -288,7 +290,7 @@ class Gererlesmarkersrefuse extends State<GererLesMarkersRefuse> {
                         child: const Align(
                           child: Text(
                             "4. Texte texte texte texte",
-                            style: mylib.titleStyle3,
+                            style: mylib.titleStyleDuration,
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -321,7 +323,7 @@ class Gererlesmarkersrefuse extends State<GererLesMarkersRefuse> {
                   padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
                   child: Text(
                     "Traiter_markers_recu_admin_age".tr(),
-                    style: mylib.blueText,
+                    style: mylib.titleStyle,
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -340,7 +342,7 @@ class Gererlesmarkersrefuse extends State<GererLesMarkersRefuse> {
                     child: Align(
                       child: Text(
                         "Traiter_markers_recu_admin_years".tr(),
-                        style: mylib.titleStyle3,
+                        style: mylib.titleStyleDuration,
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -371,7 +373,7 @@ class Gererlesmarkersrefuse extends State<GererLesMarkersRefuse> {
                   padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
                   child: Text(
                     "Traiter_markers_recu_admin_gender".tr(),
-                    style: mylib.blueText,
+                    style: mylib.titleStyle,
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -390,7 +392,7 @@ class Gererlesmarkersrefuse extends State<GererLesMarkersRefuse> {
                     child: const Align(
                       child: Text(
                         "TexteGenre",
-                        style: mylib.titleStyle3,
+                        style: mylib.titleStyleDuration,
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -421,7 +423,7 @@ class Gererlesmarkersrefuse extends State<GererLesMarkersRefuse> {
                   padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
                   child: Text(
                     "Traiter_markers_recu_admin_etude".tr(),
-                    style: mylib.blueText,
+                    style: mylib.titleStyle,
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -440,7 +442,7 @@ class Gererlesmarkersrefuse extends State<GererLesMarkersRefuse> {
                     child: const Align(
                       child: Text(
                         "Niveaux d'étude",
-                        style: mylib.titleStyle3,
+                        style: mylib.titleStyleDuration,
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -471,7 +473,7 @@ class Gererlesmarkersrefuse extends State<GererLesMarkersRefuse> {
                   padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
                   child: Text(
                     "Traiter_markers_recu_admin_activite".tr(),
-                    style: mylib.blueText,
+                    style: mylib.titleStyle,
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -490,7 +492,7 @@ class Gererlesmarkersrefuse extends State<GererLesMarkersRefuse> {
                     child: const Align(
                       child: Text(
                         "Activité",
-                        style: mylib.titleStyle3,
+                        style: mylib.titleStyleDuration,
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -510,6 +512,7 @@ class Gererlesmarkersrefuse extends State<GererLesMarkersRefuse> {
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
+        context.watch<LanguageController>();
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: mylib.BaseAppBar(
@@ -561,11 +564,11 @@ class Gererlesmarkersrefuse extends State<GererLesMarkersRefuse> {
             mylib.createNextButton1(
                         "gerer_markers_refuse_admin_btn_annuler_refus".tr(),
                         context,
-                        141,
+                        190,
                         41,
                         reponses,
                         MaterialPageRoute(
-                          builder: (BuildContext context) => const AccueilGererLesMarkers(),
+                          builder: (BuildContext context) => const HelloAdminPage(),
           settings: RouteSettings(arguments: reponses),
             ),
                         

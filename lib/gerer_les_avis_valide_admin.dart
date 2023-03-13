@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_map/plugin_api.dart';
+import 'package:provider/provider.dart';
 import 'accueil_gerer_les_avis.dart';
+import 'controller/language_contoller.dart';
 import 'end_page.dart';
+import 'hello_admin_page.dart';
 import 'mylib.dart' as mylib;
 
 class GererAvisValide extends StatefulWidget {
@@ -28,7 +31,7 @@ class Gereravisvalide extends State<GererAvisValide> {
           padding: const EdgeInsets.fromLTRB(1, 15, 1, 0),
           child: Text(
             "gerer_les_avis_valide_admin_nom_date".tr(),
-            style: mylib.blueText,
+            style: mylib.titleStyle,
             textAlign: TextAlign.center,
           ),
         ),
@@ -49,7 +52,7 @@ class Gereravisvalide extends State<GererAvisValide> {
               padding: const EdgeInsets.fromLTRB(1, 10, 1, 0),
               child: Text(
                 "gerer_les_avis_valide_admin_note".tr(),
-                style: mylib.blueText,
+                style: mylib.titleStyle,
                 textAlign: TextAlign.center,
               ),
             ),
@@ -73,7 +76,6 @@ class Gereravisvalide extends State<GererAvisValide> {
                   color: Colors.amber,
                 ),
                 onRatingUpdate: (rating) {
-                  print(rating);
                 },
               ),
             ),
@@ -100,7 +102,7 @@ class Gereravisvalide extends State<GererAvisValide> {
                   padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
                   child: Text(
                     "gerer_les_avis_valide_admin_place_already_visit".tr(),
-                    style: mylib.blueText,
+                    style: mylib.titleStyle,
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -119,7 +121,7 @@ class Gereravisvalide extends State<GererAvisValide> {
                     child: const Align(
                       child: Text(
                         "Oui/Non",
-                        style: mylib.titleStyle3,
+                        style: mylib.titleStyleDuration,
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -150,7 +152,7 @@ class Gereravisvalide extends State<GererAvisValide> {
                   padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
                   child: Text(
                     "gerer_les_avis_valide_admin_comment".tr(),
-                    style: mylib.blueText,
+                    style: mylib.titleStyle,
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -171,7 +173,7 @@ class Gereravisvalide extends State<GererAvisValide> {
                         child: const Align(
                           child: Text(
                             "Texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte",
-                            style: mylib.titleStyle3,
+                            style: mylib.titleStyleDuration,
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -204,7 +206,7 @@ class Gereravisvalide extends State<GererAvisValide> {
                   padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
                   child: Text(
                     "gerer_les_avis_valide_admin_tranche_age".tr(),
-                    style: mylib.blueText,
+                    style: mylib.titleStyle,
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -223,7 +225,7 @@ class Gereravisvalide extends State<GererAvisValide> {
                     child: Align(
                       child: Text(
                         "Traiter_markers_recu_admin_years".tr(),
-                        style: mylib.titleStyle3,
+                        style: mylib.titleStyleDuration,
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -272,6 +274,7 @@ class Gereravisvalide extends State<GererAvisValide> {
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
+        context.watch<LanguageController>();
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: mylib.BaseAppBar(
@@ -324,7 +327,7 @@ class Gereravisvalide extends State<GererAvisValide> {
                         41,
                         reponses,
                         MaterialPageRoute(
-                          builder: (BuildContext context) => const AccueilGererLesAvis(),
+                          builder: (BuildContext context) => const HelloAdminPage(),
           settings: RouteSettings(arguments: reponses),
             ),
                         
