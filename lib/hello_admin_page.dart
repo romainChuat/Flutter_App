@@ -1,8 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/recherche_page_admin.dart';
 import 'package:provider/provider.dart';
-import 'accueil_gerer_les_avis.dart';
-import 'accueil_gerer_les_markers.dart';
 import 'controller/language_contoller.dart';
 import 'mylib.dart' as mylib;
 
@@ -24,12 +23,12 @@ class Helloadminpage extends State<HelloAdminPage> {
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) => const AccueilGererLesMarkers(),
+              builder: (BuildContext context) => const Recherchepage(),
               settings: RouteSettings(arguments: reponses),
             ),
           );
         },
-         style: ElevatedButton.styleFrom(
+        style: ElevatedButton.styleFrom(
           shadowColor: Colors.grey.shade700,
           elevation: 20,
           shape: RoundedRectangleBorder(
@@ -45,7 +44,6 @@ class Helloadminpage extends State<HelloAdminPage> {
       ),
     );
   }
-  
 
   Widget gererLesAvis(reponses) {
     return SizedBox(
@@ -55,7 +53,7 @@ class Helloadminpage extends State<HelloAdminPage> {
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) => const AccueilGererLesAvis(),
+              builder: (BuildContext context) => const Recherchepage(),
               settings: RouteSettings(arguments: reponses),
             ),
           );
@@ -79,9 +77,9 @@ class Helloadminpage extends State<HelloAdminPage> {
 
   @override
   Widget build(BuildContext context) {
- Map<String, Object> reponses =
+    Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
-        context.watch<LanguageController>();
+    context.watch<LanguageController>();
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: mylib.BaseAppBar(
@@ -98,12 +96,11 @@ class Helloadminpage extends State<HelloAdminPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                                const SizedBox(height: 20),
-
+                const SizedBox(height: 20),
                 SizedBox(
                   width: 250,
-                    child: Text("${"hello_admin_page_title1".tr()} ${reponses["username"]}",
-
+                  child: Text(
+                      "${"hello_admin_page_title1".tr()} ${reponses["username"]}",
                       style: mylib.titleStyle2),
                 ),
                 const SizedBox(height: 20),

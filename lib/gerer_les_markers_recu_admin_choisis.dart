@@ -506,13 +506,11 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
     );
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
-        context.watch<LanguageController>();
+    context.watch<LanguageController>();
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: mylib.BaseAppBar(
@@ -565,30 +563,28 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
               children: <Widget>[
                 const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 50)),
                 mylib.createNextButton1(
-                        "btn_refuse".tr(),
-                        context,
-                        141,
-                        41,
-                        reponses,
-                        MaterialPageRoute(
-                          builder: (BuildContext context) => const AccueilGererLesMarkers(),
-          settings: RouteSettings(arguments: reponses),
-            ),
-                        
-                        ),
+                  "btn_refuse".tr(),
+                  context,
+                  141,
+                  41,
+                  reponses,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) => const HelloAdminPage(),
+                    settings: RouteSettings(arguments: reponses),
+                  ),
+                ),
                 const Padding(padding: EdgeInsets.fromLTRB(35, 0, 0, 0)),
                 mylib.createNextButton1(
-                        "btn_validate".tr(),
-                        context,
-                        141,
-                        41,
-                        reponses,
-                        MaterialPageRoute(
-                          builder: (BuildContext context) => const HelloAdminPage(),
-          settings: RouteSettings(arguments: reponses),
-            ),
-                        
-                        ),
+                  "btn_validate".tr(),
+                  context,
+                  141,
+                  41,
+                  reponses,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) => const HelloAdminPage(),
+                    settings: RouteSettings(arguments: reponses),
+                  ),
+                ),
               ],
             ),
           ],

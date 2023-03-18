@@ -1,4 +1,4 @@
-import 'package:easy_localization/easy_localization.dart';
+/*import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/recherche_page_admin.dart';
 import 'package:provider/provider.dart';
@@ -111,7 +111,7 @@ class AccueilGererLesavis extends State<AccueilGererLesAvis> {
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
-        context.watch<LanguageController>();
+    context.watch<LanguageController>();
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: mylib.BaseAppBar(
@@ -129,17 +129,17 @@ class AccueilGererLesavis extends State<AccueilGererLesAvis> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 const SizedBox(height: 10),
-                SizedBox(
+                /*  SizedBox(
                   width: 250,
                   child: Text('accueil_gerer_les_avis_title'.tr(),
                       style: mylib.titleStyle),
                 ),
                 const SizedBox(height: 50),
-                gererlesavisvalide(reponses),
+                // gererlesavisvalide(reponses),
                 const SizedBox(height: 20),
                 gererlesavisrecu(reponses),
                 const SizedBox(height: 20),
-                gererlesavisrefuse(reponses),
+                gererlesavisrefuse(reponses),*/
               ],
             ),
           ),
@@ -148,3 +148,4 @@ class AccueilGererLesavis extends State<AccueilGererLesAvis> {
     );
   }
 }
+*/
