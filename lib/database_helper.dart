@@ -23,11 +23,11 @@ class DatabaseHelper {
 
   //Retourne les informations de connexion
   PostgreSQLConnection connection() {
-    return PostgreSQLConnection(bdserver, 5432, bdname,
+    return PostgreSQLConnection(bdserver, 5432, "flutter",
         queryTimeoutInSeconds: 3600,
         timeoutInSeconds: 3600,
-        username: bduser,
-        password: bdpass);
+        username: 'katty',
+        password: 'admin');
   }
 
   //Ouvre une connexion à la BD dans une variable, puis la retourne
@@ -50,12 +50,11 @@ class DatabaseHelper {
     if (client == null) {
       return null;
     }
-    
+
     //Sinon, on retourne le résultat de la requête
     return await client.query(
         'INSERT INTO users (${data.keys.join(', ')}) VALUES (${data.keys.map((k) => '@$k').join(', ')}) RETURNING user_id',
-        substitutionValues: data); 
-    
+        substitutionValues: data);
   }
 
   //Retourne les informations d'un utilisateur présent dans la base de données

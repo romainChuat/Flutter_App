@@ -47,8 +47,7 @@ class Hellologinpage extends State<HelloLoginPage> {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (BuildContext context) => const DonnerAvisMarker(),
-                        settings: RouteSettings(arguments: reponses),
-
+              settings: RouteSettings(arguments: reponses),
             ),
           );
         },
@@ -102,7 +101,7 @@ class Hellologinpage extends State<HelloLoginPage> {
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
-        context.watch<LanguageController>();
+    context.watch<LanguageController>();
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: mylib.BaseAppBar(
@@ -119,13 +118,12 @@ class Hellologinpage extends State<HelloLoginPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                                const SizedBox(height: 30),
-
+                const SizedBox(height: 30),
                 SizedBox(
                   width: 250,
-                  child: Text("${"hello_admin_page_title1".tr()} ${reponses["username"]}",
+                  child: Text(
+                      "${"hello_admin_page_title1".tr()} ${reponses["username"]}",
                       style: mylib.titleStyle2),
-
                 ),
                 const SizedBox(height: 20),
                 SizedBox(
@@ -137,8 +135,7 @@ class Hellologinpage extends State<HelloLoginPage> {
                 buildAccessMap(reponses),
                 const SizedBox(height: 20),
                 buildAccessQuestionnaire(reponses),
-                                const SizedBox(height: 20),
-
+                const SizedBox(height: 20),
               ],
             ),
           ),
