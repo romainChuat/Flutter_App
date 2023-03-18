@@ -57,6 +57,7 @@ class DatabaseHelperLocal {
           )''');
     await db.execute("""CREATE TABLE reponses(
           rep_id INTEGER  PRIMARY KEY AUTOINCREMENT,
+          rep_titre CHARACTER(255),
           rep_user INTEGER NOT NULL,
           rep_expr TEXT NOT NULL,
           rep_date DATE FORMAT 'dd.mm.yyyy',

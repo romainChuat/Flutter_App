@@ -23,11 +23,11 @@ class DatabaseHelper {
 
   //Retourne les informations de connexion
   PostgreSQLConnection connection() {
-    return PostgreSQLConnection(bdserver, 5432, bdname,
+    return PostgreSQLConnection(bdserver, 5432, 'postgres',
         queryTimeoutInSeconds: 3600,
         timeoutInSeconds: 3600,
-        username: bduser,
-        password: bdpass);
+        username: 'romain',
+        password: 'admin');
   }
 
   //Ouvre une connexion à la BD dans une variable, puis la retourne
@@ -95,14 +95,14 @@ class DatabaseHelper {
 
   //Retourne des réponses présentes dans la base de données
   //Les réponses sont trouvées dans la BD grâce à une chaîne de caractères transmise en paramètres
-  Future<PostgreSQLResult?> queryReponses(String text) async {
+  Future<List?> queryReponses(String text) async {
     final client = await db;
     //Si la base de données n'est pas ouverte, la fonction retourne null
     if (client == null) {
       return null;
     }
     var results = await client.query(
-        'SELECT * FROM reponses WHERE date LIKE @value OR expressions LIKE @value OR genre LIKE @value OR etude LIKE @value OR activite LIKE @value OR titre LIKE @value',
+        'SELECT * FROM reponses WHERE rep_date::text LIKE @value OR rep_expr LIKE @value OR rep_genre LIKE @value OR rep_etude LIKE @value OR rep_activite LIKE @value OR rep_titre LIKE @value',
         substitutionValues: {"value": "%$text%"});
 
     //Si la requête n'a pas trouvé de réponses, on retourne null
@@ -111,17 +111,17 @@ class DatabaseHelper {
     }
 
     //Sinon on retourne le résultat
-    return results;
+    return results.toList();
   }
 
   //Retourne l'ensemble des réponses présentes dans la base de données
-  Future<PostgreSQLResult?> queryAllReponses() async {
+  Future<List?> queryAllReponses() async {
     final client = await db;
     //Si la base de données n'est pas ouverte, la fonction retourne null
     if (client == null) {
       return null;
     }
-    var results = await client.query('SELECT * FROM reponses');
+    var results = await client.query('SELECT * FROM reponses ');
 
     //Si la requête n'a pas trouvé de réponses, on retourne null
     if (results.isEmpty == true) {
@@ -129,7 +129,7 @@ class DatabaseHelper {
     }
 
     //Sinon on retourne le résultat
-    return results;
+    return results.toList();
   }
 
   //Insère un lieu dans la BD
@@ -167,4 +167,22 @@ class DatabaseHelper {
     //Sinon, on retourne le résultat de la requête
     return results;
   }
+    //Retourne les informations d'un lieu présent dans la BD
+  //Le lieu est trouvé grâce à ses coordonnées (longitude, latitude) transmises en paramètres
+  Future<PostgreSQLResult?> queryAllLieu() async {
+    final client = await db;
+    //Si la BD n'est pas ouverte, on retourne null
+    if (client == null) {
+      return null;
+    }
+    var results = await client.query('SELECT * FROM lieu ');
+    //Si le lieu n'est pas présent dans la BD, on retourne null
+    if (results.isEmpty == true) {
+      return null;
+    }
+
+    //Sinon, on retourne le résultat de la requête
+    return results;
+  }
+
 }

@@ -436,7 +436,7 @@ createNextButton1(String text, BuildContext context, double width,
             reponses['username'] = username;
 
 
-            Navigator.of(context).push
+            Navigator.of(context).push;
           },
           cancelBtnText: 'No',
           confirmBtnColor: const Color.fromARGB(255, 64, 224, 168),
@@ -515,10 +515,8 @@ createNextButton1(String text, BuildContext context, double width,
       print("enregistrement SERVER user impossible");
     }
     return usID;
-
   }
-  return usID;
-}
+
 
   Future<void> insertReponse(Map<String, Object> reponses) async {    
     print(reponses);
@@ -565,7 +563,7 @@ createNextButton1(String text, BuildContext context, double width,
       }
 
   }
-}
+
 
 createtButton(String text, BuildContext context, double width, double height) {
   return SizedBox(

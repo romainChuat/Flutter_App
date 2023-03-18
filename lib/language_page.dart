@@ -1,4 +1,3 @@
-import 'package:auto_reload/auto_reload.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/controller/language_contoller.dart';
@@ -79,7 +78,6 @@ class Languagepage extends State<LanguagePage> {
                         context.setLocale(const Locale('fr', 'FR'));
                         controller.onLanguageChanged();
                         Navigator.pop(context);
-                        AutoReloader;
                       },
                       child: SizedBox(
                         width: 230,

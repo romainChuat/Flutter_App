@@ -1,4 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_application_1/reponse.dart';
+import 'package:postgres/src/execution_context.dart';
 import 'package:provider/provider.dart';
 import 'controller/language_contoller.dart';
 import 'database_helper.dart';
@@ -14,10 +19,10 @@ class Recherchepage extends StatefulWidget {
 
 class _Recherchepage extends State<Recherchepage> {
   TextEditingController controllerSearch = TextEditingController();
-  List allresults = [];
+  var allresults ; 
   List resultsList = [];
 
-  @override
+  
   /*void initState() {
     super.initState();
     controllerSearch.addListener(getResult());
@@ -26,45 +31,109 @@ class _Recherchepage extends State<Recherchepage> {
   getResult() async {
     final DatabaseHelper dbHelper = DatabaseHelper.getInstance();
     WidgetsFlutterBinding.ensureInitialized();
-
+    print("getResult");
+    var results ;
     // si il y a des mot dans la barre recherche
     if (controllerSearch.text != "") {
-      var results = await dbHelper.queryReponses(controllerSearch.text);
-      var it = results!.iterator;
-      while (it.moveNext()) {
-        Map r = it.current.asMap();
-        print(r);
-      }
+      print("with text");
+      results = await dbHelper.queryReponses(controllerSearch.text);
+      allresults = results;
     } else {
-      var results = await dbHelper.queryAllReponses();
-      var it = results!.iterator;
-      while (it.moveNext()) {
-        Map r = it.current.asMap();
-      }
+      print("without text");
+      results = await dbHelper.queryAllReponses();      
+      allresults = results;
     }
-    /*setState(() {
-      resultsList = results;
-    });*/
   }
 
   @override
   Widget build(BuildContext context) {
-    getResult();
     context.watch<LanguageController>();
     return Scaffold(
-      body: Column(
-        children: [
-          const SizedBox(
-            height: 50,
-          ),
-          TextField(
-            controller: controllerSearch,
-            decoration: const InputDecoration(
-              prefixIcon: Icon(Icons.search),
+      body: AnnotatedRegion<SystemUiOverlayStyle>(
+        value: SystemUiOverlayStyle.light,
+        child: GestureDetector(
+            child: Stack(
+          children: <Widget>[
+            SizedBox(
+              height: double.infinity,
+              width: double.infinity,
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    const Padding(padding: EdgeInsets.fromLTRB(0, 55, 0, 0)),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(15.0),
+                      child: Container(
+                        width: 359,
+                        height: 600,
+                        padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+                        decoration: const BoxDecoration(
+                          color: Color.fromARGB(118, 13, 12, 32),
+                        ),
+                        child: SingleChildScrollView(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                          Container(
+                            padding: const EdgeInsets.fromLTRB(7, 0, 3, 0),
+                          ),
+                              ClipRRect(
+                                  borderRadius: BorderRadius.circular(15.0),
+                                  child: Container(
+                                    width: 325,
+                                    height: 60,
+                                    color: const Color.fromARGB(
+                                        255, 235, 233, 233),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        TextField(
+                                          controller: controllerSearch,
+                                          decoration: const InputDecoration(),
+                                          onTap: (() {
+                                            getResult();
+                                            print(allresults);
+                                          }),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+        SizedBox(height: 10,),
+        ClipRRect(
+          borderRadius: BorderRadius.circular(15.0),
+          child: Container(
+            width: 325,
+            height: 490,
+            color: const Color.fromARGB(255, 235, 233, 233),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              
+                
+              
             ),
           ),
-        ],
+        ),
+
+          
+                            ],
+          ),
+                          ),
+          ),
+        
       ),
+                  ],
+                    ),
+                ),
+                    ),
+                
+          ],
+            ),
+        ),
+      ),
+    
     );
   }
 }
