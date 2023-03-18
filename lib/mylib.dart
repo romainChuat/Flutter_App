@@ -433,7 +433,6 @@ createNextButton1(String text, BuildContext context, double width,
             await insertLieuLocal(reponses);
             await insertReponse(reponses);
             reponses['username'] = username;
-
             Navigator.of(context).push;
           },
           cancelBtnText: 'No',
@@ -500,23 +499,20 @@ Future<int?> insertUserLocal(Map<String, dynamic> user) async {
   } catch (e) {
     print("enregistrement LOCAL user impossible");
   }
-  return usID;
-}
-
-Future<PostgreSQLResult?> insertUserServer(Map<String, dynamic> user) async {
-  var usID;
-  user['nom'] = "${user['nom']}";
-  WidgetsFlutterBinding.ensureInitialized();
-  DatabaseHelper db = DatabaseHelper.getInstance();
-  try {
-    usID = await db.insertUser(user);
-    print(usID);
-    print("new user server");
-  } catch (e) {
-    print("enregistrement SERVER user impossible");
+  Future<PostgreSQLResult?> insertUserServer(Map<String, dynamic> user)async {
+    var usID;
+    user['nom'] = "${user['nom']}";
+    WidgetsFlutterBinding.ensureInitialized();
+    DatabaseHelper db = DatabaseHelper.getInstance();
+    try{
+      usID = await db.insertUser(user);
+      print(usID);
+      print("new user server");
+    } catch(e){
+      print("enregistrement SERVER user impossible");
+    }
+    return usID;
   }
-  return usID;
-}
 
 Future<void> insertReponse(Map<String, Object> reponses) async {
   print(reponses);
@@ -561,7 +557,7 @@ Future<void> insertReponseServer(Map<String, Object> reponses) async {
   } catch (e) {
     print("enregistrement reponse server impossible");
   }
-}
+
 
 createtButton(String text, BuildContext context, double width, double height) {
   return SizedBox(

@@ -1,14 +1,16 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/comment_page.dart';
-import 'package:flutter_application_1/database_helper_local.dart';
 import 'package:flutter_application_1/user_confirm_abandon_quiz.dart';
 import 'package:flutter_application_1/user_confirm_enregistrement.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map/plugin_api.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:postgres/postgres.dart';
 import 'package:provider/provider.dart';
+import 'package:quickalert/quickalert.dart';
 import 'controller/language_contoller.dart';
+import 'database_helper.dart';
 import 'mylib.dart' as mylib;
 
 class DonnerAvisMarker extends StatefulWidget {
@@ -22,7 +24,7 @@ class DonnerAvisMarker extends StatefulWidget {
 
 class Donneravismarker extends State<DonnerAvisMarker> {
   var marker = <Marker>[];
-  List<Map <String, dynamic>>? listMarker;
+  PostgreSQLResult? listMarker;
   double currentZoom = 13.0;
   MapController mapController = MapController();
   LatLng currentCenter = LatLng(47.235198, 6.021029);
@@ -36,46 +38,67 @@ class Donneravismarker extends State<DonnerAvisMarker> {
     currentZoom = currentZoom + 1;
     mapController.move(mapController.center, currentZoom);
   }
-  @override
+
+  /*@override
   void initState() {
     super.initState();
-    getMarkers();
-  }
-  Future<void> getMarkers() async {
+    getMarkers(reponses );
+  }*/
+
+  Future<void> getMarkers(Map<String, Object> reponses ) async {
     WidgetsFlutterBinding.ensureInitialized();
-    DatabaseHelperLocal db = DatabaseHelperLocal();
+    DatabaseHelper db = DatabaseHelper.getInstance();
     try {
-      listMarker = await db.queryAllRowsLieu();
-      print("marker "+ listMarker.toString());
+      listMarker = await db.queryAllLieu();
+      print("marker " + listMarker.toString());
     } catch (e) {
       print("erreur lors de la recuperation des markers");
     }
-    for(int i = 1; i<listMarker!.length; i++  ){
-      LatLng point = LatLng(listMarker![i]['lieux_lat'], listMarker![i]['lieux_long']);
+    for (var i = 0; i < listMarker!.length; i++) {
+      LatLng point = LatLng(listMarker![i][1], listMarker![i][2]);
       Marker new_marker = Marker(
-        width: 25.0,
-        height: 25.0,
-        point: point,
-        builder: (ctx) => IconButton(
-          icon: const Icon(
-            Icons.location_on,
-            color: Colors.redAccent,
-            size: 30,
-          ),
-          onPressed: () {
-          },
-        )
-      );
+          width: 25.0,
+          height: 25.0,
+          point: point,
+          builder: (ctx) => IconButton(
+                icon: const Icon(
+                  Icons.location_on,
+                  color: Colors.redAccent,
+                  size: 30,
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const CommentPage(),
+                      settings: RouteSettings(arguments: reponses),
+
+                    ),
+                    );
+                        /*QuickAlert.show(
+                            context: context,
+                            type: QuickAlertType.custom,
+                            barrierDismissible: false,
+                            confirmBtnText: 'Confirm',
+                            customAsset: 'assets/custom.gif',
+                            widget: Text("Donne un avis"),
+                        );*/
+
+                  print("donner un avis");
+                },
+              ));
       marker.add(new_marker);
     }
-
   }
-  
+
   @override
   Widget build(BuildContext context) {
+    
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
-context.watch<LanguageController>();
+    getMarkers(reponses);
+
+    context.watch<LanguageController>();
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: mylib.BaseAppBar(appBar: AppBar()),
@@ -129,7 +152,8 @@ context.watch<LanguageController>();
                                     bottom: 10,
                                     left: 10,
                                     child: Column(
-                                        mainAxisAlignment:MainAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: [
                                           SizedBox(
                                             width: 40,
@@ -139,10 +163,13 @@ context.watch<LanguageController>();
                                                 _zoomIn();
                                               },
                                               style: ButtonStyle(
-                                                shape:MaterialStateProperty.all<RoundedRectangleBorder>(
+                                                shape:
+                                                    MaterialStateProperty.all<
+                                                        RoundedRectangleBorder>(
                                                   const RoundedRectangleBorder(
-                                                    borderRadius:BorderRadius.only(topLeft: Radius
-                                                  
+                                                    borderRadius:
+                                                        BorderRadius.only(
+                                                            topLeft: Radius
                                                                 .circular(10),
                                                             topRight:
                                                                 Radius.circular(
@@ -200,16 +227,12 @@ context.watch<LanguageController>();
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    if(reponses['mdp'] == true)
-                    mylib.createQuitButton(
-                        context, 141, 41, 
-                         confirmationEnregistrement(), reponses)
-                    else 
-                    mylib.createQuitButton(
-                        context, 141, 41, 
-                         confirmationAbandon(), reponses),
-                         
-
+                    if (reponses['mdp'] == true)
+                      mylib.createQuitButton(context, 141, 41,
+                          confirmationEnregistrement(), reponses)
+                    else
+                      mylib.createQuitButton(
+                          context, 141, 41, confirmationAbandon(), reponses),
                     mylib.createNextButton(
                       "btn_next".tr(),
                       context,

@@ -1,5 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_application_1/reponse.dart';
+import 'package:postgres/src/execution_context.dart';
 import 'package:provider/provider.dart';
 import 'controller/language_contoller.dart';
 import 'database_helper.dart';
@@ -18,11 +22,11 @@ class Recherchepage extends StatefulWidget {
 
 class _Recherchepage extends State<Recherchepage> {
   TextEditingController controllerSearch = TextEditingController();
-  List allresults = [];
+  var allresults ; 
   List resultsList = [];
   SampleItem? selectedMenu;
 
-  @override
+  
   /*void initState() {
     super.initState();
     controllerSearch.addListener(getResult());
@@ -31,32 +35,24 @@ class _Recherchepage extends State<Recherchepage> {
   getResult() async {
     final DatabaseHelper dbHelper = DatabaseHelper.getInstance();
     WidgetsFlutterBinding.ensureInitialized();
-
+    print("getResult");
+    var results ;
     // si il y a des mot dans la barre recherche
     if (controllerSearch.text != "") {
-      var results = await dbHelper.queryReponses(controllerSearch.text);
-      var it = results!.iterator;
-      while (it.moveNext()) {
-        Map r = it.current.asMap();
-        print(r);
-      }
+      print("with text");
+      results = await dbHelper.queryReponses(controllerSearch.text);
+      allresults = results;
     } else {
-      var results = await dbHelper.queryAllReponses();
-      var it = results!.iterator;
-      while (it.moveNext()) {
-        Map r = it.current.asMap();
-      }
+      print("without text");
+      results = await dbHelper.queryAllReponses();      
+      allresults = results;
     }
-    /*setState(() {
-      resultsList = results;
-    });*/
   }
 
   afficheFilter() {}
 
   @override
   Widget build(BuildContext context) {
-    getResult();
     context.watch<LanguageController>();
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -214,6 +210,7 @@ class _Recherchepage extends State<Recherchepage> {
 
         //),
       ),
+    
     );
   }
 }
