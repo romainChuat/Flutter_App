@@ -36,17 +36,17 @@ class Connexion1 extends State<Connexion> {
       setState(() {
         _showErrorMessage = true;
       });
-    } else {  
-      Map<String,dynamic> user = new Map();
+    } else {
+      Map<String, dynamic> user = new Map();
       user['nom'] = reponses['username'].toString();
       var userID = await mylib.insertUserLocal(user);
       reponses['rep_userID'] = userID!;
       bool result = await InternetConnectionChecker().hasConnection;
-      if(result){
+      if (result) {
         var usIDServer;
         usIDServer = await mylib.insertUserServer(user);
         //le resultat retourner est un tableau 2d
-        reponses['rep_userIDServer'] = usIDServer[0][0];  
+        reponses['rep_userIDServer'] = usIDServer[0][0];
         print(reponses);
       }
       Navigator.of(context).push(
@@ -104,7 +104,7 @@ class Connexion1 extends State<Connexion> {
                   Icons.account_circle_sharp,
                   color: Color.fromARGB(255, 13, 12, 32),
                 ),
-                hintText: "connexion_hintext_user_name",
+                hintText: "User name",
                 hintStyle: TextStyle(color: Colors.black38)),
           ),
         ),
@@ -208,7 +208,7 @@ class Connexion1 extends State<Connexion> {
     );
   }
 
-    Widget buildSignUpBtn() {
+  Widget buildSignUpBtn() {
     return Container(
       alignment: Alignment.centerRight,
       child: TextButton(
@@ -274,17 +274,17 @@ class Connexion1 extends State<Connexion> {
                               const SizedBox(height: 30),
                               buildLoginBtn(erreur),
                               Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      Text(
-                                        'creation_compte_account'.tr(),
-                                        style: const TextStyle(
-                                          color: Colors.black38,
-                                        ),
-                                      ),
-                                      buildSignUpBtn(),
-                                    ],
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Text(
+                                    'creation_compte_account'.tr(),
+                                    style: const TextStyle(
+                                      color: Colors.black38,
+                                    ),
                                   ),
+                                  buildSignUpBtn(),
+                                ],
+                              ),
                               const SizedBox(height: 60)
                             ],
                           ),

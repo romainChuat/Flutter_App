@@ -30,6 +30,7 @@ enum Niveau {
 class Etudepage extends State<EtudePage> {
   var niveau;
   TextEditingController textControler = TextEditingController();
+  bool _select = false;
 
   get text => null;
 
@@ -47,20 +48,13 @@ class Etudepage extends State<EtudePage> {
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
           child: Center(
             child: Column(
-              // alignment: Alignment.center,
-
-              // child: ListView(
-              //shrinkWrap: true,
-
               children: <Widget>[
-                // const Spacer(),
                 SizedBox(height: 40),
 
                 mylib.percentIndicator(context, 0.88),
                 const SizedBox(
                   height: 20,
                 ),
-                //const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
                 ClipRRect(
                   borderRadius: BorderRadius.circular(15.0),
                   child: Container(
@@ -96,6 +90,7 @@ class Etudepage extends State<EtudePage> {
                                 groupValue: niveau,
                                 onChanged: (value) {
                                   setState(() {
+                                    _select = false;
                                     niveau = Niveau.primaire;
                                     reponses['rep_etude'] =
                                         niveau.toString().split('.').last;
@@ -114,6 +109,7 @@ class Etudepage extends State<EtudePage> {
                                 groupValue: niveau,
                                 onChanged: (value) {
                                   setState(() {
+                                    _select = false;
                                     niveau = Niveau.premierCycle;
                                     reponses['rep_etude'] =
                                         niveau.toString().split('.').last;
@@ -132,6 +128,7 @@ class Etudepage extends State<EtudePage> {
                                 groupValue: niveau,
                                 onChanged: (value) {
                                   setState(() {
+                                    _select = false;
                                     niveau = Niveau.secondCycle;
                                     reponses['rep_etude'] =
                                         niveau.toString().split('.').last;
@@ -150,6 +147,7 @@ class Etudepage extends State<EtudePage> {
                                 groupValue: niveau,
                                 onChanged: (value) {
                                   setState(() {
+                                    _select = false;
                                     niveau = Niveau.sup;
                                     reponses['rep_etude'] =
                                         niveau.toString().split('.').last;
@@ -168,6 +166,7 @@ class Etudepage extends State<EtudePage> {
                                 groupValue: niveau,
                                 onChanged: (value) {
                                   setState(() {
+                                    _select = false;
                                     niveau = Niveau.bac3;
                                     reponses['rep_etude'] =
                                         niveau.toString().split('.').last;
@@ -186,6 +185,7 @@ class Etudepage extends State<EtudePage> {
                                 groupValue: niveau,
                                 onChanged: (value) {
                                   setState(() {
+                                    _select = false;
                                     niveau = Niveau.bac5;
                                     reponses['rep_etude'] =
                                         niveau.toString().split('.').last;
@@ -204,6 +204,8 @@ class Etudepage extends State<EtudePage> {
                                 groupValue: niveau,
                                 onChanged: (value) {
                                   setState(() {
+                                    _select = false;
+
                                     niveau = Niveau.doctorat;
                                     reponses['rep_etude'] =
                                         niveau.toString().split('.').last;
@@ -218,6 +220,7 @@ class Etudepage extends State<EtudePage> {
                                 activeColor:
                                     const Color.fromARGB(255, 13, 12, 32),
                                 title: TextField(
+                                  enabled: _select,
                                   style: mylib.simpleTextdark
                                       .apply(fontSizeDelta: 5),
                                   cursorColor:
@@ -252,6 +255,8 @@ class Etudepage extends State<EtudePage> {
                                 groupValue: niveau,
                                 onChanged: (value) {
                                   setState(() {
+                                    _select = true;
+                                    print(_select);
                                     niveau = Niveau.autre;
                                     print(niveau);
                                     //reponses['rep_etude'] = text.toString();
