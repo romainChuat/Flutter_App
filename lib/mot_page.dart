@@ -23,9 +23,9 @@ class Motpage extends State<MotPage> {
 
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
-        context.watch<LanguageController>();
+    context.watch<LanguageController>();
     return Scaffold(
-      resizeToAvoidBottomInset: false, 
+        resizeToAvoidBottomInset: false,
         extendBodyBehindAppBar: true,
         appBar: mylib.BaseAppBar(appBar: AppBar()),
         endDrawer: mylib.createMenu(context),
@@ -44,7 +44,6 @@ class Motpage extends State<MotPage> {
                   borderRadius: BorderRadius.circular(15.0),
                   child: Container(
                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
-
                     width: 336,
                     height: 355,
                     color: const Color.fromARGB(255, 235, 233, 233),
@@ -77,8 +76,6 @@ class Motpage extends State<MotPage> {
                               itemBuilder: (BuildContext context, int index) {
                                 return SizedBox(
                                     height: 38,
-                                    
-
                                     child: Material(
                                         elevation: 5,
                                         borderRadius: const BorderRadius.all(

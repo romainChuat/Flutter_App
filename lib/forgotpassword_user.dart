@@ -7,6 +7,8 @@ import 'package:provider/provider.dart';
 import 'connexion_admin.dart';
 import 'controller/language_contoller.dart';
 import 'database_helper.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart' ; 
 import 'mylib.dart' as mylib;
 
 class ForgotPasswordUser extends StatefulWidget {
@@ -26,6 +28,19 @@ class Forgotpassworduser extends State<ForgotPasswordUser> {
     setState(() {
       _showErrorMessage = false;
     });
+  }
+
+  void dispose(){
+    mailController.dispose();
+    super.dispose();
+  }
+
+  Future resetPassword() async {
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: mailController.text.trim());
+    } on FirebaseAuthException catch(e) {
+      print(e);
+    }
   }
 
   Widget buildTitle() {
@@ -111,6 +126,7 @@ class Forgotpassworduser extends State<ForgotPasswordUser> {
         height: 83,
         child: ElevatedButton(
           onPressed: () {
+            resetPassword();
             loginCorrect();
             if (exist == false) {
               setState(() {

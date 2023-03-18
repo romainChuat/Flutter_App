@@ -31,8 +31,7 @@ const TextStyle titleStyle = TextStyle(
 const TextStyle titleStyleMenu = TextStyle(
   fontSize: 25,
   fontFamily: 'Nunito',
-    color: Colors.white,
-
+  color: Colors.white,
   fontWeight: FontWeight.w400,
   letterSpacing: -1,
 );
@@ -407,14 +406,14 @@ createNextButton1(String text, BuildContext context, double width,
             reponses.remove('rep_userIDServer');
             reponses.remove('mail');
 
-            if(await InternetConnectionChecker().hasConnection){
+            if (await InternetConnectionChecker().hasConnection) {
               //insertion dans le server
               //if(reponses.containsKey('rep_userIDServer')){
-                
+
               //}else{
-                //WidgetsFlutterBinding.ensureInitialized();
-                //DatabaseHelper db = DatabaseHelper.getInstance();
-                /*if(reponses.containsKey('mail')){
+              //WidgetsFlutterBinding.ensureInitialized();
+              //DatabaseHelper db = DatabaseHelper.getInstance();
+              /*if(reponses.containsKey('mail')){
                   //userIDServer = query BY MAIL
                   // checker si inserer en server 
                 }else{
@@ -434,8 +433,6 @@ createNextButton1(String text, BuildContext context, double width,
             await insertLieuLocal(reponses);
             await insertReponse(reponses);
             reponses['username'] = username;
-
-
             Navigator.of(context).push;
           },
           cancelBtnText: 'No',
@@ -449,58 +446,58 @@ createNextButton1(String text, BuildContext context, double width,
     ),
   );
 }
-  Future<void> insertLieuLocal(Map<String,Object> reponses) async{
-    Map<String,Object> lieux = new Map();
-    var insert_lieuxID;
-    lieux['lieu_lat'] = reponses['lieu_lat']!;
-    lieux['lieu_long'] = reponses['lieu_long']!;
-    reponses.remove('lieu_lat');
-    reponses.remove('lieu_long');
-    print(lieux);
-    WidgetsFlutterBinding.ensureInitialized();
-    DatabaseHelperLocal db = DatabaseHelperLocal();
-    try {
-      insert_lieuxID = await db.insertLieu(lieux);
-      print("new lieux local");
-    } catch (e) {
-      print("enregistrement lieux impossible");
-    }
-    reponses['rep_lieu'] = insert_lieuxID;
-  }
-  Future<void> insertLieuServer(Map<String,Object> reponses) async{
-    Map<String,Object> lieux = new Map();
-    var insert_lieuxID;
-    lieux['lieu_lat'] = reponses['lieu_lat']!;
-    lieux['lieu_long'] = reponses['lieu_long']!;
-    reponses.remove('lieu_lat');
-    reponses.remove('lieu_long');
-    print(lieux);
-    WidgetsFlutterBinding.ensureInitialized();
-    DatabaseHelper db = DatabaseHelper.getInstance();
-    try {
-      insert_lieuxID = await db.insertLieu(lieux);
-      print("new lieux server");
-    } catch (e) {
-      print("enregistrement lieux server impossible");
-    }
-    reponses['rep_lieu'] = insert_lieuxID[0][0];
-    //return insert_lieuxID;
-  }
 
-  Future<int?> insertUserLocal(Map<String, dynamic> user)async {
-    var usID;
-    if(!user.containsKey('password')){
-      user['nom'] = "gest_${user['nom']}";
-    }
-    WidgetsFlutterBinding.ensureInitialized();
-    DatabaseHelperLocal db = DatabaseHelperLocal();
-    try{
-      usID = await db.insertUser(user);
-      print("new user local");
-    } catch(e){
-      print("enregistrement LOCAL user impossible");
-    }
-    return usID;
+Future<void> insertLieuLocal(Map<String, Object> reponses) async {
+  Map<String, Object> lieux = new Map();
+  var insert_lieuxID;
+  lieux['lieu_lat'] = reponses['lieu_lat']!;
+  lieux['lieu_long'] = reponses['lieu_long']!;
+  reponses.remove('lieu_lat');
+  reponses.remove('lieu_long');
+  print(lieux);
+  WidgetsFlutterBinding.ensureInitialized();
+  DatabaseHelperLocal db = DatabaseHelperLocal();
+  try {
+    insert_lieuxID = await db.insertLieu(lieux);
+    print("new lieux local");
+  } catch (e) {
+    print("enregistrement lieux impossible");
+  }
+  reponses['rep_lieu'] = insert_lieuxID;
+}
+
+Future<void> insertLieuServer(Map<String, Object> reponses) async {
+  Map<String, Object> lieux = new Map();
+  var insert_lieuxID;
+  lieux['lieu_lat'] = reponses['lieu_lat']!;
+  lieux['lieu_long'] = reponses['lieu_long']!;
+  reponses.remove('lieu_lat');
+  reponses.remove('lieu_long');
+  print(lieux);
+  WidgetsFlutterBinding.ensureInitialized();
+  DatabaseHelper db = DatabaseHelper.getInstance();
+  try {
+    insert_lieuxID = await db.insertLieu(lieux);
+    print("new lieux server");
+  } catch (e) {
+    print("enregistrement lieux server impossible");
+  }
+  reponses['rep_lieu'] = insert_lieuxID[0][0];
+  //return insert_lieuxID;
+}
+
+Future<int?> insertUserLocal(Map<String, dynamic> user) async {
+  var usID;
+  if (!user.containsKey('password')) {
+    user['nom'] = "gest_${user['nom']}";
+  }
+  WidgetsFlutterBinding.ensureInitialized();
+  DatabaseHelperLocal db = DatabaseHelperLocal();
+  try {
+    usID = await db.insertUser(user);
+    print("new user local");
+  } catch (e) {
+    print("enregistrement LOCAL user impossible");
   }
   Future<PostgreSQLResult?> insertUserServer(Map<String, dynamic> user)async {
     var usID;
@@ -517,30 +514,29 @@ createNextButton1(String text, BuildContext context, double width,
     return usID;
   }
 
-
-  Future<void> insertReponse(Map<String, Object> reponses) async {    
-    print(reponses);
-    Map<String,Object> data = reponses;
-    WidgetsFlutterBinding.ensureInitialized();
-    DatabaseHelperLocal db = DatabaseHelperLocal();
-    try {
-      await db.insertReponse(reponses);
-      print("new reponse");
-    } catch (e) {
-      print("enregistrement Local reponse impossible");
-    }
+Future<void> insertReponse(Map<String, Object> reponses) async {
+  print(reponses);
+  Map<String, Object> data = reponses;
+  WidgetsFlutterBinding.ensureInitialized();
+  DatabaseHelperLocal db = DatabaseHelperLocal();
+  try {
+    await db.insertReponse(reponses);
+    print("new reponse");
+  } catch (e) {
+    print("enregistrement Local reponse impossible");
   }
+}
 
-  Future<void> insertReponseServer(Map<String, Object> reponses) async {
-      // A FAIRE !!! RECUPERER LES REPONSE LOCAL NON INSERER DANS LE SERVER
-      //WidgetsFlutterBinding.ensureInitialized();
-      //DatabaseHelperLocal db = DatabaseHelperLocal();
-      //var res = await db.queryAllRowsReponse();
-      //final DatabaseHelper dbHelper = DatabaseHelper.getInstance();
-      //WidgetsFlutterBinding.ensureInitialized();
-      //get user ID
-      //dbHelper.queryUser(mail)
-      /*for (var i in res) {
+Future<void> insertReponseServer(Map<String, Object> reponses) async {
+  // A FAIRE !!! RECUPERER LES REPONSE LOCAL NON INSERER DANS LE SERVER
+  //WidgetsFlutterBinding.ensureInitialized();
+  //DatabaseHelperLocal db = DatabaseHelperLocal();
+  //var res = await db.queryAllRowsReponse();
+  //final DatabaseHelper dbHelper = DatabaseHelper.getInstance();
+  //WidgetsFlutterBinding.ensureInitialized();
+  //get user ID
+  //dbHelper.queryUser(mail)
+  /*for (var i in res) {
         try {
           print(i.toString());
           await dbHelper.insertReponses(i.toMap());
@@ -552,16 +548,14 @@ createNextButton1(String text, BuildContext context, double width,
         }
       }*/
 
-      final DatabaseHelper dbHelper = DatabaseHelper.getInstance();
-      WidgetsFlutterBinding.ensureInitialized();
-      print(reponses);
-      try{
-        await dbHelper.insertReponses(reponses);
-        print("reponse reponse server");
-      }catch(e){
-        print("enregistrement reponse server impossible");
-      }
-
+  final DatabaseHelper dbHelper = DatabaseHelper.getInstance();
+  WidgetsFlutterBinding.ensureInitialized();
+  print(reponses);
+  try {
+    await dbHelper.insertReponses(reponses);
+    print("reponse reponse server");
+  } catch (e) {
+    print("enregistrement reponse server impossible");
   }
 
 
