@@ -1,5 +1,8 @@
 library mylib;
 
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/language_page.dart';
@@ -526,6 +529,7 @@ Future<void> insertReponse(Map<String, Object> reponses) async {
     print("new reponse");
   } catch (e) {
     print("enregistrement Local reponse impossible");
+    print(e);
   }
 }
 
@@ -558,6 +562,7 @@ Future<void> insertReponseServer(Map<String, Object> reponses) async {
     print("reponse reponse server");
   } catch (e) {
     print("enregistrement reponse server impossible");
+    print(e);
   }
 }
 createtButton(String text, BuildContext context, double width, double height) {
@@ -706,4 +711,16 @@ createMenu(BuildContext context) {
   );
 }
 
-void setState(Null Function() param0) {}
+getImage(int userID) async{
+  final DatabaseHelper dbHelper = DatabaseHelper.getInstance();
+  WidgetsFlutterBinding.ensureInitialized();
+  String? image;
+  try{
+    image = await dbHelper.getImageUser(userID);
+  }catch(e){
+    print(e);
+    print("impossible de recuperer l'image");
+  }
+  print(image as String);
+  return image;
+}

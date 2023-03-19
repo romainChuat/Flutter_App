@@ -1,5 +1,9 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:flutter_map/plugin_api.dart';
@@ -20,6 +24,9 @@ class Consulterquestionnaireloginchoix
     extends State<ConsulterQuestionnaireLoginChoix> {
   final mapController = MapController();
   var marker = <Marker>[];
+  
+  String? imagePATH;
+
 
   Widget titleDate() {
     return ClipRRect(
@@ -119,6 +126,7 @@ class Consulterquestionnaireloginchoix
   }
 
   Widget photo() {
+    
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -162,6 +170,8 @@ class Consulterquestionnaireloginchoix
       ],
     );
   }
+
+
 
   Widget date() {
     return Column(
@@ -528,14 +538,24 @@ class Consulterquestionnaireloginchoix
       ),
     );
   }
-
+  Future<String?> getPath(int userID) async {
+    var image  = mylib.getImage(userID);
+    var imageByte = base64Decode(image.toString());
+    final tempDir = await Directory.systemTemp.createTemp();
+    final tempFile = File('${tempDir.path}/image.png');
+    await tempFile.writeAsBytes(imageByte);
+    imagePATH =  tempFile.path;
+    return imagePATH;
+  }
 
 
   @override
   Widget build(BuildContext context) {
+    
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
-        context.watch<LanguageController>();
+    context.watch<LanguageController>();
+    getPath(reponses["rep_userIDServer"] as int);
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: mylib.BaseAppBar(
