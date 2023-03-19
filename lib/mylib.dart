@@ -499,20 +499,22 @@ Future<int?> insertUserLocal(Map<String, dynamic> user) async {
   } catch (e) {
     print("enregistrement LOCAL user impossible");
   }
-  Future<PostgreSQLResult?> insertUserServer(Map<String, dynamic> user)async {
-    var usID;
-    user['nom'] = "${user['nom']}";
-    WidgetsFlutterBinding.ensureInitialized();
-    DatabaseHelper db = DatabaseHelper.getInstance();
-    try{
-      usID = await db.insertUser(user);
-      print(usID);
-      print("new user server");
-    } catch(e){
-      print("enregistrement SERVER user impossible");
-    }
-    return usID;
+}
+
+Future<PostgreSQLResult?> insertUserServer(Map<String, dynamic> user) async {
+  var usID;
+  user['nom'] = "${user['nom']}";
+  WidgetsFlutterBinding.ensureInitialized();
+  DatabaseHelper db = DatabaseHelper.getInstance();
+  try {
+    usID = await db.insertUser(user);
+    print(usID);
+    print("new user server");
+  } catch (e) {
+    print("enregistrement SERVER user impossible");
   }
+  return usID;
+}
 
 Future<void> insertReponse(Map<String, Object> reponses) async {
   print(reponses);
@@ -557,7 +559,7 @@ Future<void> insertReponseServer(Map<String, Object> reponses) async {
   } catch (e) {
     print("enregistrement reponse server impossible");
   }
-
+}
 
 createtButton(String text, BuildContext context, double width, double height) {
   return SizedBox(
@@ -704,5 +706,3 @@ createMenu(BuildContext context) {
     ),
   );
 }
-
-void setState(Null Function() param0) {}
