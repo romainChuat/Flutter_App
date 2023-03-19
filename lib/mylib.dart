@@ -560,6 +560,7 @@ Future<void> insertReponseServer(Map<String, Object> reponses) async {
     print("enregistrement reponse server impossible");
   }
 }
+
 createtButton(String text, BuildContext context, double width, double height) {
   return SizedBox(
     width: width,
@@ -705,5 +706,3 @@ createMenu(BuildContext context) {
     ),
   );
 }
-
-void setState(Null Function() param0) {}
