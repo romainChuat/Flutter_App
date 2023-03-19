@@ -405,6 +405,7 @@ createNextButton1(String text, BuildContext context, double width,
             reponses.remove('rep_userID');
             reponses.remove('rep_userIDServer');
             reponses.remove('mail');
+            reponses['rep_date_validation'] = DateFormat("dd/MM/yyyy").format(DateTime.now()).toString();
 
             if (await InternetConnectionChecker().hasConnection) {
               //insertion dans le server
@@ -499,23 +500,22 @@ Future<int?> insertUserLocal(Map<String, dynamic> user) async {
   } catch (e) {
     print("enregistrement LOCAL user impossible");
   }
-}
-
-Future<PostgreSQLResult?> insertUserServer(Map<String, dynamic> user) async {
-  var usID;
-  user['nom'] = "${user['nom']}";
-  WidgetsFlutterBinding.ensureInitialized();
-  DatabaseHelper db = DatabaseHelper.getInstance();
-  try {
-    usID = await db.insertUser(user);
-    print(usID);
-    print("new user server");
-  } catch (e) {
-    print("enregistrement SERVER user impossible");
-  }
   return usID;
 }
-
+Future<PostgreSQLResult?> insertUserServer(Map<String, dynamic> user)async {
+    var usID;
+    user['nom'] = "${user['nom']}";
+    WidgetsFlutterBinding.ensureInitialized();
+    DatabaseHelper db = DatabaseHelper.getInstance();
+    try{
+      usID = await db.insertUser(user);
+      print(usID);
+      print("new user server");
+    } catch(e){
+      print("enregistrement SERVER user impossible");
+    }
+    return usID;
+}
 Future<void> insertReponse(Map<String, Object> reponses) async {
   print(reponses);
   Map<String, Object> data = reponses;

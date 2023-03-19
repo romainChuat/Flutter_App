@@ -61,6 +61,7 @@ class DatabaseHelperLocal {
           rep_user INTEGER NOT NULL,
           rep_expr TEXT NOT NULL,
           rep_date DATE FORMAT 'dd.mm.yyyy',
+          rep_date_validation DATE FORMAT 'dd.mm.yyyy',
           rep_age INTEGER NOT NULL,
           rep_genre CHARACTER(15) NOT NULL,
           rep_etude CHARATER(30) NOT NULL,
