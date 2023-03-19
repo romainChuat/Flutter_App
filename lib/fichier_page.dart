@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -5,6 +8,7 @@ import 'package:flutter_application_1/date_page.dart';
 import 'package:flutter_application_1/start_page.dart';
 import 'package:flutter_application_1/user_confirm_abandon_quiz.dart';
 import 'package:flutter_application_1/user_confirm_enregistrement.dart';
+import 'package:image_to_byte/image_to_byte.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'dart:io' as io;
@@ -90,16 +94,14 @@ Spacer(),
 
                                   //padding: EdgeInsets.fromLTRB(10,0,110,0),
                                 ),
-                                onPressed: () {
-                                  var newPath = _getFromGallery();
-                                  final bytes =
-                                      io.File(newPath).readAsBytesSync();
-                                  Map<String, Object>? res = {};
-
-                                  reponses["Image"] = bytes;
-
-                                  //image = await picker.pickImage(source: ImageSource.gallery);
-                                  //setState((){ strPath = newPath; });
+                                onPressed: () async{
+                                  print("onpresses");
+                                  File? imageFile = await _getFromGallery();
+                                  print(imageFile.toString());
+                                  final imageBytes = await imageFile?.readAsBytes();
+                                  final imageBase64 = base64.encode(imageBytes!);
+                                  reponses["rep_img"] = imageBase64;
+                                  print(reponses);
                                 },
                                 child: Row(
                                   children: [
@@ -199,19 +201,15 @@ Spacer(),
   }
 
   /// Get from gallery
-  _getFromGallery() async {
-    var path = "";
-    PickedFile? pickedFile = await ImagePicker().getImage(
+  Future<File?> _getFromGallery() async {
+    var pickedFile = await ImagePicker().pickImage(
       source: ImageSource.gallery,
       maxWidth: 1800,
       maxHeight: 1800,
     );
     if (pickedFile != null) {
-      io.File imageFile = io.File(pickedFile.path);
-      path = imageFile.path;
-      print(imageFile);
+      return File(pickedFile.path);
     }
-    return path;
   }
 
   /// Get from gallery

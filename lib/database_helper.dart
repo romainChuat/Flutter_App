@@ -184,4 +184,21 @@ class DatabaseHelper {
     return results;
   }
 
+  Future<String?> getImageUser(int userID) async{
+    final client = await db;
+    //Si la BD n'est pas ouverte, on retourne null
+    if (client == null) {
+      return null;
+    }
+    var results = await client.query('SELECT rep_img FROM reponses WHERE rep_user = @aValue ',
+        substitutionValues: {"aValue": userID});
+    //Si le lieu n'est pas présent dans la BD, on retourne null
+    if (results.isEmpty == true) {
+      return null;
+    }
+
+    //Sinon, on retourne le résultat de la requête
+    return results[0][0];
+  }
+
 }
