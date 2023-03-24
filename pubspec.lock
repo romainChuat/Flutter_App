@@ -455,7 +455,8 @@ packages:
     dependency: "direct main"
     description:
       name: image_to_byte
-      url: "https://pub.dartlang.org"
+      sha256: bb715f70548433b6ae331b7b2288650c3c506c3cdbdfda0594b549028b3f36b9
+      url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
   internet_connection_checker:
