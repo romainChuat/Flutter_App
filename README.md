@@ -1,5 +1,7 @@
 # Bes'App
 
+## Présentation
+
 Bes'App est une application mobile crée par 3 étudiants Bisontins en 3ème année de Licence Informatique à l'UFR ST.
 Cette application permet aux utilisateurs de donner leur avis sur des lieux qu'ils ont visités dans la ville de Besançon (25).
 Ils peuvent poster des photos, écrire des avis ou encore répondre à des questionnaires.

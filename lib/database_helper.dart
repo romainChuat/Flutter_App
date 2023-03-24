@@ -23,10 +23,10 @@ class DatabaseHelper {
 
   //Retourne les informations de connexion
   PostgreSQLConnection connection() {
-    return PostgreSQLConnection(bdserver, 5432, "postgres",
+    return PostgreSQLConnection(bdserver, 5432, "flutter",
         queryTimeoutInSeconds: 3600,
         timeoutInSeconds: 3600,
-        username: 'romain',
+        username: 'katty',
         password: 'admin');
   }
 
@@ -101,7 +101,7 @@ class DatabaseHelper {
       return null;
     }
     var results = await client.query(
-        'SELECT * FROM reponses WHERE rep_date::text LIKE @value OR rep_expr LIKE @value OR rep_genre LIKE @value OR rep_etude LIKE @value OR rep_activite LIKE @value OR rep_titre LIKE @value',
+        'SELECT rep_titre, rep_date_validation FROM reponses WHERE rep_date::text LIKE @value OR rep_expr LIKE @value OR rep_genre LIKE @value OR rep_etude LIKE @value OR rep_activite LIKE @value OR rep_titre LIKE @value',
         substitutionValues: {"value": "%$text%"});
 
     //Si la requête n'a pas trouvé de réponses, on retourne null
@@ -120,7 +120,8 @@ class DatabaseHelper {
     if (client == null) {
       return null;
     }
-    var results = await client.query('SELECT * FROM reponses ');
+    var results = await client
+        .query('SELECT rep_titre, rep_date_validation  FROM reponses ');
 
     //Si la requête n'a pas trouvé de réponses, on retourne null
     if (results.isEmpty == true) {
@@ -184,7 +185,8 @@ class DatabaseHelper {
     //Sinon, on retourne le résultat de la requête
     return results;
   }
-    //Retourne les informations d'un lieu présent dans la BD
+
+  //Retourne les informations d'un lieu présent dans la BD
   //Le lieu est trouvé grâce à ses coordonnées (longitude, latitude) transmises en paramètres
   Future<PostgreSQLResult?> queryAllLieu() async {
     final client = await db;
@@ -202,13 +204,14 @@ class DatabaseHelper {
     return results;
   }
 
-  Future<String?> getImageUser(int userID) async{
+  Future<String?> getImageUser(int userID) async {
     final client = await db;
     //Si la BD n'est pas ouverte, on retourne null
     if (client == null) {
       return null;
     }
-    var results = await client.query('SELECT rep_img FROM reponses WHERE rep_user = @aValue ',
+    var results = await client.query(
+        'SELECT rep_img FROM reponses WHERE rep_user = @aValue ',
         substitutionValues: {"aValue": userID});
     //Si le lieu n'est pas présent dans la BD, on retourne null
     if (results.isEmpty == true) {
@@ -218,5 +221,4 @@ class DatabaseHelper {
     //Sinon, on retourne le résultat de la requête
     return results[0][0];
   }
-
 }
