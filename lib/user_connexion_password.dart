@@ -414,7 +414,10 @@ class Userconnexionpassword extends State<UserConnexionPassword> {
       idUser = map[0];
       reponses['rep_userIDServer'] = idUser;
 
+    }else{
+      print("pas de connexion internet");
     }
+
       WidgetsFlutterBinding.ensureInitialized();
       DatabaseHelperLocal dbHelper = DatabaseHelperLocal();
       print(mail);
@@ -431,6 +434,7 @@ class Userconnexionpassword extends State<UserConnexionPassword> {
       pseudo = res[0]["nom"].toString();
       reponses["rep_userID"] = res[0]['user_id'];
       reponses['mail'] = mail;
+      pass = res[0]["password"].toString();
   
     reponses["username"] = pseudo;
     print(reponses);
