@@ -8,7 +8,6 @@ import 'package:flutter_application_1/date_page.dart';
 import 'package:flutter_application_1/start_page.dart';
 import 'package:flutter_application_1/user_confirm_abandon_quiz.dart';
 import 'package:flutter_application_1/user_confirm_enregistrement.dart';
-import 'package:image_to_byte/image_to_byte.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'dart:io' as io;
@@ -45,11 +44,11 @@ class Fichierpage extends State<FichierPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-Spacer(),
-                               mylib.percentIndicator(context, 0.33),
-                               
-                          SizedBox(height: 20,),
-
+                Spacer(),
+                mylib.percentIndicator(context, 0.33),
+                SizedBox(
+                  height: 20,
+                ),
                 ClipRRect(
                   borderRadius: BorderRadius.circular(15.0),
                   child: Container(
@@ -94,12 +93,14 @@ Spacer(),
 
                                   //padding: EdgeInsets.fromLTRB(10,0,110,0),
                                 ),
-                                onPressed: () async{
+                                onPressed: () async {
                                   print("onpresses");
                                   File? imageFile = await _getFromGallery();
                                   print(imageFile.toString());
-                                  final imageBytes = await imageFile?.readAsBytes();
-                                  final imageBase64 = base64.encode(imageBytes!);
+                                  final imageBytes =
+                                      await imageFile?.readAsBytes();
+                                  final imageBase64 =
+                                      base64.encode(imageBytes!);
                                   reponses["rep_img"] = imageBase64;
                                   print(reponses);
                                 },
@@ -158,19 +159,18 @@ Spacer(),
                     ),
                   ),
                 ),
-                                          SizedBox(height: 20,),
-
+                SizedBox(
+                  height: 20,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    if(reponses['mdp'] == true)
-                    mylib.createQuitButton(
-                        context, 141, 41, 
-                         confirmationEnregistrement(), reponses)
-                    else 
-                    mylib.createQuitButton(
-                        context, 141, 41, 
-                         confirmationAbandon(), reponses),
+                    if (reponses['mdp'] == true)
+                      mylib.createQuitButton(context, 141, 41,
+                          confirmationEnregistrement(), reponses)
+                    else
+                      mylib.createQuitButton(
+                          context, 141, 41, confirmationAbandon(), reponses),
                     mylib.createNextButton(
                       "btn_next".tr(),
                       context,
@@ -185,15 +185,13 @@ Spacer(),
                 ),
                 Spacer(),
                 Align(
-                    alignment: Alignment.bottomRight,
-                    child: Text(
-                      "3/9",
-                      textAlign: TextAlign.right,
-                      style: mylib.titleStyleBasDePage,
-
-                    ),
+                  alignment: Alignment.bottomRight,
+                  child: Text(
+                    "3/9",
+                    textAlign: TextAlign.right,
+                    style: mylib.titleStyleBasDePage,
                   ),
-                
+                ),
               ],
             ),
           ),
