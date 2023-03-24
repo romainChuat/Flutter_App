@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -22,38 +23,125 @@ class Recherchepage extends StatefulWidget {
 
 class _Recherchepage extends State<Recherchepage> {
   TextEditingController controllerSearch = TextEditingController();
-  var allresults ; 
+  List allresults = [];
   List resultsList = [];
   SampleItem? selectedMenu;
+  late Future resultLoaded;
 
-  
-  /*void initState() {
+  void initState() {
     super.initState();
-    controllerSearch.addListener(getResult());
-  }*/
+    controllerSearch.addListener(onSearchChanged);
+    //refreshResults(allresults);
+  }
+
+  onSearchChanged() {
+    getResult();
+    // print("----------->");
+    // print(allresults);
+    // print(controllerSearch.text);
+    setState(() {});
+  }
+
+  @override
+  void dispose() {
+    controllerSearch.removeListener(onSearchChanged);
+    controllerSearch.dispose();
+    super.dispose();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    setState(() {
+      resultLoaded = getResult();
+    });
+  }
 
   getResult() async {
     final DatabaseHelper dbHelper = DatabaseHelper.getInstance();
     WidgetsFlutterBinding.ensureInitialized();
-    print("getResult");
-    var results ;
+    // print("getResult");
+    var results;
     // si il y a des mot dans la barre recherche
     if (controllerSearch.text != "") {
-      print("with text");
+      // print("with text");
       results = await dbHelper.queryReponses(controllerSearch.text);
-      allresults = results;
+      if (results != null) {
+        allresults = results;
+      }
     } else {
-      print("without text");
-      results = await dbHelper.queryAllReponses();      
+      // print("without text");
+      results = await dbHelper.queryAllReponses();
       allresults = results;
     }
+    // print("----------->");
+    // print(allresults);
+
+    return allresults;
   }
 
-  afficheFilter() {}
+  refreshResults() {
+    // print("-------0---->");
+    // print(allresults);
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(15.0),
+      child: Container(
+        width: 325,
+        height: 490,
+        color: const Color.fromARGB(255, 235, 233, 233),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Expanded(
+              child: allresults.isEmpty
+                  ? Center(child: Text('La liste est vide'))
+                  : ListView.builder(
+                      itemCount: allresults.length,
+                      itemBuilder: (context, index) {
+                        print(allresults[index]);
+                        return _listItem(context, allresults[index]);
+                      },
+                    ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  _listItem(context, _list) {
+    // print("ess");
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15.0),
+        color: Colors.blueGrey[100],
+      ),
+      padding: const EdgeInsets.all(10.0),
+      child: Column(children: [
+        Row(
+          children: [
+            Expanded(
+              // flex: 3, child: Text(_list[1].toString().substring(0, 10))),
+              flex: 3,
+              child: Row(
+                children: [
+                  Text(_list[1].toString()),
+                  IconButton(onPressed: () {}, icon: Icon(Icons.chevron_right)),
+                ],
+              ),
+            ),
+          ],
+        )
+      ]),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     context.watch<LanguageController>();
+    refreshResults();
+    //  print(allresults);
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: mylib.BaseAppBar(
@@ -174,7 +262,14 @@ class _Recherchepage extends State<Recherchepage> {
                                               ),
                                             ],
                                           ),
-                                        )),
+                                        ),
+                                        onTap: (() {
+                                          setState(() {
+                                            refreshResults();
+                                          });
+                                          // print("-------");
+                                          // print(allresults);
+                                        })),
                                   ],
                                 ),
                               ),
@@ -182,18 +277,7 @@ class _Recherchepage extends State<Recherchepage> {
                             SizedBox(
                               height: 10,
                             ),
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(15.0),
-                              child: Container(
-                                width: 325,
-                                height: 490,
-                                color: const Color.fromARGB(255, 235, 233, 233),
-                                child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                ),
-                              ),
-                            ),
+                            refreshResults(),
                           ],
                         ),
                       ),
@@ -210,7 +294,6 @@ class _Recherchepage extends State<Recherchepage> {
 
         //),
       ),
-    
     );
   }
 }
