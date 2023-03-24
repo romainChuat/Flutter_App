@@ -131,6 +131,24 @@ class DatabaseHelper {
     return results.toList();
   }
 
+  //Retourne l'ensemble des réponses présentes dans la base de données
+  Future<List?> queryReponsesUser(int usID) async {
+    final client = await db;
+    //Si la base de données n'est pas ouverte, la fonction retourne null
+    if (client == null) {
+      return null;
+    }
+    var results = await client.query('SELECT rep_titre, rep_date, rep_expr, rep_age, rep_genre, rep_etude, rep_activite, rep_lieu, rep_date_validation FROM reponses WHERE rep_user = @aValue ',
+        substitutionValues: {"aValue": usID});
+    //Si la requête n'a pas trouvé de réponses, on retourne null
+    if (results.isEmpty == true) {
+      return null;
+    }
+
+    //Sinon on retourne le résultat
+    return results.toList();
+  }
+
   //Insère un lieu dans la BD
   //Les informations sur le lieu sont transmis dans une map en paramètres
   Future<PostgreSQLResult?> insertLieu(Map<String, dynamic> data) async {

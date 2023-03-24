@@ -24,9 +24,14 @@ class Consulterquestionnaireloginchoix
     extends State<ConsulterQuestionnaireLoginChoix> {
   final mapController = MapController();
   var marker = <Marker>[];
-  
-  String? imagePATH;
 
+  var imagePATH;
+  var date_validation;
+  var titre;
+
+  int? userID;
+  
+  var date_photo;
 
   Widget titleDate() {
     return ClipRRect(
@@ -38,7 +43,9 @@ class Consulterquestionnaireloginchoix
         child: Container(
           padding: const EdgeInsets.fromLTRB(1, 15, 1, 0),
           child: Text(
-            "Traiter_markers_recu_admin_title".tr(),
+            titre.toString()+" "+date_validation.toString(),
+            //"Traiter_markers_recu_admin_title".tr(),
+
             style: mylib.titleStyle,
             textAlign: TextAlign.center,
           ),
@@ -48,85 +55,84 @@ class Consulterquestionnaireloginchoix
   }
 
   Widget map() {
-    return SizedBox(child: Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: <Widget>[
-        ClipRRect(
-          borderRadius: BorderRadius.circular(15.0),
-          child: Container(
-            width: 325,
-            height: 454,
-            color: const Color.fromARGB(255, 235, 233, 233),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
-                  padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
-                  child: Text(
-                    "Traiter_markers_recu_admin_localisation".tr(),
-                    style: mylib.titleStyle,
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-                const Divider(
-                  color: Colors.black,
-                  thickness: 1,
-                  indent: 20,
-                  endIndent: 20,
-                ),
-                SizedBox(
-                  width: 265,
-                  height: 378,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(15.0),
-                    child: FlutterMap(
-                      mapController: mapController,
-                      options: MapOptions(
-                        center: LatLng(47.235198, 6.021029),
-                        zoom: 14,
-                        onTap: (LatLng value) {
-                          marker.add(
-                            Marker(
-                              width: 25.0,
-                              height: 25.0,
-                              point: value,
-                              builder: (ctx) => IconButton(
-                                icon: const Icon(
-                                  Icons.location_on,
-                                  color: Colors.redAccent,
-                                  size: 30,
-                                ),
-                                onPressed: () {
-                                },
-                              ),
-                            ),
-                          );
-                          setState(() {});
-                        },
-                      ),
-                      layers: [
-                        TileLayerOptions(
-                          urlTemplate:
-                              "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-                        ),
-                        MarkerLayerOptions(
-                          markers: marker,
-                        ),
-                      ],
+    return SizedBox(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          ClipRRect(
+            borderRadius: BorderRadius.circular(15.0),
+            child: Container(
+              width: 325,
+              height: 454,
+              color: const Color.fromARGB(255, 235, 233, 233),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
+                    child: Text(
+                      "Traiter_markers_recu_admin_localisation".tr(),
+                      style: mylib.titleStyle,
+                      textAlign: TextAlign.center,
                     ),
                   ),
-                ),
-              ],
+                  const Divider(
+                    color: Colors.black,
+                    thickness: 1,
+                    indent: 20,
+                    endIndent: 20,
+                  ),
+                  SizedBox(
+                    width: 265,
+                    height: 378,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(15.0),
+                      child: FlutterMap(
+                        mapController: mapController,
+                        options: MapOptions(
+                          center: LatLng(47.235198, 6.021029),
+                          zoom: 14,
+                          onTap: (LatLng value) {
+                            marker.add(
+                              Marker(
+                                width: 25.0,
+                                height: 25.0,
+                                point: value,
+                                builder: (ctx) => IconButton(
+                                  icon: const Icon(
+                                    Icons.location_on,
+                                    color: Colors.redAccent,
+                                    size: 30,
+                                  ),
+                                  onPressed: () {},
+                                ),
+                              ),
+                            );
+                            //setState(() {});
+                          },
+                        ),
+                        layers: [
+                          TileLayerOptions(
+                            urlTemplate:
+                                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                          ),
+                          MarkerLayerOptions(
+                            markers: marker,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
-        ),
-      ],
-    ),
+        ],
+      ),
     );
   }
 
   Widget photo() {
-    
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -156,9 +162,9 @@ class Consulterquestionnaireloginchoix
                 Container(
                   width: 280,
                   height: 156,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage("images/photo_besancon.jpg"),
+                      image: AssetImage(imagePATH),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -170,8 +176,6 @@ class Consulterquestionnaireloginchoix
       ],
     );
   }
-
-
 
   Widget date() {
     return Column(
@@ -516,20 +520,19 @@ class Consulterquestionnaireloginchoix
     );
   }
 
- Widget btnModifier() {
+  Widget btnModifier() {
     return SizedBox(
       width: 141,
       height: 41,
       child: ElevatedButton(
-        onPressed: () {
-          
-        },
+        onPressed: () {},
         style: ElevatedButton.styleFrom(
-        foregroundColor: Colors.white,
-        side: const BorderSide(color: Colors.white, width: 1),
-        elevation: 15,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      ),
+          foregroundColor: Colors.white,
+          side: const BorderSide(color: Colors.white, width: 1),
+          elevation: 15,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        ),
         child: Text(
           "consulter_les_avis_login_choisis_modifier".tr(),
           style: mylib.titleStyle,
@@ -538,92 +541,124 @@ class Consulterquestionnaireloginchoix
       ),
     );
   }
-  Future<String?> getPath(int userID) async {
-    var image  = mylib.getImage(userID);
-    var imageByte = base64Decode(image.toString());
-    final tempDir = await Directory.systemTemp.createTemp();
-    final tempFile = File('${tempDir.path}/image.png');
-    await tempFile.writeAsBytes(imageByte);
-    imagePATH =  tempFile.path;
-    return imagePATH;
+
+  ///QUEL Questionnaire est recupere ??? !!!!
+  getReponse(int userID) async{
+    var data = await mylib.getReponses(userID);
+    titre = data[0].toString();
+    //date_validation = data[6].toString().substring(0,10);
+    date_photo = data[1].toString().substring(0,10);
+    print(data);
   }
 
 
+
+  getPath(var image) async {
+    //var image = await mylib.getImage(userID);
+    var imageByte = base64Decode(image!);
+    final tempDir = await Directory.systemTemp.createTemp();
+    final tempFile = File('${tempDir.path}/image.png');
+    await tempFile.writeAsBytes(imageByte);
+    //print("tempfile");
+    //print(tempFile.path);
+    imagePATH = tempFile.path;
+    return imagePATH;
+  }
+
   @override
   Widget build(BuildContext context) {
-    
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
+    //avec connexion internet
+    userID = reponses['rep_userIDServer'] as int;
     context.watch<LanguageController>();
-    getPath(reponses["rep_userIDServer"] as int);
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: mylib.BaseAppBar(
-        appBar: AppBar(),
-      ),
-      endDrawer: mylib.createMenu(context),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Padding(padding: EdgeInsets.fromLTRB(0, 55, 0, 0)),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(15.0),
-              child: Container(
-                width: 359,
-                height: 600,
-                color: const Color.fromARGB(118, 13, 12, 32),
-                        padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                      titleDate(),
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                      map(),
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                      photo(),
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                      date(),
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                      expression(),
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                      age(),
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                      genre(),
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                      niveauxEtude(),
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                      activiteExerce(),
-                    ],
-                  ),
+    return FutureBuilder<dynamic>(
+        future: getReponse(userID!),
+        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            // Affiche un widget pendant que la méthode getPath est en cours d'exécution
+            return CircularProgressIndicator();
+          } else {
+            // La méthode getPath est terminée, le snapshot contient le résultat (le chemin d'accès à l'image)
+            final imagePATH = snapshot.data;
+            print(imagePATH);
+            return Scaffold(
+                extendBodyBehindAppBar: true,
+                appBar: mylib.BaseAppBar(
+                  appBar: AppBar(),
                 ),
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 50)),
-                btnModifier(),
-                const Padding(padding: EdgeInsets.fromLTRB(35, 0, 0, 0)),
-                mylib.createNextButton1(
-                        "consulter_les_avis_login_choisis_supprimer".tr(),
-                        context,
-                        141,
-                        41,
-                        reponses,
-                        MaterialPageRoute(
-                          builder: (BuildContext context) => const HelloLoginPassword(),
-          settings: RouteSettings(arguments: reponses),
-            ),
-                        
+                endDrawer: mylib.createMenu(context),
+                body: Center(
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                      const Padding(padding: EdgeInsets.fromLTRB(0, 55, 0, 0)),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(15.0),
+                        child: Container(
+                          width: 359,
+                          height: 600,
+                          color: const Color.fromARGB(118, 13, 12, 32),
+                          padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+                          child: SingleChildScrollView(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                const Padding(
+                                    padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                                titleDate(),
+                                const Padding(
+                                    padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                                map(),
+                                const Padding(
+                                    padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                                photo(), // Passer le chemin d'accès à la fonction photo
+                                const Padding(
+                                    padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                                date(),
+                                const Padding(
+                                    padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                                expression(),
+                                const Padding(
+                                    padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                                age(),
+                                const Padding(
+                                    padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                                genre(),
+                                const Padding(
+                                    padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                                niveauxEtude(),
+                                const Padding(
+                                    padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                                activiteExerce(),
+                              ],
+                            ),
+                          ),
                         ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
+                      ),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            const Padding(
+                                padding: EdgeInsets.fromLTRB(0, 30, 0, 50)),
+                            btnModifier(),
+                            const Padding(
+                                padding: EdgeInsets.fromLTRB(35, 0, 0, 0)),
+                            mylib.createNextButton1(
+                              "consulter_les_avis_login_choisis_supprimer".tr(),
+                              context,
+                              141,
+                              41,
+                              reponses,
+                              MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    const HelloLoginPassword(),
+                                settings: RouteSettings(arguments: reponses),
+                              ),
+                            )
+                          ])
+                    ])));
+          }
+        });
   }
 }
