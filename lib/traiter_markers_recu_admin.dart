@@ -504,7 +504,35 @@ class Traitermarkersrecuadmin extends State<TraiterMarkersRecuAdmin> {
       ],
     );
   }
-
+  createCancelButton(reponses) {
+  return SizedBox(
+    width: 300,
+    height: 45,
+    child: ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        foregroundColor: Colors.white,
+        side: const BorderSide(color: Colors.white, width: 1),
+        elevation: 15,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      ),
+      onPressed: () {
+        print(reponses);
+        mylib.refuserReponses(reponses['rep_id']);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+                    builder: (BuildContext context) => const HelloAdminPage(),
+                    settings: RouteSettings(arguments: reponses),
+                  ),
+        );
+      },
+      child: Text(
+        "Traiter_markers_recu_admin_btn_annuler".tr(),
+        style: mylib.titleStyle,
+      ),
+    ),
+  );
+}
   @override
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
@@ -575,18 +603,7 @@ class Traitermarkersrecuadmin extends State<TraiterMarkersRecuAdmin> {
                       ),
                     ),
                     const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                    mylib.createNextButton1(
-                      "Traiter_markers_recu_admin_btn_annuler".tr(),
-                      context,
-                      220,
-                      41,
-                      reponses,
-                      MaterialPageRoute(
-                        builder: (BuildContext context) =>
-                            const HelloAdminPage(),
-                        settings: RouteSettings(arguments: reponses),
-                      ),
-                    ),
+                    createCancelButton(reponses)
                   ],
                 ),
               ),

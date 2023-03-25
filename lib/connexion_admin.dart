@@ -374,8 +374,8 @@ class Connexionadminn extends State<ConnexionAdminn> {
     }
     if (connected) {
       reponses['mpd'] = true;
-      reponses['username'] = res[2];
-      reponses['id'] = res[0];
+      reponses['username'] = res.first[2];
+      reponses['id'] = res.first[0];
     }
   }
 

@@ -504,6 +504,35 @@ class Gererlesmarkersrefuse extends State<GererLesMarkersRefuse> {
       ],
     );
   }
+  createCancelRefusButton(reponses) {
+  return SizedBox(
+    width: 300,
+    height: 45,
+    child: ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        foregroundColor: Colors.white,
+        side: const BorderSide(color: Colors.white, width: 1),
+        elevation: 15,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      ),
+      onPressed: () {
+        print(reponses);
+        mylib.validerReponses(reponses['rep_id']);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+                    builder: (BuildContext context) => const HelloAdminPage(),
+                    settings: RouteSettings(arguments: reponses),
+                  ),
+        );
+      },
+      child: Text(
+        "gerer_markers_refuse_admin_btn_annuler_refus".tr(),
+        style: mylib.titleStyle,
+      ),
+    ),
+  );
+}
 
   @override
   Widget build(BuildContext context) {
@@ -558,17 +587,7 @@ class Gererlesmarkersrefuse extends State<GererLesMarkersRefuse> {
               ),
             ),
             const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-            mylib.createNextButton1(
-              "gerer_markers_refuse_admin_btn_annuler_refus".tr(),
-              context,
-              190,
-              41,
-              reponses,
-              MaterialPageRoute(
-                builder: (BuildContext context) => const HelloAdminPage(),
-                settings: RouteSettings(arguments: reponses),
-              ),
-            ),
+            createCancelRefusButton(reponses)
           ],
         ),
       ),
