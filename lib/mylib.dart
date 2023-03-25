@@ -739,3 +739,29 @@ Future<List> getReponses(userID) async{
   print(res);
   return reponse[0]; ///// A REVOIR !!!!
 }
+Future<void> validerReponses(int rep_id) async{
+  final DatabaseHelper dbHelper = DatabaseHelper.getInstance();
+  WidgetsFlutterBinding.ensureInitialized();
+  var reponse;
+  print(rep_id);
+  print("valider");
+  try{
+    reponse = await dbHelper.setValider(int.parse(rep_id.toString()));
+  }catch(e){
+    print(e);
+    print("impossible de modifier la reponses");
+  }
+}
+Future<void> refuserReponses(int rep_id) async{
+  final DatabaseHelper dbHelper = DatabaseHelper.getInstance();
+  WidgetsFlutterBinding.ensureInitialized();
+  var reponse;
+  print(rep_id);
+  print("refuser");
+  try{
+    reponse = await dbHelper.setRefuser(int.parse(rep_id.toString()));
+  }catch(e){
+    print(e);
+    print("impossible de modifier la reponses");
+  }
+}

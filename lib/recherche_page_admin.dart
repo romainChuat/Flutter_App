@@ -4,10 +4,17 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/reponse.dart';
+import 'package:flutter_application_1/traiter_markers_recu_admin.dart';
 import 'package:postgres/src/execution_context.dart';
 import 'package:provider/provider.dart';
 import 'controller/language_contoller.dart';
 import 'database_helper.dart';
+import 'package:intl/intl.dart';
+import 'gerer_les_markers_recu_admin_choisis.dart';
+import 'gerer_markers_refuse_admin.dart';
+import 'mylib.dart' as mylib;
+
+enum SampleItem { itemOne, itemTwo, itemThree }
 
 class Recherchepage extends StatefulWidget {
   const Recherchepage({super.key});
@@ -75,6 +82,7 @@ class _Recherchepage extends State<Recherchepage> {
     // print(allresults);
 
     return allresults;
+  }
 
   refreshResults() {
     // print("-------0---->");
@@ -106,27 +114,78 @@ class _Recherchepage extends State<Recherchepage> {
   }
 
   _listItem(context, _list) {
+    DateTime date = DateTime.parse(_list[2].toString());
+    // Formatage de la date selon le format "dd/MM/yyyy"
+    String formattedDate = DateFormat('dd/MM/yyyy').format(date);
+    String title = _list[4].toString();
+    String username = _list[3].toString();
+    Map<String, Object> data = {};
+    data['rep_id'] = _list[0] as int;
+    data['rep_status'] = _list[5];
+
     // print("ess");
+
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
+      margin: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15.0),
         color: Colors.blueGrey[100],
       ),
-      padding: const EdgeInsets.all(10.0),
-      child: Column(children: [
+      padding: const EdgeInsets.all(3.0),
+      child: Column(
+        children: [
         Row(
           children: [
             Expanded(
-              // flex: 3, child: Text(_list[1].toString().substring(0, 10))),
-              flex: 3,
-              child: Row(
-                children: [
-                  Text(_list[1].toString()),
-                  IconButton(onPressed: () {}, icon: Icon(Icons.chevron_right)),
-                ],
-              ),
-            ),
+                // flex: 3, child: Text(_list[1].toString().substring(0, 10))),
+                flex: 3,
+                child: Column(
+                  children: [
+                    Padding(padding: EdgeInsets.all(2)),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(username),
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: Text(formattedDate),
+                        )
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(title, style: mylib.blueText2,),
+                        ),
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: IconButton(
+                              onPressed: () {
+                                var page;
+                                if(data['rep_status'].toString() == "non-traite"){
+                                  page = GererMarkersRecuAdmin();
+                                }
+                                if(data['rep_status'].toString() == "publie"){
+                                  page = TraiterMarkersRecuAdmin();
+                                }
+                                if(data['rep_status'].toString() == "refuse"){
+                                  page = GererLesMarkersRefuse();
+                                }
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (BuildContext context) => page,
+                                    settings: RouteSettings(arguments: data),
+                                  ),
+                                );
+                              },
+                              icon: const Icon(Icons.chevron_right, size: 30,)),
+                        ),
+                      ],
+                    ),
+                  ],
+                )),
           ],
         )
       ]),
@@ -215,6 +274,7 @@ class _Recherchepage extends State<Recherchepage> {
                                                   child: Text('Publié'),
                                                   onPressed: () {
                                                     print("tap");
+
                                                   },
                                                 ),
                                               ),
@@ -276,67 +336,19 @@ class _Recherchepage extends State<Recherchepage> {
                             refreshResults(),
                           ],
                         ),
-                        child: SingleChildScrollView(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                          Container(
-                            padding: const EdgeInsets.fromLTRB(7, 0, 3, 0),
-                          ),
-                              ClipRRect(
-                                  borderRadius: BorderRadius.circular(15.0),
-                                  child: Container(
-                                    width: 325,
-                                    height: 60,
-                                    color: const Color.fromARGB(
-                                        255, 235, 233, 233),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        TextField(
-                                          controller: controllerSearch,
-                                          decoration: const InputDecoration(),
-                                          onTap: (() async {
-                                            await getResult();
-                                            print(allresults);
-                                          }),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-        SizedBox(height: 10,),
-        ClipRRect(
-          borderRadius: BorderRadius.circular(15.0),
-          child: Container(
-            width: 325,
-            height: 490,
-            color: const Color.fromARGB(255, 235, 233, 233),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              
-                
-              
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
+
+          //),
+          // ],
         ),
 
-          
-                            ],
-          ),
-                          ),
-          ),
-        
-      ),
-                  ],
-                    ),
-                ),
-                    ),
-                
-          ],
-            ),
-        ),
+        //),
       ),
     );
   }
