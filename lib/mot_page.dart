@@ -63,12 +63,12 @@ class Motpage extends State<MotPage> {
                           indent: 20,
                           endIndent: 20,
                         ),
-                        const Padding(
-                            padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                        SizedBox(
-                          width: 263,
-                          height: 240,
-                          child: MediaQuery.removePadding(
+                        const Padding( padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                        Scrollbar( //facultatif : permet l'affichage d'une scrollbar
+                          child: SizedBox(
+                            width: 263,
+                            height: 240,
+                            child: MediaQuery.removePadding(
                             context: context,
                             removeTop: true,
                             child: ListView.separated(
@@ -137,6 +137,7 @@ class Motpage extends State<MotPage> {
                             ),
                           ),
                         ),
+                        )
                       ],
                     ),
                   ),

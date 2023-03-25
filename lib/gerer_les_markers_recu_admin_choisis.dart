@@ -577,6 +577,7 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
       ),
       endDrawer: mylib.createMenu(context),
       body: Center(
+        child: SingleChildScrollView( //facultatif : permet l'affichage d'une scrollbar
         child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -630,6 +631,7 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
             ),
           ],
         ),
+        )
         )
       ),
     );

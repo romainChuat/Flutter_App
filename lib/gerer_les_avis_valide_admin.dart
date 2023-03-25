@@ -284,6 +284,7 @@ class Gereravisvalide extends State<GererAvisValide> {
                 decoration: const BoxDecoration(
                   color: Color.fromARGB(118, 13, 12, 32),
                 ),
+                child: Scrollbar( //facultatif : permet l'affichage d'une scrollbar
                 child: SingleChildScrollView(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -301,6 +302,7 @@ class Gereravisvalide extends State<GererAvisValide> {
                     ],
                   ),
                 ),
+                )
               ),
             ),
             Row(

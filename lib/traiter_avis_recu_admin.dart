@@ -272,6 +272,8 @@ class Traiteravisrecu extends State<TraiterAvisRecu> {
                         decoration: const BoxDecoration(
                           color: Color.fromARGB(118, 13, 12, 32),
                         ),
+                child: SingleChildScrollView( //facultatif : permet l'affichage d'une scrollbar
+
                         child: SingleChildScrollView(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -294,6 +296,7 @@ class Traiteravisrecu extends State<TraiterAvisRecu> {
                             ],
                           ),
                         ),
+                        )  
                       ),
                     ),
                     const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),

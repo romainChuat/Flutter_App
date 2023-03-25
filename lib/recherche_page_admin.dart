@@ -248,16 +248,17 @@ class _Recherchepage extends State<Recherchepage> {
                       decoration: const BoxDecoration(
                         color: Color.fromARGB(118, 13, 12, 32),
                       ),
-                      child: SingleChildScrollView(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Container(
-                              padding: const EdgeInsets.fromLTRB(7, 0, 3, 0),
-                            ),
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(15.0),
-                              child: Container(
+                      child: Scrollbar( //facultatif : permet l'affichage d'une scrollbar
+                        child: SingleChildScrollView(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Container(
+                                padding: const EdgeInsets.fromLTRB(7, 0, 3, 0),
+                              ),
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(15.0),
+                                child: Container(
                                 width: 325,
                                 height: 60,
                                 color: const Color.fromARGB(255, 235, 233, 233),
@@ -370,9 +371,11 @@ class _Recherchepage extends State<Recherchepage> {
                               height: 10,
                             ),
                             refreshResults(),
+                            
                           ],
                         ),
                       ),
+                      )
                     ),
                   ),
                 ],

@@ -77,13 +77,12 @@ class Droitsauteur extends State<DroitsAuteur> {
                                       child: MediaQuery.removePadding(
                                     context: context,
                                     removeTop: true,
-                                    child: SingleChildScrollView(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          10, 10, 10, 10),
-                                      child: Text(
-                                        "droits_auteur_text".tr(),
-                                      ),
+                                    child: Scrollbar( //facultatif : permet l'affichage d'une scrollbar
+                                      child: SingleChildScrollView(
+                                        padding: const EdgeInsets.fromLTRB(  10, 10, 10, 10),
+                                        child: Text("droits_auteur_text".tr(),),
                                     ),
+                                    )
                                   )),
                                 ],
                               ),

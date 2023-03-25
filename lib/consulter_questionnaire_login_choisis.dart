@@ -603,6 +603,7 @@ class Consulterquestionnaireloginchoix
                           height: 600,
                           color: const Color.fromARGB(118, 13, 12, 32),
                           padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+                          child: Scrollbar(
                           child: SingleChildScrollView(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -637,6 +638,7 @@ class Consulterquestionnaireloginchoix
                               ],
                             ),
                           ),
+                          )
                         ),
                       ),
                       Row(
