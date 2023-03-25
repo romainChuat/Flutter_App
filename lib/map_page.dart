@@ -40,7 +40,7 @@ class Mappage extends State<MapPage> {
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
-context.watch<LanguageController>();
+    context.watch<LanguageController>();
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: mylib.BaseAppBar(appBar: AppBar()),
@@ -110,8 +110,7 @@ context.watch<LanguageController>();
                                                   color: Colors.redAccent,
                                                   size: 30,
                                                 ),
-                                                onPressed: () {
-                                                },
+                                                onPressed: () {},
                                               )));
                                       setState(() {});
                                     },
@@ -210,8 +209,8 @@ context.watch<LanguageController>();
                       mylib.createQuitButton(context, 141, 41,
                           const confirmationEnregistrement(), reponses)
                     else
-                      mylib.createQuitButton(
-                          context, 141, 41, const confirmationAbandon(), reponses),
+                      mylib.createQuitButton(context, 141, 41,
+                          const confirmationAbandon(), reponses),
                     mylib.createNextButton(
                       "btn_next".tr(),
                       context,

@@ -90,8 +90,7 @@ class Traitermarkersrecuadmin extends State<TraiterMarkersRecuAdmin> {
                                   color: Colors.redAccent,
                                   size: 30,
                                 ),
-                                onPressed: () {
-                                },
+                                onPressed: () {},
                               ),
                             ),
                           );
@@ -506,13 +505,11 @@ class Traitermarkersrecuadmin extends State<TraiterMarkersRecuAdmin> {
     );
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
-        context.watch<LanguageController>();
+    context.watch<LanguageController>();
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: mylib.BaseAppBar(
@@ -579,17 +576,17 @@ class Traitermarkersrecuadmin extends State<TraiterMarkersRecuAdmin> {
                     ),
                     const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
                     mylib.createNextButton1(
-                        "Traiter_markers_recu_admin_btn_annuler".tr(),
-                        context,
-                        220,
-                        41,
-                        reponses,
-                        MaterialPageRoute(
-                          builder: (BuildContext context) => const HelloAdminPage(),
-          settings: RouteSettings(arguments: reponses),
-            ),
-                        
-                        ),
+                      "Traiter_markers_recu_admin_btn_annuler".tr(),
+                      context,
+                      220,
+                      41,
+                      reponses,
+                      MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            const HelloAdminPage(),
+                        settings: RouteSettings(arguments: reponses),
+                      ),
+                    ),
                   ],
                 ),
               ),

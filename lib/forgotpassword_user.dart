@@ -1,5 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:mailer/mailer.dart';
+import 'package:mailer/smtp_server.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/user_choix_connexion.dart';
 import 'package:flutter_application_1/user_connexion_password.dart';
@@ -8,7 +10,8 @@ import 'connexion_admin.dart';
 import 'controller/language_contoller.dart';
 import 'database_helper.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_auth/firebase_auth.dart' ; 
+import 'package:firebase_auth/firebase_auth.dart';
+import 'dart:math';
 import 'mylib.dart' as mylib;
 
 class ForgotPasswordUser extends StatefulWidget {
@@ -19,7 +22,7 @@ class ForgotPasswordUser extends StatefulWidget {
 }
 
 class Forgotpassworduser extends State<ForgotPasswordUser> {
-  final mailController = TextEditingController();
+  /* final mailController = TextEditingController();
   bool isRememberMe = false;
   bool exist = false;
   bool _showErrorMessage = false;
@@ -30,17 +33,9 @@ class Forgotpassworduser extends State<ForgotPasswordUser> {
     });
   }
 
-  void dispose(){
+  void dispose() {
     mailController.dispose();
     super.dispose();
-  }
-
-  Future resetPassword() async {
-    try {
-      await FirebaseAuth.instance.sendPasswordResetEmail(email: mailController.text.trim());
-    } on FirebaseAuthException catch(e) {
-      print(e);
-    }
   }
 
   Widget buildTitle() {
@@ -126,7 +121,6 @@ class Forgotpassworduser extends State<ForgotPasswordUser> {
         height: 83,
         child: ElevatedButton(
           onPressed: () {
-            resetPassword();
             loginCorrect();
             if (exist == false) {
               setState(() {
@@ -275,8 +269,7 @@ class Forgotpassworduser extends State<ForgotPasswordUser> {
                                       color: Colors.black38,
                                     ),
                                   ),
-                                    const SizedBox(height: 30),
-
+                                  const SizedBox(height: 30),
                                   buildSignInBtn(),
                                 ],
                               ),
@@ -305,5 +298,82 @@ class Forgotpassworduser extends State<ForgotPasswordUser> {
     if (res != null) {
       exist = true;
     }
+  }
+}*/
+
+  final _formKey = GlobalKey<FormState>();
+  final _emailController = TextEditingController();
+
+  Future<void> sendPasswordResetEmail(
+      String recipientEmail, String resetLink) async {
+    print("--");
+    final smtpServer = gmail('btd.katty@gmail.com', 'Ljrc7n*K2*7btd**');
+    final message = Message()
+      ..from = Address('btd.katty@gmail.com', 'K Byy')
+      ..recipients.add('btd.katty@gmail.com')
+      ..subject = 'Password Reset Request'
+      ..html = '''
+        <h1>Reset Your Password</h1>
+        <p>Click the link below to reset your password:</p>
+        <a href="$resetLink">$resetLink</a>
+      ''';
+    try {
+      final sendReport = await send(message, smtpServer);
+      print(
+          'Password reset email sent to $recipientEmail: ${sendReport.toString()}');
+    } on MailerException catch (e) {
+      print('Password reset email not sent to $recipientEmail. $e');
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Réinitialisation de mot de passe'),
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(16),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              TextFormField(
+                controller: _emailController,
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(
+                  labelText: 'Adresse e-mail',
+                ),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Veuillez entrer votre adresse e-mail';
+                  }
+                  if (!value.contains('@')) {
+                    return 'Veuillez entrer une adresse e-mail valide';
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: 16),
+              TextButton(
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    sendPasswordResetEmail;
+                    print("envoie email");
+                  }
+                },
+                child: Text(
+                  'forgot_password_page_sign_in'.tr(),
+                  style: const TextStyle(
+                    color: Colors.black38,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

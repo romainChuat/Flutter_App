@@ -29,7 +29,7 @@ class Datepage extends State<DatePage> {
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
-        context.watch<LanguageController>();
+    context.watch<LanguageController>();
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: mylib.BaseAppBar(appBar: AppBar()),
@@ -85,7 +85,6 @@ class Datepage extends State<DatePage> {
                                     child: TextField(
                                       style: mylib.titleStyleDuration
                                           .apply(fontSizeDelta: 5),
-
                                       controller: dateInput,
                                       decoration: const InputDecoration(
                                           suffixIcon: Icon(
@@ -122,12 +121,11 @@ class Datepage extends State<DatePage> {
                                             //DateTime.now() - not to allow to choose before today.
                                             lastDate: DateTime(2100));
                                         if (pickedDate != null) {
-                                          
-                                        //pickedDate output format => 2021-03-10 00:00:00.000
+                                          //pickedDate output format => 2021-03-10 00:00:00.000
                                           String formattedDate =
                                               DateFormat('dd/MM/yyyy')
                                                   .format(pickedDate);
-                                         
+
                                           setState(() {
                                             dateInput.text =
                                                 formattedDate; //set output date to TextField value.
@@ -155,8 +153,8 @@ class Datepage extends State<DatePage> {
                       mylib.createQuitButton(context, 141, 41,
                           const confirmationEnregistrement(), reponses)
                     else
-                      mylib.createQuitButton(
-                          context, 141, 41, const confirmationAbandon(), reponses),
+                      mylib.createQuitButton(context, 141, 41,
+                          const confirmationAbandon(), reponses),
                     mylib.createNextButton(
                       "btn_next".tr(),
                       context,

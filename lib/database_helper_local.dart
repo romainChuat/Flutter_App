@@ -67,7 +67,7 @@ class DatabaseHelperLocal {
           rep_etude CHARATER(30) NOT NULL,
           rep_activite CHARACTER(40) NOT NULL,
           rep_lieu INTEGER NOT NULL,
-          rep_img TEXT NOT NULL,
+          rep_img TEXT NULL,
           CONSTRAINT fk_user FOREIGN KEY (rep_user) REFERENCES user(user_id),
           CONSTRAINT fk_lieux FOREIGN KEY (rep_lieu) REFERENCES lieu(lieu_id)
           )""");
@@ -171,9 +171,9 @@ class DatabaseHelperLocal {
   Future<List<Map>?> queryOneUser(String mail) async {
     final Database? db = await init();
     var res = await _db?.rawQuery("SELECT * FROM user WHERE mail='${mail}'");
-    if(res!.isEmpty){
+    if (res!.isEmpty) {
       return null;
-    }  
+    }
     return res;
   }
 

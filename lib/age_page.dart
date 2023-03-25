@@ -23,7 +23,7 @@ class Agepage extends State<AgePage> {
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
-context.watch<LanguageController>();
+    context.watch<LanguageController>();
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: mylib.BaseAppBar(appBar: AppBar()),
@@ -35,8 +35,10 @@ context.watch<LanguageController>();
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 const Spacer(),
-                               mylib.percentIndicator(context, 0.66),
- const SizedBox(height: 20,),
+                mylib.percentIndicator(context, 0.66),
+                const SizedBox(
+                  height: 20,
+                ),
                 ClipRRect(
                   borderRadius: BorderRadius.circular(15.0),
                   child: Container(
@@ -213,18 +215,18 @@ context.watch<LanguageController>();
                     ),
                   ),
                 ),
-                 const SizedBox(height: 20,),
+                const SizedBox(
+                  height: 20,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    if(reponses['mdp'] == true)
-                    mylib.createQuitButton(
-                        context, 141, 41, 
-                         const confirmationEnregistrement(), reponses)
-                    else 
-                    mylib.createQuitButton(
-                        context, 141, 41, 
-                         const confirmationAbandon(), reponses),
+                    if (reponses['mdp'] == true)
+                      mylib.createQuitButton(context, 141, 41,
+                          const confirmationEnregistrement(), reponses)
+                    else
+                      mylib.createQuitButton(context, 141, 41,
+                          const confirmationAbandon(), reponses),
                     mylib.createNextButton(
                       "btn_next".tr(),
                       context,
@@ -238,14 +240,12 @@ context.watch<LanguageController>();
                 ),
                 const Spacer(),
                 const Align(
-                    alignment: Alignment.bottomRight,
-                    child: Text(
-                      "6/9",
-                      textAlign: TextAlign.right,
-                      style: mylib.titleStyleBasDePage,
-
-                    ),
-                  
+                  alignment: Alignment.bottomRight,
+                  child: Text(
+                    "6/9",
+                    textAlign: TextAlign.right,
+                    style: mylib.titleStyleBasDePage,
+                  ),
                 ),
               ],
             ),

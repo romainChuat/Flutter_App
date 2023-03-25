@@ -24,7 +24,7 @@ class Commentpage extends State<CommentPage> {
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
-        context.watch<LanguageController>();
+    context.watch<LanguageController>();
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: mylib.BaseAppBar(appBar: AppBar()),
@@ -86,7 +86,8 @@ class Commentpage extends State<CommentPage> {
                                                     const Color.fromARGB(
                                                         255, 13, 12, 32),
                                                 title: Text("agePage_3-10".tr(),
-                                                    style: mylib.titleStyleDuration),
+                                                    style: mylib
+                                                        .titleStyleDuration),
                                                 groupValue: age,
                                                 onChanged: (value) {
                                                   setState(() {
@@ -101,7 +102,8 @@ class Commentpage extends State<CommentPage> {
                                               activeColor: const Color.fromARGB(
                                                   255, 13, 12, 32),
                                               title: Text("agePage_11-17".tr(),
-                                                  style: mylib.titleStyleDuration),
+                                                  style:
+                                                      mylib.titleStyleDuration),
                                               groupValue: age,
                                               onChanged: (value) {
                                                 setState(() {
@@ -117,7 +119,8 @@ class Commentpage extends State<CommentPage> {
                                               activeColor: const Color.fromARGB(
                                                   255, 13, 12, 32),
                                               title: Text("agePage_18-25".tr(),
-                                                  style: mylib.titleStyleDuration),
+                                                  style:
+                                                      mylib.titleStyleDuration),
                                               groupValue: age,
                                               onChanged: (value) {
                                                 setState(() {
@@ -133,7 +136,8 @@ class Commentpage extends State<CommentPage> {
                                               activeColor: const Color.fromARGB(
                                                   255, 13, 12, 32),
                                               title: Text("agePage_26-35".tr(),
-                                                  style: mylib.titleStyleDuration),
+                                                  style:
+                                                      mylib.titleStyleDuration),
                                               groupValue: age,
                                               onChanged: (value) {
                                                 setState(() {
@@ -149,7 +153,8 @@ class Commentpage extends State<CommentPage> {
                                               activeColor: const Color.fromARGB(
                                                   255, 13, 12, 32),
                                               title: Text("agePage_36-45".tr(),
-                                                  style: mylib.titleStyleDuration),
+                                                  style:
+                                                      mylib.titleStyleDuration),
                                               groupValue: age,
                                               onChanged: (value) {
                                                 setState(() {
@@ -165,7 +170,8 @@ class Commentpage extends State<CommentPage> {
                                               activeColor: const Color.fromARGB(
                                                   255, 13, 12, 32),
                                               title: Text("agePage_46-55".tr(),
-                                                  style: mylib.titleStyleDuration),
+                                                  style:
+                                                      mylib.titleStyleDuration),
                                               groupValue: age,
                                               onChanged: (value) {
                                                 setState(() {
@@ -181,7 +187,8 @@ class Commentpage extends State<CommentPage> {
                                               activeColor: const Color.fromARGB(
                                                   255, 13, 12, 32),
                                               title: Text("agePage_56-65".tr(),
-                                                  style: mylib.titleStyleDuration),
+                                                  style:
+                                                      mylib.titleStyleDuration),
                                               groupValue: age,
                                               onChanged: (value) {
                                                 setState(() {
@@ -197,7 +204,8 @@ class Commentpage extends State<CommentPage> {
                                               activeColor: const Color.fromARGB(
                                                   255, 13, 12, 32),
                                               title: Text("agePage_66-75".tr(),
-                                                  style: mylib.titleStyleDuration),
+                                                  style:
+                                                      mylib.titleStyleDuration),
                                               groupValue: age,
                                               onChanged: (value) {
                                                 setState(() {
@@ -213,7 +221,8 @@ class Commentpage extends State<CommentPage> {
                                               activeColor: const Color.fromARGB(
                                                   255, 13, 12, 32),
                                               title: Text("agePage_76".tr(),
-                                                  style: mylib.titleStyleDuration),
+                                                  style:
+                                                      mylib.titleStyleDuration),
                                               groupValue: age,
                                               onChanged: (value) {
                                                 setState(() {
@@ -325,8 +334,7 @@ class Commentpage extends State<CommentPage> {
                                             Icons.star,
                                             color: Colors.amber,
                                           ),
-                                          onRatingUpdate: (rating) {
-                                          },
+                                          onRatingUpdate: (rating) {},
                                         ),
                                       ),
                                     ],
@@ -391,41 +399,35 @@ class Commentpage extends State<CommentPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      if(reponses['mdp'] == true)
-                    mylib.createQuitButton(
-                        context, 141, 41, 
-                         const confirmationEnregistrement(), reponses)
-                    else 
-                    mylib.createQuitButton(
-                        context, 141, 41, 
-                         const confirmationAbandon(), reponses),
-                         
-
-
-                         
-                    if (reponses['mdp'] == true)
-                      mylib.createNextButton1("btn_next".tr(),
-                        context,
-                        141,
-                        41,
-                        reponses,
-                        MaterialPageRoute(
-                          
-              builder: (BuildContext context) => const HelloLoginPassword(),
-              settings: RouteSettings(arguments: reponses)
-            ))
-                    else
-                    mylib.createNextButton1("btn_next".tr(),
-                        context,
-                        141,
-                        41,
-                        reponses,
-                        MaterialPageRoute(
-                          
-              builder: (BuildContext context) => const HelloLoginPage(),
-              settings: RouteSettings(arguments: reponses)
-                      ),
-                    )
+                      if (reponses['mdp'] == true)
+                        mylib.createQuitButton(context, 141, 41,
+                            const confirmationEnregistrement(), reponses)
+                      else
+                        mylib.createQuitButton(context, 141, 41,
+                            const confirmationAbandon(), reponses),
+                      if (reponses['mdp'] == true)
+                        mylib.createNextButton1(
+                            "btn_next".tr(),
+                            context,
+                            141,
+                            41,
+                            reponses,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    const HelloLoginPassword(),
+                                settings: RouteSettings(arguments: reponses)))
+                      else
+                        mylib.createNextButton1(
+                          "btn_next".tr(),
+                          context,
+                          141,
+                          41,
+                          reponses,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  const HelloLoginPage(),
+                              settings: RouteSettings(arguments: reponses)),
+                        )
                     ],
                   )
                 ],
