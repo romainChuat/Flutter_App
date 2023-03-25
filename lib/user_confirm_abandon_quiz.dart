@@ -46,23 +46,23 @@ class _confirmationAbandon extends State<confirmationAbandon> {
       height: 49,
       child: ElevatedButton(
         onPressed: () {
-          if(reponses['mdp'] != true){
+          if (reponses['mdp'] != true) {
             Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (BuildContext context) => const HelloLoginPage(), 
-              settings: RouteSettings(arguments: reponses),
-            ),
-          );
-          }else{
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (BuildContext context) => const HelloLoginPassword(), 
-              settings: RouteSettings(arguments: reponses),
-            ),
-          );
-          };
+              MaterialPageRoute(
+                builder: (BuildContext context) => const HelloLoginPage(),
+                settings: RouteSettings(arguments: reponses),
+              ),
+            );
+          } else {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (BuildContext context) => const HelloLoginPassword(),
+                settings: RouteSettings(arguments: reponses),
+              ),
+            );
+          }
+          ;
         },
-
         style: ElevatedButton.styleFrom(
           shadowColor: Colors.grey.shade700,
           elevation: 20,
@@ -109,7 +109,7 @@ class _confirmationAbandon extends State<confirmationAbandon> {
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
-        context.watch<LanguageController>();
+    context.watch<LanguageController>();
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: mylib.BaseAppBar(

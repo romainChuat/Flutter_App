@@ -73,8 +73,7 @@ class Consulteravisloginchoisis extends State<ConsulterAvisLoginChoisis> {
                   Icons.star,
                   color: Colors.amber,
                 ),
-                onRatingUpdate: (rating) {
-                },
+                onRatingUpdate: (rating) {},
               ),
             ),
           ],
@@ -196,7 +195,7 @@ class Consulteravisloginchoisis extends State<ConsulterAvisLoginChoisis> {
           child: Container(
             width: 325,
             height: 140,
-                    color: const Color.fromARGB(255, 255, 255, 255),
+            color: const Color.fromARGB(255, 255, 255, 255),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -242,15 +241,14 @@ class Consulteravisloginchoisis extends State<ConsulterAvisLoginChoisis> {
       width: 141,
       height: 41,
       child: ElevatedButton(
-        onPressed: () {
-          
-        },
+        onPressed: () {},
         style: ElevatedButton.styleFrom(
-        foregroundColor: Colors.white,
-        side: const BorderSide(color: Colors.white, width: 1),
-        elevation: 15,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      ),
+          foregroundColor: Colors.white,
+          side: const BorderSide(color: Colors.white, width: 1),
+          elevation: 15,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        ),
         child: Text(
           "consulter_les_avis_login_choisis_modifier".tr(),
           style: mylib.titleStyle,
@@ -260,13 +258,11 @@ class Consulteravisloginchoisis extends State<ConsulterAvisLoginChoisis> {
     );
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
-        context.watch<LanguageController>();
+    context.watch<LanguageController>();
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: mylib.BaseAppBar(
@@ -283,9 +279,8 @@ class Consulteravisloginchoisis extends State<ConsulterAvisLoginChoisis> {
               child: Container(
                 width: 359,
                 height: 600,
-                                       color: const Color.fromARGB(118, 13, 12, 32),
-                        padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-
+                color: const Color.fromARGB(118, 13, 12, 32),
+                padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
                 child: SingleChildScrollView(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -312,17 +307,17 @@ class Consulteravisloginchoisis extends State<ConsulterAvisLoginChoisis> {
                 btnModifier(),
                 const Padding(padding: EdgeInsets.fromLTRB(35, 0, 0, 0)),
                 mylib.createNextButton1(
-                        "consulter_les_avis_login_choisis_supprimer".tr(),
-                        context,
-                        141,
-                        41,
-                        reponses,
-                        MaterialPageRoute(
-                          builder: (BuildContext context) => const HelloLoginPassword(),
-          settings: RouteSettings(arguments: reponses),
-            ),
-                        
-                        ),
+                  "consulter_les_avis_login_choisis_supprimer".tr(),
+                  context,
+                  141,
+                  41,
+                  reponses,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) =>
+                        const HelloLoginPassword(),
+                    settings: RouteSettings(arguments: reponses),
+                  ),
+                ),
               ],
             ),
           ],

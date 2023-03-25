@@ -12,7 +12,7 @@ class StartPage extends StatelessWidget {
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
-context.watch<LanguageController>();
+    context.watch<LanguageController>();
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: mylib.BaseAppBar(appBar: AppBar()),
@@ -38,7 +38,8 @@ context.watch<LanguageController>();
                             style: mylib.titleStyle),
                       ),
                       const Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 10)),
-                      Text("startPage_duration".tr(), style: mylib.titleStyleDuration),
+                      Text("startPage_duration".tr(),
+                          style: mylib.titleStyleDuration),
                     ],
                   ),
                 ),

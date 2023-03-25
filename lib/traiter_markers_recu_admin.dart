@@ -90,8 +90,7 @@ class Traitermarkersrecuadmin extends State<TraiterMarkersRecuAdmin> {
                                   color: Colors.redAccent,
                                   size: 30,
                                 ),
-                                onPressed: () {
-                                },
+                                onPressed: () {},
                               ),
                             ),
                           );
@@ -538,7 +537,7 @@ class Traitermarkersrecuadmin extends State<TraiterMarkersRecuAdmin> {
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
-        context.watch<LanguageController>();
+    context.watch<LanguageController>();
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: mylib.BaseAppBar(

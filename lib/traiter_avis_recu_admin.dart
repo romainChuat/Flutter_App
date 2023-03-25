@@ -239,13 +239,11 @@ class Traiteravisrecu extends State<TraiterAvisRecu> {
     );
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
-        context.watch<LanguageController>();
+    context.watch<LanguageController>();
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: mylib.BaseAppBar(
@@ -300,17 +298,17 @@ class Traiteravisrecu extends State<TraiterAvisRecu> {
                     ),
                     const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
                     mylib.createNextButton1(
-                        "Traiter_markers_recu_admin_btn_annuler".tr(),
-                        context,
-                        215,
-                        41,
-                        reponses,
-                        MaterialPageRoute(
-                          builder: (BuildContext context) => const HelloAdminPage(),
-          settings: RouteSettings(arguments: reponses),
-            ),
-                        
-                        ),
+                      "Traiter_markers_recu_admin_btn_annuler".tr(),
+                      context,
+                      215,
+                      41,
+                      reponses,
+                      MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            const HelloAdminPage(),
+                        settings: RouteSettings(arguments: reponses),
+                      ),
+                    ),
                   ],
                 ),
               ),

@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'connexion_admin.dart';
 import 'controller/language_contoller.dart';
 import 'hello_login_page.dart';
+import 'package:flutter_translate/flutter_translate.dart';
 import 'mylib.dart' as mylib;
 
 class Connexion extends StatefulWidget {
@@ -77,6 +78,7 @@ class Connexion1 extends State<Connexion> {
   }
 
   Widget builUserName() {
+    final TextEditingController _usernameController = TextEditingController();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
@@ -96,14 +98,16 @@ class Connexion1 extends State<Connexion> {
             onChanged: _handleInputChange,
             keyboardType: TextInputType.name,
             style: const TextStyle(color: Colors.black87),
-            decoration: const InputDecoration(
-                border: InputBorder.none,
-                prefixIcon: Icon(
-                  Icons.account_circle_sharp,
-                  color: Color.fromARGB(255, 13, 12, 32),
-                ),
-                hintText: "User name",
-                hintStyle: TextStyle(color: Colors.black38)),
+            controller: _usernameController,
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              prefixIcon: Icon(
+                Icons.account_circle_sharp,
+                color: Color.fromARGB(255, 13, 12, 32),
+              ),
+              hintText: 'User name',
+              hintStyle: const TextStyle(color: Colors.black38),
+            ),
           ),
         ),
       ],

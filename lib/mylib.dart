@@ -196,9 +196,9 @@ class BaseAppBar1 extends StatelessWidget implements PreferredSizeWidget {
           padding: const EdgeInsets.fromLTRB(60, 0, 25, 0),
           //      width: MediaQuery.of(context).size.width - 100,
           width: MediaQuery.of(context).size.width - 50,
-          animation: true,
+          //animation: true, àp laisser commenter si ajout de l'animation
           lineHeight: 20.0,
-          animationDuration: 2000,
+          //animationDuration: 2000,
           percent: 20.0,
           linearStrokeCap: LinearStrokeCap.roundAll,
           // progressColor: Colors.greenAccent,
@@ -247,9 +247,9 @@ percentIndicator(BuildContext context, double percentPage) {
     padding: const EdgeInsets.fromLTRB(60, 0, 25, 0),
     //      width: MediaQuery.of(context).size.width - 100,
     width: MediaQuery.of(context).size.width - 50,
-    animation: true,
+    //animation: true, // a laiksser si le souhait d'une animation
     lineHeight: 20.0,
-    animationDuration: 2000,
+    //animationDuration: 2000,
     percent: percentPage,
     linearStrokeCap: LinearStrokeCap.roundAll,
     // progressColor: Colors.greenAccent,
@@ -408,7 +408,8 @@ createNextButton1(String text, BuildContext context, double width,
             reponses.remove('rep_userID');
             reponses.remove('rep_userIDServer');
             reponses.remove('mail');
-            reponses['rep_date_validation'] = DateFormat("dd/MM/yyyy").format(DateTime.now()).toString();
+            reponses['rep_date_validation'] =
+                DateFormat("dd/MM/yyyy").format(DateTime.now()).toString();
 
             if (await InternetConnectionChecker().hasConnection) {
               //insertion dans le server
@@ -437,7 +438,7 @@ createNextButton1(String text, BuildContext context, double width,
             await insertLieuLocal(reponses);
             await insertReponse(reponses);
             reponses['username'] = username;
-            Navigator.of(context).push;
+            Navigator.of(context).push(page);
           },
           cancelBtnText: 'No',
           confirmBtnColor: const Color.fromARGB(255, 64, 224, 168),
@@ -505,20 +506,22 @@ Future<int?> insertUserLocal(Map<String, dynamic> user) async {
   }
   return usID;
 }
-Future<PostgreSQLResult?> insertUserServer(Map<String, dynamic> user)async {
-    var usID;
-    user['nom'] = "${user['nom']}";
-    WidgetsFlutterBinding.ensureInitialized();
-    DatabaseHelper db = DatabaseHelper.getInstance();
-    try{
-      usID = await db.insertUser(user);
-      print(usID);
-      print("new user server");
-    } catch(e){
-      print("enregistrement SERVER user impossible");
-    }
-    return usID;
+
+Future<PostgreSQLResult?> insertUserServer(Map<String, dynamic> user) async {
+  var usID;
+  user['nom'] = "${user['nom']}";
+  WidgetsFlutterBinding.ensureInitialized();
+  DatabaseHelper db = DatabaseHelper.getInstance();
+  try {
+    usID = await db.insertUser(user);
+    print(usID);
+    print("new user server");
+  } catch (e) {
+    print("enregistrement SERVER user impossible");
+  }
+  return usID;
 }
+
 Future<void> insertReponse(Map<String, Object> reponses) async {
   print(reponses);
   Map<String, Object> data = reponses;
@@ -711,13 +714,14 @@ createMenu(BuildContext context) {
     ),
   );
 }
+
 Future<String?> getImage(int userID) async{
   final DatabaseHelper dbHelper = DatabaseHelper.getInstance();
   WidgetsFlutterBinding.ensureInitialized();
   String? image;
-  try{
+  try {
     image = await dbHelper.getImageUser(userID);
-  }catch(e){
+  } catch (e) {
     print(e);
     print("impossible de recuperer l'image");
   }

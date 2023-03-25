@@ -519,13 +519,13 @@ class Creationcompte extends State<CreationCompte> {
       var res = await dbHelper.queryUser(mailController.text);
       if (res == null) {
         var userIDServer = await mylib.insertUserServer(u.toMap());
-        reponses['rep_userIDServer'] = userIDServer![0][0];  
+        reponses['rep_userIDServer'] = userIDServer![0][0];
         reponses['username'] = u.nom!;
       } else {
         print("mail existant server");
         return;
       }
-    }else{
+    } else {
       print("erreur de connexion internet");
     }
     //Insertion en Local
@@ -534,13 +534,13 @@ class Creationcompte extends State<CreationCompte> {
     print(mailController.text);
     var res = await dbLocal.queryOneUser(mailController.text.trim());
     print(res);
-    if(res == null){
+    if (res == null) {
       var res = await mylib.insertUserLocal(u.toMapLocal());
       reponses['rep_userID'] = res.toString();
       reponses['username'] = u.nom!;
-    }else{
+    } else {
       print("mail existant local");
-      return;    
+      return;
     }
     reponses['mail'];
     print(reponses);

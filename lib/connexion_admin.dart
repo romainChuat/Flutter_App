@@ -7,7 +7,6 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'controller/language_contoller.dart';
 import 'database_helper.dart';
-import 'forgot_password_page.dart';
 import 'hello_admin_page.dart';
 import 'mylib.dart' as mylib;
 
@@ -38,7 +37,8 @@ class Connexionadminn extends State<ConnexionAdminn> {
       reponses["email"] = input;
     });
   }
-   String string = 'Email';
+
+  String string = 'Email';
   Widget buildTitle() {
     return Container(
       width: 309,
@@ -134,11 +134,11 @@ class Connexionadminn extends State<ConnexionAdminn> {
       alignment: Alignment.centerRight,
       child: TextButton(
         onPressed: () => {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (BuildContext context) => const ForgotPasswordPage(),
-            ),
-          ),
+          // Navigator.of(context).push(
+          // MaterialPageRoute(
+          //builder: (BuildContext context) => const ForgotPasswordPage(),
+          // ),
+          //),
         }, // padding: EdgeInsets.only(right: 0),
         child: Text(
           'forgot_password_page_title'.tr(),
@@ -184,17 +184,17 @@ class Connexionadminn extends State<ConnexionAdminn> {
           onPressed: () async {
             await loginCorrect();
             //if (connected == true) {
-              mylib.adminConnect = true;
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (BuildContext context) => const HelloAdminPage(),
-                  settings: RouteSettings(arguments: reponses),
-                ),
-              );
-           // } else {
-              setState(() {
-                _showErrorMessage = true;
-              });
+            mylib.adminConnect = true;
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (BuildContext context) => const HelloAdminPage(),
+                settings: RouteSettings(arguments: reponses),
+              ),
+            );
+            // } else {
+            setState(() {
+              _showErrorMessage = true;
+            });
             //}
           },
           style: ElevatedButton.styleFrom(
@@ -366,20 +366,16 @@ class Connexionadminn extends State<ConnexionAdminn> {
     }
 
     var pass = res.first[3];
-    print("res :"+res.toString());
-
-
+    print("res :" + res.toString());
 
     final passSaisie = Crypt.sha256(password, salt: 'abcdefghijklmnop');
     if (passSaisie.toString() == pass.toString().trim()) {
       connected = true;
-
     }
-    if(connected){
+    if (connected) {
       reponses['mpd'] = true;
       reponses['username'] = res.first[2];
       reponses['id'] = res.first[0];
-
     }
   }
 
@@ -410,7 +406,6 @@ class Connexionadminn extends State<ConnexionAdminn> {
         mailController.text = email ?? "";
         passwordController.text = password ?? "";
       }
-    } catch (e) {
-    }
+    } catch (e) {}
   }
 }

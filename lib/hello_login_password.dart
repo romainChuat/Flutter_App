@@ -85,7 +85,7 @@ class Hellologinpassword extends State<HelloLoginPassword> {
             MaterialPageRoute(
               builder: (BuildContext context) =>
                   const ConsulterQuestionnaireLoginChoix(),
-                  settings: RouteSettings(arguments: reponses),
+              settings: RouteSettings(arguments: reponses),
             ),
           );
         },
@@ -116,7 +116,7 @@ class Hellologinpassword extends State<HelloLoginPassword> {
             MaterialPageRoute(
               builder: (BuildContext context) =>
                   const ConsulterAvisLoginChoisis(),
-                  settings: RouteSettings(arguments: reponses),
+              settings: RouteSettings(arguments: reponses),
             ),
           );
         },
@@ -141,7 +141,7 @@ class Hellologinpassword extends State<HelloLoginPassword> {
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
-        context.watch<LanguageController>();
+    context.watch<LanguageController>();
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: mylib.BaseAppBar(
@@ -158,10 +158,13 @@ class Hellologinpassword extends State<HelloLoginPassword> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                const SizedBox(height: 25,),
+                const SizedBox(
+                  height: 25,
+                ),
                 SizedBox(
                   width: 250,
-                  child: Text("${"hello_admin_page_title1".tr()} ${reponses["username"]}",
+                  child: Text(
+                      "${"hello_admin_page_title1".tr()} ${reponses["username"]}",
                       style: mylib.titleStyle2),
                 ),
                 const SizedBox(height: 40),

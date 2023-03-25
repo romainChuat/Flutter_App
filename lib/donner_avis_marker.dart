@@ -45,7 +45,7 @@ class Donneravismarker extends State<DonnerAvisMarker> {
     getMarkers(reponses );
   }*/
 
-  Future<void> getMarkers(Map<String, Object> reponses ) async {
+  Future<void> getMarkers(Map<String, Object> reponses) async {
     WidgetsFlutterBinding.ensureInitialized();
     DatabaseHelper db = DatabaseHelper.getInstance();
     try {
@@ -72,10 +72,9 @@ class Donneravismarker extends State<DonnerAvisMarker> {
                     MaterialPageRoute(
                       builder: (_) => const CommentPage(),
                       settings: RouteSettings(arguments: reponses),
-
                     ),
-                    );
-                        /*QuickAlert.show(
+                  );
+                  /*QuickAlert.show(
                             context: context,
                             type: QuickAlertType.custom,
                             barrierDismissible: false,
@@ -93,7 +92,6 @@ class Donneravismarker extends State<DonnerAvisMarker> {
 
   @override
   Widget build(BuildContext context) {
-    
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
     getMarkers(reponses);

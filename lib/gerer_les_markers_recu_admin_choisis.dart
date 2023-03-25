@@ -4,7 +4,6 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:flutter_map/plugin_api.dart';
 import 'package:provider/provider.dart';
-import 'accueil_gerer_les_markers.dart';
 import 'controller/language_contoller.dart';
 import 'hello_admin_page.dart';
 import 'mylib.dart' as mylib;

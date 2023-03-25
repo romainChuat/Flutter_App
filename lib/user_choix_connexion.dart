@@ -8,7 +8,6 @@ import 'controller/language_contoller.dart';
 import 'creation_compte.dart';
 import 'connexion.dart';
 import 'mylib.dart' as mylib;
-import 'nouveau_mdp.dart';
 
 class UserChoixConnexion extends StatefulWidget {
   const UserChoixConnexion({super.key});
