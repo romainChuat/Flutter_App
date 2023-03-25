@@ -1,19 +1,21 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/user_choix_connexion.dart';
 import 'package:provider/provider.dart';
 import 'controller/language_contoller.dart';
+import 'hello_login_page.dart';
+import 'hello_login_password.dart';
+import 'home_page.dart';
 import 'mylib.dart' as mylib;
 
-class ConfirmationDeconnexion extends StatefulWidget {
-  const ConfirmationDeconnexion({super.key});
+class confirmationAbandon extends StatefulWidget {
+  const confirmationAbandon({super.key});
 
   @override
-  State<ConfirmationDeconnexion> createState() => Confirmationdeconnexion();
+  State<confirmationAbandon> createState() => _confirmationAbandon();
 }
 
-class Confirmationdeconnexion extends State<ConfirmationDeconnexion> {
+class _confirmationAbandon extends State<confirmationAbandon> {
   bool darkmode = false;
   dynamic savedThemeMode;
 
@@ -26,6 +28,7 @@ class Confirmationdeconnexion extends State<ConfirmationDeconnexion> {
   Future getCurrentTheme() async {
     savedThemeMode = await AdaptiveTheme.getThemeMode();
     if (savedThemeMode.toString() == 'AdaptiveThemeMode.dark') {
+      print('mode sombre');
       setState(() {
         darkmode = true;
       });
@@ -33,20 +36,32 @@ class Confirmationdeconnexion extends State<ConfirmationDeconnexion> {
       setState(() {
         darkmode = false;
       });
+      print('mode clair');
     }
   }
 
-  Widget buildBtnYes() {
+  Widget buildBtnYes(reponses) {
     return SizedBox(
       width: 120,
       height: 49,
       child: ElevatedButton(
         onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (BuildContext context) => const UserChoixConnexion(),
-            ),
-          );
+          if (reponses['mdp'] != true) {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (BuildContext context) => const HelloLoginPage(),
+                settings: RouteSettings(arguments: reponses),
+              ),
+            );
+          } else {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (BuildContext context) => const HelloLoginPassword(),
+                settings: RouteSettings(arguments: reponses),
+              ),
+            );
+          }
+          ;
         },
         style: ElevatedButton.styleFrom(
           shadowColor: Colors.grey.shade700,
@@ -92,6 +107,8 @@ class Confirmationdeconnexion extends State<ConfirmationDeconnexion> {
 
   @override
   Widget build(BuildContext context) {
+    Map<String, Object> reponses =
+        ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
     context.watch<LanguageController>();
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -114,16 +131,14 @@ class Confirmationdeconnexion extends State<ConfirmationDeconnexion> {
                 ),
                 const SizedBox(height: 15),
                 SizedBox(
-                  child: Text('confirmation_deconnexion_title'.tr(),
+                  child: Text('user_confirmation_abandon_title'.tr(),
                       style: mylib.titleStyle),
                 ),
                 const SizedBox(height: 35),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    //const SizedBox(height: 5),
-                    buildBtnYes(),
-                    //  const SizedBox(height: ),
+                    buildBtnYes(reponses),
                     buildBtnNo(),
                     const SizedBox(height: 61),
                   ],

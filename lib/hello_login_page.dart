@@ -1,19 +1,20 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/user_choix_connexion.dart';
 import 'package:provider/provider.dart';
 import 'controller/language_contoller.dart';
+import 'donner_avis_marker.dart';
+import 'home_page.dart';
 import 'mylib.dart' as mylib;
 
-class ConfirmationDeconnexion extends StatefulWidget {
-  const ConfirmationDeconnexion({super.key});
+class HelloLoginPage extends StatefulWidget {
+  const HelloLoginPage({super.key});
 
   @override
-  State<ConfirmationDeconnexion> createState() => Confirmationdeconnexion();
+  State<HelloLoginPage> createState() => Hellologinpage();
 }
 
-class Confirmationdeconnexion extends State<ConfirmationDeconnexion> {
+class Hellologinpage extends State<HelloLoginPage> {
   bool darkmode = false;
   dynamic savedThemeMode;
 
@@ -33,18 +34,20 @@ class Confirmationdeconnexion extends State<ConfirmationDeconnexion> {
       setState(() {
         darkmode = false;
       });
+      print('mode clair');
     }
   }
 
-  Widget buildBtnYes() {
+  Widget buildAccessMap(reponses) {
     return SizedBox(
-      width: 120,
+      width: 286,
       height: 49,
       child: ElevatedButton(
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) => const UserChoixConnexion(),
+              builder: (BuildContext context) => const DonnerAvisMarker(),
+              settings: RouteSettings(arguments: reponses),
             ),
           );
         },
@@ -57,7 +60,7 @@ class Confirmationdeconnexion extends State<ConfirmationDeconnexion> {
           ),
         ),
         child: Text(
-          "btn_yes".tr(),
+          "hello_login_page_btn_acceder_map".tr(),
           style: mylib.titleStyle,
           textAlign: TextAlign.center,
         ),
@@ -65,13 +68,17 @@ class Confirmationdeconnexion extends State<ConfirmationDeconnexion> {
     );
   }
 
-  Widget buildBtnNo() {
+  Widget buildAccessQuestionnaire(Map<String, Object> reponses) {
     return SizedBox(
-      width: 120,
+      width: 286,
       height: 49,
       child: ElevatedButton(
         onPressed: () {
-          Navigator.pop(context);
+          Navigator.of(context).push(
+            MaterialPageRoute(
+                builder: (BuildContext context) => const MyHomePage(),
+                settings: RouteSettings(arguments: reponses)),
+          );
         },
         style: ElevatedButton.styleFrom(
           shadowColor: Colors.grey.shade700,
@@ -82,7 +89,7 @@ class Confirmationdeconnexion extends State<ConfirmationDeconnexion> {
           ),
         ),
         child: Text(
-          "btn_no".tr(),
+          "hello_login_page_btn_acceder_quiz".tr(),
           style: mylib.titleStyle,
           textAlign: TextAlign.center,
         ),
@@ -92,6 +99,8 @@ class Confirmationdeconnexion extends State<ConfirmationDeconnexion> {
 
   @override
   Widget build(BuildContext context) {
+    Map<String, Object> reponses =
+        ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
     context.watch<LanguageController>();
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -105,29 +114,28 @@ class Confirmationdeconnexion extends State<ConfirmationDeconnexion> {
           child: Container(
             color: const Color.fromARGB(255, 235, 233, 233),
             width: 309,
-            height: 200,
+            height: 372,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                const SizedBox(
-                  width: 250,
-                ),
-                const SizedBox(height: 15),
+                const SizedBox(height: 30),
                 SizedBox(
-                  child: Text('confirmation_deconnexion_title'.tr(),
+                  width: 250,
+                  child: Text(
+                      "${"hello_admin_page_title1".tr()} ${reponses["username"]}",
+                      style: mylib.titleStyle2),
+                ),
+                const SizedBox(height: 20),
+                SizedBox(
+                  width: 250,
+                  child: Text('hello_admin_page_title2'.tr(),
                       style: mylib.titleStyle),
                 ),
-                const SizedBox(height: 35),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    //const SizedBox(height: 5),
-                    buildBtnYes(),
-                    //  const SizedBox(height: ),
-                    buildBtnNo(),
-                    const SizedBox(height: 61),
-                  ],
-                ),
+                const SizedBox(height: 61),
+                buildAccessMap(reponses),
+                const SizedBox(height: 20),
+                buildAccessQuestionnaire(reponses),
+                const SizedBox(height: 20),
               ],
             ),
           ),

@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Utilisateur/Connexion/user_choix_connexion.dart';
+import 'package:flutter_application_1/user_choix_connexion.dart';
 import 'package:provider/provider.dart';
 import 'controller/language_contoller.dart';
 import 'darkmode.dart';
