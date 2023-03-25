@@ -1,50 +1,30 @@
-import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Utilisateur/Connexion/user_choix_connexion.dart';
+import 'package:flutter_application_1/Administrateur/recherche_page_admin.dart';
 import 'package:provider/provider.dart';
-import 'controller/language_contoller.dart';
-import 'Bibliotheque/mylib.dart' as mylib;
+import '../controller/language_contoller.dart';
+import '../Bibliotheque/mylib.dart' as mylib;
 
-class ConfirmationDeconnexion extends StatefulWidget {
-  const ConfirmationDeconnexion({super.key});
+class HelloAdminPage extends StatefulWidget {
+  const HelloAdminPage({super.key});
 
   @override
-  State<ConfirmationDeconnexion> createState() => Confirmationdeconnexion();
+  State<HelloAdminPage> createState() => Helloadminpage();
 }
 
-class Confirmationdeconnexion extends State<ConfirmationDeconnexion> {
-  bool darkmode = false;
-  dynamic savedThemeMode;
-
-  @override
-  void initState() {
-    super.initState();
-    getCurrentTheme();
-  }
-
-  Future getCurrentTheme() async {
-    savedThemeMode = await AdaptiveTheme.getThemeMode();
-    if (savedThemeMode.toString() == 'AdaptiveThemeMode.dark') {
-      setState(() {
-        darkmode = true;
-      });
-    } else {
-      setState(() {
-        darkmode = false;
-      });
-    }
-  }
-
-  Widget buildBtnYes() {
+class Helloadminpage extends State<HelloAdminPage> {
+  Widget gererLesMarkers() {
+    Map<String, Object> reponses =
+        ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
     return SizedBox(
-      width: 120,
+      width: 296,
       height: 49,
       child: ElevatedButton(
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) => const UserChoixConnexion(),
+              builder: (BuildContext context) => const Recherchepage(),
+              settings: RouteSettings(arguments: reponses),
             ),
           );
         },
@@ -57,7 +37,7 @@ class Confirmationdeconnexion extends State<ConfirmationDeconnexion> {
           ),
         ),
         child: Text(
-          "btn_yes".tr(),
+          "hello_admin_page_btn_gerer_markers".tr(),
           style: mylib.titleStyle,
           textAlign: TextAlign.center,
         ),
@@ -65,13 +45,18 @@ class Confirmationdeconnexion extends State<ConfirmationDeconnexion> {
     );
   }
 
-  Widget buildBtnNo() {
+  Widget gererLesAvis(reponses) {
     return SizedBox(
-      width: 120,
+      width: 296,
       height: 49,
       child: ElevatedButton(
         onPressed: () {
-          Navigator.pop(context);
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (BuildContext context) => const Recherchepage(),
+              settings: RouteSettings(arguments: reponses),
+            ),
+          );
         },
         style: ElevatedButton.styleFrom(
           shadowColor: Colors.grey.shade700,
@@ -82,7 +67,7 @@ class Confirmationdeconnexion extends State<ConfirmationDeconnexion> {
           ),
         ),
         child: Text(
-          "btn_no".tr(),
+          "hello_admin_page_btn_gerer_avis".tr(),
           style: mylib.titleStyle,
           textAlign: TextAlign.center,
         ),
@@ -92,6 +77,8 @@ class Confirmationdeconnexion extends State<ConfirmationDeconnexion> {
 
   @override
   Widget build(BuildContext context) {
+    Map<String, Object> reponses =
+        ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
     context.watch<LanguageController>();
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -105,29 +92,28 @@ class Confirmationdeconnexion extends State<ConfirmationDeconnexion> {
           child: Container(
             color: const Color.fromARGB(255, 235, 233, 233),
             width: 309,
-            height: 200,
+            height: 372,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                const SizedBox(
-                  width: 250,
-                ),
-                const SizedBox(height: 15),
+                const SizedBox(height: 20),
                 SizedBox(
-                  child: Text('confirmation_deconnexion_title'.tr(),
+                  width: 250,
+                  child: Text(
+                      "${"hello_admin_page_title1".tr()} ${reponses["username"]}",
+                      style: mylib.titleStyle2),
+                ),
+                const SizedBox(height: 20),
+                SizedBox(
+                  width: 250,
+                  child: Text('hello_admin_page_title2'.tr(),
                       style: mylib.titleStyle),
                 ),
-                const SizedBox(height: 35),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    //const SizedBox(height: 5),
-                    buildBtnYes(),
-                    //  const SizedBox(height: ),
-                    buildBtnNo(),
-                    const SizedBox(height: 61),
-                  ],
-                ),
+                const SizedBox(height: 61),
+                gererLesMarkers(),
+                const SizedBox(height: 20),
+                gererLesAvis(reponses),
+                const SizedBox(height: 20),
               ],
             ),
           ),

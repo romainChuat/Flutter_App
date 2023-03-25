@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/controller/language_contoller.dart';
-import 'mylib.dart' as mylib;
+import 'Bibliotheque/mylib.dart' as mylib;
 import 'package:provider/provider.dart';
 
 class LanguagePage extends StatefulWidget {
