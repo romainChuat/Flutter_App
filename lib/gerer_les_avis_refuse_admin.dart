@@ -263,7 +263,8 @@ class Gereravisrefuse extends State<GererAvisRefuse> {
                 decoration: const BoxDecoration(
                   color: Color.fromARGB(118, 13, 12, 32),
                 ),
-                child: SingleChildScrollView(
+                child : Scrollbar(
+                child: SingleChildScrollView( //facultatif : permet l'affichage d'une scrollbar
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -280,6 +281,7 @@ class Gereravisrefuse extends State<GererAvisRefuse> {
                     ],
                   ),
                 ),
+                )
               ),
             ),
             const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),

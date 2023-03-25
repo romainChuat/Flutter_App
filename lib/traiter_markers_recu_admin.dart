@@ -566,6 +566,8 @@ class Traitermarkersrecuadmin extends State<TraiterMarkersRecuAdmin> {
                         decoration: const BoxDecoration(
                           color: Color.fromARGB(118, 13, 12, 32),
                         ),
+                child: SingleChildScrollView( //facultatif : permet l'affichage d'une scrollbar
+
                         child: SingleChildScrollView(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -600,6 +602,7 @@ class Traitermarkersrecuadmin extends State<TraiterMarkersRecuAdmin> {
                             ],
                           ),
                         ),
+                )
                       ),
                     ),
                     const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),

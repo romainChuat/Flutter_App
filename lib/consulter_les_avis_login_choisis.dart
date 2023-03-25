@@ -281,6 +281,8 @@ class Consulteravisloginchoisis extends State<ConsulterAvisLoginChoisis> {
                 height: 600,
                 color: const Color.fromARGB(118, 13, 12, 32),
                 padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+                child :Scrollbar( //facultatif : permet l'affichage d'une scrollbar
+                
                 child: SingleChildScrollView(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -298,6 +300,7 @@ class Consulteravisloginchoisis extends State<ConsulterAvisLoginChoisis> {
                     ],
                   ),
                 ),
+                )
               ),
             ),
             Row(
