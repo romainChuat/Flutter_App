@@ -8,7 +8,6 @@ import 'package:flutter_application_1/date_page.dart';
 import 'package:flutter_application_1/start_page.dart';
 import 'package:flutter_application_1/user_confirm_abandon_quiz.dart';
 import 'package:flutter_application_1/user_confirm_enregistrement.dart';
-import 'package:image_to_byte/image_to_byte.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'dart:io' as io;

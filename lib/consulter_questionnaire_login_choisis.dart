@@ -25,7 +25,14 @@ class Consulterquestionnaireloginchoix
   final mapController = MapController();
   var marker = <Marker>[];
 
-  String? imagePATH;
+
+  var imagePATH;
+  var date_validation;
+  var titre;
+
+  int? userID;
+  
+  var date_photo;
 
   Widget titleDate() {
     return ClipRRect(
@@ -37,7 +44,9 @@ class Consulterquestionnaireloginchoix
         child: Container(
           padding: const EdgeInsets.fromLTRB(1, 15, 1, 0),
           child: Text(
-            "Traiter_markers_recu_admin_title".tr(),
+            titre.toString()+" "+date_validation.toString(),
+            //"Traiter_markers_recu_admin_title".tr(),
+
             style: mylib.titleStyle,
             textAlign: TextAlign.center,
           ),
@@ -100,7 +109,8 @@ class Consulterquestionnaireloginchoix
                                 ),
                               ),
                             );
-                            setState(() {});
+
+                            //setState(() {});
                           },
                         ),
                         layers: [
@@ -154,9 +164,9 @@ class Consulterquestionnaireloginchoix
                 Container(
                   width: 280,
                   height: 156,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage("images/photo_besancon.jpg"),
+                      image: AssetImage(imagePATH),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -534,12 +544,26 @@ class Consulterquestionnaireloginchoix
     );
   }
 
-  Future<String?> getPath(int userID) async {
-    var image = mylib.getImage(userID);
-    var imageByte = base64Decode(image.toString());
+
+  ///QUEL Questionnaire est recupere ??? !!!!
+  getReponse(int userID) async{
+    var data = await mylib.getReponses(userID);
+    titre = data[0].toString();
+    //date_validation = data[6].toString().substring(0,10);
+    date_photo = data[1].toString().substring(0,10);
+    print(data);
+  }
+
+
+
+  getPath(var image) async {
+    //var image = await mylib.getImage(userID);
+    var imageByte = base64Decode(image!);
     final tempDir = await Directory.systemTemp.createTemp();
     final tempFile = File('${tempDir.path}/image.png');
     await tempFile.writeAsBytes(imageByte);
+    //print("tempfile");
+    //print(tempFile.path);
     imagePATH = tempFile.path;
     return imagePATH;
   }
@@ -548,76 +572,96 @@ class Consulterquestionnaireloginchoix
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
+    //avec connexion internet
+    userID = reponses['rep_userIDServer'] as int;
     context.watch<LanguageController>();
-    getPath(reponses["rep_userIDServer"] as int);
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: mylib.BaseAppBar(
-        appBar: AppBar(),
-      ),
-      endDrawer: mylib.createMenu(context),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Padding(padding: EdgeInsets.fromLTRB(0, 55, 0, 0)),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(15.0),
-              child: Container(
-                width: 359,
-                height: 600,
-                color: const Color.fromARGB(118, 13, 12, 32),
-                padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                      titleDate(),
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                      map(),
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                      photo(),
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                      date(),
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                      expression(),
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                      age(),
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                      genre(),
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                      niveauxEtude(),
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                      activiteExerce(),
-                    ],
-                  ),
+    return FutureBuilder<dynamic>(
+        future: getReponse(userID!),
+        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            // Affiche un widget pendant que la méthode getPath est en cours d'exécution
+            return CircularProgressIndicator();
+          } else {
+            // La méthode getPath est terminée, le snapshot contient le résultat (le chemin d'accès à l'image)
+            final imagePATH = snapshot.data;
+            print(imagePATH);
+            return Scaffold(
+                extendBodyBehindAppBar: true,
+                appBar: mylib.BaseAppBar(
+                  appBar: AppBar(),
                 ),
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 50)),
-                btnModifier(),
-                const Padding(padding: EdgeInsets.fromLTRB(35, 0, 0, 0)),
-                mylib.createNextButton1(
-                  "consulter_les_avis_login_choisis_supprimer".tr(),
-                  context,
-                  141,
-                  41,
-                  reponses,
-                  MaterialPageRoute(
-                    builder: (BuildContext context) =>
-                        const HelloLoginPassword(),
-                    settings: RouteSettings(arguments: reponses),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
+                endDrawer: mylib.createMenu(context),
+                body: Center(
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                      const Padding(padding: EdgeInsets.fromLTRB(0, 55, 0, 0)),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(15.0),
+                        child: Container(
+                          width: 359,
+                          height: 600,
+                          color: const Color.fromARGB(118, 13, 12, 32),
+                          padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+                          child: SingleChildScrollView(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                const Padding(
+                                    padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                                titleDate(),
+                                const Padding(
+                                    padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                                map(),
+                                const Padding(
+                                    padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                                photo(), // Passer le chemin d'accès à la fonction photo
+                                const Padding(
+                                    padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                                date(),
+                                const Padding(
+                                    padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                                expression(),
+                                const Padding(
+                                    padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                                age(),
+                                const Padding(
+                                    padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                                genre(),
+                                const Padding(
+                                    padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                                niveauxEtude(),
+                                const Padding(
+                                    padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                                activiteExerce(),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            const Padding(
+                                padding: EdgeInsets.fromLTRB(0, 30, 0, 50)),
+                            btnModifier(),
+                            const Padding(
+                                padding: EdgeInsets.fromLTRB(35, 0, 0, 0)),
+                            mylib.createNextButton1(
+                              "consulter_les_avis_login_choisis_supprimer".tr(),
+                              context,
+                              141,
+                              41,
+                              reponses,
+                              MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    const HelloLoginPassword(),
+                                settings: RouteSettings(arguments: reponses),
+                              ),
+                            )
+                          ])
+                    ])));
+          }
+        });
   }
 }

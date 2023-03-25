@@ -8,9 +8,6 @@ import 'package:postgres/src/execution_context.dart';
 import 'package:provider/provider.dart';
 import 'controller/language_contoller.dart';
 import 'database_helper.dart';
-import 'mylib.dart' as mylib;
-
-enum SampleItem { itemOne, itemTwo, itemThree }
 
 class Recherchepage extends StatefulWidget {
   const Recherchepage({super.key});
@@ -78,7 +75,6 @@ class _Recherchepage extends State<Recherchepage> {
     // print(allresults);
 
     return allresults;
-  }
 
   refreshResults() {
     // print("-------0---->");
@@ -280,19 +276,67 @@ class _Recherchepage extends State<Recherchepage> {
                             refreshResults(),
                           ],
                         ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+                        child: SingleChildScrollView(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                          Container(
+                            padding: const EdgeInsets.fromLTRB(7, 0, 3, 0),
+                          ),
+                              ClipRRect(
+                                  borderRadius: BorderRadius.circular(15.0),
+                                  child: Container(
+                                    width: 325,
+                                    height: 60,
+                                    color: const Color.fromARGB(
+                                        255, 235, 233, 233),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        TextField(
+                                          controller: controllerSearch,
+                                          decoration: const InputDecoration(),
+                                          onTap: (() async {
+                                            await getResult();
+                                            print(allresults);
+                                          }),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+        SizedBox(height: 10,),
+        ClipRRect(
+          borderRadius: BorderRadius.circular(15.0),
+          child: Container(
+            width: 325,
+            height: 490,
+            color: const Color.fromARGB(255, 235, 233, 233),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              
+                
+              
             ),
           ),
-
-          //),
-          // ],
         ),
 
-        //),
+          
+                            ],
+          ),
+                          ),
+          ),
+        
+      ),
+                  ],
+                    ),
+                ),
+                    ),
+                
+          ],
+            ),
+        ),
       ),
     );
   }

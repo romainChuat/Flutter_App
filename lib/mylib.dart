@@ -715,7 +715,7 @@ createMenu(BuildContext context) {
   );
 }
 
-getImage(int userID) async {
+Future<String?> getImage(int userID) async{
   final DatabaseHelper dbHelper = DatabaseHelper.getInstance();
   WidgetsFlutterBinding.ensureInitialized();
   String? image;
@@ -725,6 +725,21 @@ getImage(int userID) async {
     print(e);
     print("impossible de recuperer l'image");
   }
-  print(image as String);
+  //print("image");
+  //print(image);
   return image;
+}
+Future<List> getReponses(userID) async{
+  final DatabaseHelper dbHelper = DatabaseHelper.getInstance();
+  WidgetsFlutterBinding.ensureInitialized();
+  List? reponse;
+  try{
+    reponse = await dbHelper.queryReponsesUser(userID);
+  }catch(e){
+    print(e);
+    print("impossible de recuperer la reponses");
+  }
+  List res = reponse![0];
+  print(res);
+  return reponse[0]; ///// A REVOIR !!!!
 }
