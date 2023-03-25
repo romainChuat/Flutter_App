@@ -32,6 +32,8 @@ class _Recherchepage extends State<Recherchepage> {
   SampleItem? selectedMenu;
   late Future resultLoaded;
 
+  var filtre = "";
+
   void initState() {
     super.initState();
     controllerSearch.addListener(onSearchChanged);
@@ -66,20 +68,39 @@ class _Recherchepage extends State<Recherchepage> {
     WidgetsFlutterBinding.ensureInitialized();
     // print("getResult");
     var results;
-    // si il y a des mot dans la barre recherche
-    if (controllerSearch.text != "") {
-      // print("with text");
-      results = await dbHelper.queryReponses(controllerSearch.text);
-      if (results != null) {
+    print(filtre.toString());
+    if (filtre == "") {
+      // si il y a des mot dans la barre recherche
+      if (controllerSearch.text != "") {
+        // print("with text");
+        results = await dbHelper.queryReponses(controllerSearch.text);
+        if (results != null) {
+          allresults = results;
+        }
+      } else {
+        // print("without text");
+        results = await dbHelper.queryAllReponses();
         allresults = results;
       }
+      // print("----------->");
+      // print(allresults);
     } else {
-      // print("without text");
-      results = await dbHelper.queryAllReponses();
-      allresults = results;
+      print("with filter");
+      if (controllerSearch.text != "") {
+        // print("with text");
+        results =
+            await dbHelper.queryReponsesFilter(controllerSearch.text, filtre);
+        if (results != null) {
+          allresults = results;
+        }
+      } else {
+        // print("without text");
+        results = await dbHelper.queryAllReponsesFilter(filtre);
+        allresults = results;
+      }
+      // print("----------->");
+      // print(allresults);
     }
-    // print("----------->");
-    // print(allresults);
 
     return allresults;
   }
@@ -132,8 +153,7 @@ class _Recherchepage extends State<Recherchepage> {
         color: Colors.blueGrey[100],
       ),
       padding: const EdgeInsets.all(3.0),
-      child: Column(
-        children: [
+      child: Column(children: [
         Row(
           children: [
             Expanded(
@@ -157,20 +177,24 @@ class _Recherchepage extends State<Recherchepage> {
                       children: [
                         Align(
                           alignment: Alignment.centerLeft,
-                          child: Text(title, style: mylib.blueText2,),
+                          child: Text(
+                            title,
+                            style: mylib.blueText2,
+                          ),
                         ),
                         Align(
                           alignment: Alignment.centerRight,
                           child: IconButton(
                               onPressed: () {
                                 var page;
-                                if(data['rep_status'].toString() == "non-traite"){
+                                if (data['rep_status'].toString() ==
+                                    "non-traite") {
                                   page = GererMarkersRecuAdmin();
                                 }
-                                if(data['rep_status'].toString() == "publie"){
+                                if (data['rep_status'].toString() == "publie") {
                                   page = TraiterMarkersRecuAdmin();
                                 }
-                                if(data['rep_status'].toString() == "refuse"){
+                                if (data['rep_status'].toString() == "refuse") {
                                   page = GererLesMarkersRefuse();
                                 }
                                 Navigator.of(context).push(
@@ -180,7 +204,10 @@ class _Recherchepage extends State<Recherchepage> {
                                   ),
                                 );
                               },
-                              icon: const Icon(Icons.chevron_right, size: 30,)),
+                              icon: const Icon(
+                                Icons.chevron_right,
+                                size: 30,
+                              )),
                         ),
                       ],
                     ),
@@ -253,6 +280,13 @@ class _Recherchepage extends State<Recherchepage> {
                                             onSelected: (SampleItem item) {
                                               setState(() {
                                                 selectedMenu = item;
+                                                if (item ==SampleItem.itemOne) {
+                                                  filtre = "publie";
+                                                } else if (item == SampleItem.itemTwo) {
+                                                  filtre = "refuse";
+                                                } else if (item == SampleItem.itemThree) {
+                                                  filtre = "non-traite";
+                                                }
                                               });
                                             },
                                             itemBuilder: (BuildContext
@@ -260,7 +294,7 @@ class _Recherchepage extends State<Recherchepage> {
                                                 <PopupMenuEntry<SampleItem>>[
                                               PopupMenuItem<SampleItem>(
                                                 value: SampleItem.itemOne,
-                                                child: ElevatedButton(
+                                                child:ElevatedButton(
                                                   style:
                                                       ElevatedButton.styleFrom(
                                                     elevation: 20,
@@ -273,13 +307,13 @@ class _Recherchepage extends State<Recherchepage> {
                                                   ),
                                                   child: Text('Publié'),
                                                   onPressed: () {
-                                                    print("tap");
+                                                  filtre = "publie";
 
                                                   },
                                                 ),
                                               ),
                                               PopupMenuItem<SampleItem>(
-                                                value: SampleItem.itemOne,
+                                                value: SampleItem.itemTwo,
                                                 child: ElevatedButton(
                                                   style:
                                                       ElevatedButton.styleFrom(
@@ -293,12 +327,13 @@ class _Recherchepage extends State<Recherchepage> {
                                                   ),
                                                   child: Text('Non Publié'),
                                                   onPressed: () {
-                                                    print("tap");
+                                                  filtre = "refuse";
+
                                                   },
                                                 ),
                                               ),
                                               PopupMenuItem<SampleItem>(
-                                                value: SampleItem.itemOne,
+                                                value: SampleItem.itemThree,
                                                 child: ElevatedButton(
                                                   style:
                                                       ElevatedButton.styleFrom(
@@ -312,7 +347,8 @@ class _Recherchepage extends State<Recherchepage> {
                                                   ),
                                                   child: Text('Non traité'),
                                                   onPressed: () {
-                                                    print("tap");
+                                                  filtre = "non-traite";
+
                                                   },
                                                 ),
                                               ),
