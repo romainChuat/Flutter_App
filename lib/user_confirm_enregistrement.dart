@@ -127,11 +127,8 @@ class _confirmationEnregistrement extends State<confirmationEnregistrement> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                const SizedBox(
-                  width: 250,
-                ),
-                const SizedBox(height: 15),
-                SizedBox(
+                Container(
+                  padding: const EdgeInsets.fromLTRB(20, 20, 10, 0),
                   child: Text('user_confirmation_enregistrement_title'.tr(),
                       style: mylib.titleStyle),
                 ),

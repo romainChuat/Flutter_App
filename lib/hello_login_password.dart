@@ -1,5 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/user_recherche_avis.dart';
+import 'package:flutter_application_1/user_recherche_marker.dart';
 import 'package:provider/provider.dart';
 import 'consulter_les_avis_login_choisis.dart';
 import 'consulter_questionnaire_login_choisis.dart';
@@ -84,7 +86,7 @@ class Hellologinpassword extends State<HelloLoginPassword> {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (BuildContext context) =>
-                  const ConsulterQuestionnaireLoginChoix(),
+                  const Recherchepageusermarker(),
               settings: RouteSettings(arguments: reponses),
             ),
           );
@@ -114,8 +116,7 @@ class Hellologinpassword extends State<HelloLoginPassword> {
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) =>
-                  const ConsulterAvisLoginChoisis(),
+              builder: (BuildContext context) => const Recherchepageuseravis(),
               settings: RouteSettings(arguments: reponses),
             ),
           );
