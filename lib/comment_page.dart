@@ -417,14 +417,14 @@ class Commentpage extends State<CommentPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      if (reponses['mdp'] == true)
+                      if (reponses['mail'] != null)
                         mylib.createQuitButton(context, 141, 41,
                             const confirmationEnregistrement(), reponses)
                       else
                         mylib.createQuitButton(context, 141, 41,
                             const confirmationAbandon(), reponses),
-                      if (reponses['mdp'] == true)
-                        mylib.createNextButtonAvis(
+                      if (reponses['mail'] != null)
+                        mylib.createNextButton1(
                             "btn_next".tr(),
                             context,
                             141,

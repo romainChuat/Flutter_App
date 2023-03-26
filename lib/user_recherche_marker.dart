@@ -120,7 +120,7 @@ class _Recherchepageusermarker extends State<Recherchepageusermarker> {
           children: [
             Expanded(
               child: allresults.isEmpty
-                  ? Center(child: Text('La liste est vide'))
+                  ? const Center(child: Text('La liste est vide'))
                   : ListView.builder(
                       itemCount: allresults.length,
                       itemBuilder: (context, index) {
@@ -162,7 +162,7 @@ class _Recherchepageusermarker extends State<Recherchepageusermarker> {
                 flex: 3,
                 child: Column(
                   children: [
-                    Padding(padding: EdgeInsets.all(2)),
+                    const Padding(padding: EdgeInsets.all(2)),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -197,7 +197,7 @@ class _Recherchepageusermarker extends State<Recherchepageusermarker> {
                             },*/
                               PopupMenuButton<SampleItem>(
                             initialValue: selectedMenu,
-                            icon: Icon(Icons.chevron_right),
+                            icon: const Icon(Icons.chevron_right),
                             // Callback that sets the selected popup menu item.
                             onSelected: (SampleItem item) {
                               setState(() {
@@ -222,12 +222,12 @@ class _Recherchepageusermarker extends State<Recherchepageusermarker> {
                                       borderRadius: BorderRadius.circular(15.0),
                                     ),
                                   ),
-                                  child: Text('Modifier'),
+                                  child: const Text('Modifier'),
                                   onPressed: () {
                                     Navigator.of(context).push(
                                       MaterialPageRoute(
                                         builder: (BuildContext context) =>
-                                            ConsulterQuestionnaireLoginChoix(),
+                                            const ConsulterQuestionnaireLoginChoix(),
                                         settings:
                                             RouteSettings(arguments: reponses),
                                       ),
@@ -244,7 +244,7 @@ class _Recherchepageusermarker extends State<Recherchepageusermarker> {
                                       borderRadius: BorderRadius.circular(15.0),
                                     ),
                                   ),
-                                  child: Text('Supprimer'),
+                                  child: const Text('Supprimer'),
                                   onPressed: () {
                                     //il faut delete la
                                   },
@@ -319,13 +319,14 @@ class _Recherchepageusermarker extends State<Recherchepageusermarker> {
                                             controller: controllerSearch,
                                             decoration: InputDecoration(
                                               hintText: 'Rechercher',
-                                              border: OutlineInputBorder(),
-                                              hintStyle: TextStyle(
+                                              border:
+                                                  const OutlineInputBorder(),
+                                              hintStyle: const TextStyle(
                                                   color: Colors.black38),
                                               suffixIcon:
                                                   PopupMenuButton<SampleItem>(
                                                 initialValue: selectedMenu,
-                                                icon: Icon(Icons.tune),
+                                                icon: const Icon(Icons.tune),
                                                 // Callback that sets the selected popup menu item.
                                                 onSelected: (SampleItem item) {
                                                   setState(() {
@@ -360,7 +361,8 @@ class _Recherchepageusermarker extends State<Recherchepageusermarker> {
                                                                       15.0),
                                                         ),
                                                       ),
-                                                      child: Text('Publié'),
+                                                      child:
+                                                          const Text('Publié'),
                                                       onPressed: () {
                                                         filtre = "publie";
                                                       },
@@ -380,7 +382,8 @@ class _Recherchepageusermarker extends State<Recherchepageusermarker> {
                                                                       15.0),
                                                         ),
                                                       ),
-                                                      child: Text('Non Publié'),
+                                                      child: const Text(
+                                                          'Non Publié'),
                                                       onPressed: () {
                                                         filtre = "refuse";
                                                       },
@@ -400,7 +403,8 @@ class _Recherchepageusermarker extends State<Recherchepageusermarker> {
                                                                       15.0),
                                                         ),
                                                       ),
-                                                      child: Text('Non traité'),
+                                                      child: const Text(
+                                                          'Non traité'),
                                                       onPressed: () {
                                                         filtre = "non-traite";
                                                       },
@@ -420,8 +424,8 @@ class _Recherchepageusermarker extends State<Recherchepageusermarker> {
                                                                       15.0),
                                                         ),
                                                       ),
-                                                      child:
-                                                          Text('Non terminé'),
+                                                      child: const Text(
+                                                          'Non terminé'),
                                                       onPressed: () {
 //filtre a ajouté                                                        filtre = "publie";
                                                       },
@@ -441,7 +445,7 @@ class _Recherchepageusermarker extends State<Recherchepageusermarker> {
                                     ),
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                 ),
                                 refreshResults(reponses),

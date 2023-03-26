@@ -47,7 +47,7 @@ class _confirmationEnregistrement extends State<confirmationEnregistrement> {
       height: 49,
       child: ElevatedButton(
         onPressed: () {
-          if (reponses['mdp'] != true) {
+          if (reponses['mail'] != null) {
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (BuildContext context) => const HelloLoginPassword(),

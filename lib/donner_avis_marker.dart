@@ -241,7 +241,7 @@ class Donneravismarker extends State<DonnerAvisMarker> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    if (reponses['mdp'] == true)
+                    if (reponses['mail'] != null)
                       mylib.createQuitButton(context, 141, 41,
                           confirmationEnregistrement(), reponses)
                     else

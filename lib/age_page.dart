@@ -227,17 +227,21 @@ class Agepage extends State<AgePage> {
                     else
                       mylib.createQuitButton(context, 141, 41,
                           const confirmationAbandon(), reponses),
-                    mylib.createNextButton(
-                      "btn_next".tr(),
-                      context,
-                      141,
-                      41,
-                      MaterialPageRoute(
-                          builder: (_) => const GenrePage(),
-                          settings: RouteSettings(arguments: reponses)),
-                    )
+                    if (age != 0)
+                      mylib.createNextButton(
+                        "btn_next".tr(),
+                        context,
+                        141,
+                        41,
+                        MaterialPageRoute(
+                            builder: (_) => const GenrePage(),
+                            settings: RouteSettings(arguments: reponses)),
+                      )
                   ],
                 ),
+                if (age == 0)
+                  Text("Veuillez répondre pour aller à la prochaine question",
+                      style: mylib.warningText),
                 const Spacer(),
                 const Align(
                   alignment: Alignment.bottomRight,

@@ -119,7 +119,7 @@ class _Recherchepage extends State<Recherchepage> {
           children: [
             Expanded(
               child: allresults.isEmpty
-                  ? Center(child: Text('La liste est vide'))
+                  ? const Center(child: Text('La liste est vide'))
                   : ListView.builder(
                       itemCount: allresults.length,
                       itemBuilder: (context, index) {
@@ -161,7 +161,7 @@ class _Recherchepage extends State<Recherchepage> {
                 flex: 3,
                 child: Column(
                   children: [
-                    Padding(padding: EdgeInsets.all(2)),
+                    const Padding(padding: EdgeInsets.all(2)),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -189,13 +189,13 @@ class _Recherchepage extends State<Recherchepage> {
                                 var page;
                                 if (data['rep_status'].toString() ==
                                     "non-traite") {
-                                  page = GererMarkersRecuAdmin();
+                                  page = const GererMarkersRecuAdmin();
                                 }
                                 if (data['rep_status'].toString() == "publie") {
-                                  page = TraiterMarkersRecuAdmin();
+                                  page = const TraiterMarkersRecuAdmin();
                                 }
                                 if (data['rep_status'].toString() == "refuse") {
-                                  page = GererLesMarkersRefuse();
+                                  page = const GererLesMarkersRefuse();
                                 }
                                 Navigator.of(context).push(
                                   MaterialPageRoute(
@@ -242,141 +242,150 @@ class _Recherchepage extends State<Recherchepage> {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(15.0),
                     child: Container(
-                      width: 359,
-                      height: 600,
-                      padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-                      decoration: const BoxDecoration(
-                        color: Color.fromARGB(118, 13, 12, 32),
-                      ),
-                      child: Scrollbar( //facultatif : permet l'affichage d'une scrollbar
-                        child: SingleChildScrollView(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Container(
-                                padding: const EdgeInsets.fromLTRB(7, 0, 3, 0),
-                              ),
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(15.0),
-                                child: Container(
-                                width: 325,
-                                height: 60,
-                                color: const Color.fromARGB(255, 235, 233, 233),
-                                child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    TextField(
-                                        controller: controllerSearch,
-                                        decoration: InputDecoration(
-                                          hintText: 'Rechercher',
-                                          border: OutlineInputBorder(),
-                                          hintStyle:
-                                              TextStyle(color: Colors.black38),
-                                          suffixIcon:
-                                              PopupMenuButton<SampleItem>(
-                                            initialValue: selectedMenu,
-                                            icon: Icon(Icons.tune),
-                                            // Callback that sets the selected popup menu item.
-                                            onSelected: (SampleItem item) {
-                                              setState(() {
-                                                selectedMenu = item;
-                                                if (item ==SampleItem.itemOne) {
-                                                  filtre = "publie";
-                                                } else if (item == SampleItem.itemTwo) {
-                                                  filtre = "refuse";
-                                                } else if (item == SampleItem.itemThree) {
-                                                  filtre = "non-traite";
-                                                }
-                                              });
-                                            },
-                                            itemBuilder: (BuildContext
-                                                    context) =>
-                                                <PopupMenuEntry<SampleItem>>[
-                                              PopupMenuItem<SampleItem>(
-                                                value: SampleItem.itemOne,
-                                                child:ElevatedButton(
-                                                  style:
-                                                      ElevatedButton.styleFrom(
-                                                    elevation: 20,
-                                                    shape:
-                                                        RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              15.0),
-                                                    ),
-                                                  ),
-                                                  child: Text('Publié'),
-                                                  onPressed: () {
-                                                  filtre = "publie";
-
-                                                  },
-                                                ),
-                                              ),
-                                              PopupMenuItem<SampleItem>(
-                                                value: SampleItem.itemTwo,
-                                                child: ElevatedButton(
-                                                  style:
-                                                      ElevatedButton.styleFrom(
-                                                    elevation: 20,
-                                                    shape:
-                                                        RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              15.0),
-                                                    ),
-                                                  ),
-                                                  child: Text('Non Publié'),
-                                                  onPressed: () {
-                                                  filtre = "refuse";
-
-                                                  },
-                                                ),
-                                              ),
-                                              PopupMenuItem<SampleItem>(
-                                                value: SampleItem.itemThree,
-                                                child: ElevatedButton(
-                                                  style:
-                                                      ElevatedButton.styleFrom(
-                                                    elevation: 20,
-                                                    shape:
-                                                        RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              15.0),
-                                                    ),
-                                                  ),
-                                                  child: Text('Non traité'),
-                                                  onPressed: () {
-                                                  filtre = "non-traite";
-
-                                                  },
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        onTap: (() {
-                                          setState(() {
-                                            refreshResults();
-                                          });
-                                          // print("-------");
-                                          // print(allresults);
-                                        })),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            refreshResults(),
-                            
-                          ],
+                        width: 359,
+                        height: 600,
+                        padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+                        decoration: const BoxDecoration(
+                          color: Color.fromARGB(118, 13, 12, 32),
                         ),
-                      ),
-                      )
-                    ),
+                        child: Scrollbar(
+                          //facultatif : permet l'affichage d'une scrollbar
+                          child: SingleChildScrollView(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Container(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(7, 0, 3, 0),
+                                ),
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(15.0),
+                                  child: Container(
+                                    width: 325,
+                                    height: 60,
+                                    color: const Color.fromARGB(
+                                        255, 235, 233, 233),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        TextField(
+                                            controller: controllerSearch,
+                                            decoration: InputDecoration(
+                                              hintText: 'Rechercher',
+                                              border:
+                                                  const OutlineInputBorder(),
+                                              hintStyle: const TextStyle(
+                                                  color: Colors.black38),
+                                              suffixIcon:
+                                                  PopupMenuButton<SampleItem>(
+                                                initialValue: selectedMenu,
+                                                icon: const Icon(Icons.tune),
+                                                // Callback that sets the selected popup menu item.
+                                                onSelected: (SampleItem item) {
+                                                  setState(() {
+                                                    selectedMenu = item;
+                                                    if (item ==
+                                                        SampleItem.itemOne) {
+                                                      filtre = "publie";
+                                                    } else if (item ==
+                                                        SampleItem.itemTwo) {
+                                                      filtre = "refuse";
+                                                    } else if (item ==
+                                                        SampleItem.itemThree) {
+                                                      filtre = "non-traite";
+                                                    }
+                                                  });
+                                                },
+                                                itemBuilder:
+                                                    (BuildContext context) => <
+                                                        PopupMenuEntry<
+                                                            SampleItem>>[
+                                                  PopupMenuItem<SampleItem>(
+                                                    value: SampleItem.itemOne,
+                                                    child: ElevatedButton(
+                                                      style: ElevatedButton
+                                                          .styleFrom(
+                                                        elevation: 20,
+                                                        shape:
+                                                            RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      15.0),
+                                                        ),
+                                                      ),
+                                                      child:
+                                                          const Text('Publié'),
+                                                      onPressed: () {
+                                                        filtre = "publie";
+                                                      },
+                                                    ),
+                                                  ),
+                                                  PopupMenuItem<SampleItem>(
+                                                    value: SampleItem.itemTwo,
+                                                    child: ElevatedButton(
+                                                      style: ElevatedButton
+                                                          .styleFrom(
+                                                        elevation: 20,
+                                                        shape:
+                                                            RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      15.0),
+                                                        ),
+                                                      ),
+                                                      child: const Text(
+                                                          'Non Publié'),
+                                                      onPressed: () {
+                                                        filtre = "refuse";
+                                                      },
+                                                    ),
+                                                  ),
+                                                  PopupMenuItem<SampleItem>(
+                                                    value: SampleItem.itemThree,
+                                                    child: ElevatedButton(
+                                                      style: ElevatedButton
+                                                          .styleFrom(
+                                                        elevation: 20,
+                                                        shape:
+                                                            RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      15.0),
+                                                        ),
+                                                      ),
+                                                      child: const Text(
+                                                          'Non traité'),
+                                                      onPressed: () {
+                                                        filtre = "non-traite";
+                                                      },
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            onTap: (() {
+                                              setState(() {
+                                                refreshResults();
+                                              });
+                                              // print("-------");
+                                              // print(allresults);
+                                            })),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                refreshResults(),
+                              ],
+                            ),
+                          ),
+                        )),
                   ),
                 ],
               ),

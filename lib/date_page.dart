@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/controller/language_contoller.dart';
 import 'package:flutter_application_1/user_confirm_abandon_quiz.dart';
 import 'package:flutter_application_1/user_confirm_enregistrement.dart';
-import 'package:path/path.dart';
 import 'package:provider/provider.dart';
 import 'mylib.dart' as mylib;
 import 'package:flutter_application_1/mot_page.dart';
@@ -19,6 +18,8 @@ class DatePage extends StatefulWidget {
 
 class Datepage extends State<DatePage> {
   TextEditingController dateInput = TextEditingController();
+  bool _showErrorMessage = false;
+
   @override
   void initState() {
     dateInput.text = ""; //set the initial value of text field
@@ -114,6 +115,8 @@ class Datepage extends State<DatePage> {
                                                   Radius.circular(15)))),
                                       readOnly: true,
                                       onTap: () async {
+                                        _showErrorMessage = true;
+
                                         DateTime? pickedDate = await showDatePicker(
                                             context: context,
                                             initialDate: DateTime.now(),
@@ -149,25 +152,28 @@ class Datepage extends State<DatePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    if (reponses['mdp'] == true)
+                    if (reponses['mail'] != null)
                       mylib.createQuitButton(context, 141, 41,
                           const confirmationEnregistrement(), reponses)
                     else
                       mylib.createQuitButton(context, 141, 41,
                           const confirmationAbandon(), reponses),
-                    mylib.createNextButton(
-                      "btn_next".tr(),
-                      context,
-                      141,
-                      41,
-                      MaterialPageRoute(
-                        builder: (_) => const MotPage(),
-                        settings: RouteSettings(arguments: reponses),
-                      ),
-                    )
+                    if (_showErrorMessage)
+                      mylib.createNextButton(
+                        "btn_next".tr(),
+                        context,
+                        141,
+                        41,
+                        MaterialPageRoute(
+                          builder: (_) => const MotPage(),
+                          settings: RouteSettings(arguments: reponses),
+                        ),
+                      )
                   ],
                 ),
-
+                if (!_showErrorMessage)
+                  Text("Veuillez répondre pour aller à la prochaine question",
+                      style: mylib.warningText),
                 // padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
                 const Spacer(),
                 const Align(

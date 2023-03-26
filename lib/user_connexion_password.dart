@@ -429,13 +429,12 @@ class Userconnexionpassword extends State<UserConnexionPassword> {
       }
       print(res);
 
+    print(res[0]["nom"]);
+    pseudo = res[0]["nom"].toString();
+    reponses["rep_userID"] = res[0]['user_id'];
+    reponses['mail'] = mail;
+    pass = res[0]["password"].toString();
 
-      print(res[0]["nom"]);
-      pseudo = res[0]["nom"].toString();
-      reponses["rep_userID"] = res[0]['user_id'];
-      reponses['mail'] = mail;
-      pass = res[0]["password"].toString();
-  
     reponses["username"] = pseudo;
     print(reponses);
     
@@ -443,7 +442,6 @@ class Userconnexionpassword extends State<UserConnexionPassword> {
     final passSaisie = Crypt.sha256(password, salt: 'abcdefghijklmnop').toString();
     if (passSaisie == pass.toString().trim()) {   
       connected = true;
-      //reponses['mdp'] = true;
     }
   }
 

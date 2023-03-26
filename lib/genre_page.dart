@@ -137,23 +137,27 @@ class Genrepage extends State<GenrePage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  if (reponses['mdp'] == true)
+                  if (reponses['mail'] != null)
                     mylib.createQuitButton(context, 141, 41,
                         const confirmationEnregistrement(), reponses)
                   else
                     mylib.createQuitButton(context, 141, 41,
                         const confirmationAbandon(), reponses),
-                  mylib.createNextButton(
-                    "btn_next".tr(),
-                    context,
-                    141,
-                    41,
-                    MaterialPageRoute(
-                        builder: (_) => const EtudePage(),
-                        settings: RouteSettings(arguments: reponses)),
-                  )
+                  if (genre != null)
+                    mylib.createNextButton(
+                      "btn_next".tr(),
+                      context,
+                      141,
+                      41,
+                      MaterialPageRoute(
+                          builder: (_) => const EtudePage(),
+                          settings: RouteSettings(arguments: reponses)),
+                    )
                 ],
               ),
+              if (genre == null)
+                Text("Veuillez répondre pour aller à la prochaine question",
+                    style: mylib.warningText),
               const Spacer(),
               const Align(
                 alignment: Alignment.bottomRight,
