@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/recherche_page_admin.dart';
+import 'package:flutter_application_1/admin_recherche_page_avis.dart';
+
 import 'package:provider/provider.dart';
 import 'controller/language_contoller.dart';
 import 'mylib.dart' as mylib;
@@ -53,7 +55,7 @@ class Helloadminpage extends State<HelloAdminPage> {
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) => const Recherchepage(),
+              builder: (BuildContext context) => RecherchepageAvis(),
               settings: RouteSettings(arguments: reponses),
             ),
           );
