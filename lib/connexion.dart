@@ -44,7 +44,7 @@ class Connexion1 extends State<Connexion> {
         var usIDServer;
         usIDServer = await mylib.insertUserServer(user);
         //le resultat retourner est un tableau 2d
-        reponses['rep_userIDServer'] = usIDServer[0][0];
+        reponses['rep_userIDServer'] = usIDServer[0][0] as int;
         print(reponses);
       }
       Navigator.of(context).push(

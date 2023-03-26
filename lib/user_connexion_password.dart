@@ -400,27 +400,20 @@ class Userconnexionpassword extends State<UserConnexionPassword> {
 
       try {
         res = await db.queryUser(mail);
-        print('res' + res.toString());
-      } catch (e) {
+        print('res'+ res.toString());
+      }catch(e){
         print("email incorrect");
-        // setState(() {
-        // _showErrorMessage = true;
-        // });
+       // setState(() {
+               // _showErrorMessage = true;
+             // });
       }
       var map = res.last.asMap();
       print(map);
       pass = map[3];
       pseudo = map[2];
       idUser = map[0];
-      reponses['rep_userIDServer'] = idUser;
-    }
-    WidgetsFlutterBinding.ensureInitialized();
-    DatabaseHelperLocal dbHelper = DatabaseHelperLocal();
-    print(mail);
-    try {
-      res = await dbHelper.queryOneUser(mail);
+      reponses['rep_userIDServer'] = idUser as int;
 
-/*
     }else{
       print("pas de connexion internet");
     }
@@ -433,17 +426,8 @@ class Userconnexionpassword extends State<UserConnexionPassword> {
         print(res);
       }catch(e){
         print("erreur");
-      }*/
+      }
       print(res);
-    } catch (e) {
-      print("erreur");
-    }
-    print(res);
-
-    print(res[0]["nom"]);
-    pseudo = res[0]["nom"].toString();
-    reponses["rep_userID"] = res[0]['user_id'];
-    reponses['mail'] = mail;
 
 
       print(res[0]["nom"]);
@@ -454,10 +438,10 @@ class Userconnexionpassword extends State<UserConnexionPassword> {
   
     reponses["username"] = pseudo;
     print(reponses);
+    
 
-    final passSaisie =
-        Crypt.sha256(password, salt: 'abcdefghijklmnop').toString();
-    if (passSaisie == pass.toString().trim()) {
+    final passSaisie = Crypt.sha256(password, salt: 'abcdefghijklmnop').toString();
+    if (passSaisie == pass.toString().trim()) {   
       connected = true;
       //reponses['mdp'] = true;
     }
