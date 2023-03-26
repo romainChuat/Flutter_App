@@ -441,15 +441,11 @@ createNextButtonAvis(String text, BuildContext context, double width,
           onConfirmBtnTap: () async {
             if (await InternetConnectionChecker().hasConnection) {
               print("insertion avis server");
-            
-            
+              insertAvisServer(reponses);
             }
             print('insert avis local');
-
-
-
-
-
+            insertAvisLocal(reponses);
+            Navigator.of(context).push(page);
 
           },
           cancelBtnText: 'No',
@@ -463,7 +459,38 @@ createNextButtonAvis(String text, BuildContext context, double width,
     ),
   );
 }
-
+Future<void> insertAvisServer(Map<String, Object> reponses) async{
+  WidgetsFlutterBinding.ensureInitialized();
+  DatabaseHelper db = DatabaseHelper.getInstance();
+  var avis = Map<String, dynamic>.from(reponses);
+  avis.remove("rep_userIDServer");
+  avis.remove("rep_userID");
+  avis.remove("mail");
+  avis.remove("username");
+  avis['avis_user'] = reponses['rep_userIDServer'];
+  print(avis);
+  try{
+    db.insertAvis(avis);
+  }catch(e){
+    print("insertion avis impossible");
+  }
+}
+Future<void> insertAvisLocal(Map<String, Object> reponses) async{
+  WidgetsFlutterBinding.ensureInitialized();
+  DatabaseHelperLocal db = DatabaseHelperLocal();
+  var avis = Map<String, dynamic>.from(reponses);
+  avis.remove("rep_userIDServer");
+  avis.remove("rep_userID");
+  avis.remove("mail");
+  avis.remove("username");
+  avis['avis_user'] = reponses['rep_userIDServer'];
+  print(avis);
+  try{
+    db.insertAvis(avis);
+  }catch(e){
+    print("insertion avis impossible");
+  }
+}
 
 Future<void> insertLieuLocal(Map<String, Object> reponses) async {
   Map<String, Object> lieux = new Map();

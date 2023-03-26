@@ -412,7 +412,7 @@ class Userconnexionpassword extends State<UserConnexionPassword> {
       pass = map[3];
       pseudo = map[2];
       idUser = map[0];
-      reponses['rep_userIDServer'] = idUser;
+      reponses['rep_userIDServer'] = idUser as int;
 
     }else{
       print("pas de connexion internet");

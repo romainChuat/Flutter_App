@@ -292,9 +292,9 @@ class Commentpage extends State<CommentPage> {
                                             MainAxisAlignment.spaceAround,
                                         children: [
                                           createtButton(
-                                              "btn_yes".tr(), context, 141, 41, true, reponses),
+                                              "btn_yes".tr(), context, 141, 41, 1, reponses),
                                           createtButton(
-                                              "btn_no".tr(), context, 141, 41, false, reponses),
+                                              "btn_no".tr(), context, 141, 41, 0, reponses),
                                         ],
                                       )),
                                     ],
@@ -335,7 +335,7 @@ class Commentpage extends State<CommentPage> {
                                               0, 10, 0, 10)),
                                       SizedBox(
                                         child: RatingBar.builder(
-                                          initialRating: 3,
+                                          initialRating: 0,
                                           minRating: 1,
                                           direction: Axis.horizontal,
                                           allowHalfRating: true,
@@ -454,7 +454,7 @@ class Commentpage extends State<CommentPage> {
           ),
         ));
   }
-  createtButton(String text, BuildContext context, double width, double height, bool yesno, var reponses) {
+  createtButton(String text, BuildContext context, double width, double height, int yesno, var reponses) {
     return SizedBox(
       width: width,
       height: height,
@@ -485,7 +485,7 @@ class Commentpage extends State<CommentPage> {
           child: TextField(
             controller: textController,
             onChanged: (value) {print(textController);
-              reponses['avis_text'] = textController.text;
+              reponses['avis_txt'] = textController.text;
               print(reponses);
             },
             maxLength: 200,
