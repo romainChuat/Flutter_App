@@ -290,41 +290,7 @@ createInput(
           )));
 }
 
-createInputTextArea(double wdth, double hgth) {
-  return SizedBox(
-      height: hgth,
-      width: wdth,
-      child: const Material(
-          elevation: 5,
-          color: Colors.white,
-          borderRadius: BorderRadius.all(Radius.circular(10)),
-          child: TextField(
-            maxLength: 200,
-            maxLines: null,
-            keyboardType: TextInputType.multiline,
-            style: simpleText1,
-            cursorColor: Color.fromARGB(255, 117, 106, 106),
-            decoration: InputDecoration(
-              counterText: "",
-              hintText: 'Tapez votre texte...',
-              contentPadding: EdgeInsets.fromLTRB(10, 0, 0, 1),
-              filled: true,
-              fillColor: Colors.white,
-              enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    width: 1,
-                    color: Color.fromARGB(255, 255, 255, 255),
-                  ),
-                  borderRadius: BorderRadius.all(Radius.circular(15))),
-              focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    width: 1,
-                    color: Color.fromARGB(255, 255, 255, 255),
-                  ),
-                  borderRadius: BorderRadius.all(Radius.circular(15))),
-            ),
-          )));
-}
+
 
 createQuitButton(BuildContext context, double width, double height, var path,
     Map<String, Object>? args) {
@@ -451,6 +417,53 @@ createNextButton1(String text, BuildContext context, double width,
     ),
   );
 }
+createNextButtonAvis(String text, BuildContext context, double width,
+    double height, Map<String, Object> reponses, MaterialPageRoute page) {
+  var insertlieuxID;
+  var insertusID;
+  print(reponses);
+  return SizedBox(
+    width: width,
+    height: height,
+    child: ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        foregroundColor: Colors.white,
+        side: const BorderSide(color: Colors.white, width: 1),
+        elevation: 15,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      ),
+      onPressed: () {
+        QuickAlert.show(
+          context: context,
+          type: QuickAlertType.confirm,
+          text: 'Êtes-vous sûr de vouloir envoyer votre avis ?',
+          confirmBtnText: 'Yes',
+          onConfirmBtnTap: () async {
+            if (await InternetConnectionChecker().hasConnection) {
+              print("insertion avis server");
+            
+            
+            }
+            print('insert avis local');
+
+
+
+
+
+
+          },
+          cancelBtnText: 'No',
+          confirmBtnColor: const Color.fromARGB(255, 64, 224, 168),
+        );
+      },
+      child: Text(
+        text,
+        style: titleStyle,
+      ),
+    ),
+  );
+}
+
 
 Future<void> insertLieuLocal(Map<String, Object> reponses) async {
   Map<String, Object> lieux = new Map();
