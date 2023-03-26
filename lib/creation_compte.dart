@@ -519,7 +519,7 @@ class Creationcompte extends State<CreationCompte> {
       var res = await dbHelper.queryUser(mailController.text);
       if (res == null) {
         var userIDServer = await mylib.insertUserServer(u.toMap());
-        reponses['rep_userIDServer'] = userIDServer![0][0];
+        reponses['rep_userIDServer'] = userIDServer![0][0] as int;
         reponses['username'] = u.nom!;
       } else {
         print("mail existant server");

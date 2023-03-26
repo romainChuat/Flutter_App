@@ -54,7 +54,7 @@ class Donneravismarker extends State<DonnerAvisMarker> {
     } catch (e) {
       print("erreur lors de la recuperation des markers");
     }
-    for (var i = 0; i < listMarker!.length; i++) {
+    for (var i = 0; i < listMarker!.length-1; i++) {
       LatLng point = LatLng(listMarker![i][1], listMarker![i][2]);
       Marker new_marker = Marker(
           width: 25.0,
@@ -67,6 +67,9 @@ class Donneravismarker extends State<DonnerAvisMarker> {
                   size: 30,
                 ),
                 onPressed: () {
+                  reponses['avis_lieu'] = listMarker![i][0];
+                  print(reponses);
+
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -89,6 +92,8 @@ class Donneravismarker extends State<DonnerAvisMarker> {
       marker.add(new_marker);
     }
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -118,6 +123,11 @@ class Donneravismarker extends State<DonnerAvisMarker> {
                         children: [
                           Container(
                             padding: const EdgeInsets.fromLTRB(7, 0, 3, 0),
+                            child: Text(
+                            "donner_avis_marker_title".tr(),
+                            style: mylib.titleStyle,
+                            textAlign: TextAlign.center,
+                          ),
                           ),
                           const Divider(
                             color: Colors.black,
@@ -136,7 +146,12 @@ class Donneravismarker extends State<DonnerAvisMarker> {
                                   options: MapOptions(
                                     center: currentCenter,
                                     zoom: 14,
-                                    onTap: (value) {},
+                                    onTap: (value) {
+                                      setState(() {});
+                                    },
+                                    onPositionChanged: ((position, hasGesture) => ( 
+                                      getMarkers(reponses)
+                                    ))
                                   ),
                                   layers: [
                                     TileLayerOptions(
@@ -159,6 +174,7 @@ class Donneravismarker extends State<DonnerAvisMarker> {
                                             child: ElevatedButton(
                                               onPressed: () {
                                                 _zoomIn();
+                                                
                                               },
                                               style: ButtonStyle(
                                                 shape:
@@ -231,16 +247,6 @@ class Donneravismarker extends State<DonnerAvisMarker> {
                     else
                       mylib.createQuitButton(
                           context, 141, 41, confirmationAbandon(), reponses),
-                    mylib.createNextButton(
-                      "btn_next".tr(),
-                      context,
-                      141,
-                      41,
-                      MaterialPageRoute(
-                        builder: (_) => const CommentPage(),
-                        settings: RouteSettings(arguments: reponses),
-                      ),
-                    )
                   ],
                 ),
               ],

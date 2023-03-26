@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/reponse.dart';
 import 'package:flutter_application_1/user_confirm_abandon_quiz.dart';
 import 'package:flutter_application_1/user_confirm_enregistrement.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -20,11 +21,15 @@ class CommentPage extends StatefulWidget {
 
 class Commentpage extends State<CommentPage> {
   int age = 0;
+  final textController = TextEditingController();
+
+
   @override
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
     context.watch<LanguageController>();
+    print(reponses);
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: mylib.BaseAppBar(appBar: AppBar()),
@@ -92,6 +97,7 @@ class Commentpage extends State<CommentPage> {
                                                 onChanged: (value) {
                                                   setState(() {
                                                     age = 10;
+                                                    reponses['avis_age'] = age;
                                                   });
                                                 },
                                                 value: 10,
@@ -108,6 +114,7 @@ class Commentpage extends State<CommentPage> {
                                               onChanged: (value) {
                                                 setState(() {
                                                   age = 17;
+                                                  reponses['avis_age'] = age;
                                                 });
                                               },
                                               value: 17,
@@ -125,6 +132,7 @@ class Commentpage extends State<CommentPage> {
                                               onChanged: (value) {
                                                 setState(() {
                                                   age = 25;
+                                                  reponses['avis_age'] = age;
                                                 });
                                               },
                                               value: 25,
@@ -142,6 +150,7 @@ class Commentpage extends State<CommentPage> {
                                               onChanged: (value) {
                                                 setState(() {
                                                   age = 35;
+                                                  reponses['avis_age'] = age;
                                                 });
                                               },
                                               value: 35,
@@ -159,6 +168,7 @@ class Commentpage extends State<CommentPage> {
                                               onChanged: (value) {
                                                 setState(() {
                                                   age = 45;
+                                                  reponses['avis_age'] = age;
                                                 });
                                               },
                                               value: 45,
@@ -176,6 +186,7 @@ class Commentpage extends State<CommentPage> {
                                               onChanged: (value) {
                                                 setState(() {
                                                   age = 55;
+                                                  reponses['avis_age'] = age;
                                                 });
                                               },
                                               value: 55,
@@ -193,6 +204,7 @@ class Commentpage extends State<CommentPage> {
                                               onChanged: (value) {
                                                 setState(() {
                                                   age = 65;
+                                                  reponses['avis_age'] = age;
                                                 });
                                               },
                                               value: 65,
@@ -210,6 +222,7 @@ class Commentpage extends State<CommentPage> {
                                               onChanged: (value) {
                                                 setState(() {
                                                   age = 75;
+                                                  reponses['avis_age'] = age;
                                                 });
                                               },
                                               value: 75,
@@ -227,6 +240,7 @@ class Commentpage extends State<CommentPage> {
                                               onChanged: (value) {
                                                 setState(() {
                                                   age = 76;
+                                                  reponses['avis_age'] = age;
                                                 });
                                               },
                                               value: 76,
@@ -277,10 +291,10 @@ class Commentpage extends State<CommentPage> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceAround,
                                         children: [
-                                          mylib.createtButton(
-                                              "btn_yes".tr(), context, 141, 41),
-                                          mylib.createtButton(
-                                              "btn_no".tr(), context, 141, 41),
+                                          createtButton(
+                                              "btn_yes".tr(), context, 141, 41, 1, reponses),
+                                          createtButton(
+                                              "btn_no".tr(), context, 141, 41, 0, reponses),
                                         ],
                                       )),
                                     ],
@@ -321,7 +335,7 @@ class Commentpage extends State<CommentPage> {
                                               0, 10, 0, 10)),
                                       SizedBox(
                                         child: RatingBar.builder(
-                                          initialRating: 3,
+                                          initialRating: 0,
                                           minRating: 1,
                                           direction: Axis.horizontal,
                                           allowHalfRating: true,
@@ -334,7 +348,11 @@ class Commentpage extends State<CommentPage> {
                                             Icons.star,
                                             color: Colors.amber,
                                           ),
-                                          onRatingUpdate: (rating) {},
+                                          onRatingUpdate: (rating) {
+                                            reponses['avis_note'] = rating;
+                                            print(reponses);
+
+                                          },
                                         ),
                                       ),
                                     ],
@@ -373,7 +391,7 @@ class Commentpage extends State<CommentPage> {
                                       const Padding(
                                           padding: EdgeInsets.fromLTRB(
                                               0, 10, 0, 10)),
-                                      mylib.createInputTextArea(300, 204),
+                                      createInputTextArea(300, 204, textController, reponses),
                                       Align(
                                         alignment: Alignment.bottomRight,
                                         child: Container(
@@ -417,7 +435,7 @@ class Commentpage extends State<CommentPage> {
                                     const HelloLoginPassword(),
                                 settings: RouteSettings(arguments: reponses)))
                       else
-                        mylib.createNextButton1(
+                        mylib.createNextButtonAvis(
                           "btn_next".tr(),
                           context,
                           141,
@@ -436,4 +454,65 @@ class Commentpage extends State<CommentPage> {
           ),
         ));
   }
+  createtButton(String text, BuildContext context, double width, double height, int yesno, var reponses) {
+    return SizedBox(
+      width: width,
+      height: height,
+      child: ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: const Color.fromARGB(255, 13, 12, 32),
+        elevation: 15,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      ),
+      onPressed: () {
+        reponses['avis_visite'] = yesno;
+      },
+      child: Text(
+        text,
+        style: mylib.titleStyle,
+      ),
+    ),
+  );
+  }
+  createInputTextArea(double wdth, double hgth, TextEditingController textController, var reponses) {
+  return SizedBox(
+      height: hgth,
+      width: wdth,
+      child: Material(
+          elevation: 5,
+          color: Colors.white,
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+          child: TextField(
+            controller: textController,
+            onChanged: (value) {print(textController);
+              reponses['avis_txt'] = textController.text;
+              print(reponses);
+            },
+            maxLength: 200,
+            maxLines: null,
+            keyboardType: TextInputType.multiline,
+            style: mylib.simpleText1,
+            cursorColor: Color.fromARGB(255, 117, 106, 106),
+            decoration: const InputDecoration(
+              counterText: "",
+              hintText: 'Tapez votre texte...',
+              contentPadding: EdgeInsets.fromLTRB(10, 0, 0, 1),
+              filled: true,
+              fillColor: Colors.white,
+              enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    width: 1,
+                    color: Color.fromARGB(255, 255, 255, 255),
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(15))),
+              focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    width: 1,
+                    color: Color.fromARGB(255, 255, 255, 255),
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(15))),
+            ),
+          )));
+} 
+
 }
