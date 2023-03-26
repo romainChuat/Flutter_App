@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -19,6 +22,17 @@ class TraiterMarkersRecuAdmin extends StatefulWidget {
 class Traitermarkersrecuadmin extends State<TraiterMarkersRecuAdmin> {
   final mapController = MapController();
   var marker = <Marker>[];
+  var rep_titre;
+  var repID;
+  var rep_date_photo;
+  var rep_age;
+  var rep_genre;
+  var rep_etude;
+  var rep_activite;
+  var rep_expr;
+  var rep_image;
+
+
 
   Widget titleDate() {
     return ClipRRect(
@@ -30,7 +44,7 @@ class Traitermarkersrecuadmin extends State<TraiterMarkersRecuAdmin> {
         child: Container(
           padding: const EdgeInsets.fromLTRB(1, 15, 1, 0),
           child: Text(
-            "Traiter_markers_recu_admin_title".tr(),
+            rep_titre.toString() + " ",
             style: mylib.titleStyle,
             textAlign: TextAlign.center,
           ),
@@ -147,7 +161,7 @@ class Traitermarkersrecuadmin extends State<TraiterMarkersRecuAdmin> {
                 Container(
                   width: 280,
                   height: 156,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage("images/photo_besancon.jpg"),
                       fit: BoxFit.cover,
@@ -195,9 +209,9 @@ class Traitermarkersrecuadmin extends State<TraiterMarkersRecuAdmin> {
                     width: 300,
                     height: 46,
                     color: const Color.fromARGB(255, 255, 255, 255),
-                    child: const Align(
+                    child:  Align(
                       child: Text(
-                        "jj/mm/aaaa",
+                        rep_date_photo.toString(),
                         style: mylib.titleStyleDuration,
                         textAlign: TextAlign.center,
                       ),
@@ -220,7 +234,7 @@ class Traitermarkersrecuadmin extends State<TraiterMarkersRecuAdmin> {
           borderRadius: BorderRadius.circular(15.0),
           child: Container(
             width: 325,
-            height: 310,
+            height: 500,
             color: const Color.fromARGB(255, 235, 233, 233),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -247,9 +261,9 @@ class Traitermarkersrecuadmin extends State<TraiterMarkersRecuAdmin> {
                         width: 300,
                         height: 46,
                         color: const Color.fromARGB(255, 255, 255, 255),
-                        child: const Align(
+                        child: Align(
                           child: Text(
-                            "1. Texte texte texte texte",
+                            "1. " + (rep_expr.length < 1 ? "" : rep_expr[0]),
                             style: mylib.titleStyleDuration,
                             textAlign: TextAlign.center,
                           ),
@@ -260,9 +274,9 @@ class Traitermarkersrecuadmin extends State<TraiterMarkersRecuAdmin> {
                         width: 300,
                         height: 46,
                         color: const Color.fromARGB(255, 255, 255, 255),
-                        child: const Align(
+                        child: Align(
                           child: Text(
-                            "2. Texte texte texte texte",
+                            "2. " + (rep_expr.length < 2 ? "" : rep_expr[1]),
                             style: mylib.titleStyleDuration,
                             textAlign: TextAlign.center,
                           ),
@@ -273,9 +287,9 @@ class Traitermarkersrecuadmin extends State<TraiterMarkersRecuAdmin> {
                         width: 300,
                         height: 46,
                         color: const Color.fromARGB(255, 255, 255, 255),
-                        child: const Align(
+                        child: Align(
                           child: Text(
-                            "3. Texte texte texte texte",
+                            "3. " + (rep_expr.length < 3 ? "" : rep_expr[2]),
                             style: mylib.titleStyleDuration,
                             textAlign: TextAlign.center,
                           ),
@@ -286,9 +300,61 @@ class Traitermarkersrecuadmin extends State<TraiterMarkersRecuAdmin> {
                         width: 300,
                         height: 46,
                         color: const Color.fromARGB(255, 255, 255, 255),
-                        child: const Align(
+                        child:  Align(
                           child: Text(
-                            "4. Texte texte texte texte",
+                            "4. " + (rep_expr.length < 4 ? "" : rep_expr[3]),
+                            style: mylib.titleStyleDuration,
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Container(
+                        width: 300,
+                        height: 46,
+                        color: const Color.fromARGB(255, 255, 255, 255),
+                        child: Align(
+                          child: Text(
+                            "5. " + (rep_expr.length < 5 ? "" : rep_expr[4]),
+                            style: mylib.titleStyleDuration,
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Container(
+                        width: 300,
+                        height: 46,
+                        color: const Color.fromARGB(255, 255, 255, 255),
+                        child: Align(
+                          child: Text(
+                            "6. " + (rep_expr.length < 6 ? "" : rep_expr[5]),
+                            style: mylib.titleStyleDuration,
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Container(
+                        width: 300,
+                        height: 46,
+                        color: const Color.fromARGB(255, 255, 255, 255),
+                        child: Align(
+                          child: Text(
+                            "7. " + (rep_expr.length < 7 ? "" : rep_expr[6]),
+                            style: mylib.titleStyleDuration,
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Container(
+                        width: 300,
+                        height: 46,
+                        color: const Color.fromARGB(255, 255, 255, 255),
+                        child: Align(
+                          child: Text(
+                            "8. " + (rep_expr.length < 8 ? "" : rep_expr[7]),
                             style: mylib.titleStyleDuration,
                             textAlign: TextAlign.center,
                           ),
@@ -340,7 +406,7 @@ class Traitermarkersrecuadmin extends State<TraiterMarkersRecuAdmin> {
                     color: const Color.fromARGB(255, 255, 255, 255),
                     child: Align(
                       child: Text(
-                        "Traiter_markers_recu_admin_years".tr(),
+                        rep_age,
                         style: mylib.titleStyleDuration,
                         textAlign: TextAlign.center,
                       ),
@@ -388,9 +454,9 @@ class Traitermarkersrecuadmin extends State<TraiterMarkersRecuAdmin> {
                     width: 300,
                     height: 46,
                     color: const Color.fromARGB(255, 255, 255, 255),
-                    child: const Align(
+                    child: Align(
                       child: Text(
-                        "TexteGenre",
+                        rep_genre,
                         style: mylib.titleStyleDuration,
                         textAlign: TextAlign.center,
                       ),
@@ -438,9 +504,9 @@ class Traitermarkersrecuadmin extends State<TraiterMarkersRecuAdmin> {
                     width: 300,
                     height: 46,
                     color: const Color.fromARGB(255, 255, 255, 255),
-                    child: const Align(
+                    child: Align(
                       child: Text(
-                        "Niveaux d'étude",
+                        rep_etude,
                         style: mylib.titleStyleDuration,
                         textAlign: TextAlign.center,
                       ),
@@ -488,9 +554,9 @@ class Traitermarkersrecuadmin extends State<TraiterMarkersRecuAdmin> {
                     width: 300,
                     height: 46,
                     color: const Color.fromARGB(255, 255, 255, 255),
-                    child: const Align(
+                    child: Align(
                       child: Text(
-                        "Activité",
+                        rep_activite,
                         style: mylib.titleStyleDuration,
                         textAlign: TextAlign.center,
                       ),
@@ -532,89 +598,141 @@ class Traitermarkersrecuadmin extends State<TraiterMarkersRecuAdmin> {
       ),
     ),
   );
-}
+  }
+
+  getReponse(int repID) async {
+    var data = await mylib.getReponsesByID(repID);
+    print('data');
+    print(data);
+    rep_titre = data[0].toString();
+    rep_date_photo = data[1].toString().substring(0,10);
+    var rep_expr0 = data[2].toString();
+
+    String temp = rep_expr0.replaceAll("{","").replaceAll("}","");
+    List<String> repExprArray = temp.split(",");
+  
+    // Supprimer tous les numéros du tableau
+    for (int i = 0; i < repExprArray.length; i++) {
+      repExprArray[i] = repExprArray[i].replaceAll(RegExp(r'\d+: '), '');
+    }
+    rep_expr = repExprArray;
+    
+    rep_age = mylib.switchAge(data[3]);
+    rep_genre = data[4].toString();
+    rep_etude = data[5].toString();
+    rep_activite = data[6].toString();
+    rep_image = data[8];
+    return;
+  }
+
+
+  getPath(var image) async {
+    //var image = await mylib.getImage(userID);
+    var imageByte = base64Decode(image!);
+    final tempDir = await Directory.systemTemp.createTemp();
+    final tempFile = File('${tempDir.path}/image.png');
+    await tempFile.writeAsBytes(imageByte);
+    //print("tempfile");
+    //print(tempFile.path);
+    //var imagePATH = tempFile.path;
+    return tempFile.path;
+  }
+
+
   @override
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
+        print(reponses);
+    repID = reponses['rep_id'] as int;
     context.watch<LanguageController>();
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: mylib.BaseAppBar(
-        appBar: AppBar(),
-      ),
-      endDrawer: mylib.createMenu(context),
-      body: AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle.light,
-        child: GestureDetector(
-            child: Stack(
-          children: <Widget>[
-            SizedBox(
-              height: double.infinity,
-              width: double.infinity,
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    const Padding(padding: EdgeInsets.fromLTRB(0, 55, 0, 0)),
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(15.0),
-                      child: Container(
-                        width: 359,
-                        height: 600,
-                        padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-                        decoration: const BoxDecoration(
-                          color: Color.fromARGB(118, 13, 12, 32),
-                        ),
-                child: SingleChildScrollView( //facultatif : permet l'affichage d'une scrollbar
+    return FutureBuilder<dynamic>(
+        future: getReponse(repID!),
+        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            // Affiche un widget pendant que la méthode getPath est en cours d'exécution
+            return CircularProgressIndicator();
+          } else {
 
-                        child: SingleChildScrollView(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              const Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 20, 0, 0)),
-                              titleDate(),
-                              const Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                              map(),
-                              const Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                              photo(),
-                              const Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                              date(),
-                              const Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                              expression(),
-                              const Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                              age(),
-                              const Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                              genre(),
-                              const Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                              niveauxEtude(),
-                              const Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                              activiteExerce(),
-                            ],
-                          ),
-                        ),
-                )
-                      ),
-                    ),
-                    const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                    createCancelButton(reponses)
-                  ],
-                ),
+
+            return Scaffold(
+              extendBodyBehindAppBar: true,
+              appBar: mylib.BaseAppBar(
+                appBar: AppBar(),
               ),
-              // )
-            )
-          ],
-        )),
-      ),
+              endDrawer: mylib.createMenu(context),
+              body: AnnotatedRegion<SystemUiOverlayStyle>(
+                value: SystemUiOverlayStyle.light,
+                child: GestureDetector(
+                    child: Stack(
+                  children: <Widget>[
+                    SizedBox(
+                      height: double.infinity,
+                      width: double.infinity,
+                      child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            const Padding(padding: EdgeInsets.fromLTRB(0, 55, 0, 0)),
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(15.0),
+                              child: Container(
+                                width: 359,
+                                height: 600,
+                                padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+                                decoration: const BoxDecoration(
+                                  color: Color.fromARGB(118, 13, 12, 32),
+                                ),
+                                child: SingleChildScrollView(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      const Padding(
+                                          padding: EdgeInsets.fromLTRB(0, 20, 0, 0)),
+                                      titleDate(),
+                                      const Padding(
+                                          padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                                      map(),
+                                      const Padding(
+                                          padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                                      photo(),
+                                      const Padding(
+                                          padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                                      date(),
+                                      const Padding(
+                                          padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                                      expression(),
+                                      const Padding(
+                                          padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                                      age(),
+                                      const Padding(
+                                          padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                                      genre(),
+                                      const Padding(
+                                          padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                                      niveauxEtude(),
+                                      const Padding(
+                                          padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                                      activiteExerce(),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                            createCancelButton(reponses)
+                          ],
+                        ),
+                      ),
+                      // )
+                    )
+                  ],
+                )),
+              ),
+            );
+          }
+        }
     );
   }
 }
+

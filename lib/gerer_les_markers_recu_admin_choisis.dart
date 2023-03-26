@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -18,6 +21,15 @@ class GererMarkersRecuAdmin extends StatefulWidget {
 class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
   final mapController = MapController();
   var marker = <Marker>[];
+    var rep_titre;
+  var repID;
+  var rep_date_photo;
+  var rep_age;
+  var rep_genre;
+  var rep_etude;
+  var rep_activite;
+  var rep_expr;
+  var rep_image;
 
   Widget titleDate() {
     return ClipRRect(
@@ -29,7 +41,7 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
         child: Container(
           padding: const EdgeInsets.fromLTRB(1, 15, 1, 0),
           child: Text(
-            "Traiter_markers_recu_admin_title".tr(),
+            rep_titre,
             style: mylib.titleStyle,
             textAlign: TextAlign.center,
           ),
@@ -195,9 +207,9 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
                     width: 300,
                     height: 46,
                     color: const Color.fromARGB(255, 255, 255, 255),
-                    child: const Align(
+                    child: Align(
                       child: Text(
-                        "jj/mm/aaaa",
+                        rep_date_photo,
                         style: mylib.titleStyleDuration,
                         textAlign: TextAlign.center,
                       ),
@@ -220,7 +232,7 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
           borderRadius: BorderRadius.circular(15.0),
           child: Container(
             width: 325,
-            height: 310,
+            height: 500,
             color: const Color.fromARGB(255, 235, 233, 233),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -243,13 +255,13 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
                   borderRadius: BorderRadius.circular(15.0),
                   child: Column(
                     children: [
-                      Container(
+                                            Container(
                         width: 300,
                         height: 46,
                         color: const Color.fromARGB(255, 255, 255, 255),
-                        child: const Align(
+                        child: Align(
                           child: Text(
-                            "1. Texte texte texte texte",
+                            "1. " + (rep_expr.length < 1 ? "" : rep_expr[0]),
                             style: mylib.titleStyleDuration,
                             textAlign: TextAlign.center,
                           ),
@@ -260,9 +272,9 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
                         width: 300,
                         height: 46,
                         color: const Color.fromARGB(255, 255, 255, 255),
-                        child: const Align(
+                        child: Align(
                           child: Text(
-                            "2. Texte texte texte texte",
+                            "2. " + (rep_expr.length < 2 ? "" : rep_expr[1]),
                             style: mylib.titleStyleDuration,
                             textAlign: TextAlign.center,
                           ),
@@ -273,9 +285,9 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
                         width: 300,
                         height: 46,
                         color: const Color.fromARGB(255, 255, 255, 255),
-                        child: const Align(
+                        child: Align(
                           child: Text(
-                            "3. Texte texte texte texte",
+                            "3. " + (rep_expr.length < 3 ? "" : rep_expr[2]),
                             style: mylib.titleStyleDuration,
                             textAlign: TextAlign.center,
                           ),
@@ -286,9 +298,61 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
                         width: 300,
                         height: 46,
                         color: const Color.fromARGB(255, 255, 255, 255),
-                        child: const Align(
+                        child:  Align(
                           child: Text(
-                            "4. Texte texte texte texte",
+                            "4. " + (rep_expr.length < 4 ? "" : rep_expr[3]),
+                            style: mylib.titleStyleDuration,
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Container(
+                        width: 300,
+                        height: 46,
+                        color: const Color.fromARGB(255, 255, 255, 255),
+                        child: Align(
+                          child: Text(
+                            "5. " + (rep_expr.length < 5 ? "" : rep_expr[4]),
+                            style: mylib.titleStyleDuration,
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Container(
+                        width: 300,
+                        height: 46,
+                        color: const Color.fromARGB(255, 255, 255, 255),
+                        child: Align(
+                          child: Text(
+                            "6. " + (rep_expr.length < 6 ? "" : rep_expr[5]),
+                            style: mylib.titleStyleDuration,
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Container(
+                        width: 300,
+                        height: 46,
+                        color: const Color.fromARGB(255, 255, 255, 255),
+                        child: Align(
+                          child: Text(
+                            "7. " + (rep_expr.length < 7 ? "" : rep_expr[6]),
+                            style: mylib.titleStyleDuration,
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Container(
+                        width: 300,
+                        height: 46,
+                        color: const Color.fromARGB(255, 255, 255, 255),
+                        child: Align(
+                          child: Text(
+                            "8. " + (rep_expr.length < 8 ? "" : rep_expr[7]),
                             style: mylib.titleStyleDuration,
                             textAlign: TextAlign.center,
                           ),
@@ -340,7 +404,7 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
                     color: const Color.fromARGB(255, 255, 255, 255),
                     child: Align(
                       child: Text(
-                        "Traiter_markers_recu_admin_years".tr(),
+                        rep_age,
                         style: mylib.titleStyleDuration,
                         textAlign: TextAlign.center,
                       ),
@@ -388,9 +452,9 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
                     width: 300,
                     height: 46,
                     color: const Color.fromARGB(255, 255, 255, 255),
-                    child: const Align(
+                    child: Align(
                       child: Text(
-                        "TexteGenre",
+                        rep_genre,
                         style: mylib.titleStyleDuration,
                         textAlign: TextAlign.center,
                       ),
@@ -438,9 +502,9 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
                     width: 300,
                     height: 46,
                     color: const Color.fromARGB(255, 255, 255, 255),
-                    child: const Align(
+                    child: Align(
                       child: Text(
-                        "Niveaux d'étude",
+                        rep_etude,
                         style: mylib.titleStyleDuration,
                         textAlign: TextAlign.center,
                       ),
@@ -548,9 +612,9 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
                     width: 300,
                     height: 46,
                     color: const Color.fromARGB(255, 255, 255, 255),
-                    child: const Align(
+                    child: Align(
                       child: Text(
-                        "Activité",
+                        rep_activite,
                         style: mylib.titleStyleDuration,
                         textAlign: TextAlign.center,
                       ),
@@ -564,12 +628,58 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
       ],
     );
   }
+  getReponse(int repID) async {
+    var data = await mylib.getReponsesByID(repID);
+    print('data');
+    print(data);
+    rep_titre = data[0].toString();
+    rep_date_photo = data[1].toString().substring(0,10);
+    var rep_expr0 = data[2].toString();
+
+    String temp = rep_expr0.replaceAll("{","").replaceAll("}","");
+    List<String> repExprArray = temp.split(",");
+  
+    // Supprimer tous les numéros du tableau
+    for (int i = 0; i < repExprArray.length; i++) {
+      repExprArray[i] = repExprArray[i].replaceAll(RegExp(r'\d+: '), '');
+    }
+    rep_expr = repExprArray;
+    
+    rep_age = mylib.switchAge(data[3]);
+    rep_genre = data[4].toString();
+    rep_etude = data[5].toString();
+    rep_activite = data[6].toString();
+    //rep_image = getPath(data[8]);
+    return;
+  }
+
+
+  getPath(var image) async {
+    //var image = await mylib.getImage(userID);
+    var imageByte = base64Decode(image!);
+    final tempDir = await Directory.systemTemp.createTemp();
+    final tempFile = File('${tempDir.path}/image.png');
+    await tempFile.writeAsBytes(imageByte);
+    //print("tempfile");
+    print(tempFile.path);
+    //var imagePATH = tempFile.path;
+    return tempFile.path.toString();
+  }
 
   @override
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
     context.watch<LanguageController>();
+    repID = reponses['rep_id'] as int;
+
+    return FutureBuilder<dynamic>(
+        future: getReponse(repID!),
+        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            // Affiche un widget pendant que la méthode getPath est en cours d'exécution
+            return CircularProgressIndicator();
+          } else {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: mylib.BaseAppBar(
@@ -634,6 +744,10 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
         )
         )
       ),
+    );
+
+             }
+        }
     );
   }
 }

@@ -207,6 +207,25 @@ class DatabaseHelper {
     return results.toList();
   }
 
+  Future<List?> queryReponsesByID(var repID) async {
+    print(repID);
+    final client = await db;
+    //Si la base de données n'est pas ouverte, la fonction retourne null
+    if (client == null) {
+      return null;
+    }
+    var results = await client.query(
+        'SELECT rep_titre, rep_date, rep_expr, rep_age, rep_genre, rep_etude, rep_activite, rep_lieu, rep_date_validation, rep_img FROM reponses WHERE rep_id = @aValue ',
+        substitutionValues: {"aValue": repID});
+    //Si la requête n'a pas trouvé de réponses, on retourne null
+    if (results.isEmpty == true) {
+      return null;
+    }
+
+    //Sinon on retourne le résultat
+    return results.toList();
+  }
+
   //Insère un lieu dans la BD
   //Les informations sur le lieu sont transmis dans une map en paramètres
   Future<PostgreSQLResult?> insertLieu(Map<String, dynamic> data) async {
