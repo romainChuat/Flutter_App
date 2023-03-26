@@ -75,15 +75,19 @@ class Droitsauteur extends State<DroitsAuteur> {
                                 children: [
                                   Expanded(
                                       child: MediaQuery.removePadding(
-                                    context: context,
-                                    removeTop: true,
-                                    child: Scrollbar( //facultatif : permet l'affichage d'une scrollbar
-                                      child: SingleChildScrollView(
-                                        padding: const EdgeInsets.fromLTRB(  10, 10, 10, 10),
-                                        child: Text("droits_auteur_text".tr(),),
-                                    ),
-                                    )
-                                  )),
+                                          context: context,
+                                          removeTop: true,
+                                          child: Scrollbar(
+                                            //facultatif : permet l'affichage d'une scrollbar
+                                            child: SingleChildScrollView(
+                                              padding:
+                                                  const EdgeInsets.fromLTRB(
+                                                      10, 10, 10, 10),
+                                              child: Text(
+                                                "droits_auteur_text".tr(),
+                                              ),
+                                            ),
+                                          ))),
                                 ],
                               ),
                             ),
@@ -122,7 +126,7 @@ class Droitsauteur extends State<DroitsAuteur> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    if (reponses['mdp'] == true)
+                    if (reponses['mail'] != null)
                       mylib.createQuitButton(context, 141, 41,
                           const confirmationEnregistrement(), reponses)
                     else
@@ -141,6 +145,9 @@ class Droitsauteur extends State<DroitsAuteur> {
                       ),
                   ],
                 ),
+                if (!_showErrorMessage)
+                  Text("Veuillez répondre pour aller à la prochaine question",
+                      style: mylib.warningText),
                 const Spacer(),
                 const Align(
                   alignment: Alignment.bottomRight,

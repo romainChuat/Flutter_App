@@ -31,6 +31,7 @@ class Etudepage extends State<EtudePage> {
   var niveau;
   TextEditingController textControler = TextEditingController();
   bool _select = false;
+  bool isChecked = false;
 
   get text => null;
 
@@ -49,7 +50,7 @@ class Etudepage extends State<EtudePage> {
           child: Center(
             child: Column(
               children: <Widget>[
-                SizedBox(height: 40),
+                const SizedBox(height: 40),
 
                 mylib.percentIndicator(context, 0.88),
                 const SizedBox(
@@ -90,6 +91,8 @@ class Etudepage extends State<EtudePage> {
                                 groupValue: niveau,
                                 onChanged: (value) {
                                   setState(() {
+                                    isChecked = true;
+
                                     _select = false;
                                     niveau = Niveau.primaire;
                                     reponses['rep_etude'] =
@@ -109,6 +112,8 @@ class Etudepage extends State<EtudePage> {
                                 groupValue: niveau,
                                 onChanged: (value) {
                                   setState(() {
+                                    isChecked = true;
+
                                     _select = false;
                                     niveau = Niveau.premierCycle;
                                     reponses['rep_etude'] =
@@ -128,6 +133,8 @@ class Etudepage extends State<EtudePage> {
                                 groupValue: niveau,
                                 onChanged: (value) {
                                   setState(() {
+                                    isChecked = true;
+
                                     _select = false;
                                     niveau = Niveau.secondCycle;
                                     reponses['rep_etude'] =
@@ -147,6 +154,8 @@ class Etudepage extends State<EtudePage> {
                                 groupValue: niveau,
                                 onChanged: (value) {
                                   setState(() {
+                                    isChecked = true;
+
                                     _select = false;
                                     niveau = Niveau.sup;
                                     reponses['rep_etude'] =
@@ -166,6 +175,8 @@ class Etudepage extends State<EtudePage> {
                                 groupValue: niveau,
                                 onChanged: (value) {
                                   setState(() {
+                                    isChecked = true;
+
                                     _select = false;
                                     niveau = Niveau.bac3;
                                     reponses['rep_etude'] =
@@ -185,6 +196,8 @@ class Etudepage extends State<EtudePage> {
                                 groupValue: niveau,
                                 onChanged: (value) {
                                   setState(() {
+                                    isChecked = true;
+
                                     _select = false;
                                     niveau = Niveau.bac5;
                                     reponses['rep_etude'] =
@@ -204,6 +217,8 @@ class Etudepage extends State<EtudePage> {
                                 groupValue: niveau,
                                 onChanged: (value) {
                                   setState(() {
+                                    isChecked = true;
+
                                     _select = false;
 
                                     niveau = Niveau.doctorat;
@@ -255,6 +270,7 @@ class Etudepage extends State<EtudePage> {
                                 groupValue: niveau,
                                 onChanged: (value) {
                                   setState(() {
+                                    isChecked = true;
                                     _select = true;
                                     print(_select);
                                     niveau = Niveau.autre;
@@ -280,25 +296,29 @@ class Etudepage extends State<EtudePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    if (reponses['mdp'] == true)
+                    if (reponses['mail'] != null)
                       mylib.createQuitButton(context, 141, 41,
                           const confirmationEnregistrement(), reponses)
                     else
                       mylib.createQuitButton(context, 141, 41,
                           const confirmationAbandon(), reponses),
-                    mylib.createNextButton(
-                      "btn_next".tr(),
-                      context,
-                      141,
-                      41,
-                      MaterialPageRoute(
-                          builder: (_) => const ActivitePage(),
-                          settings: RouteSettings(arguments: reponses)),
-                    )
+                    if (isChecked)
+                      mylib.createNextButton(
+                        "btn_next".tr(),
+                        context,
+                        141,
+                        41,
+                        MaterialPageRoute(
+                            builder: (_) => const ActivitePage(),
+                            settings: RouteSettings(arguments: reponses)),
+                      )
                   ],
                 ),
+                if (!isChecked)
+                  Text("Veuillez répondre pour aller à la prochaine question",
+                      style: mylib.warningText),
                 // const Spacer(),
-                SizedBox(height: 40),
+                const SizedBox(height: 40),
 
                 const Align(
                   alignment: Alignment.bottomRight,

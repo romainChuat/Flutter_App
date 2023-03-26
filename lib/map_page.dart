@@ -21,6 +21,8 @@ class MapPage extends StatefulWidget {
 }
 
 class Mappage extends State<MapPage> {
+  bool _showErrorMessage = false;
+
   var marker = <Marker>[];
   double currentZoom = 13.0;
   MapController mapController = MapController();
@@ -94,6 +96,7 @@ class Mappage extends State<MapPage> {
                                     center: currentCenter,
                                     zoom: 14,
                                     onTap: (LatLng value) {
+                                      _showErrorMessage = true;
                                       Map<String, Object> longLat = {};
                                       reponses['lieu_long'] = value.longitude;
                                       reponses['lieu_lat'] = value.latitude;
@@ -211,18 +214,22 @@ class Mappage extends State<MapPage> {
                     else
                       mylib.createQuitButton(context, 141, 41,
                           const confirmationAbandon(), reponses),
-                    mylib.createNextButton(
-                      "btn_next".tr(),
-                      context,
-                      141,
-                      41,
-                      MaterialPageRoute(
-                        builder: (_) => const DroitsAuteur(),
-                        settings: RouteSettings(arguments: reponses),
-                      ),
-                    )
+                    if (_showErrorMessage)
+                      mylib.createNextButton(
+                        "btn_next".tr(),
+                        context,
+                        141,
+                        41,
+                        MaterialPageRoute(
+                          builder: (_) => const DroitsAuteur(),
+                          settings: RouteSettings(arguments: reponses),
+                        ),
+                      )
                   ],
                 ),
+                if (!_showErrorMessage)
+                  Text("Veuillez répondre pour aller à la prochaine question",
+                      style: mylib.warningText),
                 const Spacer(),
                 const Align(
                   alignment: Alignment.bottomRight,

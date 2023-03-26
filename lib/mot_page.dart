@@ -17,6 +17,8 @@ class MotPage extends StatefulWidget {
 }
 
 class Motpage extends State<MotPage> {
+  bool isChecked = false;
+
   @override
   Widget build(BuildContext context) {
     Map<int, String>? mots = <int, String>{};
@@ -47,98 +49,107 @@ class Motpage extends State<MotPage> {
                     width: 336,
                     height: 355,
                     color: const Color.fromARGB(255, 235, 233, 233),
-                    child: Column(
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
-                          child: Text(
-                            "motPage_title".tr(),
-                            style: mylib.titleStyle,
-                            textAlign: TextAlign.center,
+                    child: Scrollbar(
+                      child: Column(
+                        children: [
+                          //facultatif : permet l'affichage d'une scrollbar
+                          Container(
+                            padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
+                            child: Text(
+                              "motPage_title".tr(),
+                              style: mylib.titleStyle,
+                              textAlign: TextAlign.center,
+                            ),
                           ),
-                        ),
-                        const Divider(
-                          color: Colors.black,
-                          thickness: 1,
-                          indent: 20,
-                          endIndent: 20,
-                        ),
-                        const Padding( padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                        Scrollbar( //facultatif : permet l'affichage d'une scrollbar
-                          child: SizedBox(
+                          const Divider(
+                            color: Colors.black,
+                            thickness: 1,
+                            indent: 20,
+                            endIndent: 20,
+                          ),
+
+                          SizedBox(
                             width: 263,
                             height: 240,
                             child: MediaQuery.removePadding(
-                            context: context,
-                            removeTop: true,
-                            child: ListView.separated(
-                              itemCount: 8,
-                              itemBuilder: (BuildContext context, int index) {
-                                return SizedBox(
-                                    height: 38,
-                                    child: Material(
-                                        elevation: 5,
-                                        borderRadius: const BorderRadius.all(
-                                            Radius.circular(10)),
-                                        child: TextField(
-                                          style: mylib.titleStyleDuration
-                                              .apply(fontSizeDelta: 5),
-                                          cursorColor: const Color.fromARGB(
-                                              255, 117, 106, 106),
-                                          decoration: InputDecoration(
-                                              prefixIcon: Padding(
-                                                padding:
-                                                    const EdgeInsets.fromLTRB(
-                                                        12, 6, 0, 0),
-                                                child: Text(
-                                                  '${index + 1}.',
-                                                  style: mylib.simpleTextdark
-                                                      .apply(fontSizeDelta: 5),
+                              context: context,
+                              removeTop: true,
+                              child: ListView.separated(
+                                itemCount: 8,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return SizedBox(
+                                      height: 38,
+                                      child: Material(
+                                          elevation: 5,
+                                          borderRadius: const BorderRadius.all(
+                                              Radius.circular(10)),
+                                          child: TextField(
+                                            style: mylib.titleStyleDuration
+                                                .apply(fontSizeDelta: 5),
+                                            cursorColor: const Color.fromARGB(
+                                                255, 117, 106, 106),
+                                            decoration: InputDecoration(
+                                                prefixIcon: Padding(
+                                                  padding:
+                                                      const EdgeInsets.fromLTRB(
+                                                          12, 6, 0, 0),
+                                                  child: Text(
+                                                    '${index + 1}.',
+                                                    style: mylib.simpleTextdark
+                                                        .apply(
+                                                            fontSizeDelta: 5),
+                                                  ),
                                                 ),
-                                              ),
-                                              contentPadding:
-                                                  const EdgeInsets.fromLTRB(
-                                                      0, 0, 0, 1),
-                                              filled: true,
-                                              fillColor: Colors.white,
-                                              enabledBorder:
-                                                  const OutlineInputBorder(
-                                                      borderSide: BorderSide(
-                                                        width: 1,
-                                                        color: Color.fromARGB(
-                                                            255, 255, 255, 255),
-                                                      ),
-                                                      borderRadius:
-                                                          BorderRadius.all(
-                                                              Radius.circular(
-                                                                  15))),
-                                              focusedBorder:
-                                                  const OutlineInputBorder(
-                                                      borderSide: BorderSide(
-                                                        width: 1,
-                                                        color: Color.fromARGB(
-                                                            255, 255, 255, 255),
-                                                      ),
-                                                      borderRadius:
-                                                          BorderRadius.all(
-                                                              Radius.circular(
-                                                                  15)))),
-                                          onChanged: (text) {
-                                            mots[index] = text;
+                                                contentPadding:
+                                                    const EdgeInsets.fromLTRB(
+                                                        0, 0, 0, 1),
+                                                filled: true,
+                                                fillColor: Colors.white,
+                                                enabledBorder:
+                                                    const OutlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                          width: 1,
+                                                          color: Color.fromARGB(
+                                                              255,
+                                                              255,
+                                                              255,
+                                                              255),
+                                                        ),
+                                                        borderRadius:
+                                                            BorderRadius.all(
+                                                                Radius.circular(
+                                                                    15))),
+                                                focusedBorder:
+                                                    const OutlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                          width: 1,
+                                                          color: Color.fromARGB(
+                                                              255,
+                                                              255,
+                                                              255,
+                                                              255),
+                                                        ),
+                                                        borderRadius:
+                                                            BorderRadius.all(
+                                                                Radius.circular(
+                                                                    15)))),
+                                            onChanged: (text) {
+                                              isChecked = true;
+                                              mots[index] = text;
 
-                                            reponses['rep_expr'] =
-                                                mots.toString();
-                                          },
-                                        )));
-                              },
-                              separatorBuilder:
-                                  (BuildContext context, int index) =>
-                                      const Padding(padding: EdgeInsets.all(8)),
+                                              reponses['rep_expr'] =
+                                                  mots.toString();
+                                            },
+                                          )));
+                                },
+                                separatorBuilder: (BuildContext context,
+                                        int index) =>
+                                    const Padding(padding: EdgeInsets.all(8)),
+                              ),
                             ),
                           ),
-                        ),
-                        )
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -148,24 +159,28 @@ class Motpage extends State<MotPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    if (reponses['mdp'] == true)
+                    if (reponses['mail'] != null)
                       mylib.createQuitButton(context, 141, 41,
                           const confirmationEnregistrement(), reponses)
                     else
                       mylib.createQuitButton(context, 141, 41,
                           const confirmationAbandon(), reponses),
-                    mylib.createNextButton(
-                      "btn_next".tr(),
-                      context,
-                      141,
-                      41,
-                      MaterialPageRoute(
-                        builder: (_) => const AgePage(),
-                        settings: RouteSettings(arguments: reponses),
-                      ),
-                    )
+                    if (isChecked)
+                      mylib.createNextButton(
+                        "btn_next".tr(),
+                        context,
+                        141,
+                        41,
+                        MaterialPageRoute(
+                          builder: (_) => const AgePage(),
+                          settings: RouteSettings(arguments: reponses),
+                        ),
+                      )
                   ],
                 ),
+                if (!isChecked)
+                  Text("Veuillez répondre pour aller à la prochaine question",
+                      style: mylib.warningText),
                 const Spacer(),
                 const Align(
                   alignment: Alignment.bottomRight,
