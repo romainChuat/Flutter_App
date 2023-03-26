@@ -25,13 +25,12 @@ class Consulterquestionnaireloginchoix
   final mapController = MapController();
   var marker = <Marker>[];
 
-
   var imagePATH;
   var date_validation;
   var titre;
 
   int? userID;
-  
+
   var date_photo;
 
   Widget titleDate() {
@@ -44,7 +43,7 @@ class Consulterquestionnaireloginchoix
         child: Container(
           padding: const EdgeInsets.fromLTRB(1, 15, 1, 0),
           child: Text(
-            titre.toString()+" "+date_validation.toString(),
+            titre.toString() + " " + date_validation.toString(),
             //"Traiter_markers_recu_admin_title".tr(),
 
             style: mylib.titleStyle,
@@ -544,17 +543,14 @@ class Consulterquestionnaireloginchoix
     );
   }
 
-
   ///QUEL Questionnaire est recupere ??? !!!!
-  getReponse(int userID) async{
+  getReponse(int userID) async {
     var data = await mylib.getReponses(userID);
     titre = data[0].toString();
     //date_validation = data[6].toString().substring(0,10);
-    date_photo = data[1].toString().substring(0,10);
+    date_photo = data[1].toString().substring(0, 10);
     print(data);
   }
-
-
 
   getPath(var image) async {
     //var image = await mylib.getImage(userID);
@@ -599,47 +595,54 @@ class Consulterquestionnaireloginchoix
                       ClipRRect(
                         borderRadius: BorderRadius.circular(15.0),
                         child: Container(
-                          width: 359,
-                          height: 600,
-                          color: const Color.fromARGB(118, 13, 12, 32),
-                          padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-                          child: Scrollbar(
-                          child: SingleChildScrollView(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                const Padding(
+                            width: 359,
+                            height: 600,
+                            color: const Color.fromARGB(118, 13, 12, 32),
+                            padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+                            child: Scrollbar(
+                              child: SingleChildScrollView(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    const Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                                    titleDate(),
+                                    const Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                                    map(),
+                                    /*const Padding(
                                     padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                                titleDate(),
-                                const Padding(
-                                    padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                                map(),
-                                const Padding(
-                                    padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                                photo(), // Passer le chemin d'accès à la fonction photo
-                                const Padding(
-                                    padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                                date(),
-                                const Padding(
-                                    padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                                expression(),
-                                const Padding(
-                                    padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                                age(),
-                                const Padding(
-                                    padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                                genre(),
-                                const Padding(
-                                    padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                                niveauxEtude(),
-                                const Padding(
-                                    padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                                activiteExerce(),
-                              ],
-                            ),
-                          ),
-                          )
-                        ),
+                                photo(), */ // Passer le chemin d'accès à la fonction photo
+                                    const Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                                    date(),
+                                    const Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                                    expression(),
+                                    const Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                                    age(),
+                                    const Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                                    genre(),
+                                    const Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                                    niveauxEtude(),
+                                    const Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                                    activiteExerce(),
+                                  ],
+                                ),
+                              ),
+                            )),
                       ),
                       Row(
                           mainAxisAlignment: MainAxisAlignment.center,
