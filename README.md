@@ -23,8 +23,9 @@ Bes'App sera alors prête à être utiliser.
 
 ## APK
 
-Pour génerer un apk utiliser la commander flutter `build apk`
-Pour plus d'informations sur la génération des différentes composantes possible consulter l'adresse suivante:
+  - Pour génerer un apk utiliser la commander flutter `build apk`
+  - Vous trouverez alors les différentes form d'apk dans : [monprojet]/build/app/outputs/...
+  - Pour plus d'informations sur la génération des différentes composantes possible consulter l'adresse suivante:
 https://docs.flutter.dev/deployment/android
 
 ## Crédits
