@@ -277,31 +277,36 @@ class Consulteravisloginchoisis extends State<ConsulterAvisLoginChoisis> {
             ClipRRect(
               borderRadius: BorderRadius.circular(15.0),
               child: Container(
-                width: 359,
-                height: 600,
-                color: const Color.fromARGB(118, 13, 12, 32),
-                padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-                child :Scrollbar( //facultatif : permet l'affichage d'une scrollbar
-                
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                      titleDate(),
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                      avis(),
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                      commentaire(),
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                      age(),
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                      dejaVisite(),
-                    ],
-                  ),
-                ),
-                )
-              ),
+                  width: 359,
+                  height: 600,
+                  color: const Color.fromARGB(118, 13, 12, 32),
+                  padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+                  child: Scrollbar(
+                    //facultatif : permet l'affichage d'une scrollbar
+
+                    child: SingleChildScrollView(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          const Padding(
+                              padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                          titleDate(),
+                          const Padding(
+                              padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                          avis(),
+                          const Padding(
+                              padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                          commentaire(),
+                          const Padding(
+                              padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                          age(),
+                          const Padding(
+                              padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                          dejaVisite(),
+                        ],
+                      ),
+                    ),
+                  )),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

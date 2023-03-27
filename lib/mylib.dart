@@ -755,7 +755,7 @@ createMenu(BuildContext context) {
   );
 }
 
-Future<String?> getImage(int userID) async{
+Future<String?> getImage(int userID) async {
   final DatabaseHelper dbHelper = DatabaseHelper.getInstance();
   WidgetsFlutterBinding.ensureInitialized();
   String? image;
@@ -769,13 +769,14 @@ Future<String?> getImage(int userID) async{
   //print(image);
   return image;
 }
-Future<List> getReponses(userID) async{
+
+Future<List> getReponses(userID) async {
   final DatabaseHelper dbHelper = DatabaseHelper.getInstance();
   WidgetsFlutterBinding.ensureInitialized();
   List? reponse;
-  try{
+  try {
     reponse = await dbHelper.queryReponsesUser(userID);
-  }catch(e){
+  } catch (e) {
     print(e);
     print("impossible de recuperer la reponses");
   }
@@ -783,28 +784,30 @@ Future<List> getReponses(userID) async{
   print(res);
   return reponse[0]; ///// A REVOIR !!!!
 }
-Future<void> validerReponses(int rep_id) async{
+
+Future<void> validerReponses(int rep_id) async {
   final DatabaseHelper dbHelper = DatabaseHelper.getInstance();
   WidgetsFlutterBinding.ensureInitialized();
   var reponse;
   print(rep_id);
   print("valider");
-  try{
+  try {
     reponse = await dbHelper.setValider(int.parse(rep_id.toString()));
-  }catch(e){
+  } catch (e) {
     print(e);
     print("impossible de modifier la reponses");
   }
 }
-Future<void> refuserReponses(int rep_id) async{
+
+Future<void> refuserReponses(int rep_id) async {
   final DatabaseHelper dbHelper = DatabaseHelper.getInstance();
   WidgetsFlutterBinding.ensureInitialized();
   var reponse;
   print(rep_id);
   print("refuser");
-  try{
+  try {
     reponse = await dbHelper.setRefuser(int.parse(rep_id.toString()));
-  }catch(e){
+  } catch (e) {
     print(e);
     print("impossible de modifier la reponses");
   }

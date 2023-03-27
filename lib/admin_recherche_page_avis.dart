@@ -31,6 +31,7 @@ class _RecherchepageAvis extends State<RecherchepageAvis> {
 
   var filtre = "";
 
+  @override
   void initState() {
     super.initState();
     controllerSearch.addListener(onSearchChanged);
@@ -131,15 +132,15 @@ class _RecherchepageAvis extends State<RecherchepageAvis> {
     );
   }
 
-  _listItem(context, _list) {
-    DateTime date = DateTime.parse(_list[2].toString());
+  _listItem(context, list) {
+    DateTime date = DateTime.parse(list[2].toString());
     // Formatage de la date selon le format "dd/MM/yyyy"
     String formattedDate = DateFormat('dd/MM/yyyy').format(date);
-    String title = _list[4].toString();
-    String username = _list[3].toString();
+    String title = list[4].toString();
+    String username = list[3].toString();
     Map<String, Object> data = {};
-    data['rep_id'] = _list[0] as int;
-    data['rep_status'] = _list[5];
+    data['rep_id'] = list[0] as int;
+    data['rep_status'] = list[5];
 
     // print("ess");
 

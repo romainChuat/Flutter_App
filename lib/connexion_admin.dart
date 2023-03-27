@@ -183,19 +183,19 @@ class Connexionadminn extends State<ConnexionAdminn> {
         child: ElevatedButton(
           onPressed: () async {
             await loginCorrect();
-            //if (connected == true) {
-            mylib.adminConnect = true;
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (BuildContext context) => const HelloAdminPage(),
-                settings: RouteSettings(arguments: reponses),
-              ),
-            );
-            // } else {
-            setState(() {
-              _showErrorMessage = true;
-            });
-            //}
+            if (connected == true) {
+              mylib.adminConnect = true;
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (BuildContext context) => const HelloAdminPage(),
+                  settings: RouteSettings(arguments: reponses),
+                ),
+              );
+            } else {
+              setState(() {
+                _showErrorMessage = true;
+              });
+            }
           },
           style: ElevatedButton.styleFrom(
             shadowColor: Colors.grey.shade700,
