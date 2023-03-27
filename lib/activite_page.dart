@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/reponse.dart';
 import 'package:flutter_application_1/user_confirm_abandon_quiz.dart';
 import 'package:flutter_application_1/user_confirm_enregistrement.dart';
 import 'package:provider/provider.dart';
@@ -29,8 +30,8 @@ class Activitepage extends State<ActivitePage> {
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
-    reponses['rep_activite'] = "tets";
-    context.watch<LanguageController>();
+    reponses['rep_activite'] = "test";  //récupération des données de la page non fonctionnel
+     context.watch<LanguageController>();
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: mylib.BaseAppBar(appBar: AppBar()),
@@ -92,16 +93,14 @@ class Activitepage extends State<ActivitePage> {
                                     CheckboxListTile(
                                       activeColor:
                                           const Color.fromARGB(255, 13, 12, 32),
-                                      title: mylib.createInput(
-                                        311,
-                                        28,
-                                      ),
+                                      title: createInput(311,28, reponses, 0),
                                       autofocus: false,
                                       selected: _formationValue,
                                       value: _formationValue,
                                       onChanged: (value) {
                                         setState(() {
                                           _formationValue = value!;
+
                                           //enregistrer chaine de caracère
                                         });
                                       },
@@ -123,7 +122,7 @@ class Activitepage extends State<ActivitePage> {
                                     CheckboxListTile(
                                       activeColor:
                                           const Color.fromARGB(255, 13, 12, 32),
-                                      title: mylib.createInput(311, 28),
+                                      title: createInput(311, 28,  reponses, 1),
                                       autofocus: false,
                                       selected: _empValue,
                                       value: _empValue,
@@ -151,7 +150,7 @@ class Activitepage extends State<ActivitePage> {
                                     CheckboxListTile(
                                       activeColor:
                                           const Color.fromARGB(255, 13, 12, 32),
-                                      title: mylib.createInput(311, 28),
+                                      title: createInput(311, 28,  reponses, 2),
                                       autofocus: false,
                                       selected: _proValue,
                                       value: _proValue,
@@ -179,7 +178,7 @@ class Activitepage extends State<ActivitePage> {
                                     CheckboxListTile(
                                       activeColor:
                                           const Color.fromARGB(255, 13, 12, 32),
-                                      title: mylib.createInput(311, 28),
+                                      title: createInput(311, 28, reponses, 3),
                                       autofocus: false,
                                       selected: _retraiteValue,
                                       value: _retraiteValue,
@@ -207,7 +206,7 @@ class Activitepage extends State<ActivitePage> {
                                     CheckboxListTile(
                                       activeColor:
                                           const Color.fromARGB(255, 13, 12, 32),
-                                      title: mylib.createInput(311, 28),
+                                      title: createInput(311, 28, reponses, 4),
                                       autofocus: false,
                                       selected: _ssProValue,
                                       value: _ssProValue,
@@ -239,7 +238,7 @@ class Activitepage extends State<ActivitePage> {
                   else
                     mylib.createQuitButton(context, 141, 41,
                         const confirmationAbandon(), reponses),
-                  if (reponses['mail'] != null)
+                  if (reponses['mail'] != null) 
                     mylib.createNextButton1(
                         "btn_next".tr(),
                         context,
@@ -280,6 +279,36 @@ class Activitepage extends State<ActivitePage> {
       ),
     );
   }
-
+  createInput(double wdth,double hgth, var reponses, int index) {
+  return SizedBox(
+      height: hgth,
+      width: wdth,
+      child: Material(
+          elevation: 5,
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+          child: TextField(
+            onChanged:(value) {
+              //reponses["rep_activite"][index] = value.toString();
+            } ,
+            style: mylib.simpleText1,
+            cursorColor: Color.fromARGB(255, 117, 106, 106),
+            decoration: InputDecoration(
+                contentPadding: EdgeInsets.fromLTRB(10, 0, 0, 1),
+                filled: true,
+                fillColor: Colors.white,
+                enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      width: 1,
+                      color: Color.fromARGB(255, 255, 255, 255),
+                    ),
+                    borderRadius: BorderRadius.all(Radius.circular(15))),
+                focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      width: 1,
+                      color: Color.fromARGB(255, 255, 255, 255),
+                    ),
+                    borderRadius: BorderRadius.all(Radius.circular(15)))),
+          )));
+}
   void onChanged(dynamic text) {}
 }

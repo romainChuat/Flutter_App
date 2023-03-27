@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/comment_page.dart';
 import 'package:flutter_application_1/controller/language_contoller.dart';
+import 'multiple_marker.dart';
 import 'start_page.dart';
 import 'mylib.dart' as mylib;
 import 'package:provider/provider.dart';
@@ -105,12 +106,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       onPressed: () {
                         reponses["rep_titre"] = "title2_text".tr();
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => const CommentPage(),
-                          ),
-                        );
                       },
                       child: Row(
                         children: [
@@ -150,7 +145,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       onPressed: () {
                         reponses["rep_titre"] = "title3_text".tr();
-                        Navigator.pop(context);
                       },
                       child: Row(
                         children: [

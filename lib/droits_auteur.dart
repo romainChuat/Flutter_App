@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/multiple_marker.dart';
 import 'package:flutter_application_1/user_confirm_abandon_quiz.dart';
 import 'package:flutter_application_1/user_confirm_enregistrement.dart';
 import 'package:provider/provider.dart';
@@ -135,7 +136,7 @@ class Droitsauteur extends State<DroitsAuteur> {
                         141,
                         41,
                         MaterialPageRoute(
-                          builder: (_) => const FichierPage(),
+                          builder: (_) => const MultipleMarkerPage(),
                           settings: RouteSettings(arguments: reponses),
                         ),
                       ),

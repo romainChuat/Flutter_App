@@ -257,41 +257,6 @@ percentIndicator(BuildContext context, double percentPage) {
     progressColor: const Color.fromARGB(255, 13, 12, 32),
   );
 }
-
-createInput(
-  double wdth,
-  double hgth,
-) {
-  return SizedBox(
-      height: hgth,
-      width: wdth,
-      child: const Material(
-          elevation: 5,
-          borderRadius: BorderRadius.all(Radius.circular(10)),
-          child: TextField(
-            style: simpleText1,
-            cursorColor: Color.fromARGB(255, 117, 106, 106),
-            decoration: InputDecoration(
-                contentPadding: EdgeInsets.fromLTRB(10, 0, 0, 1),
-                filled: true,
-                fillColor: Colors.white,
-                enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      width: 1,
-                      color: Color.fromARGB(255, 255, 255, 255),
-                    ),
-                    borderRadius: BorderRadius.all(Radius.circular(15))),
-                focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      width: 1,
-                      color: Color.fromARGB(255, 255, 255, 255),
-                    ),
-                    borderRadius: BorderRadius.all(Radius.circular(15)))),
-          )));
-}
-
-
-
 createQuitButton(BuildContext context, double width, double height, var path,
     Map<String, Object>? args) {
   return SizedBox(
