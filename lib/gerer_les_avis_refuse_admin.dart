@@ -257,32 +257,37 @@ class Gereravisrefuse extends State<GererAvisRefuse> {
             ClipRRect(
               borderRadius: BorderRadius.circular(15.0),
               child: Container(
-                width: 359,
-                height: 600,
-                padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-                decoration: const BoxDecoration(
-                  color: Color.fromARGB(118, 13, 12, 32),
-                ),
-                child : Scrollbar(
-                child: SingleChildScrollView( //facultatif : permet l'affichage d'une scrollbar
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 0)),
-                      titleDate(),
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                      avis(),
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                      commentaire(),
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                      age(),
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                      dejaVisite(),
-                    ],
+                  width: 359,
+                  height: 600,
+                  padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+                  decoration: const BoxDecoration(
+                    color: Color.fromARGB(118, 13, 12, 32),
                   ),
-                ),
-                )
-              ),
+                  child: Scrollbar(
+                    child: SingleChildScrollView(
+                      //facultatif : permet l'affichage d'une scrollbar
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          const Padding(
+                              padding: EdgeInsets.fromLTRB(0, 20, 0, 0)),
+                          titleDate(),
+                          const Padding(
+                              padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                          avis(),
+                          const Padding(
+                              padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                          commentaire(),
+                          const Padding(
+                              padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                          age(),
+                          const Padding(
+                              padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                          dejaVisite(),
+                        ],
+                      ),
+                    ),
+                  )),
             ),
             const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
             mylib.createNextButton1(

@@ -275,6 +275,7 @@ class Activitepage extends State<ActivitePage> {
                 ],
               ),
               if (!isChecked)
+                // ignore: prefer_const_constructors
                 Text("Veuillez répondre pour aller à la prochaine question",
                     style: mylib.warningText),
               // const Spacer(),

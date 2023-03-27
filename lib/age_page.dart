@@ -240,7 +240,8 @@ class Agepage extends State<AgePage> {
                   ],
                 ),
                 if (age == 0)
-                  Text("Veuillez répondre pour aller à la prochaine question",
+                  const Text(
+                      "Veuillez répondre pour aller à la prochaine question",
                       style: mylib.warningText),
                 const Spacer(),
                 const Align(

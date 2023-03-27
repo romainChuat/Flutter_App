@@ -456,64 +456,66 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
   }
 
   createValidateButton(reponses) {
-  return SizedBox(
-    width: 141,
-    height: 41,
-    child: ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        foregroundColor: Colors.white,
-        side: const BorderSide(color: Colors.white, width: 1),
-        elevation: 15,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+    return SizedBox(
+      width: 141,
+      height: 41,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          foregroundColor: Colors.white,
+          side: const BorderSide(color: Colors.white, width: 1),
+          elevation: 15,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        ),
+        onPressed: () {
+          print(reponses);
+          mylib.validerReponses(reponses['rep_id']);
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (BuildContext context) => const HelloAdminPage(),
+              settings: RouteSettings(arguments: reponses),
+            ),
+          );
+        },
+        child: Text(
+          "btn_validate".tr(),
+          style: mylib.titleStyle,
+        ),
       ),
-      onPressed: () {
-        print(reponses);
-        mylib.validerReponses(reponses['rep_id']);
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-                    builder: (BuildContext context) => const HelloAdminPage(),
-                    settings: RouteSettings(arguments: reponses),
-                  ),
-        );
-      },
-      child: Text(
-        "btn_validate".tr(),
-        style: mylib.titleStyle,
-      ),
-    ),
-  );
-}
+    );
+  }
 
   createRefuseButton(reponses) {
-  return SizedBox(
-    width: 141,
-    height: 41,
-    child: ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        foregroundColor: Colors.white,
-        side: const BorderSide(color: Colors.white, width: 1),
-        elevation: 15,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+    return SizedBox(
+      width: 141,
+      height: 41,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          foregroundColor: Colors.white,
+          side: const BorderSide(color: Colors.white, width: 1),
+          elevation: 15,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        ),
+        onPressed: () {
+          print(reponses);
+          mylib.refuserReponses(reponses['rep_id']);
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (BuildContext context) => const HelloAdminPage(),
+              settings: RouteSettings(arguments: reponses),
+            ),
+          );
+        },
+        child: Text(
+          "btn_refuse".tr(),
+          style: mylib.titleStyle,
+        ),
       ),
-      onPressed: () {
-        print(reponses);
-        mylib.refuserReponses(reponses['rep_id']);
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-                    builder: (BuildContext context) => const HelloAdminPage(),
-                    settings: RouteSettings(arguments: reponses),
-                  ),
-        );
-      },
-      child: Text(
-        "btn_refuse".tr(),
-        style: mylib.titleStyle,
-      ),
-    ),
-  );
-}
+    );
+  }
 
   Widget activiteExerce() {
     return Column(
@@ -577,8 +579,9 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
       ),
       endDrawer: mylib.createMenu(context),
       body: Center(
-        child: SingleChildScrollView( //facultatif : permet l'affichage d'une scrollbar
-        child: SingleChildScrollView(
+          child: SingleChildScrollView(
+              //facultatif : permet l'affichage d'une scrollbar
+              child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -623,17 +626,14 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 50)),
-               createRefuseButton(reponses),
+                createRefuseButton(reponses),
                 const Padding(padding: EdgeInsets.fromLTRB(35, 0, 0, 0)),
                 createValidateButton(reponses),
-                
               ],
             ),
           ],
         ),
-        )
-        )
-      ),
+      ))),
     );
   }
 }

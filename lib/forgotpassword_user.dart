@@ -22,7 +22,7 @@ class ForgotPasswordUser extends StatefulWidget {
 }
 
 class Forgotpassworduser extends State<ForgotPasswordUser> {
-  /* final mailController = TextEditingController();
+  final mailController = TextEditingController();
   bool isRememberMe = false;
   bool exist = false;
   bool _showErrorMessage = false;
@@ -299,9 +299,9 @@ class Forgotpassworduser extends State<ForgotPasswordUser> {
       exist = true;
     }
   }
-}*/
+}
 
-  final _formKey = GlobalKey<FormState>();
+ /* final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
 
   Future<void> sendPasswordResetEmail(
@@ -376,4 +376,4 @@ class Forgotpassworduser extends State<ForgotPasswordUser> {
       ),
     );
   }
-}
+}*/
