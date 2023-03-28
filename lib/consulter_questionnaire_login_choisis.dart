@@ -78,6 +78,7 @@ class Consulterquestionnaireloginchoix
                       textAlign: TextAlign.center,
                     ),
                   ),
+                  // Widget de séparation
                   const Divider(
                     color: Colors.black,
                     thickness: 1,
@@ -304,7 +305,7 @@ class Consulterquestionnaireloginchoix
                         width: 300,
                         height: 46,
                         color: const Color.fromARGB(255, 255, 255, 255),
-                        child:  Align(
+                        child: Align(
                           child: Text(
                             "4. " + (rep_expr.length < 4 ? "" : rep_expr[3]),
                             style: mylib.titleStyleDuration,
@@ -602,18 +603,18 @@ class Consulterquestionnaireloginchoix
     print('data');
     print(data);
     rep_titre = data[0].toString();
-    rep_date_photo = data[1].toString().substring(0,10);
+    rep_date_photo = data[1].toString().substring(0, 10);
     var rep_expr0 = data[2].toString();
 
-    String temp = rep_expr0.replaceAll("{","").replaceAll("}","");
+    String temp = rep_expr0.replaceAll("{", "").replaceAll("}", "");
     List<String> repExprArray = temp.split(",");
-  
+
     // Supprimer tous les numéros du tableau
     for (int i = 0; i < repExprArray.length; i++) {
       repExprArray[i] = repExprArray[i].replaceAll(RegExp(r'\d+: '), '');
     }
     rep_expr = repExprArray;
-    
+
     rep_age = mylib.switchAge(data[3]);
     rep_genre = data[4].toString();
     rep_etude = data[5].toString();
@@ -621,7 +622,6 @@ class Consulterquestionnaireloginchoix
     //rep_image = getPath(data[8]);
     return;
   }
-
 
   getPath(var image) async {
     //var image = await mylib.getImage(userID);
@@ -635,9 +635,10 @@ class Consulterquestionnaireloginchoix
     return tempFile.path.toString();
   }
 
-
   @override
   Widget build(BuildContext context) {
+    // Map<String, Object> reponses permet de récupérer les arguments passés lors de la navigation vers la page
+    // courante à l'aide de la méthode ModalRoute.of(context)?.settings.arguments.
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
     //avec connexion internet
@@ -689,8 +690,9 @@ class Consulterquestionnaireloginchoix
                                             EdgeInsets.fromLTRB(0, 30, 0, 0)),
                                     map(),
                                     const Padding(
-                                    padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                                      photo(),// Passer le chemin d'accès à la fonction photo
+                                        padding:
+                                            EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                                    photo(), // Passer le chemin d'accès à la fonction photo
                                     const Padding(
                                         padding:
                                             EdgeInsets.fromLTRB(0, 30, 0, 0)),

@@ -23,9 +23,10 @@ class Commentpage extends State<CommentPage> {
   int age = 0;
   final textController = TextEditingController();
 
-
   @override
   Widget build(BuildContext context) {
+    // Map<String, Object> reponses permet de récupérer les arguments passés lors de la navigation vers la page
+    // courante à l'aide de la méthode ModalRoute.of(context)?.settings.arguments.
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
     // context.watch<LanguageController>() est utilisée pour surveiller les changements de la langue de l'application.
@@ -83,6 +84,7 @@ class Commentpage extends State<CommentPage> {
                                           textAlign: TextAlign.center,
                                         ),
                                       ),
+                                      // Widget de séparation
                                       const Divider(
                                         color: Color.fromARGB(255, 13, 12, 32),
                                         thickness: 1,
@@ -299,10 +301,10 @@ class Commentpage extends State<CommentPage> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceAround,
                                         children: [
-                                          createtButton(
-                                              "btn_yes".tr(), context, 141, 41, 1, reponses),
-                                          createtButton(
-                                              "btn_no".tr(), context, 141, 41, 0, reponses),
+                                          createtButton("btn_yes".tr(), context,
+                                              141, 41, 1, reponses),
+                                          createtButton("btn_no".tr(), context,
+                                              141, 41, 0, reponses),
                                         ],
                                       )),
                                     ],
@@ -359,7 +361,6 @@ class Commentpage extends State<CommentPage> {
                                           onRatingUpdate: (rating) {
                                             reponses['avis_note'] = rating;
                                             print(reponses);
-
                                           },
                                         ),
                                       ),
@@ -399,7 +400,8 @@ class Commentpage extends State<CommentPage> {
                                       const Padding(
                                           padding: EdgeInsets.fromLTRB(
                                               0, 10, 0, 10)),
-                                      createInputTextArea(300, 204, textController, reponses),
+                                      createInputTextArea(
+                                          300, 204, textController, reponses),
                                       Align(
                                         alignment: Alignment.bottomRight,
                                         child: Container(
@@ -462,65 +464,70 @@ class Commentpage extends State<CommentPage> {
           ),
         ));
   }
-  createtButton(String text, BuildContext context, double width, double height, int yesno, var reponses) {
+
+  createtButton(String text, BuildContext context, double width, double height,
+      int yesno, var reponses) {
     return SizedBox(
       width: width,
       height: height,
       child: ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: const Color.fromARGB(255, 13, 12, 32),
-        elevation: 15,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: const Color.fromARGB(255, 13, 12, 32),
+          elevation: 15,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        ),
+        onPressed: () {
+          reponses['avis_visite'] = yesno;
+        },
+        child: Text(
+          text,
+          style: mylib.titleStyle,
+        ),
       ),
-      onPressed: () {
-        reponses['avis_visite'] = yesno;
-      },
-      child: Text(
-        text,
-        style: mylib.titleStyle,
-      ),
-    ),
-  );
+    );
   }
-  createInputTextArea(double wdth, double hgth, TextEditingController textController, var reponses) {
-  return SizedBox(
-      height: hgth,
-      width: wdth,
-      child: Material(
-          elevation: 5,
-          color: Colors.white,
-          borderRadius: BorderRadius.all(Radius.circular(10)),
-          child: TextField(
-            controller: textController,
-            onChanged: (value) {print(textController);
-              reponses['avis_txt'] = textController.text;
-              print(reponses);
-            },
-            maxLength: 200,
-            maxLines: null,
-            keyboardType: TextInputType.multiline,
-            style: mylib.simpleText1,
-            cursorColor: Color.fromARGB(255, 117, 106, 106),
-            decoration: const InputDecoration(
-              counterText: "",
-              hintText: 'Tapez votre texte...',
-              contentPadding: EdgeInsets.fromLTRB(10, 0, 0, 1),
-              filled: true,
-              fillColor: Colors.white,
-              enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    width: 1,
-                    color: Color.fromARGB(255, 255, 255, 255),
-                  ),
-                  borderRadius: BorderRadius.all(Radius.circular(15))),
-              focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    width: 1,
-                    color: Color.fromARGB(255, 255, 255, 255),
-                  ),
-                  borderRadius: BorderRadius.all(Radius.circular(15))),
-            ),
-          )));
-} 
 
+  createInputTextArea(double wdth, double hgth,
+      TextEditingController textController, var reponses) {
+    return SizedBox(
+        height: hgth,
+        width: wdth,
+        child: Material(
+            elevation: 5,
+            color: Colors.white,
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+            child: TextField(
+              controller: textController,
+              onChanged: (value) {
+                print(textController);
+                reponses['avis_txt'] = textController.text;
+                print(reponses);
+              },
+              maxLength: 200,
+              maxLines: null,
+              keyboardType: TextInputType.multiline,
+              style: mylib.simpleText1,
+              cursorColor: Color.fromARGB(255, 117, 106, 106),
+              decoration: const InputDecoration(
+                counterText: "",
+                hintText: 'Tapez votre texte...',
+                contentPadding: EdgeInsets.fromLTRB(10, 0, 0, 1),
+                filled: true,
+                fillColor: Colors.white,
+                enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      width: 1,
+                      color: Color.fromARGB(255, 255, 255, 255),
+                    ),
+                    borderRadius: BorderRadius.all(Radius.circular(15))),
+                focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      width: 1,
+                      color: Color.fromARGB(255, 255, 255, 255),
+                    ),
+                    borderRadius: BorderRadius.all(Radius.circular(15))),
+              ),
+            )));
+  }
 }

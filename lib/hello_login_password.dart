@@ -24,6 +24,8 @@ class HelloLoginPassword extends StatefulWidget {
 class Hellologinpassword extends State<HelloLoginPassword> {
   @override
   Widget build(BuildContext context) {
+    // Map<String, Object> reponses permet de récupérer les arguments passés lors de la navigation vers la page
+    // courante à l'aide de la méthode ModalRoute.of(context)?.settings.arguments.
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
     // context.watch<LanguageController>() est utilisée pour surveiller les changements de la langue de l'application.

@@ -29,6 +29,8 @@ class Activitepage extends State<ActivitePage> {
 
   @override
   Widget build(BuildContext context) {
+    // Map<String, Object> reponses permet de récupérer les arguments passés lors de la navigation vers la page
+    // courante à l'aide de la méthode ModalRoute.of(context)?.settings.arguments.
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
     reponses['rep_activite'] = "tets";
@@ -54,6 +56,8 @@ class Activitepage extends State<ActivitePage> {
               const SizedBox(
                 height: 55,
               ),
+              // La fonction 'percentIndicator' de la bibliotheque mylib prend en paramètre un contexte de type BuildContext et un pourcentage de type double.
+              // Cette dernière permet d'afficher une barre de progression linéaire avec un pourcentage.
               mylib.percentIndicator(context, 1.0),
               const SizedBox(
                 height: 20,
@@ -76,6 +80,7 @@ class Activitepage extends State<ActivitePage> {
                           textAlign: TextAlign.center,
                         ),
                       ),
+                      // Widget de séparation
                       const Divider(
                         color: Colors.black,
                         thickness: 1,
@@ -102,7 +107,7 @@ class Activitepage extends State<ActivitePage> {
                                     CheckboxListTile(
                                       activeColor:
                                           const Color.fromARGB(255, 13, 12, 32),
-                                      title: createInput(311,28, reponses, 0),
+                                      title: createInput(311, 28, reponses, 0),
                                       autofocus: false,
                                       selected: _formationValue,
                                       value: _formationValue,
@@ -133,7 +138,7 @@ class Activitepage extends State<ActivitePage> {
                                     CheckboxListTile(
                                       activeColor:
                                           const Color.fromARGB(255, 13, 12, 32),
-                                      title: createInput(311, 28,  reponses, 1),
+                                      title: createInput(311, 28, reponses, 1),
                                       autofocus: false,
                                       selected: _empValue,
                                       value: _empValue,
@@ -163,7 +168,7 @@ class Activitepage extends State<ActivitePage> {
                                     CheckboxListTile(
                                       activeColor:
                                           const Color.fromARGB(255, 13, 12, 32),
-                                      title: createInput(311, 28,  reponses, 2),
+                                      title: createInput(311, 28, reponses, 2),
                                       autofocus: false,
                                       selected: _proValue,
                                       value: _proValue,
@@ -281,12 +286,14 @@ class Activitepage extends State<ActivitePage> {
                     )
                 ],
               ),
+              // Message d'erreur qui s'affiche lorsque l'utilisateur n'a pas répondu à la question.
+
               if (!isChecked)
-                // ignore: prefer_const_constructors
-                Text("Veuillez répondre pour aller à la prochaine question",
+                const Text(
+                    "Veuillez répondre pour aller à la prochaine question",
                     style: mylib.warningText),
-              // const Spacer(),
               const SizedBox(height: 55),
+              // Bas de page indiquant le numéro de page sur le nombre de page restante.
               const Align(
                 alignment: Alignment.bottomRight,
                 child: Text(
@@ -301,36 +308,38 @@ class Activitepage extends State<ActivitePage> {
       ),
     );
   }
-  createInput(double wdth,double hgth, var reponses, int index) {
-  return SizedBox(
-      height: hgth,
-      width: wdth,
-      child: Material(
-          elevation: 5,
-          borderRadius: BorderRadius.all(Radius.circular(10)),
-          child: TextField(
-            onChanged:(value) {
-              //reponses["rep_activite"][index] = value.toString();
-            } ,
-            style: mylib.simpleText1,
-            cursorColor: Color.fromARGB(255, 117, 106, 106),
-            decoration: InputDecoration(
-                contentPadding: EdgeInsets.fromLTRB(10, 0, 0, 1),
-                filled: true,
-                fillColor: Colors.white,
-                enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      width: 1,
-                      color: Color.fromARGB(255, 255, 255, 255),
-                    ),
-                    borderRadius: BorderRadius.all(Radius.circular(15))),
-                focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      width: 1,
-                      color: Color.fromARGB(255, 255, 255, 255),
-                    ),
-                    borderRadius: BorderRadius.all(Radius.circular(15)))),
-          )));
-}
+
+  createInput(double wdth, double hgth, var reponses, int index) {
+    return SizedBox(
+        height: hgth,
+        width: wdth,
+        child: Material(
+            elevation: 5,
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+            child: TextField(
+              onChanged: (value) {
+                //reponses["rep_activite"][index] = value.toString();
+              },
+              style: mylib.simpleText1,
+              cursorColor: Color.fromARGB(255, 117, 106, 106),
+              decoration: InputDecoration(
+                  contentPadding: EdgeInsets.fromLTRB(10, 0, 0, 1),
+                  filled: true,
+                  fillColor: Colors.white,
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        width: 1,
+                        color: Color.fromARGB(255, 255, 255, 255),
+                      ),
+                      borderRadius: BorderRadius.all(Radius.circular(15))),
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        width: 1,
+                        color: Color.fromARGB(255, 255, 255, 255),
+                      ),
+                      borderRadius: BorderRadius.all(Radius.circular(15)))),
+            )));
+  }
+
   void onChanged(dynamic text) {}
 }

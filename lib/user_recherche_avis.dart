@@ -90,8 +90,7 @@ class _Recherchepageuseravis extends State<Recherchepageuseravis> {
       print("with filter");
       if (controllerSearch.text != "") {
         // print("with text");
-        results =
-            await dbHelper.queryAvis();
+        results = await dbHelper.queryAvis();
         if (results != null) {
           allresults = results;
         }
@@ -144,86 +143,92 @@ class _Recherchepageuseravis extends State<Recherchepageuseravis> {
     data['avis_id'] = id;
 
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15.0),
-        color: Colors.blueGrey[100],
-      ),
-      padding: const EdgeInsets.all(3.0),
-      child: Column(children: [
-        Row(
-          children: [
+        margin: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15.0),
+          color: Colors.blueGrey[100],
+        ),
+        padding: const EdgeInsets.all(3.0),
+        child: Column(children: [
+          Row(children: [
             Expanded(
                 // flex: 3, child: Text(_list[1].toString().substring(0, 10))),
                 flex: 3,
-                    child : Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Align(
-                          alignment: Alignment.centerRight,
-                          child: Text(id.toString()),
-                        ),
-                        Align(
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: Text(id.toString()),
+                      ),
+                      Align(
                           alignment: Alignment.centerRight,
                           child: PopupMenuButton<SampleItem>(
-                            initialValue: selectedMenu,
-                            icon: const Icon(Icons.chevron_right),
-                            // Callback that sets the selected popup menu item.
-                            onSelected: (SampleItem item) {
-                              setState(() {
-                                selectedMenu = item;
-                                if (item == SampleItem.itemOne) {
-                                  filtre = "publie";
-                                } else if (item == SampleItem.itemTwo) {
-                                  filtre = "refuse";
-                                } else if (item == SampleItem.itemThree) {
-                                  filtre = "non-traite";
-                                }
-                              });
-                            },
-                            itemBuilder: (BuildContext context) =>
-                                <PopupMenuEntry<SampleItem>>[
-                              PopupMenuItem<SampleItem>(
-                                value: SampleItem.itemOne,
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    elevation: 20,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(15.0),
-                                    ),
-                                  ),
-                                  child: const Text('Modifier'),
-                                  onPressed: () {
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (BuildContext context) =>
-                                            const ConsulterAvisLoginChoisis(),
-                                        settings:
-                                            RouteSettings(arguments: data),
+                              initialValue: selectedMenu,
+                              icon: const Icon(Icons.chevron_right),
+                              // Callback that sets the selected popup menu item.
+                              onSelected: (SampleItem item) {
+                                setState(() {
+                                  selectedMenu = item;
+                                  if (item == SampleItem.itemOne) {
+                                    filtre = "publie";
+                                  } else if (item == SampleItem.itemTwo) {
+                                    filtre = "refuse";
+                                  } else if (item == SampleItem.itemThree) {
+                                    filtre = "non-traite";
+                                  }
+                                });
+                              },
+                              itemBuilder: (BuildContext context) =>
+                                  <PopupMenuEntry<SampleItem>>[
+                                    PopupMenuItem<SampleItem>(
+                                      value: SampleItem.itemOne,
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          elevation: 20,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(15.0),
+                                          ),
+                                        ),
+                                        child: const Text('Modifier'),
+                                        onPressed: () {
+                                          Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                              builder: (BuildContext context) =>
+                                                  const ConsulterAvisLoginChoisis(),
+                                              settings: RouteSettings(
+                                                  arguments: data),
+                                            ),
+                                          );
+                                        },
                                       ),
-                                    );
-                                  },
-                                ),
-                              ),
-                              PopupMenuItem<SampleItem>(
-                                value: SampleItem.itemTwo,
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    elevation: 20,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(15.0),
                                     ),
-                                  ),
-                                  child: const Text('Supprimer'),
-                                  onPressed: () {
-                                    //il faut delete la
-                                  },
-                                )
-                              )
-                              ]))]))])]));}
+                                    PopupMenuItem<SampleItem>(
+                                        value: SampleItem.itemTwo,
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            elevation: 20,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(15.0),
+                                            ),
+                                          ),
+                                          child: const Text('Supprimer'),
+                                          onPressed: () {
+                                            //il faut delete la
+                                          },
+                                        ))
+                                  ]))
+                    ]))
+          ])
+        ]));
+  }
 
   @override
   Widget build(BuildContext context) {
+    // Map<String, Object> reponses permet de récupérer les arguments passés lors de la navigation vers la page
+    // courante à l'aide de la méthode ModalRoute.of(context)?.settings.arguments.
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
     // context.watch<LanguageController>() est utilisée pour surveiller les changements de la langue de l'application.
