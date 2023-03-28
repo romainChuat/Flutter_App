@@ -5,8 +5,11 @@ import 'package:flutter_application_1/user_confirm_abandon_quiz.dart';
 import 'package:flutter_application_1/user_confirm_enregistrement.dart';
 import 'package:provider/provider.dart';
 import 'controller/language_contoller.dart';
-import 'fichier_page.dart';
 import 'mylib.dart' as mylib;
+import 'mylib.dart';
+
+// Cette classe hérite de la classe `StatefulWidget`.
+// Elle crée une instance de la classe `Droitsauteur`.
 
 class DroitsAuteur extends StatefulWidget {
   const DroitsAuteur({super.key});
@@ -16,6 +19,7 @@ class DroitsAuteur extends StatefulWidget {
     return Droitsauteur();
   }
 }
+// Cette classe est la classe d'état associée à la classe `DroitsAuteur`.
 
 class Droitsauteur extends State<DroitsAuteur> {
   bool accept = false;
@@ -23,6 +27,8 @@ class Droitsauteur extends State<DroitsAuteur> {
 
   @override
   Widget build(BuildContext context) {
+    // Map<String, Object> reponses permet de récupérer les arguments passés lors de la navigation vers la page
+    // courante à l'aide de la méthode ModalRoute.of(context)?.settings.arguments.
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
     // context.watch<LanguageController>() est utilisée pour surveiller les changements de la langue de l'application.
@@ -43,6 +49,8 @@ class Droitsauteur extends State<DroitsAuteur> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 const Spacer(),
+                // La fonction 'percentIndicator' de la bibliotheque mylib prend en paramètre un contexte de type BuildContext et un pourcentage de type double.
+                // Cette dernière permet d'afficher une barre de progression linéaire avec un pourcentage.
                 mylib.percentIndicator(context, 0.22),
                 const SizedBox(
                   height: 20,
@@ -59,13 +67,13 @@ class Droitsauteur extends State<DroitsAuteur> {
                         Container(
                           padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                           child: Text(
-                            // la méthode tr() de la bibliothèque easy_localization permet de traduire la chaîne de caractères
-
+                            // la méthode tr() de la bibliothèque easy_localization permet de traduire la chaîne de caractères.
                             "droits_auteur_title".tr(),
                             style: mylib.titleStyle,
                             textAlign: TextAlign.center,
                           ),
                         ),
+                        // Widget de séparation
                         const Divider(
                           color: Colors.black,
                           thickness: 1,
@@ -85,8 +93,8 @@ class Droitsauteur extends State<DroitsAuteur> {
                                       child: MediaQuery.removePadding(
                                           context: context,
                                           removeTop: true,
+                                          //facultatif : permet l'affichage d'une scrollbar
                                           child: Scrollbar(
-                                            //facultatif : permet l'affichage d'une scrollbar
                                             child: SingleChildScrollView(
                                               padding:
                                                   const EdgeInsets.fromLTRB(
@@ -101,6 +109,8 @@ class Droitsauteur extends State<DroitsAuteur> {
                             ),
                           ),
                         ),
+                        // Partie représentant la case a coché afin d'accedpter les droits d'auteurs, une fois cocher le bouton suivant apparait
+                        //Afin de passer à la page suivante
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -118,6 +128,8 @@ class Droitsauteur extends State<DroitsAuteur> {
                             )
                           ],
                         ),
+                        // Message d'erreur qui s'affiche lorsque l'utilisateur n'a pas répondu à la question.
+
                         if (!_showErrorMessage)
                           Text("droits_auteur_warning".tr(),
                               style: mylib.warningText),
@@ -134,6 +146,10 @@ class Droitsauteur extends State<DroitsAuteur> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
+                    // condition composé de deux bouttons permettant de quitter le questionnaire quand on l'utilisateur souhaite
+                    // ces boutons on été crée à l'aide de createQuitButton de la bibliothèque mylib.
+                    // Ces derniers on deux redirections différente selon si l'utilisateur est connecté avec son compte ou non.
+                    // Si il a un compte il peut alors enregistrer son avancé pour pouvoir la modifier par la suite.
                     if (reponses['mail'] != null)
                       mylib.createQuitButton(context, 141, 41,
                           const ConfirmationEnregistrement(), reponses)
@@ -141,7 +157,8 @@ class Droitsauteur extends State<DroitsAuteur> {
                       mylib.createQuitButton(context, 141, 41,
                           const ConfirmationAbandon(), reponses),
                     if (_showErrorMessage)
-                      mylib.createNextButton(
+                      // crée un boutton 'Suivant' à l'aide de createButton de la bibliothèque mylib.
+                      createButton(
                         "btn_next".tr(),
                         context,
                         141,
@@ -153,10 +170,13 @@ class Droitsauteur extends State<DroitsAuteur> {
                       ),
                   ],
                 ),
+                // Message d'erreur qui s'affiche lorsque l'utilisateur n'a pas répondu à la question.
                 if (!_showErrorMessage)
-                  Text("Veuillez répondre pour aller à la prochaine question",
+                  const Text(
+                      "Veuillez répondre pour aller à la prochaine question",
                       style: mylib.warningText),
                 const Spacer(),
+                // Bas de page indiquant le numéro de page sur le nombre de page restante.
                 const Align(
                   alignment: Alignment.bottomRight,
                   child: Text(

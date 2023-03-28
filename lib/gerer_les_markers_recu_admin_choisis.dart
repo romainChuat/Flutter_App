@@ -21,7 +21,7 @@ class GererMarkersRecuAdmin extends StatefulWidget {
 class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
   final mapController = MapController();
   var marker = <Marker>[];
-    var rep_titre;
+  var rep_titre;
   var repID;
   var rep_date_photo;
   var rep_age;
@@ -71,6 +71,7 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
                     textAlign: TextAlign.center,
                   ),
                 ),
+                // Widget de séparation
                 const Divider(
                   color: Colors.black,
                   thickness: 1,
@@ -255,7 +256,7 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
                   borderRadius: BorderRadius.circular(15.0),
                   child: Column(
                     children: [
-                                            Container(
+                      Container(
                         width: 300,
                         height: 46,
                         color: const Color.fromARGB(255, 255, 255, 255),
@@ -298,7 +299,7 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
                         width: 300,
                         height: 46,
                         color: const Color.fromARGB(255, 255, 255, 255),
-                        child:  Align(
+                        child: Align(
                           child: Text(
                             "4. " + (rep_expr.length < 4 ? "" : rep_expr[3]),
                             style: mylib.titleStyleDuration,
@@ -630,23 +631,24 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
       ],
     );
   }
+
   getReponse(int repID) async {
     var data = await mylib.getReponsesByID(repID);
     print('data');
     print(data);
     rep_titre = data[0].toString();
-    rep_date_photo = data[1].toString().substring(0,10);
+    rep_date_photo = data[1].toString().substring(0, 10);
     var rep_expr0 = data[2].toString();
 
-    String temp = rep_expr0.replaceAll("{","").replaceAll("}","");
+    String temp = rep_expr0.replaceAll("{", "").replaceAll("}", "");
     List<String> repExprArray = temp.split(",");
-  
+
     // Supprimer tous les numéros du tableau
     for (int i = 0; i < repExprArray.length; i++) {
       repExprArray[i] = repExprArray[i].replaceAll(RegExp(r'\d+: '), '');
     }
     rep_expr = repExprArray;
-    
+
     rep_age = mylib.switchAge(data[3]);
     rep_genre = data[4].toString();
     rep_etude = data[5].toString();
@@ -654,7 +656,6 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
     //rep_image = getPath(data[8]);
     return;
   }
-
 
   getPath(var image) async {
     //var image = await mylib.getImage(userID);
@@ -670,6 +671,8 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
 
   @override
   Widget build(BuildContext context) {
+    // Map<String, Object> reponses permet de récupérer les arguments passés lors de la navigation vers la page
+    // courante à l'aide de la méthode ModalRoute.of(context)?.settings.arguments.
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
     // context.watch<LanguageController>() est utilisée pour surveiller les changements de la langue de l'application.
@@ -684,76 +687,85 @@ class Gerermarkersrecuadmin extends State<GererMarkersRecuAdmin> {
             // Affiche un widget pendant que la méthode getPath est en cours d'exécution
             return CircularProgressIndicator();
           } else {
-    return Scaffold(
-      // Permet l'ajout d'un widget 'appBar' dans l'objet 'Scaffold' qui utilise une méthode BaseAppBar
-      // définie dans la bibliothèque mylib pour afficher une barre d'application en haut de la page.
-      extendBodyBehindAppBar: true,
-      appBar: mylib.BaseAppBar(
-        appBar: AppBar(),
-      ),
-      // Permet l'ajoute un widget endDrawer au Scaffold qui utilise la méthode createMenu
-      // de la bibliothèque mylib pour afficher un menu à droite lorsque l'on clique sur l'icon.
-      endDrawer: mylib.createMenu(context),
-      body: Center(
-          child: SingleChildScrollView(
-              //facultatif : permet l'affichage d'une scrollbar
-              child: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Padding(padding: EdgeInsets.fromLTRB(0, 55, 0, 0)),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(15.0),
-              child: Container(
-                width: 359,
-                height: 600,
-                padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-                decoration: const BoxDecoration(
-                  color: Color.fromARGB(118, 13, 12, 32),
-                ),
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 0)),
-                      titleDate(),
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                      map(),
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                      photo(),
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                      date(),
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                      expression(),
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                      age(),
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                      genre(),
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                      niveauxEtude(),
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                      activiteExerce(),
-                    ],
-                  ),
-                ),
+            return Scaffold(
+              // Permet l'ajout d'un widget 'appBar' dans l'objet 'Scaffold' qui utilise une méthode BaseAppBar
+              // définie dans la bibliothèque mylib pour afficher une barre d'application en haut de la page.
+              extendBodyBehindAppBar: true,
+              appBar: mylib.BaseAppBar(
+                appBar: AppBar(),
               ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 50)),
-                createRefuseButton(reponses),
-                const Padding(padding: EdgeInsets.fromLTRB(35, 0, 0, 0)),
-                createValidateButton(reponses),
-              ],
-            ),
-          ],
-        ),
-      ))),
-    );
-
-             }
-        }
-    );
+              // Permet l'ajoute un widget endDrawer au Scaffold qui utilise la méthode createMenu
+              // de la bibliothèque mylib pour afficher un menu à droite lorsque l'on clique sur l'icon.
+              endDrawer: mylib.createMenu(context),
+              body: Center(
+                  child: SingleChildScrollView(
+                      //facultatif : permet l'affichage d'une scrollbar
+                      child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    const Padding(padding: EdgeInsets.fromLTRB(0, 55, 0, 0)),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(15.0),
+                      child: Container(
+                        width: 359,
+                        height: 600,
+                        padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+                        decoration: const BoxDecoration(
+                          color: Color.fromARGB(118, 13, 12, 32),
+                        ),
+                        child: SingleChildScrollView(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              const Padding(
+                                  padding: EdgeInsets.fromLTRB(0, 20, 0, 0)),
+                              titleDate(),
+                              const Padding(
+                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                              map(),
+                              const Padding(
+                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                              photo(),
+                              const Padding(
+                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                              date(),
+                              const Padding(
+                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                              expression(),
+                              const Padding(
+                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                              age(),
+                              const Padding(
+                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                              genre(),
+                              const Padding(
+                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                              niveauxEtude(),
+                              const Padding(
+                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                              activiteExerce(),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        const Padding(
+                            padding: EdgeInsets.fromLTRB(0, 30, 0, 50)),
+                        createRefuseButton(reponses),
+                        const Padding(
+                            padding: EdgeInsets.fromLTRB(35, 0, 0, 0)),
+                        createValidateButton(reponses),
+                      ],
+                    ),
+                  ],
+                ),
+              ))),
+            );
+          }
+        });
   }
 }

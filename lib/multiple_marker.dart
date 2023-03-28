@@ -40,6 +40,8 @@ class _MultipleMarkerPage extends State<MultipleMarkerPage> {
 
   @override
   Widget build(BuildContext context) {
+    // Map<String, Object> reponses permet de récupérer les arguments passés lors de la navigation vers la page
+    // courante à l'aide de la méthode ModalRoute.of(context)?.settings.arguments.
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
     context.watch<LanguageController>();
@@ -54,6 +56,8 @@ class _MultipleMarkerPage extends State<MultipleMarkerPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 const Spacer(),
+                // La fonction 'percentIndicator' de la bibliotheque mylib prend en paramètre un contexte de type BuildContext et un pourcentage de type double.
+                // Cette dernière permet d'afficher une barre de progression linéaire avec un pourcentage.
                 mylib.percentIndicator(context, 0.11),
                 const SizedBox(
                   height: 20,
@@ -78,6 +82,7 @@ class _MultipleMarkerPage extends State<MultipleMarkerPage> {
                               ),
                             ),
                           ),
+                          // Widget de séparation
                           const Divider(
                             color: Colors.black,
                             thickness: 1,
@@ -100,7 +105,8 @@ class _MultipleMarkerPage extends State<MultipleMarkerPage> {
                                       longLat['lieu_long'] = value.longitude;
                                       longLat['lieu_lat'] = value.latitude;
                                       reponse_markers.add(longLat);
-                                      reponses["rep_lieux_tb"] = reponse_markers.toString();
+                                      reponses["rep_lieux_tb"] =
+                                          reponse_markers.toString();
                                       print(reponses);
                                       print("tape");
                                       //marker.clear();
@@ -214,10 +220,10 @@ class _MultipleMarkerPage extends State<MultipleMarkerPage> {
                   children: [
                     if (reponses['mdp'] == true)
                       mylib.createQuitButton(context, 141, 41,
-                          const confirmationEnregistrement(), reponses)
+                          const ConfirmationEnregistrement(), reponses)
                     else
                       mylib.createQuitButton(context, 141, 41,
-                          const confirmationAbandon(), reponses),
+                          const ConfirmationAbandon(), reponses),
                     mylib.createNextButton(
                       "btn_next".tr(),
                       context,
@@ -231,6 +237,8 @@ class _MultipleMarkerPage extends State<MultipleMarkerPage> {
                   ],
                 ),
                 const Spacer(),
+                // Bas de page indiquant le numéro de page sur le nombre de page restante.
+
                 const Align(
                   alignment: Alignment.bottomRight,
                   child: Text(

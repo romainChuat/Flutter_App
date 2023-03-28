@@ -51,6 +51,7 @@ class Useconditions extends State<UseConditions> {
                             textAlign: TextAlign.center,
                           ),
                         ),
+                        // Widget de séparation
                         const Divider(
                           color: Colors.black,
                           thickness: 1,

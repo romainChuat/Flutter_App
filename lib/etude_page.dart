@@ -6,7 +6,10 @@ import 'package:flutter_application_1/user_confirm_enregistrement.dart';
 import 'package:provider/provider.dart';
 import 'controller/language_contoller.dart';
 import 'mylib.dart' as mylib;
+import 'mylib.dart';
 
+// Cette classe hérite de la classe `StatefulWidget`.
+// Elle crée une instance de la classe `EtudePage`.
 class EtudePage extends StatefulWidget {
   const EtudePage({super.key});
 
@@ -16,6 +19,7 @@ class EtudePage extends StatefulWidget {
   }
 }
 
+// Définition d'énumération des différents niveaux d'études
 enum Niveau {
   primaire,
   premierCycle,
@@ -27,6 +31,8 @@ enum Niveau {
   autre
 }
 
+// Cette classe est la classe d'état associée à la classe `EtudePage`.
+
 class Etudepage extends State<EtudePage> {
   var niveau;
   TextEditingController textControler = TextEditingController();
@@ -37,6 +43,8 @@ class Etudepage extends State<EtudePage> {
 
   @override
   Widget build(BuildContext context) {
+    // Map<String, Object> reponses permet de récupérer les arguments passés lors de la navigation vers la page
+    // courante à l'aide de la méthode ModalRoute.of(context)?.settings.arguments.
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
     // context.watch<LanguageController>() est utilisée pour surveiller les changements de la langue de l'application.
@@ -57,7 +65,8 @@ class Etudepage extends State<EtudePage> {
             child: Column(
               children: <Widget>[
                 const SizedBox(height: 40),
-
+                // La fonction 'percentIndicator' de la bibliotheque mylib prend en paramètre un contexte de type BuildContext et un pourcentage de type double.
+                // Cette dernière permet d'afficher une barre de progression linéaire avec un pourcentage.
                 mylib.percentIndicator(context, 0.88),
                 const SizedBox(
                   height: 20,
@@ -74,12 +83,12 @@ class Etudepage extends State<EtudePage> {
                           padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
                           child: Text(
                             // la méthode tr() de la bibliothèque easy_localization permet de traduire la chaîne de caractères
-
                             "etudePage_title".tr(),
                             style: mylib.titleStyle,
                             textAlign: TextAlign.center,
                           ),
                         ),
+                        // Widget de séparation
                         const Divider(
                           color: Colors.black,
                           thickness: 1,
@@ -280,13 +289,6 @@ class Etudepage extends State<EtudePage> {
                                   setState(() {
                                     isChecked = true;
                                     _select = true;
-                                    print(_select);
-                                    niveau = Niveau.autre;
-                                    print(niveau);
-                                    //reponses['rep_etude'] = text.toString();
-
-                                    //reponses['rep_etude'] =niveau.toString().split('.').last;
-                                    print(reponses);
                                   });
                                 },
                                 value: Niveau.autre,
@@ -304,14 +306,22 @@ class Etudepage extends State<EtudePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
+                    // condition composé de deux bouttons permettant de quitter le questionnaire quand on l'utilisateur souhaite
+                    // ces boutons on été crée à l'aide de createQuitButton de la bibliothèque mylib.
+                    // Ces derniers on deux redirections différente selon si l'utilisateur est connecté avec son compte ou non.
+                    // Si il a un compte il peut alors enregistrer son avancé pour pouvoir la modifier par la suite.
+
                     if (reponses['mail'] != null)
                       mylib.createQuitButton(context, 141, 41,
                           const ConfirmationEnregistrement(), reponses)
                     else
                       mylib.createQuitButton(context, 141, 41,
                           const ConfirmationAbandon(), reponses),
+                    // crée un boutton permettant d'acceder à la question suivante à l'aide de createPopButton de la bibliothèque mylib.
+                    // ce dernier et apparant seulement si l'utilisateur répond à la question.
+
                     if (isChecked)
-                      mylib.createNextButton(
+                      createButton(
                         "btn_next".tr(),
                         context,
                         141,
@@ -319,15 +329,16 @@ class Etudepage extends State<EtudePage> {
                         MaterialPageRoute(
                             builder: (_) => const ActivitePage(),
                             settings: RouteSettings(arguments: reponses)),
-                      )
+                      ),
                   ],
                 ),
+                // Message d'erreur qui s'affiche lorsque l'utilisateur n'a pas répondu à la question.
                 if (!isChecked)
-                  Text("Veuillez répondre pour aller à la prochaine question",
+                  const Text(
+                      "Veuillez répondre pour aller à la prochaine question",
                       style: mylib.warningText),
-                // const Spacer(),
                 const SizedBox(height: 40),
-
+                // Bas de page indiquant le numéro de page sur le nombre de page restante.
                 const Align(
                   alignment: Alignment.bottomRight,
                   child: Text(
@@ -340,39 +351,7 @@ class Etudepage extends State<EtudePage> {
             ),
           ),
         ),
-
-        //  ),
       ),
     );
-  }
-
-  Widget createInput(
-      double wdth, double hgth, TextEditingController textControler) {
-    return SizedBox(
-        height: hgth,
-        width: wdth,
-        child: const Material(
-            elevation: 5,
-            borderRadius: BorderRadius.all(Radius.circular(10)),
-            child: TextField(
-              style: mylib.simpleText1,
-              cursorColor: Color.fromARGB(255, 117, 106, 106),
-              decoration: InputDecoration(
-                  contentPadding: EdgeInsets.fromLTRB(10, 0, 0, 1),
-                  filled: true,
-                  fillColor: Colors.white,
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        width: 1,
-                        color: Color.fromARGB(255, 255, 255, 255),
-                      ),
-                      borderRadius: BorderRadius.all(Radius.circular(15))),
-                  focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        width: 1,
-                        color: Color.fromARGB(255, 255, 255, 255),
-                      ),
-                      borderRadius: BorderRadius.all(Radius.circular(15)))),
-            )));
   }
 }

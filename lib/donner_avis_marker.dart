@@ -54,7 +54,7 @@ class Donneravismarker extends State<DonnerAvisMarker> {
     } catch (e) {
       print("erreur lors de la recuperation des markers");
     }
-    for (var i = 0; i < listMarker!.length-1; i++) {
+    for (var i = 0; i < listMarker!.length - 1; i++) {
       LatLng point = LatLng(listMarker![i][1], listMarker![i][2]);
       Marker new_marker = Marker(
           width: 25.0,
@@ -93,10 +93,10 @@ class Donneravismarker extends State<DonnerAvisMarker> {
     }
   }
 
-
-
   @override
   Widget build(BuildContext context) {
+    // Map<String, Object> reponses permet de récupérer les arguments passés lors de la navigation vers la page
+    // courante à l'aide de la méthode ModalRoute.of(context)?.settings.arguments.
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
     getMarkers(reponses);
@@ -129,11 +129,12 @@ class Donneravismarker extends State<DonnerAvisMarker> {
                           Container(
                             padding: const EdgeInsets.fromLTRB(7, 0, 3, 0),
                             child: Text(
-                            "donner_avis_marker_title".tr(),
-                            style: mylib.titleStyle,
-                            textAlign: TextAlign.center,
+                              "donner_avis_marker_title".tr(),
+                              style: mylib.titleStyle,
+                              textAlign: TextAlign.center,
+                            ),
                           ),
-                          ),
+                          // Widget de séparation
                           const Divider(
                             color: Colors.black,
                             thickness: 1,
@@ -149,15 +150,14 @@ class Donneravismarker extends State<DonnerAvisMarker> {
                                 FlutterMap(
                                   mapController: mapController,
                                   options: MapOptions(
-                                    center: currentCenter,
-                                    zoom: 14,
-                                    onTap: (value) {
-                                      setState(() {});
-                                    },
-                                    onPositionChanged: ((position, hasGesture) => ( 
-                                      getMarkers(reponses)
-                                    ))
-                                  ),
+                                      center: currentCenter,
+                                      zoom: 14,
+                                      onTap: (value) {
+                                        setState(() {});
+                                      },
+                                      onPositionChanged:
+                                          ((position, hasGesture) =>
+                                              (getMarkers(reponses)))),
                                   layers: [
                                     TileLayerOptions(
                                       urlTemplate:
@@ -179,7 +179,6 @@ class Donneravismarker extends State<DonnerAvisMarker> {
                                             child: ElevatedButton(
                                               onPressed: () {
                                                 _zoomIn();
-                                                
                                               },
                                               style: ButtonStyle(
                                                 shape:
@@ -246,12 +245,16 @@ class Donneravismarker extends State<DonnerAvisMarker> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
+                    // condition composé de deux bouttons permettant de quitter le questionnaire quand on l'utilisateur souhaite
+                    // ces boutons on été crée à l'aide de createQuitButton de la bibliothèque mylib.
+                    // Ces derniers on deux redirections différente selon si l'utilisateur est connecté avec son compte ou non.
+                    // Si il a un compte il peut alors enregistrer son avancé pour pouvoir la modifier par la suite.
                     if (reponses['mail'] != null)
                       mylib.createQuitButton(context, 141, 41,
                           ConfirmationEnregistrement(), reponses)
                     else
                       mylib.createQuitButton(
-                          context, 141, 41, confirmationAbandon(), reponses),
+                          context, 141, 41, ConfirmationAbandon(), reponses),
                   ],
                 ),
               ],

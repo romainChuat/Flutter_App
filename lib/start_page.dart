@@ -4,12 +4,16 @@ import 'package:provider/provider.dart';
 import 'controller/language_contoller.dart';
 import 'map_page.dart';
 import 'mylib.dart' as mylib;
+import 'mylib.dart';
 
+// Cette classe hérite de StatelessWidget, ce qui signifie qu'elle ne peut pas être modifiée après sa construction.
 class StartPage extends StatelessWidget {
   const StartPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // Map<String, Object> reponses permet de récupérer les arguments passés lors de la navigation vers la page
+    // courante à l'aide de la méthode ModalRoute.of(context)?.settings.arguments.
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
     // context.watch<LanguageController>() est utilisée pour surveiller les changements de la langue de l'application.
@@ -51,28 +55,16 @@ class StartPage extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(
-                  width: 280,
-                  height: 49,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      foregroundColor: Colors.white,
-                      side: const BorderSide(color: Colors.white, width: 1),
-                      elevation: 15,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => const MapPage(),
-                          settings: RouteSettings(arguments: reponses),
-                        ),
-                      );
-                    },
-                    child: Text("startPage_btn_start".tr(),
-                        style: mylib.titleStyle),
+
+                // crée le boutton 'Commencer' à l'aide de createPopButton de la bibliothèque mylib.
+                createButton(
+                  "startPage_btn_start".tr(),
+                  context,
+                  280,
+                  49,
+                  MaterialPageRoute(
+                    builder: (_) => const MapPage(),
+                    settings: RouteSettings(arguments: reponses),
                   ),
                 ),
               ],

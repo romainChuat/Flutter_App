@@ -148,6 +148,8 @@ class Forgotpassworduser extends State<ForgotPasswordUser> {
       const SizedBox(
         height: 14,
       ),
+      // Message d'erreur qui s'affiche lorsque l'utilisateur n'a pas répondu à la question.
+
       if (_showErrorMessage)
         Text("warning_email_incorrect".tr(), style: mylib.warningText),
     ]);

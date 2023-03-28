@@ -32,8 +32,6 @@ class Traitermarkersrecuadmin extends State<TraiterMarkersRecuAdmin> {
   var rep_expr;
   var rep_image;
 
-
-
   Widget titleDate() {
     return ClipRRect(
       borderRadius: BorderRadius.circular(15.0),
@@ -76,6 +74,7 @@ class Traitermarkersrecuadmin extends State<TraiterMarkersRecuAdmin> {
                     textAlign: TextAlign.center,
                   ),
                 ),
+                // Widget de séparation
                 const Divider(
                   color: Colors.black,
                   thickness: 1,
@@ -209,7 +208,7 @@ class Traitermarkersrecuadmin extends State<TraiterMarkersRecuAdmin> {
                     width: 300,
                     height: 46,
                     color: const Color.fromARGB(255, 255, 255, 255),
-                    child:  Align(
+                    child: Align(
                       child: Text(
                         rep_date_photo.toString(),
                         style: mylib.titleStyleDuration,
@@ -300,7 +299,7 @@ class Traitermarkersrecuadmin extends State<TraiterMarkersRecuAdmin> {
                         width: 300,
                         height: 46,
                         color: const Color.fromARGB(255, 255, 255, 255),
-                        child:  Align(
+                        child: Align(
                           child: Text(
                             "4. " + (rep_expr.length < 4 ? "" : rep_expr[3]),
                             style: mylib.titleStyleDuration,
@@ -599,8 +598,7 @@ class Traitermarkersrecuadmin extends State<TraiterMarkersRecuAdmin> {
           style: mylib.titleStyle,
         ),
       ),
-    ),
-  );
+    );
   }
 
   getReponse(int repID) async {
@@ -608,18 +606,18 @@ class Traitermarkersrecuadmin extends State<TraiterMarkersRecuAdmin> {
     print('data');
     print(data);
     rep_titre = data[0].toString();
-    rep_date_photo = data[1].toString().substring(0,10);
+    rep_date_photo = data[1].toString().substring(0, 10);
     var rep_expr0 = data[2].toString();
 
-    String temp = rep_expr0.replaceAll("{","").replaceAll("}","");
+    String temp = rep_expr0.replaceAll("{", "").replaceAll("}", "");
     List<String> repExprArray = temp.split(",");
-  
+
     // Supprimer tous les numéros du tableau
     for (int i = 0; i < repExprArray.length; i++) {
       repExprArray[i] = repExprArray[i].replaceAll(RegExp(r'\d+: '), '');
     }
     rep_expr = repExprArray;
-    
+
     rep_age = mylib.switchAge(data[3]);
     rep_genre = data[4].toString();
     rep_etude = data[5].toString();
@@ -627,7 +625,6 @@ class Traitermarkersrecuadmin extends State<TraiterMarkersRecuAdmin> {
     rep_image = data[8];
     return;
   }
-
 
   getPath(var image) async {
     //var image = await mylib.getImage(userID);
@@ -643,9 +640,11 @@ class Traitermarkersrecuadmin extends State<TraiterMarkersRecuAdmin> {
 
   @override
   Widget build(BuildContext context) {
+    // Map<String, Object> reponses permet de récupérer les arguments passés lors de la navigation vers la page
+    // courante à l'aide de la méthode ModalRoute.of(context)?.settings.arguments.
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
-        print(reponses);
+    print(reponses);
     repID = reponses['rep_id'] as int;
     context.watch<LanguageController>();
     return FutureBuilder<dynamic>(
@@ -655,8 +654,6 @@ class Traitermarkersrecuadmin extends State<TraiterMarkersRecuAdmin> {
             // Affiche un widget pendant que la méthode getPath est en cours d'exécution
             return CircularProgressIndicator();
           } else {
-
-
             return Scaffold(
               extendBodyBehindAppBar: true,
               appBar: mylib.BaseAppBar(
@@ -675,13 +672,15 @@ class Traitermarkersrecuadmin extends State<TraiterMarkersRecuAdmin> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            const Padding(padding: EdgeInsets.fromLTRB(0, 55, 0, 0)),
+                            const Padding(
+                                padding: EdgeInsets.fromLTRB(0, 55, 0, 0)),
                             ClipRRect(
                               borderRadius: BorderRadius.circular(15.0),
                               child: Container(
                                 width: 359,
                                 height: 600,
-                                padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+                                padding:
+                                    const EdgeInsets.fromLTRB(0, 20, 0, 20),
                                 decoration: const BoxDecoration(
                                   color: Color.fromARGB(118, 13, 12, 32),
                                 ),
@@ -690,38 +689,48 @@ class Traitermarkersrecuadmin extends State<TraiterMarkersRecuAdmin> {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       const Padding(
-                                          padding: EdgeInsets.fromLTRB(0, 20, 0, 0)),
+                                          padding:
+                                              EdgeInsets.fromLTRB(0, 20, 0, 0)),
                                       titleDate(),
                                       const Padding(
-                                          padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                                          padding:
+                                              EdgeInsets.fromLTRB(0, 10, 0, 0)),
                                       map(),
                                       const Padding(
-                                          padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                                          padding:
+                                              EdgeInsets.fromLTRB(0, 10, 0, 0)),
                                       photo(),
                                       const Padding(
-                                          padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                                          padding:
+                                              EdgeInsets.fromLTRB(0, 10, 0, 0)),
                                       date(),
                                       const Padding(
-                                          padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                                          padding:
+                                              EdgeInsets.fromLTRB(0, 10, 0, 0)),
                                       expression(),
                                       const Padding(
-                                          padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                                          padding:
+                                              EdgeInsets.fromLTRB(0, 10, 0, 0)),
                                       age(),
                                       const Padding(
-                                          padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                                          padding:
+                                              EdgeInsets.fromLTRB(0, 10, 0, 0)),
                                       genre(),
                                       const Padding(
-                                          padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                                          padding:
+                                              EdgeInsets.fromLTRB(0, 10, 0, 0)),
                                       niveauxEtude(),
                                       const Padding(
-                                          padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                                          padding:
+                                              EdgeInsets.fromLTRB(0, 10, 0, 0)),
                                       activiteExerce(),
                                     ],
                                   ),
                                 ),
                               ),
                             ),
-                            const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                            const Padding(
+                                padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
                             createCancelButton(reponses)
                           ],
                         ),
@@ -733,8 +742,6 @@ class Traitermarkersrecuadmin extends State<TraiterMarkersRecuAdmin> {
               ),
             );
           }
-        }
-    );
+        });
   }
 }
-
