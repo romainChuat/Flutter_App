@@ -1,103 +1,41 @@
-import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/user_choix_connexion.dart';
 import 'package:provider/provider.dart';
 import 'controller/language_contoller.dart';
 import 'mylib.dart' as mylib;
+import 'mylib.dart';
+
+// Cette classe hérite de la classe `StatefulWidget`.
+// Elle crée une instance de la classe `_ConfirmationDeconnexionState`.
 
 class ConfirmationDeconnexion extends StatefulWidget {
-  const ConfirmationDeconnexion({super.key});
+  const ConfirmationDeconnexion({Key? key}) : super(key: key);
 
   @override
-  State<ConfirmationDeconnexion> createState() => Confirmationdeconnexion();
+  State<ConfirmationDeconnexion> createState() =>
+      _ConfirmationDeconnexionState();
 }
 
-class Confirmationdeconnexion extends State<ConfirmationDeconnexion> {
-  bool darkmode = false;
+// Cette classe est la classe d'état associée à la classe `ConfirmationDeconnexion`.
+class _ConfirmationDeconnexionState extends State<ConfirmationDeconnexion> {
+  bool darkMode = false;
   dynamic savedThemeMode;
 
   @override
-  void initState() {
-    super.initState();
-    getCurrentTheme();
-  }
-
-  Future getCurrentTheme() async {
-    savedThemeMode = await AdaptiveTheme.getThemeMode();
-    if (savedThemeMode.toString() == 'AdaptiveThemeMode.dark') {
-      setState(() {
-        darkmode = true;
-      });
-    } else {
-      setState(() {
-        darkmode = false;
-      });
-    }
-  }
-
-  Widget buildBtnYes() {
-    return SizedBox(
-      width: 120,
-      height: 49,
-      child: ElevatedButton(
-        onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (BuildContext context) => const UserChoixConnexion(),
-            ),
-          );
-        },
-        style: ElevatedButton.styleFrom(
-          shadowColor: Colors.grey.shade700,
-          elevation: 20,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0),
-            side: const BorderSide(color: Colors.white, width: 3),
-          ),
-        ),
-        child: Text(
-          "btn_yes".tr(),
-          style: mylib.titleStyle,
-          textAlign: TextAlign.center,
-        ),
-      ),
-    );
-  }
-
-  Widget buildBtnNo() {
-    return SizedBox(
-      width: 120,
-      height: 49,
-      child: ElevatedButton(
-        onPressed: () {
-          Navigator.pop(context);
-        },
-        style: ElevatedButton.styleFrom(
-          shadowColor: Colors.grey.shade700,
-          elevation: 20,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0),
-            side: const BorderSide(color: Colors.white, width: 3),
-          ),
-        ),
-        child: Text(
-          "btn_no".tr(),
-          style: mylib.titleStyle,
-          textAlign: TextAlign.center,
-        ),
-      ),
-    );
-  }
-
-  @override
   Widget build(BuildContext context) {
+    // context.watch<LanguageController>() est utilisée pour surveiller les changements de la langue de l'application.
+    // Elle est définit dans la classe LanguageController du fichier languga_controller.
     context.watch<LanguageController>();
     return Scaffold(
+      // Permet l'ajout d'un widget 'appBar' dans l'objet 'Scaffold' qui utilise une méthode BaseAppBar
+      // définie dans la bibliothèque mylib pour afficher une barre d'application en haut de la page.
       extendBodyBehindAppBar: true,
       appBar: mylib.BaseAppBar(
         appBar: AppBar(),
       ),
+      // Permet l'ajoute un widget endDrawer au Scaffold qui utilise la méthode createMenu
+      // de la bibliothèque mylib pour afficher un menu à droite lorsque l'on clique sur l'icon.
       endDrawer: mylib.createMenu(context),
       body: Center(
         child: ClipRRect(
@@ -114,6 +52,7 @@ class Confirmationdeconnexion extends State<ConfirmationDeconnexion> {
                 ),
                 const SizedBox(height: 15),
                 SizedBox(
+                  // la méthode tr() de la bibliothèque easy_localization permet de traduire la chaîne de caractères
                   child: Text('confirmation_deconnexion_title'.tr(),
                       style: mylib.titleStyle),
                 ),
@@ -121,10 +60,19 @@ class Confirmationdeconnexion extends State<ConfirmationDeconnexion> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    //const SizedBox(height: 5),
-                    buildBtnYes(),
-                    //  const SizedBox(height: ),
-                    buildBtnNo(),
+                    // crée un boutton 'Oui' à l'aide de createButton de la bibliothèque mylib.
+                    createButton(
+                      "btn_yes".tr(),
+                      context,
+                      120,
+                      49,
+                      MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            const UserChoixConnexion(),
+                      ),
+                    ),
+                    // crée un boutton 'Non' à l'aide de createPopButton de la bibliothèque mylib.
+                    createPopButton("btn_no".tr(), context, 120, 49),
                     const SizedBox(height: 61),
                   ],
                 ),

@@ -30,12 +30,17 @@ class Fichierpage extends State<FichierPage> {
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
-
+    // context.watch<LanguageController>() est utilisée pour surveiller les changements de la langue de l'application.
+    // Elle est définit dans la classe LanguageController du fichier languga_controller.
     context.watch<LanguageController>();
 
     return Scaffold(
+        // Permet l'ajout d'un widget 'appBar' dans l'objet 'Scaffold' qui utilise une méthode BaseAppBar
+        // définie dans la bibliothèque mylib pour afficher une barre d'application en haut de la page.
         extendBodyBehindAppBar: true,
         appBar: mylib.BaseAppBar(appBar: AppBar()),
+        // Permet l'ajoute un widget endDrawer au Scaffold qui utilise la méthode createMenu
+        // de la bibliothèque mylib pour afficher un menu à droite lorsque l'on clique sur l'icon.
         endDrawer: mylib.createMenu(context),
         body: Container(
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
@@ -60,6 +65,8 @@ class Fichierpage extends State<FichierPage> {
                         Container(
                           padding: const EdgeInsets.fromLTRB(1, 20, 1, 0),
                           child: Text(
+                            // la méthode tr() de la bibliothèque easy_localization permet de traduire la chaîne de caractères
+
                             "FichierPage_title".tr(),
                             style: mylib.titleStyle,
                             textAlign: TextAlign.center,
@@ -163,10 +170,10 @@ class Fichierpage extends State<FichierPage> {
                   children: [
                     if (reponses['mail'] != null)
                       mylib.createQuitButton(context, 141, 41,
-                          const confirmationEnregistrement(), reponses)
+                          const ConfirmationEnregistrement(), reponses)
                     else
                       mylib.createQuitButton(context, 141, 41,
-                          const confirmationAbandon(), reponses),
+                          const ConfirmationAbandon(), reponses),
                     if (_showErrorMessage)
                       mylib.createNextButton(
                         "btn_next".tr(),

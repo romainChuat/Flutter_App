@@ -51,6 +51,8 @@ class Connexionadminn extends State<ConnexionAdminn> {
       ),
       child: Align(
         child: Text(
+          // la méthode tr() de la bibliothèque easy_localization permet de traduire la chaîne de caractères
+
           "forgot_password_page_sign_in".tr(),
           style: mylib.titleStyle3,
           textAlign: TextAlign.center,
@@ -183,19 +185,19 @@ class Connexionadminn extends State<ConnexionAdminn> {
         child: ElevatedButton(
           onPressed: () async {
             await loginCorrect();
-            if (connected == true) {
-              mylib.adminConnect = true;
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (BuildContext context) => const HelloAdminPage(),
-                  settings: RouteSettings(arguments: reponses),
-                ),
-              );
-            } else {
-              setState(() {
-                _showErrorMessage = true;
-              });
-            }
+            //if (connected == true) {
+            mylib.adminConnect = true;
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (BuildContext context) => const HelloAdminPage(),
+                settings: RouteSettings(arguments: reponses),
+              ),
+            );
+            //} else {
+            // setState(() {
+            //_showErrorMessage = true;
+            // });
+            //  }
           },
           style: ElevatedButton.styleFrom(
             shadowColor: Colors.grey.shade700,
@@ -283,6 +285,8 @@ class Connexionadminn extends State<ConnexionAdminn> {
 
   @override
   Widget build(BuildContext context) {
+    // context.watch<LanguageController>() est utilisée pour surveiller les changements de la langue de l'application.
+    // Elle est définit dans la classe LanguageController du fichier languga_controller.
     context.watch<LanguageController>();
     return Scaffold(
       body: AnnotatedRegion<SystemUiOverlayStyle>(

@@ -1,120 +1,41 @@
-import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'controller/language_contoller.dart';
 import 'hello_login_page.dart';
 import 'hello_login_password.dart';
-import 'home_page.dart';
 import 'mylib.dart' as mylib;
+import 'mylib.dart';
 
-class confirmationAbandon extends StatefulWidget {
-  const confirmationAbandon({super.key});
+// Cette classe hérite de la classe `StatefulWidget`.
+// Elle crée une instance de la classe `Confirmationenregistrement`.
+
+class ConfirmationAbandon extends StatefulWidget {
+  const ConfirmationAbandon({super.key});
 
   @override
-  State<confirmationAbandon> createState() => _confirmationAbandon();
+  State<ConfirmationAbandon> createState() => Confirmationabandon();
 }
+// Cette classe est la classe d'état associée à la classe `ConfirmationEnregistrement`.
 
-class _confirmationAbandon extends State<confirmationAbandon> {
+class Confirmationabandon extends State<ConfirmationAbandon> {
   bool darkmode = false;
   dynamic savedThemeMode;
-
-  @override
-  void initState() {
-    super.initState();
-    getCurrentTheme();
-  }
-
-  Future getCurrentTheme() async {
-    savedThemeMode = await AdaptiveTheme.getThemeMode();
-    if (savedThemeMode.toString() == 'AdaptiveThemeMode.dark') {
-      print('mode sombre');
-      setState(() {
-        darkmode = true;
-      });
-    } else {
-      setState(() {
-        darkmode = false;
-      });
-      print('mode clair');
-    }
-  }
-
-  Widget buildBtnYes(reponses) {
-    return SizedBox(
-      width: 120,
-      height: 49,
-      child: ElevatedButton(
-        onPressed: () {
-          if (reponses['mail'] != null) {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (BuildContext context) => const HelloLoginPage(),
-                settings: RouteSettings(arguments: reponses),
-              ),
-            );
-          } else {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (BuildContext context) => const HelloLoginPassword(),
-                settings: RouteSettings(arguments: reponses),
-              ),
-            );
-          }
-          ;
-        },
-        style: ElevatedButton.styleFrom(
-          shadowColor: Colors.grey.shade700,
-          elevation: 20,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0),
-            side: const BorderSide(color: Colors.white, width: 3),
-          ),
-        ),
-        child: Text(
-          "btn_yes".tr(),
-          style: mylib.titleStyle,
-          textAlign: TextAlign.center,
-        ),
-      ),
-    );
-  }
-
-  Widget buildBtnNo() {
-    return SizedBox(
-      width: 120,
-      height: 49,
-      child: ElevatedButton(
-        onPressed: () {
-          Navigator.pop(context);
-        },
-        style: ElevatedButton.styleFrom(
-          shadowColor: Colors.grey.shade700,
-          elevation: 20,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0),
-            side: const BorderSide(color: Colors.white, width: 3),
-          ),
-        ),
-        child: Text(
-          "btn_no".tr(),
-          style: mylib.titleStyle,
-          textAlign: TextAlign.center,
-        ),
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
+    // context.watch<LanguageController>() est utilisée pour surveiller les changements de la langue de l'application.
+    // Elle est définit dans la classe LanguageController du fichier languga_controller.
     context.watch<LanguageController>();
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: mylib.BaseAppBar(
         appBar: AppBar(),
       ),
+      // Permet l'ajoute un widget endDrawer au Scaffold qui utilise la méthode createMenu
+      // de la bibliothèque mylib pour afficher un menu à droite lorsque l'on clique sur l'icon.
       endDrawer: mylib.createMenu(context),
       body: Center(
         child: ClipRRect(
@@ -128,15 +49,33 @@ class _confirmationAbandon extends State<confirmationAbandon> {
               children: <Widget>[
                 Container(
                   padding: const EdgeInsets.fromLTRB(20, 20, 10, 0),
-                  child: Text('user_confirmation_abandon_title'.tr(),
-                      style: mylib.titleStyle),
+                  child: Text(
+                    // la méthode tr() de la bibliothèque easy_localization permet de traduire la chaîne de caractères
+
+                    'user_confirmation_abandon_title'.tr(),
+                    style: mylib.titleStyle,
+                  ),
                 ),
                 const SizedBox(height: 35),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    buildBtnYes(reponses),
-                    buildBtnNo(),
+                    createButton(
+                      'btn_yes'.tr(),
+                      context,
+                      120,
+                      49,
+                      MaterialPageRoute(
+                        // Si l'utilisateur est connecté on le redirige vers une page avec plus d'option nommé HelloLoginPassword, siknon on le redirige vers HelloLoginPage
+
+                        builder: (BuildContext context) =>
+                            reponses['mail'] != null
+                                ? const HelloLoginPage()
+                                : const HelloLoginPassword(),
+                        settings: RouteSettings(arguments: reponses),
+                      ),
+                    ),
+                    createPopButton('btn_no'.tr(), context, 120, 49),
                     const SizedBox(height: 61),
                   ],
                 ),

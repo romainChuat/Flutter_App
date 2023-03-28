@@ -24,8 +24,12 @@ class Genrepage extends State<GenrePage> {
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
+    // context.watch<LanguageController>() est utilisée pour surveiller les changements de la langue de l'application.
+    // Elle est définit dans la classe LanguageController du fichier languga_controller.
     context.watch<LanguageController>();
     return Scaffold(
+      // Permet l'ajout d'un widget 'appBar' dans l'objet 'Scaffold' qui utilise une méthode BaseAppBar
+      // définie dans la bibliothèque mylib pour afficher une barre d'application en haut de la page.
       extendBodyBehindAppBar: true,
       appBar: mylib.BaseAppBar(appBar: AppBar()),
       endDrawer: mylib.createMenu(context),
@@ -51,6 +55,8 @@ class Genrepage extends State<GenrePage> {
                       Container(
                         padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
                         child: Text(
+                          // la méthode tr() de la bibliothèque easy_localization permet de traduire la chaîne de caractères
+
                           "genrePage_title".tr(),
                           style: mylib.titleStyle,
                           textAlign: TextAlign.center,
@@ -139,10 +145,10 @@ class Genrepage extends State<GenrePage> {
                 children: [
                   if (reponses['mail'] != null)
                     mylib.createQuitButton(context, 141, 41,
-                        const confirmationEnregistrement(), reponses)
+                        const ConfirmationEnregistrement(), reponses)
                   else
                     mylib.createQuitButton(context, 141, 41,
-                        const confirmationAbandon(), reponses),
+                        const ConfirmationAbandon(), reponses),
                   if (genre != null)
                     mylib.createNextButton(
                       "btn_next".tr(),
