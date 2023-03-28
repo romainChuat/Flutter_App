@@ -222,9 +222,9 @@ class Fichierpage extends State<FichierPage> {
       return File(pickedFile.path);
     }
   }
-
+  
   /// Get from gallery
-  void pickImage() async {
+  Future pickImage() async {
     try {
       final image = await ImagePicker().pickImage(source: ImageSource.camera);
       if (image != null){

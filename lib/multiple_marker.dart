@@ -214,10 +214,10 @@ class _MultipleMarkerPage extends State<MultipleMarkerPage> {
                   children: [
                     if (reponses['mdp'] == true)
                       mylib.createQuitButton(context, 141, 41,
-                          const confirmationEnregistrement(), reponses)
+                          const ConfirmationEnregistrement(), reponses)
                     else
                       mylib.createQuitButton(context, 141, 41,
-                          const confirmationAbandon(), reponses),
+                          const ConfirmationAbandon(), reponses),
                     mylib.createNextButton(
                       "btn_next".tr(),
                       context,

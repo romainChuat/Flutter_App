@@ -251,7 +251,7 @@ class Donneravismarker extends State<DonnerAvisMarker> {
                           ConfirmationEnregistrement(), reponses)
                     else
                       mylib.createQuitButton(
-                          context, 141, 41, confirmationAbandon(), reponses),
+                          context, 141, 41, ConfirmationAbandon(), reponses),
                   ],
                 ),
               ],
