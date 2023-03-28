@@ -1,4 +1,3 @@
-import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -6,6 +5,10 @@ import 'controller/language_contoller.dart';
 import 'donner_avis_marker.dart';
 import 'home_page.dart';
 import 'mylib.dart' as mylib;
+import 'mylib.dart';
+
+// Cette classe hérite de la classe `StatefulWidget`.
+// Elle crée une instance de la classe `Hellologinpage`.
 
 class HelloLoginPage extends StatefulWidget {
   const HelloLoginPage({super.key});
@@ -14,90 +17,11 @@ class HelloLoginPage extends StatefulWidget {
   State<HelloLoginPage> createState() => Hellologinpage();
 }
 
+// Cette classe est la classe d'état associée à la classe `HelloLoginPage`.
+
 class Hellologinpage extends State<HelloLoginPage> {
   bool darkmode = false;
   dynamic savedThemeMode;
-
-  @override
-  void initState() {
-    super.initState();
-    getCurrentTheme();
-  }
-
-  Future getCurrentTheme() async {
-    savedThemeMode = await AdaptiveTheme.getThemeMode();
-    if (savedThemeMode.toString() == 'AdaptiveThemeMode.dark') {
-      setState(() {
-        darkmode = true;
-      });
-    } else {
-      setState(() {
-        darkmode = false;
-      });
-      print('mode clair');
-    }
-  }
-
-  Widget buildAccessMap(reponses) {
-    return SizedBox(
-      width: 286,
-      height: 49,
-      child: ElevatedButton(
-        onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (BuildContext context) => const DonnerAvisMarker(),
-              settings: RouteSettings(arguments: reponses),
-            ),
-          );
-        },
-        style: ElevatedButton.styleFrom(
-          shadowColor: Colors.grey.shade700,
-          elevation: 20,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0),
-            side: const BorderSide(color: Colors.white, width: 3),
-          ),
-        ),
-        child: Text(
-          // la méthode tr() de la bibliothèque easy_localization permet de traduire la chaîne de caractères
-
-          "hello_login_page_btn_acceder_map".tr(),
-          style: mylib.titleStyle,
-          textAlign: TextAlign.center,
-        ),
-      ),
-    );
-  }
-
-  Widget buildAccessQuestionnaire(Map<String, Object> reponses) {
-    return SizedBox(
-      width: 286,
-      height: 49,
-      child: ElevatedButton(
-        onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-                builder: (BuildContext context) => const MyHomePage(),
-                settings: RouteSettings(arguments: reponses)),
-          );
-        },
-        style: ElevatedButton.styleFrom(
-          shadowColor: Colors.grey.shade700,
-          elevation: 20,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0),
-            side: const BorderSide(color: Colors.white, width: 3),
-          ),
-        ),
-        child: Text(
-          "hello_login_page_btn_acceder_quiz".tr(),
-          style: mylib.titleStyle,
-          textAlign: TextAlign.center,
-        ),
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -129,8 +53,10 @@ class Hellologinpage extends State<HelloLoginPage> {
                 const SizedBox(height: 30),
                 SizedBox(
                   width: 250,
+                  // Texte permettant d'afficher le nom d'utilisateur transmis à l'aide de'réponse'
+                  // la méthode tr() de la bibliothèque easy_localization permet de traduire la chaîne de caractères
                   child: Text(
-                      "${"hello_admin_page_title1".tr()} ${reponses["username"]}",
+                      "${'hello_admin_page_title1'.tr()} ${reponses['username']}",
                       style: mylib.titleStyle2),
                 ),
                 const SizedBox(height: 20),
@@ -140,9 +66,31 @@ class Hellologinpage extends State<HelloLoginPage> {
                       style: mylib.titleStyle),
                 ),
                 const SizedBox(height: 61),
-                buildAccessMap(reponses),
+
+                // crée un boutton permettant d'acceder au avis à l'aide de createPopButton de la bibliothèque mylib.
+                createButton(
+                  'hello_login_page_btn_acceder_map'.tr(),
+                  context,
+                  286,
+                  49,
+                  MaterialPageRoute(
+                    builder: (_) => const DonnerAvisMarker(),
+                    settings: RouteSettings(arguments: reponses),
+                  ),
+                ),
                 const SizedBox(height: 20),
-                buildAccessQuestionnaire(reponses),
+                // crée un boutton permettant d'acceder au questionnaire à l'aide de createPopButton de la bibliothèque mylib.
+                createButton(
+                  "hello_login_page_btn_acceder_quiz".tr(),
+                  context,
+                  286,
+                  49,
+                  MaterialPageRoute(
+                    builder: (_) => const MyHomePage(),
+                    settings: RouteSettings(arguments: reponses),
+                  ),
+                ),
+
                 const SizedBox(height: 20),
               ],
             ),
