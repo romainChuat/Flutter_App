@@ -1,8 +1,5 @@
 library mylib;
 
-import 'dart:convert';
-import 'dart:io';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/language_page.dart';
@@ -73,28 +70,14 @@ const TextStyle titleStyle5 = TextStyle(
   fontSize: 20,
   fontFamily: 'Nunito',
   fontWeight: FontWeight.bold,
-  // color: Colors.white,
   letterSpacing: 1,
 );
-
-const TextStyle buttonTextStyle = TextStyle(
-    fontSize: 20,
-    fontWeight: FontWeight.bold,
-    fontFamily: 'Nunito',
-    letterSpacing: 1);
 
 const TextStyle blueText2 = TextStyle(
   fontSize: 15,
   fontWeight: FontWeight.w600,
   color: Colors.black,
   fontFamily: 'Spline Sans Mono ',
-  letterSpacing: 1,
-  //shadows:<Shadow> [ Shadow(offset:Offset(-1.0, 1.0) , blurRadius: 5.0 ,color: Color.fromARGB(195, 105, 105, 105))],
-);
-const TextStyle radioText = TextStyle(
-  fontSize: 15,
-  fontWeight: FontWeight.w600,
-  fontFamily: 'Nunito',
   letterSpacing: 1,
 );
 
@@ -113,12 +96,6 @@ const TextStyle simpleTextdark = TextStyle(
   letterSpacing: 1,
 );
 
-const TextStyle simpleTextwhite = TextStyle(
-  fontSize: 15,
-  color: Colors.white,
-  fontFamily: 'Spline Sans Mono',
-  letterSpacing: 1,
-);
 const TextStyle simpleText1 = TextStyle(
   fontSize: 15,
   color: Color.fromARGB(255, 117, 106, 106),
@@ -126,6 +103,7 @@ const TextStyle simpleText1 = TextStyle(
   fontFamily: 'Nunito',
   letterSpacing: 1,
 );
+
 const TextStyle warningText = TextStyle(
   fontSize: 11,
   color: Color.fromARGB(255, 208, 40, 40),
@@ -194,14 +172,12 @@ class BaseAppBar1 extends StatelessWidget implements PreferredSizeWidget {
         preferredSize: const Size.fromHeight(0.0),
         child: LinearPercentIndicator(
           padding: const EdgeInsets.fromLTRB(60, 0, 25, 0),
-          //      width: MediaQuery.of(context).size.width - 100,
           width: MediaQuery.of(context).size.width - 50,
           //animation: true, àp laisser commenter si ajout de l'animation
           lineHeight: 20.0,
           //animationDuration: 2000,
           percent: 20.0,
           linearStrokeCap: LinearStrokeCap.roundAll,
-          // progressColor: Colors.greenAccent,
           backgroundColor: const Color.fromARGB(255, 235, 233, 233),
           progressColor: const Color.fromARGB(255, 13, 12, 32),
         ),
@@ -278,6 +254,8 @@ createQuitButton(BuildContext context, double width, double height, var path,
           ),
         );
       },
+      // la méthode tr() de la bibliothèque easy_localization permet de traduire la chaîne de caractères
+
       child: Text("btn_quit".tr(), style: titleStyle),
     ),
   );
@@ -300,6 +278,78 @@ createNextButton(String text, BuildContext context, double width, double height,
           context,
           page,
         );
+      },
+      child: Text(
+        text,
+        style: titleStyle,
+      ),
+    ),
+  );
+}
+
+createButton(String text, BuildContext context, double width, double height,
+    MaterialPageRoute page) {
+  return SizedBox(
+    width: width,
+    height: height,
+    child: ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        foregroundColor: Colors.white,
+        side: const BorderSide(color: Colors.white, width: 1),
+        elevation: 15,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      ),
+      onPressed: () {
+        Navigator.push(
+          context,
+          page,
+        );
+      },
+      child: Text(
+        text,
+        style: titleStyle,
+      ),
+    ),
+  );
+}
+
+createPopButton(
+    String text, BuildContext context, double width, double height) {
+  return SizedBox(
+    width: width,
+    height: height,
+    child: ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        foregroundColor: Colors.white,
+        side: const BorderSide(color: Colors.white, width: 1),
+        elevation: 15,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      ),
+      onPressed: () {
+        Navigator.pop(context);
+      },
+      child: Text(
+        text,
+        style: titleStyle,
+      ),
+    ),
+  );
+}
+
+createWithConditionButton(String text, BuildContext context, double width,
+    double height, Function() page) {
+  return SizedBox(
+    width: width,
+    height: height,
+    child: ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        foregroundColor: Colors.white,
+        side: const BorderSide(color: Colors.white, width: 1),
+        elevation: 15,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      ),
+      onPressed: () {
+        page();
       },
       child: Text(
         text,
@@ -343,26 +393,12 @@ createNextButton1(String text, BuildContext context, double width,
                 DateFormat("dd/MM/yyyy").format(DateTime.now()).toString();
 
             if (await InternetConnectionChecker().hasConnection) {
-              //insertion dans le server
-              //if(reponses.containsKey('rep_userIDServer')){
-
-              //}else{
-              //WidgetsFlutterBinding.ensureInitialized();
-              //DatabaseHelper db = DatabaseHelper.getInstance();
-              /*if(reponses.containsKey('mail')){
-                  //userIDServer = query BY MAIL
-                  // checker si inserer en server 
-                }else{
-                  //user ID = insert user 
-                }*/
-              //}
-              print("insertion server");
+              // insertion dans le serveur
               reponses['rep_user'] = userIDServer;
               await insertLieuServer(reponses);
               await insertReponseServer(reponses);
             }
             //insertion dans la base local
-            print("insertion local");
             reponses['rep_user'] = userID;
             reponses['lieu_lat'] = lat;
             reponses['lieu_long'] = long;
@@ -464,12 +500,11 @@ Future<void> insertLieuLocal(Map<String, Object> reponses) async {
   lieux['lieu_long'] = reponses['lieu_long']!;
   reponses.remove('lieu_lat');
   reponses.remove('lieu_long');
-  print(lieux);
   WidgetsFlutterBinding.ensureInitialized();
   DatabaseHelperLocal db = DatabaseHelperLocal();
   try {
+    // on insert un nouveau lieu dans la base de donnée local
     insert_lieuxID = await db.insertLieu(lieux);
-    print("new lieux local");
   } catch (e) {
     print("enregistrement lieux impossible");
   }
@@ -483,12 +518,11 @@ Future<void> insertLieuServer(Map<String, Object> reponses) async {
   lieux['lieu_long'] = reponses['lieu_long']!;
   reponses.remove('lieu_lat');
   reponses.remove('lieu_long');
-  print(lieux);
   WidgetsFlutterBinding.ensureInitialized();
   DatabaseHelper db = DatabaseHelper.getInstance();
   try {
+    // on insert un nouveau lieu dans le serveur
     insert_lieuxID = await db.insertLieu(lieux);
-    print("new lieux server");
   } catch (e) {
     print("enregistrement lieux server impossible");
   }
@@ -504,8 +538,8 @@ Future<int?> insertUserLocal(Map<String, dynamic> user) async {
   WidgetsFlutterBinding.ensureInitialized();
   DatabaseHelperLocal db = DatabaseHelperLocal();
   try {
+    // on insert un nouveau utilisateur dans la base de donnée local
     usID = await db.insertUser(user);
-    print("new user local");
   } catch (e) {
     print("enregistrement LOCAL user impossible");
   }
@@ -518,9 +552,9 @@ Future<PostgreSQLResult?> insertUserServer(Map<String, dynamic> user) async {
   WidgetsFlutterBinding.ensureInitialized();
   DatabaseHelper db = DatabaseHelper.getInstance();
   try {
+    // on insert un nouvel utilisateur dans le serveur
     usID = await db.insertUser(user);
     print(usID);
-    print("new user server");
   } catch (e) {
     print("enregistrement SERVER user impossible");
   }
@@ -528,13 +562,12 @@ Future<PostgreSQLResult?> insertUserServer(Map<String, dynamic> user) async {
 }
 
 Future<void> insertReponse(Map<String, Object> reponses) async {
-  print(reponses);
   Map<String, Object> data = reponses;
   WidgetsFlutterBinding.ensureInitialized();
   DatabaseHelperLocal db = DatabaseHelperLocal();
   try {
+    // on insert une nouvelle réponse au questionnaire en local
     await db.insertReponse(reponses);
-    print("new reponse");
   } catch (e) {
     print("enregistrement Local reponse impossible");
     print(e);
@@ -566,8 +599,8 @@ Future<void> insertReponseServer(Map<String, Object> reponses) async {
   WidgetsFlutterBinding.ensureInitialized();
   print(reponses);
   try {
+    // on insert les réponse du questionnaire dans le serveur
     await dbHelper.insertReponses(reponses);
-    print("reponse reponse server");
   } catch (e) {
     print("enregistrement reponse server impossible");
     print(e);
@@ -720,29 +753,28 @@ createMenu(BuildContext context) {
   );
 }
 
-Future<String?> getImage(int userID) async{
+Future<String?> getImage(int userID) async {
   final DatabaseHelper dbHelper = DatabaseHelper.getInstance();
   WidgetsFlutterBinding.ensureInitialized();
   String? image;
   try {
+    // on récupére l'image
     image = await dbHelper.getImageUser(userID);
   } catch (e) {
     print(e);
-    print("impossible de recuperer l'image");
   }
-  //print("image");
-  //print(image);
   return image;
 }
-Future<List> getReponses(userID) async{
+
+Future<List> getReponses(userID) async {
   final DatabaseHelper dbHelper = DatabaseHelper.getInstance();
   WidgetsFlutterBinding.ensureInitialized();
   List? reponse;
-  try{
+  try {
+    // on récupère la réponse
     reponse = await dbHelper.queryReponsesUser(userID);
-  }catch(e){
+  } catch (e) {
     print(e);
-    print("impossible de recuperer la reponses");
   }
   List res = reponse![0];
   print(res);
@@ -778,29 +810,27 @@ Future<List> getAvisByID(avisID) async{
   return avis[0]; 
 }
 
-
-Future<void> validerReponses(int rep_id) async{
+Future<void> validerReponses(int rep_id) async {
   final DatabaseHelper dbHelper = DatabaseHelper.getInstance();
   WidgetsFlutterBinding.ensureInitialized();
   var reponse;
-  print(rep_id);
-  print("valider");
-  try{
+  try {
+    // on modifie la réponse
     reponse = await dbHelper.setValider(int.parse(rep_id.toString()));
-  }catch(e){
+  } catch (e) {
     print(e);
     print("impossible de modifier la reponses");
   }
 }
-Future<void> refuserReponses(int rep_id) async{
+
+Future<void> refuserReponses(int rep_id) async {
   final DatabaseHelper dbHelper = DatabaseHelper.getInstance();
   WidgetsFlutterBinding.ensureInitialized();
   var reponse;
-  print(rep_id);
-  print("refuser");
-  try{
+  try {
+    // on modifie la réponse
     reponse = await dbHelper.setRefuser(int.parse(rep_id.toString()));
-  }catch(e){
+  } catch (e) {
     print(e);
     print("impossible de modifier la reponses");
   }

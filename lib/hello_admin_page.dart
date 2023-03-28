@@ -6,6 +6,10 @@ import 'package:flutter_application_1/admin_recherche_page_avis.dart';
 import 'package:provider/provider.dart';
 import 'controller/language_contoller.dart';
 import 'mylib.dart' as mylib;
+import 'mylib.dart';
+
+// Cette classe hérite de la classe `StatefulWidget`.
+// Elle crée une instance de la classe `Helloadminpage`.
 
 class HelloAdminPage extends StatefulWidget {
   const HelloAdminPage({super.key});
@@ -13,6 +17,8 @@ class HelloAdminPage extends StatefulWidget {
   @override
   State<HelloAdminPage> createState() => Helloadminpage();
 }
+
+// Cette classe est la classe d'état associée à la classe `HelloAdminPage`.
 
 class Helloadminpage extends State<HelloAdminPage> {
   Widget gererLesMarkers() {
@@ -39,37 +45,9 @@ class Helloadminpage extends State<HelloAdminPage> {
           ),
         ),
         child: Text(
-          "hello_admin_page_btn_gerer_markers".tr(),
-          style: mylib.titleStyle,
-          textAlign: TextAlign.center,
-        ),
-      ),
-    );
-  }
+          // la méthode tr() de la bibliothèque easy_localization permet de traduire la chaîne de caractères
 
-  Widget gererLesAvis(reponses) {
-    return SizedBox(
-      width: 296,
-      height: 49,
-      child: ElevatedButton(
-        onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (BuildContext context) => RecherchepageAvis(),
-              settings: RouteSettings(arguments: reponses),
-            ),
-          );
-        },
-        style: ElevatedButton.styleFrom(
-          shadowColor: Colors.grey.shade700,
-          elevation: 20,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0),
-            side: const BorderSide(color: Colors.white, width: 3),
-          ),
-        ),
-        child: Text(
-          "hello_admin_page_btn_gerer_avis".tr(),
+          "hello_admin_page_btn_gerer_markers".tr(),
           style: mylib.titleStyle,
           textAlign: TextAlign.center,
         ),
@@ -81,12 +59,18 @@ class Helloadminpage extends State<HelloAdminPage> {
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
+    // context.watch<LanguageController>() est utilisée pour surveiller les changements de la langue de l'application.
+    // Elle est définit dans la classe LanguageController du fichier languga_controller.
     context.watch<LanguageController>();
     return Scaffold(
+      // Permet l'ajout d'un widget 'appBar' dans l'objet 'Scaffold' qui utilise une méthode BaseAppBar
+      // définie dans la bibliothèque mylib pour afficher une barre d'application en haut de la page.
       extendBodyBehindAppBar: true,
       appBar: mylib.BaseAppBar(
         appBar: AppBar(),
       ),
+      // Permet l'ajoute un widget endDrawer au Scaffold qui utilise la méthode createMenu
+      // de la bibliothèque mylib pour afficher un menu à droite lorsque l'on clique sur l'icon.
       endDrawer: mylib.createMenu(context),
       body: Center(
         child: ClipRRect(
@@ -114,7 +98,16 @@ class Helloadminpage extends State<HelloAdminPage> {
                 const SizedBox(height: 61),
                 gererLesMarkers(),
                 const SizedBox(height: 20),
-                gererLesAvis(reponses),
+                createButton(
+                  "hello_admin_page_btn_gerer_avis".tr(),
+                  context,
+                  296,
+                  49,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) => RecherchepageAvis(),
+                    settings: RouteSettings(arguments: reponses),
+                  ),
+                ),
                 const SizedBox(height: 20),
               ],
             ),

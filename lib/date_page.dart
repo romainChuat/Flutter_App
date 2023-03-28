@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/controller/language_contoller.dart';
 import 'package:flutter_application_1/user_confirm_abandon_quiz.dart';
 import 'package:flutter_application_1/user_confirm_enregistrement.dart';
-import 'package:path/path.dart';
 import 'package:provider/provider.dart';
 import 'mylib.dart' as mylib;
 import 'package:flutter_application_1/mot_page.dart';
@@ -19,6 +18,8 @@ class DatePage extends StatefulWidget {
 
 class Datepage extends State<DatePage> {
   TextEditingController dateInput = TextEditingController();
+  bool _showErrorMessage = false;
+
   @override
   void initState() {
     dateInput.text = ""; //set the initial value of text field
@@ -29,10 +30,16 @@ class Datepage extends State<DatePage> {
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
+    // context.watch<LanguageController>() est utilisée pour surveiller les changements de la langue de l'application.
+    // Elle est définit dans la classe LanguageController du fichier languga_controller.
     context.watch<LanguageController>();
     return Scaffold(
+      // Permet l'ajout d'un widget 'appBar' dans l'objet 'Scaffold' qui utilise une méthode BaseAppBar
+      // définie dans la bibliothèque mylib pour afficher une barre d'application en haut de la page.
       extendBodyBehindAppBar: true,
       appBar: mylib.BaseAppBar(appBar: AppBar()),
+      // Permet l'ajoute un widget endDrawer au Scaffold qui utilise la méthode createMenu
+      // de la bibliothèque mylib pour afficher un menu à droite lorsque l'on clique sur l'icon.
       endDrawer: mylib.createMenu(context),
       body: Container(
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
@@ -57,6 +64,8 @@ class Datepage extends State<DatePage> {
                         Container(
                           padding: const EdgeInsets.fromLTRB(1, 20, 1, 0),
                           child: Text(
+                            // la méthode tr() de la bibliothèque easy_localization permet de traduire la chaîne de caractères
+
                             "datePage_title".tr(),
                             style: mylib.titleStyle,
                             textAlign: TextAlign.center,
@@ -114,6 +123,8 @@ class Datepage extends State<DatePage> {
                                                   Radius.circular(15)))),
                                       readOnly: true,
                                       onTap: () async {
+                                        _showErrorMessage = true;
+
                                         DateTime? pickedDate = await showDatePicker(
                                             context: context,
                                             initialDate: DateTime.now(),
@@ -149,25 +160,28 @@ class Datepage extends State<DatePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    if (reponses['mdp'] == true)
+                    if (reponses['mail'] != null)
                       mylib.createQuitButton(context, 141, 41,
-                          const confirmationEnregistrement(), reponses)
+                          const ConfirmationEnregistrement(), reponses)
                     else
                       mylib.createQuitButton(context, 141, 41,
-                          const confirmationAbandon(), reponses),
-                    mylib.createNextButton(
-                      "btn_next".tr(),
-                      context,
-                      141,
-                      41,
-                      MaterialPageRoute(
-                        builder: (_) => const MotPage(),
-                        settings: RouteSettings(arguments: reponses),
-                      ),
-                    )
+                          const ConfirmationAbandon(), reponses),
+                    if (_showErrorMessage)
+                      mylib.createNextButton(
+                        "btn_next".tr(),
+                        context,
+                        141,
+                        41,
+                        MaterialPageRoute(
+                          builder: (_) => const MotPage(),
+                          settings: RouteSettings(arguments: reponses),
+                        ),
+                      )
                   ],
                 ),
-
+                if (!_showErrorMessage)
+                  Text("Veuillez répondre pour aller à la prochaine question",
+                      style: mylib.warningText),
                 // padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
                 const Spacer(),
                 const Align(

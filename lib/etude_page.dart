@@ -31,6 +31,7 @@ class Etudepage extends State<EtudePage> {
   var niveau;
   TextEditingController textControler = TextEditingController();
   bool _select = false;
+  bool isChecked = false;
 
   get text => null;
 
@@ -38,10 +39,16 @@ class Etudepage extends State<EtudePage> {
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
+    // context.watch<LanguageController>() est utilisée pour surveiller les changements de la langue de l'application.
+    // Elle est définit dans la classe LanguageController du fichier languga_controller.
     context.watch<LanguageController>();
     return Scaffold(
+      // Permet l'ajout d'un widget 'appBar' dans l'objet 'Scaffold' qui utilise une méthode BaseAppBar
+      // définie dans la bibliothèque mylib pour afficher une barre d'application en haut de la page.
       extendBodyBehindAppBar: true,
       appBar: mylib.BaseAppBar(appBar: AppBar()),
+      // Permet l'ajoute un widget endDrawer au Scaffold qui utilise la méthode createMenu
+      // de la bibliothèque mylib pour afficher un menu à droite lorsque l'on clique sur l'icon.
       endDrawer: mylib.createMenu(context),
       body: SingleChildScrollView(
         child: Container(
@@ -49,7 +56,7 @@ class Etudepage extends State<EtudePage> {
           child: Center(
             child: Column(
               children: <Widget>[
-                SizedBox(height: 40),
+                const SizedBox(height: 40),
 
                 mylib.percentIndicator(context, 0.88),
                 const SizedBox(
@@ -66,6 +73,8 @@ class Etudepage extends State<EtudePage> {
                         Container(
                           padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
                           child: Text(
+                            // la méthode tr() de la bibliothèque easy_localization permet de traduire la chaîne de caractères
+
                             "etudePage_title".tr(),
                             style: mylib.titleStyle,
                             textAlign: TextAlign.center,
@@ -90,6 +99,8 @@ class Etudepage extends State<EtudePage> {
                                 groupValue: niveau,
                                 onChanged: (value) {
                                   setState(() {
+                                    isChecked = true;
+
                                     _select = false;
                                     niveau = Niveau.primaire;
                                     reponses['rep_etude'] =
@@ -109,6 +120,8 @@ class Etudepage extends State<EtudePage> {
                                 groupValue: niveau,
                                 onChanged: (value) {
                                   setState(() {
+                                    isChecked = true;
+
                                     _select = false;
                                     niveau = Niveau.premierCycle;
                                     reponses['rep_etude'] =
@@ -128,6 +141,8 @@ class Etudepage extends State<EtudePage> {
                                 groupValue: niveau,
                                 onChanged: (value) {
                                   setState(() {
+                                    isChecked = true;
+
                                     _select = false;
                                     niveau = Niveau.secondCycle;
                                     reponses['rep_etude'] =
@@ -147,6 +162,8 @@ class Etudepage extends State<EtudePage> {
                                 groupValue: niveau,
                                 onChanged: (value) {
                                   setState(() {
+                                    isChecked = true;
+
                                     _select = false;
                                     niveau = Niveau.sup;
                                     reponses['rep_etude'] =
@@ -166,6 +183,8 @@ class Etudepage extends State<EtudePage> {
                                 groupValue: niveau,
                                 onChanged: (value) {
                                   setState(() {
+                                    isChecked = true;
+
                                     _select = false;
                                     niveau = Niveau.bac3;
                                     reponses['rep_etude'] =
@@ -185,6 +204,8 @@ class Etudepage extends State<EtudePage> {
                                 groupValue: niveau,
                                 onChanged: (value) {
                                   setState(() {
+                                    isChecked = true;
+
                                     _select = false;
                                     niveau = Niveau.bac5;
                                     reponses['rep_etude'] =
@@ -204,6 +225,8 @@ class Etudepage extends State<EtudePage> {
                                 groupValue: niveau,
                                 onChanged: (value) {
                                   setState(() {
+                                    isChecked = true;
+
                                     _select = false;
 
                                     niveau = Niveau.doctorat;
@@ -255,6 +278,7 @@ class Etudepage extends State<EtudePage> {
                                 groupValue: niveau,
                                 onChanged: (value) {
                                   setState(() {
+                                    isChecked = true;
                                     _select = true;
                                     print(_select);
                                     niveau = Niveau.autre;
@@ -280,25 +304,29 @@ class Etudepage extends State<EtudePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    if (reponses['mdp'] == true)
+                    if (reponses['mail'] != null)
                       mylib.createQuitButton(context, 141, 41,
-                          const confirmationEnregistrement(), reponses)
+                          const ConfirmationEnregistrement(), reponses)
                     else
                       mylib.createQuitButton(context, 141, 41,
-                          const confirmationAbandon(), reponses),
-                    mylib.createNextButton(
-                      "btn_next".tr(),
-                      context,
-                      141,
-                      41,
-                      MaterialPageRoute(
-                          builder: (_) => const ActivitePage(),
-                          settings: RouteSettings(arguments: reponses)),
-                    )
+                          const ConfirmationAbandon(), reponses),
+                    if (isChecked)
+                      mylib.createNextButton(
+                        "btn_next".tr(),
+                        context,
+                        141,
+                        41,
+                        MaterialPageRoute(
+                            builder: (_) => const ActivitePage(),
+                            settings: RouteSettings(arguments: reponses)),
+                      )
                   ],
                 ),
+                if (!isChecked)
+                  Text("Veuillez répondre pour aller à la prochaine question",
+                      style: mylib.warningText),
                 // const Spacer(),
-                SizedBox(height: 40),
+                const SizedBox(height: 40),
 
                 const Align(
                   alignment: Alignment.bottomRight,

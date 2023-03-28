@@ -25,16 +25,23 @@ class Activitepage extends State<ActivitePage> {
   bool _proValue = false;
   bool _retraiteValue = false;
   bool _ssProValue = false;
+  bool isChecked = false;
 
   @override
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
-    reponses['rep_activite'] = "test";  //récupération des données de la page non fonctionnel
-     context.watch<LanguageController>();
+    reponses['rep_activite'] = "tets";
+    // context.watch<LanguageController>() est utilisée pour surveiller les changements de la langue de l'application.
+    // Elle est définit dans la classe LanguageController du fichier languga_controller.
+    context.watch<LanguageController>();
     return Scaffold(
+      // Permet l'ajout d'un widget 'appBar' dans l'objet 'Scaffold' qui utilise une méthode BaseAppBar
+      // définie dans la bibliothèque mylib pour afficher une barre d'application en haut de la page.
       extendBodyBehindAppBar: true,
       appBar: mylib.BaseAppBar(appBar: AppBar()),
+      // Permet l'ajoute un widget endDrawer au Scaffold qui utilise la méthode createMenu
+      // de la bibliothèque mylib pour afficher un menu à droite lorsque l'on clique sur l'icon.
       endDrawer: mylib.createMenu(context),
       body: SingleChildScrollView(
         child: Container(
@@ -62,6 +69,8 @@ class Activitepage extends State<ActivitePage> {
                       Container(
                         padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
                         child: Text(
+                          // la méthode tr() de la bibliothèque easy_localization permet de traduire la chaîne de caractères
+
                           "activitePage_title".tr(),
                           style: mylib.titleStyle,
                           textAlign: TextAlign.center,
@@ -99,6 +108,8 @@ class Activitepage extends State<ActivitePage> {
                                       value: _formationValue,
                                       onChanged: (value) {
                                         setState(() {
+                                          isChecked = true;
+
                                           _formationValue = value!;
 
                                           //enregistrer chaine de caracère
@@ -128,6 +139,8 @@ class Activitepage extends State<ActivitePage> {
                                       value: _empValue,
                                       onChanged: (value) {
                                         setState(() {
+                                          isChecked = true;
+
                                           _empValue = value!;
                                           //enregistrer chaine de caracère
                                         });
@@ -156,6 +169,7 @@ class Activitepage extends State<ActivitePage> {
                                       value: _proValue,
                                       onChanged: (value) {
                                         setState(() {
+                                          isChecked = true;
                                           _proValue = value!;
                                           //enregistrer chaine de caracère
                                         });
@@ -184,6 +198,8 @@ class Activitepage extends State<ActivitePage> {
                                       value: _retraiteValue,
                                       onChanged: (value) {
                                         setState(() {
+                                          isChecked = true;
+
                                           _retraiteValue = value!;
                                           //enregistrer chaine de caracère
                                         });
@@ -212,6 +228,8 @@ class Activitepage extends State<ActivitePage> {
                                       value: _ssProValue,
                                       onChanged: (value) {
                                         setState(() {
+                                          isChecked = true;
+
                                           _ssProValue = value!;
                                           //enregistrer chaine de caracère
                                         });
@@ -234,11 +252,11 @@ class Activitepage extends State<ActivitePage> {
                 children: [
                   if (reponses['mail'] != null)
                     mylib.createQuitButton(context, 141, 41,
-                        const confirmationEnregistrement(), reponses)
+                        const ConfirmationEnregistrement(), reponses)
                   else
                     mylib.createQuitButton(context, 141, 41,
-                        const confirmationAbandon(), reponses),
-                  if (reponses['mail'] != null) 
+                        const ConfirmationAbandon(), reponses),
+                  if (reponses['mail'] != null && isChecked)
                     mylib.createNextButton1(
                         "btn_next".tr(),
                         context,
@@ -248,8 +266,8 @@ class Activitepage extends State<ActivitePage> {
                         MaterialPageRoute(
                             builder: (BuildContext context) =>
                                 const HelloLoginPassword(),
-                            settings: RouteSettings(arguments: reponses)))
-                  else
+                            settings: RouteSettings(arguments: reponses))),
+                  if (reponses['mail'] == null && isChecked)
                     mylib.createNextButton1(
                       "btn_next".tr(),
                       context,
@@ -263,8 +281,12 @@ class Activitepage extends State<ActivitePage> {
                     )
                 ],
               ),
+              if (!isChecked)
+                // ignore: prefer_const_constructors
+                Text("Veuillez répondre pour aller à la prochaine question",
+                    style: mylib.warningText),
               // const Spacer(),
-              SizedBox(height: 55),
+              const SizedBox(height: 55),
               const Align(
                 alignment: Alignment.bottomRight,
                 child: Text(

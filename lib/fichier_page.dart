@@ -5,10 +5,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/date_page.dart';
-import 'package:flutter_application_1/start_page.dart';
 import 'package:flutter_application_1/user_confirm_abandon_quiz.dart';
 import 'package:flutter_application_1/user_confirm_enregistrement.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'dart:io' as io;
 import 'controller/language_contoller.dart';
@@ -26,17 +24,23 @@ class FichierPage extends StatefulWidget {
 
 class Fichierpage extends State<FichierPage> {
   late io.File image;
+  bool _showErrorMessage = false;
 
   @override
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
-
+    // context.watch<LanguageController>() est utilisée pour surveiller les changements de la langue de l'application.
+    // Elle est définit dans la classe LanguageController du fichier languga_controller.
     context.watch<LanguageController>();
 
     return Scaffold(
+        // Permet l'ajout d'un widget 'appBar' dans l'objet 'Scaffold' qui utilise une méthode BaseAppBar
+        // définie dans la bibliothèque mylib pour afficher une barre d'application en haut de la page.
         extendBodyBehindAppBar: true,
         appBar: mylib.BaseAppBar(appBar: AppBar()),
+        // Permet l'ajoute un widget endDrawer au Scaffold qui utilise la méthode createMenu
+        // de la bibliothèque mylib pour afficher un menu à droite lorsque l'on clique sur l'icon.
         endDrawer: mylib.createMenu(context),
         body: Container(
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
@@ -44,9 +48,9 @@ class Fichierpage extends State<FichierPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Spacer(),
+                const Spacer(),
                 mylib.percentIndicator(context, 0.33),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 ClipRRect(
@@ -61,6 +65,8 @@ class Fichierpage extends State<FichierPage> {
                         Container(
                           padding: const EdgeInsets.fromLTRB(1, 20, 1, 0),
                           child: Text(
+                            // la méthode tr() de la bibliothèque easy_localization permet de traduire la chaîne de caractères
+
                             "FichierPage_title".tr(),
                             style: mylib.titleStyle,
                             textAlign: TextAlign.center,
@@ -93,16 +99,12 @@ class Fichierpage extends State<FichierPage> {
 
                                   //padding: EdgeInsets.fromLTRB(10,0,110,0),
                                 ),
-                                onPressed: () async {
-                                  print("onpresses");
-                                  File? imageFile = await _getFromGallery();
-                                  print(imageFile.toString());
-                                  final imageBytes =
-                                      await imageFile?.readAsBytes();
-                                  final imageBase64 =
-                                      base64.encode(imageBytes!);
-                                  reponses["rep_img"] = imageBase64;
-                                  print(reponses);
+                                onPressed: () {
+                                  setState(() {
+                                    _showErrorMessage = true;
+                                  });
+                                  _showErrorMessage = true;
+                                  imagefunction(reponses);
                                 },
                                 child: Row(
                                   children: [
@@ -165,32 +167,36 @@ class Fichierpage extends State<FichierPage> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    if (reponses['mdp'] == true)
+                    if (reponses['mail'] != null)
                       mylib.createQuitButton(context, 141, 41,
-                          confirmationEnregistrement(), reponses)
+                          const ConfirmationEnregistrement(), reponses)
                     else
-                      mylib.createQuitButton(
-                          context, 141, 41, confirmationAbandon(), reponses),
-                    mylib.createNextButton(
-                      "btn_next".tr(),
-                      context,
-                      141,
-                      41,
-                      MaterialPageRoute(
-                        builder: (_) => const DatePage(),
-                        settings: RouteSettings(arguments: reponses),
-                      ),
-                    )
+                      mylib.createQuitButton(context, 141, 41,
+                          const ConfirmationAbandon(), reponses),
+                    if (_showErrorMessage)
+                      mylib.createNextButton(
+                        "btn_next".tr(),
+                        context,
+                        141,
+                        41,
+                        MaterialPageRoute(
+                          builder: (_) => const DatePage(),
+                          settings: RouteSettings(arguments: reponses),
+                        ),
+                      )
                   ],
                 ),
-                Spacer(),
-                Align(
+                if (!_showErrorMessage)
+                  Text("Veuillez répondre pour aller à la prochaine question",
+                      style: mylib.warningText),
+                const Spacer(),
+                const Align(
                   alignment: Alignment.bottomRight,
                   child: Text(
                     "3/9",
@@ -206,6 +212,7 @@ class Fichierpage extends State<FichierPage> {
 
   /// Get from gallery
   Future<File?> _getFromGallery() async {
+    _showErrorMessage = true;
     var pickedFile = await ImagePicker().pickImage(
       source: ImageSource.gallery,
       maxWidth: 1800,
@@ -217,7 +224,7 @@ class Fichierpage extends State<FichierPage> {
   }
 
   /// Get from gallery
-  Future pickImage() async {
+  void pickImage() async {
     try {
       final image = await ImagePicker().pickImage(source: ImageSource.camera);
       if (image != null){
@@ -226,5 +233,14 @@ class Fichierpage extends State<FichierPage> {
     } on PlatformException catch (e) {
       print('Failed to pick image: $e');
     }
+  }
+
+  void imagefunction(reponses) async {
+    File? imageFile = await _getFromGallery();
+    print(imageFile.toString());
+    final imageBytes = await imageFile?.readAsBytes();
+    final imageBase64 = base64.encode(imageBytes!);
+    reponses["rep_img"] = imageBase64;
+    print(reponses);
   }
 }

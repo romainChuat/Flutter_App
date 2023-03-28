@@ -15,13 +15,19 @@ class Languagepage extends State<LanguagePage> {
   @override
   Widget build(BuildContext context) {
     LanguageController controller = context.read<LanguageController>();
+    // context.watch<LanguageController>() est utilisée pour surveiller les changements de la langue de l'application.
+    // Elle est définit dans la classe LanguageController du fichier languga_controller.
     context.watch<LanguageController>();
 
     return Scaffold(
+      // Permet l'ajout d'un widget 'appBar' dans l'objet 'Scaffold' qui utilise une méthode BaseAppBar
+      // définie dans la bibliothèque mylib pour afficher une barre d'application en haut de la page.
       extendBodyBehindAppBar: true,
       appBar: mylib.BaseAppBar(
         appBar: AppBar(),
       ),
+      // Permet l'ajoute un widget endDrawer au Scaffold qui utilise la méthode createMenu
+      // de la bibliothèque mylib pour afficher un menu à droite lorsque l'on clique sur l'icon.
       endDrawer: mylib.createMenu(context),
       body: Center(
         child: ClipRRect(
@@ -33,6 +39,8 @@ class Languagepage extends State<LanguagePage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
+                  // la méthode tr() de la bibliothèque easy_localization permet de traduire la chaîne de caractères
+
                   Text("languagePage_title".tr(), style: mylib.titleStyle),
                   const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 20)),
                   SizedBox(
@@ -57,7 +65,7 @@ class Languagepage extends State<LanguagePage> {
                         child: Align(
                           alignment: Alignment.center,
                           child: Text("english_text".tr(),
-                              style: mylib.buttonTextStyle),
+                              style: mylib.titleStyle),
                         ),
                       ),
                     ),
@@ -84,8 +92,8 @@ class Languagepage extends State<LanguagePage> {
                         height: 49,
                         child: Align(
                           alignment: Alignment.center,
-                          child: Text("french_text".tr(),
-                              style: mylib.buttonTextStyle),
+                          child:
+                              Text("french_text".tr(), style: mylib.titleStyle),
                         ),
                       ),
                     ),

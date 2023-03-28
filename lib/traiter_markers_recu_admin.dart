@@ -570,31 +570,34 @@ class Traitermarkersrecuadmin extends State<TraiterMarkersRecuAdmin> {
       ],
     );
   }
+
   createCancelButton(reponses) {
-  return SizedBox(
-    width: 300,
-    height: 45,
-    child: ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        foregroundColor: Colors.white,
-        side: const BorderSide(color: Colors.white, width: 1),
-        elevation: 15,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      ),
-      onPressed: () {
-        print(reponses);
-        mylib.refuserReponses(reponses['rep_id']);
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-                    builder: (BuildContext context) => const HelloAdminPage(),
-                    settings: RouteSettings(arguments: reponses),
-                  ),
-        );
-      },
-      child: Text(
-        "Traiter_markers_recu_admin_btn_annuler".tr(),
-        style: mylib.titleStyle,
+    return SizedBox(
+      width: 300,
+      height: 45,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          foregroundColor: Colors.white,
+          side: const BorderSide(color: Colors.white, width: 1),
+          elevation: 15,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        ),
+        onPressed: () {
+          print(reponses);
+          mylib.refuserReponses(reponses['rep_id']);
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (BuildContext context) => const HelloAdminPage(),
+              settings: RouteSettings(arguments: reponses),
+            ),
+          );
+        },
+        child: Text(
+          "Traiter_markers_recu_admin_btn_annuler".tr(),
+          style: mylib.titleStyle,
+        ),
       ),
     ),
   );
@@ -637,7 +640,6 @@ class Traitermarkersrecuadmin extends State<TraiterMarkersRecuAdmin> {
     //var imagePATH = tempFile.path;
     return tempFile.path;
   }
-
 
   @override
   Widget build(BuildContext context) {

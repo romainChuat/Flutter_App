@@ -121,7 +121,7 @@ class _Recherchepageuseravis extends State<Recherchepageuseravis> {
           children: [
             Expanded(
               child: allresults.isEmpty
-                  ? Center(child: Text('La liste est vide'))
+                  ? const Center(child: Text('La liste est vide'))
                   : ListView.builder(
                       itemCount: allresults.length,
                       itemBuilder: (context, index) {
@@ -167,7 +167,7 @@ class _Recherchepageuseravis extends State<Recherchepageuseravis> {
                           alignment: Alignment.centerRight,
                           child: PopupMenuButton<SampleItem>(
                             initialValue: selectedMenu,
-                            icon: Icon(Icons.chevron_right),
+                            icon: const Icon(Icons.chevron_right),
                             // Callback that sets the selected popup menu item.
                             onSelected: (SampleItem item) {
                               setState(() {
@@ -192,12 +192,12 @@ class _Recherchepageuseravis extends State<Recherchepageuseravis> {
                                       borderRadius: BorderRadius.circular(15.0),
                                     ),
                                   ),
-                                  child: Text('Modifier'),
+                                  child: const Text('Modifier'),
                                   onPressed: () {
                                     Navigator.of(context).push(
                                       MaterialPageRoute(
                                         builder: (BuildContext context) =>
-                                            ConsulterAvisLoginChoisis(),
+                                            const ConsulterAvisLoginChoisis(),
                                         settings:
                                             RouteSettings(arguments: data),
                                       ),
@@ -214,7 +214,7 @@ class _Recherchepageuseravis extends State<Recherchepageuseravis> {
                                       borderRadius: BorderRadius.circular(15.0),
                                     ),
                                   ),
-                                  child: Text('Supprimer'),
+                                  child: const Text('Supprimer'),
                                   onPressed: () {
                                     //il faut delete la
                                   },
@@ -226,14 +226,20 @@ class _Recherchepageuseravis extends State<Recherchepageuseravis> {
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
+    // context.watch<LanguageController>() est utilisée pour surveiller les changements de la langue de l'application.
+    // Elle est définit dans la classe LanguageController du fichier languga_controller.
     context.watch<LanguageController>();
     refreshResults(reponses);
     //  print(allresults);
     return Scaffold(
+      // Permet l'ajout d'un widget 'appBar' dans l'objet 'Scaffold' qui utilise une méthode BaseAppBar
+      // définie dans la bibliothèque mylib pour afficher une barre d'application en haut de la page.
       extendBodyBehindAppBar: true,
       appBar: mylib.BaseAppBar(
         appBar: AppBar(),
       ),
+      // Permet l'ajoute un widget endDrawer au Scaffold qui utilise la méthode createMenu
+      // de la bibliothèque mylib pour afficher un menu à droite lorsque l'on clique sur l'icon.
       endDrawer: mylib.createMenu(context),
       body: SingleChildScrollView(
         child: AnnotatedRegion<SystemUiOverlayStyle>(
@@ -278,13 +284,14 @@ class _Recherchepageuseravis extends State<Recherchepageuseravis> {
                                             controller: controllerSearch,
                                             decoration: InputDecoration(
                                               hintText: 'Rechercher',
-                                              border: OutlineInputBorder(),
-                                              hintStyle: TextStyle(
+                                              border:
+                                                  const OutlineInputBorder(),
+                                              hintStyle: const TextStyle(
                                                   color: Colors.black38),
                                               suffixIcon:
                                                   PopupMenuButton<SampleItem>(
                                                 initialValue: selectedMenu,
-                                                icon: Icon(Icons.tune),
+                                                icon: const Icon(Icons.tune),
                                                 // Callback that sets the selected popup menu item.
                                                 onSelected: (SampleItem item) {
                                                   setState(() {
@@ -319,7 +326,8 @@ class _Recherchepageuseravis extends State<Recherchepageuseravis> {
                                                                       15.0),
                                                         ),
                                                       ),
-                                                      child: Text('Publié'),
+                                                      child:
+                                                          const Text('Publié'),
                                                       onPressed: () {
                                                         filtre = "publie";
                                                       },
@@ -339,7 +347,8 @@ class _Recherchepageuseravis extends State<Recherchepageuseravis> {
                                                                       15.0),
                                                         ),
                                                       ),
-                                                      child: Text('Non Publié'),
+                                                      child: const Text(
+                                                          'Non Publié'),
                                                       onPressed: () {
                                                         filtre = "refuse";
                                                       },
@@ -359,7 +368,8 @@ class _Recherchepageuseravis extends State<Recherchepageuseravis> {
                                                                       15.0),
                                                         ),
                                                       ),
-                                                      child: Text('Non traité'),
+                                                      child: const Text(
+                                                          'Non traité'),
                                                       onPressed: () {
                                                         filtre = "non-traite";
                                                       },
@@ -379,8 +389,8 @@ class _Recherchepageuseravis extends State<Recherchepageuseravis> {
                                                                       15.0),
                                                         ),
                                                       ),
-                                                      child:
-                                                          Text('Non terminé'),
+                                                      child: const Text(
+                                                          'Non terminé'),
                                                       onPressed: () {
 //filtre a ajouté                                                        filtre = "publie";
                                                       },
@@ -400,7 +410,7 @@ class _Recherchepageuseravis extends State<Recherchepageuseravis> {
                                     ),
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                 ),
                                 refreshResults(reponses),

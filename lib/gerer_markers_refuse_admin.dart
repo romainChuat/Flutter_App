@@ -570,35 +570,37 @@ class Gererlesmarkersrefuse extends State<GererLesMarkersRefuse> {
       ],
     );
   }
+
   createCancelRefusButton(reponses) {
-  return SizedBox(
-    width: 300,
-    height: 45,
-    child: ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        foregroundColor: Colors.white,
-        side: const BorderSide(color: Colors.white, width: 1),
-        elevation: 15,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+    return SizedBox(
+      width: 300,
+      height: 45,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          foregroundColor: Colors.white,
+          side: const BorderSide(color: Colors.white, width: 1),
+          elevation: 15,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        ),
+        onPressed: () {
+          print(reponses);
+          mylib.validerReponses(reponses['rep_id']);
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (BuildContext context) => const HelloAdminPage(),
+              settings: RouteSettings(arguments: reponses),
+            ),
+          );
+        },
+        child: Text(
+          "gerer_markers_refuse_admin_btn_annuler_refus".tr(),
+          style: mylib.titleStyle,
+        ),
       ),
-      onPressed: () {
-        print(reponses);
-        mylib.validerReponses(reponses['rep_id']);
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-                    builder: (BuildContext context) => const HelloAdminPage(),
-                    settings: RouteSettings(arguments: reponses),
-                  ),
-        );
-      },
-      child: Text(
-        "gerer_markers_refuse_admin_btn_annuler_refus".tr(),
-        style: mylib.titleStyle,
-      ),
-    ),
-  );
-}
+    );
+  }
 
 
     getReponse(int repID) async {
@@ -646,6 +648,8 @@ class Gererlesmarkersrefuse extends State<GererLesMarkersRefuse> {
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
+    // context.watch<LanguageController>() est utilisée pour surveiller les changements de la langue de l'application.
+    // Elle est définit dans la classe LanguageController du fichier languga_controller.
     context.watch<LanguageController>();
     repID = reponses['rep_id'] as int;
 
@@ -658,10 +662,14 @@ class Gererlesmarkersrefuse extends State<GererLesMarkersRefuse> {
           } else {
 
     return Scaffold(
+      // Permet l'ajout d'un widget 'appBar' dans l'objet 'Scaffold' qui utilise une méthode BaseAppBar
+      // définie dans la bibliothèque mylib pour afficher une barre d'application en haut de la page.
       extendBodyBehindAppBar: true,
       appBar: mylib.BaseAppBar(
         appBar: AppBar(),
       ),
+      // Permet l'ajoute un widget endDrawer au Scaffold qui utilise la méthode createMenu
+      // de la bibliothèque mylib pour afficher un menu à droite lorsque l'on clique sur l'icon.
       endDrawer: mylib.createMenu(context),
       body: Center(
         child: Column(
@@ -671,41 +679,50 @@ class Gererlesmarkersrefuse extends State<GererLesMarkersRefuse> {
             ClipRRect(
               borderRadius: BorderRadius.circular(15.0),
               child: Container(
-                width: 359,
-                height: 600,
-                padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-                decoration: const BoxDecoration(
-                  color: Color.fromARGB(118, 13, 12, 32),
-                ),
-                child: SingleChildScrollView( //facultatif : permet l'affichage d'une scrollbar
-
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 0)),
-                      titleDate(),
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                      map(),
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                      photo(),
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                      date(),
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                      expression(),
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                      age(),
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                      genre(),
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                      niveauxEtude(),
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                      activiteExerce(),
-                    ],
+                  width: 359,
+                  height: 600,
+                  padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+                  decoration: const BoxDecoration(
+                    color: Color.fromARGB(118, 13, 12, 32),
                   ),
-                ),
-                )
-              ),
+                  child: SingleChildScrollView(
+                    //facultatif : permet l'affichage d'une scrollbar
+
+                    child: SingleChildScrollView(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          const Padding(
+                              padding: EdgeInsets.fromLTRB(0, 20, 0, 0)),
+                          titleDate(),
+                          const Padding(
+                              padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                          map(),
+                          const Padding(
+                              padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                          photo(),
+                          const Padding(
+                              padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                          date(),
+                          const Padding(
+                              padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                          expression(),
+                          const Padding(
+                              padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                          age(),
+                          const Padding(
+                              padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                          genre(),
+                          const Padding(
+                              padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                          niveauxEtude(),
+                          const Padding(
+                              padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                          activiteExerce(),
+                        ],
+                      ),
+                    ),
+                  )),
             ),
             const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
             createCancelRefusButton(reponses)

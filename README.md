@@ -21,6 +21,13 @@ Pour les deux premières options, il suffit dans un éditeur de texte tel que VS
 Concernant la dernière option, il est nécessaire de transférer l'apk de l'application sur le smartphone voulu. Puis de l'installer.
 Bes'App sera alors prête à être utiliser.
 
+## APK
+
+  - Pour génerer un apk utiliser la commander flutter `build apk`
+  - Vous trouverez alors les différentes form d'apk dans : [monprojet]/build/app/outputs/...
+  - Pour plus d'informations sur la génération des différentes composantes possible consulter l'adresse suivante:
+https://docs.flutter.dev/deployment/android
+
 ## Crédits
 
 Cette application à été réalisée dans le cadre de l'UE "Projet Tutoré" de Licence 3 Informatique à l'UFR ST de Besançon.

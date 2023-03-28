@@ -28,6 +28,8 @@ class Creationcompte extends State<CreationCompte> {
   final passwordController_1 = TextEditingController();
   final passwordController_2 = TextEditingController();
   bool _showErrorMessageMail = false;
+  bool _showErrorMessageUserName = false;
+
   bool _showErrorMessagePassword = false;
   bool _showErrorMessageCondition = false;
   Map<String, Object> reponses = {};
@@ -37,6 +39,12 @@ class Creationcompte extends State<CreationCompte> {
   void _handleInputChangeMail(String input) {
     setState(() {
       _showErrorMessageMail = false;
+    });
+  }
+
+  void _handleInputChangeUsername(String input) {
+    setState(() {
+      _showErrorMessageUserName = false;
     });
   }
 
@@ -58,6 +66,8 @@ class Creationcompte extends State<CreationCompte> {
       ),
       child: Align(
         child: Text(
+          // la méthode tr() de la bibliothèque easy_localization permet de traduire la chaîne de caractères
+
           "creation_compte_sign_up".tr(),
           style: mylib.titleStyle3,
           textAlign: TextAlign.center,
@@ -204,7 +214,11 @@ class Creationcompte extends State<CreationCompte> {
         height: 43,
         child: ElevatedButton(
           onPressed: () async {
-            if (verifMail() == false) {
+            if (verifUserName() == false) {
+              setState(() {
+                _showErrorMessageUserName = true;
+              });
+            } else if (verifMail() == false) {
               setState(() {
                 _showErrorMessageMail = true;
               });
@@ -256,7 +270,9 @@ class Creationcompte extends State<CreationCompte> {
       else if (_showErrorMessagePassword)
         Text("warning_mdp_incorrect".tr(), style: mylib.warningText)
       else if (_showErrorMessageCondition)
-        Text("warning_mdp_terms_conditions".tr(), style: mylib.warningText),
+        Text("warning_mdp_terms_conditions".tr(), style: mylib.warningText)
+      else if (_showErrorMessageUserName)
+        Text("Merci d'indiquer un nom", style: mylib.warningText),
     ]);
   }
 
@@ -377,6 +393,7 @@ class Creationcompte extends State<CreationCompte> {
                     color: Colors.black26, blurRadius: 6, offset: Offset(0, 2))
               ]),
           child: TextField(
+            onChanged: _handleInputChangeUsername,
             controller: nomController,
             keyboardType: TextInputType.name,
             style: const TextStyle(color: Colors.black87),
@@ -396,6 +413,8 @@ class Creationcompte extends State<CreationCompte> {
 
   @override
   Widget build(BuildContext context) {
+    // context.watch<LanguageController>() est utilisée pour surveiller les changements de la langue de l'application.
+    // Elle est définit dans la classe LanguageController du fichier languga_controller.
     context.watch<LanguageController>();
     return Scaffold(
       body: AnnotatedRegion<SystemUiOverlayStyle>(
@@ -434,7 +453,8 @@ class Creationcompte extends State<CreationCompte> {
                                   buildTitle(),
                                   if (!(_showErrorMessageMail ||
                                       _showErrorMessageCondition ||
-                                      _showErrorMessagePassword))
+                                      _showErrorMessagePassword ||
+                                      _showErrorMessageUserName))
                                     const SizedBox(height: 44)
                                   else
                                     const SizedBox(height: 31),
@@ -482,6 +502,14 @@ class Creationcompte extends State<CreationCompte> {
     return RegExp(
             r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-\=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
         .hasMatch(mail);
+  }
+
+  bool verifUserName() {
+    String nom = nomController.text;
+    if (nom.isEmpty) {
+      return false;
+    }
+    return true;
   }
 
   bool verifPassword() {

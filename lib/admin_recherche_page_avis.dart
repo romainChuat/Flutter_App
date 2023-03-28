@@ -1,20 +1,14 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_application_1/reponse.dart';
 import 'package:flutter_application_1/traiter_avis_recu_admin.dart';
-import 'package:flutter_application_1/traiter_markers_recu_admin.dart';
-import 'package:postgres/src/execution_context.dart';
 import 'package:provider/provider.dart';
 import 'controller/language_contoller.dart';
 import 'database_helper.dart';
 import 'package:intl/intl.dart';
 import 'gerer_les_avis_refuse_admin.dart';
 import 'gerer_les_avis_valide_admin.dart';
-import 'gerer_les_markers_recu_admin_choisis.dart';
-import 'gerer_markers_refuse_admin.dart';
 import 'mylib.dart' as mylib;
 
 enum SampleItem { itemOne, itemTwo, itemThree }
@@ -37,6 +31,7 @@ class _RecherchepageAvis extends State<RecherchepageAvis> {
 
   var filtre = "";
 
+  @override
   void initState() {
     super.initState();
     controllerSearch.addListener(onSearchChanged);
@@ -122,7 +117,7 @@ class _RecherchepageAvis extends State<RecherchepageAvis> {
           children: [
             Expanded(
               child: allresults.isEmpty
-                  ? Center(child: Text('La liste est vide'))
+                  ? const Center(child: Text('La liste est vide'))
                   : ListView.builder(
                       itemCount: allresults.length,
                       itemBuilder: (context, index) {
@@ -137,15 +132,15 @@ class _RecherchepageAvis extends State<RecherchepageAvis> {
     );
   }
 
-  _listItem(context, _list) {
-    DateTime date = DateTime.parse(_list[2].toString());
+  _listItem(context, list) {
+    DateTime date = DateTime.parse(list[2].toString());
     // Formatage de la date selon le format "dd/MM/yyyy"
     String formattedDate = DateFormat('dd/MM/yyyy').format(date);
-    String title = _list[4].toString();
-    String username = _list[3].toString();
+    String title = list[4].toString();
+    String username = list[3].toString();
     Map<String, Object> data = {};
-    data['rep_id'] = _list[0] as int;
-    data['rep_status'] = _list[5];
+    data['rep_id'] = list[0] as int;
+    data['rep_status'] = list[5];
 
     // print("ess");
 
@@ -164,7 +159,7 @@ class _RecherchepageAvis extends State<RecherchepageAvis> {
                 flex: 3,
                 child: Column(
                   children: [
-                    Padding(padding: EdgeInsets.all(2)),
+                    const Padding(padding: EdgeInsets.all(2)),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -192,13 +187,13 @@ class _RecherchepageAvis extends State<RecherchepageAvis> {
                                 var page;
                                 if (data['rep_status'].toString() ==
                                     "non-traite") {
-                                  page = GererAvisValide();
+                                  page = const GererAvisValide();
                                 }
                                 if (data['rep_status'].toString() == "publie") {
-                                  page = TraiterAvisRecu();
+                                  page = const TraiterAvisRecu();
                                 }
                                 if (data['rep_status'].toString() == "refuse") {
-                                  page = GererAvisRefuse();
+                                  page = const GererAvisRefuse();
                                 }
                                 Navigator.of(context).push(
                                   MaterialPageRoute(
@@ -224,14 +219,19 @@ class _RecherchepageAvis extends State<RecherchepageAvis> {
 
   @override
   Widget build(BuildContext context) {
+    // context.watch<LanguageController>() est utilisée pour surveiller les changements de la langue de l'application.
+    // Elle est définit dans la classe LanguageController du fichier languga_controller.
     context.watch<LanguageController>();
     refreshResults();
-    //  print(allresults);
     return Scaffold(
+      // Permet l'ajout d'un widget 'appBar' dans l'objet 'Scaffold' qui utilise une méthode BaseAppBar
+      // définie dans la bibliothèque mylib pour afficher une barre d'application en haut de la page.
       extendBodyBehindAppBar: true,
       appBar: mylib.BaseAppBar(
         appBar: AppBar(),
       ),
+      // Permet l'ajoute un widget endDrawer au Scaffold qui utilise la méthode createMenu
+      // de la bibliothèque mylib pour afficher un menu à droite lorsque l'on clique sur l'icon.
       endDrawer: mylib.createMenu(context),
       body: SingleChildScrollView(
         child: AnnotatedRegion<SystemUiOverlayStyle>(
@@ -276,13 +276,14 @@ class _RecherchepageAvis extends State<RecherchepageAvis> {
                                             controller: controllerSearch,
                                             decoration: InputDecoration(
                                               hintText: 'Rechercher',
-                                              border: OutlineInputBorder(),
-                                              hintStyle: TextStyle(
+                                              border:
+                                                  const OutlineInputBorder(),
+                                              hintStyle: const TextStyle(
                                                   color: Colors.black38),
                                               suffixIcon:
                                                   PopupMenuButton<SampleItem>(
                                                 initialValue: selectedMenu,
-                                                icon: Icon(Icons.tune),
+                                                icon: const Icon(Icons.tune),
                                                 // Callback that sets the selected popup menu item.
                                                 onSelected: (SampleItem item) {
                                                   setState(() {
@@ -317,7 +318,8 @@ class _RecherchepageAvis extends State<RecherchepageAvis> {
                                                                       15.0),
                                                         ),
                                                       ),
-                                                      child: Text('Publié'),
+                                                      child:
+                                                          const Text('Publié'),
                                                       onPressed: () {
                                                         filtre = "publie";
                                                       },
@@ -337,7 +339,8 @@ class _RecherchepageAvis extends State<RecherchepageAvis> {
                                                                       15.0),
                                                         ),
                                                       ),
-                                                      child: Text('Non Publié'),
+                                                      child: const Text(
+                                                          'Non Publié'),
                                                       onPressed: () {
                                                         filtre = "refuse";
                                                       },
@@ -357,7 +360,8 @@ class _RecherchepageAvis extends State<RecherchepageAvis> {
                                                                       15.0),
                                                         ),
                                                       ),
-                                                      child: Text('Non traité'),
+                                                      child: const Text(
+                                                          'Non traité'),
                                                       onPressed: () {
                                                         filtre = "non-traite";
                                                       },
@@ -377,7 +381,7 @@ class _RecherchepageAvis extends State<RecherchepageAvis> {
                                     ),
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                 ),
                                 refreshResults(),
