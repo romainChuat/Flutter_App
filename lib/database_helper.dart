@@ -23,10 +23,10 @@ class DatabaseHelper {
 
   //Retourne les informations de connexion
   PostgreSQLConnection connection() {
-    return PostgreSQLConnection(bdserver, 5432, "flutter",
+    return PostgreSQLConnection(bdserver, 5432, "postgres",
         queryTimeoutInSeconds: 3600,
         timeoutInSeconds: 3600,
-        username: 'katty',
+        username: 'romain',
         password: 'admin');
   }
 
@@ -307,5 +307,19 @@ class DatabaseHelper {
     //Si le lieu n'est pas présent dans la BD, on retourne null
     //Sinon, on retourne le résultat de la requête
     return results;
+  }
+
+
+    Future<PostgreSQLResult?> insertAvis(Map<String, dynamic> data) async {
+    final client = await db;
+    //Si la BD n'est pas ouverte, on retourne null
+    if (client == null) {
+      return null;
+    }
+
+    //Sinon on retourne le résultat de la requête
+    return await client.query(
+        'INSERT INTO avis (${data.keys.join(', ')}) VALUES (${data.keys.map((k) => '@$k').join(', ')})',
+        substitutionValues: data);
   }
 }

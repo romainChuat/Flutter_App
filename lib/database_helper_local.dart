@@ -81,6 +81,19 @@ class DatabaseHelperLocal {
             user_admin BOOLEAN DEFAULT false
           )
           ''');
+    await db.execute('''
+          CREATE TABLE avis(
+            avis_id INTEGER PRIMARY KEY,
+            avis_lieu INTEGER NOT NULL,
+            avis_user INTEGER NOT NULL,
+            avis_age INTEGER ,
+            avis_visite BOOLEAN ,
+            avis_note INTEGER ,
+            avis_txt CHARACTER(200),
+            CONSTRAINT fk_user FOREIGN KEY (avis_user) REFERENCES user(user_id),
+            CONSTRAINT fk_lieux FOREIGN KEY (avis_lieu) REFERENCES lieu(lieu_id)
+          )
+          ''');
   }
 
   //Insère un lieu dans la BD
@@ -184,5 +197,10 @@ class DatabaseHelperLocal {
       where: 'id = ?',
       whereArgs: [id],
     );
+  }
+
+
+  Future<int?> insertAvis(var a) async {
+    return await _db?.insert("avis", a);
   }
 }
