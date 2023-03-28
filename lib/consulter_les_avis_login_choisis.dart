@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -17,27 +20,13 @@ class ConsulterAvisLoginChoisis extends StatefulWidget {
 
 class Consulteravisloginchoisis extends State<ConsulterAvisLoginChoisis> {
   final mapController = MapController();
+  var avisID;
+  var avisText;
+  var avisAge;
+  var avisVisite;
+  var avisNote;
 
-  Widget titleDate() {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(15.0),
-      child: Container(
-        width: 325,
-        height: 60,
-        color: const Color.fromARGB(255, 235, 233, 233),
-        child: Container(
-          padding: const EdgeInsets.fromLTRB(1, 15, 1, 0),
-          child: Text(
-            // la méthode tr() de la bibliothèque easy_localization permet de traduire la chaîne de caractères
-
-            "consulter_les_avis_login_choisis_date".tr(),
-            style: mylib.titleStyle,
-            textAlign: TextAlign.center,
-          ),
-        ),
-      ),
-    );
-  }
+  var textController = TextEditingController();
 
   Widget avis() {
     return ClipRRect(
@@ -84,6 +73,7 @@ class Consulteravisloginchoisis extends State<ConsulterAvisLoginChoisis> {
     );
   }
 
+
   Widget dejaVisite() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -117,9 +107,9 @@ class Consulteravisloginchoisis extends State<ConsulterAvisLoginChoisis> {
                     width: 300,
                     height: 46,
                     color: const Color.fromARGB(255, 255, 255, 255),
-                    child: const Align(
+                    child: Align(
                       child: Text(
-                        "Oui/Non",
+                        avisVisite,
                         style: mylib.titleStyleDuration,
                         textAlign: TextAlign.center,
                       ),
@@ -134,59 +124,6 @@ class Consulteravisloginchoisis extends State<ConsulterAvisLoginChoisis> {
     );
   }
 
-  Widget commentaire() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: <Widget>[
-        ClipRRect(
-          borderRadius: BorderRadius.circular(15.0),
-          child: Container(
-            width: 325,
-            height: 320,
-            color: const Color.fromARGB(255, 235, 233, 233),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
-                  padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
-                  child: Text(
-                    "gerer_les_avis_valide_admin_comment".tr(),
-                    style: mylib.titleStyle,
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-                const Divider(
-                  color: Colors.black,
-                  thickness: 1,
-                  indent: 20,
-                  endIndent: 20,
-                ),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(15.0),
-                  child: Column(
-                    children: [
-                      Container(
-                        width: 300,
-                        height: 206,
-                        color: const Color.fromARGB(255, 255, 255, 255),
-                        child: const Align(
-                          child: Text(
-                            "Texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte texte",
-                            style: mylib.titleStyleDuration,
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ],
-    );
-  }
 
   Widget age() {
     return Column(
@@ -223,7 +160,7 @@ class Consulteravisloginchoisis extends State<ConsulterAvisLoginChoisis> {
                     color: const Color.fromARGB(255, 255, 255, 255),
                     child: Align(
                       child: Text(
-                        "Traiter_markers_recu_admin_years".tr(),
+                        avisAge,
                         style: mylib.titleStyleDuration,
                         textAlign: TextAlign.center,
                       ),
@@ -237,6 +174,47 @@ class Consulteravisloginchoisis extends State<ConsulterAvisLoginChoisis> {
       ],
     );
   }
+  createInputTextArea(double wdth, double hgth, TextEditingController textController, var reponses) {
+    return SizedBox(
+      height: hgth,
+      width: wdth,
+      child: Material(
+          elevation: 5,
+          color: Colors.white,
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+          child: TextField(
+            controller: textController,
+            onChanged: (value) {print(textController);
+              reponses['avis_txt'] = textController.text;
+              print(reponses);
+            },
+            maxLength: 200,
+            maxLines: null,
+            keyboardType: TextInputType.multiline,
+            style: mylib.simpleText1,
+            cursorColor: Color.fromARGB(255, 117, 106, 106),
+            decoration: const InputDecoration(
+              counterText: "",
+              hintText: 'Tapez votre texte...',
+              contentPadding: EdgeInsets.fromLTRB(10, 0, 0, 1),
+              filled: true,
+              fillColor: Colors.white,
+              enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    width: 1,
+                    color: Color.fromARGB(255, 255, 255, 255),
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(15))),
+              focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    width: 1,
+                    color: Color.fromARGB(255, 255, 255, 255),
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(15))),
+            ),
+          )));
+    }
+  
 
   Widget btnModifier() {
     return SizedBox(
@@ -260,6 +238,18 @@ class Consulteravisloginchoisis extends State<ConsulterAvisLoginChoisis> {
     );
   }
 
+  getAvis(int repID) async {
+    var data = await mylib.getAvisByID(repID);
+    print('data');
+    print(data);
+    avisAge = mylib.switchAge(data[0] as int);
+    data[1] == 0 ? avisVisite= "oui" :avisVisite = "non";
+    avisNote = data[2].toString();
+    avisText = data[3].toString().trim();
+    return;
+  }
+
+
   @override
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
@@ -267,6 +257,16 @@ class Consulteravisloginchoisis extends State<ConsulterAvisLoginChoisis> {
     // context.watch<LanguageController>() est utilisée pour surveiller les changements de la langue de l'application.
     // Elle est définit dans la classe LanguageController du fichier languga_controller.
     context.watch<LanguageController>();
+    avisID = reponses['avis_id'] as int;
+
+
+    return FutureBuilder<dynamic>(
+        future: getAvis(avisID!),
+        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            // Affiche un widget pendant que la méthode getPath est en cours d'exécution
+            return CircularProgressIndicator();
+          } else {
     return Scaffold(
       // Permet l'ajout d'un widget 'appBar' dans l'objet 'Scaffold' qui utilise une méthode BaseAppBar
       // définie dans la bibliothèque mylib pour afficher une barre d'application en haut de la page.
@@ -278,6 +278,7 @@ class Consulteravisloginchoisis extends State<ConsulterAvisLoginChoisis> {
       // de la bibliothèque mylib pour afficher un menu à droite lorsque l'on clique sur l'icon.
       endDrawer: mylib.createMenu(context),
       body: Center(
+        child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -285,36 +286,29 @@ class Consulteravisloginchoisis extends State<ConsulterAvisLoginChoisis> {
             ClipRRect(
               borderRadius: BorderRadius.circular(15.0),
               child: Container(
-                  width: 359,
-                  height: 600,
-                  color: const Color.fromARGB(118, 13, 12, 32),
-                  padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-                  child: Scrollbar(
-                    //facultatif : permet l'affichage d'une scrollbar
-
-                    child: SingleChildScrollView(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          const Padding(
-                              padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                          titleDate(),
-                          const Padding(
-                              padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                          avis(),
-                          const Padding(
-                              padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                          commentaire(),
-                          const Padding(
-                              padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                          age(),
-                          const Padding(
-                              padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                          dejaVisite(),
-                        ],
-                      ),
-                    ),
-                  )),
+                width: 359,
+                height: 600,
+                color: const Color.fromARGB(118, 13, 12, 32),
+                padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+                child :Scrollbar( //facultatif : permet l'affichage d'une scrollbar
+                
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                      avis(),
+                      const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                      createInputTextArea(325, 100, textController = TextEditingController(text:avisText), reponses),
+                      const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                      age(),
+                      const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                      dejaVisite(),
+                    ],
+                  ),
+                ),
+                )
+              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -338,7 +332,9 @@ class Consulteravisloginchoisis extends State<ConsulterAvisLoginChoisis> {
             ),
           ],
         ),
+        )
       ),
     );
+          }});
   }
 }

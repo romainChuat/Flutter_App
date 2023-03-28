@@ -233,41 +233,6 @@ percentIndicator(BuildContext context, double percentPage) {
     progressColor: const Color.fromARGB(255, 13, 12, 32),
   );
 }
-
-createInput(
-  double wdth,
-  double hgth,
-) {
-  return SizedBox(
-      height: hgth,
-      width: wdth,
-      child: const Material(
-          elevation: 5,
-          borderRadius: BorderRadius.all(Radius.circular(10)),
-          child: TextField(
-            style: simpleText1,
-            cursorColor: Color.fromARGB(255, 117, 106, 106),
-            decoration: InputDecoration(
-                contentPadding: EdgeInsets.fromLTRB(10, 0, 0, 1),
-                filled: true,
-                fillColor: Colors.white,
-                enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      width: 1,
-                      color: Color.fromARGB(255, 255, 255, 255),
-                    ),
-                    borderRadius: BorderRadius.all(Radius.circular(15))),
-                focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      width: 1,
-                      color: Color.fromARGB(255, 255, 255, 255),
-                    ),
-                    borderRadius: BorderRadius.all(Radius.circular(15)))),
-          )));
-}
-
-
-
 createQuitButton(BuildContext context, double width, double height, var path,
     Map<String, Object>? args) {
   return SizedBox(
@@ -812,7 +777,37 @@ Future<List> getReponses(userID) async {
     print(e);
   }
   List res = reponse![0];
-  return reponse[0]; ///// A REVOIR !!!!
+  print(res);
+  return reponse[0]; 
+}
+Future<List> getReponsesByID(repID) async{
+  final DatabaseHelper dbHelper = DatabaseHelper.getInstance();
+  WidgetsFlutterBinding.ensureInitialized();
+  List? reponse;
+  try{
+    reponse = await dbHelper.queryReponsesByID(repID);
+  }catch(e){
+    print(e);
+    print("impossible de recuperer la reponses");
+  }
+  List res = reponse![0];
+  print(res);
+  return reponse[0]; 
+}
+
+Future<List> getAvisByID(avisID) async{
+  final DatabaseHelper dbHelper = DatabaseHelper.getInstance();
+  WidgetsFlutterBinding.ensureInitialized();
+  List? avis;
+  try{
+    avis = await dbHelper.queryAvisByID(avisID);
+  }catch(e){
+    print(e);
+    print("impossible de recuperer l'avis");
+  }
+  List res = avis![0];
+  print(res);
+  return avis[0]; 
 }
 
 Future<void> validerReponses(int rep_id) async {
@@ -839,4 +834,35 @@ Future<void> refuserReponses(int rep_id) async {
     print(e);
     print("impossible de modifier la reponses");
   }
+}
+
+String switchAge(int age){
+  String str_age = "";
+  switch (age) {
+    case 10: str_age = "3-10 ans";  
+      break;
+    case 17: str_age = "11-17 ans";  
+      break;
+    case 25: str_age = "18-25 ans";  
+      break;
+    case 35: str_age = "26-35 ans";  
+      break;
+    case 45: str_age = "36-45 ans";  
+      break;
+    case 55: str_age = "46-55 ans";  
+      break;
+    case 65: str_age = "56-65 ans";  
+      break;
+    case 75: str_age = "66-75 ans";  
+      break;
+    case 76: str_age = "76 et plus ans";  
+      break;
+  }
+  return str_age;
+}
+
+String convertDate(String date){
+  List<String> parts = date.split("-");
+  String convertedDate = parts[2] + "/" + parts[1] + "/" + parts[0];
+  return convertedDate;
 }

@@ -411,35 +411,34 @@ class Userconnexionpassword extends State<UserConnexionPassword> {
                // _showErrorMessage = true;
              // });
       }
-      var map = res.last.asMap();
-      print(map);
-      pass = map[3];
-      pseudo = map[2];
-      idUser = map[0];
-      reponses['rep_userIDServer'] = idUser as int;
-
+      if(res != null ){
+        var map = res.last.asMap();
+        print(map);
+        pass = map[3];
+        pseudo = map[2];
+        idUser = map[0];
+        reponses['rep_userIDServer'] = idUser as int;
+      }
     }else{
       print("pas de connexion internet");
     }
-
       WidgetsFlutterBinding.ensureInitialized();
       DatabaseHelperLocal dbHelper = DatabaseHelperLocal();
       print(mail);
       try{
         res = await dbHelper.queryOneUser(mail);
-        print(res);
+        print(res!);
       }catch(e){
-        print("erreur");
+        print("email incorrect");
       }
-      print(res);
-
-    print(res[0]["nom"]);
-    pseudo = res[0]["nom"].toString();
-    reponses["rep_userID"] = res[0]['user_id'];
-    reponses['mail'] = mail;
-    pass = res[0]["password"].toString();
-
-    reponses["username"] = pseudo;
+      if(res != null){
+        print(res[0]["nom"]);
+        pseudo = res[0]["nom"].toString();
+        reponses["rep_userID"] = res[0]['user_id'];
+        reponses['mail'] = mail;
+        pass = res[0]["password"].toString();
+        reponses["username"] = pseudo;
+      }
     print(reponses);
     
 

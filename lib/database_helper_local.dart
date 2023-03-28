@@ -67,7 +67,8 @@ class DatabaseHelperLocal {
           rep_etude CHARATER(30) NOT NULL,
           rep_activite CHARACTER(40) NOT NULL,
           rep_lieu INTEGER NOT NULL,
-          rep_img TEXT NULL,
+          rep_img TEXT,
+          rep_lieux_tb TEXT,
           CONSTRAINT fk_user FOREIGN KEY (rep_user) REFERENCES user(user_id),
           CONSTRAINT fk_lieux FOREIGN KEY (rep_lieu) REFERENCES lieu(lieu_id)
           )""");

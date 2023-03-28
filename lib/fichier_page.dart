@@ -145,9 +145,14 @@ class Fichierpage extends State<FichierPage> {
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10)),
                                 ),
-                                onPressed: () {
-                                  _showErrorMessage = true;
-                                  pickImage();
+                                onPressed: () async {
+                                   File? imageFile = await pickImage();
+                                  print(imageFile.toString());
+                                  final imageBytes =
+                                      await imageFile?.readAsBytes();
+                                  final imageBase64 =
+                                      base64.encode(imageBytes!);
+                                  reponses["rep_img"] = imageBase64;
                                 },
                                 child: const Icon(
                                   Icons.photo_camera,
@@ -222,12 +227,9 @@ class Fichierpage extends State<FichierPage> {
   void pickImage() async {
     try {
       final image = await ImagePicker().pickImage(source: ImageSource.camera);
-      if (image == null) return;
-      final imageTemp = io.File(image.path);
-      setState(() {
-        this.image = imageTemp;
-        print(this.image);
-      });
+      if (image != null){
+        return File(image.path);
+      } 
     } on PlatformException catch (e) {
       print('Failed to pick image: $e');
     }
