@@ -599,7 +599,7 @@ class Traitermarkersrecuadmin extends State<TraiterMarkersRecuAdmin> {
           style: mylib.titleStyle,
         ),
       ),
-    ),
+    
   );
   }
 
