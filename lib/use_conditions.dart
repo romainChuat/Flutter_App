@@ -17,10 +17,14 @@ class UseConditions extends StatefulWidget {
 class Useconditions extends State<UseConditions> {
   @override
   Widget build(BuildContext context) {
+    // context.watch<LanguageController>() est utilisée pour surveiller les changements de la langue de l'application.
+    // Elle est définit dans la classe LanguageController du fichier languga_controller.
     context.watch<LanguageController>();
     //Text display management
     return Scaffold(
         extendBodyBehindAppBar: true,
+        // Permet l'ajoute un widget endDrawer au Scaffold qui utilise la méthode createMenu
+        // de la bibliothèque mylib pour afficher un menu à droite lorsque l'on clique sur l'icon.
         endDrawer: mylib.createMenu(context),
         body: Container(
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
@@ -40,6 +44,8 @@ class Useconditions extends State<UseConditions> {
                         Container(
                           padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
                           child: Text(
+                            // la méthode tr() de la bibliothèque easy_localization permet de traduire la chaîne de caractères
+
                             "use_condition_title".tr(),
                             style: mylib.titleStyle,
                             textAlign: TextAlign.center,

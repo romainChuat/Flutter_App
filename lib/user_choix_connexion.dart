@@ -30,6 +30,7 @@ class Userchoixconnexion extends State<UserChoixConnexion> {
       ),
       child: Align(
         child: Text(
+          // la méthode tr() de la bibliothèque easy_localization permet de traduire la chaîne de caractères
           "forgot_password_page_sign_in".tr(),
           style: mylib.titleStyle3,
           textAlign: TextAlign.center,
@@ -185,6 +186,8 @@ class Userchoixconnexion extends State<UserChoixConnexion> {
 
   @override
   Widget build(BuildContext context) {
+    // context.watch<LanguageController>() est utilisée pour surveiller les changements de la langue de l'application.
+    // Elle est définit dans la classe LanguageController du fichier languga_controller.
     context.watch<LanguageController>();
     return Scaffold(
       body: AnnotatedRegion<SystemUiOverlayStyle>(

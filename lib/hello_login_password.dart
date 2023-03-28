@@ -40,6 +40,8 @@ class Hellologinpassword extends State<HelloLoginPassword> {
           ),
         ),
         child: Text(
+          // la méthode tr() de la bibliothèque easy_localization permet de traduire la chaîne de caractères
+
           "hello_login_page_btn_acceder_map".tr(),
           style: mylib.titleStyle,
           textAlign: TextAlign.center,
@@ -142,6 +144,8 @@ class Hellologinpassword extends State<HelloLoginPassword> {
   Widget build(BuildContext context) {
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
+    // context.watch<LanguageController>() est utilisée pour surveiller les changements de la langue de l'application.
+    // Elle est définit dans la classe LanguageController du fichier languga_controller.
     context.watch<LanguageController>();
     return Scaffold(
         extendBodyBehindAppBar: true,
