@@ -384,6 +384,7 @@ createNextButton1(String text, BuildContext context, double width,
             var userIDServer = reponses['rep_userIDServer'].toString();
             var username = reponses['username'].toString();
             var lat = reponses['lieu_lat'].toString();
+            var mail  = reponses['mail'].toString();
             var long = reponses['lieu_long'].toString();
             reponses.remove('username');
             reponses.remove('rep_userID');
@@ -405,6 +406,7 @@ createNextButton1(String text, BuildContext context, double width,
             await insertLieuLocal(reponses);
             await insertReponse(reponses);
             reponses['username'] = username;
+            reponses['mail'] = mail; 
             Navigator.of(context).push(page);
           },
           cancelBtnText: 'No',

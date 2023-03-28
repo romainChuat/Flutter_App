@@ -78,7 +78,7 @@ class Confirmationenregistrement extends State<ConfirmationEnregistrement> {
                         settings: RouteSettings(arguments: reponses),
                       ),
                     ),
-                    // crée un boutton 'Non' à l'aide de createPopButton de la bibliothèque mylib.
+                    // créeation d'un boutton 'Non' à l'aide de createPopButton de la bibliothèque mylib.
 
                     mylib.createPopButton('btn_no'.tr(), context, 120, 49),
                     const SizedBox(height: 61),
