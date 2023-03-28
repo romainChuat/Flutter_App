@@ -746,7 +746,7 @@ Future<List> getReponses(userID) async{
   }
   List res = reponse![0];
   print(res);
-  return reponse[0]; ///// A REVOIR !!!!
+  return reponse[0]; 
 }
 Future<List> getReponsesByID(repID) async{
   final DatabaseHelper dbHelper = DatabaseHelper.getInstance();
@@ -759,9 +759,23 @@ Future<List> getReponsesByID(repID) async{
     print("impossible de recuperer la reponses");
   }
   List res = reponse![0];
-  print('resssssssssssssss');
   print(res);
-  return reponse[0]; ///// A REVOIR !!!!
+  return reponse[0]; 
+}
+
+Future<List> getAvisByID(avisID) async{
+  final DatabaseHelper dbHelper = DatabaseHelper.getInstance();
+  WidgetsFlutterBinding.ensureInitialized();
+  List? avis;
+  try{
+    avis = await dbHelper.queryAvisByID(avisID);
+  }catch(e){
+    print(e);
+    print("impossible de recuperer l'avis");
+  }
+  List res = avis![0];
+  print(res);
+  return avis[0]; 
 }
 
 

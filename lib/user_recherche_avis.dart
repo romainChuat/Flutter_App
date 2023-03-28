@@ -75,13 +75,13 @@ class _Recherchepageuseravis extends State<Recherchepageuseravis> {
       // si il y a des mot dans la barre recherche
       if (controllerSearch.text != "") {
         // print("with text");
-        results = await dbHelper.queryReponses(controllerSearch.text);
+        results = await dbHelper.queryAvis();
         if (results != null) {
           allresults = results;
         }
       } else {
         // print("without text");
-        results = await dbHelper.queryAllReponses();
+        results = await dbHelper.queryAvis();
         allresults = results;
       }
       // print("----------->");
@@ -91,13 +91,13 @@ class _Recherchepageuseravis extends State<Recherchepageuseravis> {
       if (controllerSearch.text != "") {
         // print("with text");
         results =
-            await dbHelper.queryReponsesFilter(controllerSearch.text, filtre);
+            await dbHelper.queryAvis();
         if (results != null) {
           allresults = results;
         }
       } else {
         // print("without text");
-        results = await dbHelper.queryAllReponsesFilter(filtre);
+        results = await dbHelper.queryAvis();
         allresults = results;
       }
       // print("----------->");
@@ -137,16 +137,11 @@ class _Recherchepageuseravis extends State<Recherchepageuseravis> {
   }
 
   _listItem(context, _list, reponses) {
-    DateTime date = DateTime.parse(_list[2].toString());
     // Formatage de la date selon le format "dd/MM/yyyy"
-    String formattedDate = DateFormat('dd/MM/yyyy').format(date);
-    String title = _list[4].toString();
-    String username = _list[3].toString();
+    //String formattedDate = DateFormat('dd/MM/yyyy').format(date);
+    var id = _list[0] as int;
     Map<String, Object> data = {};
-    data['rep_id'] = _list[0] as int;
-    data['rep_status'] = _list[5];
-
-    // print("ess");
+    data['avis_id'] = id;
 
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
@@ -161,28 +156,12 @@ class _Recherchepageuseravis extends State<Recherchepageuseravis> {
             Expanded(
                 // flex: 3, child: Text(_list[1].toString().substring(0, 10))),
                 flex: 3,
-                child: Column(
-                  children: [
-                    Padding(padding: EdgeInsets.all(2)),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(username),
-                        Align(
-                          alignment: Alignment.centerRight,
-                          child: Text(formattedDate),
-                        )
-                      ],
-                    ),
-                    Row(
+                    child : Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            title,
-                            style: mylib.blueText2,
-                          ),
+                          alignment: Alignment.centerRight,
+                          child: Text(id.toString()),
                         ),
                         Align(
                           alignment: Alignment.centerRight,
@@ -220,7 +199,7 @@ class _Recherchepageuseravis extends State<Recherchepageuseravis> {
                                         builder: (BuildContext context) =>
                                             ConsulterAvisLoginChoisis(),
                                         settings:
-                                            RouteSettings(arguments: reponses),
+                                            RouteSettings(arguments: data),
                                       ),
                                     );
                                   },
@@ -239,20 +218,9 @@ class _Recherchepageuseravis extends State<Recherchepageuseravis> {
                                   onPressed: () {
                                     //il faut delete la
                                   },
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                )),
-          ],
-        )
-      ]),
-    );
-  }
+                                )
+                              )
+                              ]))]))])]));}
 
   @override
   Widget build(BuildContext context) {
