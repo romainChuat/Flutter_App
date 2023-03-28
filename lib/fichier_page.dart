@@ -233,7 +233,7 @@ class Fichierpage extends State<FichierPage> {
       return File(pickedFile.path);
     }
   }
-
+  
   /// Get from gallery
   Future pickImage() async {
     try {
