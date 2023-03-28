@@ -51,8 +51,6 @@ class Connexionadminn extends State<ConnexionAdminn> {
       ),
       child: Align(
         child: Text(
-          // la méthode tr() de la bibliothèque easy_localization permet de traduire la chaîne de caractères
-
           "forgot_password_page_sign_in".tr(),
           style: mylib.titleStyle3,
           textAlign: TextAlign.center,
@@ -131,27 +129,7 @@ class Connexionadminn extends State<ConnexionAdminn> {
     );
   }
 
-  Widget buildForgotPassBtn() {
-    return Container(
-      alignment: Alignment.centerRight,
-      child: TextButton(
-        onPressed: () => {
-          // Navigator.of(context).push(
-          // MaterialPageRoute(
-          //builder: (BuildContext context) => const ForgotPasswordPage(),
-          // ),
-          //),
-        }, // padding: EdgeInsets.only(right: 0),
-        child: Text(
-          'forgot_password_page_title'.tr(),
-          style: const TextStyle(
-            color: Colors.black38,
-            fontSize: 13,
-          ),
-        ),
-      ),
-    );
-  }
+  
 
   Widget buildRemeberCb() {
     return SizedBox(
@@ -185,19 +163,19 @@ class Connexionadminn extends State<ConnexionAdminn> {
         child: ElevatedButton(
           onPressed: () async {
             await loginCorrect();
-            //if (connected == true) {
-            mylib.adminConnect = true;
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (BuildContext context) => const HelloAdminPage(),
-                settings: RouteSettings(arguments: reponses),
-              ),
-            );
-            //} else {
-            // setState(() {
-            //_showErrorMessage = true;
-            // });
-            //  }
+            if (connected == true) {
+              mylib.adminConnect = true;
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (BuildContext context) => const HelloAdminPage(),
+                  settings: RouteSettings(arguments: reponses),
+                ),
+              );
+            } else {
+              setState(() {
+                _showErrorMessage = true;
+              });
+            }
           },
           style: ElevatedButton.styleFrom(
             shadowColor: Colors.grey.shade700,
@@ -217,8 +195,6 @@ class Connexionadminn extends State<ConnexionAdminn> {
       const SizedBox(
         height: 14,
       ),
-      // Message d'erreur qui s'affiche lorsque l'utilisateur n'a pas répondu à la question.
-
       if (_showErrorMessage)
         Text("connexion_admin_email_mdp_incorrect".tr(),
             style: mylib.warningText),
@@ -287,8 +263,6 @@ class Connexionadminn extends State<ConnexionAdminn> {
 
   @override
   Widget build(BuildContext context) {
-    // context.watch<LanguageController>() est utilisée pour surveiller les changements de la langue de l'application.
-    // Elle est définit dans la classe LanguageController du fichier languga_controller.
     context.watch<LanguageController>();
     return Scaffold(
       body: AnnotatedRegion<SystemUiOverlayStyle>(
@@ -330,14 +304,11 @@ class Connexionadminn extends State<ConnexionAdminn> {
                               buildEmail(),
                               const SizedBox(height: 15),
                               buildPassword(),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
+                                                            const SizedBox(height: 28),
+
                                   buildRemeberCb(),
-                                  const SizedBox(height: 48),
-                                  buildForgotPassBtn(),
-                                ],
-                              ),
+                                
+                              
                               buildLoginBtn(),
                               const SizedBox(height: 61),
                             ],

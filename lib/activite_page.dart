@@ -315,14 +315,14 @@ class Activitepage extends State<ActivitePage> {
         width: wdth,
         child: Material(
             elevation: 5,
-            borderRadius: BorderRadius.all(Radius.circular(10)),
+            borderRadius: const BorderRadius.all(Radius.circular(10)),
             child: TextField(
               onChanged: (value) {
                 //reponses["rep_activite"][index] = value.toString();
               },
               style: mylib.simpleText1,
-              cursorColor: Color.fromARGB(255, 117, 106, 106),
-              decoration: InputDecoration(
+              cursorColor: const Color.fromARGB(255, 117, 106, 106),
+              decoration: const InputDecoration(
                   contentPadding: EdgeInsets.fromLTRB(10, 0, 0, 1),
                   filled: true,
                   fillColor: Colors.white,
@@ -340,6 +340,4 @@ class Activitepage extends State<ActivitePage> {
                       borderRadius: BorderRadius.all(Radius.circular(15)))),
             )));
   }
-
-  void onChanged(dynamic text) {}
 }

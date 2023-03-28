@@ -31,7 +31,7 @@ class MyThemes {
       onPrimary: Colors.white,
     ),
     primaryColor: Colors.white,
-    primarySwatch: Colors.yellow,
+    primarySwatch: Colors.grey,
     canvasColor: const Color.fromARGB(255, 20, 20, 20),
   );
 

@@ -333,7 +333,7 @@ class Consulteravisloginchoisis extends State<ConsulterAvisLoginChoisis> {
                         const Padding(
                             padding: EdgeInsets.fromLTRB(35, 0, 0, 0)),
                         mylib.createNextButton1(
-                          "consulter_les_avis_login_choisis_supprimer".tr(),
+                          "Publier",
                           context,
                           141,
                           41,

@@ -1,3 +1,4 @@
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/user_confirm_abandon_quiz.dart';
@@ -40,20 +41,12 @@ class Mappage extends State<MapPage> {
 
   @override
   Widget build(BuildContext context) {
-    // Map<String, Object> reponses permet de récupérer les arguments passés lors de la navigation vers la page
-    // courante à l'aide de la méthode ModalRoute.of(context)?.settings.arguments.
     Map<String, Object> reponses =
         ModalRoute.of(context)?.settings.arguments as Map<String, Object>;
-    // context.watch<LanguageController>() est utilisée pour surveiller les changements de la langue de l'application.
-    // Elle est définit dans la classe LanguageController du fichier languga_controller.
     context.watch<LanguageController>();
     return Scaffold(
-        // Permet l'ajout d'un widget 'appBar' dans l'objet 'Scaffold' qui utilise une méthode BaseAppBar
-        // définie dans la bibliothèque mylib pour afficher une barre d'application en haut de la page.
         extendBodyBehindAppBar: true,
         appBar: mylib.BaseAppBar(appBar: AppBar()),
-        // Permet l'ajoute un widget endDrawer au Scaffold qui utilise la méthode createMenu
-        // de la bibliothèque mylib pour afficher un menu à droite lorsque l'on clique sur l'icon.
         endDrawer: mylib.createMenu(context),
         body: Container(
           padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
@@ -62,8 +55,6 @@ class Mappage extends State<MapPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 const Spacer(),
-                // La fonction 'percentIndicator' de la bibliotheque mylib prend en paramètre un contexte de type BuildContext et un pourcentage de type double.
-                // Cette dernière permet d'afficher une barre de progression linéaire avec un pourcentage.
                 mylib.percentIndicator(context, 0.11),
                 const SizedBox(
                   height: 20,
@@ -82,15 +73,12 @@ class Mappage extends State<MapPage> {
                             child: Align(
                               alignment: Alignment.center,
                               child: Text(
-                                // la méthode tr() de la bibliothèque easy_localization permet de traduire la chaîne de caractères
-
                                 "mapPage_title".tr(),
                                 style: mylib.titleStyle,
                                 textAlign: TextAlign.center,
                               ),
                             ),
                           ),
-                          // Widget de séparation
                           const Divider(
                             color: Colors.black,
                             thickness: 1,
@@ -128,6 +116,7 @@ class Mappage extends State<MapPage> {
                                                 ),
                                                 onPressed: () {},
                                               )));
+                                      setState(() {});
                                     },
                                   ),
                                   layers: [
@@ -220,16 +209,12 @@ class Mappage extends State<MapPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    // condition composé de deux bouttons permettant de quitter le questionnaire quand on l'utilisateur souhaite
-                    // ces boutons on été crée à l'aide de createQuitButton de la bibliothèque mylib.
-                    // Ces derniers on deux redirections différente selon si l'utilisateur est connecté avec son compte ou non.
-                    // Si il a un compte il peut alors enregistrer son avancé pour pouvoir la modifier par la suite.
-                    if (reponses['mail'] != null)
+                    if (reponses['mdp'] == true)
                       mylib.createQuitButton(context, 141, 41,
                           const ConfirmationEnregistrement(), reponses)
                     else
-                      mylib.createQuitButton(
-                          context, 141, 41, ConfirmationAbandon(), reponses),
+                      mylib.createQuitButton(context, 141, 41,
+                          const ConfirmationAbandon(), reponses),
                     if (_showErrorMessage)
                       mylib.createNextButton(
                         "btn_next".tr(),
@@ -243,15 +228,10 @@ class Mappage extends State<MapPage> {
                       )
                   ],
                 ),
-                // Message d'erreur qui s'affiche lorsque l'utilisateur n'a pas répondu à la question.
-
                 if (!_showErrorMessage)
-                  const Text(
-                      "Veuillez répondre pour aller à la prochaine question",
+                  Text("Veuillez répondre pour aller à la prochaine question",
                       style: mylib.warningText),
                 const Spacer(),
-                // Bas de page indiquant le numéro de page sur le nombre de page restante.
-
                 const Align(
                   alignment: Alignment.bottomRight,
                   child: Text(
